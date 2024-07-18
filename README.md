@@ -14,13 +14,11 @@
 - To display wallpapers in the preview, remove the comments from lines 326 to 332 in **"userContent.css"**.
 
 ## Preview:
-<img align="bottom" width="696" alt="Screen Shot 1" src="https://github.com/user-attachments/assets/2102162f-123c-4c19-9e2c-151d32d6333a">
 
-<img align="bottom" width="696" alt="Screen Shot 2" src="https://github.com/user-attachments/assets/4f348395-758c-4d65-91ff-fefdfb001b99">
-
-<img align="bottom" width="696" alt="Screen Shot 3" src="https://github.com/user-attachments/assets/6768664c-9a5a-470f-840c-ffe6a6512a73">
-
-<img align="bottom" width="696" alt="Screen Shot 4" src="https://github.com/user-attachments/assets/4e1a32ba-d19c-47dd-8322-5f402f4bef85">
+<img align="bottom" width="696" alt="Screen Shot 1" src="https://github.com/user-attachments/assets/ef7261d7-ff9b-4524-a930-44fae9660ef2">
+<img align="bottom" width="696" alt="Screen Shot 2" src="https://github.com/user-attachments/assets/b3a18714-69bc-4715-8b2f-9d9c4b0df060">
+<img align="bottom" width="696" alt="Screen Shot 3" src="https://github.com/user-attachments/assets/11fc5856-8711-4bfd-91ec-c7dfb5ec1919">
+<img align="bottom" width="696" alt="Screen Shot 4" src="https://github.com/user-attachments/assets/02c77bd1-ab2c-42e5-b95f-e9cbdfe4d400">
 
 ## Installation
 
