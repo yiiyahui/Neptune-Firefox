@@ -514,6 +514,10 @@ textarea {
 	height: 30px !important;
 	margin: 0 !important;
 	border-inline-start: none !important;
+	
+	&[movingtab] {
+		padding: 0 !important;
+	}
 }
 
 .tabbrowser-tab {
