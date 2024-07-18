@@ -46,7 +46,7 @@
 
 #TabsToolbar {
 	background: none !important;
-	padding: 0 44px 11px 0 !important;
+	padding: 0 120px 11px 0 !important;
 }
 
 #customization-container {
@@ -689,15 +689,15 @@ screenshots-buttons {
 	border: none !important;
 }
 
-/*#PanelUI-button {
+#PanelUI-button {
 	position: fixed;
-	right: 48px;
+	right: 12px;
 }
 
 #unified-extensions-button {
 	position: fixed;
 	right: 84px;
-}*/
+}
 
 #library-button[animate]>.toolbarbutton-icon {
 	fill: transparent !important;
@@ -1209,7 +1209,7 @@ menugroup>#context-forward {
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
 	position: fixed;
-	right: 12px;
+	right: 48px;
 	list-style-image: url("neptune/icons/newtab.svg") !important;
 }
 
@@ -1267,7 +1267,6 @@ tooltip,
 #scrollbutton-up,
 #scrollbutton-down,
 #fxa-toolbar-menu-button,
-#firefox-view-button,
 #save-to-pocket-button,
 #identity-icon-label,
 #blocked-permissions-container,
@@ -1276,21 +1275,16 @@ tooltip,
 .urlbarView-type-icon,
 .urlbarView-dynamic-onboardTabToSearch-description,
 .tab-secondary-label,
-.devtools-side-splitter,
-.devtools-horizontal-splitter,
 .bookmark-item>.toolbarbutton-icon,
 .unified-extensions-item-menu-button.subviewbutton,
 .translations-panel-settings-gear-icon,
 #translations-button-circle-arrows,
 #nav-bar .toolbaritem-combined-buttons separator,
-#_036a55b4-5e72-4d05-a06c-cba2dfcc134a_-menuitem-_translate-restore-this-frame,
 #downloadsFooterButtons,
 #downloadsFooterButtons>toolbarseparator,
 #fullscreen-exit-button,
 #back-button[disabled],
 #forward-button[disabled],
-#statuspanel,
-#import-button,
 #customization-panel-container,
 #customization-spacer,
 .customization-checkbox,
@@ -1298,8 +1292,6 @@ tooltip,
 .textbox-search-sign,
 #nav-bar-overflow-button,
 #alltabs-button,
-#PanelUI-button,
-#unified-extensions-button,
 #appMenu-fullscreen-button2,
 #context-navigation>.menuitem-iconic,
 #context-stop,
@@ -1311,8 +1303,6 @@ tooltip,
 #context-openlinkprivate,
 #context-bookmarklink,
 #context-setDesktopBackground,
-#tabContextMenu,
-#toolbar-context-menu,
 #toolbarItemsMenuSeparator,
 #context-sendimage,
 #context-sendvideo,
