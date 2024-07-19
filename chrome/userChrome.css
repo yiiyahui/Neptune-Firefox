@@ -336,6 +336,19 @@ textarea {
 	}
 }
 
+.urlbarView-row[dynamicType=onboardTabToSearch]>.urlbarView-row-inner {
+	min-height: 34px !important;
+
+	>.urlbarView-no-wrap>.urlbarView-favicon {
+		height: 16px !important;
+		min-width: 16px !important;
+		
+		.urlbarView-row:hover & {
+			fill: #fff;
+		}
+	}
+}
+
 .urlbarView-button {
 	background-color: transparent !important;
 	outline: none !important;
@@ -348,15 +361,6 @@ textarea {
 	&:is(:hover, [open]) {
 		color: var(--neptune-urlbar-View-switch-background) !important;
 		background-color: transparent !important;
-	}
-}
-
-.urlbarView-row[dynamicType=onboardTabToSearch]>.urlbarView-row-inner {
-	min-height: 34px !important;
-
-	>.urlbarView-no-wrap>.urlbarView-favicon {
-		height: 16px !important;
-		min-width: 16px !important;
 	}
 }
 
