@@ -11,8 +11,17 @@
 
 **Tips:** 
 - Some elements like unnecessary context menus are removed, so it might not be ideal for everyone.
-- To display wallpapers in the preview, remove the comments from lines 326 to 332 in **"userContent.css"**.
+- The default new tab wallpaper of the theme uses Firefox's wallpaper feature. However, it cannot be customized. Therefore, to display the wallpaper shown in the preview, search for and modify **"userContent.css"** by removing the `/*` and `*/` symbols from this line:
 
+```css
+/*body {
+  background: url("neptune/image/Orange.png") center/cover no-repeat fixed !important;
+
+  @media (prefers-color-scheme: dark) {
+    background: url("neptune/image/Blue.png") center/cover no-repeat fixed !important;
+  }
+}*/
+```
 ## Preview:
 
 <img align="bottom" width="696" alt="Screen Shot 1" src="https://github.com/user-attachments/assets/ef7261d7-ff9b-4524-a930-44fae9660ef2">
@@ -33,10 +42,11 @@ Download the theme file and unzip the **"chrome"** folder into your **"profile"*
 -  `about:config`
 
     **Important**
-     - Set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
+    - Set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
     - Set `svg.context-properties.content.enabled` to `true`.
     - Set `browser.newtabpage.activity-stream.newtabWallpapers.enabled` to `true`.
     - Set `browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled` to `true`.
+    - Set `widget.non-native-theme.scrollbar.style` to `2` （**For Windows10**. Due to the default scrollbar in Windows 10 being quite wide, it can affect the setting menu's width., this configuration is recommended.)
 
     **Optional**
     - Set `browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar` to `false`.
