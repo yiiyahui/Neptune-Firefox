@@ -390,7 +390,7 @@
   }
 
   .customize-menu {
-    width: 292px !important;
+    width: 280px !important;
     height: 286px !important;
     top: calc(95vh - 10px) !important;
     right: 19px !important;
@@ -446,7 +446,7 @@
   .wallpaper-list.category {
     background-color: var(--neptune-main-background) !important;
     inset-inline-start: 0 !important;
-    width: 17.5em !important;
+    width: 100% !important;
   }
 
   .wallpaper-list.category fieldset {
