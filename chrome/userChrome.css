@@ -314,6 +314,7 @@ textarea {
 	&[rich-suggestion]>.urlbarView-row-inner>.urlbarView-row-body {
 		> :is(.urlbarView-row-body-description, .urlbarView-row-body-bottom) {
 			margin-bottom: 2px;
+			color: #fff;
 		}
 	}
 
@@ -324,27 +325,27 @@ textarea {
 	>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-favicon {
 		width: 14px !important;
 		height: 14px !important;
+
+		.urlbarView-row:hover & {
+			fill: #fff;
+		}
 	}
 
+	&[dynamicType=onboardTabToSearch]>.urlbarView-row-inner {
+		min-height: 34px !important;
+
+		>.urlbarView-no-wrap>.urlbarView-favicon {
+			height: 16px !important;
+			min-width: 16px !important;
+		}
+	}
+	
 	&:is([type=switchtab], [type=remotetab], [type=clipboard]) {
 		>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action {
 			padding: 1px 6px !important;
 			font-size: 10px !important;
 			background-color: var(--neptune-urlbar-View-switch-background) !important;
 			color: #fff !important;
-		}
-	}
-}
-
-.urlbarView-row[dynamicType=onboardTabToSearch]>.urlbarView-row-inner {
-	min-height: 34px !important;
-
-	>.urlbarView-no-wrap>.urlbarView-favicon {
-		height: 16px !important;
-		min-width: 16px !important;
-		
-		.urlbarView-row:hover & {
-			fill: #fff;
 		}
 	}
 }
@@ -745,13 +746,14 @@ screenshots-buttons {
 	width: 100% !important;
 }
 
-input[type=checkbox] {
+input[type=checkbox],
+.checkbox-check:not([native]) {
 	appearance: none !important;
 	background-color: transparent !important;
 	border-radius: 4px !important;
 	border: 2px solid #b9b9b9 !important;
 
-	 &:checked {
+	 &:is(:checked, [checked="true"]) {
 		background-color: var(--neptune-switch-pressed-background) !important;
 		background-image: url("neptune/icons/check.svg") !important;
 		border: none !important;
