@@ -567,6 +567,11 @@ textarea {
 	outline: none !important;
 }
 
+#TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon{
+	background-color: var(--neptune-tabbar-tab-active-background) !important;
+	border-radius: 7px !important;
+}
+
 #TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon,
 #tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
 	box-shadow: none !important;
