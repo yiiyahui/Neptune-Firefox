@@ -160,13 +160,14 @@
     background-color: transparent !important;
   }
 
+  input[type=checkbox],
   .checkbox-check:not([native]) {
     appearance: none !important;
     background-color: transparent !important;
     border-radius: 4px !important;
     border: 2px solid #b9b9b9 !important;
 
-    &[checked] {
+    &:is(:checked, [checked="true"]) {
       background-color: var(--neptune-switch-pressed-background) !important;
       background-image: url("neptune/icons/check.svg") !important;
       border: none !important;
@@ -177,14 +178,13 @@
     }
   }
 
-  input[type="radio"]:not(.wallpaper-input),
   .radio-check {
     appearance: none !important;
     background-color: transparent !important;
     border-radius: 50% !important;
     border: 2px solid #b9b9b9 !important;
 
-    &:checked {
+    &[selected="true"] {
       background-color: var(--neptune-switch-pressed-background) !important;
       background-image: url("neptune/icons/radio.svg") !important;
       border: none !important;
