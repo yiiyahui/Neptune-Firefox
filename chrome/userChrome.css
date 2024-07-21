@@ -22,10 +22,6 @@
 	background-color: transparent !important;
 }
 
-#titlebar #toolbar-menubar {
-	order: 0;
-}
-
 #titlebar {
 	order: 1;
 	flex: 1;
@@ -46,7 +42,7 @@
 
 #TabsToolbar {
 	background: none !important;
-	padding: 0 120px 11px 0 !important;
+	padding: 0 116px 11px 0 !important;
 }
 
 #customization-container {
@@ -63,6 +59,11 @@ findbar {
 	border: none !important;
 	border-radius: 0 0 0 6px;
 	padding: 0 0 0 3px !important;
+	transition-property: margin-right, visibility !important;
+
+	&:where([hidden]) {
+		margin-right: -266px !important;
+	}
 }
 
 .findbar-container {
@@ -110,18 +111,11 @@ findbar {
 }
 
 .findbar-textbox {
-	width: 140px !important;
+	width: 12em !important;
 	padding: 0 3px !important;
 	border: 1px solid var(--neptune-urlbar-border-color) !important;
 	background-color: transparent !important;
-	outline: 18px solid transparent !important;
-
-	&:focus {
-		outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
-		outline-offset: -2px !important;
-		transition: outline .2s ease-out;
-	}
-
+	
 	&::selection {
 		background-color: var(--neptune-text-selection-color) !important;
 	}
@@ -148,7 +142,7 @@ findbar {
 	--link-color: light-dark(#6f6f6f, #aaa) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
-	--in-content-page-background: var(--neptune-content-background) !important;
+	--in-content-page-background: var(--neptune-main-background) !important;
 	--in-content-box-background: var(--neptune-menu-background) !important;
 	--in-content-box-border-color: var(--neptune-urlbar-border-color) !important;
 	--sidebar-background-color: var(--neptune-sidebar-background) !important;
@@ -179,6 +173,7 @@ search-textbox {
 #searchbar,
 #search-box,
 search-textbox,
+.findbar-textbox,
 [type="text"] {
 	outline: 18px solid transparent !important;
 }
@@ -187,6 +182,7 @@ search-textbox,
 #searchbar:focus-within,
 #search-box[focused],
 search-textbox[focused],
+.findbar-textbox:focus,
 [type="text"]:focus-visible {
 	outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
 	outline-offset: -2px !important;
@@ -222,7 +218,7 @@ textarea {
 }
 
 #urlbar-container {
-	width: 320px !important;
+	width: 27em !important;
 }
 
 #urlbar-container,
@@ -271,7 +267,7 @@ textarea {
 }
 
 .urlbarView {
-	min-width: 105% !important;
+	min-width: calc(100% + 16px) !important;
 	margin: 4px 0 0 -8px !important;
 	border: none !important;
 	border-radius: 12px !important;
@@ -307,10 +303,15 @@ textarea {
 
 	&[rich-suggestion][type=search] {
 		:root:not([uidensity=compact]) & {
-			min-height: 34px !important;
+			min-height: 32px !important;
 		}
 	}
 
+	&[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
+		width: 24px !important;
+		height: 24px !important;
+	}
+	
 	&[rich-suggestion]>.urlbarView-row-inner>.urlbarView-row-body {
 		> :is(.urlbarView-row-body-description, .urlbarView-row-body-bottom) {
 			margin-bottom: 2px;
@@ -332,6 +333,7 @@ textarea {
 	}
 
 	&[dynamicType=onboardTabToSearch]>.urlbarView-row-inner {
+		height: 34px !important;
 		min-height: 34px !important;
 
 		>.urlbarView-no-wrap>.urlbarView-favicon {
@@ -375,6 +377,10 @@ textarea {
 	height: 22px !important;
 	min-width: 22px !important;
 	margin-left: 4px !important;
+
+	&:is(:not([selected]):hover,[selected]) {
+		color: #fff !important;
+	}
 }
 
 #urlbar .search-panel-header {
@@ -535,7 +541,7 @@ textarea {
 	}
 
 	&[selected]:not([pinned]) {
-		max-width: 180px !important;
+		max-width: 178px !important;
 	}
 }
 
@@ -565,11 +571,6 @@ textarea {
 	background-color: var(--neptune-tabbar-tab-selected-background) !important;
 	transition: background-color .2s ease;
 	outline: none !important;
-}
-
-#TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon{
-	background-color: var(--neptune-tabbar-tab-active-background) !important;
-	border-radius: 7px !important;
 }
 
 #TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon,
@@ -683,7 +684,7 @@ toolbar .toolbarbutton-1:hover {
 screenshots-buttons {
 	position: fixed !important;
 	top: 52px !important;
-	background-color: var(--neptune-main-background) !important;
+	background-color: var(--neptune-content-background) !important;
 }
 
 #full-page,
@@ -802,8 +803,8 @@ panel {
 	--arrowpanel-header-min-height: 32px !important;
 
 	@media (-moz-platform: windows) {
-		--panel-shadow-margin: 12px !important;
-		--panel-shadow: 0 3px var(--panel-shadow-margin) #0000003a !important;
+		--panel-shadow-margin: 14px !important;
+		--panel-shadow: 0 2px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
 	}
 }
 
@@ -847,7 +848,7 @@ menuitem[checked]>.menu-iconic-left {
 .popup-internal-box,
 #PopupAutoComplete>.autocomplete-richlistbox,
 .menupopup-arrowscrollbox {
-	background-color: light-dark(#fff, #333) !important;
+	background-color: light-dark(#fafafa, #323232) !important;
 	background-image: none !important;
 }
 
@@ -1036,6 +1037,7 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 .dialogBox {
+	border: 1px solid var(--neptune-toolbar-border-color) !important;
 	border-radius: 12px !important;
 }
 
@@ -1325,7 +1327,7 @@ tooltip,
 #context-video-fullscreen,
 #TabsToolbar .titlebar-spacer,
 #TabsToolbar .private-browsing-indicator,
-#titlebar #toolbar-menubar .titlebar-buttonbox-container,
+#titlebar #toolbar-menubar,
 .search-setting-button,
 #urlbar .search-one-offs,
 #tracking-protection-icon-container {
