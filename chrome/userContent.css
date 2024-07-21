@@ -60,7 +60,7 @@
     --toolbar-button-foreground-active: var(--theme-primary-color) !important;
     --primary-color: var(--theme-primary-color) !important;
     --panel-border-radius: 6px !important;
-    --panel-shadow-margin: 12px !important;
+    --panel-shadow-margin: 14px !important;
     --panel-border-color: var(--neptune-sidebar-border-color) !important;
     --fxview-background-color: var(--neptune-main-background) !important;
   }
@@ -148,7 +148,7 @@
 
   .search-tooltip {
     border: none !important;
-    box-shadow: 0 0 10px #00000033;
+    box-shadow: 0 0 10px var(--neptune-panel-shadow-color);
   }
 
   .text-link,
@@ -158,6 +158,11 @@
 
   .info-box-container {
     background-color: transparent !important;
+  }
+
+  .stp_button_wide .stp_button {
+	padding-block: 4px !important;
+	border-radius: 6px !important;
   }
 
   input[type=checkbox],
@@ -341,7 +346,7 @@
     width: 65px !important;
     background-color: #f8f8f8 !important;
     border-radius: 12px !important;
-    box-shadow: 0 0 10px #00000040 !important;
+    box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
   }
 
   .top-site-outer .tile .icon-wrapper {
@@ -390,8 +395,8 @@
   }
 
   .customize-menu {
-    width: 280px !important;
-    height: 286px !important;
+    width: 18em !important;
+    height: 19.6em !important;
     top: calc(95vh - 10px) !important;
     right: 19px !important;
     padding: 15px 0 !important;
@@ -424,7 +429,7 @@
   }
 
   .home-section .section moz-toggle {
-    margin: 0 !important;
+    margin-bottom: 10px !important;
   }
 
   .home-section .external-link {
@@ -441,34 +446,32 @@
   .arrow-button {
 	margin: 0 0 5px 10px !important;
 	padding-inline-start: 18px !important;
+	font-size: 14px !important;
   }
 
   .wallpaper-list.category {
     background-color: var(--neptune-main-background) !important;
     inset-inline-start: 0 !important;
+    height: 95% !important;
     width: 100% !important;
   }
 
   .wallpaper-list.category fieldset {
     gap: 24px !important;
-    grid-auto-rows: 40px !important;
-    grid-template-columns: 1fr 1fr !important;
+    grid-auto-rows: 28px !important;
+    grid-template-columns: 1fr 1fr 1fr  !important;
   }
 
   .category-list {
-    grid-auto-rows: 56px !important;
+    grid-auto-rows: 48px !important;
   }
   
   .category-header {
-  	height:28px;
+  	height: 46px;
   }
 
-  .home-section .wallpapers-section h2 {
-   	margin:0;
-  }
-  
   .wallpaper-input {
-	height: 50px !important;
+	height: 40px !important;
   }
 
   .wallpaper-input:checked {
@@ -478,6 +481,7 @@
   }
 
   .wallpapers-reset {
+    margin-top: 4px !important;
     text-decoration: none !important;
     font-size: .7em !important;
   }
@@ -546,7 +550,7 @@
     background-color: var(--neptune-popover-background) !important;
     position: relative;
     border: 0 !important;
-    box-shadow: 0 0 10px #00000040 !important;
+    box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
     backdrop-filter: blur(8px);
     height: auto !important;
   }
