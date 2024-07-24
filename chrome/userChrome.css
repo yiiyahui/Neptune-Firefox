@@ -60,7 +60,7 @@ findbar {
 	border-radius: 0 0 0 6px;
 	padding: 0 0 0 3px !important;
 	transition-property: margin-right, visibility !important;
-
+	
 	&:where([hidden]) {
 		margin-right: -266px !important;
 	}
@@ -115,10 +115,6 @@ findbar {
 	padding: 0 3px !important;
 	border: 1px solid var(--neptune-urlbar-border-color) !important;
 	background-color: transparent !important;
-	
-	&::selection {
-		background-color: var(--neptune-text-selection-color) !important;
-	}
 }
 
 :root {
@@ -155,6 +151,10 @@ findbar {
 	--focus-outline-color: var(--theme-primary-color) !important;
 	--default-focusring: none !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
+	--organizer-toolbar-background: var(--neptune-main-background) !important;
+	--organizer-pane-background: var(--neptune-main-background) !important;
+	--organizer-content-background: var(--neptune-content-background) !important;
+	--organizer-hover-background: var(--neptune-item-hover-background) !important;
 	--soundplaying-tab-color: color-mix(in srgb, accentcolor 33%, transparent);
 }
 
@@ -186,7 +186,7 @@ search-textbox[focused],
 [type="text"]:focus-visible {
 	outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
 	outline-offset: -2px !important;
-	transition: all .3s cubic-bezier(.8, 0, 0, .8) !important;
+	transition: all .3s cubic-bezier(.6, 0, 0, 1);
 }
 
 select:where(:not([size], [multiple], [iconic])),
@@ -198,15 +198,15 @@ textarea {
 	border-radius: 4px !important;
 }
 
-::selection {
-	background-color: var(--neptune-text-selection-color);
-	color: #fff;
+*::selection {
+	background-color: var(--neptune-text-selection-color) !important;
+	color: var(--urlbarView-highlight-color) !important;
 }
 
 /*---------- Urlbar ----------*/
 #urlbar,
 #searchbar {
-	font-size: 1.03em !important;
+	font-size: 12.5px !important;
 }
 
 #urlbar-background {
@@ -245,7 +245,7 @@ textarea {
 }
 
 #urlbar[breakout] {
-	height: 30px !important;
+	height: var(--urlbar-min-height) !important;
 }
 
 #urlbar[breakout][breakout-extend] {
@@ -253,16 +253,7 @@ textarea {
 	width: 100% !important;
 
 	>.urlbar-input-container {
-		height: 30px !important;
-	}
-}
-
-.urlbar-input {
-	font-size: 12.5px !important;
-
-	&::selection {
-		background-color: var(--neptune-text-selection-color) !important;
-		color: #fff !important;
+		height: var(--urlbar-min-height) !important;
 	}
 }
 
@@ -281,13 +272,12 @@ textarea {
 	margin: 2px 0 !important;
 }
 
-
 .urlbarView-row {
 	border-radius: 7px !important;
 	margin-inline: 7px;
 	
 	&[row-selectable]:not([selected]):hover {
-		color: #fff;
+		color: var(--urlbarView-highlight-color);
 		
 		.urlbarView-url {
 			color: inherit !important;
@@ -298,6 +288,15 @@ textarea {
 		:root:not([uidensity=compact]) & {
 			height: 22px !important;
 			min-height: 22px !important;
+		}
+	}
+	
+	&[type=tip] {
+		padding: 0 !important;
+	
+		> .urlbarView-row-inner,
+		.urlbarView-results[wrap] > & > .urlbarView-button {
+			margin: 0 !important;
 		}
 	}
 
@@ -315,7 +314,7 @@ textarea {
 	&[rich-suggestion]>.urlbarView-row-inner>.urlbarView-row-body {
 		> :is(.urlbarView-row-body-description, .urlbarView-row-body-bottom) {
 			margin-bottom: 2px;
-			color: #fff;
+			color: var(--urlbarView-highlight-color);
 		}
 	}
 
@@ -326,9 +325,9 @@ textarea {
 	>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-favicon {
 		width: 14px !important;
 		height: 14px !important;
-
+		
 		.urlbarView-row:hover & {
-			fill: #fff;
+			fill: var(--urlbarView-highlight-color);
 		}
 	}
 
@@ -341,13 +340,13 @@ textarea {
 			min-width: 16px !important;
 		}
 	}
-	
+
 	&:is([type=switchtab], [type=remotetab], [type=clipboard]) {
 		>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action {
 			padding: 1px 6px !important;
 			font-size: 10px !important;
 			background-color: var(--neptune-urlbar-View-switch-background) !important;
-			color: #fff !important;
+			color: var(--urlbarView-highlight-color) !important;
 		}
 	}
 }
@@ -357,7 +356,7 @@ textarea {
 	outline: none !important;
 
 	.urlbarView-row:is([row-selectable]:hover, [selected])>&:not(:hover, [open]) {
-		color: #fff !important;
+		color: var(--urlbarView-highlight-color) !important;
 		background-color: transparent !important;
 	}
 
@@ -365,7 +364,16 @@ textarea {
 		color: var(--neptune-urlbar-View-switch-background) !important;
 		background-color: transparent !important;
 	}
+	
+	&:not(:empty):not(.urlbarView-button-menu) {
+		color: light-dark(#000, #fff) !important;
+		
+		&:hover {
+			color: var(--neptune-urlbar-View-switch-background) !important;
+		}
+	}
 }
+
 
 #urlbar .search-one-offs {
 	padding: 0 6px 6px !important;
@@ -379,7 +387,7 @@ textarea {
 	margin-left: 4px !important;
 
 	&:is(:not([selected]):hover,[selected]) {
-		color: #fff !important;
+		color: var(--urlbarView-highlight-color) !important;
 	}
 }
 
@@ -420,7 +428,7 @@ textarea {
 #identity-box[pageproxystate="valid"]>.identity-box-button,
 #urlbar-label-box {
 	background: none !important;
-	padding: 0 5px 0 6px !important;
+	padding: 0 4px 0 6px !important;
 }
 
 #identity-box[pageproxystate="valid"]>.identity-box-button {
@@ -491,18 +499,14 @@ textarea {
 	border-radius: 6px !important;
 	outline: none !important;
 	margin-block: 6px !important;
-	color: #fff !important;
+	color: var(--urlbarView-highlight-color) !important;
 }
 
 #urlbar-search-mode-indicator-title {
 	margin-bottom: 2px;
 }
 
-#urlbar-search-mode-indicator-close {
-	width: 12px !important;
-	height: 12px !important;
-}
-
+#urlbar-search-mode-indicator-close,
 .sharing-icon,
 #identity-icon,
 #permissions-granted-icon,
@@ -522,7 +526,7 @@ textarea {
 #tabbrowser-tabs {
 	--tab-min-width: 36px !important;
 	--tab-loading-fill: var(--theme-primary-color) !important;
-	height: 30px !important;
+	height: var(--tab-min-height) !important;
 	margin: 0 !important;
 	border-inline-start: none !important;
 	
@@ -588,7 +592,7 @@ textarea {
 	&:hover {
 		stroke: var(--neptune-tab-speaker-icon-background) !important;
 		background-color: var(--neptune-tab-speaker-icon-background) !important;
-		color: #fff !important;
+		color: var(--button-primary-color) !important;
 	}
 }
 
@@ -759,7 +763,7 @@ input[type=checkbox],
 	border-radius: 4px !important;
 	border: 2px solid #b9b9b9 !important;
 
-	 &:is(:checked, [checked="true"]) {
+	&:is(:checked, [checked="true"]) {
 		background-color: var(--neptune-switch-pressed-background) !important;
 		background-image: url("neptune/icons/check.svg") !important;
 		border: none !important;
@@ -791,7 +795,7 @@ input[type="radio"] {
 	--toggle-background-color-pressed: var(--neptune-switch-pressed-background) !important;
 	--toggle-background-color-pressed-hover: var(--neptune-switch-pressed-hover-background) !important;
 	--toggle-background-color-pressed-active: var(--neptune-switch-pressed-active-background) !important;
-	--toggle-dot-background-color-on-pressed: #fff !important;
+	--toggle-dot-background-color-on-pressed: var(--button-primary-color) !important;
 }
 
 /*---------- Popups ----------*/
@@ -813,7 +817,7 @@ menupopup {
 
 	>menu,
 	>menuitem {
-		padding-block: .2em !important;
+		padding-block: 2px !important;
 	}
 		
 	menuseparator {
@@ -885,6 +889,7 @@ menuitem[checked]>.menu-iconic-left {
 	border-radius: 6px !important;
 	padding: 0 1em !important;
 	margin-inline: 2px !important;
+	height: 22px !important;
 	min-height: 22px !important;
 }
 
@@ -903,15 +908,25 @@ menuitem[checked]>.menu-iconic-left {
 	border-radius: 6px !important;
 }
 
+#editBMPanel_folderTree {
+	background-color: var(--neptune-urlbar-background) !important;
+	border: none !important;
+}
 #editBMPanel_newFolderButton {
 	padding: 2px 8px !important;
 }
 
 #downloadsListBox>richlistitem {
 	min-height: 36px !important;
-	border-radius: 8px !important;
 }
 
+#downloadsListBox > richlistitem[state="1"][exists].hoveringMainArea:hover,
+#downloadsListBox > richlistitem.openWhenFinished.hoveringMainArea:hover,
+#downloadsListBox > richlistitem[verdict]:hover,
+#downloadsListBox > richlistitem.openWhenFinished:hover,
+.notificationbox-stack {
+	background: none !important;
+}
 .downloadMainArea {
 	padding-block: 0 !important;
 }
@@ -921,18 +936,13 @@ menuitem[checked]>.menu-iconic-left {
 	height: 24px !important;
 }
 
-.downloadButton {
-	height: 28px !important;
-	min-width: 28px !important;
+.downloadButton,
+.downloadButton > .button-box {
 	border-radius: 50% !important;
 }
 
 .downloadProgress::-moz-progress-bar {
 	background-color: light-dark(#0a82ff, #1769e7) !important;
-}
-
-.notificationbox-stack {
-	background: none !important
 }
 
 .infobar {
@@ -954,24 +964,53 @@ menuitem[checked]>.menu-iconic-left {
 }
 
 .item.selected>.item-title-container {
-	background-color: var(--neptune-focused-urlbar-highlight-color) !important;
-	color: #fff !important;
+	background-color: var(--theme-primary-color) !important;
+	color: var(--urlbarView-highlight-color) !important;
+}
+
+treechildren::-moz-tree-row,
+treecol:not([hideheader="true"]),
+.tree-columnpicker-button {
+	min-height: max(22px, 1.3em) !important;
+	margin-inline: 4px;
+	border-radius: 4px;
 }
 
 treechildren::-moz-tree-row(selected) {
-	background: var(--neptune-focused-urlbar-highlight-color) !important;
+	background: var(--theme-primary-color) !important;
 }
 
 treechildren::-moz-tree-image(selected),
 treechildren::-moz-tree-twisty(selected),
 treechildren::-moz-tree-cell-text(selected) {
-	color: #fff !important;
+	color: var(--urlbarView-highlight-color) !important;
 }
 
-@-moz-document url("chrome://browser/content/browser.xhtml") {
-	tree {
-		background-color: var(--neptune-urlbar-background) !important;
+@-moz-document url("chrome://browser/content/places/places.xhtml") {
+	#placesMenu > menu,
+	#placesToolbar > toolbarbutton {
+		border-radius: 7px !important;
+	}
+
+	richlistbox,
+	#placesToolbar {
 		border: none !important;
+	}
+
+	#placesView > splitter {
+		border-inline-end: 0 !important;
+	}
+
+	#downloadsListBox:focus > richlistitem[selected] {
+		background-image: none !important;
+		border-radius: 0 !important;
+		outline: none !important;
+	}
+
+	richlistitem[selected="true"],
+	richlistbox:where(:focus) > richlistitem[selected="true"] {
+		background-color: var(--theme-primary-color) !important;
+		color: var(--urlbarView-highlight-color) !important;
 	}
 }
 
@@ -1037,7 +1076,7 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 .dialogBox {
-	border: 1px solid var(--neptune-toolbar-border-color) !important;
+	border: 1px solid var(--neptune-toolbar-border-color);
 	border-radius: 12px !important;
 }
 
@@ -1281,6 +1320,7 @@ tooltip,
 .end-controls,
 .scrubber-no-drag,
 .control-item::after,
+.scrollbar-topmost,
 #scrollbutton-up,
 #scrollbutton-down,
 #fxa-toolbar-menu-button,

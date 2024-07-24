@@ -24,8 +24,8 @@
 		--neptune-menu-background: color-mix(in srgb, #323232 55%, var(--toolbar-field-focus-background-color));
 		--neptune-popover-background: #26262680;
 		--neptune-popover-separator-color: #9b9b9b4c;
-		--neptune-small-box-shadow: 0 1px 3px #00000080;
-		--neptune-normal-box-shadow: 0 5px 15px #00000040;
+		--neptune-small-box-shadow: 0 1px 3px #00000066;
+		--neptune-normal-box-shadow: 0 5px 15px #00000044;
 		--neptune-panel-shadow-color: #00000044;
 
 		/* Urlbar */

@@ -108,7 +108,7 @@
     &[focused] {
       outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
       outline-offset: -2px !important;
-      transition: all .2s cubic-bezier(1, 0, 0, 1) !important;
+      transition: all .3s cubic-bezier(.8, 0, 0, .8);
     }
   }
 
@@ -467,7 +467,7 @@
   }
   
   .category-header {
-  	height: 46px;
+	height: 46px;
   }
 
   .wallpaper-input {
@@ -531,7 +531,8 @@
 
   .context-menu {
     margin-left: -5px !important;
-    background-color: var(--neptune-main-background) !important;
+    background-color: var(--neptune-popover-background) !important;
+	backdrop-filter: blur(22px) !important;
     border: 0 !important;
     border-radius: 8px !important;
     transform: translate(-15px, -5px);
@@ -540,10 +541,6 @@
   .context-menu>ul>li>a,
   .context-menu>ul>li>button {
     font-size: .85em !important;
-  }
-
-  .context-menu>ul>li .separator {
-    border-bottom: 1px solid var(--neptune-popover-separator-color) !important;
   }
 
   .card-outer .card {
