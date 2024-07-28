@@ -34,11 +34,11 @@
 		--neptune-urlbar-border-color: color-mix(in srgb, currentColor 16%, transparent);
 		--neptune-inactive-urlbar-background: color-mix(in srgb, currentColor 10%, transparent);
 		--neptune-urlbar-view-background: #ececec;
-		--neptune-urlbar-View-hover-background: #0064e1;
+		--neptune-urlbar-View-hover-background: #0165e1;
 		--neptune-urlbar-View-switch-background: #bf1932;
 		--neptune-text-selection-color: #347df5;
 		--neptune-focused-urlbar-border-color: #80B3fa;
-		--neptune-focused-urlbar-highlight-color: #0059D1;
+		--neptune-focused-urlbar-highlight-color: #0064e1;
 
 		/* Tabs */
 		--neptune-tabbar-tab-background: color-mix(in srgb, currentColor 16%, transparent);

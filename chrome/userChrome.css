@@ -263,6 +263,7 @@ textarea {
 	border: none !important;
 	border-radius: 12px !important;
 	background-color: light-dark(#f6f6f6, #323232) !important;
+	color: light-dark(#000, #fff);
 	box-shadow: var(--neptune-small-box-shadow), var(--neptune-normal-box-shadow) !important;
 }
 
@@ -477,14 +478,6 @@ textarea {
 	background-color: transparent !important;
 	margin-inline: 2px !important;
 	padding: 0 !important;
-}
-
-#urlbar-zoom-button:hover {
-	background-color: var(--toolbarbutton-hover-background) !important;
-}
-
-#urlbar-zoom-button:hover:active {
-	background-color: var(--toolbarbutton-active-background) !important;
 }
 
 #reader-mode-button {
@@ -806,7 +799,13 @@ panel {
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
 	--arrowpanel-header-min-height: 32px !important;
 
-	@media (-moz-platform: windows) {
+	&::part(content) {
+		@media (-moz-platform: macos) {
+			border: none !important;
+		}
+	}
+
+	@media (-moz-platform: linux) or (-moz-platform: windows) {
 		--panel-shadow-margin: 14px !important;
 		--panel-shadow: 0 2px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
 	}
@@ -828,6 +827,7 @@ menupopup {
 menu:where([_moz-menuactive="true"]:not([disabled="true"])),
 menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
 	background-color: var(--neptune-item-hover-background) !important;
+	color: light-dark(#000, #fff) !important;
 }
 
 menuitem[disabled="true"][_moz-menuactive],
@@ -922,8 +922,6 @@ menuitem[checked]>.menu-iconic-left {
 
 #downloadsListBox > richlistitem[state="1"][exists].hoveringMainArea:hover,
 #downloadsListBox > richlistitem.openWhenFinished.hoveringMainArea:hover,
-#downloadsListBox > richlistitem[verdict]:hover,
-#downloadsListBox > richlistitem.openWhenFinished:hover,
 .notificationbox-stack {
 	background: none !important;
 }
@@ -964,7 +962,7 @@ menuitem[checked]>.menu-iconic-left {
 }
 
 .item.selected>.item-title-container {
-	background-color: var(--theme-primary-color) !important;
+	background-color: var(--neptune-urlbar-View-hover-background) !important;
 	color: var(--urlbarView-highlight-color) !important;
 }
 
@@ -977,7 +975,7 @@ treecol:not([hideheader="true"]),
 }
 
 treechildren::-moz-tree-row(selected) {
-	background: var(--theme-primary-color) !important;
+	background: var(--neptune-urlbar-View-hover-background) !important;
 }
 
 treechildren::-moz-tree-image(selected),
@@ -1009,7 +1007,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	richlistitem[selected="true"],
 	richlistbox:where(:focus) > richlistitem[selected="true"] {
-		background-color: var(--theme-primary-color) !important;
+		background-color: var(--neptune-urlbar-View-hover-background) !important;
 		color: var(--urlbarView-highlight-color) !important;
 	}
 }
@@ -1040,7 +1038,7 @@ treechildren::-moz-tree-cell-text(selected) {
 	background-color: #00000080 !important;
 	border: none !important;
 	padding: 3px 23px 5px 0 !important;
-	border-radius: 12px !important;
+	border-radius: 8px !important;
 	box-shadow: none !important;
 
 	&::before {
@@ -1096,6 +1094,11 @@ treechildren::-moz-tree-cell-text(selected) {
 	border-start-end-radius: 8px !important;
 }
 
+.toolbarButton,
+.toolbarCenter {
+	min-height: 22px !important;
+}
+
 #cancel-button,
 #print-button.primary {
 	min-height: 22px !important;
@@ -1108,15 +1111,10 @@ treechildren::-moz-tree-cell-text(selected) {
 	padding-left: 5px !important;
 }
 
-:root[tabsintitlebar] #titlebar {
-	will-change: unset !important;
-}
-
 @media (-moz-platform: macos) {
 	#nav-bar,
 	#TabsToolbar {
 		padding-top: 11px !important;
-		padding-bottom: 11px !important;
 	}
 
 	#browser {

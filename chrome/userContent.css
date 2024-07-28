@@ -124,7 +124,7 @@
     box-shadow: none !important;
 
     &:hover {
-      box-shadow: var(--neptune-small-box-shadow) !important;
+      box-shadow: 0 0 2px var(--neptune-panel-shadow-color) !important;
     }
   }
 
@@ -158,6 +158,22 @@
 
   .info-box-container {
     background-color: transparent !important;
+  }
+  
+  #downloadsListBox > richlistitem {
+	min-height: 3em !important;
+  }
+  
+  #downloadsListBox:focus > richlistitem[selected] {
+    background-color: var(--neptune-urlbar-View-hover-background) !important;
+	color: #fff !important;
+	border-radius: 0 !important;
+    background-image:none !important;
+    outline: none !important;
+  }
+  
+  .downloadButton > .button-box {
+	border-radius: 50% !important;
   }
 
   .stp_button_wide .stp_button {
@@ -775,9 +791,9 @@ separator.groove:not([orient="vertical"]) {
 }
 
 .controlBar {
-  height: 32px !important;
+  height: 30px !important;
   background-color: #26262633 !important;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
   margin: 6px;
   border-radius: 6px;
 }
@@ -787,8 +803,29 @@ separator.groove:not([orient="vertical"]) {
   fill: #fff !important;
 }
 
+.scrubber::-moz-range-thumb {
+  height: 17px !important;
+  width: 4px !important;
+  border-radius: 2px !important;
+}
+
+.volumeControl::-moz-range-thumb {
+  height: 9px !important;
+  width: 9px !important;
+}
+
+.bufferBar,
+.volumeControl::-moz-range-track {
+  background-color: #666 !important;
+}
+
+.bufferBar::-moz-progress-bar {
+  background-color: #888 !important;
+}
+
+.volumeControl::-moz-range-progress,
 .progressBar::-moz-progress-bar {
-  background-color: #ffffff66 !important;
+  background-color: #aaa !important;
 }
 
 .scrubber:hover::-moz-range-thumb,
