@@ -150,6 +150,8 @@ findbar {
 	--input-border-color: transparent !important;
 	--focus-outline-color: var(--theme-primary-color) !important;
 	--default-focusring: none !important;
+	--panel-subview-body-padding-block: 4px !important;
+	--arrowpanel-menuitem-margin-inline: 4px !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
 	--organizer-pane-background: var(--neptune-main-background) !important;
@@ -477,7 +479,7 @@ textarea {
 	font-family: JetBrains Mono;
 	background-color: transparent !important;
 	margin-inline: 2px !important;
-	padding: 0 !important;
+	padding: 2px !important;
 }
 
 #reader-mode-button {
@@ -860,6 +862,11 @@ menuitem[checked]>.menu-iconic-left {
 	border-image: unset !important;
 }
 
+#appMenu-fxa-status2:not([fxastatus]),
+#appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
+    padding-block: 0 !important;
+}
+
 #permission-popup-permissions-content {
 	padding-inline: .5em !important;
 }
@@ -891,10 +898,6 @@ menuitem[checked]>.menu-iconic-left {
 	margin-inline: 2px !important;
 	height: 22px !important;
 	min-height: 22px !important;
-}
-
-.panel-subview-footer-button {
-	margin-bottom: 4px !important;
 }
 
 #editBMPanel_folderMenuList {
@@ -1111,10 +1114,14 @@ treechildren::-moz-tree-cell-text(selected) {
 	padding-left: 5px !important;
 }
 
+:root[tabsintitlebar] #titlebar {
+	will-change: unset !important;
+}
+
 @media (-moz-platform: macos) {
 	#nav-bar,
 	#TabsToolbar {
-		padding-top: 11px !important;
+		padding-block: 11px !important;
 	}
 
 	#browser {
