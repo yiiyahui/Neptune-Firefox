@@ -43,6 +43,15 @@
   --toggle-dot-background-color-on-pressed: #fff !important;
 }
 
+menulist > menupopup {
+	--panel-border-radius: 6px !important;
+	
+    >menu,
+    >menuitem {
+		padding-block: 2px !important;
+    }
+}
+
 @-moz-document url-prefix(about:) {
   body {
     background-color: var(--neptune-main-background) !important;
@@ -89,10 +98,18 @@
   }
 
   .back-button,
+  .default-button, 
+  .primary-button,
   .more-options-button,
   .info-box-container,
-  .web-appearance-choice {
+  .web-appearance-choice,
+  .action-box,
+  table {
     border-radius: 8px !important;
+  }
+
+  td, th {
+	border-bottom: 1px solid var(--in-content-border-color) !important;
   }
 
   #searchInput,
@@ -224,6 +241,7 @@
   .textbox-search-icon,
   .permission-icon,
   .category-icon,
+  .dialogClose,
   .sidebar-footer-icon,
   .top-site-outer .title:not(.sponsored) .sponsored-label {
     display: none !important;
@@ -379,7 +397,7 @@
 
   .icon.icon-settings {
     background-image: url("neptune/icons/settings.svg") !important;
-    transform: scale(1.7);
+    transform: scale(1.75);
   }
 
   @media (height < 700px) {
@@ -418,7 +436,8 @@
     padding: 15px 0 !important;
     border-radius: 12px !important;
     transform: translateY(100%) !important;
-    background-color: var(--neptune-main-background) !important;
+    background-color: var(--neptune-popover-background) !important;
+	backdrop-filter: blur(22px);
 
     @media (height < 700px) {
       top: calc(92vh - 10px) !important;
@@ -466,15 +485,15 @@
   }
 
   .wallpaper-list.category {
-    background-color: var(--neptune-main-background) !important;
+    background-color: var(--neptune-content-background) !important;
     inset-inline-start: 0 !important;
-    height: 95% !important;
+    margin: 0 !important;
     width: 100% !important;
   }
 
   .wallpaper-list.category fieldset {
     gap: 24px !important;
-    grid-auto-rows: 28px !important;
+    grid-auto-rows: 32px !important;
     grid-template-columns: 1fr 1fr 1fr  !important;
   }
 
@@ -784,7 +803,8 @@ separator.groove:not([orient="vertical"]) {
   color: light-dark(#000, #fff) !important;
 }
 
-:where(textarea, input[type="text"], input[type="search"], input[type="password"], input[type="url"]) {
+input:where([type="text"], [type="search"], [type="password"], [type="url"]),
+textarea {
   appearance: none;
   border-style: solid;
   outline: none;
