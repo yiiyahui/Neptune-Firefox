@@ -269,9 +269,13 @@ textarea {
 	box-shadow: var(--neptune-small-box-shadow), var(--neptune-normal-box-shadow) !important;
 }
 
-.urlbarView-url,
 .urlbarView-no-wrap {
-	max-width: 50% !important;
+	max-width: 65% !important;
+	margin-block: 2px !important;
+}
+
+.urlbarView-url {
+	max-width: 35% !important;
 	margin: 2px 0 !important;
 }
 
