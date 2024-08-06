@@ -347,7 +347,6 @@ textarea {
 	&:is([type=switchtab], [type=remotetab], [type=clipboard]) {
 		>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action {
 			padding: 1px 6px !important;
-			font-size: 10px !important;
 			background-color: var(--neptune-urlbar-View-switch-background) !important;
 			color: var(--urlbarView-highlight-color) !important;
 		}
@@ -436,12 +435,10 @@ textarea {
 
 #identity-box[pageproxystate="valid"]>.identity-box-button {
 	&:hover:not([open]) {
-		background: none !important;
 		fill-opacity: .9;
 	}
 
 	&:is(:hover:active, [open]) {
-		background: none !important;
 		fill-opacity: 1;
 	}
 }
@@ -900,6 +897,7 @@ menuitem[checked]>.menu-iconic-left {
 	min-height: 22px !important;
 }
 
+.downloadMainArea,
 #editBMPanel_folderMenuList {
 	padding-block: 0 !important;
 }
@@ -927,9 +925,6 @@ menuitem[checked]>.menu-iconic-left {
 #downloadsListBox > richlistitem.openWhenFinished.hoveringMainArea:hover,
 .notificationbox-stack {
 	background: none !important;
-}
-.downloadMainArea {
-	padding-block: 0 !important;
 }
 
 .downloadTypeIcon {
@@ -1028,12 +1023,16 @@ treechildren::-moz-tree-cell-text(selected) {
 	#controls button {
 		border-radius: 8px !important;
 	}
-
+	
+	#unpip,
 	#close {
 		height: 16px !important;
-		min-width: 16px !important;
 		width: 10px !important;
 		left: 10px !important;
+	}
+	
+	#unpip {
+		top: 35px !important;
 	}
 }
 
@@ -1320,7 +1319,6 @@ menugroup>#context-forward {
 
 /*---------- Hidden ----------*/
 tooltip,
-#unpip,
 #timestamp,
 .end-controls,
 .scrubber-no-drag,
