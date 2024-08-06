@@ -50,6 +50,10 @@ menulist > menupopup {
     >menuitem {
 		padding-block: 2px !important;
     }
+	
+	menuseparator {
+		border: none !important;
+	}
 }
 
 @-moz-document url-prefix(about:) {
@@ -777,7 +781,8 @@ menulist > menupopup {
   }
 }
 
-.pip-wrapper {
+.pip-wrapper,
+.fullscreenButton {
   display: none !important;
 }
 
@@ -811,7 +816,7 @@ textarea {
 }
 
 .controlBar {
-  height: 30px !important;
+  height: 31px !important;
   background-color: #26262633 !important;
   backdrop-filter: blur(12px);
   margin: 6px;
