@@ -610,80 +610,117 @@ menulist > menupopup {
     border-radius: 50% !important;
   }
 
-  .open>.dropdown-popup {
+  .text-size-buttons > button {
+    height: 24px !important;
+    width: 24px !important;
+	border-radius: 50% !important;
+  }
+
+  .dropdown .dropdown-popup {
     background: var(--neptune-popover-background) !important;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(24px);
     border: 1px solid var(--neptune-toolbar-border-color) !important;
     border-radius: 12px !important;
   }
 
-  .radiorow>label {
-    border: 1px solid var(--neptune-toolbar-border-color) !important;
+  .dropdown .dropdown-popup {
+	h2 {
+	  font-size: 16px !important;
+	  margin-block: 0 !important;
+	}
+
+	hr {
+	  border-top: none !important;
+	}
+  }
+ 
+  #text-layout-controls {
+	width: 20em !important;
+	padding-block: 3px !important;
+	font-size: 12.5px !important;
+  }
+
+  .slider-container,
+  .text-alignment-buttons,
+  #font-controls,
+  #text-size-controls {
+	padding-block-end: 5px !important;
+  }
+
+  .accordion-header .chevron-icon {
+    height: 12px !important;
+    width: 12px !important;
+	margin-top: 6px;
+  }
+  
+  .dropdown-selector > select {
+    min-height: 24px !important;
     border-radius: 6px !important;
+    font-weight: unset !important;
   }
 
-  .radiorow>label:hover {
-    background-color: var(--theme-primary-hover-color) !important;
-    color: #fff !important;
+  .text-alignment-buttons > label {
+    min-height: 24px !important;
+	border-radius: 6px !important;
   }
 
-  .radiorow>label[checked] {
-    border: none !important;
-    background-color: var(--theme-primary-color) !important;
-    color: #fff !important;
+  datalist {
+	font-size: .85em !important;
   }
 
-  .font-type-buttons>label {
-    height: 20px !important;
-    width: 78px !important;
-    background: none !important;
-    line-height: 1.4 !important;
-    background-color: transparent !important;
+  button[is="named-deck-button"] {
+	border: none !important;
+  }
+  
+  #color-controls {
+	width: 22em !important;
+	padding-block-end: 7px !important;
   }
 
-  .minus-button,
-  .plus-button {
-    background-size: 12px 12px !important;
+  .color-input-container {
+    min-height: 26px !important;
+	border-radius: 7px !important;
+  }
+  
+  .colors-menu-color-scheme-buttons > label {
+	height: 28px !important;
+	border-radius: 7px !important;
+	font-size: 10.5px !important;
   }
 
-  .content-width-minus-button,
-  .content-width-plus-button,
-  .line-height-minus-button,
-  .line-height-plus-button {
-    background-size: 24px 12px !important;
+  #color-swatch {
+	width: 24px !important;
+	height: 24px !important;
+  }
+  
+  .colors-menu-color-scheme-buttons > label:before {
+	width: 16px !important;
+	height: 16px !important;
   }
 
-  .color-scheme-buttons>label {
-    padding: 6px !important;
-    height: 20px !important;
+  .custom-colors-selection {
+	padding-block: 7px !important;
+	font-size: 10.5px !important;
+  }
+  
+  .container {
+	gap: unset !important;
+  }
+  
+  .reset-button {
+    text-decoration: none !important;
+    font-size: 10.5px !important;
+
+    &.text-layout-reset-button {
+      padding-block-end: 7px !important;
+    }
   }
 
-  .style-dropdown .radiorow:not(:last-child),
-  .style-dropdown .buttonrow:not(:last-child) {
-    border-bottom: none !important;
-  }
-
-  .content-width-value,
-  .font-size-value,
-  .line-height-value {
-    border: none !important;
-    background: none !important;
-  }
-
-  .buttonrow>button {
-    height: 28px !important;
-    width: 80px !important;
-    opacity: .7;
-  }
-
-  .buttonrow>button:enabled:hover,
-  .buttonrow>button:enabled:hover:active {
-    background-color: transparent !important;
-    opacity: 1;
-  }
-
-  .hover-label {
-    display: none !important;
+  .hover-label,
+  .radio-button,
+  .icon-container,
+  #about-reader-colors-menu-header {
+	display: none !important;
   }
 }
 

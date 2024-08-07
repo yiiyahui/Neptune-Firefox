@@ -51,11 +51,10 @@
 
 findbar {
 	position: absolute;
-	display: flex;
 	contain: content;
 	top: 0;
 	right: 0;
-	background: var(--neptune-toolbar-background) !important;
+	background-color: var(--neptune-toolbar-background) !important;
 	border: none !important;
 	border-radius: 0 0 0 6px;
 	padding: 0 0 0 3px !important;
@@ -269,6 +268,14 @@ textarea {
 	box-shadow: var(--neptune-small-box-shadow), var(--neptune-normal-box-shadow) !important;
 }
 
+.urlbarView-results {
+	padding: 5px 7px !important;
+  
+	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
+		padding: 0 !important;
+	}
+}
+
 .urlbarView-no-wrap {
 	max-width: 65% !important;
 	margin-block: 2px !important;
@@ -276,12 +283,11 @@ textarea {
 
 .urlbarView-url {
 	max-width: 35% !important;
-	margin: 2px 0 !important;
+	margin: 0 !important;
 }
 
 .urlbarView-row {
 	border-radius: 7px !important;
-	margin-inline: 7px;
 	
 	&[row-selectable]:not([selected]):hover {
 		color: var(--urlbarView-highlight-color);
@@ -414,8 +420,7 @@ textarea {
 	opacity: 0;
 	transition: .2s ease;
 	
-	#urlbar:hover &,
-	&[open] {
+	&:is(.urlbar-input-container:hover &, [open]) {
 		opacity: 1;
 		margin-inline-start: 0;
 	}
@@ -469,8 +474,7 @@ textarea {
   opacity: 0;
   transition: .2s ease;
 
-  #urlbar:hover &,
-  &[open] {
+  &:is(.urlbar-input-container:hover &, [open]) {
     opacity: 1;
     margin-inline-end: 0;
   }
@@ -489,12 +493,10 @@ textarea {
 
 #urlbar-search-mode-indicator,
 #urlbar-label-box {
-	height: 18px !important;
 	background-color: var(--neptune-urlbar-View-switch-background) !important;
-	border: none !important;
 	border-radius: 6px !important;
-	outline: none !important;
-	margin-block: 6px !important;
+	margin-block: 7px !important;
+	font-size: .85em;
 	color: var(--urlbarView-highlight-color) !important;
 }
 
@@ -574,7 +576,7 @@ textarea {
 }
 
 #TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon,
-#tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+.tab-background:is([selected], [multiselected]) {
 	box-shadow: none !important;
 }
 
@@ -621,12 +623,17 @@ textarea {
 }
 
 #tab-preview-panel {
-	--panel-width: 225px !important;
+	--panel-width: 18em !important;
+	height: 16em;
 }
 
 .tab-preview-text-container {
 	font-size: .9em;
 	padding: 2px var(--space-small) !important;
+}
+
+.tab-preview-thumbnail-container > canvas {
+    width: 100%;
 }
 
 .panel-arrowcontent,
@@ -691,7 +698,7 @@ screenshots-buttons {
 #visible-page {
 	background-size: 32px 32px !important;
 	padding: 30px 0 2px !important;
-	min-width: 72px !important;
+	min-width: 64px !important;
 	stroke: #f7cac9 !important;
 	font-size: .8em !important;
 }
@@ -825,6 +832,11 @@ menupopup {
 	menuseparator {
 		padding-block: 5px !important;
 	}
+}
+
+#ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
+#ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
+	padding-block: 1px !important;
 }
 
 menu:where([_moz-menuactive="true"]:not([disabled="true"])),
