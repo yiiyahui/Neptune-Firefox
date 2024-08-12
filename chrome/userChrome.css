@@ -269,24 +269,35 @@ textarea {
 }
 
 .urlbarView-results {
-	padding: 5px 7px !important;
+	padding: 6px 8px !important;
+	
+	.urlbarView-no-wrap {
+		margin-block: 2px;
+	}
+	
+	.urlbarView-action {
+		margin-inline-end: 6px;
+	}
+	
+	&[wrap] > .urlbarView-row[has-url] > .urlbarView-row-inner {
+		> .urlbarView-no-wrap {
+			max-width: 65% !important;
+		}
+		
+		> .urlbarView-url {
+			max-width: 35% !important;
+			margin: 0 !important;
+		}
+	}
   
 	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
 		padding: 0 !important;
 	}
 }
 
-.urlbarView-no-wrap {
-	max-width: 65% !important;
-	margin-block: 2px !important;
-}
-
-.urlbarView-url {
-	max-width: 35% !important;
-	margin: 0 !important;
-}
 
 .urlbarView-row {
+	border: 1px solid transparent !important;
 	border-radius: 7px !important;
 	
 	&[row-selectable]:not([selected]):hover {
@@ -524,7 +535,6 @@ textarea {
 #tabbrowser-tabs {
 	--tab-min-width: 36px !important;
 	--tab-loading-fill: var(--theme-primary-color) !important;
-	height: var(--tab-min-height) !important;
 	margin: 0 !important;
 	border-inline-start: none !important;
 	
@@ -537,6 +547,11 @@ textarea {
 	background-image: none !important;
 	border-radius: 7px !important;
 	margin-inline-end: 3px !important;
+	
+	.tab-label-container {
+		font-size: 12.5px;
+		height: var(--tab-min-height) !important;
+	}
 
 	&[fadein]:not([pinned]) {
 		max-width: 154px !important;
@@ -998,6 +1013,27 @@ treechildren::-moz-tree-cell-text(selected) {
 	color: var(--urlbarView-highlight-color) !important;
 }
 
+#PopupAutoComplete > richlistbox > richlistitem {
+	> .ac-login-item > .ac-secondary-action {
+		background: none !important;
+	}
+
+	&[originaltype="loginsFooter"] {
+		border-top: none !important;
+	}
+}
+
+.autocomplete-richlistitem {
+	&:not([disabled="true"]):not([selected]):hover {
+		background-color: var(--neptune-item-background) !important;
+	}
+
+	&[selected] {
+		background-color: var(--neptune-item-active-background) !important;
+		color: light-dark(#000, #fff) !important;
+	}
+}
+
 @-moz-document url("chrome://browser/content/places/places.xhtml") {
 	#placesMenu > menu,
 	#placesToolbar > toolbarbutton {
@@ -1311,9 +1347,8 @@ menugroup>#context-forward {
 	list-style-image: url("neptune/icons/close.svg") !important;
 }
 
-.tab-icon-image[src="chrome://branding/content/icon32.png"],
-.tab-icon-image[src="chrome://browser/skin/privatebrowsing/favicon.svg"] {
-	content: url("neptune/icons/tab-image.svg") !important;
+.tab-icon-image[src="chrome://branding/content/icon32.png"] {
+	content: url("neptune/icons/tab-image.svg");
 }
 
 #identity-box[pageproxystate="valid"].localResource #identity-icon {

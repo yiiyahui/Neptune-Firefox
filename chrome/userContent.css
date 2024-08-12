@@ -64,8 +64,9 @@ menulist > menupopup {
   * {
     --in-content-page-background: var(--neptune-main-background) !important;
     --popup-background: light-dark(#fcfcfc, #323232) !important;
-    --popup-button-background-hover: light-dark(#e1e1e1, #464646) !important;
-    --popup-button-background-active: light-dark(#e8e8e8, #3c3c3c) !important;
+    --popup-button-background: var(--neptune-item-background) !important;
+    --popup-button-background-hover: var(--neptune-item-hover-background) !important;
+    --popup-button-background-active: var(--neptune-item-active-background) !important;
     --page-nav-button-background-color-hover: var(--neptune-item-hover-background) !important;
     --page-nav-button-background-color-selected: transparent !important;
     --toolbar-button-background-hover: light-dark(#e1e1e1, #464646) !important;
@@ -80,6 +81,12 @@ menulist > menupopup {
 
   #migrationWizardDialog {
     background: var(--neptune-content-background) !important;
+  }
+
+  .sticky-container {
+    background-color: color-mix(in srgb, var(--in-content-page-background) 33%, transparent) !important;
+    backdrop-filter: blur(12px);
+    mask-image: linear-gradient(to top, transparent 5%, white 35%);
   }
 
   dialog,
@@ -485,7 +492,6 @@ menulist > menupopup {
   .arrow-button {
 	margin: 0 0 5px 10px !important;
 	padding-inline-start: 18px !important;
-	font-size: 14px !important;
   }
 
   .wallpaper-list.category {
@@ -621,12 +627,9 @@ menulist > menupopup {
     backdrop-filter: blur(24px);
     border: 1px solid var(--neptune-toolbar-border-color) !important;
     border-radius: 12px !important;
-  }
-
-  .dropdown .dropdown-popup {
 	h2 {
 	  font-size: 16px !important;
-	  margin-block: 0 !important;
+	  margin-block: 2px !important;
 	}
 
 	hr {
@@ -648,9 +651,9 @@ menulist > menupopup {
   }
 
   .accordion-header .chevron-icon {
-    height: 12px !important;
-    width: 12px !important;
-	margin-top: 6px;
+    height: 16px !important;
+    width: 16px !important;
+	margin-top: 5px;
   }
   
   .dropdown-selector > select {
@@ -659,9 +662,21 @@ menulist > menupopup {
     font-weight: unset !important;
   }
 
-  .text-alignment-buttons > label {
-    min-height: 24px !important;
-	border-radius: 6px !important;
+  .text-alignment-buttons {
+	gap: var(--space-small) !important;
+	
+	> label {
+	  min-height: 24px !important;
+      border-radius: 6px !important;
+	  
+	  &[checked] {
+        color: #fff !important;
+	  }
+	}
+  }
+
+  input {
+    margin-block: 3px !important;
   }
 
   datalist {
@@ -686,6 +701,11 @@ menulist > menupopup {
 	height: 28px !important;
 	border-radius: 7px !important;
 	font-size: 10.5px !important;
+	
+	&:before {
+	  width: 16px !important;
+	  height: 16px !important;
+	}
   }
 
   #color-swatch {
@@ -693,11 +713,6 @@ menulist > menupopup {
 	height: 24px !important;
   }
   
-  .colors-menu-color-scheme-buttons > label:before {
-	width: 16px !important;
-	height: 16px !important;
-  }
-
   .custom-colors-selection {
 	padding-block: 7px !important;
 	font-size: 10.5px !important;
@@ -741,8 +756,9 @@ menulist > menupopup {
     display: none !important;
   }
 
-  div.sticky-container.bottom-fade {
+  .sticky-container.bottom-fade {
     background: transparent !important;
+	mask-image: linear-gradient(to top, transparent 3%, white 10%);
     backdrop-filter: blur(8px);
     flex-direction: row !important;
     margin: 0 4px !important;
@@ -818,8 +834,7 @@ menulist > menupopup {
   }
 }
 
-.pip-wrapper,
-.fullscreenButton {
+.pip-wrapper {
   display: none !important;
 }
 
