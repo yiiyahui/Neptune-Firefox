@@ -41,8 +41,8 @@
 		--neptune-focused-urlbar-highlight-color: #0059d1;
 
 		/* Tabs */
-		--neptune-tabbar-tab-background: color-mix(in srgb, currentColor 18%, transparent);
-		--neptune-tabbar-tab-hover-background: color-mix(in srgb, currentColor 24%, transparent);
+		--neptune-tabbar-tab-background: color-mix(in srgb, currentColor 14%, transparent);
+		--neptune-tabbar-tab-hover-background: color-mix(in srgb, currentColor 17%, transparent);
 		--neptune-tabbar-tab-active-background: color-mix(in srgb, currentColor 20%, transparent);
 		--neptune-tabbar-tab-selected-background: color-mix(in srgb, accentcolor 80%, transparent);
 
