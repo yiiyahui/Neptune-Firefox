@@ -18,7 +18,7 @@
 #nav-bar {
 	order: 0;
 	border: none !important;
-	padding: 12px 0 11px 88px !important;
+	padding: 13px 0 12px 84px !important;
 	background-color: transparent !important;
 }
 
@@ -31,8 +31,7 @@
 	order: 2;
 	width: 100%;
 	background-color: var(--neptune-toolbar-background) !important;
-	padding: 3px !important;
-	height: 28px !important;
+	height: 2em;
 }
 
 #tab-notification-deck, .notificationbox-stack {
@@ -42,7 +41,7 @@
 
 #TabsToolbar {
 	background: none !important;
-	padding: 0 116px 11px 0 !important;
+	padding: 0 108px 12px 0 !important;
 }
 
 #customization-container {
@@ -59,7 +58,7 @@ findbar {
 	border-radius: 0 0 0 6px;
 	padding: 0 0 0 3px !important;
 	transition-property: margin-right, visibility !important;
-	
+
 	&:where([hidden]) {
 		margin-right: -266px !important;
 	}
@@ -75,7 +74,7 @@ findbar {
 	min-height: 18px !important;
 	margin-top: 5px !important;
 	list-style-image: url("neptune/icons/done.svg") !important;
-	border: 1px solid var(--neptune-urlbar-border-color) !important;
+	border: 1px solid ThreeDShadow;
 
 	@media (-moz-platform: macos) {
 		order: 1;
@@ -85,7 +84,7 @@ findbar {
 .findbar-find-next,
 .findbar-find-previous {
 	padding: 0 2px !important;
-	border: 1px solid var(--neptune-urlbar-border-color) !important;
+	border: 1px solid ThreeDShadow;
 }
 
 .findbar-find-next {
@@ -112,13 +111,13 @@ findbar {
 .findbar-textbox {
 	width: 12em !important;
 	padding: 0 3px !important;
-	border: 1px solid var(--neptune-urlbar-border-color) !important;
+	border: 1px solid ThreeDShadow !important;
 	background-color: transparent !important;
 }
 
 :root {
-	--urlbar-min-height: max(30px, 1.4em) !important;
-	--tab-min-height: 30px !important;
+	--urlbar-min-height: max(28px, 1.4em) !important;
+	--tab-min-height: 28px !important;
 	--button-min-height: 22px !important;
 	--button-bgcolor: var(--neptune-item-background) !important;
 	--button-hover-bgcolor: var(--neptune-item-hover-background) !important;
@@ -220,6 +219,7 @@ textarea {
 
 #urlbar-container {
 	width: 27em !important;
+	margin-inline: 8px 4px !important;
 }
 
 #urlbar-container,
@@ -270,54 +270,53 @@ textarea {
 
 .urlbarView-results {
 	padding: 6px 8px !important;
-	
+
 	.urlbarView-no-wrap {
 		margin-block: 2px;
 	}
-	
+
 	.urlbarView-action {
 		margin-inline-end: 6px;
 	}
-	
+
 	&[wrap] > .urlbarView-row[has-url] > .urlbarView-row-inner {
 		> .urlbarView-no-wrap {
 			max-width: 65% !important;
 		}
-		
+
 		> .urlbarView-url {
 			max-width: 35% !important;
 			margin: 0 !important;
 		}
 	}
-  
+
 	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
 		padding: 0 !important;
 	}
 }
 
-
 .urlbarView-row {
 	border: 1px solid transparent !important;
 	border-radius: 7px !important;
-	
+
 	&[row-selectable]:not([selected]):hover {
 		color: var(--urlbarView-highlight-color);
-		
+
 		.urlbarView-url {
 			color: inherit !important;
 		}
 	}
-	
+
 	&:not([type=tip], [type=dynamic]) {
 		:root:not([uidensity=compact]) & {
-			height: 22px !important;
+			height: 22px;
 			min-height: 22px !important;
 		}
 	}
-	
+
 	&[type=tip] {
 		padding: 0 !important;
-	
+
 		> .urlbarView-row-inner,
 		.urlbarView-results[wrap] > & > .urlbarView-button {
 			margin: 0 !important;
@@ -334,7 +333,7 @@ textarea {
 		width: 24px !important;
 		height: 24px !important;
 	}
-	
+
 	&[rich-suggestion]>.urlbarView-row-inner>.urlbarView-row-body {
 		> :is(.urlbarView-row-body-description, .urlbarView-row-body-bottom) {
 			margin-bottom: 2px;
@@ -349,7 +348,7 @@ textarea {
 	>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-favicon {
 		width: 14px !important;
 		height: 14px !important;
-		
+
 		.urlbarView-row:hover & {
 			fill: var(--urlbarView-highlight-color);
 		}
@@ -387,16 +386,15 @@ textarea {
 		color: var(--neptune-urlbar-View-switch-background) !important;
 		background-color: transparent !important;
 	}
-	
+
 	&:not(:empty):not(.urlbarView-button-menu) {
 		color: light-dark(#000, #fff) !important;
-		
+
 		&:hover {
 			color: var(--neptune-urlbar-View-switch-background) !important;
 		}
 	}
 }
-
 
 #urlbar .search-one-offs {
 	padding: 0 6px 6px !important;
@@ -430,7 +428,7 @@ textarea {
 	margin-inline-start: calc(-12px - 2 * var(--urlbar-icon-padding));
 	opacity: 0;
 	transition: .2s ease;
-	
+
 	&:is(.urlbar-input-container:hover &, [open]) {
 		opacity: 1;
 		margin-inline-start: 0;
@@ -450,7 +448,7 @@ textarea {
 #identity-box[pageproxystate="valid"]>.identity-box-button,
 #urlbar-label-box {
 	background: none !important;
-	padding: 0 4px 0 6px !important;
+	padding-inline: 6px 4px !important;
 }
 
 #identity-box[pageproxystate="valid"]>.identity-box-button {
@@ -481,14 +479,14 @@ textarea {
 }
 
 .urlbar-page-action {
-  margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
-  opacity: 0;
-  transition: .2s ease;
+	margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
+	opacity: 0;
+	transition: .2s ease;
 
-  &:is(.urlbar-input-container:hover &, [open]) {
-    opacity: 1;
-    margin-inline-end: 0;
-  }
+	&:is(.urlbar-input-container:hover &, [open]) {
+		opacity: 1;
+		margin-inline-end: 0;
+	}
 }
 
 #urlbar-zoom-button {
@@ -535,19 +533,16 @@ textarea {
 #tabbrowser-tabs {
 	--tab-min-width: 36px !important;
 	--tab-loading-fill: var(--theme-primary-color) !important;
+	padding: 0 !important;
 	margin: 0 !important;
 	border-inline-start: none !important;
-	
-	&[movingtab] {
-		padding: 0 !important;
-	}
 }
 
 .tabbrowser-tab {
 	background-image: none !important;
 	border-radius: 7px !important;
-	margin-inline-end: 3px !important;
-	
+	margin-inline: 2px !important;
+
 	.tab-label-container {
 		font-size: 12.5px;
 		height: var(--tab-min-height) !important;
@@ -558,40 +553,54 @@ textarea {
 	}
 
 	&[selected]:not([pinned]) {
+		min-width: 100px !important;
 		max-width: 178px !important;
 	}
-}
 
-.tab-background {
-	border-radius: 7px !important;
-	margin: 0 !important;
-	background-color: transparent !important;
-	transition: background-color .2s ease;
-}
+	.tab-background {
+		border-radius: 7px !important;
+		margin: 0 !important;
+		background-color: transparent !important;
+		transition: background-color .2s ease;
 
-#tabbrowser-tabs .tabbrowser-tab .tab-background[selected] {
-	background-color: var(--neptune-tabbar-tab-active-background) !important;
-	transition: background-color .2s ease;
-}
+		&[selected] {
+			background-color: var(--neptune-tabbar-tab-active-background) !important;
 
-#tabbrowser-tabs .tabbrowser-tab .tab-background:not([selected]) {
-	background-color: var(--neptune-tabbar-tab-background) !important;
-	transition: background-color .2s ease;
-}
+			.tabbrowser-tab[usercontextid] & {
+				background: var(--identity-tab-color) !important;
+				transition: background .5s ease;
+				opacity: .4;
+			}
+		}
 
-#tabbrowser-tabs .tabbrowser-tab:hover .tab-background:not([selected]) {
-	background-color: var(--neptune-tabbar-tab-hover-background) !important;
-	transition: background-color .2s ease;
-}
+		&:not([selected]) {
+			background-color: var(--neptune-tabbar-tab-background) !important;
 
-#tabbrowser-tabs .tabbrowser-tab .tab-background[multiselected] {
-	background-color: var(--neptune-tabbar-tab-selected-background) !important;
-	transition: background-color .2s ease;
-	outline: none !important;
+			tab:hover & {
+				background-color: var(--neptune-tabbar-tab-hover-background) !important;
+			}
+
+			.tabbrowser-tab[soundplaying] & {
+				background-color: var(--soundplaying-tab-color) !important;
+				transition: background-color .5s ease;
+			}
+
+			.tabbrowser-tab[usercontextid] & {
+				background: var(--identity-tab-color) !important;
+				transition: background .5s ease;
+				opacity: .3;
+			}
+		}
+
+		&[multiselected] {
+			background-color: var(--neptune-tabbar-tab-selected-background) !important;
+		}
+	}
 }
 
 #TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon,
 .tab-background:is([selected], [multiselected]) {
+	outline: none !important;
 	box-shadow: none !important;
 }
 
@@ -609,22 +618,6 @@ textarea {
 	}
 }
 
-#tabbrowser-tabs .tabbrowser-tab:is([soundplaying]) .tab-background:not([selected]) {
-	background-color: var(--soundplaying-tab-color) !important;
-	transition: background-color .5s ease;
-}
-
-#tabbrowser-tabs .tabbrowser-tab[usercontextid] .tab-background,
-#tabbrowser-tabs .tabbrowser-tab[usercontextid] .tab-background:not([selected]) {
-	background: var(--identity-tab-color) !important;
-	transition: background .5s ease;
-	opacity: .4;
-}
-
-.tab-label {
-	font-size: 12.5px !important;
-}
-
 .tab-close-button {
 	height: 12px !important;
 	width: 12px !important;
@@ -638,7 +631,7 @@ textarea {
 }
 
 #tab-preview-panel {
-	--panel-width: 18em !important;
+	--panel-width: 19em !important;
 	height: 16em;
 }
 
@@ -648,7 +641,7 @@ textarea {
 }
 
 .tab-preview-thumbnail-container > canvas {
-    width: 100%;
+	width: 100%;
 }
 
 .panel-arrowcontent,
@@ -672,9 +665,10 @@ textarea {
 #TabsToolbar .toolbarbutton-1,
 toolbar .toolbaritem-combined-buttons>.toolbarbutton-1 {
 	padding: 0 !important;
+	margin-inline-start: 4px !important;
 	border-radius: 7px !important;
-	height: 30px !important;
-	width: 30px !important;
+	height: 28px !important;
+	width: 28px !important;
 	transition: background .2s ease;
 }
 
@@ -693,11 +687,6 @@ toolbar .toolbarbutton-1:hover {
 	opacity: .5;
 }
 
-#back-button,
-#forward-button {
-	margin-inline: 4px !important;
-}
-
 #stop-button>.toolbarbutton-animatable-box>.toolbarbutton-animatable-image,
 #reload-button>.toolbarbutton-animatable-box>.toolbarbutton-animatable-image {
 	animation-duration: 0s !important;
@@ -707,6 +696,11 @@ screenshots-buttons {
 	position: fixed !important;
 	top: 52px !important;
 	background-color: var(--neptune-content-background) !important;
+}
+
+.labelled {
+	padding: 0 6px !important;
+	font-size: 1em !important;
 }
 
 #full-page,
@@ -733,7 +727,7 @@ screenshots-buttons {
 
 #unified-extensions-button {
 	position: fixed;
-	right: 84px;
+	right: 76px;
 }
 
 #library-button[animate]>.toolbarbutton-icon {
@@ -752,8 +746,8 @@ screenshots-buttons {
 }
 
 #viewButton {
-	background-color: transparent !important;
-	border: 1px solid var(--neptune-toolbar-border-color) !important;
+	background-color: var(--neptune-item-background) !important;
+	border: none !important;
 	border-radius: 4px !important;
 }
 
@@ -768,9 +762,6 @@ screenshots-buttons {
 
 #unified-extensions-view {
 	--uei-icon-size: 16px !important;
-}
-
-#unified-extensions-panel #unified-extensions-view {
 	width: 100% !important;
 }
 
@@ -843,7 +834,7 @@ menupopup {
 	>menuitem {
 		padding-block: 2px !important;
 	}
-		
+
 	menuseparator {
 		padding-block: 5px !important;
 	}
@@ -892,7 +883,7 @@ menuitem[checked]>.menu-iconic-left {
 
 #appMenu-fxa-status2:not([fxastatus]),
 #appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
-    padding-block: 0 !important;
+	padding-block: 0 !important;
 }
 
 #permission-popup-permissions-content {
@@ -1075,14 +1066,14 @@ treechildren::-moz-tree-cell-text(selected) {
 	#controls button {
 		border-radius: 8px !important;
 	}
-	
+
 	#unpip,
 	#close {
 		height: 16px !important;
-		width: 10px !important;
+		width: 16px !important;
 		left: 10px !important;
 	}
-	
+
 	#unpip {
 		top: 35px !important;
 	}
@@ -1151,6 +1142,11 @@ treechildren::-moz-tree-cell-text(selected) {
 .toolbarButton,
 .toolbarCenter {
 	min-height: 22px !important;
+	color: light-dark(#000, #fff) !important;
+}
+
+.toolbarButton::after {
+	fill: light-dark(#000, #fff) !important;
 }
 
 #cancel-button,
@@ -1172,7 +1168,7 @@ treechildren::-moz-tree-cell-text(selected) {
 @media (-moz-platform: macos) {
 	#nav-bar,
 	#TabsToolbar {
-		padding-block: 11px !important;
+		padding-top: 12px !important;
 	}
 
 	#browser {
@@ -1300,13 +1296,12 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 /*---------- Icons ----------*/
-#back-button,
-menugroup>#context-back {
+#back-button {
 	list-style-image: url("neptune/icons/back.svg") !important;
+	margin-inline-end: 4px !important;
 }
 
-#forward-button,
-menugroup>#context-forward {
+#forward-button {
 	list-style-image: url("neptune/icons/forward.svg") !important;
 }
 
@@ -1321,7 +1316,7 @@ menugroup>#context-forward {
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
 	position: fixed;
-	right: 48px;
+	right: 44px;
 	list-style-image: url("neptune/icons/newtab.svg") !important;
 }
 
@@ -1347,7 +1342,8 @@ menugroup>#context-forward {
 	list-style-image: url("neptune/icons/close.svg") !important;
 }
 
-.tab-icon-image[src="chrome://branding/content/icon32.png"] {
+.tab-icon-image[src="chrome://branding/content/icon32.png"],
+.tab-icon-image[src="chrome://browser/skin/privatebrowsing/favicon.svg"] {
 	content: url("neptune/icons/tab-image.svg");
 }
 
