@@ -108,6 +108,16 @@ menulist > menupopup {
 		background-image: none !important;
 	}
 
+	.face-sad::before {
+		content: "\2602" !important;
+		font-size: 1em !important;
+	}
+
+	.face-smile::before {
+		content: "\2764" !important;
+		font-size: 1em !important;
+	}
+
 	.back-button,
 	.default-button,
 	.primary-button,
@@ -117,10 +127,6 @@ menulist > menupopup {
 	.action-box,
 	table {
 		border-radius: 8px !important;
-	}
-
-	td, th {
-		border-bottom: 1px solid var(--in-content-border-color) !important;
 	}
 
 	#searchInput,
