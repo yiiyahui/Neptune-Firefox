@@ -41,7 +41,7 @@
 
 #TabsToolbar {
 	background: none !important;
-	padding: 0 108px 12px 0 !important;
+	padding: 0 calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding)) 12px 0 !important;
 }
 
 #customization-container {
@@ -219,7 +219,7 @@ textarea {
 
 #urlbar-container {
 	width: 27em !important;
-	margin-inline: 8px 4px !important;
+	margin-inline: 4px !important;
 }
 
 #urlbar-container,
@@ -665,7 +665,7 @@ textarea {
 #TabsToolbar .toolbarbutton-1,
 toolbar .toolbaritem-combined-buttons>.toolbarbutton-1 {
 	padding: 0 !important;
-	margin-inline-start: 4px !important;
+	margin-inline: 4px !important;
 	border-radius: 7px !important;
 	height: 28px !important;
 	width: 28px !important;
@@ -718,16 +718,6 @@ screenshots-buttons {
 
 #full-page-translations-panel-error {
 	border: none !important;
-}
-
-#PanelUI-button {
-	position: fixed;
-	right: 12px;
-}
-
-#unified-extensions-button {
-	position: fixed;
-	right: 76px;
 }
 
 #library-button[animate]>.toolbarbutton-icon {
@@ -881,34 +871,32 @@ menuitem[checked]>.menu-iconic-left {
 	border-image: unset !important;
 }
 
-#appMenu-fxa-status2:not([fxastatus]),
-#appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
-	padding-block: 0 !important;
-}
-
 #permission-popup-permissions-content {
 	padding-inline: .5em !important;
 }
 
 #permission-popup-menulist {
 	padding-block: 2px !important;
-	border-radius: 6px !important;
-}
-
-.identity-popup-security-connection-icon,
-.subviewbutton-iconic>.toolbarbutton-icon,
-.permission-popup-permission-icon {
-	height: 12px !important;
-	width: 12px !important;
 }
 
 .permission-popup-permission-remove-button {
 	padding: 0 2px !important;
-	border-radius: 6px !important;
 }
 
 .subviewbutton {
 	min-height: 22px !important;
+}
+
+#protections-popup-mainView .subviewbutton-nav:not(.notFound)::after,
+.widget-overflow-list .subviewbutton-nav::after,
+.PanelUI-subView .subviewbutton-nav::after,
+.identity-popup-security-connection-icon,
+.subviewbutton-iconic > .toolbarbutton-icon,
+.permission-popup-permission-icon,
+.menu-iconic-icon,
+.menu-right > image {
+	width: 12px !important;
+	height: 12px !important;
 }
 
 .footer-button {
@@ -919,11 +907,6 @@ menuitem[checked]>.menu-iconic-left {
 	min-height: 22px !important;
 }
 
-.downloadMainArea,
-#editBMPanel_folderMenuList {
-	padding-block: 0 !important;
-}
-
 .expander-up,
 .expander-down {
 	height: 22px !important;
@@ -931,10 +914,18 @@ menuitem[checked]>.menu-iconic-left {
 	border-radius: 6px !important;
 }
 
+.downloadMainArea,
+#editBMPanel_folderMenuList,
+#appMenu-fxa-status2:not([fxastatus]),
+#appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
+	padding: 0 !important;
+}
+
 #editBMPanel_folderTree {
 	background-color: var(--neptune-urlbar-background) !important;
 	border: none !important;
 }
+
 #editBMPanel_newFolderButton {
 	padding: 2px 8px !important;
 }
@@ -1065,6 +1056,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	#controls button {
 		border-radius: 8px !important;
+		cursor: auto !important;
 	}
 
 	#unpip,
@@ -1076,6 +1068,23 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	#unpip {
 		top: 35px !important;
+	}
+}
+
+@-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
+	#bottomBox,
+	#aboutDialogContainer {
+		background-color: #262626 !important;
+	}
+
+	#leftBox {
+		background-size: 13em auto !important;
+		margin: 0 !important;
+	}
+
+	.text-link {
+		color: var(--theme-primary-color) !important;
+		text-decoration: none !important;
 	}
 }
 
@@ -1298,7 +1307,6 @@ treechildren::-moz-tree-cell-text(selected) {
 /*---------- Icons ----------*/
 #back-button {
 	list-style-image: url("neptune/icons/back.svg") !important;
-	margin-inline-end: 4px !important;
 }
 
 #forward-button {
@@ -1316,8 +1324,19 @@ treechildren::-moz-tree-cell-text(selected) {
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
 	position: fixed;
-	right: 44px;
+	right: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding));
 	list-style-image: url("neptune/icons/newtab.svg") !important;
+}
+
+#PanelUI-button {
+	position: fixed;
+	right: var(--toolbar-start-end-padding);
+}
+
+#unified-extensions-button {
+	position: fixed;
+	list-style-image: url("neptune/icons/extension.svg") !important;
+	right: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding));
 }
 
 #firefox-view-button {
