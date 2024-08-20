@@ -57,30 +57,23 @@ menulist > menupopup {
 }
 
 @-moz-document url-prefix(about:) {
-	body {
-		background-color: var(--neptune-main-background) !important;
-	}
-
 	* {
 		--in-content-page-background: var(--neptune-main-background) !important;
-		--popup-background: light-dark(#fcfcfc, #323232) !important;
+		--popup-background: light-dark(#fafafa, #323232) !important;
 		--popup-button-background: var(--neptune-item-background) !important;
 		--popup-button-background-hover: var(--neptune-item-hover-background) !important;
 		--popup-button-background-active: var(--neptune-item-active-background) !important;
 		--page-nav-button-background-color-hover: var(--neptune-item-hover-background) !important;
 		--page-nav-button-background-color-selected: transparent !important;
-		--toolbar-button-background-hover: light-dark(#e1e1e1, #464646) !important;
-		--toolbar-button-background-active: light-dark(#e8e8e8, #3c3c3c) !important;
+		--toolbar-button-background-hover: var(--neptune-item-hover-background) !important;
+		--toolbar-button-background-active: var(--neptune-item-active-background) !important;
 		--toolbar-button-foreground-active: var(--theme-primary-color) !important;
 		--primary-color: var(--theme-primary-color) !important;
 		--panel-border-radius: 6px !important;
 		--panel-shadow-margin: 14px !important;
 		--panel-border-color: var(--neptune-sidebar-border-color) !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
-	}
-
-	#migrationWizardDialog {
-		background: var(--neptune-content-background) !important;
+		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
 	}
 
 	.sticky-container {
@@ -91,6 +84,7 @@ menulist > menupopup {
 
 	dialog,
 	.dialogBox {
+		background-color: var(--neptune-content-background);
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
 		box-shadow: var(--neptune-normal-box-shadow) !important;
@@ -153,8 +147,14 @@ menulist > menupopup {
 	}
 
 	.search-tooltip {
+		background-color: var(--theme-primary-color) !important;
 		border: none !important;
 		box-shadow: 0 0 10px var(--neptune-panel-shadow-color);
+		color: #fff !important;
+  
+		&::before, &::after {
+			border-top-color: var(--theme-primary-color) !important;
+		}
 	}
 
 	.card {
@@ -243,55 +243,37 @@ menulist > menupopup {
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
-	body {
-		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
-	}
-
-	.search-wrapper {
-		display: flex;
-		align-items: center;
-	}
-
 	.non-collapsible-section {
-		padding: 0 40px !important;
-	}
+		padding-inline: 40px !important;
 
-	.search-inner-wrapper {
-		background-color: light-dark(#ffffff4c, #3838384c) !important;
-		backdrop-filter: blur(35px);
-		min-height: 48px !important;
-		border: 1px solid var(--neptune-urlbar-border-color);
-		border-radius: 12px !important;
-		box-shadow: none !important;
-		transition: background-color .5s ease;
-		z-index: 1;
+		.search-wrapper {
+			display: flex;
+			align-items: center;
 
-		&:hover {
-			background-color: light-dark(#ffffff80, #38383880) !important;
-			transition: background-color .5s ease;
+			.logo-and-wordmark {
+				margin: 0 12px 8px 0 !important;
+			}
 		}
 
-		&:active {
-			background-color: light-dark(#ffffff33, #38383833) !important;
-			transition: background-color .5s ease;
+		.search-inner-wrapper {
+			min-height: 48px !important;
+			z-index: 1;
 		}
 	}
 
+	.search-wrapper input,
 	.search-handoff-button {
-		border: none !important;
+		background: light-dark(#f6f6f633, #26262633) var(--newtab-search-icon) 16px center no-repeat !important;
+		backdrop-filter: blur(4px);
+		background-size: 24px !important;
+		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		box-shadow: none !important;
 		border-radius: 12px !important;
-		background-color: transparent !important;
+		transition: background-color .3s ease;
 
-		.fake-textbox {
-			color: light-dark(#000, #fff) !important;
+		&:is(:hover, :active) {
+			background-color: light-dark(#f6f6f644, #26262644) !important;
 		}
-	}
-
-	.search-wrapper input {
-		border: none !important;
-		box-shadow: none !important;
-		background-color: transparent !important;
 	}
 
 	.contentSearchSuggestionTable {
@@ -337,20 +319,23 @@ menulist > menupopup {
 	.customize-menu .close-button-wrapper,
 	.contentSearchHeaderRow > td > img,
 	.contentSearchSuggestionTable .contentSearchSettingsButton,
-	.top-site-outer .title:not(.sponsored) .sponsored-label	{
+	.top-site-outer .title .sponsored-label	{
 		display: none !important;
 	}
 }
 
 @-moz-document url("about:privatebrowsing") {
 	body {
-		background-color: var(--neptune-main-background) !important;
 		background: url("neptune/image/Pink.png") center/cover no-repeat fixed;
 	}
 
 	.private .search-inner-wrapper {
 		padding: 0 !important;
 	}
+
+	.fake-textbox {
+		color: light-dark(#000, #fff) !important;
+  }
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome") {
@@ -412,11 +397,15 @@ menulist > menupopup {
 		backdrop-filter: blur(22px);
 		border-radius: 8px !important;
 		transform: translate(-25px, -5px);
-	}
 
-	.context-menu > ul > li > a,
-	.context-menu > ul > li > button {
-		font-size: .85em !important;
+		> ul > li > a,
+		> ul > li > button {
+			font-size: .85em !important;
+		}
+
+		> ul > li.separator {
+			border-color: var(--neptune-toolbar-border-color) !important;
+		}
 	}
 
 	.card-outer .card {
@@ -625,9 +614,11 @@ menulist > menupopup {
 		border-radius: 50% !important;
 	}
 
-	.text-size-buttons > button {
-		height: 24px !important;
-		width: 24px !important;
+	.text-size-buttons > button,
+	.accordion-header .chevron-icon	{
+		height: 20px !important;
+		width: 20px !important;
+		background-size: 12px;
 		border-radius: 50% !important;
 	}
 
@@ -660,24 +651,18 @@ menulist > menupopup {
 		padding-block-end: 5px !important;
 	}
 
-	.accordion-header .chevron-icon {
-		height: 16px !important;
-		width: 16px !important;
-		margin-top: 5px;
-	}
-
 	.dropdown-selector > select {
-		min-height: 24px !important;
-		border-radius: 6px !important;
+		min-height: 22px !important;
 		font-weight: unset !important;
+		background-size: 12px;
 	}
 
 	.text-alignment-buttons {
 		gap: var(--space-small) !important;
 
 		> label {
-			min-height: 24px !important;
-			border-radius: 6px !important;
+			min-height: 22px !important;
+			border-radius: 5px !important;
 
 			&[checked] {
 				color: #fff !important;
@@ -850,8 +835,8 @@ div.sponsor,
 
 .dialog-button-box > button {
 	font-size: .9em !important;
-	min-height: 22px !important;
-	height: 22px !important;
+	min-height: 24px !important;
+	height: 24px !important;
 	margin-top: 6px !important;
 	border-radius: 6px !important;
 }
