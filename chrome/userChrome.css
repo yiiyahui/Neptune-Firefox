@@ -70,8 +70,8 @@ findbar {
 }
 
 .findbar-closebutton {
-	min-width: 42px !important;
-	min-height: 18px !important;
+	width: 42px !important;
+	height: 18px !important;
 	margin-top: 5px !important;
 	list-style-image: url("neptune/icons/done.svg") !important;
 	border: 1px solid ThreeDShadow;
@@ -236,13 +236,11 @@ textarea {
 	border: none !important;
 	box-shadow: none !important;
 	border-radius: 7px !important;
-	transition: background-color .5s ease;
-}
+	transition: background-color .3s ease;
 
-#searchbar:hover,
-.urlbar-input-container:hover {
-	background-color: var(--neptune-urlbar-hover-background) !important;
-	transition: background-color .5s ease;
+	&:hover {
+		background-color: var(--neptune-urlbar-hover-background) !important;
+	}
 }
 
 #urlbar[breakout] {
@@ -281,11 +279,11 @@ textarea {
 
 	&[wrap] > .urlbarView-row[has-url] > .urlbarView-row-inner {
 		> .urlbarView-no-wrap {
-			max-width: 65% !important;
+			max-width: 66% !important;
 		}
 
 		> .urlbarView-url {
-			max-width: 35% !important;
+			max-width: 34% !important;
 			margin: 0 !important;
 		}
 	}
@@ -464,16 +462,15 @@ textarea {
 .urlbar-page-action,
 .urlbar-go-button,
 .search-go-button {
+	background: none !important;
 	color: color-mix(in srgb, currentColor 50%, transparent) !important;
 
 	&:not([disabled]):hover {
-		background: none !important;
 		color: color-mix(in srgb, currentColor 85%, transparent) !important;
 	}
 
 	&:not([disabled])[open],
 	&:not([disabled]):hover:active {
-		background: none !important;
 		color: currentColor !important;
 	}
 }
@@ -542,6 +539,7 @@ textarea {
 	background-image: none !important;
 	border-radius: 7px !important;
 	margin-inline: 2px !important;
+	transition: .2s ease !important;
 
 	.tab-label-container {
 		font-size: 12.5px;
@@ -554,7 +552,7 @@ textarea {
 
 	&[selected]:not([pinned]) {
 		min-width: 100px !important;
-		max-width: 178px !important;
+		max-width: 174px !important;
 	}
 
 	.tab-background {
@@ -568,7 +566,6 @@ textarea {
 
 			.tabbrowser-tab[usercontextid] & {
 				background: var(--identity-tab-color) !important;
-				transition: background .5s ease;
 				opacity: .4;
 			}
 		}
@@ -582,12 +579,10 @@ textarea {
 
 			.tabbrowser-tab[soundplaying] & {
 				background-color: var(--soundplaying-tab-color) !important;
-				transition: background-color .5s ease;
 			}
 
 			.tabbrowser-tab[usercontextid] & {
 				background: var(--identity-tab-color) !important;
-				transition: background .5s ease;
 				opacity: .3;
 			}
 		}
@@ -605,7 +600,7 @@ textarea {
 }
 
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])>#tabbrowser-arrowscrollbox>.tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
-	margin-inline-start: 0 !important;
+	margin-inline-start: 2px !important;
 }
 
 .tab-icon-overlay:not([crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
@@ -619,10 +614,7 @@ textarea {
 }
 
 .tab-close-button {
-	height: 12px !important;
-	width: 12px !important;
 	margin: 0 !important;
-	padding: 0 !important;
 	visibility: hidden;
 
 	tab:hover & {
@@ -669,16 +661,16 @@ toolbar .toolbaritem-combined-buttons>.toolbarbutton-1 {
 	border-radius: 7px !important;
 	height: 28px !important;
 	width: 28px !important;
-	transition: background .2s ease;
+	transition: background-color .2s ease;
 }
 
 #nav-bar toolbarbutton:not([disabled]):hover,
 toolbar .toolbarbutton-1:hover {
 	outline: none !important;
-	background: var(--toolbarbutton-hover-background) !important;
+	background-color: var(--toolbarbutton-hover-background) !important;
 
 	&:is([open], [checked], :hover:active) {
-		background: var(--toolbarbutton-active-background) !important;
+		background-color: var(--toolbarbutton-active-background) !important;
 	}
 }
 
@@ -724,12 +716,6 @@ screenshots-buttons {
 	fill: transparent !important;
 }
 
-.close-icon:not(.tab-close-button) {
-	height: 16px !important;
-	width: 16px !important;
-	padding: 0 !important;
-}
-
 #sidebar-header {
 	font-size: 1.1em !important;
 	border-bottom: none !important;
@@ -743,16 +729,6 @@ screenshots-buttons {
 
 #viewButton[open] {
 	background-color: var(--neptune-item-active-background) !important;
-}
-
-.unified-extensions-item>.subviewbutton {
-	margin: 0 !important;
-	height: 32px !important;
-}
-
-#unified-extensions-view {
-	--uei-icon-size: 16px !important;
-	width: 100% !important;
 }
 
 input[type=checkbox],
@@ -818,11 +794,29 @@ panel {
 }
 
 menupopup {
-	--panel-background: var(--neptune-menu-background) !important;
+	--panel-background: light-dark(#fafafa, #323232) !important;
 
 	>menu,
 	>menuitem {
 		padding-block: 2px !important;
+
+		&:where([_moz-menuactive]:not([disabled="true"])) {
+			background-color: var(--neptune-item-hover-background) !important;
+			color: light-dark(#000, #fff) !important;
+		}
+
+		&:where([_moz-menuactive="true"][disabled="true"]) {
+			background: none !important;
+		}
+	}
+
+	> menuitem[checked="true"] {
+		padding-inline-start: 2px !important;
+
+		> .menu-iconic-left {
+			width: 8px !important;
+			margin-inline-end: 6px !important;
+		}
 	}
 
 	menuseparator {
@@ -830,45 +824,22 @@ menupopup {
 	}
 }
 
+menupopup[needsgutter] menu:not([icon], .menu-iconic),
+menupopup[needsgutter] menuitem:not([checked="true"], [icon], .menuitem-iconic) {
+	padding-inline-start: 16px !important;
+}
+
 #ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
 #ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
 	padding-block: 1px !important;
 }
 
-menu:where([_moz-menuactive="true"]:not([disabled="true"])),
-menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
-	background-color: var(--neptune-item-hover-background) !important;
-	color: light-dark(#000, #fff) !important;
-}
-
-menuitem[disabled="true"][_moz-menuactive],
-menupopup menu[disabled="true"][_moz-menuactive] {
-	background: none !important;
-}
-
-menupopup[needsgutter] menu:not([icon], .menu-iconic),
-menupopup[needsgutter] menuitem:not([checked], [icon], .menuitem-iconic) {
-	padding-inline-start: 16px !important;
-}
-
-menuitem[checked] {
-	padding-inline-start: 2px !important;
-}
-
-menuitem[checked]>.menu-iconic-left {
-	width: 6px !important;
-	margin-inline-end: 6px !important;
-}
-
-.popup-internal-box,
-#PopupAutoComplete>.autocomplete-richlistbox,
-.menupopup-arrowscrollbox {
-	background-color: light-dark(#fafafa, #323232) !important;
-	background-image: none !important;
-}
-
 .PanelUI-subView toolbarseparator.proton-zap {
 	border-image: unset !important;
+}
+
+#appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
+	padding-block: 0 !important;
 }
 
 #permission-popup-permissions-content {
@@ -876,7 +847,7 @@ menuitem[checked]>.menu-iconic-left {
 }
 
 #permission-popup-menulist {
-	padding-block: 2px !important;
+	padding: 1px 2px !important;
 }
 
 .permission-popup-permission-remove-button {
@@ -915,9 +886,7 @@ menuitem[checked]>.menu-iconic-left {
 }
 
 .downloadMainArea,
-#editBMPanel_folderMenuList,
-#appMenu-fxa-status2:not([fxastatus]),
-#appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
+#editBMPanel_folderMenuList {
 	padding: 0 !important;
 }
 
@@ -926,23 +895,36 @@ menuitem[checked]>.menu-iconic-left {
 	border: none !important;
 }
 
-#editBMPanel_newFolderButton {
+#editBMPanel_newFolderButton,
+#identity-popup-security-httpsonlymode-menulist {
 	padding: 2px 8px !important;
 }
 
-#downloadsListBox>richlistitem {
-	min-height: 36px !important;
+.unified-extensions-item > .subviewbutton {
+	margin: 0 !important;
+	height: 32px !important;
 }
 
-#downloadsListBox > richlistitem[state="1"][exists].hoveringMainArea:hover,
-#downloadsListBox > richlistitem.openWhenFinished.hoveringMainArea:hover,
-.notificationbox-stack {
+#unified-extensions-view {
+	--uei-icon-size: 16px !important;
+	width: 100% !important;
+}
+
+#downloadsPanel-mainView {
+	width: 26em;
+	min-width: 26em !important;
+}
+
+#downloadsListBox > richlistitem {
 	background: none !important;
+	min-height: 0 !important;
+	width: 26em !important;
+	padding-inline: .2em 1.2em !important;
 }
 
 .downloadTypeIcon {
-	width: 24px !important;
-	height: 24px !important;
+	width: 28px !important;
+	height: 28px !important;
 }
 
 .downloadButton,
@@ -952,6 +934,14 @@ menuitem[checked]>.menu-iconic-left {
 
 .downloadProgress::-moz-progress-bar {
 	background-color: light-dark(#0a82ff, #1769e7) !important;
+}
+
+#emptyDownloads {
+	padding-block: .8em !important;
+}
+
+.notificationbox-stack {
+	background: none !important;
 }
 
 .infobar {
@@ -972,11 +962,6 @@ menuitem[checked]>.menu-iconic-left {
 	}
 }
 
-.item.selected>.item-title-container {
-	background-color: var(--neptune-urlbar-View-hover-background) !important;
-	color: var(--urlbarView-highlight-color) !important;
-}
-
 treechildren::-moz-tree-row,
 treecol:not([hideheader="true"]),
 .tree-columnpicker-button {
@@ -986,7 +971,7 @@ treecol:not([hideheader="true"]),
 }
 
 treechildren::-moz-tree-row(selected) {
-	background: var(--neptune-urlbar-View-hover-background) !important;
+	background: var(--neptune-focused-urlbar-highlight-color) !important;
 }
 
 treechildren::-moz-tree-image(selected),
@@ -995,13 +980,15 @@ treechildren::-moz-tree-cell-text(selected) {
 	color: var(--urlbarView-highlight-color) !important;
 }
 
-#PopupAutoComplete > richlistbox > richlistitem {
-	> .ac-login-item > .ac-secondary-action {
+#PopupAutoComplete > richlistbox {
+	background-color: var(--neptune-content-background) !important;
+
+	> richlistitem > .ac-login-item > .ac-secondary-action {
 		background: none !important;
 	}
 
-	&[originaltype="loginsFooter"] {
-		border-top: none !important;
+	> richlistitem[originaltype="loginsFooter"] {
+		border: none !important;
 	}
 }
 
@@ -1039,7 +1026,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	richlistitem[selected="true"],
 	richlistbox:where(:focus) > richlistitem[selected="true"] {
-		background-color: var(--neptune-urlbar-View-hover-background) !important;
+		background-color: var(--neptune-focused-urlbar-highlight-color) !important;
 		color: var(--urlbarView-highlight-color) !important;
 	}
 }
@@ -1208,7 +1195,8 @@ treechildren::-moz-tree-cell-text(selected) {
 	}
 
 	.titlebar-button {
-		padding: 0 4px !important;
+		padding: 0 !important;
+		margin-inline: 4px !important;
 		stroke: none !important;
 		background-color: transparent !important;
 	}
@@ -1323,7 +1311,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
-	position: fixed;
+	position: absolute;
 	right: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding));
 	list-style-image: url("neptune/icons/newtab.svg") !important;
 }
@@ -1341,7 +1329,6 @@ treechildren::-moz-tree-cell-text(selected) {
 
 #firefox-view-button {
 	list-style-image: url("neptune/icons/firefox-view.svg") !important;
-	padding-right: 0 !important;
 }
 
 #PanelUI-menu-button {
@@ -1358,6 +1345,9 @@ treechildren::-moz-tree-cell-text(selected) {
 
 .close-icon:not(.findbar-closebutton),
 .permission-popup-permission-remove-button>.button-box>.button-icon {
+	height: 12px !important;
+	width: 12px !important;
+	padding: 0 !important;
 	list-style-image: url("neptune/icons/close.svg") !important;
 }
 
