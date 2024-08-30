@@ -8,7 +8,7 @@
 	--in-content-primary-button-text-color: #fff !important;
 	--newtab-primary-element-text-color: #fff !important;
 	--in-content-item-hover: var(--neptune-item-hover-background) !important;
-	--in-content-box-border-color: var(--neptune-sidebar-border-color) !important;
+	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 	--newtab-background-color: var(--neptune-main-background) !important;
 	--newtab-background-color-secondary: var(--neptune-content-background) !important;
 	--sidebar-toolbar-bg-color: var(--neptune-main-background) !important;
@@ -27,7 +27,7 @@
 	--link-color: var(--theme-primary-color) !important;
 	--link-color-hover: var(--theme-primary-hover-color) !important;
 	--link-color-active: var(--theme-primary-active-color) !important;
-	--link-color-visited: var(--theme-primary-color) !important;
+	--link-color-visited: mediumpurple !important;
 	--brand-color-accent: var(--theme-primary-color) !important;
 	--brand-color-accent-hover: var(--theme-primary-hover-color) !important;
 	--brand-color-accent-active: var(--theme-primary-active-color) !important;
@@ -59,7 +59,7 @@ menulist > menupopup {
 @-moz-document url-prefix(about:) {
 	* {
 		--in-content-page-background: var(--neptune-main-background) !important;
-		--popup-background: light-dark(#fafafa, #323232) !important;
+		--popup-background: var(--neptune-menu-background) !important;
 		--popup-button-background: var(--neptune-item-background) !important;
 		--popup-button-background-hover: var(--neptune-item-hover-background) !important;
 		--popup-button-background-active: var(--neptune-item-active-background) !important;
@@ -71,7 +71,7 @@ menulist > menupopup {
 		--primary-color: var(--theme-primary-color) !important;
 		--panel-border-radius: 6px !important;
 		--panel-shadow-margin: 14px !important;
-		--panel-border-color: var(--neptune-sidebar-border-color) !important;
+		--panel-border-color: var(--neptune-toolbar-border-color) !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
 	}
@@ -79,7 +79,7 @@ menulist > menupopup {
 	.sticky-container {
 		background-color: color-mix(in srgb, var(--in-content-page-background) 33%, transparent) !important;
 		backdrop-filter: blur(12px);
-		mask-image: linear-gradient(to top, transparent 8%, black 32%);
+		mask-image: linear-gradient(to top, transparent 6%, black 24%);
 	}
 
 	dialog,
@@ -93,13 +93,22 @@ menulist > menupopup {
 	dialog::backdrop,
 	.dialogOverlay[topmost="true"] {
 		background-color: transparent !important;
-		backdrop-filter: blur(8px) !important;
+		backdrop-filter: blur(8px);
 	}
 
 	#categories > .category {
-		border-radius: 8px !important;
-		padding: 0 !important;
+		background: none !important;
 		background-image: none !important;
+		padding: 0 !important;
+
+		&:hover {
+			color: var(--theme-primary-hover-color) !important;
+		}
+	}
+
+	.sidebar-footer-link:hover {
+		background: none !important;
+		color: var(--theme-primary-hover-color) !important;
 	}
 
 	.face-sad::before {
@@ -118,32 +127,25 @@ menulist > menupopup {
 	.more-options-button,
 	.info-box-container,
 	.web-appearance-choice,
-	.action-box,
-	table {
+	.action-box, panel-list，
+	table, div.opsRow {
 		border-radius: 8px !important;
 	}
 
-	#searchInput,
-	search-addons > search-textbox {
-		background-color: light-dark(#dcdcdc, #525252) !important;
-		min-height: 24px !important;
-		width: 180px !important;
+	input[type="search"]:not(.search-handoff-button, .search-wrapper input),
+	search-textbox {
+		background-color: var(--neptune-input-bgcolor) !important;
+		min-height: 22px !important;
 		font-size: .8em !important;
-		border: 0 !important;
+		border: none !important;
 		border-radius: 6px !important;
-		outline: 18px solid transparent !important;
+		outline: 16px solid transparent !important;
 
-		&[focused] {
+		&:is(:focus-visible, [focused]) {
 			outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
-			outline-offset: -2px !important;
-			transition: all .3s cubic-bezier(.8, 0, 0, .8);
+			outline-offset: -2px;
+			transition: all .2s cubic-bezier(0.3, 0, 0.66, 1);
 		}
-	}
-
-	.search-container input[type="search"] {
-		background: light-dark(#dcdcdc, #525252) !important;
-		outline: 2px solid var(--neptune-focused-urlbar-border-color) !important;
-		border-radius: 6px !important;
 	}
 
 	.search-tooltip {
@@ -157,7 +159,7 @@ menulist > menupopup {
 		}
 	}
 
-	.card {
+	.addon.card {
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
 		box-shadow: none !important;
@@ -201,34 +203,28 @@ menulist > menupopup {
 	.checkbox-check:not([native]) {
 		appearance: none !important;
 		background-color: transparent !important;
-		border-radius: 4px !important;
-		border: 2px solid #b9b9b9 !important;
+		margin-block: 0 !important;
+		border: 2px solid var(--neptune-toolbar-border-color);
+		border-radius: 4px;
 
 		&:is(:checked, [checked="true"]) {
 			background-color: var(--neptune-switch-pressed-background) !important;
 			background-image: url("neptune/icons/check.svg") !important;
-			border: none !important;
-
-			&:hover {
-				background-color: var(--neptune-switch-pressed-active-background) !important;
-			}
+			border: none;
 		}
 	}
 
+	input[type=radio]:not(.wallpaper-input),
 	.radio-check {
 		appearance: none !important;
 		background-color: transparent !important;
-		border-radius: 50% !important;
-		border: 2px solid #b9b9b9 !important;
+		border-radius: 50%;
+		border: 2px solid var(--neptune-toolbar-border-color);
 
-		&[selected="true"] {
+		&:is(:checked, [selected="true"]) {
 			background-color: var(--neptune-switch-pressed-background) !important;
-			background-image: url("neptune/icons/radio.svg") !important;
-			border: none !important;
-
-			&:hover {
-				background-color: var(--neptune-switch-pressed-active-background) !important;
-			}
+			background-image: url("neptune/icons/radio.svg");
+			border: none;
 		}
 	}
 
@@ -244,7 +240,7 @@ menulist > menupopup {
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
 	.non-collapsible-section {
-		padding-inline: 40px !important;
+		padding: 0 !important;
 
 		.search-wrapper {
 			display: flex;
@@ -334,8 +330,8 @@ menulist > menupopup {
 	}
 
 	.fake-textbox {
-		color: light-dark(#000, #fff) !important;
-  }
+		color: FieldText !important;
+	}
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome") {
@@ -351,32 +347,26 @@ menulist > menupopup {
 		cursor: auto !important;
 	}
 
-	.top-site-outer .tile {
-		height: 65px !important;
-		width: 65px !important;
-		background-color: #f8f8f8 !important;
-		border-radius: 12px !important;
-		box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
+	.top-site-outer {
+		margin-block-end: 0 !important;
 
-		.icon-wrapper {
-			width: 100% !important;
-			height: 100% !important;
-			border-radius: 10px !important;
+		.tile {
+			height: 65px !important;
+			width: 65px !important;
+			background-color: var(--neptune-content-background) !important;
+			border-radius: 12px !important;
+			box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
+
+			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
+				width: 100% !important;
+				height: 100% !important;
+				border-radius: 10px !important;
+			}
 		}
 	}
 
 	.top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
 		background: none !important;
-	}
-
-	.outer-wrapper .top-site-outer {
-		vertical-align: middle !important;
-	}
-
-	.top-site-outer.placeholder.add-button .tile .icon-wrapper {
-		height: 20px !important;
-		width: 20px !important;
-		fill: #333 !important;
 	}
 
 	.top-site-outer .search-topsite {
@@ -388,15 +378,16 @@ menulist > menupopup {
 
 	.top-site-outer .context-menu-button {
 		background-color: transparent !important;
-		fill: var(--neptune-toolbar-color) !important;
-		transform: translate(-21px, 10px);
+		transform: translate(-24px, 12px);
 	}
 
 	.context-menu {
 		background-color: var(--neptune-popover-background) !important;
 		backdrop-filter: blur(22px);
+		border: 1px solid var(--neptune-toolbar-border-color);
 		border-radius: 8px !important;
-		transform: translate(-25px, -5px);
+		box-shadow: var(--neptune-normal-box-shadow) !important;
+		transform: translate(-24px, -6px);
 
 		> ul > li > a,
 		> ul > li > button {
@@ -406,22 +397,6 @@ menulist > menupopup {
 		> ul > li.separator {
 			border-color: var(--neptune-toolbar-border-color) !important;
 		}
-	}
-
-	.card-outer .card {
-		background-color: var(--neptune-popover-background) !important;
-		position: relative;
-		border: 0 !important;
-		box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
-		backdrop-filter: blur(8px);
-		height: auto !important;
-	}
-
-	.card-outer .context-menu-button {
-		margin: -10px 15px 0 0 !important;
-		border: none !important;
-		background-color: transparent !important;
-		box-shadow: none !important;
 	}
 
 	.modalOverlayOuter {
@@ -437,7 +412,7 @@ menulist > menupopup {
 
 	.actions {
 		border: none !important;
-		padding: 0 25px 0 !important;
+		padding: 0 25px !important;
 	}
 
 	.button,
@@ -461,11 +436,12 @@ menulist > menupopup {
 
 	.personalize-button {
 		padding: 0 !important;
+		background-size: 28px !important;
 		background-color: transparent !important;
-		fill: light-dark(#000, #fff) !important;
+		fill: MenuText !important;
 		opacity: .8;
 
-		&:hover {
+		&:is(:hover, :active) {
 			background-color: transparent !important;
 			opacity: 1;
 		}
@@ -477,7 +453,8 @@ menulist > menupopup {
 
 	.icon.icon-settings {
 		background-image: url("neptune/icons/settings.svg") !important;
-		transform: scale(1.75);
+		width: 28px !important;
+		height: 28px !important;
 	}
 
 	@media (height < 700px) {
@@ -494,10 +471,10 @@ menulist > menupopup {
 
 	.customize-menu {
 		width: 18em !important;
-		height: 19.8em !important;
+		height: 20em !important;
 		top: calc(95vh - 10px) !important;
-		right: 19px !important;
-		padding: 15px 0 !important;
+		right: 20px !important;
+		padding: 12px 0 !important;
 		border-radius: 12px !important;
 		transform: translateY(100%) !important;
 		background-color: var(--neptune-popover-background) !important;
@@ -536,8 +513,8 @@ menulist > menupopup {
 			padding: 0 !important;
 			margin: 0 !important;
 
-				&:hover{
-					color: var(--theme-primary-color) !important;
+			&:hover {
+				color: var(--theme-primary-color) !important;
 			}
 		}
 	}
@@ -564,10 +541,6 @@ menulist > menupopup {
 		grid-auto-rows: 48px !important;
 	}
 
-	.category-header {
-		height: 46px;
-	}
-
 	.wallpaper-input {
 		height: 40px !important;
 		cursor: default !important;
@@ -584,7 +557,7 @@ menulist > menupopup {
 		text-decoration: none !important;
 		font-size: .7em !important;
 
-		&:hover{
+		&:hover {
 			color: var(--theme-primary-color) !important;
 		}
 	}
@@ -628,19 +601,14 @@ menulist > menupopup {
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
 
-		h2 {
-			font-size: 16px !important;
-			margin-block: 2px !important;
-		}
-
 		hr {
 			border-top: none !important;
 		}
 	}
 
 	#text-layout-controls {
-		width: 20em !important;
-		padding-block: 3px !important;
+		width: 18em !important;
+		padding-block: 12px 0 !important;
 		font-size: 12.5px !important;
 	}
 
@@ -648,7 +616,7 @@ menulist > menupopup {
 	.text-alignment-buttons,
 	#font-controls,
 	#text-size-controls {
-		padding-block-end: 5px !important;
+		padding-block-end: 6px !important;
 	}
 
 	.dropdown-selector > select {
@@ -726,6 +694,7 @@ menulist > menupopup {
 	.hover-label,
 	.radio-button,
 	.icon-container,
+	.dropdown .dropdown-popup h2,
 	#about-reader-colors-menu-header {
 		display: none !important;
 	}
@@ -740,7 +709,7 @@ menulist > menupopup {
 	}
 
 	.search-container input {
-		background-color: light-dark(#dcdcdc, #525252) !important;
+		background-color: var(--neptune-input-bgcolor) !important;
 		padding-inline-start: 10px !important;
 	}
 
@@ -781,7 +750,7 @@ menulist > menupopup {
 
 	#sidebarContent {
 		box-shadow: none !important;
-		border-right: 1px solid var(--neptune-urlbar-border-color);
+		border-right: 1px solid var(--neptune-sidebar-border-color);
 	}
 
 	.toolbarField {
@@ -848,7 +817,7 @@ separator.groove:not([orient="vertical"]) {
 
 ::selection {
 	background: light-dark(#b3d7fe, #324f6f) !important;
-	color: light-dark(#000, #fff) !important;
+	color: FieldText !important;
 }
 
 input:where([type="text"], [type="search"], [type="password"], [type="url"]),

@@ -3,37 +3,38 @@
 		/* Browser */
 		--neptune-main-background: #f6f6f6;
 		--neptune-content-background: #fff;
-		--theme-primary-color: #1280fd;
+		--theme-primary-color: #1284ff;
 		--theme-primary-hover-color: #1c8bff;
-		--theme-primary-active-color: #417bde;
+		--theme-primary-active-color: #0273eb;
 
 		/* Toolbars */
 		--neptune-toolbar-background: var(--lwt-accent-color);
 		--neptune-toolbar-color: var(--toolbar-color);
-		--neptune-toolbar-border-color: #00000026;
+		--neptune-toolbar-border-color: color-mix(in srgb, currentColor 18%, transparent);
 		--neptune-inactive-toolbar-background: var(--toolbar-bgcolor);
-		--neptune-item-background: #9b9b9b4c;
-		--neptune-item-hover-background: #9b9b9b33;
-		--neptune-item-active-background: #9b9b9b66;
+		--neptune-input-bgcolor: color-mix(in srgb, currentColor 12%, transparent);
+		--neptune-item-background: color-mix(in srgb, currentColor 10%, transparent);
+		--neptune-item-hover-background: color-mix(in srgb, currentColor 8%, transparent);
+		--neptune-item-active-background: color-mix(in srgb, currentColor 14%, transparent);
 
 		/* Sidebar */
 		--neptune-sidebar-background: var(--lwt-accent-color);
-		--neptune-sidebar-border-color: #00000033;
+		--neptune-sidebar-border-color: color-mix(in srgb, currentColor 8%, transparent);
 
 		/* Popups */
-		--neptune-menu-background: color-mix(in srgb, #fafafa 35%, var(--toolbar-field-focus-background-color));
+		--neptune-menu-background: #f8f8f8;
 		--neptune-popover-background: #ffffff80;
-		--neptune-popover-separator-color: #c3c3c34c;
-		--neptune-small-box-shadow: 0 1px 3px #00000033;
+		--neptune-popover-separator-color: color-mix(in srgb, currentColor 12%, transparent);
+		--neptune-small-box-shadow: 0 0 1px #00000080;
 		--neptune-normal-box-shadow: 0 5px 15px #00000033;
 		--neptune-panel-shadow-color: #00000033;
 
 		/* Urlbar */
 		--neptune-urlbar-background: color-mix(in srgb, currentColor 18%, transparent);
-		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 22%, transparent);
-		--neptune-urlbar-border-color: color-mix(in srgb, currentColor 16%, transparent);
+		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 15%, transparent);
+		--neptune-urlbar-focused-background: color-mix(in srgb, currentColor 20%, transparent);
 		--neptune-inactive-urlbar-background: color-mix(in srgb, currentColor 10%, transparent);
-		--neptune-urlbar-view-background: #ececec;
+		--neptune-urlbar-view-background: #f2f2f2;
 		--neptune-urlbar-View-hover-background: #0165e1;
 		--neptune-urlbar-View-switch-background: #bf1932;
 		--neptune-text-selection-color: #347df5;
