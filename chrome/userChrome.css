@@ -764,44 +764,46 @@ panel {
 	}
 }
 
-menupopup {
-	--panel-background: light-dark(#f8f8f8, #333) !important;
+@media (-moz-platform: windows) {
+	menupopup {
+		--panel-background: light-dark(#f8f8f8, #333) !important;
 
-	>menu,
-	>menuitem {
-		padding-block: 2px !important;
+		>menu,
+		>menuitem {
+			padding-block: 2px !important;
 
-		&:where([_moz-menuactive]:not([disabled="true"])) {
-			background-color: var(--neptune-item-hover-background) !important;
+			&:where([_moz-menuactive]:not([disabled="true"])) {
+				background-color: var(--neptune-item-hover-background) !important;
+			}
+
+			&:where([_moz-menuactive="true"][disabled="true"]) {
+				background: none !important;
+			}
 		}
 
-		&:where([_moz-menuactive="true"][disabled="true"]) {
-			background: none !important;
+		> menuitem[checked="true"] {
+			padding-inline-start: 2px !important;
+
+			> .menu-iconic-left {
+				width: 8px !important;
+				margin-inline-end: 6px !important;
+			}
+		}
+
+		menuseparator {
+			padding-block: 5px !important;
 		}
 	}
 
-	> menuitem[checked="true"] {
-		padding-inline-start: 2px !important;
-
-		> .menu-iconic-left {
-			width: 8px !important;
-			margin-inline-end: 6px !important;
-		}
+	menupopup[needsgutter] menu:not([icon], .menu-iconic),
+	menupopup[needsgutter] menuitem:not([checked="true"], [icon], .menuitem-iconic) {
+		padding-inline-start: 16px !important;
 	}
 
-	menuseparator {
-		padding-block: 5px !important;
+	#ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
+	#ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
+		padding-block: 1px !important;
 	}
-}
-
-menupopup[needsgutter] menu:not([icon], .menu-iconic),
-menupopup[needsgutter] menuitem:not([checked="true"], [icon], .menuitem-iconic) {
-	padding-inline-start: 16px !important;
-}
-
-#ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
-#ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
-	padding-block: 1px !important;
 }
 
 .PanelUI-subView toolbarseparator.proton-zap {
@@ -1393,6 +1395,7 @@ tooltip,
 #alltabs-button,
 #appMenu-fullscreen-button2,
 .unified-extensions-item-message,
+#toggle_toolbar-menubar,
 #context-navigation>.menuitem-iconic,
 #context-stop,
 #context-sep-navigation,
