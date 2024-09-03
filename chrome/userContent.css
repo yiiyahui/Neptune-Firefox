@@ -265,7 +265,7 @@ menulist > menupopup {
 
 	.search-wrapper input,
 	.search-handoff-button {
-		background: light-dark(#f6f6f633, #26262633) var(--newtab-search-icon) 16px center no-repeat !important;
+		background-color: light-dark(#f6f6f633, #26262633) !important;
 		backdrop-filter: blur(4px);
 		background-size: 24px !important;
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
