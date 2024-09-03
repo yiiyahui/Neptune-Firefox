@@ -183,7 +183,7 @@ input:where(:not(.urlbar-input, .findbar-textbox, [type=radio i], [type=checkbox
 textarea {
 	min-height: 22px !important;
 	border: none !important;
-	padding: 0 4px !important;
+	padding-block: 0 !important;
 	border-radius: 4px !important;
 }
 
@@ -587,12 +587,11 @@ textarea {
 }
 
 .tab-icon-overlay:not([crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
-	color: var(--neptune-tab-speaker-icon-color) !important;
+	fill: var(--neptune-tab-speaker-icon-color) !important;
 
 	&:hover {
-		stroke: var(--neptune-tab-speaker-icon-background) !important;
 		background-color: var(--neptune-tab-speaker-icon-background) !important;
-		color: var(--button-primary-color) !important;
+		fill: var(--button-primary-color) !important;
 	}
 }
 
@@ -683,14 +682,20 @@ screenshots-buttons {
 
 #select-translations-panel-text-area.translating {
 	background-image: none !important;
+	padding: 0 !important;
 }
 
-#full-page-translations-panel-error {
+#full-page-translations-panel-error,
+#sidebar-switcher-target {
 	border: none !important;
 }
 
+#sidebar-box[sidebarcommand="viewGenaiChatSidebar"] {
+	min-width: 30em !important;
+}
+
 #sidebar-header {
-	font-size: 1.1em !important;
+	font-size: 12.5px !important;
 	border-bottom: none !important;
 }
 
@@ -698,10 +703,10 @@ screenshots-buttons {
 	background-color: var(--neptune-item-background) !important;
 	border: none !important;
 	border-radius: 4px !important;
-}
 
-#viewButton[open] {
-	background-color: var(--neptune-item-active-background) !important;
+	&[open] {
+		background-color: var(--neptune-item-active-background) !important;
+	}
 }
 
 input[type=checkbox],
@@ -760,7 +765,7 @@ panel {
 }
 
 menupopup {
-	--panel-background: var(--neptune-menu-background) !important;
+	--panel-background: light-dark(#f8f8f8, #333) !important;
 
 	>menu,
 	>menuitem {
@@ -808,6 +813,7 @@ menupopup[needsgutter] menuitem:not([checked="true"], [icon], .menuitem-iconic) 
 	width: 20em !important;
 }
 
+#sidebar-switcher-target > #sidebar-icon,
 #protections-popup-mainView .subviewbutton-nav:not(.notFound)::after,
 .widget-overflow-list .subviewbutton-nav::after,
 .PanelUI-subView .subviewbutton-nav::after,
@@ -840,6 +846,7 @@ label {
 }
 
 .footer-button {
+	height: 22px !important;
 	min-height: 22px !important;
 	padding-block: 0 !important;
 	border-radius: 6px !important;
@@ -1296,6 +1303,15 @@ treechildren::-moz-tree-cell-text(selected) {
 	list-style-image: url("neptune/icons/tracking.svg") !important;
 }
 
+#sidebar-button:-moz-locale-dir(ltr):not([positionend]),
+#sidebar-button:-moz-locale-dir(rtl)[positionend] {
+	list-style-image: url("neptune/icons/sidebar.svg") !important;
+}
+
+#sidebar-button {
+	list-style-image: url("neptune/icons/sidebar-right.svg") !important;
+}
+
 .close-icon:not(.findbar-closebutton),
 .permission-popup-permission-remove-button>.button-box>.button-icon {
 	height: 12px !important;
@@ -1324,6 +1340,10 @@ treechildren::-moz-tree-cell-text(selected) {
 
 .expander-down {
 	list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+}
+
+#downloads-indicator-anchor {
+	list-style-image: url("neptune/icons/downloads.svg") !important;
 }
 
 .downloadIconShow>.button-box>.button-icon {
@@ -1377,13 +1397,11 @@ tooltip,
 #context-stop,
 #context-sep-navigation,
 #context-sep-sharing,
-#context-media-eme-separator,
 #tabbrowser-tabs .tab-context-line,
 #context-openlink,
 #context-openlinkprivate,
 #context-bookmarklink,
 #context-setDesktopBackground,
-#toolbarItemsMenuSeparator,
 #context-sendimage,
 #context-sendvideo,
 #context-sendaudio,

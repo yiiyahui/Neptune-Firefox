@@ -6,6 +6,7 @@
 	--in-content-box-background: var(--neptune-content-background) !important;
 	--in-content-table-background: var(--neptune-content-background) !important;
 	--in-content-primary-button-text-color: #fff !important;
+	--background-color-box: var(--neptune-content-background) !important;
 	--newtab-primary-element-text-color: #fff !important;
 	--in-content-item-hover: var(--neptune-item-hover-background) !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
@@ -121,6 +122,11 @@ menulist > menupopup {
 		font-size: 1em !important;
 	}
 
+	.featureGate {
+		border-radius: 12px !important;
+		box-shadow: none !important;
+	}
+
 	.back-button,
 	.default-button,
 	.primary-button,
@@ -153,7 +159,7 @@ menulist > menupopup {
 		border: none !important;
 		box-shadow: 0 0 10px var(--neptune-panel-shadow-color);
 		color: #fff !important;
-  
+
 		&::before, &::after {
 			border-top-color: var(--theme-primary-color) !important;
 		}
