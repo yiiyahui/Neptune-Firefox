@@ -97,13 +97,17 @@ menulist > menupopup {
 		backdrop-filter: blur(8px);
 	}
 
-	#categories > .category {
-		background: none !important;
-		background-image: none !important;
-		padding: 0 !important;
+	#categories {
+		margin-top: 64px !important;
 
-		&:hover {
-			color: var(--theme-primary-hover-color) !important;
+		> .category {
+			background: none !important;
+			background-image: none !important;
+			margin-inline-start: 18px !important;
+
+			&:hover {
+				color: var(--theme-primary-hover-color) !important;
+			}
 		}
 	}
 
@@ -157,7 +161,7 @@ menulist > menupopup {
 	.search-tooltip {
 		background-color: var(--theme-primary-color) !important;
 		border: none !important;
-		box-shadow: 0 0 10px var(--neptune-panel-shadow-color);
+		box-shadow: var(--neptune-panel-shadow);
 		color: #fff !important;
 
 		&::before, &::after {
@@ -278,6 +282,11 @@ menulist > menupopup {
 		}
 	}
 
+	.search-handoff-button .fake-caret {
+		top: 13px !important;
+		height: 20px !important;
+	}
+
 	.contentSearchSuggestionTable {
 		border-radius: 12px !important;
 		background-color: var(--neptune-popover-background) !important;
@@ -361,7 +370,7 @@ menulist > menupopup {
 			width: 65px !important;
 			background-color: var(--neptune-content-background) !important;
 			border-radius: 12px !important;
-			box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
+			box-shadow: var(--neptune-panel-shadow) !important;
 
 			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
 				width: 100% !important;
@@ -606,23 +615,22 @@ menulist > menupopup {
 		backdrop-filter: blur(24px);
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
+		box-shadow: var(--neptune-normal-box-shadow) !important;
 
 		hr {
 			border-top: none !important;
+			margin-block: 0 !important;
 		}
 	}
 
 	#text-layout-controls {
 		width: 18em !important;
-		padding-block: 12px 0 !important;
+		padding-block-end: 0 !important;
 		font-size: 12.5px !important;
 	}
 
-	.slider-container,
-	.text-alignment-buttons,
-	#font-controls,
-	#text-size-controls {
-		padding-block-end: 6px !important;
+	.slider-label {
+		margin-block-end: 2px;
 	}
 
 	.dropdown-selector > select {
@@ -644,12 +652,16 @@ menulist > menupopup {
 		}
 	}
 
-	input {
-		margin-block: 3px !important;
+	.container {
+		gap: unset !important;
+	}
+
+	button-group {
+		padding-block: 0 !important;
 	}
 
 	button[is="named-deck-button"] {
-		border: none !important;
+		border-top: none !important;
 	}
 
 	#color-controls {
@@ -678,30 +690,16 @@ menulist > menupopup {
 		height: 24px !important;
 	}
 
-	.custom-colors-selection {
-		padding-block: 7px !important;
-		font-size: 10.5px !important;
-	}
-
-	.container {
-		gap: unset !important;
-	}
-
+	.custom-colors-selection,
 	.reset-button {
 		text-decoration: none !important;
 		font-size: 10.5px !important;
-
-		&.text-layout-reset-button {
-			padding-block-end: 7px !important;
-		}
 	}
 
 	datalist,
 	.hover-label,
-	.radio-button,
 	.icon-container,
-	.dropdown .dropdown-popup h2,
-	#about-reader-colors-menu-header {
+	.dropdown .dropdown-popup h2 {
 		display: none !important;
 	}
 }
