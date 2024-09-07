@@ -1258,9 +1258,10 @@ treechildren::-moz-tree-cell-text(selected) {
 	list-style-image: url("neptune/icons/newtab.svg") !important;
 }
 
-#PanelUI-button {
+#PanelUI-menu-button {
 	position: fixed;
 	right: var(--toolbar-start-end-padding);
+	list-style-image: url("neptune/icons/menu.svg") !important;
 }
 
 #unified-extensions-button {
@@ -1271,10 +1272,6 @@ treechildren::-moz-tree-cell-text(selected) {
 
 #firefox-view-button {
 	list-style-image: url("neptune/icons/firefox-view.svg") !important;
-}
-
-#PanelUI-menu-button {
-	list-style-image: url("neptune/icons/menu.svg") !important;
 }
 
 #permissions-granted-icon {
