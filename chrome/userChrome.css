@@ -20,11 +20,19 @@
 	border: none !important;
 	padding: 13px 0 12px 88px !important;
 	background-color: transparent !important;
+
+	:root[inFullscreen] & {
+		padding-inline-start: 5px !important;
+	}
 }
 
 #titlebar {
 	order: 1;
 	flex: 1;
+
+	:root[tabsintitlebar] & {
+		will-change: unset !important;
+	}
 }
 
 #PersonalToolbar {
@@ -130,6 +138,7 @@ findbar {
 	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
 	--link-color: light-dark(#6f6f6f, #aaa) !important;
+	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
 	--in-content-page-background: var(--neptune-main-background) !important;
@@ -194,7 +203,7 @@ textarea {
 
 /*---------- Urlbar ----------*/
 #urlbar-container {
-	width: 27em !important;
+	width: 320px !important;
 	margin-inline: 4px !important;
 }
 
@@ -260,7 +269,7 @@ textarea {
 	border-radius: 12px !important;
 	background-color: light-dark(#f2f2f2, #323232) !important;
 	color: MenuText;
-	box-shadow: var(--neptune-small-box-shadow), var(--neptune-normal-box-shadow) !important;
+	box-shadow: var(--neptune-small-box-shadow), var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
 }
 
 .urlbarView-results {
@@ -484,10 +493,6 @@ textarea {
 	padding: 2px !important;
 }
 
-#reader-mode-button {
-	margin-right: -2px !important;
-}
-
 #urlbar-search-mode-indicator,
 #urlbar-label-box {
 	background-color: var(--neptune-urlbar-View-switch-background) !important;
@@ -604,16 +609,8 @@ textarea {
 	}
 }
 
-#tab-preview-panel {
-	--panel-width: 20em !important;
-}
-
-.tab-preview-text-container {
-	padding-block: 2px !important;
-}
-
-.tab-preview-thumbnail-container > canvas {
-	width: 100%;
+.tab-preview-title {
+	-webkit-line-clamp: 1 !important;
 }
 
 .panel-arrowcontent,
@@ -759,12 +756,12 @@ panel {
 	}
 
 	@media (-moz-platform: linux) or (-moz-platform: windows) {
-		--panel-shadow-margin: 14px !important;
-		--panel-shadow: 0 2px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
+		--panel-shadow-margin: 20px !important;
+		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
 	}
 }
 
-@media (-moz-platform: windows) {
+@media not (-moz-platform: macos) {
 	menupopup {
 		--panel-background: light-dark(#f8f8f8, #333) !important;
 
@@ -843,6 +840,11 @@ label {
 	padding: 1px 4px !important;
 }
 
+.permission-popup-permission-item {
+	min-height: 22px !important;
+	margin-block-start: 0 !important;
+}
+
 .subviewbutton {
 	min-height: 22px !important;
 }
@@ -878,16 +880,17 @@ label {
 }
 
 #downloadsPanel-mainView {
-	width: 26em;
-	min-width: 26em !important;
+	min-width: 25em !important;
 	padding-block: 0 !important;
 }
 
-#downloadsListBox > richlistitem {
-	background: none !important;
-	width: 26em !important;
-	margin: 0 !important;
-	padding-inline-end: 16px !important;
+#downloadsListBox {
+	width: 25em !important;
+
+	> richlistitem {
+		background: none !important;
+		margin: 0 !important;
+	}
 }
 
 .downloadTypeIcon {
@@ -901,12 +904,13 @@ label {
 	border-radius: 50% !important;
 }
 
-.downloadProgress::-moz-progress-bar {
-	background-color: var(--theme-primary-color) !important;
+.downloadProgress {
+	margin-block-start: 3px !important;
+	height: 3px !important;
 }
 
 #emptyDownloads {
-	padding-block: 1.5em !important;
+	padding-block: 1em !important;
 }
 
 .infobar {
@@ -981,20 +985,18 @@ treechildren::-moz-tree-cell-text(selected) {
 	.downloadButton,
 	.downloadButton > .button-box {
 		height: auto !important;
-		padding: 6px !important;
 		border-radius: 50% !important;
 	}
-	
-	#downloadsListBox > richlistitem {
-		width: auto !important;
-		min-height: 0 !important;
-	}
 
-	#downloadsListBox > richlistitem[selected="true"] {
-		background-color: var(--neptune-focused-urlbar-highlight-color) !important;
-		color: var(--urlbarView-highlight-color) !important;
-		border-radius: 0 !important;
-		outline: none !important;
+	#downloadsListBox {
+		width: auto !important;
+
+		> richlistitem[selected="true"] {
+			background-color: var(--neptune-focused-urlbar-highlight-color) !important;
+			color: var(--urlbarView-highlight-color) !important;
+			border-radius: 0 !important;
+			outline: none !important;
+		}
 	}
 }
 
@@ -1092,16 +1094,6 @@ treechildren::-moz-tree-cell-text(selected) {
 	min-height: 22px !important;
 }
 
-.toggle-group-label:first-of-type {
-	border-start-start-radius: 8px !important;
-	border-end-start-radius: 8px !important;
-}
-
-.toggle-group-label:last-of-type {
-	border-end-end-radius: 8px !important;
-	border-start-end-radius: 8px !important;
-}
-
 .toolbarButton,
 .toolbarCenter {
 	min-height: 22px !important;
@@ -1115,29 +1107,17 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 /*---------- Browser ----------*/
-:root[tabsintitlebar][inFullscreen] #nav-bar {
-	padding-left: 5px !important;
-}
-
-:root[tabsintitlebar] #titlebar {
-	will-change: unset !important;
-}
-
 @media (-moz-platform: macos) {
 	#nav-bar,
 	#TabsToolbar {
 		padding-top: 12px !important;
 	}
 
-	#browser {
-		transition: .2s ease;
-
-		#tabbrowser-tabpanels {
-			background-color: transparent !important;
-		}
+	#tabbrowser-tabpanels {
+		background: transparent !important;
 	}
 
-	#TabsToolbar .titlebar-buttonbox-container {
+	.titlebar-buttonbox-container {
 		visibility: visible;
 		position: absolute;
 		left: 7px;
@@ -1146,14 +1126,14 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 @media (-moz-platform: windows) {
-	:root[tabsintitlebar][inFullscreen] .titlebar-buttonbox-container {
-		display: none !important;
-	}
-
 	.titlebar-buttonbox-container {
 		position: absolute;
 		left: 20px;
 		top: 21px;
+
+		:root[inFullscreen] & {
+			display: none;
+		}
 	}
 
 	.titlebar-button {
@@ -1350,6 +1330,10 @@ treechildren::-moz-tree-cell-text(selected) {
 
 .downloadIconShow>.button-box>.button-icon {
 	list-style-image: url("chrome://global/skin/icons/search-glass.svg") !important;
+}
+
+#reader-mode-button > .urlbar-icon {
+	list-style-image: url("neptune/icons/reader-mode.svg") !important;
 }
 
 #star-button[starred],
