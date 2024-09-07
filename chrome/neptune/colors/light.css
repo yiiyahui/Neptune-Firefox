@@ -26,8 +26,9 @@
 		--neptune-popover-background: #ffffff80;
 		--neptune-popover-separator-color: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-small-box-shadow: 0 0 1px #00000080;
-		--neptune-normal-box-shadow: 0 5px 15px #00000033;
-		--neptune-panel-shadow-color: #00000033;
+		--neptune-normal-box-shadow: 0 5px 20px #00000033;
+		--neptune-panel-shadow: 0 1px 5px #00000008, 0 2px 10px #0000000d;
+		--neptune-panel-shadow-color: #00000026;
 
 		/* Urlbar */
 		--neptune-urlbar-background: color-mix(in srgb, currentColor 18%, transparent);
