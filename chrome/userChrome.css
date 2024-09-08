@@ -764,6 +764,7 @@ panel {
 @media not (-moz-platform: macos) {
 	menupopup {
 		--panel-background: light-dark(#f8f8f8, #333) !important;
+		--content-select-background-image: none !important;
 
 		>menu,
 		>menuitem {

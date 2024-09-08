@@ -71,7 +71,7 @@ menulist > menupopup {
 		--toolbar-button-foreground-active: var(--theme-primary-color) !important;
 		--primary-color: var(--theme-primary-color) !important;
 		--panel-border-radius: 6px !important;
-		--panel-shadow-margin: 14px !important;
+		--panel-shadow-margin: 15px !important;
 		--panel-border-color: var(--neptune-toolbar-border-color) !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
@@ -88,7 +88,7 @@ menulist > menupopup {
 		background-color: var(--neptune-content-background);
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
-		box-shadow: var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
 	}
 
 	dialog::backdrop,
@@ -253,37 +253,36 @@ menulist > menupopup {
 		padding: 0 !important;
 
 		.search-wrapper {
-			display: flex;
-			align-items: center;
-
-			.logo-and-wordmark {
-				margin: 0 12px 8px 0 !important;
-			}
+			padding-block: 0 18px !important;
 		}
 
 		.search-inner-wrapper {
-			min-height: 48px !important;
-			z-index: 1;
+			@media (min-width: 610px) {
+				width: 425px !important;
+			}
+
+			@media (min-width: 866px) {
+				width: 665px !important;
+			}
+
+			@media (min-width: 1122px) {
+				width: 905px !important;
+			}
 		}
 	}
 
 	.search-wrapper input,
 	.search-handoff-button {
-		background-color: light-dark(#f6f6f633, #26262633) !important;
-		backdrop-filter: blur(4px);
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(25px);
 		background-size: 24px !important;
-		border: 1px solid var(--neptune-toolbar-border-color) !important;
-		box-shadow: none !important;
+		border: none !important;
+		box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
 		border-radius: 12px !important;
-		transition: background-color .3s ease;
-
-		&:is(:hover, :active) {
-			background-color: light-dark(#f6f6f644, #26262644) !important;
-		}
 	}
 
 	.search-handoff-button .fake-caret {
-		top: 13px !important;
+		top: 16px !important;
 		height: 20px !important;
 	}
 
@@ -291,7 +290,7 @@ menulist > menupopup {
 		border-radius: 12px !important;
 		background-color: var(--neptune-popover-background) !important;
 		backdrop-filter: blur(35px);
-		box-shadow: var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
 
 		.contentSearchHeader,
 		.contentSearchOneOffsTable {
@@ -341,6 +340,7 @@ menulist > menupopup {
 	}
 
 	.private .search-inner-wrapper {
+		height: 52px !important;
 		padding: 0 !important;
 	}
 
@@ -370,7 +370,7 @@ menulist > menupopup {
 			width: 65px !important;
 			background-color: var(--neptune-content-background) !important;
 			border-radius: 12px !important;
-			box-shadow: var(--neptune-panel-shadow) !important;
+			box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
 
 			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
 				width: 100% !important;
@@ -401,7 +401,7 @@ menulist > menupopup {
 		backdrop-filter: blur(22px);
 		border: 1px solid var(--neptune-toolbar-border-color);
 		border-radius: 8px !important;
-		box-shadow: var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
 		transform: translate(-24px, -6px);
 
 		> ul > li > a,
@@ -420,7 +420,7 @@ menulist > menupopup {
 
 	.edit-topsites-wrapper .modal {
 		border-radius: 12px !important;
-		box-shadow: var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
 		width: 36em !important;
 		top: 8em !important;
 	}
@@ -449,6 +449,16 @@ menulist > menupopup {
 		margin-top: 8px !important;
 	}
 
+	.personalizeButtonWrapper {
+		@media (height < 700px) {
+			top: 92vh !important;
+		}
+
+		@media (height >=700px) {
+			top: 95vh !important;
+		}
+	}
+
 	.personalize-button {
 		padding: 0 !important;
 		background-size: 28px !important;
@@ -470,18 +480,6 @@ menulist > menupopup {
 		background-image: url("neptune/icons/settings.svg") !important;
 		width: 28px !important;
 		height: 28px !important;
-	}
-
-	@media (height < 700px) {
-		.personalizeButtonWrapper {
-			top: 92vh !important;
-		}
-	}
-
-	@media (height >=700px) {
-		.personalizeButtonWrapper {
-			top: 95vh !important;
-		}
 	}
 
 	.customize-menu {
@@ -615,7 +613,7 @@ menulist > menupopup {
 		backdrop-filter: blur(24px);
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
-		box-shadow: var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
 
 		hr {
 			border-top: none !important;
@@ -757,6 +755,15 @@ menulist > menupopup {
 		border-right: 1px solid var(--neptune-sidebar-border-color);
 	}
 
+	.thumbnail {
+		margin-bottom: 8px !important;
+		border-width: 3px !important;
+	}
+
+	.toolbarButton {
+		margin-inline: 4px !important;
+	}
+
 	.toolbarField {
 		padding: 0 5px !important;
 		margin-top: 7px !important;
@@ -767,7 +774,7 @@ menulist > menupopup {
 	.editorParamsToolbar {
 		padding: 0 0 5px !important;
 		border-radius: 7px !important;
-		box-shadow: var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-panel-shadow) !important;
 	}
 
 	.editorParamsToolbarContainer .editorParamsColor {
@@ -779,9 +786,10 @@ menulist > menupopup {
 	.pdfViewer .page {
 		margin-bottom: 30px !important;
 		border: none !important;
-		box-shadow: var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-panel-shadow) !important;
 	}
 
+	.toolbarButtonSpacer,
 	.splitToolbarButtonSeparator,
 	.verticalToolbarSeparator {
 		display: none !important;
