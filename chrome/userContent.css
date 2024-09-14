@@ -88,7 +88,7 @@ menulist > menupopup {
 		background-color: var(--neptune-content-background);
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
-		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
 	}
 
 	dialog::backdrop,
@@ -188,12 +188,8 @@ menulist > menupopup {
 		background-color: transparent !important;
 	}
 
-	#downloadsListBox > richlistitem {
-		min-height: 3em !important;
-	}
-
 	#downloadsListBox:focus > richlistitem[selected] {
-		background-color: var(--neptune-urlbar-View-hover-background) !important;
+		background-color: var(--neptune-urlbarView-hover-background) !important;
 		color: #fff !important;
 		border-radius: 0 !important;
 		background-image: none !important;
@@ -253,20 +249,20 @@ menulist > menupopup {
 		padding: 0 !important;
 
 		.search-wrapper {
-			padding-block: 0 18px !important;
+			padding-block-start: 0 !important;
 		}
 
 		.search-inner-wrapper {
 			@media (min-width: 610px) {
-				width: 425px !important;
+				width: 365px !important;
 			}
 
 			@media (min-width: 866px) {
-				width: 665px !important;
+				width: 565px !important;
 			}
 
 			@media (min-width: 1122px) {
-				width: 905px !important;
+				width: 765px !important;
 			}
 		}
 	}
@@ -274,7 +270,7 @@ menulist > menupopup {
 	.search-wrapper input,
 	.search-handoff-button {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(25px);
+		backdrop-filter: blur(33px);
 		background-size: 24px !important;
 		border: none !important;
 		box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
@@ -289,14 +285,14 @@ menulist > menupopup {
 	.contentSearchSuggestionTable {
 		border-radius: 12px !important;
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(35px);
-		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
+		backdrop-filter: blur(33px);
+		box-shadow: var(--neptune-menu-shadow) !important;
 
 		.contentSearchHeader,
 		.contentSearchOneOffsTable {
 			border: none !important;
 			background-color: var(--neptune-popover-background) !important;
-			backdrop-filter: blur(35px);
+			backdrop-filter: blur(33px);
 		}
 
 		.contentSearchOneOffItem {
@@ -362,8 +358,37 @@ menulist > menupopup {
 		cursor: auto !important;
 	}
 
+	.ds-outer-wrapper-breakpoint-override main {
+		@media (min-width: 610px) {
+			width: 400px !important;
+		}
+
+		@media (min-width: 866px) {
+			width: 600px !important;
+		}
+
+		@media (min-width: 1122px) {
+			width: 800px !important;
+		}
+	}
+
+	.collapsible-section {
+		padding-inline: 0 !important;
+	}
+
 	.top-site-outer {
+		width: 100px !important;
 		margin-block-end: 0 !important;
+
+		.top-site-inner > a {
+			padding-inline: 0 !important;
+		}
+
+		.context-menu-button {
+			background-color: transparent !important;
+			inset-inline-end: 15px !important;
+			top: -2px !important;
+		}
 
 		.tile {
 			height: 65px !important;
@@ -378,31 +403,30 @@ menulist > menupopup {
 				border-radius: 10px !important;
 			}
 		}
+
+		.search-topsite {
+			background-color: var(--theme-primary-color) !important;
+			background-size: 12px !important;
+			height: 24px !important;
+			width: 24px !important;
+		}
+	}
+
+	.outer-wrapper .ds-top-sites .top-sites .top-sites-list {
+		margin: 0 !important;
 	}
 
 	.top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
 		background: none !important;
 	}
 
-	.top-site-outer .search-topsite {
-		background-color: var(--theme-primary-color) !important;
-		background-size: 12px !important;
-		height: 24px !important;
-		width: 24px !important;
-	}
-
-	.top-site-outer .context-menu-button {
-		background-color: transparent !important;
-		transform: translate(-24px, 12px);
-	}
-
 	.context-menu {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(22px);
+		backdrop-filter: blur(33px);
+		margin-inline-start: -12px !important;
 		border: 1px solid var(--neptune-toolbar-border-color);
 		border-radius: 8px !important;
-		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
-		transform: translate(-24px, -6px);
+		box-shadow: var(--neptune-menu-shadow) !important;
 
 		> ul > li > a,
 		> ul > li > button {
@@ -414,13 +438,34 @@ menulist > menupopup {
 		}
 	}
 
+	.compact-cards .card-outer .card-preview-image-outer {
+		height: 80px !important;
+	}
+
+	.compact-cards .card-outer .card-details {
+		padding: 0 8px !important;
+	}
+
+	.compact-cards .card-outer .card-context {
+		top: 60px !important;
+	}
+
+	.ds-highlights .section .section-list .card-outer {
+		height: 125px !important;
+
+		.card-host-name,
+		.card-title {
+			font-size: 10.5px !important;
+		}
+	}
+
 	.modalOverlayOuter {
 		background: none !important;
 	}
 
 	.edit-topsites-wrapper .modal {
 		border-radius: 12px !important;
-		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
 		width: 36em !important;
 		top: 8em !important;
 	}
@@ -491,7 +536,7 @@ menulist > menupopup {
 		border-radius: 12px !important;
 		transform: translateY(100%) !important;
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(22px);
+		backdrop-filter: blur(33px);
 
 		@media (height < 700px) {
 			top: calc(92vh - 10px) !important;
@@ -504,20 +549,14 @@ menulist > menupopup {
 	}
 
 	.home-section {
-		grid-row-gap: 8px !important;
+		grid-row-gap: 12px !important;
 		padding: 0 12px !important;
 
 		.section .selector {
 			background-color: var(--neptune-item-background) !important;
-			border: none !important;
 			border-radius: 6px !important;
-			width: 70px !important;
-			padding: 3px 5px !important;
-			margin-top: 5px !important;
-		}
-
-		.section moz-toggle {
-			margin-bottom: 10px !important;
+			width: 80px !important;
+			padding-block: 2px !important;
 		}
 
 		.external-link {
@@ -533,7 +572,7 @@ menulist > menupopup {
 	}
 
 	.arrow-button {
-		margin: 0 0 5px 10px !important;
+		margin: 0 10px !important;
 		padding-inline-start: 18px !important;
 	}
 
@@ -555,7 +594,7 @@ menulist > menupopup {
 	}
 
 	.wallpaper-input {
-		height: 40px !important;
+		height: 46px !important;
 		cursor: default !important;
 
 		&:checked {
@@ -590,6 +629,10 @@ menulist > menupopup {
 }
 
 @-moz-document url-prefix(about:reader) {
+	body {
+		--main-background: var(--neptune-main-background) !important;
+	}
+
 	.toolbar {
 		border: none !important;
 		padding: 0 !important;
@@ -610,10 +653,10 @@ menulist > menupopup {
 
 	.dropdown .dropdown-popup {
 		background: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(24px);
+		backdrop-filter: blur(33px);
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
-		box-shadow: var(--neptune-panel-shadow), var(--neptune-normal-box-shadow) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
 
 		hr {
 			border-top: none !important;
@@ -625,10 +668,6 @@ menulist > menupopup {
 		width: 18em !important;
 		padding-block-end: 0 !important;
 		font-size: 12.5px !important;
-	}
-
-	.slider-label {
-		margin-block-end: 2px;
 	}
 
 	.dropdown-selector > select {
@@ -675,7 +714,6 @@ menulist > menupopup {
 	.colors-menu-color-scheme-buttons > label {
 		height: 28px !important;
 		border-radius: 7px !important;
-		font-size: 10.5px !important;
 
 		&:before {
 			width: 16px !important;
@@ -689,9 +727,33 @@ menulist > menupopup {
 	}
 
 	.custom-colors-selection,
-	.reset-button {
-		text-decoration: none !important;
+	.reset-button,
+	label {
 		font-size: 10.5px !important;
+	}
+
+	#inputSlider[type="range"] {
+		appearance: none;
+		background: none;
+
+		&::-moz-range-thumb {
+			background-color: #fff;
+			border-radius: 3px;
+			width: 5px;
+			height: 15px;
+			border-color: var(--neptune-toolbar-border-color);
+			box-shadow: 0 0 3px var(--neptune-panel-shadow-color);
+		}
+
+		&::-moz-range-progress {
+			background-color: var(--theme-primary-color);
+			height: 3px;
+		}
+
+		&::-moz-range-track {
+			background-color: #aaa;
+			height: 3px;
+		}
 	}
 
 	datalist,
@@ -887,5 +949,5 @@ textarea {
 	backdrop-filter: blur(16px) !important;
 	border: 1px solid var(--neptune-toolbar-border-color) !important;
 	border-radius: 12px !important;
-	box-shadow: var(--neptune-normal-box-shadow) !important;
+	box-shadow: var(--neptune-panel-shadow) !important;
 }
