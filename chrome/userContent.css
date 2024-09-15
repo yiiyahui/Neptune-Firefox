@@ -35,6 +35,7 @@
 	--newtab-primary-action-background: var(--theme-primary-color) !important;
 	--color-accent-primary: var(--theme-primary-color) !important;
 	--default-focusring: none !important;
+	--border-radius-small: 6px !important;
 }
 
 .toggle-button {
@@ -45,7 +46,7 @@
 }
 
 menulist > menupopup {
-	--panel-border-radius: 6px !important;
+	--panel-border-radius: var(--border-radius-small) !important;
 
 	> menu,
 	> menuitem {
@@ -70,11 +71,12 @@ menulist > menupopup {
 		--toolbar-button-background-active: var(--neptune-item-active-background) !important;
 		--toolbar-button-foreground-active: var(--theme-primary-color) !important;
 		--primary-color: var(--theme-primary-color) !important;
-		--panel-border-radius: 6px !important;
+		--panel-border-radius: var(--border-radius-small) !important;
 		--panel-shadow-margin: 15px !important;
 		--panel-border-color: var(--neptune-toolbar-border-color) !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
+		text-decoration: inherit !important;
 	}
 
 	.sticky-container {
@@ -148,7 +150,7 @@ menulist > menupopup {
 		min-height: 22px !important;
 		font-size: .8em !important;
 		border: none !important;
-		border-radius: 6px !important;
+		border-radius: var(--border-radius-small) !important;
 		outline: 16px solid transparent !important;
 
 		&:is(:focus-visible, [focused]) {
@@ -179,11 +181,6 @@ menulist > menupopup {
 		}
 	}
 
-	.text-link,
-	a {
-		text-decoration: none !important;
-	}
-
 	.info-box-container {
 		background-color: transparent !important;
 	}
@@ -202,7 +199,7 @@ menulist > menupopup {
 
 	.stp_button_wide .stp_button {
 		padding-block: 4px !important;
-		border-radius: 6px !important;
+		border-radius: var(--border-radius-small) !important;
 	}
 
 	input[type=checkbox],
@@ -297,7 +294,7 @@ menulist > menupopup {
 
 		.contentSearchOneOffItem {
 			border: none !important;
-			border-radius: 6px !important;
+			border-radius: var(--border-radius-small);
 			margin: 2px 7px !important;
 			padding-bottom: 2px !important;
 			height: 24px !important;
@@ -335,7 +332,7 @@ menulist > menupopup {
 		background: url("neptune/image/Pink.png") center/cover no-repeat fixed;
 	}
 
-	.private .search-inner-wrapper {
+	.search-inner-wrapper {
 		height: 52px !important;
 		padding: 0 !important;
 	}
@@ -477,7 +474,7 @@ menulist > menupopup {
 
 	.button,
 	.actions button {
-		border-radius: 6px !important;
+		border-radius: var(--border-radius-small) !important;
 		margin-bottom: 20px !important;
 		box-shadow: none !important;
 		padding: 2px 12px !important;
@@ -554,14 +551,13 @@ menulist > menupopup {
 
 		.section .selector {
 			background-color: var(--neptune-item-background) !important;
-			border-radius: 6px !important;
+			border-radius: var(--border-radius-small) !important;
 			width: 80px !important;
 			padding-block: 2px !important;
 		}
 
 		.external-link {
 			background: none !important;
-			text-decoration: none !important;
 			padding: 0 !important;
 			margin: 0 !important;
 
@@ -606,7 +602,6 @@ menulist > menupopup {
 
 	.wallpapers-reset {
 		margin-top: 4px !important;
-		text-decoration: none !important;
 		font-size: .7em !important;
 
 		&:hover {
@@ -629,10 +624,6 @@ menulist > menupopup {
 }
 
 @-moz-document url-prefix(about:reader) {
-	body {
-		--main-background: var(--neptune-main-background) !important;
-	}
-
 	.toolbar {
 		border: none !important;
 		padding: 0 !important;
@@ -640,7 +631,14 @@ menulist > menupopup {
 	}
 
 	.toolbar-button {
+		border: none !important;
 		border-radius: 50% !important;
+	}
+
+	.open .toolbar-button,
+	.toolbar-button:hover:active {
+		background-color: var(--theme-primary-active-color) !important;
+		fill: #fff !important;
 	}
 
 	.text-size-buttons > button,
@@ -649,6 +647,15 @@ menulist > menupopup {
 		width: 20px !important;
 		background-size: 12px;
 		border-radius: 50% !important;
+	}
+
+	.accordion-header .chevron-icon {
+		background-image: url("chrome://global/skin/icons/more.svg") !important;
+		border: none !important;
+
+		#about-reader-advanced-layout[open] & {
+			fill: var(--theme-primary-active-color) !important;
+		}
 	}
 
 	.dropdown .dropdown-popup {
@@ -706,19 +713,17 @@ menulist > menupopup {
 		padding-block-end: 7px !important;
 	}
 
-	.color-input-container {
-		min-height: 26px !important;
-		border-radius: 7px !important;
-	}
-
 	.colors-menu-color-scheme-buttons > label {
 		height: 28px !important;
-		border-radius: 7px !important;
 
 		&:before {
 			width: 16px !important;
 			height: 16px !important;
 		}
+	}
+
+	.color-input-container {
+		min-height: 26px !important;
 	}
 
 	#color-swatch {
@@ -738,21 +743,23 @@ menulist > menupopup {
 
 		&::-moz-range-thumb {
 			background-color: #fff;
-			border-radius: 3px;
-			width: 5px;
-			height: 15px;
+			width: 4px;
+			height: 14px;
+			border-radius: 2px;
 			border-color: var(--neptune-toolbar-border-color);
 			box-shadow: 0 0 3px var(--neptune-panel-shadow-color);
 		}
 
 		&::-moz-range-progress {
 			background-color: var(--theme-primary-color);
-			height: 3px;
+			height: 4px;
+			border-radius: 2px;
 		}
 
 		&::-moz-range-track {
-			background-color: #aaa;
-			height: 3px;
+			background-color: #ccc;
+			height: 4px;
+			border-radius: 2px;
 		}
 	}
 
@@ -767,7 +774,6 @@ menulist > menupopup {
 @-moz-document url-prefix(about:firefoxview) {
 	.search-container {
 		border: none !important;
-		border-radius: 6px !important;
 		height: 24px;
 		margin-top: 3px;
 	}
@@ -881,7 +887,7 @@ div.sponsor,
 	min-height: 24px !important;
 	height: 24px !important;
 	margin-top: 6px !important;
-	border-radius: 6px !important;
+	border-radius: var(--border-radius-small) !important;
 }
 
 .dialogTitleBar,
