@@ -1007,7 +1007,7 @@ treechildren::-moz-tree-cell-text(selected) {
 	}
 
 	#controls-bottom-gradient {
-		background: #000000cc !important;
+		background: #00000099 !important;
 		height: calc(2 * var(--player-control-item-height) + var(--scrubber-vertical-margin)) !important;
 		bottom: calc(2 * var(--player-control-item-height)) !important;
 		width: 50vw !important;
@@ -1068,11 +1068,11 @@ treechildren::-moz-tree-cell-text(selected) {
 	}
 
 	.box {
-		background-color: #000000cc !important;
+		background-color: #00000099 !important;
 	}
 
 	.arrow {
-		border-top-color: #000000cc !important;
+		border-top-color: #00000099 !important;
 	}
 
 	.slider {
@@ -1113,7 +1113,7 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 .pointerlockfswarning {
-	background-color: #000000cc !important;
+	background-color: #00000099 !important;
 	border: none !important;
 	padding: 3px 23px 5px 0 !important;
 	border-radius: 8px !important;
