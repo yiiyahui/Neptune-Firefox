@@ -999,15 +999,34 @@ treechildren::-moz-tree-cell-text(selected) {
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
 	:root {
 		--player-bg-color: transparent !important;
+		font-size: .9em;
 	}
 
-	.player-holder,
-	#controls-bottom-gradient {
+	.player-holder {
 		border-radius: 12px !important;
 	}
 
-	#controls button {
-		border-radius: 8px !important;
+	#controls-bottom-gradient {
+		background: #000000cc !important;
+		height: calc(2 * var(--player-control-item-height) + var(--scrubber-vertical-margin)) !important;
+		bottom: calc(2 * var(--player-control-item-height)) !important;
+		width: 50vw !important;
+		left: 25vw;
+		border-radius: 8px;
+	}
+
+	#controls-bottom {
+		bottom: calc( 2 * var(--player-control-item-height))!important;
+		width: 50% !important;
+		left: 25%;
+	}
+
+	.controls-bottom-lower {
+		margin-inline: 20px 12px !important;
+	}
+
+	#controls button:not(#unpip, #close) {
+		background-color: transparent !important;
 		cursor: auto !important;
 	}
 
@@ -1016,41 +1035,52 @@ treechildren::-moz-tree-cell-text(selected) {
 		height: 16px !important;
 		width: 16px !important;
 		left: 10px !important;
+		border-radius: 50% !important;
 	}
 
 	#unpip {
 		top: 36px !important;
 	}
 
+	.start-controls,
 	.end-controls {
+		display: flex !important;
 		gap: unset !important;
 	}
 
+	#timestamp {
+		width: auto !important;
+	}
+
 	#audio,
-	#fullscreen,
 	#closed-caption {
 		background-size: 16px !important;
-		background-color: transparent !important;
+	}
+
+	#audio-scrubber {
+		width: 48px !important;
+		padding-inline-start: 0 !important;
+
+		&::-moz-range-track,
+		&::-moz-range-progress {
+			height: 4px !important;
+		}
 	}
 
 	.box {
-		background-color: #00000080 !important;
-		font-size: 12.5px !important;
-		border-radius: 12px !important;
-	}
-
-	.panel {
-		bottom: 18px !important;
-		right: 28px !important;
+		background-color: #000000cc !important;
 	}
 
 	.arrow {
-		border-top-color: #00000080 !important;
+		border-top-color: #000000cc !important;
 	}
 
-	.switch,
-	#timestamp {
-		margin-block: 5px !important;
+	.slider {
+		background-color: var(--theme-primary-color) !important;
+
+		&::before {
+			background-color: #fff !important;
+		}
 	}
 
 	.font-size-selection-radio > input[type="radio"] {
@@ -1061,59 +1091,29 @@ treechildren::-moz-tree-cell-text(selected) {
 		}
 	}
 
-	input:checked + .slider {
-		background-color: var(--theme-primary-color) !important;
-
-		&::before {
-			background-color: #fff !important;
-		}
-	}
-
-	#scrubber {
-		&::-moz-range-thumb {
+	#scrubber::-moz-range-thumb {
 			background-color: #fff !important;
 			width: 4px !important;
-			height: 16px !important;
+			height: 18px !important;
 			border: none !important;
-		}
+	}
 
-		&::-moz-range-track {
-			background-color: #ccc !important;
-		}
-
-		&::-moz-range-progress {
-			background-color: var(--theme-primary-color) !important;
+	@media (width <= 800px) {
+		#audio-scrubber {
+			display: none !important;
 		}
 	}
 
-	body:fullscreen #fullscreen {
-		background-image: url("neptune/icons/fullscreenExitButton.svg") !important;
-	}
-
-	body:not(:fullscreen) #fullscreen {
-		background-image: url("neptune/icons/fullscreenEnterButton.svg") !important;
-	}
-}
-
-@-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
-	#bottomBox,
-	#aboutDialogContainer {
-		background-color: #262626 !important;
-	}
-
-	#leftBox {
-		background-size: 13em auto !important;
-		margin: 0 !important;
-	}
-
-	.text-link {
-		color: var(--theme-primary-color) !important;
-		text-decoration: none !important;
+	@media (width <= 650px) {
+		#timestamp,
+		.end-controls {
+			display: none !important;
+		}
 	}
 }
 
 .pointerlockfswarning {
-	background-color: #00000080 !important;
+	background-color: #000000cc !important;
 	border: none !important;
 	padding: 3px 23px 5px 0 !important;
 	border-radius: 8px !important;
@@ -1172,6 +1172,23 @@ treechildren::-moz-tree-cell-text(selected) {
 	min-height: 22px !important;
 	padding: 0 !important;
 	border-radius: var(--border-radius-small) !important;
+}
+
+@-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
+	#bottomBox,
+	#aboutDialogContainer {
+		background-color: #262626 !important;
+	}
+
+	#leftBox {
+		background-size: 13em auto !important;
+		margin: 0 !important;
+	}
+
+	.text-link {
+		color: var(--theme-primary-color) !important;
+		text-decoration: none !important;
+	}
 }
 
 /*---------- Browser ----------*/
@@ -1409,6 +1426,10 @@ treechildren::-moz-tree-cell-text(selected) {
   list-style-image: url("neptune/icons/picture-in-picture-closed.svg") !important;
 }
 
+#closed-caption {
+	background-image: url("neptune/icons/closed-caption-settings-button.svg") !important;
+}
+
 #pageAction-panel-bookmark,
 #star-button {
 	list-style-image: url("neptune/icons/bookmark-hollow.svg") !important;
@@ -1425,6 +1446,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 /*---------- Hidden ----------*/
 tooltip,
+#fullscreen,
 .control-item::after,
 .scrollbar-topmost,
 #scrollbutton-up,
