@@ -12,6 +12,7 @@
 		--neptune-toolbar-color: var(--toolbar-color);
 		--neptune-toolbar-border-color: color-mix(in srgb, currentColor 16%, transparent);
 		--neptune-input-bgcolor: color-mix(in srgb, currentColor 14%, transparent);
+		--neptune-slider-color: #999;
 		--neptune-item-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-item-hover-background: color-mix(in srgb, currentColor 14%, transparent);
 		--neptune-item-active-background: color-mix(in srgb, currentColor 16%, transparent);
@@ -34,7 +35,7 @@
 		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 16%, transparent);
 		--neptune-urlbar-focused-background: color-mix(in srgb, currentColor 22%, transparent);
 		--neptune-inactive-urlbar-background: color-mix(in srgb, currentColor 10%, transparent);
-		--neptune-urlbarview-background: #323232;
+		--neptune-urlbarView-background: #323232;
 		--neptune-urlbarView-hover-background: #015ad1;
 		--neptune-urlbarView-switch-background: #9b1b30;
 		--neptune-urlbarView-box-shadow: 0 10px 20px #00000033;
