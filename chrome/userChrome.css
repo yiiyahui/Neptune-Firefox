@@ -123,6 +123,8 @@ findbar {
 	--urlbar-min-height: max(28px, 1.4em) !important;
 	--tab-min-height: 28px !important;
 	--button-min-height: 22px !important;
+	--toolbarbutton-inner-padding: 6px !important;
+	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
 	--button-bgcolor: var(--neptune-item-background) !important;
 	--button-hover-bgcolor: var(--neptune-item-hover-background) !important;
 	--button-active-bgcolor: var(--neptune-item-active-background) !important;
@@ -621,31 +623,35 @@ textarea {
 }
 
 /*---------- Buttons ----------*/
-.toolbarbutton-icon,
-.toolbarbutton-text,
-.toolbarbutton-badge-stack {
-	background: none !important;
-}
-
 toolbar .toolbarbutton-1 {
 	padding: 0 !important;
 	margin-inline: 4px !important;
-	border-radius: 7px !important;
-	height: 28px !important;
-	width: 28px !important;
-	transition: background-color .2s ease;
 
-	&:hover {
+	> .toolbarbutton-icon,
+	> .toolbarbutton-text,
+	> .toolbarbutton-badge-stack {
 		outline: none !important;
-		background-color: var(--toolbarbutton-hover-background) !important;
-	}
-
-	&:is(:active, [open]) {
-		background-color: var(--toolbarbutton-active-background) !important;
+		border-radius: 7px !important;
+		transition: background-color .2s ease;
 	}
 
 	&:is(:-moz-window-inactive, [disabled]) {
 		opacity: var(--toolbarbutton-disabled-opacity);
+	}
+}
+
+toolbar .toolbaritem-combined-buttons {
+	margin: 0 !important;
+
+	.toolbarbutton-badge {
+		background-color: var(--theme-primary-color) !important;
+		border-radius: 50% !important;
+		min-width: 16px !important;
+		line-height: 16px !important;
+
+		toolbarbutton:is(:active, [open]) & {
+			display: none;
+		}
 	}
 }
 
@@ -998,36 +1004,62 @@ treechildren::-moz-tree-cell-text(selected) {
 
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
 	:root {
-		--player-bg-color: transparent !important;
-		font-size: .9em;
+		background-color: transparent !important;
+	}
+
+	body:fullscreen {
+		background-color: var(--player-bg-color);
 	}
 
 	.player-holder {
-		border-radius: 12px !important;
+		border-radius: 12px;
+	}
+
+	* {
+		cursor: default !important;
 	}
 
 	#controls-bottom-gradient {
 		background: #00000099 !important;
 		height: calc(2 * var(--player-control-item-height) + var(--scrubber-vertical-margin)) !important;
-		bottom: calc(2 * var(--player-control-item-height)) !important;
-		width: 50vw !important;
-		left: 25vw;
+		bottom: calc(3 * var(--controls-bottom-upper-height) - var(--resize-margin) / 2) !important;
+		margin-inline: 0 !important;
 		border-radius: 8px;
+		width: min(50%, 30em) !important;
+		left: 50%;
+		transform: translateX(-50%);
+
+		@media (max-width: 360px) {
+			display: none;
+		}
 	}
 
 	#controls-bottom {
-		bottom: calc( 2 * var(--player-control-item-height))!important;
-		width: 50% !important;
-		left: 25%;
+		bottom: calc(3 * var(--controls-bottom-upper-height))!important;
+		width: min(50%, 30em) !important;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.controls-bottom-upper {
+		width: calc(100% - 24px) !important;
+		margin-inline: 12px !important;
 	}
 
 	.controls-bottom-lower {
-		margin-inline: 20px 12px !important;
+		margin-inline: 12px 6px !important;
 	}
 
-	#controls button:not(#unpip, #close) {
-		background-color: transparent !important;
-		cursor: auto !important;
+	.control-button:not(#unpip, #close) {
+		width: 28px !important;
+		height: 28px !important;
+		background-color: unset !important;
+	}
+
+	.start-controls,
+	.end-controls {
+		display: flex !important;
+		gap: unset !important;
 	}
 
 	#unpip,
@@ -1042,29 +1074,36 @@ treechildren::-moz-tree-cell-text(selected) {
 		top: 36px !important;
 	}
 
-	.start-controls,
-	.end-controls {
-		display: flex !important;
-		gap: unset !important;
+	#playpause {
+		background-size: 80% !important;
 	}
 
 	#timestamp {
 		width: auto !important;
 	}
 
-	#audio,
-	#closed-caption {
-		background-size: 16px !important;
-	}
-
 	#audio-scrubber {
 		width: 48px !important;
 		padding-inline-start: 0 !important;
+
+		&::-moz-range-thumb {
+			background-color: #fff !important;
+			width: 12px !important;
+			height: 12px !important;
+			border: none !important;
+		}
 
 		&::-moz-range-track,
 		&::-moz-range-progress {
 			height: 4px !important;
 		}
+	}
+
+	#scrubber::-moz-range-thumb {
+		background-color: #fff !important;
+		width: 4px !important;
+		height: 18px !important;
+		border: none !important;
 	}
 
 	.box {
@@ -1091,36 +1130,27 @@ treechildren::-moz-tree-cell-text(selected) {
 		}
 	}
 
-	#scrubber::-moz-range-thumb {
-			background-color: #fff !important;
-			width: 4px !important;
-			height: 18px !important;
-			border: none !important;
+	#closed-caption {
+		background-image: url("neptune/icons/closed-caption-settings-button.svg") !important;
 	}
 
-	@media (width <= 800px) {
-		#audio-scrubber {
-			display: none !important;
-		}
+	#seekBackward {
+		background-image: url("neptune/icons/picture-in-picture-seekBackward-button.svg") !important;
 	}
 
-	@media (width <= 650px) {
-		#timestamp,
-		.end-controls {
-			display: none !important;
-		}
+	#seekForward {
+		background-image: url("neptune/icons/picture-in-picture-seekForward-button.svg") !important;
 	}
 }
 
 .pointerlockfswarning {
-	background-color: #00000099 !important;
+	background: #00000099 !important;
+	padding-block: 8px !important;
 	border: none !important;
-	padding: 3px 23px 5px 0 !important;
-	border-radius: 8px !important;
 	box-shadow: none !important;
 
 	&::before {
-		background-image: none !important;
+		display: none;
 	}
 }
 
@@ -1369,11 +1399,11 @@ treechildren::-moz-tree-cell-text(selected) {
 
 #sidebar-button:-moz-locale-dir(ltr):not([positionend]),
 #sidebar-button:-moz-locale-dir(rtl)[positionend] {
-	list-style-image: url("neptune/icons/sidebar.svg") !important;
+	list-style-image: url("neptune/icons/sidebars.svg") !important;
 }
 
 #sidebar-button {
-	list-style-image: url("neptune/icons/sidebar-right.svg") !important;
+	list-style-image: url("neptune/icons/sidebars-right.svg") !important;
 }
 
 .close-icon:not(.findbar-closebutton),
@@ -1424,10 +1454,6 @@ treechildren::-moz-tree-cell-text(selected) {
 
 #picture-in-picture-button[pipactive] > .urlbar-icon {
   list-style-image: url("neptune/icons/picture-in-picture-closed.svg") !important;
-}
-
-#closed-caption {
-	background-image: url("neptune/icons/closed-caption-settings-button.svg") !important;
 }
 
 #pageAction-panel-bookmark,

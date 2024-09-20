@@ -742,7 +742,7 @@ menulist > menupopup {
 		background: none;
 
 		&::-moz-range-thumb {
-			background-color: #fff;
+			background-color: var(--neptune-slider-color);
 			width: 4px;
 			height: 14px;
 			border-radius: 2px;
@@ -914,8 +914,7 @@ textarea {
 	margin: 6px;
 	border-radius: 8px;
 
-	> .button:enabled:hover,
-	> .button:enabled:hover:active {
+	> .button:enabled:is(:hover, :hover:active) {
 		fill: #fff !important;
 	}
 }
@@ -927,8 +926,8 @@ textarea {
 }
 
 .volumeControl::-moz-range-thumb {
-	height: 9px !important;
-	width: 9px !important;
+	height: 12px !important;
+	width: 12px !important;
 }
 
 .bufferBar,
