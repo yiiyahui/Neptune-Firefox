@@ -175,14 +175,14 @@ search-textbox {
 }
 
 .findbar-textbox,
-.urlbar-input-container,
+#urlbar-background,
 search-textbox,
 input[type="text"] {
 	outline: 16px solid transparent !important;
 }
 
 .findbar-textbox:focus,
-#urlbar[open] > .urlbar-input-container,
+#urlbar[open] > #urlbar-background,
 search-textbox[focused],
 input[type="text"]:focus-visible {
 	outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
@@ -210,17 +210,22 @@ textarea {
 	margin-inline: 4px !important;
 }
 
+#searchbar,
+#urlbar-background {
+	background-color: var(--neptune-urlbar-background) !important;
+	border: none !important;
+	border-radius: 7px !important;
+	box-shadow: none !important;
+	transition: background-color .3s ease;
+}
+
 #urlbar {
 	font-size: 12.5px !important;
-	border-radius: 7px !important;
 
-	#urlbar-background {
-		background-color: var(--neptune-urlbar-background) !important;
-		outline: none !important;
+	> .urlbar-input-container {
+		padding: 0 !important;
 		border: none !important;
 		border-radius: 7px !important;
-		box-shadow: none !important;
-		transition: background-color .3s ease;
 	}
 
 	&:hover > #urlbar-background {
@@ -241,15 +246,6 @@ textarea {
 .urlbarView-row-inner,
 .permission-popup-section {
 	padding: 0 !important;
-}
-
-#searchbar,
-.urlbar-input-container {
-	background: none !important;
-	padding: 0 !important;
-	border-radius: 7px !important;
-	border: none !important;
-	box-shadow: none !important;
 }
 
 #urlbar[breakout] {
@@ -586,7 +582,7 @@ textarea {
 
 #TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon,
 .tab-background:is([selected], [multiselected]) {
-	outline: none !important;
+	background-color: var(--toolbarbutton-active-background) !important;
 	box-shadow: none !important;
 }
 
@@ -892,12 +888,17 @@ panel {
 	> richlistitem {
 		background: none !important;
 		margin: 0 !important;
+		border-radius: 0 !important;
+
+		&:not(:first-child) {
+			border-top: 1px solid var(--neptune-popover-separator-color);
+		}
 	}
 }
 
 .downloadTypeIcon {
-	width: 28px !important;
-	height: 28px !important;
+	width: 24px !important;
+	height: 24px !important;
 }
 
 .downloadButton {
@@ -907,7 +908,6 @@ panel {
 }
 
 .downloadProgress {
-	margin-block-start: 3px !important;
 	height: 3px !important;
 }
 
@@ -1003,18 +1003,6 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
-	:root {
-		background-color: transparent !important;
-	}
-
-	body:fullscreen {
-		background-color: var(--player-bg-color);
-	}
-
-	.player-holder {
-		border-radius: 12px;
-	}
-
 	* {
 		cursor: default !important;
 	}
@@ -1022,20 +1010,20 @@ treechildren::-moz-tree-cell-text(selected) {
 	#controls-bottom-gradient {
 		background: #00000099 !important;
 		height: calc(2 * var(--player-control-item-height) + var(--scrubber-vertical-margin)) !important;
-		bottom: calc(3 * var(--controls-bottom-upper-height) - var(--resize-margin) / 2) !important;
+		bottom: calc(3 * var(--controls-bottom-upper-height)) !important;
 		margin-inline: 0 !important;
 		border-radius: 8px;
 		width: min(50%, 30em) !important;
 		left: 50%;
 		transform: translateX(-50%);
 
-		@media (max-width: 360px) {
+		@media (max-width: 355px) {
 			display: none;
 		}
 	}
 
 	#controls-bottom {
-		bottom: calc(3 * var(--controls-bottom-upper-height))!important;
+		bottom: calc(3 * var(--controls-bottom-upper-height)) !important;
 		width: min(50%, 30em) !important;
 		left: 50%;
 		transform: translateX(-50%);
@@ -1043,7 +1031,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	.controls-bottom-upper {
 		width: calc(100% - 24px) !important;
-		margin-inline: 12px !important;
+		margin: 6px 12px !important;
 	}
 
 	.controls-bottom-lower {
