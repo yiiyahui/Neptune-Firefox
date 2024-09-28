@@ -132,6 +132,10 @@ findbar {
 	--button-primary-hover-bgcolor: var(--theme-primary-hover-color) !important;
 	--button-primary-active-bgcolor: var(--theme-primary-active-color) !important;
 	--button-primary-color: #fff !important;
+	--button-background-color-primary: var(--theme-primary-color) !important;
+	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
+	--button-background-color-primary-active: var(--theme-primary-active-color) !important;
+	--button-text-color-primary: #fff !important;
 	--in-content-button-background: var(--neptune-item-background) !important;
 	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
 	--in-content-button-background-active: var(--neptune-item-active-background) !important;
@@ -192,7 +196,7 @@ input[type="text"]:focus-visible {
 
 select:where(:not([size], [multiple], [iconic])),
 input:where(:not(.urlbar-input, .findbar-textbox, [type=radio i], [type=checkbox i], [type=range i])),
-textarea {
+textarea:not(#select-translations-panel-text-area) {
 	min-height: 22px !important;
 	border: none !important;
 	padding-block: 0 !important;
@@ -273,27 +277,23 @@ textarea {
 .urlbarView-results {
 	padding: 7px !important;
 
-	.urlbarView-no-wrap {
-		margin-block: 2px;
-	}
+	&[wrap] > .urlbarView-row {
+		&:where(:not([rich-suggestion])) > .urlbarView-row-inner {
+			flex-wrap: nowrap !important;
 
-	.urlbarView-action {
-		margin-inline-end: 6px;
-	}
-
-	&[wrap] > .urlbarView-row[has-url] > .urlbarView-row-inner {
-		> .urlbarView-no-wrap {
-			max-width: 66% !important;
+			> .urlbarView-no-wrap {
+				flex-basis: inherit !important;
+				margin-block: 2px;
+			}
 		}
 
-		> .urlbarView-url {
-			max-width: 34% !important;
-			margin: 0 !important;
+		&[has-url] > .urlbarView-row-inner > .urlbarView-url:-moz-locale-dir(ltr) {
+			margin: inherit !important;
 		}
-	}
 
-	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
-		padding: 0 !important;
+		&[has-url]:not([type$=tab], [sponsored], [restyled-search]) .urlbarView-title-separator {
+			display: inherit !important;
+		}
 	}
 }
 
@@ -335,10 +335,8 @@ textarea {
 		height: 24px !important;
 	}
 
-	&[rich-suggestion]>.urlbarView-row-inner>.urlbarView-row-body {
-		> :is(.urlbarView-row-body-description, .urlbarView-row-body-bottom) {
-			color: var(--urlbarView-highlight-color);
-		}
+	&[rich-suggestion] > .urlbarView-row-inner > .urlbarView-row-body > :is(.urlbarView-row-body-description, .urlbarView-row-body-bottom) {
+		color: var(--urlbarView-highlight-color);
 	}
 
 	&[label] {
@@ -365,6 +363,7 @@ textarea {
 
 	&:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
 		padding: 1px 5px !important;
+		margin-inline-end: 6px !important;
 		background-color: var(--neptune-urlbarView-switch-background) !important;
 		color: var(--urlbarView-highlight-color) !important;
 	}
@@ -484,9 +483,8 @@ textarea {
 }
 
 #urlbar-zoom-button {
-	font-family: JetBrains Mono;
-	margin-inline: 3px !important;
-	padding: 2px !important;
+	margin-inline: 2px !important;
+	padding-block: 2px !important;
 }
 
 #urlbar-search-mode-indicator,
@@ -586,10 +584,6 @@ textarea {
 	box-shadow: none !important;
 }
 
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])>#tabbrowser-arrowscrollbox>.tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
-	margin-inline-start: 2px !important;
-}
-
 .tab-icon-overlay:not([crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
 	fill: var(--neptune-tab-speaker-icon-color) !important;
 
@@ -657,9 +651,9 @@ toolbar .toolbaritem-combined-buttons {
 }
 
 screenshots-buttons {
-	position: fixed !important;
 	top: 52px !important;
-	background-color: var(--neptune-content-background) !important;
+	padding-inline: 6px !important;
+	inset-inline-end: 0 !important;
 }
 
 .labelled {
@@ -670,9 +664,10 @@ screenshots-buttons {
 #full-page,
 #visible-page {
 	background-size: 32px 32px !important;
-	padding: 30px 0 2px !important;
+	padding: 28px 0 14px !important;
 	min-width: 64px !important;
 	stroke: #f7cac9 !important;
+	margin-inline: 6px !important;
 	font-size: .8em !important;
 }
 
@@ -757,6 +752,10 @@ panel {
 		--panel-shadow-margin: 20px !important;
 		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
 	}
+
+	menulist {
+		padding-block: 3px !important;
+	}
 }
 
 @media not (-moz-platform: macos) {
@@ -826,21 +825,17 @@ panel {
 }
 
 #permission-popup-permissions-content {
-	padding-inline: 6px !important;
+	padding: 0 8px 2px !important;
 }
 
 #permission-popup-menulist,
 .permission-popup-permission-remove-button {
-	padding: 1px 4px !important;
+	padding: 2px !important;
 }
 
-.permission-popup-permission-state-label {
-	margin-block: 0 !important;
-}
-
+.permission-popup-permission-state-label,
 .permission-popup-permission-item {
-	min-height: 22px !important;
-	margin-block-start: 0 !important;
+	margin-block: 0 !important;
 }
 
 .subviewbutton {
@@ -861,19 +856,12 @@ panel {
 	border-radius: var(--border-radius-small) !important;
 }
 
-#appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2,
-#editBMPanel_folderMenuList {
-	padding-block: 0 !important;
-	border-radius: var(--border-radius-small) !important;
-}
-
 #editBMPanel_folderTree {
 	background-color: var(--neptune-input-bgcolor) !important;
 	border: none !important;
 }
 
-#editBMPanel_newFolderButton,
-#identity-popup-security-httpsonlymode-menulist {
+#editBMPanel_newFolderButton {
 	padding: 2px 8px !important;
 }
 
@@ -1068,6 +1056,10 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	#timestamp {
 		width: auto !important;
+
+		@media (max-width: 550px) {
+			display: none;
+		}
 	}
 
 	#audio-scrubber {
@@ -1164,7 +1156,6 @@ treechildren::-moz-tree-cell-text(selected) {
 	justify-content: center;
 }
 
-.dialogOverlay[topmost="true"],
 #window-modal-dialog::backdrop {
 	background: none !important;
 }

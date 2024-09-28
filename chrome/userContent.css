@@ -45,20 +45,7 @@
 	--toggle-dot-background-color-on-pressed: #fff !important;
 }
 
-menulist > menupopup {
-	--panel-border-radius: var(--border-radius-small) !important;
-
-	> menu,
-	> menuitem {
-		padding-block: 2px !important;
-	}
-
-	menuseparator {
-		border: none !important;
-	}
-}
-
-@-moz-document url-prefix(about:) {
+@-moz-document url-prefix(about:), url-prefix("chrome://") {
 	* {
 		--in-content-page-background: var(--neptune-main-background) !important;
 		--popup-background: var(--neptune-menu-background) !important;
@@ -79,13 +66,25 @@ menulist > menupopup {
 		text-decoration: inherit !important;
 	}
 
+	menulist > menupopup {
+		--panel-border-radius: var(--border-radius-small) !important;
+
+		> menu,
+		> menuitem {
+			padding-block: 2px !important;
+		}
+
+		menuseparator {
+			border: none !important;
+		}
+	}
+
 	.sticky-container {
 		background-color: color-mix(in srgb, var(--in-content-page-background) 33%, transparent) !important;
 		backdrop-filter: blur(12px);
 		mask-image: linear-gradient(to top, transparent 6%, black 24%);
 	}
 
-	dialog,
 	.dialogBox {
 		background-color: var(--neptune-content-background);
 		border: 1px solid var(--neptune-toolbar-border-color) !important;
@@ -93,10 +92,21 @@ menulist > menupopup {
 		box-shadow: var(--neptune-menu-shadow) !important;
 	}
 
-	dialog::backdrop,
 	.dialogOverlay[topmost="true"] {
 		background-color: transparent !important;
 		backdrop-filter: blur(8px);
+	}
+
+	.dialog-button-box > button {
+		font-size: .9em !important;
+		padding-block: 0 !important;
+		min-height: 24px !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.dialogTitleBar,
+	separator.groove:not([orient="vertical"]) {
+		border: none !important;
 	}
 
 	#categories {
@@ -137,16 +147,24 @@ menulist > menupopup {
 	.default-button,
 	.primary-button,
 	.more-options-button,
+	.container, .action-box,
 	.info-box-container,
 	.web-appearance-choice,
-	.action-box, panel-list，
 	table, div.opsRow {
 		border-radius: 8px !important;
+	}
+
+	input:where([type="text"], [type="search"], [type="password"], [type="url"]),
+	textarea {
+		appearance: none;
+		border-style: solid;
+		outline: none;
 	}
 
 	input[type="search"]:not(.search-handoff-button, .search-wrapper input),
 	search-textbox {
 		background-color: var(--neptune-input-bgcolor) !important;
+		padding-block: 4px !important;
 		min-height: 22px !important;
 		font-size: .8em !important;
 		border: none !important;
@@ -183,6 +201,11 @@ menulist > menupopup {
 
 	.info-box-container {
 		background-color: transparent !important;
+	}
+
+	panel-list, .menu {
+		border-radius: 8px !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
 	}
 
 	#downloadsListBox:focus > richlistitem[selected] {
@@ -251,15 +274,15 @@ menulist > menupopup {
 
 		.search-inner-wrapper {
 			@media (min-width: 610px) {
-				width: 365px !important;
+				width: 364px !important;
 			}
 
 			@media (min-width: 866px) {
-				width: 565px !important;
+				width: 564px !important;
 			}
 
 			@media (min-width: 1122px) {
-				width: 765px !important;
+				width: 764px !important;
 			}
 		}
 	}
@@ -388,8 +411,8 @@ menulist > menupopup {
 		}
 
 		.tile {
-			height: 65px !important;
-			width: 65px !important;
+			height: 64px !important;
+			width: 64px !important;
 			background-color: var(--neptune-content-background) !important;
 			border-radius: 12px !important;
 			box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
@@ -427,7 +450,7 @@ menulist > menupopup {
 
 		> ul > li > a,
 		> ul > li > button {
-			font-size: .85em !important;
+			font: menu !important;
 		}
 
 		> ul > li.separator {
@@ -472,17 +495,15 @@ menulist > menupopup {
 		padding: 0 25px !important;
 	}
 
-	.button,
 	.actions button {
 		border-radius: var(--border-radius-small) !important;
-		margin-bottom: 20px !important;
 		box-shadow: none !important;
 		padding: 2px 12px !important;
 		font-size: 12.5px !important;
 	}
 
 	.topsite-form .form-wrapper input[type=text] {
-		border-radius: 5px !important;
+		border-radius: var(--border-radius-small) !important;
 		height: 22px !important;
 		font-size: 12.5px !important;
 	}
@@ -773,26 +794,28 @@ menulist > menupopup {
 
 @-moz-document url-prefix(about:firefoxview) {
 	.search-container {
-		border: none !important;
-		height: 24px;
-		margin-top: 3px;
+		margin-block: auto !important;
+
+		.search-icon {
+			display: none;
+		}
 	}
 
 	.search-container input {
 		background-color: var(--neptune-input-bgcolor) !important;
-		padding-inline-start: 10px !important;
-	}
-
-	.search-icon {
-		display: none !important;
+		padding-inline-start: 8px !important;
 	}
 
 	.sticky-container.bottom-fade {
 		background: transparent !important;
 		backdrop-filter: blur(8px);
 		flex-direction: row !important;
-		margin: 0 4px !important;
-		padding-block: 18px !important;
+	}
+
+	.card-container {
+		border: 1px solid var(--fxview-border) !important;
+		box-shadow: none !important;
+		border-radius: 12px !important;
 	}
 }
 
@@ -878,33 +901,9 @@ div.sponsor,
 	display: none !important;
 }
 
-.container {
-	border-radius: 12px !important;
-}
-
-.dialog-button-box > button {
-	font-size: .9em !important;
-	min-height: 24px !important;
-	height: 24px !important;
-	margin-top: 6px !important;
-	border-radius: var(--border-radius-small) !important;
-}
-
-.dialogTitleBar,
-separator.groove:not([orient="vertical"]) {
-	border: none !important;
-}
-
 ::selection {
 	background: light-dark(#b3d7fe, #324f6f) !important;
 	color: FieldText !important;
-}
-
-input:where([type="text"], [type="search"], [type="password"], [type="url"]),
-textarea {
-	appearance: none;
-	border-style: solid;
-	outline: none;
 }
 
 .controlBar {
