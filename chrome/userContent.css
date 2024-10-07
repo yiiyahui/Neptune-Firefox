@@ -228,9 +228,10 @@
 	input[type=checkbox],
 	.checkbox-check:not([native]) {
 		appearance: none !important;
-		background-color: transparent !important;
 		margin-block: 0 !important;
-		border: 2px solid var(--neptune-toolbar-border-color);
+		width: 16px;
+		height: 16px;
+		border: 2px solid graytext;
 		border-radius: 4px;
 
 		&:is(:checked, [checked="true"]) {
@@ -243,9 +244,10 @@
 	input[type=radio]:not(.wallpaper-input),
 	.radio-check {
 		appearance: none !important;
-		background-color: transparent !important;
+		width: 16px;
+		height: 16px;
+		border: 2px solid graytext;
 		border-radius: 50%;
-		border: 2px solid var(--neptune-toolbar-border-color);
 
 		&:is(:checked, [selected="true"]) {
 			background-color: var(--neptune-switch-pressed-background) !important;

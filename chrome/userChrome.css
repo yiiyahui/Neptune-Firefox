@@ -64,7 +64,7 @@ findbar {
 	right: 0;
 	background-color: var(--neptune-toolbar-background) !important;
 	border: none !important;
-	border-radius: 0 0 0 6px;
+	border-bottom-left-radius: 6px;
 	padding: 0 !important;
 	transition-property: margin-right, visibility !important;
 
@@ -143,7 +143,7 @@ findbar {
 	--in-content-primary-button-background: var(--theme-primary-color) !important;
 	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
-	--link-color: light-dark(#6f6f6f, #aaa) !important;
+	--link-color: light-dark(#909090, #7c7c7c) !important;
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
@@ -181,14 +181,14 @@ search-textbox {
 .findbar-textbox,
 #urlbar-background,
 search-textbox,
-input[type="text"] {
+input:is([type="text"], [type="search"]) {
 	outline: 16px solid transparent !important;
 }
 
 .findbar-textbox:focus,
 #urlbar[open] > #urlbar-background,
 search-textbox[focused],
-input[type="text"]:focus-visible {
+input:is([type="text"], [type="search"]):focus-visible {
 	outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
 	outline-offset: -2px;
 	transition: all .2s cubic-bezier(0.3, 0, 0.6, 1);
@@ -295,6 +295,10 @@ textarea:not(#select-translations-panel-text-area) {
 			display: inherit !important;
 		}
 	}
+
+	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
+		padding: 0 !important;
+	}
 }
 
 .urlbarView-row {
@@ -362,8 +366,8 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 
 	&:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
-		padding: 1px 5px !important;
-		margin-inline-end: 6px !important;
+		padding-block: 1px !important;
+		margin-inline-end: 6px;
 		background-color: var(--neptune-urlbarView-switch-background) !important;
 		color: var(--urlbarView-highlight-color) !important;
 	}
@@ -702,9 +706,8 @@ screenshots-buttons {
 input[type=checkbox],
 .checkbox-check:not([native]) {
 	appearance: none !important;
-	background-color: transparent !important;
 	border-radius: 4px;
-	border: 2px solid var(--neptune-toolbar-border-color);
+	border: 2px solid graytext;
 
 	&:is(:checked, [checked="true"]) {
 		background-color: var(--neptune-switch-pressed-background) !important;
@@ -715,8 +718,7 @@ input[type=checkbox],
 
 input[type=radio] {
 	appearance: none !important;
-	background-color: transparent !important;
-	border: 2px solid var(--neptune-toolbar-border-color);
+	border: 2px solid graytext;
 	border-radius: 50%;
 
 	&:checked {
@@ -904,7 +906,7 @@ panel {
 }
 
 .infobar {
-	background-color: light-dark(#b3d7fe, #324f6f) !important;
+	background-color: var(--neptune-item-active-background) !important;
 	box-shadow: none !important;
 	border: none !important;
 
@@ -916,8 +918,13 @@ panel {
 .container {
 	padding-block: 0 !important;
 
+	.text-container{
+		color: var(--toolbar-color);
+	}
+
 	.close {
 		transform: scale(.6);
+		color: var(--toolbar-color);
 	}
 }
 
@@ -991,6 +998,18 @@ treechildren::-moz-tree-cell-text(selected) {
 }
 
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
+	:root {
+		background-color: transparent !important;
+	}
+
+	body:fullscreen {
+		background-color: var(--player-bg-color);
+	}
+
+	.player-holder {
+		border-radius: 12px;
+	}
+
 	* {
 		cursor: default !important;
 	}
@@ -1103,7 +1122,7 @@ treechildren::-moz-tree-cell-text(selected) {
 	}
 
 	.font-size-selection-radio > input[type="radio"] {
-		border: 2px solid #ccc !important;
+		border: 2px solid graytext !important;
 
 		&:checked {
 			border: none !important;
@@ -1501,7 +1520,7 @@ tooltip,
 #context-video-fullscreen,
 #TabsToolbar .titlebar-spacer,
 #TabsToolbar .private-browsing-indicator,
-#titlebar #toolbar-menubar,
+#toolbar-menubar,
 .search-setting-button,
 #urlbar .search-one-offs,
 #tracking-protection-icon-container {
