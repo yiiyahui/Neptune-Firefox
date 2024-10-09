@@ -596,16 +596,15 @@
 	}
 
 	.wallpaper-list.category {
-		background-color: var(--neptune-content-background) !important;
 		inset-inline-start: 0 !important;
 		margin: 0 !important;
+		height: 100% !important;
 		width: 100% !important;
 	}
 
 	.wallpaper-list.category fieldset {
 		gap: 24px !important;
 		grid-auto-rows: 32px !important;
-		grid-template-columns: 1fr 1fr 1fr !important;
 	}
 
 	.category-list {
