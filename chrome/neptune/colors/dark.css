@@ -47,8 +47,8 @@
 		--neptune-tab-hover-background: color-mix(in srgb, currentColor 17%, transparent);
 		--neptune-tab-active-background: color-mix(in srgb, currentColor 20%, transparent);
 		--neptune-tab-selected-background: color-mix(in srgb, accentcolor 80%, transparent);
-		--neptune-tab-speaker-icon-color: accentcolor;
-		--neptune-tab-speaker-icon-background: accentcolor;
+		--neptune-tab-icon-overlay-fill: accentcolor;
+		--neptune-tab-icon-overlay-stroke: accentcolor;
 		
 		/* Switch */
 		--neptune-switch-pressed-background: #1661d8;

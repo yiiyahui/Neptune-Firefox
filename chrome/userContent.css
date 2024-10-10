@@ -174,7 +174,7 @@
 		&:is(:focus-visible, [focused]) {
 			outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
 			outline-offset: -2px;
-			transition: all .2s cubic-bezier(0.3, 0, 0.66, 1);
+			transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
 		}
 	}
 
@@ -515,13 +515,7 @@
 	}
 
 	.personalizeButtonWrapper {
-		@media (height < 700px) {
-			top: 92vh !important;
-		}
-
-		@media (height >=700px) {
-			top: 95vh !important;
-		}
+		top: calc(100vh - 45px) !important;
 	}
 
 	.personalize-button {
@@ -532,7 +526,6 @@
 		opacity: .8;
 
 		&:is(:hover, :active) {
-			background-color: transparent !important;
 			opacity: 1;
 		}
 	}
@@ -550,17 +543,13 @@
 	.customize-menu {
 		width: 18em !important;
 		height: 20em !important;
-		top: calc(95vh - 10px) !important;
+		top: calc(100vh - 50px) !important;
 		right: 20px !important;
-		padding: 12px 0 !important;
+		padding: 8px 0 !important;
 		border-radius: 12px !important;
 		transform: translateY(100%) !important;
 		background-color: var(--neptune-popover-background) !important;
 		backdrop-filter: blur(33px);
-
-		@media (height < 700px) {
-			top: calc(92vh - 10px) !important;
-		}
 	}
 
 	.customize-menu.customize-animate-enter-done,
@@ -737,6 +726,7 @@
 
 	.colors-menu-color-scheme-buttons > label {
 		height: 28px !important;
+		font-size: 10.5px !important;
 
 		&:before {
 			width: 16px !important;
@@ -755,7 +745,7 @@
 
 	.custom-colors-selection,
 	.reset-button,
-	label {
+	.slider-label {
 		font-size: 10.5px !important;
 	}
 
@@ -822,17 +812,22 @@
 
 @-moz-document regexp(".*\\.pdf") {
 	.thumbnail,
-	.toolbarButton,
+	.toolbarButton:not(.labeled),
 	.dropdownToolbarButton,
 	.dropdownToolbarButton > select,
 	.dialogButton {
 		border-radius: 7px !important;
 	}
 
-	.secondaryToolbarButton {
-		margin: 1px 5px !important;
-		min-width: 95% !important;
-		border-radius: 4px !important;
+	.toolbarButton {
+		margin-inline: 4px !important;
+
+		&.labeled {
+			margin-block: 1px !important;
+			min-width: calc(100% - 8px) !important;
+			min-height: 22px !important;
+			border-radius: 4px !important;
+		}
 	}
 
 	#sidebarContainer,
@@ -848,25 +843,18 @@
 	}
 
 	.thumbnail {
-		margin-bottom: 8px !important;
 		border-width: 3px !important;
 	}
 
-	.toolbarButton {
-		margin-inline: 4px !important;
-	}
-
 	.toolbarField {
-		padding: 0 5px !important;
-		margin-top: 7px !important;
-		border-radius: 4px !important;
+		padding-block: 0 !important;
+		margin-block: 7px !important;
 	}
 
-	.secondaryToolbar,
+	#secondaryToolbar,
 	.editorParamsToolbar {
-		padding: 0 0 5px !important;
 		border-radius: 7px !important;
-		box-shadow: var(--neptune-panel-shadow) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
 	}
 
 	.editorParamsToolbarContainer .editorParamsColor {

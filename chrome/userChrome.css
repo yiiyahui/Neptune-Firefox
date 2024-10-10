@@ -38,8 +38,12 @@
 #PersonalToolbar {
 	order: 2;
 	width: 100%;
-	background-color: var(--neptune-toolbar-background) !important;
 	height: 28px;
+	background-color: var(--neptune-toolbar-background) !important;
+
+	.toolbarbutton-1, toolbarbutton.bookmark-item:not(.subviewbutton) {
+		margin-block: 4px !important;
+	}
 }
 
 #tab-notification-deck, .notificationbox-stack {
@@ -143,6 +147,7 @@ findbar {
 	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
 	--link-color: light-dark(#909090, #7c7c7c) !important;
+	--icon-color: light-dark(#383838, #ececec) !important;
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
@@ -190,7 +195,7 @@ search-textbox[focused],
 input:is([type="text"], [type="search"]):focus-visible {
 	outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
 	outline-offset: -2px;
-	transition: all .2s cubic-bezier(0.3, 0, 0.6, 1);
+	transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
 }
 
 select:where(:not([size], [multiple], [iconic])),
@@ -203,7 +208,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 *::selection {
 	background-color: var(--neptune-text-selection-color) !important;
-	color: var(--urlbarView-highlight-color) !important;
+	color: var(--button-text-color-primary) !important;
 }
 
 /*---------- Urlbar ----------*/
@@ -218,7 +223,7 @@ textarea:not(#select-translations-panel-text-area) {
 	border: none !important;
 	border-radius: 7px !important;
 	box-shadow: none !important;
-	transition: background-color .3s ease;
+	transition: background-color .2s ease;
 }
 
 #urlbar {
@@ -370,8 +375,8 @@ textarea:not(#select-translations-panel-text-area) {
 	&:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
 		padding-block: 1px !important;
 		margin-inline-end: 6px;
-		background-color: var(--icon-color-critical) !important;
-		color: var(--urlbarView-highlight-color) !important;
+		background-color: var(--icon-color) !important;
+		color: var(--button-text-color-destructive) !important;
 	}
 }
 
@@ -462,6 +467,8 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .urlbar-page-action,
+.urlbar-revert-button,
+.urlbar-show-page-actions-button,
 .urlbar-go-button,
 .search-go-button {
 	background: none !important;
@@ -491,17 +498,13 @@ textarea:not(#select-translations-panel-text-area) {
 #urlbar-zoom-button {
 	margin-inline: 2px !important;
 	padding-block: 1px !important;
-	background-color: var(--icon-color) !important;
-	color: var(--button-text-color-destructive) !important;
 }
 
 #urlbar-search-mode-indicator,
 #urlbar-label-box {
-	background-color: var(--icon-color-critical) !important;
-	border-radius: 5px !important;
+	border-radius: 4px !important;
 	margin-block: 6px !important;
 	font-size: .85em;
-	color: var(--urlbarView-highlight-color) !important;
 }
 
 #urlbar-search-mode-indicator-close,
@@ -550,6 +553,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 	.tab-background {
 		border-radius: 7px !important;
+		outline: none !important;
 		margin: 0 !important;
 		background-color: transparent !important;
 		transition: background-color .2s ease;
@@ -563,7 +567,7 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 		}
 
-		&:not([selected]) {
+		&:not([selected], [multiselected]) {
 			background-color: var(--neptune-tab-background) !important;
 
 			tab:hover & {
@@ -593,11 +597,16 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .tab-icon-overlay:not([crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
-	fill: var(--neptune-tab-speaker-icon-color) !important;
+	fill: var(--neptune-tab-icon-overlay-fill) !important;
 
 	&:hover {
-		background-color: var(--neptune-tab-speaker-icon-background) !important;
+		background-color: var(--neptune-tab-icon-overlay-stroke) !important;
 		fill: var(--button-primary-color) !important;
+	}
+
+	&:is([pinned], [sharing]) {
+		fill: var(--button-primary-color) !important;
+		stroke: var(--neptune-tab-icon-overlay-stroke) !important;
 	}
 }
 
@@ -636,7 +645,7 @@ toolbar .toolbaritem-combined-buttons {
 	margin: 0 !important;
 
 	.toolbarbutton-badge {
-		background-color: var(--theme-primary-color) !important;
+		background-color: var(--warning-icon-bgcolor) !important;
 		border-radius: 50% !important;
 		min-width: 16px !important;
 		line-height: 16px !important;
@@ -805,6 +814,7 @@ panel {
 .subviewbutton-iconic > .toolbarbutton-icon,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
+.bookmark-item > .toolbarbutton-icon,
 .menu-iconic-icon,
 .menu-right > image {
 	width: 12px !important;
@@ -1385,8 +1395,16 @@ treechildren::-moz-tree-cell-text(selected) {
 	list-style-image: url("neptune/icons/permissions.svg") !important;
 }
 
-#tracking-protection-icon {
-	list-style-image: url("neptune/icons/tracking.svg") !important;
+#tracking-protection-icon-box {
+	list-style-image: url("neptune/icons/tracking-protection.svg") !important;
+
+	&[active] {
+		list-style-image: url("neptune/icons/tracking-protection-active.svg") !important;
+	}
+
+	&[hasException] {
+		list-style-image: url("neptune/icons/tracking-protection-disabled.svg") !important;
+	}
 }
 
 #sidebar-button:-moz-locale-dir(ltr):not([positionend]),
@@ -1478,7 +1496,6 @@ tooltip,
 .urlbarView-type-icon,
 .urlbarView-dynamic-onboardTabToSearch-description,
 .tab-secondary-label,
-.bookmark-item>.toolbarbutton-icon,
 .unified-extensions-item-menu-button.subviewbutton,
 .translations-panel-settings-gear-icon,
 #translations-button-circle-arrows,
