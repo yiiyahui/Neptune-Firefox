@@ -18,11 +18,15 @@
 #nav-bar {
 	order: 0;
 	border: none !important;
-	padding: 13px 0 12px 88px !important;
+	padding: 13px 0 12px calc(92px - var(--toolbar-start-end-padding) / 2) !important;
 	background-color: transparent !important;
 
 	:root[inFullscreen] & {
 		padding-inline-start: 5px !important;
+	}
+
+	:is(#reload-button, #stop-button) > .toolbarbutton-animatable-box > .toolbarbutton-animatable-image {
+		animation-duration: 0s !important;
 	}
 }
 
@@ -211,7 +215,8 @@ textarea:not(#select-translations-panel-text-area) {
 /*---------- Urlbar ----------*/
 #urlbar-container {
 	width: 320px !important;
-	margin-inline: 4px !important;
+	padding: 0 !important;
+	margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 }
 
 #searchbar,
@@ -224,6 +229,9 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #urlbar {
+	height: var(--urlbar-min-height) !important;
+	width: 100% !important;
+	left: 0 !important;
 	font-size: 12.5px !important;
 
 	> .urlbar-input-container {
@@ -245,24 +253,9 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-#urlbar-container,
 #search-container,
-.urlbarView-row-inner,
-.permission-popup-section {
+.urlbarView-row-inner {
 	padding: 0 !important;
-}
-
-#urlbar[breakout] {
-	height: var(--urlbar-min-height) !important;
-}
-
-#urlbar[breakout][breakout-extend] {
-	left: 0 !important;
-	width: 100% !important;
-
-	>.urlbar-input-container {
-		height: var(--urlbar-min-height) !important;
-	}
 }
 
 .urlbarView {
@@ -446,14 +439,14 @@ textarea:not(#select-translations-panel-text-area) {
 	fill-opacity: .5 !important;
 }
 
-#urlbar:not(.searchButton) > .urlbar-input-container > #identity-box[pageproxystate="invalid"] > .identity-box-button,
-#identity-box[pageproxystate="valid"]>.identity-box-button,
+#identity-box:is([pageproxystate="valid"], [pageproxystate="invalid"]) > .identity-box-button,
 #urlbar-label-box {
-	background: none !important;
 	padding-inline: 4px !important;
 }
 
 #identity-box[pageproxystate="valid"]>.identity-box-button {
+	background: none !important;
+
 	&:hover:not([open]) {
 		fill-opacity: .9;
 	}
@@ -475,8 +468,7 @@ textarea:not(#select-translations-panel-text-area) {
 		color: color-mix(in srgb, currentColor 85%, transparent) !important;
 	}
 
-	&:not([disabled])[open],
-	&:not([disabled]):hover:active {
+	&:is(:not([disabled])[open],:not([disabled]):hover:active) {
 		color: inherit !important;
 	}
 }
@@ -528,7 +520,7 @@ textarea:not(#select-translations-panel-text-area) {
 	background-image: none !important;
 	border-radius: 7px !important;
 	padding: 0 !important;
-	margin-inline: 4px !important;
+	margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
 	#tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > &[fadein] {
 		transition: .2s linear !important;
@@ -624,15 +616,11 @@ textarea:not(#select-translations-panel-text-area) {
 .tab-preview-thumbnail-container {
 	border: none !important;
 }
-  
-.tab-preview-title {
-	-webkit-line-clamp: 1 !important;
-}
 
 /*---------- Buttons ----------*/
 toolbar .toolbarbutton-1 {
 	padding: 0 !important;
-	margin-inline: 4px !important;
+	margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
 	> .toolbarbutton-icon,
 	> .toolbarbutton-text,
@@ -660,11 +648,6 @@ toolbar .toolbaritem-combined-buttons {
 			display: none;
 		}
 	}
-}
-
-#stop-button>.toolbarbutton-animatable-box>.toolbarbutton-animatable-image,
-#reload-button>.toolbarbutton-animatable-box>.toolbarbutton-animatable-image {
-	animation-duration: 0s !important;
 }
 
 screenshots-buttons {
@@ -827,8 +810,8 @@ panel {
 	height: 12px !important;
 }
 
-#permission-popup-permissions-content {
-	padding: 0 8px 2px !important;
+.permission-popup-section {
+	padding-bottom: 4px !important;
 }
 
 #permission-popup-menulist,
@@ -856,6 +839,7 @@ panel {
 .expander-down {
 	min-height: 22px !important;
 	border: none !important;
+	border-radius: var(--border-radius-small) !important;
 }
 
 #editBMPanel_folderTree {
@@ -916,7 +900,6 @@ panel {
 
 .infobar {
 	background-color: var(--neptune-item-active-background) !important;
-	box-shadow: none !important;
 	border: none !important;
 
 	&::before {
@@ -945,13 +928,13 @@ treecol:not([hideheader="true"]),
 }
 
 treechildren::-moz-tree-row(selected) {
-	background: var(--neptune-focused-urlbar-highlight-color) !important;
+	background: var(--theme-primary-active-color) !important;
 }
 
 treechildren::-moz-tree-image(selected),
 treechildren::-moz-tree-twisty(selected),
 treechildren::-moz-tree-cell-text(selected) {
-	color: var(--urlbarView-highlight-color) !important;
+	color: var(--button-text-color-primary) !important;
 }
 
 #PopupAutoComplete > richlistbox {
@@ -1254,7 +1237,7 @@ treechildren::-moz-tree-cell-text(selected) {
 @media (-moz-platform: windows) {
 	.titlebar-buttonbox-container {
 		position: absolute;
-		left: 20px;
+		left: 16px;
 		top: 21px;
 
 		:root[inFullscreen] & {
