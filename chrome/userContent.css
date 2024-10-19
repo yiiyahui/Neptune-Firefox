@@ -225,6 +225,10 @@
 		border-radius: var(--border-radius-small) !important;
 	}
 
+	.fxaProfileImage {
+		border: 5px solid var(--border-color-interactive) !important;
+	}
+
 	input[type=checkbox],
 	.checkbox-check:not([native]) {
 		appearance: none !important;

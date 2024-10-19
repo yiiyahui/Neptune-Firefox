@@ -593,7 +593,17 @@ textarea:not(#select-translations-panel-text-area) {
 
 .tab-close-button {
 	margin: 0 !important;
+	border-radius: 2px !important;
 	visibility: hidden;
+
+	&:hover {
+		background-color: color-mix(in srgb, var(--icon-color) 70%, transparent) !important;
+		fill: var(--button-text-color-destructive) !important;
+	}
+
+	&:hover:active {
+		background-color: var(--icon-color) !important;
+	}
 
 	tab:hover & {
 		visibility: visible;
@@ -643,13 +653,12 @@ toolbar .toolbaritem-combined-buttons {
 }
 
 screenshots-buttons {
-	top: 52px !important;
 	padding-inline: 6px !important;
 	inset-inline-end: 0 !important;
 }
 
 .labelled {
-	padding: 0 6px !important;
+	padding-block: 0 !important;
 	font-size: 1em !important;
 }
 
@@ -658,7 +667,6 @@ screenshots-buttons {
 	background-size: 32px 32px !important;
 	padding: 28px 0 14px !important;
 	min-width: 64px !important;
-	stroke: #f7cac9 !important;
 	margin-inline: 6px !important;
 	font-size: .8em !important;
 }
@@ -824,7 +832,6 @@ panel {
 	height: 22px !important;
 	min-height: 22px !important;
 	padding-block: 0 !important;
-	margin-inline-start: 8px !important;
 }
 
 .expander-up,
@@ -890,12 +897,16 @@ panel {
 	padding-block: 1em !important;
 }
 
-.infobar {
-	background-color: var(--neptune-item-active-background) !important;
-	border: none !important;
+.notificationbox-stack {
+	background: none !important;
 
-	&::before {
-		background-image: none !important;
+	.infobar {
+		background-color: var(--neptune-item-active-background) !important;
+		border: none !important;
+
+		&::before {
+			background-image: none !important;
+		}
 	}
 }
 
@@ -1013,7 +1024,7 @@ treechildren::-moz-tree-cell-text(selected) {
 		left: 50%;
 		transform: translateX(-50%);
 
-		@media (max-width: 360px) {
+		@media (height <= 200px), (width <= 300px) {
 			display: none;
 		}
 	}
@@ -1042,7 +1053,8 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	.start-controls,
 	.end-controls {
-		display: flex !important;
+		grid-template-columns: repeat(3, auto) !important;
+		align-self: center;
 		gap: unset !important;
 	}
 
@@ -1065,7 +1077,7 @@ treechildren::-moz-tree-cell-text(selected) {
 	#timestamp {
 		width: auto !important;
 
-		@media (max-width: 550px) {
+		@media (width <= 600px) {
 			display: none;
 		}
 	}
@@ -1164,6 +1176,7 @@ treechildren::-moz-tree-cell-text(selected) {
 	justify-content: center;
 }
 
+.dialogOverlay[topmost="true"],
 #window-modal-dialog::backdrop {
 	background: none !important;
 }
@@ -1209,11 +1222,6 @@ treechildren::-moz-tree-cell-text(selected) {
 
 /*---------- Browser ----------*/
 @media (-moz-platform: macos) {
-	#nav-bar,
-	#TabsToolbar {
-		padding-top: 12px !important;
-	}
-
 	#tabbrowser-tabpanels {
 		background: transparent !important;
 	}
@@ -1230,7 +1238,7 @@ treechildren::-moz-tree-cell-text(selected) {
 	.titlebar-buttonbox-container {
 		position: absolute;
 		left: 16px;
-		top: 21px;
+		top: 20px;
 
 		:root[inFullscreen] & {
 			display: none;
