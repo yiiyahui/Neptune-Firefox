@@ -629,11 +629,32 @@
 		font-size: .7em !important;
 	}
 
-	.top-site-button[href="https://www.youtube.com/"] .top-site-icon {
+	/*.weatherCard,
+	.weatherInfoLink,
+	.weatherButtonContextMenuWrapper {
+		background: none !important;
+		box-shadow: none !important;
+	}
+
+	.weatherButtonContextMenuWrapper {
+		padding-bottom: 24px;
+		visibility: hidden;
+
+		.weatherCard:hover & {
+			visibility: visible;
+		}
+	}
+
+	.weatherSponsorText,
+	.weatherButtonContextMenuWrapper::after {
+		display: none !important;
+	}*/
+
+	.top-site-button[href*="youtube.com"] .top-site-icon {
 		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/youtube-com@2x.png") !important;
 	}
 
-	.top-site-button[href="https://www.reddit.com/"] .top-site-icon {
+	.top-site-button[href*="reddit.com"] .top-site-icon {
 		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/reddit-com@2x.png") !important;
 	}
 }
