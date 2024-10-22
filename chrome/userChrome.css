@@ -13,7 +13,7 @@
 	border: none !important;
 
 	> *:not(#nav-bar, #titlebar) {
-        grid-column: 1 / span 2;
+		grid-column: 1 / span 2;
 	}
 }
 
@@ -180,14 +180,14 @@ search-textbox {
 .findbar-textbox,
 #urlbar-background,
 search-textbox,
-input:is([type="text"], [type="search"]) {
+input[type="text"] {
 	outline: 16px solid transparent !important;
 }
 
 .findbar-textbox:focus,
 #urlbar[open] > #urlbar-background,
 search-textbox[focused],
-input:is([type="text"], [type="search"]):focus-visible {
+input[type="text"]:focus-visible {
 	outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
 	outline-offset: -2px;
 	transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
@@ -418,7 +418,7 @@ textarea:not(#select-translations-panel-text-area) {
 	opacity: 0;
 	transition: .2s ease;
 
-	&:is(.urlbar-input-container:hover &, [open]) {
+	.urlbar-input-container:hover & {
 		opacity: 1;
 		margin-inline-start: 0;
 	}
@@ -472,7 +472,7 @@ textarea:not(#select-translations-panel-text-area) {
 	opacity: 0;
 	transition: .2s ease;
 
-	&:is(.urlbar-input-container:hover &, [open]) {
+	.urlbar-input-container:hover & {
 		opacity: 1;
 		margin-inline-end: 0;
 	}
@@ -1053,7 +1053,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	.start-controls,
 	.end-controls {
-		grid-template-columns: repeat(3, auto) !important;
+		grid-template-columns: auto !important;
 		align-self: center;
 		gap: unset !important;
 	}
