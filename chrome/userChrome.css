@@ -162,6 +162,7 @@ findbar {
 	--panel-subview-body-padding-block: 4px !important;
 	--arrowpanel-menuitem-margin-inline: 4px !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
+	--arrowpanel-menuitem-border-radius: var(--border-radius-small) !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
 	--organizer-pane-background: var(--neptune-main-background) !important;
 	--organizer-content-background: var(--neptune-content-background) !important;
@@ -668,7 +669,7 @@ screenshots-buttons {
 	padding: 28px 0 14px !important;
 	min-width: 64px !important;
 	margin-inline: 6px !important;
-	font-size: .8em !important;
+	font-size: .85em !important;
 }
 
 #sidebar-header {
