@@ -272,20 +272,24 @@ textarea:not(#select-translations-panel-text-area) {
 	&[wrap] > .urlbarView-row {
 		&:where(:not([rich-suggestion])) > .urlbarView-row-inner {
 			flex-wrap: nowrap !important;
+			align-items: center !important;
 
 			> .urlbarView-no-wrap {
 				flex-basis: inherit !important;
-				margin-block: 2px;
 			}
 		}
 
-		&[has-url] > .urlbarView-row-inner > .urlbarView-url:-moz-locale-dir(ltr) {
-			margin: inherit !important;
+		&[has-url] > .urlbarView-row-inner > .urlbarView-url {
+			margin-inline: inherit !important;
 		}
 
 		&[has-url]:not([type$=tab], [sponsored], [restyled-search]) .urlbarView-title-separator {
 			display: inherit !important;
 		}
+	}
+
+	.urlbarView-title-separator::before {
+		content: "\2013" !important;
 	}
 
 	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
@@ -314,8 +318,7 @@ textarea:not(#select-translations-panel-text-area) {
 	&[type=tip] {
 		padding: 0 !important;
 
-		> .urlbarView-row-inner,
-		.urlbarView-results[wrap] > & > .urlbarView-button {
+		:is(.urlbarView-results[wrap] > & > .urlbarView-button, > .urlbarView-row-inner) {
 			margin: 0 !important;
 		}
 	}
@@ -1228,7 +1231,6 @@ treechildren::-moz-tree-cell-text(selected) {
 	}
 
 	.titlebar-buttonbox-container {
-		visibility: visible;
 		position: absolute;
 		left: 7px;
 		top: 18px;

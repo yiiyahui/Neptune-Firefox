@@ -86,8 +86,7 @@
 	}
 
 	.dialogBox {
-		background-color: var(--neptune-content-background);
-		border: 1px solid var(--neptune-toolbar-border-color) !important;
+		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
 	}
@@ -223,10 +222,6 @@
 	.stp_button_wide .stp_button {
 		padding-block: 4px !important;
 		border-radius: var(--border-radius-small) !important;
-	}
-
-	.fxaProfileImage {
-		border: 5px solid var(--border-color-interactive) !important;
 	}
 
 	input[type=checkbox],
