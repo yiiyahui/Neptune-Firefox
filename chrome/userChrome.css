@@ -77,7 +77,7 @@ findbar {
 
 .findbar-textbox {
 	width: 12em !important;
-	padding: 0 3px !important;
+	padding: 0 4px !important;
 	border: 1px solid ThreeDShadow !important;
 	background-color: transparent !important;
 }
@@ -123,13 +123,13 @@ findbar {
 	--button-min-height: 22px !important;
 	--toolbarbutton-inner-padding: 6px !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
-	--button-bgcolor: var(--neptune-item-background) !important;
-	--button-hover-bgcolor: var(--neptune-item-hover-background) !important;
-	--button-active-bgcolor: var(--neptune-item-active-background) !important;
-	--button-primary-bgcolor: var(--theme-primary-color) !important;
-	--button-primary-hover-bgcolor: var(--theme-primary-hover-color) !important;
-	--button-primary-active-bgcolor: var(--theme-primary-active-color) !important;
-	--button-primary-color: #fff !important;
+	--button-background-color: var(--neptune-item-background) !important;
+	--button-background-color-hover: var(--neptune-item-hover-background) !important;
+	--button-background-color-active: var(--neptune-item-active-background) !important;
+	--color-accent-primary: var(--theme-primary-color) !important;
+	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--button-text-color-primary: #fff !important;
 	--button-background-color-primary: var(--theme-primary-color) !important;
 	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
 	--button-background-color-primary-active: var(--theme-primary-active-color) !important;
@@ -143,6 +143,7 @@ findbar {
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
 	--link-color: light-dark(#909090, #7c7c7c) !important;
 	--icon-color: light-dark(#383838, #ececec) !important;
+	--tab-loading-fill: var(--theme-primary-color) !important;
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
@@ -162,7 +163,6 @@ findbar {
 	--panel-subview-body-padding-block: 4px !important;
 	--arrowpanel-menuitem-margin-inline: 4px !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
-	--arrowpanel-menuitem-border-radius: var(--border-radius-small) !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
 	--organizer-pane-background: var(--neptune-main-background) !important;
 	--organizer-content-background: var(--neptune-content-background) !important;
@@ -298,7 +298,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .urlbarView-row {
-	border: 1px solid transparent !important;
+	border: var(--button-border) !important;
 	border-radius: 7px !important;
 
 	&[row-selectable]:not([selected]):hover {
@@ -360,7 +360,7 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 	}
 
-	&:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
+	&[has-action]:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
 		padding-block: 1px !important;
 		margin-inline-end: 6px;
 		background-color: var(--icon-color) !important;
@@ -422,7 +422,7 @@ textarea:not(#select-translations-panel-text-area) {
 	opacity: 0;
 	transition: .2s ease;
 
-	.urlbar-input-container:hover & {
+	&:is(.urlbar-input-container:hover &, [open]) {
 		opacity: 1;
 		margin-inline-start: 0;
 	}
@@ -456,7 +456,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 .urlbar-page-action,
 .urlbar-revert-button,
-.urlbar-show-page-actions-button,
 .urlbar-go-button,
 .search-go-button {
 	background: none !important;
@@ -476,7 +475,7 @@ textarea:not(#select-translations-panel-text-area) {
 	opacity: 0;
 	transition: .2s ease;
 
-	.urlbar-input-container:hover & {
+	&:is(.urlbar-input-container:hover &, [open]) {
 		opacity: 1;
 		margin-inline-end: 0;
 	}
@@ -507,11 +506,13 @@ textarea:not(#select-translations-panel-text-area) {
 
 /*---------- Tabs Bar ----------*/
 #tabbrowser-tabs {
-	--tab-min-width: 32px !important;
-	--tab-loading-fill: var(--theme-primary-color) !important;
 	padding: 0 !important;
 	margin: 0 !important;
 	border-inline-start: none !important;
+
+	&[orient="horizontal"] {
+		--tab-min-width: 36px !important;
+	}
 }
 
 .tabbrowser-tab {
@@ -581,17 +582,20 @@ textarea:not(#select-translations-panel-text-area) {
 	box-shadow: none !important;
 }
 
-.tab-icon-overlay:not([crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
-	fill: var(--neptune-tab-icon-overlay-fill) !important;
+.tab-icon-overlay:not([crashed]) {
+	&:is([soundplaying], [muted], [activemedia-blocked]) {
+		background-color: transparent !important;
+		border: none !important;
+	}
+
+	&:not([indicator-replaces-favicon]):is([soundplaying], [muted], [activemedia-blocked]) {
+		top: -4px !important;
+		inset-inline-end: -8px !important;
+	}
 
 	&:hover {
 		background-color: var(--neptune-tab-icon-overlay-stroke) !important;
-		fill: var(--button-primary-color) !important;
-	}
-
-	&:is([pinned], [sharing]) {
-		fill: var(--button-primary-color) !important;
-		stroke: var(--neptune-tab-icon-overlay-stroke) !important;
+		fill: var(--button-text-color-primary) !important;
 	}
 }
 
@@ -658,7 +662,6 @@ toolbar .toolbaritem-combined-buttons {
 
 screenshots-buttons {
 	padding-inline: 6px !important;
-	inset-inline-end: 0 !important;
 }
 
 .labelled {
@@ -719,7 +722,7 @@ input[type=radio] {
 	--toggle-background-color-pressed: var(--neptune-switch-pressed-background) !important;
 	--toggle-background-color-pressed-hover: var(--neptune-switch-pressed-hover-background) !important;
 	--toggle-background-color-pressed-active: var(--neptune-switch-pressed-active-background) !important;
-	--toggle-dot-background-color-on-pressed: var(--button-primary-color) !important;
+	--toggle-dot-background-color-on-pressed: var(--button-text-color-primary) !important;
 }
 
 /*---------- Popups ----------*/
@@ -1091,7 +1094,7 @@ treechildren::-moz-tree-cell-text(selected) {
 		padding-inline-start: 0 !important;
 
 		&::-moz-range-thumb {
-			background-color: var(--button-primary-color) !important;
+			background-color: var(--button-text-color-primary) !important;
 			width: 12px !important;
 			height: 12px !important;
 			border: none !important;
@@ -1104,7 +1107,7 @@ treechildren::-moz-tree-cell-text(selected) {
 	}
 
 	#scrubber::-moz-range-thumb {
-		background-color: var(--button-primary-color) !important;
+		background-color: var(--button-text-color-primary) !important;
 		width: 4px !important;
 		height: 18px !important;
 		border: none !important;
@@ -1122,7 +1125,7 @@ treechildren::-moz-tree-cell-text(selected) {
 		background-color: var(--neptune-switch-pressed-background) !important;
 
 		&::before {
-			background-color: var(--button-primary-color) !important;
+			background-color: var(--button-text-color-primary) !important;
 		}
 	}
 

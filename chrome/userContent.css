@@ -831,6 +831,13 @@
 }
 
 @-moz-document regexp(".*\\.pdf") {
+	:root {
+		--toolbar-horizontal-padding: 12px !important;
+		--button-hover-color: var(--neptune-item-hover-background) !important;
+		--toggled-btn-bg-color: var(--neptune-item-background) !important;
+		--toggled-hover-active-btn-color: var(--neptune-item-active-background) !important;
+	}
+
 	.thumbnail,
 	.toolbarButton:not(.labeled),
 	.dropdownToolbarButton,
@@ -839,14 +846,15 @@
 		border-radius: 7px !important;
 	}
 
-	.toolbarButton {
-		margin-inline: 4px !important;
+	.toolbarHorizontalGroup {
+		gap: 8px !important;
 
-		&.labeled {
-			margin-block: 1px !important;
-			min-width: calc(100% - 8px) !important;
-			min-height: 22px !important;
-			border-radius: 4px !important;
+		.toolbarButtonWithContainer {
+			aspect-ratio: auto !important;
+
+			.toolbarButton.labeled {
+				min-height: 22px !important;
+			}
 		}
 	}
 
