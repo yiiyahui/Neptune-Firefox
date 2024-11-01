@@ -1,3 +1,6 @@
+This version is slightly modified to reduce the padding by 8px.
+The relevant discussion is [here](https://github.com/yiiyahui/Neptune-Firefox/issues/22)
+
 <h1 align="center"><strong>Neptune Firefox</strong></h1>
 
 **Instructions:** 
