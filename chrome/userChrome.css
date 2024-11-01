@@ -3,7 +3,7 @@
 
 /*---------- Toolbox ----------*/
 :root#main-window {
-	min-width: 800px !important;
+	min-width: 700px !important;
 }
 
 #navigator-toolbox {
@@ -20,40 +20,34 @@
 		grid-area: 1 / 1 / span 1 / span 1;
 		width: fit-content;
 		background-color: transparent !important;
-		padding: 12px 0 12px calc(92px - var(--toolbar-start-end-padding) / 2) !important;
+		padding-block: 12px !important;
+		margin-inline-start: calc(92px - var(--toolbar-start-end-padding) / 2);
 		border: none !important;
 
 		:root[inFullscreen] & {
-			padding-inline-start: var(--toolbar-start-end-padding) !important;
+			margin-inline-start: var(--toolbar-start-end-padding);
 		}
 
 		:is(#reload-button, #stop-button) > .toolbarbutton-animatable-box > .toolbarbutton-animatable-image {
 			animation-duration: 0s !important;
 		}
 
-		:is(toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring],toolbarspring) {
-			min-width: 5em !important;
+		&:-moz-window-inactive {
+			opacity: var(--inactive-titlebar-opacity);
 		}
-	}
-
-	#TabsToolbar {
-		padding: 0 calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding)) 12px 0 !important;
 	}
 
 	@media (-moz-bool-pref: "sidebar.verticalTabs") {
 		#nav-bar {
 			grid-column: 1 / span 2;
-			width: 100%;
-		}
-
-		#TabsToolbar {
-			padding: 0 !important;
+			width: auto;
 		}
 	}
 }
 
 #titlebar {
-	will-change: unset !important;
+	align-self: center;
+	margin-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding));
 }
 
 #PersonalToolbar {
@@ -135,6 +129,7 @@ findbar {
 :root {
 	--urlbar-min-height: max(28px, 1.4em) !important;
 	--tab-min-height: 28px !important;
+	--tab-shadow-max-size: 0 !important;
 	--button-min-height: 22px !important;
 	--toolbarbutton-inner-padding: 6px !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
@@ -225,12 +220,13 @@ textarea:not(#select-translations-panel-text-area) {
 
 /*---------- Urlbar ----------*/
 #urlbar-container {
-	width: 320px !important;
+	width: max(320px, 28em) !important;
 	padding: 0 !important;
 	margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
 	@media (-moz-bool-pref: "sidebar.verticalTabs") {
-		margin-inline: 10em !important;
+		flex-grow: 0.3 !important;
+		margin-inline: auto !important;
 
 		.urlbar-input {
 			text-align: center !important;
@@ -274,10 +270,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 	&[open] > #urlbar-background {
 		background-color: var(--neptune-urlbar-focused-background) !important;
-	}
-
-	&:-moz-window-inactive > #urlbar-background {
-		background-color: var(--neptune-inactive-urlbar-background) !important;
 	}
 }
 
@@ -561,8 +553,18 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 
 	&[orient="vertical"] {
+		grid-gap: unset !important;
+
 		.tabbrowser-tab {
 			margin-block-end: var(--toolbar-start-end-padding) !important;
+
+			&:not([selected], [multiselected], [pinned]) .tab-background {
+				background-color: var(--neptune-verticaltab-background) !important;
+
+				tab:hover & {
+					background-color: var(--neptune-verticaltab-hover-background) !important;
+				}
+			}
 		}
 
 		#tabs-newtab-button, #vertical-tabs-newtab-button {
@@ -587,6 +589,10 @@ textarea:not(#select-translations-panel-text-area) {
 
 	#tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > &[fadein] {
 		transition: .2s linear !important;
+	}
+
+	#tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > &[pinned] {
+		position: inherit !important;
 	}
 
 	.tab-label-container {
@@ -1608,6 +1614,7 @@ tooltip,
 #alltabs-button,
 #tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
+#tabbrowser-tabs[orient="vertical"][overflow]::after,
 .titlebar-spacer,
 .private-browsing-indicator,
 #toolbar-menubar,
