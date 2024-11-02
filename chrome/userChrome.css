@@ -31,16 +31,16 @@
 		:is(#reload-button, #stop-button) > .toolbarbutton-animatable-box > .toolbarbutton-animatable-image {
 			animation-duration: 0s !important;
 		}
-
-		&:-moz-window-inactive {
-			opacity: var(--inactive-titlebar-opacity);
-		}
 	}
 
 	@media (-moz-bool-pref: "sidebar.verticalTabs") {
 		#nav-bar {
 			grid-column: 1 / span 2;
 			width: auto;
+		}
+
+		#TabsToolbar {
+			display: contents;
 		}
 	}
 }
@@ -758,7 +758,7 @@ toolbar .toolbarbutton-1 {
 	}
 
 	&:is(:-moz-window-inactive, [disabled]) {
-		fill-opacity: var(--toolbarbutton-disabled-opacity);
+		fill-opacity: var(--inactive-titlebar-opacity);
 	}
 }
 
@@ -1436,7 +1436,7 @@ treechildren::-moz-tree-cell-text(selected) {
 		right: var(--toolbar-start-end-padding);
 
 		@media (width <= 728px) {
-			position: inherit !important;
+			position: inherit;
 		}
 	}
 
@@ -1453,7 +1453,7 @@ treechildren::-moz-tree-cell-text(selected) {
 		right: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding));
 
 		@media (width <= 728px) {
-			position: inherit !important;
+			position: inherit;
 		}
 	}
 
@@ -1472,7 +1472,7 @@ treechildren::-moz-tree-cell-text(selected) {
 		right: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding));
 
 		@media (width <= 728px) {
-			position: inherit !important;
+			position: inherit;
 		}
 	}
 }
