@@ -274,6 +274,8 @@
 		}
 
 		.search-inner-wrapper {
+			width: 164px !important;
+
 			@media (min-width: 610px) {
 				width: 364px !important;
 			}
@@ -380,6 +382,8 @@
 	}
 
 	.ds-outer-wrapper-breakpoint-override main {
+		width: 200px !important;
+
 		@media (min-width: 610px) {
 			width: 400px !important;
 		}

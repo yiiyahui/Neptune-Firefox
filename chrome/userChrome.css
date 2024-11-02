@@ -3,7 +3,7 @@
 
 /*---------- Toolbox ----------*/
 :root#main-window {
-	min-width: 700px !important;
+	min-width: 650px !important;
 }
 
 #navigator-toolbox {
@@ -62,6 +62,15 @@
 
 #customization-container {
 	background-color: var(--neptune-main-background) !important;
+
+	#customization-panelWrapper {
+		--panel-arrow-offset: 0 !important;
+
+		> .panel-arrowcontent {
+			border-radius: var(--arrowpanel-border-radius) !important;
+			box-shadow: var(--neptune-menu-shadow) !important;
+		}
+	}
 }
 
 findbar {
@@ -131,6 +140,12 @@ findbar {
 	--tab-min-height: 28px !important;
 	--tab-shadow-max-size: 0 !important;
 	--button-min-height: 22px !important;
+	--border-radius-small: 6px !important;
+	--menu-panel-width-wide: 20em !important;
+	--panel-subview-body-padding-block: 4px !important;
+	--arrowpanel-menuitem-margin-inline: 4px !important;
+	--arrowpanel-menuitem-padding-block: 0 !important;
+	--default-focusring: none !important;
 	--toolbarbutton-inner-padding: 6px !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
 	--button-background-color: var(--neptune-item-background) !important;
@@ -167,11 +182,6 @@ findbar {
 	--urlbarView-highlight-color: #fff !important;
 	--input-bgcolor: var(--neptune-input-bgcolor) !important;
 	--focus-outline-color: var(--theme-primary-color) !important;
-	--default-focusring: none !important;
-	--border-radius-small: 6px !important;
-	--panel-subview-body-padding-block: 4px !important;
-	--arrowpanel-menuitem-margin-inline: 4px !important;
-	--arrowpanel-menuitem-padding-block: 0 !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
 	--organizer-pane-background: var(--neptune-main-background) !important;
 	--organizer-content-background: var(--neptune-content-background) !important;
@@ -568,7 +578,7 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		#tabs-newtab-button, #vertical-tabs-newtab-button {
-			margin: auto !important;
+			margin-inline: auto !important;
 			border-radius: 7px !important;
 
 			> .toolbarbutton-text {
@@ -647,15 +657,15 @@ textarea:not(#select-translations-panel-text-area) {
 	&:is([soundplaying], [muted], [activemedia-blocked]) {
 		background-color: transparent !important;
 		border: none !important;
+
+		&:not([indicator-replaces-favicon]) {
+			top: -4px !important;
+			inset-inline-end: -8px !important;
+		}
 	}
 
 	&[muted] {
 		fill: var(--icon-color-critical) !important;
-	}
-
-	&:not([indicator-replaces-favicon]):is([soundplaying], [muted], [activemedia-blocked]) {
-		top: -4px !important;
-		inset-inline-end: -8px !important;
 	}
 
 	&:hover {
@@ -821,7 +831,7 @@ input[type=radio] {
 menupopup,
 panel {
 	--panel-color: MenuText !important;
-	--panel-border-radius: 8px !important;
+	--panel-border-radius: var(--arrowpanel-border-radius) !important;
 	--panel-border-color: var(--neptune-toolbar-border-color) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
 	--arrowpanel-header-min-height: 32px !important;
@@ -1259,12 +1269,6 @@ treechildren::-moz-tree-cell-text(selected) {
 	margin: 0 !important;
 }
 
-#statuspanel-label {
-	background-color: var(--neptune-content-background) !important;
-	border: none !important;
-	border-radius: 2px !important;
-}
-
 /*---------- Dialogs ----------*/
 #window-modal-dialog {
 	top: 8em;
@@ -1430,6 +1434,10 @@ treechildren::-moz-tree-cell-text(selected) {
 	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
 		position: fixed;
 		right: var(--toolbar-start-end-padding);
+
+		@media (width <= 728px) {
+			position: inherit !important;
+		}
 	}
 
 	@media (-moz-bool-pref: "sidebar.verticalTabs") {
@@ -1443,6 +1451,10 @@ treechildren::-moz-tree-cell-text(selected) {
 	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
 		position: absolute;
 		right: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding));
+
+		@media (width <= 728px) {
+			position: inherit !important;
+		}
 	}
 
 	@media (-moz-bool-pref: "sidebar.verticalTabs") {
@@ -1458,6 +1470,10 @@ treechildren::-moz-tree-cell-text(selected) {
 	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
 		position: fixed;
 		right: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding));
+
+		@media (width <= 728px) {
+			position: inherit !important;
+		}
 	}
 }
 
@@ -1592,11 +1608,10 @@ tooltip,
 #fullscreen-exit-button,
 #back-button[disabled],
 #forward-button[disabled],
-#customization-panel-container,
+#statuspanel:not([type=overLink]),
 .customization-checkbox,
 .textbox-search-sign,
 .findbar-container > checkbox,
-#nav-bar-overflow-button,
 #appMenu-fullscreen-button2,
 .unified-extensions-item-message,
 #context-navigation>.menuitem-iconic,

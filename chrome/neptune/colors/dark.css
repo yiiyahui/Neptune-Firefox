@@ -32,7 +32,7 @@
 
 		/* Urlbar */
 		--neptune-urlbar-background: color-mix(in srgb, currentColor 20%, transparent);
-		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 14%, transparent);
+		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 16%, transparent);
 		--neptune-urlbar-focused-background: color-mix(in srgb, currentColor 22%, transparent);
 		--neptune-urlbarView-background: #323232;
 		--neptune-urlbarView-hover-background: #015ad1;
