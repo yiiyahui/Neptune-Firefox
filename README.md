@@ -11,7 +11,7 @@
 - Some elements like unnecessary context menus are removed, so it might not be ideal for everyone.
 
 ## Preview:
-<img align="bottom" width="800" alt="Screen Shot 1" src="https://github.com/user-attachments/assets/bd6341eb-704c-4118-8161-869c0695ade3">
+<img src="info/preview.png" alt="Preview Image" width="800px">
 
 ## Installation
 
