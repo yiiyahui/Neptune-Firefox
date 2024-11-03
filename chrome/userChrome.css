@@ -732,11 +732,11 @@ textarea:not(#select-translations-panel-text-area) {
  }
 
 .search-container {
-	margin-top: 4px;
+	margin-top: 3px;
 }
 
 moz-card {
-  border: none !important;
+	border: none !important;
 }
 
 #tabbrowser-tabbox {
