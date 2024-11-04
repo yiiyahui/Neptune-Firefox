@@ -266,6 +266,14 @@
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
+	body {
+		background: url("neptune/image/RainbowLight.png") center/cover no-repeat fixed !important;
+
+		@media (prefers-color-scheme: dark) {
+			background: url("neptune/image/RainbowDark.png") center/cover no-repeat fixed !important;
+		}
+	}
+
 	.non-collapsible-section {
 		padding: 0 !important;
 
@@ -354,10 +362,6 @@
 }
 
 @-moz-document url("about:privatebrowsing") {
-	body {
-		background: url("neptune/image/Pink.png") center/cover no-repeat fixed;
-	}
-
 	.search-inner-wrapper {
 		height: 52px !important;
 		padding: 0 !important;
@@ -369,14 +373,6 @@
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome") {
-	body {
-		background: url("neptune/image/Orange.png") center/cover no-repeat fixed !important;
-
-		@media (prefers-color-scheme: dark) {
-			background: url("neptune/image/Blue.png") center/cover no-repeat fixed !important;
-		}
-	}
-
 	* {
 		cursor: auto !important;
 	}
