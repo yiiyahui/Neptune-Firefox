@@ -4,18 +4,23 @@
 - This theme works for **Firefox v132+** and is compatible with both Windows and macOS.
 - To enable adaptive colors, you need to install the **[Adaptive Tab Bar Color](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)** extension. 
 
-**Known issues:** 
-- The three buttons on the right side of the toolbar cannot be moved in compact layout.
-
-**Tips:** 
-- Some elements like unnecessary context menus are removed, so it might not be ideal for everyone.
-
-## Preview:
 <img src="info/preview.png" alt="Preview Image" width="800px">
 
 ## Installation
 
-Download the theme file and unzip the **"chrome"** folder into your **"profile"** folder.
+- Download the theme file and unzip the `chrome` folder into your `profile` folder.
+
+- You can modify the wallpaper in the `userContent.css` file, and edit the file names for the light and dark modes
+
+```css
+body {
+	background: url("neptune/image/RainbowLight.png") center/cover no-repeat fixed !important;
+
+	@media (prefers-color-scheme: dark) {
+		background: url("neptune/image/RainbowDark.png") center/cover no-repeat fixed !important;
+	}
+}
+```
 
 ## Browser Configuration
 - `about:preferences`
@@ -31,7 +36,7 @@ Download the theme file and unzip the **"chrome"** folder into your **"profile"*
     - Set `browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled` to `true`.
     - Set `widget.non-native-theme.scrollbar.style` to `2` （**For Windows10**. Due to the default scrollbar in Windows 10 being quite wide, it can affect the setting menu's width., this configuration is recommended.)
 
-    **Layout switch** (Enabling or disabling them can switch between vertical tab mode and compact mode)
+    **Layout switch** (Enabling or disabling them can switch between vertical tab mode and horizontal tab mode)
     - `sidebar.revamp` to `true` or `false`.
     - `sidebar.verticalTabs` to `true` or `false`.
 
