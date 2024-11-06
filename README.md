@@ -29,12 +29,14 @@ body {
 
 -  `about:config`
 
-    **Important**
+    **Requirements**
+
     - Set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
     - Set `svg.context-properties.content.enabled` to `true`.
     - Set `widget.non-native-theme.use-theme-accent` to `true`.
 
     **Layout switch**
+
     - `sidebar.revamp` to `true` or `false`.
     - `sidebar.verticalTabs` to `true` or `false`.
 
@@ -44,3 +46,6 @@ body {
     - configure `advanced`
         - light:`rgb 246,246,246`
         - dark:`rgb 56,56,56`
+
+
+ENJOY!
