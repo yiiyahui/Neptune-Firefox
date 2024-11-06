@@ -14,10 +14,10 @@
 
 ```css
 body {
-	background: url("neptune/image/RainbowLight.png") center/cover no-repeat fixed !important;
+	background: url("neptune/image/RainbowLight.png") center/cover no-repeat fixed;
 
 	@media (prefers-color-scheme: dark) {
-		background: url("neptune/image/RainbowDark.png") center/cover no-repeat fixed !important;
+		background: url("neptune/image/RainbowDark.png") center/cover no-repeat fixed;
 	}
 }
 ```
@@ -32,16 +32,11 @@ body {
     **Important**
     - Set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
     - Set `svg.context-properties.content.enabled` to `true`.
-    - Set `browser.newtabpage.activity-stream.newtabWallpapers.enabled` to `true`.
-    - Set `browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled` to `true`.
-    - Set `widget.non-native-theme.scrollbar.style` to `2` （**For Windows10**. Due to the default scrollbar in Windows 10 being quite wide, it can affect the setting menu's width., this configuration is recommended.)
+    - Set `widget.non-native-theme.use-theme-accent` to `true`.
 
-    **Layout switch** (Enabling or disabling them can switch between vertical tab mode and horizontal tab mode)
+    **Layout switch**
     - `sidebar.revamp` to `true` or `false`.
     - `sidebar.verticalTabs` to `true` or `false`.
-
-    **Homepage search bar switch**
-    - Set `browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar` to `false`.
 
 - **Adaptive Tab Bar Color settings**
 
