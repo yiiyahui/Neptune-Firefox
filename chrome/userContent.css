@@ -898,8 +898,7 @@ div.sponsor,
 }
 
 ::selection {
-	background: var(--neptune-webtext-selection-color)!important;
-	color: FieldText !important;
+	background-color: var(--neptune-content-selection-color)!important;
 }
 
 .controlBar {

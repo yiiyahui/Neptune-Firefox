@@ -225,7 +225,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 *::selection {
 	background-color: var(--neptune-text-selection-color) !important;
-	color: var(--button-text-color-primary) !important;
 }
 
 /*---------- Urlbar ----------*/

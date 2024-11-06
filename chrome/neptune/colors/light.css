@@ -16,7 +16,7 @@
 		--neptune-item-background: color-mix(in srgb, currentColor 10%, transparent);
 		--neptune-item-hover-background: color-mix(in srgb, currentColor 8%, transparent);
 		--neptune-item-active-background: color-mix(in srgb, currentColor 14%, transparent);
-		--neptune-webtext-selection-color: color-mix(in srgb, accentcolor 40%, transparent);
+		--neptune-content-selection-color: color-mix(in srgb, accentcolor 40%, transparent);
 
 		/* Sidebar */
 		--neptune-sidebar-background: var(--lwt-accent-color);
