@@ -768,8 +768,9 @@ toolbar .toolbaritem-combined-buttons {
 	.toolbarbutton-badge {
 		background-color: var(--warning-icon-bgcolor) !important;
 		border-radius: 50% !important;
-		min-width: 16px !important;
-		line-height: 16px !important;
+		min-width: 14px !important;
+		line-height: 14px !important;
+		font-weight: normal !important;
 
 		toolbarbutton:is(:active, [open]) & {
 			display: none;

@@ -3,9 +3,9 @@
 		/* Browser */
 		--neptune-main-background: #f6f6f6;
 		--neptune-content-background: #fff;
-		--theme-primary-color: #1284ff;
-		--theme-primary-hover-color: #1c8bff;
-		--theme-primary-active-color: #0273eb;
+		--theme-primary-color: color-mix(in srgb, accentcolor 80%, #777);
+		--theme-primary-hover-color: color-mix(in srgb, accentcolor 85%, #999);
+		--theme-primary-active-color: accentcolor;
 
 		/* Toolbars */
 		--neptune-toolbar-background: var(--lwt-accent-color);
@@ -16,6 +16,7 @@
 		--neptune-item-background: color-mix(in srgb, currentColor 10%, transparent);
 		--neptune-item-hover-background: color-mix(in srgb, currentColor 8%, transparent);
 		--neptune-item-active-background: color-mix(in srgb, currentColor 14%, transparent);
+		--neptune-webtext-selection-color: color-mix(in srgb, accentcolor 40%, transparent);
 
 		/* Sidebar */
 		--neptune-sidebar-background: var(--lwt-accent-color);
@@ -35,11 +36,11 @@
 		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-urlbar-focused-background: color-mix(in srgb, currentColor 20%, transparent);
 		--neptune-urlbarView-background: #f2f2f2;
-		--neptune-urlbarView-hover-background: #0165e1;
 		--neptune-urlbarView-box-shadow: 0 10px 20px #00000026;
-		--neptune-text-selection-color: #347df5;
-		--neptune-focused-urlbar-border-color: #80B3fa;
-		--neptune-focused-urlbar-highlight-color: #0064e1;
+		--neptune-text-selection-color: color-mix(in srgb, accentcolor 65%, #fff);
+		--neptune-focused-urlbar-border-color: color-mix(in srgb, accentcolor 50%, #fff);
+		--neptune-urlbarView-hover-background: color-mix(in srgb, accentcolor 80%, #777);
+		--neptune-focused-urlbar-highlight-color: color-mix(in srgb, accentcolor 85%, #999);
 
 		/* Tabs */
 		--neptune-tab-background: color-mix(in srgb, currentColor 10%, transparent);
@@ -50,8 +51,8 @@
 		--neptune-verticaltab-hover-background: color-mix(in srgb, currentColor 8%, transparent);
 
 		/* Switch */
-		--neptune-switch-pressed-background: #1270ff;
-		--neptune-switch-pressed-hover-background: #1270ff;
-		--neptune-switch-pressed-active-background: #005ceB;
+		--neptune-switch-pressed-background: color-mix(in srgb, accentcolor 80%, #777);
+		--neptune-switch-pressed-hover-background: color-mix(in srgb, accentcolor 85%, #999);
+		--neptune-switch-pressed-active-background: accentcolor;
 	}
 }
