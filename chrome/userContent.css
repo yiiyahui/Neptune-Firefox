@@ -18,17 +18,13 @@
 	--checkbox-checked-bgcolor: var(--theme-primary-color) !important;
 	--checkbox-checked-hover-bgcolor: var(--theme-primary-hover-color) !important;
 	--checkbox-checked-active-bgcolor: var(--theme-primary-active-color) !important;
-	--in-content-button-background-hover: light-dark(#0000000c, #ffffff0c) !important;
-	--in-content-button-background-active: light-dark(#00000019, #ffffff19) !important;
+	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
+	--in-content-button-background-active: var(--neptune-item-active-background) !important;
 	--in-content-primary-button-background: var(--theme-primary-color) !important;
 	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
-	--in-content-focus-outline-color: var(--theme-primary-color) !important;
-	--focus-outline-color: var(--theme-primary-color) !important;
-	--link-color: var(--theme-primary-color) !important;
-	--link-color-hover: var(--theme-primary-hover-color) !important;
-	--link-color-active: var(--theme-primary-active-color) !important;
-	--link-color-visited: mediumpurple !important;
+	--in-content-focus-outline-color: var(--neptune-input-outline-color) !important;
+	--focus-outline-color: var(--neptune-input-outline-color) !important;
 	--brand-color-accent: var(--theme-primary-color) !important;
 	--brand-color-accent-hover: var(--theme-primary-hover-color) !important;
 	--brand-color-accent-active: var(--theme-primary-active-color) !important;
@@ -39,9 +35,9 @@
 }
 
 .toggle-button {
-	--toggle-background-color-pressed: var(--neptune-switch-pressed-background) !important;
-	--toggle-background-color-pressed-hover: var(--neptune-switch-pressed-hover-background) !important;
-	--toggle-background-color-pressed-active: var(--neptune-switch-pressed-active-background) !important;
+	--toggle-background-color-pressed: var(--theme-primary-color) !important;
+	--toggle-background-color-pressed-hover: var(--theme-primary-hover-color) !important;
+	--toggle-background-color-pressed-active: var(--theme-primary-active-color) !important;
 	--toggle-dot-background-color-on-pressed: #fff !important;
 }
 
@@ -58,11 +54,18 @@
 		--toolbar-button-background-active: var(--neptune-item-active-background) !important;
 		--toolbar-button-foreground-active: var(--theme-primary-color) !important;
 		--primary-color: var(--theme-primary-color) !important;
+		--link-color: var(--theme-primary-color) !important;
+		--link-color-hover: var(--theme-primary-hover-color) !important;
+		--link-color-active: var(--theme-primary-active-color) !important;
+		--link-color-visited: mediumpurple !important;
 		--panel-border-radius: var(--border-radius-small) !important;
 		--panel-shadow-margin: 15px !important;
 		--panel-border-color: var(--neptune-toolbar-border-color) !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
+		--in-content-primary-button-background:  light-dark(color-mix(in srgb, accentcolor 85%, #939597), color-mix(in srgb, accentcolor 80%, #c3c5c7)) !important;
+		--in-content-primary-button-background-hover: light-dark(color-mix(in srgb, accentcolor 85%, #616365), color-mix(in srgb, accentcolor 80%, #818385)) !important;
+		--in-content-primary-button-background-active: accentcolor !important;
 		text-decoration: inherit !important;
 	}
 
@@ -108,23 +111,8 @@
 		border: none !important;
 	}
 
-	#categories {
-		margin-top: 64px !important;
-
-		> .category {
-			background: none !important;
-			background-image: none !important;
-			margin-inline-start: 18px !important;
-
-			&:hover {
-				color: var(--theme-primary-hover-color) !important;
-			}
-		}
-	}
-
-	.sidebar-footer-link:hover {
-		background: none !important;
-		color: var(--theme-primary-hover-color) !important;
+	#categories > .category {
+		margin-inline-start: 18px !important;
 	}
 
 	.face-sad::before {
@@ -153,25 +141,24 @@
 		border-radius: 8px !important;
 	}
 
-	input:where([type="text"], [type="search"], [type="password"], [type="url"]),
-	textarea {
-		appearance: none;
-		border-style: solid;
-		outline: none;
-	}
-
 	input[type="search"]:not(.search-handoff-button, .search-wrapper input),
 	search-textbox {
-		background-color: var(--neptune-input-bgcolor) !important;
-		padding-block: 4px !important;
+		appearance: none;
+		font: menu;
+		padding-block: 0 !important;
 		min-height: 22px !important;
-		font-size: .8em !important;
-		border: none !important;
 		border-radius: var(--border-radius-small) !important;
+	}
+
+	input:where([type="search"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(:read-only, .search-handoff-button, .search-wrapper input),
+	search-textbox,
+	textarea {
+		background-color: var(--neptune-input-bgcolor) !important;
+		border-color: transparent !important;
 		outline: 16px solid transparent !important;
 
-		&:is(:focus-visible, [focused]) {
-			outline: 4px solid var(--neptune-focused-urlbar-border-color) !important;
+		&:where(:focus-visible, [focused]) {
+			outline: 4px solid var(--neptune-input-outline-color) !important;
 			outline-offset: -2px;
 			transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
 		}
@@ -234,7 +221,7 @@
 		border-radius: 4px;
 
 		&:is(:checked, [checked="true"]) {
-			background-color: var(--neptune-switch-pressed-background) !important;
+			background-color: var(--theme-primary-color) !important;
 			background-image: url("neptune/icons/check.svg") !important;
 			border: none;
 		}
@@ -249,7 +236,7 @@
 		border-radius: 50%;
 
 		&:is(:checked, [selected="true"]) {
-			background-color: var(--neptune-switch-pressed-background) !important;
+			background-color: var(--theme-primary-color) !important;
 			background-image: url("neptune/icons/radio.svg");
 			border: none;
 		}
@@ -367,8 +354,12 @@
 		padding: 0 !important;
 	}
 
+	.search-handoff-button {
+		fill: var(--icon-color) !important;
+	}
+
 	.fake-textbox {
-		color: FieldText !important;
+		color: CaptionText !important;
 	}
 }
 
@@ -898,7 +889,8 @@ div.sponsor,
 }
 
 ::selection {
-	background-color: var(--neptune-content-selection-color)!important;
+	background-color: var(--neptune-content-selection-color) !important;
+	color: CaptionText !important;
 }
 
 .controlBar {
