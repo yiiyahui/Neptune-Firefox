@@ -151,6 +151,7 @@ findbar {
 	--arrowpanel-menuitem-margin-inline: 4px !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
 	--default-focusring: none !important;
+	--urlbarView-action-button-background-color: color-mix(in srgb, var(--urlbarView-hover-background) 75%, transparent) !important;
 	--toolbarbutton-inner-padding: 6px !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
 	--button-background-color: var(--neptune-item-background) !important;
@@ -191,7 +192,6 @@ findbar {
 	--organizer-pane-background: var(--neptune-main-background) !important;
 	--organizer-content-background: var(--neptune-content-background) !important;
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
-	--soundplaying-tab-color: color-mix(in srgb, accentcolor 33%, transparent);
 }
 
 /*---------- Search box ----------*/
@@ -350,10 +350,16 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		&[type=tip] {
-			padding: 0 !important;
+			padding-block: var(--urlbarView-item-block-padding) !important;
 
-			:is(.urlbarView-results[wrap] > & > .urlbarView-button, > .urlbarView-row-inner) {
-				margin: 0 !important;
+			> .urlbarView-row-inner {
+				margin-inline-end: 0 !important;
+			}
+
+			> .urlbarView-button:not(:empty):not(.urlbarView-button-menu) {
+				padding-block: 4px !important;
+				outline: none !important;
+				border-radius: var(--border-radius-small) !important;
 			}
 		}
 
@@ -387,7 +393,14 @@ textarea:not(#select-translations-panel-text-area) {
 			color: var(--button-text-color-primary) !important;
 		}
 	}
-  
+
+	.urlbarView-action-btn {
+		padding-block: 2px !important;
+		border: none !important;
+		outline: none !important;
+		color: var(--button-text-color-primary);
+	}
+
 	.urlbarView-title-separator::before {
 		content: "\2013" !important;
 	}
@@ -397,7 +410,7 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-.urlbarView-button {
+.urlbarView-button:not(.urlbarView-row[type=tip] > .urlbarView-button) {
 	background-color: transparent !important;
 	min-width: 16px !important;
 	min-height: 16px !important;
@@ -408,14 +421,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 	&:is(:hover, [open]) {
 		color: inherit !important;
-	}
-
-	&:not(:empty):not(.urlbarView-button-menu) {
-		color: MenuText !important;
-
-		&:hover {
-			color: var(--icon-color-critical) !important;
-		}
 	}
 }
 
@@ -514,13 +519,15 @@ textarea:not(#select-translations-panel-text-area) {
 	padding-block: 2px !important;
 }
 
-#urlbar-search-mode-indicator-close,
 .sharing-icon,
 #identity-icon,
 #permissions-granted-icon,
 #tracking-protection-icon,
 #tracking-protection-icon-box,
-#blocked-permissions-container>.blocked-permission-icon {
+#blocked-permissions-container>.blocked-permission-icon,
+.urlbarView-action-btn > img,
+#searchmode-switcher-icon,
+#urlbar-search-mode-indicator-close {
 	width: 12px !important;
 	height: 12px !important;
 }
@@ -725,6 +732,10 @@ moz-card {
 	border: none !important;
 }
 
+.content-shortcuts {
+	box-shadow: 0 0 5px var(--neptune-panel-shadow-color);
+}
+
 #tabbrowser-tabbox {
 	outline: none !important;
 	box-shadow: none !important;
@@ -882,6 +893,19 @@ panel {
 	}
 }
 
+#confirmation-hint {
+	--arrowpanel-background: var(--theme-primary-color) !important;
+	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
+
+	#confirmation-hint-checkmark-animation-container[animate] > #confirmation-hint-checkmark-image {
+		fill: var(--button-text-color-primary) !important;
+	}
+
+	#confirmation-hint-message {
+		color: var(--button-text-color-primary);
+	}
+}
+
 .PanelUI-subView toolbarseparator.proton-zap {
 	border-image: unset !important;
 }
@@ -951,12 +975,12 @@ panel {
 }
 
 #downloadsPanel-mainView {
-	min-width: var(--menu-panel-width-wide) !important;
+	min-width: calc(var(--menu-panel-width-wide) + var(--size-item-large)) !important;
 	padding-block: 0 !important;
 }
 
 #downloadsListBox {
-	width: auto !important;
+	width: var(--menu-panel-width-wide) !important;
 
 	> richlistitem {
 		background: none !important;
@@ -970,8 +994,8 @@ panel {
 }
 
 .downloadTypeIcon {
-	width: 24px !important;
-	height: 24px !important;
+	width: 28px !important;
+	height: 28px !important;
 }
 
 .downloadButton {
@@ -982,10 +1006,11 @@ panel {
 
 .downloadProgress {
 	height: 3px !important;
+	margin-inline-end: 6px !important;
 }
 
 #emptyDownloads {
-	padding-block: 1em !important;
+	padding-block: 1.5em !important;
 }
 
 .notificationbox-stack {
