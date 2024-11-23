@@ -217,7 +217,7 @@
 		margin-block: 0 !important;
 		width: 16px;
 		height: 16px;
-		border: 2px solid graytext;
+		border: 2px solid var(--input-border-color);
 		border-radius: 4px;
 
 		&:is(:checked, [checked="true"]) {
@@ -232,7 +232,7 @@
 		appearance: none !important;
 		width: 16px;
 		height: 16px;
-		border: 2px solid graytext;
+		border: 2px solid var(--input-border-color);
 		border-radius: 50%;
 
 		&:is(:checked, [selected="true"]) {

@@ -151,7 +151,6 @@ findbar {
 	--arrowpanel-menuitem-margin-inline: 4px !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
 	--default-focusring: none !important;
-	--urlbarView-action-button-background-color: color-mix(in srgb, var(--urlbarView-hover-background) 75%, transparent) !important;
 	--toolbarbutton-inner-padding: 6px !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
 	--button-background-color: var(--neptune-item-background) !important;
@@ -181,8 +180,10 @@ findbar {
 	--in-content-box-background: var(--neptune-input-bgcolor) !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 	--tabpanel-background-color: var(--neptune-main-background) !important;
+	--sidebar-box-background: var(--neptune-verticaltab-background) !important;
 	--sidebar-background-color: var(--neptune-sidebar-background) !important;
 	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
+	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
 	--urlbarView-hover-background: var(--neptune-urlbarView-hover-background) !important;
 	--urlbarView-highlight-background: var(--neptune-focused-urlbar-highlight-color) !important;
 	--urlbarView-highlight-color: #fff !important;
@@ -219,7 +220,7 @@ textarea:focus-visible {
 }
 
 select:where(:not([size], [multiple], [iconic])),
-input:where(:not(.urlbar-input, .findbar-textbox, [type=radio i], [type=checkbox i], [type=range i])),
+input:where(:not(.urlbar-input, .findbar-textbox, .search-container input, [type=radio i], [type=checkbox i], [type=range i])),
 textarea:not(#select-translations-panel-text-area) {
 	min-height: 22px !important;
 	border: none !important;
@@ -284,12 +285,18 @@ textarea:not(#select-translations-panel-text-area) {
 		border-radius: 7px !important;
 	}
 
-	&:hover > #urlbar-background {
-		background-color: var(--neptune-urlbar-hover-background) !important;
+	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+		&:hover > #urlbar-background {
+			background-color: var(--neptune-urlbar-hover-background) !important;
+		}
 	}
 
-	&[open] > #urlbar-background {
+	&:is([focused], [open]) > #urlbar-background {
 		background-color: var(--neptune-urlbar-focused-background) !important;
+
+		@media (-moz-bool-pref: "sidebar.verticalTabs") {
+			background-color: var(--neptune-verticaltab-background) !important;
+		}
 	}
 }
 
@@ -722,14 +729,64 @@ textarea:not(#select-translations-panel-text-area) {
 
 .sidebar-panel {
 	padding: var(--space-xsmall) !important;
- }
-
-.search-container {
-	margin-top: 3px;
 }
 
 moz-card {
+	background-color: var(--sidebar-box-background) !important;
 	border: none !important;
+	border-radius: 4px !important;
+}
+
+.search-container {
+	width: calc(100% - 8px) !important;
+
+	input {
+		appearance: none;
+		background-color: var(--neptune-input-bgcolor) !important;
+		padding-block: 6px !important;
+		border-radius: var(--border-radius-small) !important;
+		border: none !important;
+	}
+}
+
+#heading-wrapper {
+	padding-inline-start: var(--space-xsmall) !important;
+
+	.chevron-icon {
+		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+
+		details[open] & {
+			background-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+		}
+	}
+}
+
+details > summary {
+	padding-block: 0 !important;
+	border-radius: 4px !important;
+}
+
+#content {
+	padding: 0 !important;
+}
+
+.fxview-tab-row-main {
+	background: none !important;
+}
+
+fieldset #inputs {
+	background-color: var(--sidebar-box-background) !important;
+	color: CaptionText !important;
+	border: none !important;
+}
+
+moz-radio, moz-checkbox {
+	padding-block: var(--space-small) !important;
+	border: none !important;
+}
+
+a {
+	color: CaptionText !important;
 }
 
 .content-shortcuts {
@@ -797,7 +854,7 @@ input[type=checkbox],
 .checkbox-check:not([native]) {
 	appearance: none !important;
 	border-radius: 4px;
-	border: 2px solid graytext;
+	border: 2px solid var(--input-border-color);
 
 	&:is(:checked, [checked="true"]) {
 		background-color: var(--theme-primary-color) !important;
@@ -808,7 +865,7 @@ input[type=checkbox],
 
 input[type=radio] {
 	appearance: none !important;
-	border: 2px solid graytext;
+	border: 2px solid var(--input-border-color);
 	border-radius: 50%;
 
 	&:checked {
@@ -869,11 +926,10 @@ panel {
 		}
 
 		> menuitem[checked="true"] {
-			padding-inline-start: 2px !important;
+			padding-inline-start: 4px !important;
 
 			> .menu-iconic-left {
-				width: 8px !important;
-				margin-inline-end: 6px !important;
+				margin-inline-end: 4px !important;
 			}
 		}
 
@@ -884,7 +940,7 @@ panel {
 
 	menupopup[needsgutter] menu:not([icon], .menu-iconic),
 	menupopup[needsgutter] menuitem:not([checked="true"], [icon], .menuitem-iconic) {
-		padding-inline-start: 16px !important;
+		padding-inline-start: 24px !important;
 	}
 
 	#ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
@@ -1484,6 +1540,15 @@ treechildren::-moz-tree-cell-text(selected) {
 	}
 }
 
+#sidebar-button {
+	list-style-image: url("neptune/icons/sidebars-right.svg") !important;
+
+	&:-moz-locale-dir(ltr):not([positionend]),
+	&:-moz-locale-dir(rtl)[positionend] {
+		list-style-image:  url("neptune/icons/sidebars.svg") !important;
+	}
+}
+
 #back-button {
 	list-style-image: url("neptune/icons/back.svg") !important;
 }
@@ -1518,15 +1583,6 @@ treechildren::-moz-tree-cell-text(selected) {
 	&[hasException] {
 		list-style-image: url("neptune/icons/tracking-protection-disabled.svg") !important;
 	}
-}
-
-#sidebar-button:-moz-locale-dir(ltr):not([positionend]),
-#sidebar-button:-moz-locale-dir(rtl)[positionend] {
-	list-style-image: url("neptune/icons/sidebars.svg") !important;
-}
-
-#sidebar-button {
-	list-style-image: url("neptune/icons/sidebars-right.svg") !important;
 }
 
 .close-icon:not(.findbar-closebutton),
@@ -1593,6 +1649,7 @@ tooltip,
 #fullscreen,
 .control-item::after,
 .scrollbar-topmost,
+#manage-settings,
 #scrollbutton-up,
 #scrollbutton-down,
 #fxa-toolbar-menu-button,

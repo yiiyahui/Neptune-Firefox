@@ -39,6 +39,7 @@
 		--neptune-urlbarView-box-shadow: 0 10px 20px #00000033;
 		--neptune-text-selection-color:color-mix(in srgb, accentcolor 50%, #434547);
 		--neptune-urlbarView-hover-background: color-mix(in srgb, accentcolor 85%, #616365);
+		--neptune-urlbarView-button-background: color-mix(in srgb, accentcolor 65%, #818385);
 		--neptune-focused-urlbar-highlight-color: color-mix(in srgb, accentcolor 80%, #818385);
 
 		/* Tabs */
