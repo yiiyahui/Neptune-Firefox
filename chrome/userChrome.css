@@ -573,7 +573,7 @@ textarea:not(#select-translations-panel-text-area) {
 		.tabbrowser-tab {
 			margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
-			&:not([pinned], [selected]):not(tab-group[collapsed] > &) {
+			&[fadein]:not([pinned], [selected]):not(tab-group[collapsed] > &) {
 				max-width: 150px !important;
 			}
 
@@ -628,7 +628,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 	.tab-label-container {
 		font-size: 12.5px;
-		height: var(--tab-min-height) !important;
+		height: inherit !important;
 	}
 
 	.tab-background {
