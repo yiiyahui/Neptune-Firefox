@@ -20,11 +20,12 @@
 
 		/* Sidebar */
 		--neptune-sidebar-background: var(--lwt-accent-color);
+		--neptune-sidebar-box-background: color-mix(in srgb, currentColor 5%, transparent);
 		--neptune-sidebar-border-color: color-mix(in srgb, currentColor 8%, transparent);
 
 		/* Popups */
 		--neptune-menu-background: #f8f8f8;
-		--neptune-popover-background: #ffffff66;
+		--neptune-popover-background: #ffffff4c;
 		--neptune-popover-separator-color: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-small-shadow: 0 0 1px #00000066;
 		--neptune-menu-shadow: 0 3px 15px #00000033;

@@ -12,7 +12,7 @@
 	background-color: var(--neptune-toolbar-background) !important;
 	border: none !important;
 
-	> *:not(#nav-bar, #titlebar) {
+	> *:not(#nav-bar, .browser-titlebar) {
 		grid-column: 1 / span 2;
 	}
 
@@ -32,12 +32,13 @@
 		}
 	}
 
-	#titlebar {
+	.browser-titlebar {
 		align-self: center;
 		will-change: unset !important;
 	}
 
 	#TabsToolbar {
+		grid-area: 1 / 2 / span 1 / span 1;
 		padding: 12px calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding)) 12px 0 !important;
 	}
 
@@ -145,6 +146,7 @@ findbar {
 	--tab-shadow-max-size: 0 !important;
 	--button-min-height: 22px !important;
 	--border-radius-small: 6px !important;
+	--border-radius-medium: 7px !important;
 	--menu-panel-width-wide: 24em !important;
 	--uei-icon-size: 16px !important;
 	--panel-subview-body-padding-block: 4px !important;
@@ -153,6 +155,8 @@ findbar {
 	--default-focusring: none !important;
 	--toolbarbutton-inner-padding: 6px !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
+	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
 	--button-background-color: var(--neptune-item-background) !important;
 	--button-background-color-hover: var(--neptune-item-hover-background) !important;
 	--button-background-color-active: var(--neptune-item-active-background) !important;
@@ -172,6 +176,7 @@ findbar {
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
 	--link-color: light-dark(#909090, #7c7c7c) !important;
 	--icon-color: light-dark(#383838, #ececec) !important;
+	--menupopup-background-color: light-dark(#f6f6f6, #323232);
 	--tab-loading-fill: var(--theme-primary-color) !important;
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
@@ -180,7 +185,7 @@ findbar {
 	--in-content-box-background: var(--neptune-input-bgcolor) !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 	--tabpanel-background-color: var(--neptune-main-background) !important;
-	--sidebar-box-background: var(--neptune-verticaltab-background) !important;
+	--sidebar-box-background: var(--neptune-sidebar-box-background) !important;
 	--sidebar-background-color: var(--neptune-sidebar-background) !important;
 	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
 	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
@@ -188,7 +193,9 @@ findbar {
 	--urlbarView-highlight-background: var(--neptune-focused-urlbar-highlight-color) !important;
 	--urlbarView-highlight-color: #fff !important;
 	--input-bgcolor: var(--neptune-input-bgcolor) !important;
+	--background-color-box: var(--input-bgcolor) !important;
 	--focus-outline-color: var(--theme-primary-color) !important;
+	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
 	--organizer-pane-background: var(--neptune-main-background) !important;
 	--organizer-content-background: var(--neptune-content-background) !important;
@@ -200,19 +207,23 @@ search-textbox {
 	appearance: none !important;
 	padding-block: 0 !important;
 	background-color: var(--neptune-input-bgcolor) !important;
-	border-radius: 4px;
+	border-radius: var(--border-radius-small);
 }
 
 #urlbar-background,
 #searchbar,
-input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .searchbar-textbox)),
+.findbar-textbox,
+search-textbox,
+input:where([type="search"], [type="text"], [type="url"]),
 textarea {
 	outline: 16px solid transparent !important;
 }
 
 #urlbar[open] > #urlbar-background,
 #searchbar:focus-within,
-input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .searchbar-textbox)):focus-visible,
+.findbar-textbox:focus,
+search-textbox[focused],
+input:where([type="search"], [type="text"], [type="url"]):focus-visible,
 textarea:focus-visible {
 	outline: 4px solid var(--neptune-input-outline-color) !important;
 	outline-offset: -2px;
@@ -220,18 +231,18 @@ textarea:focus-visible {
 }
 
 select:where(:not([size], [multiple], [iconic])),
-input:where(:not(.urlbar-input, .findbar-textbox, .search-container input, [type=radio i], [type=checkbox i], [type=range i])),
+input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .findbar-textbox)),
 textarea:not(#select-translations-panel-text-area) {
 	min-height: 22px !important;
 	border: none !important;
-	border-radius: 4px !important;
+	border-radius: var(--border-radius-small) !important;
 	padding-block: 0 !important;
 	font: menu !important;
 }
 
 *::selection {
 	background-color: var(--neptune-text-selection-color) !important;
-	color: CaptionText !important;
+	color: var(--button-text-color-primary) !important;
 }
 
 /*---------- Urlbar ----------*/
@@ -263,7 +274,7 @@ textarea:not(#select-translations-panel-text-area) {
 #urlbar-background {
 	background-color: var(--neptune-urlbar-background) !important;
 	border: none !important;
-	border-radius: 7px !important;
+	border-radius: var(--border-radius-medium) !important;
 	box-shadow: none !important;
 	transition: background-color .2s ease;
 
@@ -274,15 +285,19 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #urlbar {
-	height: var(--urlbar-min-height) !important;
-	width: 100% !important;
-	left: 0 !important;
+	height: var(--urlbar-height) !important;
+	width: var(--urlbar-width) !important;
+	margin: 0 !important;
 	font-size: 12.5px !important;
 
 	> .urlbar-input-container {
 		padding: 0 !important;
 		border: none !important;
-		border-radius: 7px !important;
+		border-radius: var(--border-radius-medium) !important;
+
+		> #urlbar-search-mode-indicator {
+			font-size: 10.5px;
+		}
 	}
 
 	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
@@ -304,7 +319,7 @@ textarea:not(#select-translations-panel-text-area) {
 	width: calc(100% + 16px) !important;
 	margin: 4px 0 0 -8px !important;
 	border-radius: 12px;
-	background: light-dark(#f2f2f2, #323232);
+	background-color: var(--menupopup-background-color);
 	color: MenuText;
 	box-shadow: var(--neptune-small-shadow), var(--neptune-panel-shadow), var(--neptune-urlbarView-box-shadow) !important;
 
@@ -386,18 +401,24 @@ textarea:not(#select-translations-panel-text-area) {
 			> .urlbarView-no-wrap > .urlbarView-favicon {
 				height: 16px !important;
 				min-width: 16px !important;
-				  
+
 				.urlbarView-row:hover & {
-					color: var(--urlbarView-highlight-color)!important;
+					color: var(--urlbarView-highlight-color) !important;
 				}
 			}
 		}
 
 		&[has-action]:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
-			padding-block: 1px !important;
-			margin-inline-end: 6px;
+			padding: 1px 6px !important;
+			margin-block: auto !important;
+			border: none !important;
+			background-image: none !important;
 			background-color: var(--theme-primary-color) !important;
 			color: var(--button-text-color-primary) !important;
+
+			&.urlbarView-userContext {
+				background-color: var(--identity-tab-color) !important;
+			}
 		}
 	}
 
@@ -442,9 +463,9 @@ textarea:not(#select-translations-panel-text-area) {
 
 #urlbar .searchbar-engine-one-off-item {
 	margin-inline: 4px !important;
-	border-radius: 7px !important;
+	border-radius: var(--border-radius-medium) !important;
 
-	&:is(:not([selected]):hover,[selected]) {
+	&:is(:not([selected]):hover, [selected]) {
 		background-color: var(--neptune-item-active-background) !important;
 	}
 }
@@ -547,11 +568,12 @@ textarea:not(#select-translations-panel-text-area) {
 
 	&[orient="horizontal"] {
 		--tab-min-width: 36px !important;
+		min-height: var(--tab-min-height) !important;
 
 		.tabbrowser-tab {
 			margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
-			&[fadein]:not([pinned]) {
+			&:not([pinned], [selected]):not(tab-group[collapsed] > &) {
 				max-width: 150px !important;
 			}
 
@@ -577,9 +599,9 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 		}
 
-		#tabs-newtab-button, #vertical-tabs-newtab-button {
-			margin-inline: auto !important;
-			border-radius: 7px !important;
+		#tabs-newtab-button {
+			margin: auto !important;
+			border-radius: var(--border-radius-medium) !important;
 
 			> .toolbarbutton-text {
 				display: none;
@@ -595,7 +617,6 @@ textarea:not(#select-translations-panel-text-area) {
 .tabbrowser-tab {
 	background-image: none !important;
 	padding: 0 !important;
-	border-radius: 7px !important;
 
 	#tabbrowser-tabs[movingtab] > #tabbrowser-arrowscrollbox > &[fadein] {
 		transition: .2s linear !important;
@@ -611,9 +632,9 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 
 	.tab-background {
-		border-radius: 7px !important;
 		margin-block: 0 !important;
 		outline: none !important;
+		border-radius: var(--border-radius-medium) !important;
 		background-color: transparent !important;
 		box-shadow: none !important;
 		transition: background-color .2s ease;
@@ -656,11 +677,10 @@ textarea:not(#select-translations-panel-text-area) {
 .tab-icon-overlay:not([crashed]) {
 	&:is([soundplaying], [muted], [activemedia-blocked]) {
 		background-color: transparent !important;
-		border: none !important;
+		fill: currentColor !important;
 
 		&:not([indicator-replaces-favicon]) {
 			top: -4px !important;
-			inset-inline-end: -8px !important;
 		}
 	}
 
@@ -694,7 +714,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .tab-preview-text-container {
-	padding-inline: var(--space-large) !important;
+	padding: var(--space-medium) !important;
 	order: 1;
 }
 
@@ -706,10 +726,6 @@ textarea:not(#select-translations-panel-text-area) {
 #sidebar {
 	box-shadow: none !important;
 	border: none !important;
-}
-
-.actions-list {
-	align-items: center !important;
 }
 
 #sidebar-header {
@@ -728,29 +744,64 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .sidebar-panel {
-	padding: var(--space-xsmall) !important;
+	padding: 0 var(--space-xsmall) !important;
+
+	moz-card {
+		background-color: var(--sidebar-box-background) !important;
+		border: none !important;
+	}
 }
 
-moz-card {
-	background-color: var(--sidebar-box-background) !important;
-	border: none !important;
-	border-radius: 4px !important;
+.sidebar-panel-header {
+	margin-block-end: var(--space-medium);
+
+	h4 {
+		margin-block: 0 !important;
+	}
+
+	.header-close-button {
+		scale: 0.8;
+	}
 }
 
 .search-container {
-	width: calc(100% - 8px) !important;
+	background-color: var(--input-bgcolor) !important;
+	border-radius: var(--border-radius-small) !important;
+
+	.search-icon {
+		background-size: 12px !important;
+		left: var(--space-small) !important;
+		width: 12px !important;
+		height: 12px !important;
+	}
 
 	input {
-		appearance: none;
-		background-color: var(--neptune-input-bgcolor) !important;
-		padding-block: 6px !important;
-		border-radius: var(--border-radius-small) !important;
-		border: none !important;
+		padding-inline-start: var(--space-xxlarge) !important;
+	}
+
+	.clear-icon {
+		background-image: url(resource://content-accessible/searchfield-cancel.svg) !important;
+		background-size: 12px !important;
+		padding: 0 !important;
+	}
+}
+
+.options-container .menu-button {
+	height: 0 !important;
+	scale: 0.8;
+}
+
+.actions-list {
+	align-items: center !important;
+
+	> moz-button:not(.tools-overflow) {
+		--button-outer-padding-block: var(--space-xsmall) !important;
 	}
 }
 
 #heading-wrapper {
 	padding-inline-start: var(--space-xsmall) !important;
+	gap: var(--space-xsmall) !important;
 
 	.chevron-icon {
 		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
@@ -763,7 +814,6 @@ moz-card {
 
 details > summary {
 	padding-block: 0 !important;
-	border-radius: 4px !important;
 }
 
 #content {
@@ -772,6 +822,7 @@ details > summary {
 
 .fxview-tab-row-main {
 	background: none !important;
+	gap: var(--space-small) !important;
 }
 
 fieldset #inputs {
@@ -782,7 +833,7 @@ fieldset #inputs {
 
 moz-radio, moz-checkbox {
 	padding-block: var(--space-small) !important;
-	border: none !important;
+	border-color: var(--neptune-sidebar-border-color) !important;
 }
 
 a {
@@ -790,6 +841,7 @@ a {
 }
 
 .content-shortcuts {
+	fill: var(--color-accent-primary) !important;
 	box-shadow: 0 0 5px var(--neptune-panel-shadow-color);
 }
 
@@ -807,7 +859,7 @@ toolbar .toolbarbutton-1 {
 	> .toolbarbutton-text,
 	> .toolbarbutton-badge-stack {
 		outline: none !important;
-		border-radius: 7px !important;
+		border-radius: var(--border-radius-medium) !important;
 		transition: background-color .2s ease;
 	}
 
@@ -879,7 +931,7 @@ input[type=radio] {
 	--toggle-background-color-pressed: var(--theme-primary-color) !important;
 	--toggle-background-color-pressed-hover: var(--theme-primary-hover-color) !important;
 	--toggle-background-color-pressed-active: var(--neptune-switch-pressed-active-background) !important;
-	--toggle-dot-background-color-on-pressed: var(--theme-primary-active-color) !important;
+	--toggle-dot-background-color-on-pressed: var(--button-text-color-primary) !important;
 }
 
 /*---------- Popups ----------*/
@@ -909,7 +961,7 @@ panel {
 
 @media not (-moz-platform: macos) {
 	menupopup {
-		--panel-background: light-dark(#f8f8f8, #333) !important;
+		--panel-background: var(--menupopup-background-color) !important;
 		--content-select-background-image: none !important;
 
 		>menu,
@@ -926,10 +978,10 @@ panel {
 		}
 
 		> menuitem[checked="true"] {
-			padding-inline-start: 4px !important;
+			padding-inline-start: 2px !important;
 
 			> .menu-iconic-left {
-				margin-inline-end: 4px !important;
+				margin-inline-end: 2px !important;
 			}
 		}
 
@@ -940,7 +992,7 @@ panel {
 
 	menupopup[needsgutter] menu:not([icon], .menu-iconic),
 	menupopup[needsgutter] menuitem:not([checked="true"], [icon], .menuitem-iconic) {
-		padding-inline-start: 24px !important;
+		padding-inline-start: 20px !important;
 	}
 
 	#ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
@@ -1317,7 +1369,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 .pointerlockfswarning {
 	background: #00000099 !important;
-	padding-block: 8px !important;
+	padding-block: var(--space-small) !important;
 	border: none !important;
 	box-shadow: none !important;
 
@@ -1334,12 +1386,11 @@ treechildren::-moz-tree-cell-text(selected) {
 
 /*---------- Dialogs ----------*/
 #window-modal-dialog {
-	top: 8em;
+	--chrome-offset: 15vh !important;
 }
 
-.dialogOverlay,
 #titleContainer {
-	justify-content: center;
+	margin-inline: auto !important;
 }
 
 .dialogOverlay[topmost="true"],
@@ -1545,7 +1596,24 @@ treechildren::-moz-tree-cell-text(selected) {
 
 	&:-moz-locale-dir(ltr):not([positionend]),
 	&:-moz-locale-dir(rtl)[positionend] {
-		list-style-image:  url("neptune/icons/sidebars.svg") !important;
+		list-style-image: url("neptune/icons/sidebars.svg") !important;
+	}
+
+	@media (-moz-bool-pref: "sidebar.revamp") {
+		list-style-image: url("neptune/icons/sidebar-collapsed-right.svg") !important;
+
+		&[expanded] {
+			list-style-image: url("neptune/icons/sidebars-right.svg") !important;
+		}
+
+		&:-moz-locale-dir(ltr):not([positionend]),
+		&:-moz-locale-dir(rtl)[positionend] {
+			list-style-image: url("neptune/icons/sidebar-collapsed.svg") !important;
+
+			&[expanded] {
+				list-style-image: url("neptune/icons/sidebars.svg") !important;
+			}
+		}
 	}
 }
 
@@ -1655,13 +1723,14 @@ tooltip,
 #fxa-toolbar-menu-button,
 #identity-icon-label,
 #blocked-permissions-container,
-#private-browsing-indicator-with-label,
+.private-browsing-indicator-with-label,
 .urlbar-go-button,
 .urlbarView-type-icon,
 .urlbarView-dynamic-onboardTabToSearch-description,
 .tab-secondary-label,
 .unified-extensions-item-menu-button.subviewbutton,
 .translations-panel-settings-gear-icon,
+.fxview-tab-row-button.delete-button,
 #translations-button-locale,
 #downloadsFooter,
 #fullscreen-exit-button,
@@ -1669,7 +1738,6 @@ tooltip,
 #forward-button[disabled],
 #statuspanel:not([type=overLink]),
 .customization-checkbox,
-.textbox-search-sign,
 .findbar-container > checkbox,
 #appMenu-fullscreen-button2,
 .unified-extensions-item-message,
@@ -1685,8 +1753,8 @@ tooltip,
 #tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
 #tabbrowser-tabs[orient="vertical"][overflow]::after,
+.tab-group-label-container::after,
 .titlebar-spacer,
-.private-browsing-indicator,
 #toolbar-menubar,
 #urlbar .search-one-offs,
 #tracking-protection-icon-container {

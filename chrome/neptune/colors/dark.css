@@ -20,6 +20,7 @@
 
 		/* Sidebar */
 		--neptune-sidebar-background: var(--lwt-accent-color);
+		--neptune-sidebar-box-background: color-mix(in srgb, currentColor 7%, transparent);
 		--neptune-sidebar-border-color: color-mix(in srgb, currentColor 10%, transparent);
 
 		/* Popups */
