@@ -112,8 +112,10 @@
 		border: none !important;
 	}
 
-	#categories > .category {
-		margin-inline-start: 18px !important;
+	*#categories > *.category {
+		background-image: none !important;
+		padding-inline-start: 0 !important;
+		margin-inline-start: 28px !important;
 	}
 
 	.face-sad::before {
@@ -182,7 +184,7 @@
 		box-shadow: none !important;
 
 		&:hover {
-			box-shadow: 0 0 2px var(--neptune-panel-shadow-color) !important;
+			box-shadow: 0 0 2px var(--neptune-menu-shadow-color) !important;
 		}
 	}
 
@@ -292,7 +294,7 @@
 		backdrop-filter: blur(33px);
 		background-size: 24px !important;
 		border: none !important;
-		box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
+		box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
 		border-radius: 12px !important;
 	}
 
@@ -408,7 +410,7 @@
 			width: 64px !important;
 			background-color: var(--neptune-content-background) !important;
 			border-radius: 12px !important;
-			box-shadow: 0 0 10px var(--neptune-panel-shadow-color) !important;
+			box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
 
 			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
 				width: 100% !important;
@@ -542,6 +544,7 @@
 		border-radius: 12px !important;
 		transform: translateY(100%) !important;
 		background-color: var(--neptune-popover-background) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
 		backdrop-filter: blur(33px);
 	}
 
@@ -756,7 +759,7 @@
 			height: 14px;
 			border-radius: 2px;
 			border-color: var(--neptune-toolbar-border-color);
-			box-shadow: 0 0 3px var(--neptune-panel-shadow-color);
+			box-shadow: 0 0 3px var(--neptune-menu-shadow-color);
 		}
 
 		&::-moz-range-progress {

@@ -9,7 +9,7 @@
 
 		/* Toolbars */
 		--neptune-toolbar-background: var(--lwt-accent-color);
-		--neptune-toolbar-border-color: color-mix(in srgb, currentColor 18%, transparent);
+		--neptune-toolbar-border-color: color-mix(in srgb, currentColor 20%, transparent);
 		--neptune-input-bgcolor: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-input-outline-color: color-mix(in srgb, accentcolor 40%, white);
 		--neptune-slider-color: #fff;
@@ -25,19 +25,19 @@
 
 		/* Popups */
 		--neptune-menu-background: #f8f8f8;
-		--neptune-popover-background: #ffffff4c;
+		--neptune-popover-background: #ffffff66;
 		--neptune-popover-separator-color: color-mix(in srgb, currentColor 12%, transparent);
-		--neptune-small-shadow: 0 0 1px #00000066;
-		--neptune-menu-shadow: 0 3px 15px #00000033;
-		--neptune-panel-shadow: 0 1px 5px #00000009, 0 5px 10px #0000000d;
-		--neptune-panel-shadow-color: #00000026;
+		--neptune-small-shadow: 0 0 1px #0000004c;
+		--neptune-menu-shadow: 0 1px 8px #00000019, 0 3px 15px #00000016, 0 8px 20px #00000009, 0 3px 22px #00000016;
+		--neptune-menu-shadow-color: #00000026;
+		--neptune-panel-shadow: 0 1px 8px #00000019, 0 3px 15px #00000016, 0 8px 20px #00000009;
+		--neptune-panel-shadow-color: #00000016;
 
 		/* Urlbar */
 		--neptune-urlbar-background: color-mix(in srgb, currentColor 18%, transparent);
 		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-urlbar-focused-background: color-mix(in srgb, currentColor 20%, transparent);
 		--neptune-urlbarView-background: #f2f2f2;
-		--neptune-urlbarView-box-shadow: 0 10px 20px #00000026;
 		--neptune-text-selection-color: color-mix(in srgb, accentcolor 60%, white);
 		--neptune-urlbarView-hover-background: color-mix(in srgb, accentcolor 85%, #939597);
 		--neptune-urlbarView-button-background: color-mix(in srgb, accentcolor 70%, #c3c5c7);
@@ -48,8 +48,10 @@
 		--neptune-tab-hover-background: color-mix(in srgb, currentColor 15%, transparent);
 		--neptune-tab-active-background: color-mix(in srgb, currentColor 18%, transparent);
 		--neptune-tab-selected-background: color-mix(in srgb, accentcolor 50%, transparent);
-		--neptune-verticaltab-background: color-mix(in srgb, currentColor 3%, transparent);
+		--neptune-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);
+		--neptune-verticaltab-pinned-background: color-mix(in srgb, currentColor 6%, transparent);
 		--neptune-verticaltab-hover-background: color-mix(in srgb, currentColor 8%, transparent);
-		--neptune-soundplaying-tab-background: color-mix(in srgb, accentcolor 30%, transparent);
+		--neptune-tab-soundplaying-background: color-mix(in srgb, accentcolor 30%, transparent);
+		--neptune-verticaltab-soundplaying-background: color-mix(in srgb, accentcolor 15%, transparent);
 	}
 }
