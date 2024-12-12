@@ -238,6 +238,13 @@ textarea:not(#select-translations-panel-text-area) {
 	font: menu !important;
 }
 
+.textbox-search-icon,
+.textbox-search-sign,
+.textbox-search-clear {
+	width: 12px !important;
+	margin-inline: var(--space-xsmall) !important;
+}
+
 *::selection {
 	background-color: var(--neptune-text-selection-color) !important;
 	color: var(--button-text-color-primary) !important;
@@ -583,7 +590,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 	&[orient="vertical"] {
 		grid-gap: unset !important;
-		margin-block-end: calc(4 * var(--tab-block-margin)) !important;
 
 		.tabbrowser-tab {
 			margin-block-end: calc(4 * var(--tab-block-margin)) !important;
@@ -643,6 +649,18 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: var(--neptune-tab-hover-background) !important;
 			}
 
+			#tabbrowser-tabs[orient="vertical"] & {
+				background-color: var(--neptune-verticaltab-background) !important;
+
+				.tabbrowser-tab[pinned] & {
+					background-color: var(--neptune-verticaltab-pinned-background) !important;
+				}
+
+				.tabbrowser-tab:hover & {
+					background-color: var(--neptune-verticaltab-hover-background) !important;
+				}
+			}
+
 			.tabbrowser-tab[usercontextid] & {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 15%, transparent) !important;
 
@@ -656,18 +674,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 				#tabbrowser-tabs[orient="vertical"] & {
 					background-color: var(--neptune-verticaltab-soundplaying-background) !important;
-				}
-			}
-
-			#tabbrowser-tabs[orient="vertical"] & {
-				background-color: var(--neptune-verticaltab-background) !important;
-
-				.tabbrowser-tab[pinned] & {
-					background-color: var(--neptune-verticaltab-pinned-background) !important;
-				}
-
-				.tabbrowser-tab:hover & {
-					background-color: var(--neptune-verticaltab-hover-background) !important;
 				}
 			}
 		}
@@ -752,6 +758,10 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
+.actions-list > moz-button:not(.tools-overflow) {
+	--button-outer-padding-block: var(--space-xsmall) !important;
+}
+
 .sidebar-panel {
 	padding: 0 var(--space-xsmall) !important;
 
@@ -783,33 +793,24 @@ textarea:not(#select-translations-panel-text-area) {
 
 	.search-icon {
 		background-size: 12px !important;
-		left: var(--space-small) !important;
-		width: 12px !important;
-		height: 12px !important;
+		left: var(--space-xsmall) !important;
 	}
 
 	input {
-		padding-inline-start: var(--space-xxlarge) !important;
+		padding-inline: var(--space-xxlarge) !important;
 	}
 
 	.clear-icon {
 		background-image: url(resource://content-accessible/searchfield-cancel.svg) !important;
 		background-size: 12px !important;
-		padding: 0 !important;
+		right: var(--space-xsmall) !important;
+		cursor: default !important;
 	}
 }
 
 .options-container .menu-button {
 	height: 0 !important;
 	scale: 0.8;
-}
-
-.actions-list > moz-button:not(.tools-overflow) {
-	--button-outer-padding-block: var(--space-xsmall) !important;
-
-    &:first-of-type {
-		--button-outer-padding-block-start: 0 !important;
-    }
 }
 
 #heading-wrapper {
@@ -828,11 +829,13 @@ textarea:not(#select-translations-panel-text-area) {
 #moz-card-details summary,
 #moz-card-details #content {
 	padding: 0 !important;
+	cursor: default !important;
 }
 
 .fxview-tab-row-main {
 	background: none !important;
 	gap: var(--space-small) !important;
+	cursor: default !important;
 }
 
 fieldset #inputs,
@@ -888,7 +891,7 @@ toolbar .toolbaritem-combined-buttons {
 	margin: 0 !important;
 
 	.toolbarbutton-badge {
-		background-color: var(--warning-icon-bgcolor) !important;
+		background-color: var(--color-accent-primary) !important;
 		border-radius: 50% !important;
 		min-width: 14px !important;
 		line-height: 14px !important;
@@ -1130,7 +1133,7 @@ panel {
 
 .downloadProgress {
 	height: 3px !important;
-	margin-inline-end: 6px !important;
+	margin-inline: 0 !important;
 }
 
 #emptyDownloads {
@@ -1770,7 +1773,6 @@ tooltip,
 .tab-group-label-container::after,
 .titlebar-spacer,
 #toolbar-menubar,
-#urlbar .search-one-offs,
-#tracking-protection-icon-container {
+#urlbar .search-one-offs {
 	display: none !important;
 }

@@ -95,7 +95,7 @@
 		box-shadow: var(--neptune-menu-shadow) !important;
 	}
 
-	.dialogOverlay[topmost="true"] ,dialog::backdrop {
+	.dialogOverlay[topmost="true"], dialog::backdrop {
 		background-color: transparent !important;
 		backdrop-filter: blur(8px);
 	}
@@ -126,6 +126,10 @@
 	.face-smile::before {
 		content: "\2764" !important;
 		font-size: 1em !important;
+	}
+
+	.fxaProfileImage {
+		border: none !important;
 	}
 
 	.featureGate {
@@ -165,6 +169,12 @@
 			outline-offset: -2px;
 			transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
 		}
+	}
+
+	.textbox-search-icon,
+	.textbox-search-sign,
+	.textbox-search-clear {
+		width: 12px !important;
 	}
 
 	.search-tooltip {
@@ -245,8 +255,6 @@
 		}
 	}
 
-	.textbox-search-sign,
-	.textbox-search-icon,
 	.permission-icon,
 	.category-icon,
 	.dialogClose,
@@ -786,22 +794,22 @@
 
 @-moz-document url-prefix(about:firefoxview) {
 	.search-container {
-		margin-block: auto !important;
+		margin-inline-start: auto;
 
 		.search-icon {
-			display: none;
+			background-size: 12px !important;
+			width: var(--space-small) !important;
+			height: var(--space-small) !important;
+		}
+
+		input {
+			padding-inline: var(--space-xlarge) !important;
 		}
 	}
 
-	.search-container input {
-		background-color: var(--neptune-input-bgcolor) !important;
-		padding-inline-start: 8px !important;
-	}
-
-	.sticky-container.bottom-fade {
-		background: transparent !important;
-		backdrop-filter: blur(8px);
+	.sticky-container {
 		flex-direction: row !important;
+		align-items: center;
 	}
 
 	.card-container {
