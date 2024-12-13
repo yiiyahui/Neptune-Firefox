@@ -243,6 +243,7 @@ textarea:not(#select-translations-panel-text-area) {
 .textbox-search-clear {
 	width: 12px !important;
 	margin-inline: var(--space-xsmall) !important;
+	transform: scaleX(-1);
 }
 
 *::selection {
@@ -577,6 +578,10 @@ textarea:not(#select-translations-panel-text-area) {
 		.tabbrowser-tab {
 			margin-inline: var(--tab-block-margin) !important;
 
+			tab-group[collapsed] > & {
+				margin: revert !important;
+			}
+
 			&[fadein]:not([pinned], [selected]):not(tab-group[collapsed] > &) {
 				max-width: 150px !important;
 			}
@@ -604,6 +609,60 @@ textarea:not(#select-translations-panel-text-area) {
 
 			#tabbrowser-tabs[expanded] & {
 				width: inherit !important;
+			}
+		}
+	}
+
+	tab-group {
+		border: none !important;
+
+		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
+			> .tab-group-label-container {
+				height: inherit !important;
+			}
+
+			> .tabbrowser-tab {
+				margin-inline: auto !important;
+			}
+		}
+
+		.tab-group-label {
+			background-color: var(--tab-group-color) !important;
+			padding-inline: var(--tab-inline-padding) !important;
+			border: none !important;
+			border-radius: var(--border-radius-medium) !important;
+			min-height: var(--tab-min-height) !important;
+			line-height: var(--tab-min-height) !important;
+			transition: background-color .3s ease;
+
+			tab-group[collapsed] > .tab-group-label-container > & {
+				background-color: light-dark(
+					color-mix(in srgb, var(--tab-group-color) 25%, transparent),
+					color-mix(in srgb, var(--tab-group-color) 35%, transparent)) !important;
+			}
+
+			tab-group:not([collapsed]) > .tab-group-label-container > & {
+				color: var(--tab-group-color-pale) !important;
+			}
+
+			#tabbrowser-tabs[orient="vertical"] & {
+				padding-inline: 0 !important;
+				margin-block-end: calc(4 * var(--tab-block-margin)) !important;
+			}
+
+			#tabbrowser-tabs[orient="vertical"]:not([expanded]) &:first-letter {
+				line-height: initial !important;
+			}
+		}
+
+		.tab-group-line {
+			background-color: color-mix(in srgb, var(--tab-group-color) 15%, transparent) !important;
+			height: var(--tab-min-height) !important;
+			margin: 0 !important;
+			border-radius: var(--border-radius-medium) !important;
+
+			#tabbrowser-tabs[orient="vertical"] & {
+				display: none;
 			}
 		}
 	}
@@ -794,6 +853,7 @@ textarea:not(#select-translations-panel-text-area) {
 	.search-icon {
 		background-size: 12px !important;
 		left: var(--space-xsmall) !important;
+		transform: scaleX(-1);
 	}
 
 	input {

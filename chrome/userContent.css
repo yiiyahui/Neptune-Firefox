@@ -171,12 +171,6 @@
 		}
 	}
 
-	.textbox-search-icon,
-	.textbox-search-sign,
-	.textbox-search-clear {
-		width: 12px !important;
-	}
-
 	.search-tooltip {
 		background-color: var(--theme-primary-color) !important;
 		border: none !important;
@@ -253,6 +247,11 @@
 			background-image: url("neptune/icons/radio.svg");
 			border: none;
 		}
+	}
+
+	.textbox-search-icon,
+	.textbox-search-sign {
+		transform: scaleX(-1);
 	}
 
 	.permission-icon,
@@ -798,8 +797,9 @@
 
 		.search-icon {
 			background-size: 12px !important;
-			width: var(--space-small) !important;
-			height: var(--space-small) !important;
+			padding: 0 !important;
+			width: 12px !important;
+			height: 12px !important;
 		}
 
 		input {
