@@ -453,6 +453,15 @@
 		> ul > li > a,
 		> ul > li > button {
 			font: menu !important;
+
+			&:is(:focus, :hover) {
+				background: var(--theme-primary-hover-color) !important;
+				color: #fff !important;
+			}
+
+			&:active {
+				background: var(--theme-primary-active-color) !important;
+			}
 		}
 
 		> ul > li.separator {
@@ -793,7 +802,7 @@
 
 @-moz-document url-prefix(about:firefoxview) {
 	.search-container {
-		margin-inline-start: auto;
+		margin-inline-start: var(--space-medium);
 
 		.search-icon {
 			background-size: 12px !important;
@@ -805,11 +814,38 @@
 		input {
 			padding-inline: var(--space-xlarge) !important;
 		}
+
+		.clear-icon {
+		  background-image: url(resource://content-accessible/searchfield-cancel.svg) !important;
+		  background-size: 12px !important;
+		}
 	}
 
 	.sticky-container {
 		flex-direction: row !important;
 		align-items: center;
+		justify-content: space-between;
+
+		.open-tabs-options, .open-tabs-sort-wrapper,
+		.history-sort-options:not([hidden]) {
+			gap: var(--space-small) !important;
+
+			> :first-child {
+				order: 1;
+			}
+		}
+
+		.history-sort-option, .open-tabs-sort-option {
+			gap: 0 !important;
+		}
+
+		button.small-button {
+			padding-block: 0 !important;
+			min-height: 22px !important;
+			border-radius: var(--border-radius-small) !important;
+			font: menu !important;
+			order: -1;
+		}
 	}
 
 	.card-container {

@@ -97,20 +97,21 @@ findbar {
 .findbar-textbox {
 	width: 12em !important;
 	padding: 0 4px !important;
-	border: 1px solid ThreeDShadow !important;
 	background-color: transparent !important;
+	border-color: var(--border-color-deemphasized) !important;
 }
 
 .findbar-find-next,
 .findbar-find-previous {
 	padding: 0 2px !important;
-	border: 1px solid ThreeDShadow;
+	border: 1px solid var(--border-color-deemphasized);
 }
 
 .findbar-find-next {
 	list-style-image: url("neptune/icons/arrow-right.svg") !important;
 	margin-left: -1px !important;
 	border-radius: 0 4px 4px 0 !important;
+	border-left: none;
 }
 
 .findbar-find-previous {
@@ -129,7 +130,7 @@ findbar {
 	padding: 0 !important;
 	margin-block: auto !important;
 	list-style-image: url("neptune/icons/done.svg") !important;
-	border: 1px solid ThreeDShadow;
+	border: 1px solid var(--border-color-deemphasized);
 
 	@media (-moz-platform: macos) {
 		order: 1;
@@ -193,6 +194,7 @@ findbar {
 	--input-bgcolor: var(--neptune-input-bgcolor) !important;
 	--background-color-box: var(--input-bgcolor) !important;
 	--focus-outline-color: var(--theme-primary-color) !important;
+	--arrowpanel-background: var(--neptune-menu-background) !important;
 	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
 	--organizer-pane-background: var(--neptune-main-background) !important;
@@ -322,6 +324,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .urlbarView {
+	color-scheme: light dark;
 	width: calc(100% + 16px) !important;
 	margin: 4px 0 0 -8px !important;
 	border-radius: 12px;
@@ -426,6 +429,10 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: var(--identity-tab-color) !important;
 			}
 		}
+	}
+
+	[label]::before {
+		color: MenuText !important;
 	}
 
 	.urlbarView-action-btn {
@@ -582,13 +589,17 @@ textarea:not(#select-translations-panel-text-area) {
 				margin: revert !important;
 			}
 
-			&[fadein]:not([pinned], [selected]):not(tab-group[collapsed] > &) {
+			&[fadein]:not([pinned], [selected], [multiselected]):not(tab-group[collapsed] > &) {
 				max-width: 150px !important;
 			}
 
 			&[selected]:not([pinned]) {
 				min-width: 100px !important;
 				max-width: 170px !important;
+			}
+
+			&[multiselected]:not([pinned]):not(tab-group[collapsed] > &) {
+				max-width: 100px !important;
 			}
 		}
 	}
@@ -656,12 +667,29 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		.tab-group-line {
-			background-color: color-mix(in srgb, var(--tab-group-color) 15%, transparent) !important;
+			background-color: light-dark(
+				color-mix(in srgb, var(--tab-group-color) 15%, transparent),
+				color-mix(in srgb, var(--tab-group-color) 25%, transparent)) !important;
 			height: var(--tab-min-height) !important;
 			margin: 0 !important;
 			border-radius: var(--border-radius-medium) !important;
+			transition: background-color .3s ease;
 
-			#tabbrowser-tabs[orient="vertical"] & {
+			.tab-background:not(#tabbrowser-tabs[orient="vertical"] .tab-background, [multiselected]):has(&) {
+				background-color: revert !important;
+			}
+
+			.tab-background[selected]:has(&) & {
+				background-color: light-dark(
+					color-mix(in srgb, var(--tab-group-color) 25%, transparent),
+					color-mix(in srgb, var(--tab-group-color) 35%, transparent)) !important;
+			}
+
+			.tab-background[multiselected]:has(&) & {
+				background-color: transparent !important;
+			}
+
+			#tabbrowser-tabs[orient="vertical"][expanded] & {
 				display: none;
 			}
 		}
@@ -696,8 +724,8 @@ textarea:not(#select-translations-panel-text-area) {
 		&[selected] {
 			background-color: var(--neptune-tab-active-background) !important;
 
-			.tabbrowser-tab[usercontextid] & {
-				background-color: color-mix(in srgb, var(--identity-tab-color) 30%, transparent) !important;
+			.tabbrowser-tab[usercontextid] &:not([multiselected]) {
+				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
 			}
 		}
 
@@ -739,6 +767,11 @@ textarea:not(#select-translations-panel-text-area) {
 
 		&[multiselected] {
 			background-color: var(--neptune-tab-selected-background) !important;
+			background-image: linear-gradient(90deg, transparent 0%,
+				var(--neptune-content-selection-color) 25%, transparent 50%,
+				var(--neptune-content-selection-color) 75%, transparent 100%);
+			background-size: 200% 100%;
+			animation: downloadProgressSlideX 2s linear infinite;
 		}
 	}
 }
@@ -787,6 +820,14 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
+.tab-group-editor-panel {
+	--panel-padding: var(--space-medium) !important;
+
+	toolbarseparator {
+		margin-block: var(--space-small) !important;
+	}
+}
+
 .tab-preview-text-container {
 	padding: var(--space-medium) !important;
 	order: 1;
@@ -804,7 +845,11 @@ textarea:not(#select-translations-panel-text-area) {
 
 #sidebar-header {
 	border: none !important;
-	font: menu !important;
+
+	#sidebar-switcher-target { 
+		padding-block: 0 !important;
+		border-radius: var(--border-radius-small) !important;
+	}
 }
 
 #viewButton {
@@ -827,6 +872,7 @@ textarea:not(#select-translations-panel-text-area) {
 	moz-card {
 		background-color: var(--sidebar-box-background) !important;
 		border: none !important;
+		border-radius: var(--border-radius-small) !important;
 
 		h3 {
 			margin: var(--space-xsmall) !important;
@@ -892,10 +938,25 @@ textarea:not(#select-translations-panel-text-area) {
 	cursor: default !important;
 }
 
+sidebar-tab-row {
+	&:hover {
+		background-color: var(--color-accent-primary-hover) !important;
+	}
+
+	&:active {
+		background-color: var(--color-accent-primary-active) !important;
+	}
+}
+
 .fxview-tab-row-main {
 	background: none !important;
+	padding-block: var(--space-xsmall) !important;
 	gap: var(--space-small) !important;
 	cursor: default !important;
+
+	&:is(:hover, :active) {
+		color: var(--button-text-color-primary) !important;
+	}
 }
 
 fieldset #inputs,
@@ -1009,7 +1070,7 @@ input[type=radio] {
 .toggle-button {
 	--toggle-background-color-pressed: var(--theme-primary-color) !important;
 	--toggle-background-color-pressed-hover: var(--theme-primary-hover-color) !important;
-	--toggle-background-color-pressed-active: var(--neptune-switch-pressed-active-background) !important;
+	--toggle-background-color-pressed-active: var(--theme-primary-active-color) !important;
 	--toggle-dot-background-color-on-pressed: var(--button-text-color-primary) !important;
 }
 
@@ -1021,6 +1082,10 @@ panel {
 	--panel-border-color: var(--neptune-toolbar-border-color) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
 	--arrowpanel-header-min-height: 32px !important;
+
+	:root[lwtheme] & {
+		color-scheme: light dark !important;
+	}
 
 	&::part(content) {
 		@media (-moz-platform: macos) {
@@ -1038,6 +1103,21 @@ panel {
 	}
 }
 
+panelview .toolbarbutton-1,
+toolbarbutton.subviewbutton:not(.subviewbutton-back),
+.widget-overflow-list .toolbarbutton-1,
+.toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem=true]) > toolbarbutton {
+
+	&:not([disabled]):hover {
+		background-color: var(--color-accent-primary-hover) !important;
+		color: var(--button-text-color-primary) !important;
+
+		&:active {
+			background-color: var(--color-accent-primary-active) !important;
+		}
+	}
+}
+
 @media not (-moz-platform: macos) {
 	menupopup {
 		--panel-background: var(--menupopup-background-color) !important;
@@ -1048,7 +1128,8 @@ panel {
 			padding-block: 2px !important;
 
 			&:where([_moz-menuactive]:not([disabled="true"])) {
-				background-color: var(--neptune-item-hover-background) !important;
+				background-color: var(--color-accent-primary-hover) !important;
+				color: var(--button-text-color-primary) !important;
 			}
 
 			&:where([_moz-menuactive="true"][disabled="true"]) {
@@ -1067,6 +1148,15 @@ panel {
 		menuseparator {
 			padding-block: 5px !important;
 		}
+		
+		.ContentSelectDropdown-item-0:not([_moz-menuactive="true"]) {
+			background-color: var(--menupopup-background-color) !important;
+			color: inherit !important;
+		}
+	}
+
+	arrowscrollbox.menupopup-arrowscrollbox {
+		background-color: var(--menupopup-background-color) !important;
 	}
 
 	menupopup[needsgutter] menu:not([icon], .menu-iconic),
@@ -1234,7 +1324,7 @@ treecol:not([hideheader="true"]),
 }
 
 treechildren::-moz-tree-row(selected) {
-	background: var(--theme-primary-active-color) !important;
+	background-color: var(--theme-primary-active-color) !important;
 }
 
 treechildren::-moz-tree-image(selected),
