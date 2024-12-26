@@ -142,6 +142,7 @@ findbar {
 	--urlbarView-labeled-row-label-top: calc(-1.27em - 5px) !important;
 	--tab-min-height: 28px !important;
 	--tabstrip-min-height: var(--tab-min-height) !important;
+	--tab-group-label-height: var(--tab-min-height) !important;
 	--tab-shadow-max-size: 0 !important;
 	--button-min-height: 22px !important;
 	--border-radius-small: 6px !important;
@@ -175,7 +176,7 @@ findbar {
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
 	--link-color: light-dark(#909090, #7c7c7c) !important;
 	--icon-color: light-dark(#383838, #ececec) !important;
-	--menupopup-background-color: light-dark(#f6f6f6, #323232);
+	--menupopup-background-color: light-dark(#f2f2f2, #323232);
 	--tab-loading-fill: var(--theme-primary-color) !important;
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
@@ -185,7 +186,7 @@ findbar {
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 	--tabpanel-background-color: var(--neptune-main-background) !important;
 	--sidebar-box-background: var(--neptune-sidebar-box-background) !important;
-	--sidebar-background-color: var(--neptune-sidebar-background) !important;
+	--sidebar-background-color: var(--neptune-toolbar-background) !important;
 	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
 	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
 	--urlbarView-hover-background: var(--neptune-urlbarView-hover-background) !important;
@@ -230,10 +231,10 @@ textarea:focus-visible {
 	transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
 }
 
-select:where(:not([size], [multiple], [iconic])),
+select:where(:not([size], [multiple])),
 input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .findbar-textbox)),
 textarea:not(#select-translations-panel-text-area) {
-	min-height: 22px !important;
+	min-height: var(--button-min-height) !important;
 	border: none !important;
 	border-radius: var(--border-radius-small) !important;
 	padding-block: 0 !important;
@@ -249,8 +250,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 *::selection {
-	background-color: var(--neptune-text-selection-color) !important;
-	color: var(--button-text-color-primary) !important;
+	background-color: var(--neptune-item-selection-color) !important;
 }
 
 /*---------- Urlbar ----------*/
@@ -418,11 +418,11 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		&[has-action]:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
-			padding: 1px 6px !important;
+			padding: 1px 5px !important;
 			margin-block: auto !important;
 			border: none !important;
 			background-image: none !important;
-			background-color: var(--theme-primary-color) !important;
+			background-color: var(--theme-primary-active-color) !important;
 			color: var(--button-text-color-primary) !important;
 
 			&.urlbarView-userContext {
@@ -483,27 +483,39 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-#identity-popup,
-#permission-popup,
-#protections-popup {
-	font-size: 10.5px !important;
-}
-
-#identity-permission-box,
-#notification-popup-box,
-#tracking-protection-icon-container {
-	margin-inline-start: calc(-12px - 2 * var(--urlbar-icon-padding));
-	opacity: 0;
-	transition: .2s ease;
-
-	&:is(.urlbar-input-container:hover &, [open]) {
-		margin-inline-start: 0;
-		opacity: 1;
-	}
+#identity-box:is([pageproxystate="valid"], [pageproxystate="invalid"]) > .identity-box-button,
+#urlbar-label-box {
+	padding-inline: 4px !important;
 }
 
 #notification-popup-box {
 	height: auto !important;
+}
+
+@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+	#identity-permission-box,
+	#notification-popup-box,
+	#tracking-protection-icon-container {
+		margin-inline-start: calc(-12px - 2 * var(--urlbar-icon-padding));
+		visibility: collapse;
+		transition: .2s ease;
+
+		&:is(.urlbar-input-container:hover &, [open]) {
+			margin-inline-start: 0;
+			visibility: visible;
+		}
+	}
+	
+	.urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
+		margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
+		visibility: collapse;
+		transition: .2s ease;
+
+		&:is(.urlbar-input-container:hover &, [open]) {
+			margin-inline-end: 0;
+			visibility: visible;
+		}
+	}
 }
 
 #identity-box {
@@ -523,41 +535,31 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-#identity-box:is([pageproxystate="valid"], [pageproxystate="invalid"]) > .identity-box-button,
-#urlbar-label-box {
-	padding-inline: 4px !important;
-}
-
 .urlbar-page-action,
 .urlbar-revert-button,
 .urlbar-go-button,
 .search-go-button {
 	background: none !important;
-	color: color-mix(in srgb, currentColor 60%, transparent) !important;
+	color: var(--neptune-button-field-color) !important;
 
 	&:not([disabled]):hover {
-		color: color-mix(in srgb, currentColor 85%, transparent) !important;
+		color: var(--neptune-button-field-hover-color) !important;
 	}
 
-	&:is(:not([disabled])[open],:not([disabled]):hover:active) {
+	&:not([disabled]):is(:hover:active, [open]) {
 		color: revert !important;
-	}
-}
-
-.urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
-	margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
-	opacity: 0;
-	transition: .2s ease;
-
-	&:is(.urlbar-input-container:hover &, [open]) {
-		margin-inline-end: 0;
-		opacity: 1;
 	}
 }
 
 #urlbar-zoom-button {
 	margin-inline: 2px !important;
 	padding-block: 2px !important;
+}
+
+#identity-popup,
+#permission-popup,
+#protections-popup {
+	font-size: 10.5px !important;
 }
 
 .sharing-icon,
@@ -625,24 +627,20 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 
 	tab-group {
-		border: none !important;
+		#tabbrowser-tabs[orient="horizontal"] & > .tab-group-label-container {
+			padding-inline: 0 !important;
+			margin-inline: var(--tab-block-margin) !important;
+		}
 
-		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
-			> .tab-group-label-container {
-				height: inherit !important;
-			}
-
-			> .tabbrowser-tab {
-				margin-inline: auto !important;
-			}
+		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & > .tab-group-label-container {
+			height: inherit !important;
 		}
 
 		.tab-group-label {
 			background-color: var(--tab-group-color) !important;
-			padding-inline: var(--tab-inline-padding) !important;
 			border: none !important;
+			outline: none !important;
 			border-radius: var(--border-radius-medium) !important;
-			min-height: var(--tab-min-height) !important;
 			line-height: var(--tab-min-height) !important;
 			transition: background-color .3s ease;
 
@@ -656,13 +654,17 @@ textarea:not(#select-translations-panel-text-area) {
 				color: var(--tab-group-color-pale) !important;
 			}
 
-			#tabbrowser-tabs[orient="vertical"] & {
-				padding-inline: 0 !important;
-				margin-block-end: calc(4 * var(--tab-block-margin)) !important;
+			#tabbrowser-tabs[orient="horizontal"] & {
+				padding-inline: var(--tab-inline-padding) !important;
 			}
 
-			#tabbrowser-tabs[orient="vertical"]:not([expanded]) &:first-letter {
-				line-height: initial !important;
+			#tabbrowser-tabs[orient="vertical"] & {
+				padding: 0 !important;
+				margin-block: auto calc(4 * var(--tab-block-margin)) !important;
+
+				&:first-letter {
+					line-height: initial !important;
+				}
 			}
 		}
 
@@ -675,7 +677,7 @@ textarea:not(#select-translations-panel-text-area) {
 			border-radius: var(--border-radius-medium) !important;
 			transition: background-color .3s ease;
 
-			.tab-background:not(#tabbrowser-tabs[orient="vertical"] .tab-background, [multiselected]):has(&) {
+			.tab-background:not(#tabbrowser-tabs[orient="vertical"][expanded] .tab-background, [multiselected]):has(&) {
 				background-color: revert !important;
 			}
 
@@ -687,6 +689,12 @@ textarea:not(#select-translations-panel-text-area) {
 
 			.tab-background[multiselected]:has(&) & {
 				background-color: transparent !important;
+			}
+
+			.tabbrowser-tab:hover & {
+				background-color: light-dark(
+					color-mix(in srgb, var(--tab-group-color) 20%, transparent),
+					color-mix(in srgb, var(--tab-group-color) 30%, transparent)) !important;
 			}
 
 			#tabbrowser-tabs[orient="vertical"][expanded] & {
@@ -708,9 +716,16 @@ textarea:not(#select-translations-panel-text-area) {
 		position: inherit !important;
 	}
 
-	.tab-label-container {
+	.tab-content {
 		font-size: 12.5px;
-		height: inherit !important;
+
+		> .tab-label-container {
+			height: inherit !important;
+		}
+
+		.tabbrowser-tab[pending] & {
+			color: var(--text-color-disabled);
+		}
 	}
 
 	.tab-background {
@@ -731,6 +746,10 @@ textarea:not(#select-translations-panel-text-area) {
 
 		&:not([selected], [multiselected]) {
 			background-color: var(--neptune-tab-background) !important;
+
+			.tabbrowser-tab[pending] & {
+				background-color: var(--neptune-tab-unloaded-background) !important;
+			}
 
 			.tabbrowser-tab:hover & {
 				background-color: var(--neptune-tab-hover-background) !important;
@@ -768,8 +787,8 @@ textarea:not(#select-translations-panel-text-area) {
 		&[multiselected] {
 			background-color: var(--neptune-tab-selected-background) !important;
 			background-image: linear-gradient(90deg, transparent 0%,
-				var(--neptune-content-selection-color) 25%, transparent 50%,
-				var(--neptune-content-selection-color) 75%, transparent 100%);
+				var(--neptune-item-selection-color) 25%, transparent 50%,
+				var(--neptune-item-selection-color) 75%, transparent 100%);
 			background-size: 200% 100%;
 			animation: downloadProgressSlideX 2s linear infinite;
 		}
@@ -802,17 +821,18 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .tab-close-button {
+	background-color: var(--neptune-button-field-color) !important;
+	fill: ActiveCaption !important;
 	margin: 0 !important;
 	border-radius: 2px !important;
 	visibility: collapse;
 
 	&:hover {
-		background-color: color-mix(in srgb, var(--icon-color) 70%, transparent) !important;
-		fill: ActiveCaption !important;
+		background-color: var(--neptune-button-field-hover-color) !important;
 	}
 
 	&:hover:active {
-		background-color: var(--icon-color) !important;
+		background-color: currentColor !important;
 	}
 
 	tab:hover & {
@@ -821,7 +841,11 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .tab-group-editor-panel {
-	--panel-padding: var(--space-medium) !important;
+	--panel-padding: var(--space-small) !important;
+
+	.panel-header > h1 {
+		margin: 0 !important;
+	}
 
 	toolbarseparator {
 		margin-block: var(--space-small) !important;
@@ -981,6 +1005,7 @@ a {
 
 #tabbrowser-tabbox {
 	outline: none !important;
+	border-radius: 0 !important;
 	box-shadow: none !important;
 }
 
@@ -1025,7 +1050,7 @@ toolbar .toolbaritem-combined-buttons {
 }
 
 screenshots-buttons {
-	padding-inline: 6px !important;
+	padding-inline: var(--space-small) !important;
 }
 
 .labelled {
@@ -1038,8 +1063,8 @@ screenshots-buttons {
 	background-size: 32px 32px !important;
 	padding: 28px 0 14px !important;
 	min-width: 64px !important;
-	margin-inline: 6px !important;
-	font-size: .85em !important;
+	margin-inline: var(--space-small) !important;
+	font-size: 9px !important;
 }
 
 input[type=checkbox],
@@ -1216,8 +1241,12 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 	margin-block: 0 !important;
 }
 
-.subviewbutton {
-	min-height: 22px !important;
+.toolbar-menupopup :is(menu, menuitem),
+.subview-subheader,
+panelview .toolbarbutton-1,
+.subviewbutton,
+.widget-overflow-list .toolbarbutton-1 {
+	min-height: var(--button-min-height) !important;
 }
 
 .footer-button {
@@ -1228,7 +1257,7 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 
 .expander-up,
 .expander-down {
-	min-height: 22px !important;
+	min-height: var(--button-min-height) !important;
 	border: none !important;
 	border-radius: var(--border-radius-small) !important;
 }
@@ -1239,7 +1268,7 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 }
 
 #editBMPanel_newFolderButton {
-	padding: 2px 8px !important;
+	padding: var(--space-xsmall) var(--space-small) !important;
 }
 
 #full-page-translations-panel-error {
@@ -1249,6 +1278,10 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 #select-translations-panel-text-area.translating {
 	background-image: none !important;
 	padding-inline-start: var(--space-medium) !important;
+}
+
+#select-translations-panel-footer {
+	margin-block: var(--space-small) !important;
 }
 
 #downloadsPanel-mainView {
@@ -1382,8 +1415,8 @@ treechildren::-moz-tree-cell-text(selected) {
 		width: auto !important;
 
 		> richlistitem[selected="true"] {
-			background-color: var(--neptune-focused-urlbar-highlight-color) !important;
-			color: var(--urlbarView-highlight-color) !important;
+			background-color: var(--color-accent-primary-active) !important;
+			color: var(--button-text-color-primary) !important;
 			border-radius: 0 !important;
 			outline: none !important;
 		}
@@ -1538,12 +1571,14 @@ treechildren::-moz-tree-cell-text(selected) {
 
 .pointerlockfswarning {
 	background: #00000099 !important;
-	padding-block: var(--space-small) !important;
+	padding: var(--space-small) !important;
 	border: none !important;
 	box-shadow: none !important;
 
 	&::before {
-		display: none;
+		width: 12px !important;
+		height: 12px !important;
+		margin-inline-end: var(--space-xsmall) !important;
 	}
 }
 

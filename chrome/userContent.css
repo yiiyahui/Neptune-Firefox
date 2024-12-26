@@ -101,7 +101,7 @@
 	}
 
 	.dialog-button-box > button {
-		font-size: .9em !important;
+		font-size: 12.5px !important;
 		padding-block: 0 !important;
 		min-height: 24px !important;
 		border-radius: var(--border-radius-small) !important;
@@ -426,6 +426,12 @@
 			}
 		}
 
+		.default-icon {
+			background-size: auto !important;
+			width: 100% !important;
+			height: 100% !important;
+		}
+
 		.search-topsite {
 			background-color: var(--theme-primary-color) !important;
 			background-size: 12px !important;
@@ -641,6 +647,10 @@
 		background-image: url("neptune/cards/github.svg") !important;
 	}
 
+	.top-site-button[href*="instagram.com"] .top-site-icon {
+		background-image: url("neptune/cards/instagram.svg") !important
+	}
+
 	.top-site-button[href*="youtube.com"] .top-site-icon {
 		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/youtube-com@2x.png") !important;
 	}
@@ -724,7 +734,9 @@
 	}
 
 	.container {
-		gap: unset !important;
+		grid-template-areas: "title" "slider" !important;
+		grid-template-columns: 1fr !important;
+		gap: var(--space-xsmall) !important;
 	}
 
 	button-group {
@@ -802,13 +814,14 @@
 
 @-moz-document url-prefix(about:firefoxview) {
 	.search-container {
-		margin-inline-start: var(--space-medium);
+		margin-inline-start: var(--space-xsmall);
 
 		.search-icon {
 			background-size: 12px !important;
 			padding: 0 !important;
 			width: 12px !important;
 			height: 12px !important;
+			transform: scaleX(-1);
 		}
 
 		input {
@@ -949,7 +962,6 @@ div.sponsor,
 
 ::selection {
 	background-color: var(--neptune-content-selection-color) !important;
-	color: CaptionText !important;
 }
 
 .controlBar {
