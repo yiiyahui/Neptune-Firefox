@@ -188,6 +188,8 @@ findbar {
 	--sidebar-box-background: var(--neptune-sidebar-box-background) !important;
 	--sidebar-background-color: var(--neptune-toolbar-background) !important;
 	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
+	--urlbar-box-bgcolor: transparent !important;
+	--urlbar-box-focus-bgcolor: transparent !important;
 	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
 	--urlbarView-hover-background: var(--neptune-urlbarView-hover-background) !important;
 	--urlbarView-highlight-background: var(--neptune-focused-urlbar-highlight-color) !important;
@@ -304,7 +306,26 @@ textarea:not(#select-translations-panel-text-area) {
 		border-radius: var(--border-radius-medium) !important;
 
 		> #urlbar-search-mode-indicator {
+			margin-inline: 0 !important;
+			padding-inline: var(--urlbar-icon-padding) !important;
 			font-size: 10.5px;
+		}
+
+		> #urlbar-searchmode-switcher {
+			margin-inline: 0 !important;
+			
+			&[open] {
+				background-color: var(--neptune-item-active-background) !important;
+			}
+		}
+
+		> #searchmode-switcher-chicklet {
+			margin-inline: 0 !important;
+			font-size: 10.5px;
+
+			> #searchmode-switcher-close {
+				margin-inline: var(--urlbar-icon-padding) !important;
+			}
 		}
 	}
 
@@ -466,26 +487,30 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #urlbar .search-one-offs {
-	padding: 4px !important;
-	border-top: 1px solid var(--neptune-popover-separator-color)!important;
-}
+	padding: var(--urlbar-icon-padding) !important;
 
-#urlbar .search-panel-one-offs-header-label {
-	padding-inline: 8px 0 !important;
-}
+	> .search-panel-header {
+		min-height: var(--button-min-height) !important;
 
-#urlbar .searchbar-engine-one-off-item {
-	margin-inline: 4px !important;
-	border-radius: var(--border-radius-medium) !important;
+		> .search-panel-one-offs-header-label {
+			padding-inline: var(--space-small) !important;
+		}
+	}
 
-	&:is(:not([selected]):hover, [selected]) {
-		background-color: var(--neptune-item-active-background) !important;
+	.searchbar-engine-one-off-item {
+		min-width: 22px !important;
+		height: 22px !important;
+		margin-inline: var(--urlbar-icon-padding) !important;
+
+		&:is(:not([selected]):hover, [selected]) {
+			background-color: var(--neptune-item-active-background) !important;
+		}
 	}
 }
 
 #identity-box:is([pageproxystate="valid"], [pageproxystate="invalid"]) > .identity-box-button,
 #urlbar-label-box {
-	padding-inline: 4px !important;
+	padding-inline: var(--urlbar-icon-padding) !important;
 }
 
 #notification-popup-box {
@@ -570,7 +595,10 @@ textarea:not(#select-translations-panel-text-area) {
 #blocked-permissions-container>.blocked-permission-icon,
 .urlbarView-action-btn > img,
 #searchmode-switcher-icon,
-#urlbar-search-mode-indicator-close {
+#searchmode-switcher-close,
+#searchmode-switcher-popup-search-settings-icon,
+#urlbar-search-mode-indicator-close,
+.searchbar-engine-one-off-item > .button-box > .button-icon {
 	width: 12px !important;
 	height: 12px !important;
 }
@@ -716,18 +744,6 @@ textarea:not(#select-translations-panel-text-area) {
 		position: inherit !important;
 	}
 
-	.tab-content {
-		font-size: 12.5px;
-
-		> .tab-label-container {
-			height: inherit !important;
-		}
-
-		.tabbrowser-tab[pending] & {
-			color: var(--text-color-disabled);
-		}
-	}
-
 	.tab-background {
 		margin-block: 0 !important;
 		outline: none !important;
@@ -793,6 +809,43 @@ textarea:not(#select-translations-panel-text-area) {
 			animation: downloadProgressSlideX 2s linear infinite;
 		}
 	}
+
+	.tab-content {
+		font-size: 12.5px;
+
+		> .tab-label-container {
+			height: inherit !important;
+		}
+		
+		> .tab-close-button {
+			background-color: var(--neptune-button-field-color) !important;
+			fill: ActiveCaption !important;
+			margin: 0 !important;
+			border-radius: 2px !important;
+			visibility: collapse;
+			overflow: hidden;
+
+			#tabbrowser-tabs[closebuttons="activetab"][orient="horizontal"] &:not([selected], [pinned]) {
+				display: revert !important;
+			}
+
+			&:hover {
+				background-color: var(--neptune-button-field-hover-color) !important;
+			}
+
+			&:hover:active {
+				background-color: currentColor !important;
+			}
+
+			tab:hover & {
+				visibility: visible;
+			}
+		}
+
+		.tabbrowser-tab[pending] & {
+			color: var(--text-color-disabled);
+		}
+	}
 }
 
 #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
@@ -817,26 +870,6 @@ textarea:not(#select-translations-panel-text-area) {
 	&:hover {
 		background-color: currentColor !important;
 		fill: ActiveCaption !important;
-	}
-}
-
-.tab-close-button {
-	background-color: var(--neptune-button-field-color) !important;
-	fill: ActiveCaption !important;
-	margin: 0 !important;
-	border-radius: 2px !important;
-	visibility: collapse;
-
-	&:hover {
-		background-color: var(--neptune-button-field-hover-color) !important;
-	}
-
-	&:hover:active {
-		background-color: currentColor !important;
-	}
-
-	tab:hover & {
-		visibility: visible;
 	}
 }
 
@@ -1112,12 +1145,6 @@ panel {
 		color-scheme: light dark !important;
 	}
 
-	&::part(content) {
-		@media (-moz-platform: macos) {
-			border: none !important;
-		}
-	}
-
 	@media (-moz-platform: linux) or (-moz-platform: windows) {
 		--panel-shadow-margin: 22px !important;
 		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
@@ -1125,6 +1152,14 @@ panel {
 
 	menulist {
 		padding-block: 3px !important;
+	}
+
+	#searchmode-switcher-popup-description {
+		margin-inline: var(--space-large) !important;
+	}
+
+	#searchmode-switcher-popup-search-settings-button.panel-subview-footer-button {
+		margin-block: 0 !important;
 	}
 }
 
@@ -1955,9 +1990,11 @@ tooltip,
 #tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
 #tabbrowser-tabs[orient="vertical"][overflow]::after,
+tab-group::before,
 .tab-group-label-container::after,
 .titlebar-spacer,
 #toolbar-menubar,
+#searchmode-switcher-dropmarker,
 #urlbar .search-one-offs {
 	display: none !important;
 }
