@@ -23,6 +23,20 @@
 		padding: 12px 0 12px calc(92px - var(--toolbar-start-end-padding) / 2) !important;
 		border: none !important;
 
+		> .customization-target:not(#widget-overflow-fixed-list) {
+			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring {
+				max-width: 20em !important;
+
+				#nav-bar & {
+					flex-grow: 500 !important;
+				}
+			}
+
+			:root[customizing] & {
+				animation: emeTeachingMoment 1s linear infinite;
+			}
+		}
+
 		:root[inFullscreen] & {
 			padding-inline-start: var(--toolbar-start-end-padding) !important;
 		}
@@ -46,8 +60,8 @@
 		grid-area: 1 / 2 / span 1 / span 1;
 		padding: 12px calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding)) 12px 0 !important;
 
-		@media (-moz-bool-pref: "sidebar.verticalTabs") {
-			display: contents;
+		:root[customizing] & {
+			padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding)) !important;
 		}
 	}
 }
@@ -145,13 +159,19 @@ findbar {
 	--tab-group-label-height: var(--tab-min-height) !important;
 	--tab-shadow-max-size: 0 !important;
 	--button-min-height: 22px !important;
+	--button-size-icon: var(--size-item-medium) !important;
 	--border-radius-small: 6px !important;
 	--border-radius-medium: 7px !important;
 	--menu-panel-width-wide: 24em !important;
-	--uei-icon-size: 16px !important;
-	--panel-subview-body-padding-block: 4px !important;
-	--arrowpanel-menuitem-margin-inline: 4px !important;
+	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
+	--panel-subview-body-padding-block: 5px !important;
+	--arrowpanel-menuitem-margin-inline: 5px !important;
+	--panel-separator-margin-vertical: 5px !important;
+	--panel-separator-margin-horizontal: 8px !important;
+	--panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal) !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
+	--arrowpanel-menuitem-padding-inline: 8px !important;
+	--panel-separator-zap-gradient: none !important;
 	--default-focusring: none !important;
 	--toolbarbutton-inner-padding: 6px !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
@@ -188,6 +208,7 @@ findbar {
 	--sidebar-box-background: var(--neptune-sidebar-box-background) !important;
 	--sidebar-background-color: var(--neptune-toolbar-background) !important;
 	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
+	--border-color-deemphasized: var(--neptune-sidebar-border-color) !important;
 	--urlbar-box-bgcolor: transparent !important;
 	--urlbar-box-focus-bgcolor: transparent !important;
 	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
@@ -252,7 +273,8 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 *::selection {
-	background-color: var(--neptune-item-selection-color) !important;
+	background-color: var(--neptune-item-selection-background) !important;
+	color: var(--lwt-text-color) !important;
 }
 
 /*---------- Urlbar ----------*/
@@ -262,9 +284,6 @@ textarea:not(#select-translations-panel-text-area) {
 	margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
 	@media (-moz-bool-pref: "sidebar.verticalTabs") {
-		flex-grow: 0.3 !important;
-		margin-inline: auto !important;
-
 		.urlbar-input {
 			text-align: center !important;
 
@@ -313,7 +332,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 		> #urlbar-searchmode-switcher {
 			margin-inline: 0 !important;
-			
+
 			&[open] {
 				background-color: var(--neptune-item-active-background) !important;
 			}
@@ -513,24 +532,22 @@ textarea:not(#select-translations-panel-text-area) {
 	padding-inline: var(--urlbar-icon-padding) !important;
 }
 
-#notification-popup-box {
-	height: auto !important;
-}
-
 @media not (-moz-bool-pref: "sidebar.verticalTabs") {
 	#identity-permission-box,
 	#notification-popup-box,
 	#tracking-protection-icon-container {
 		margin-inline-start: calc(-12px - 2 * var(--urlbar-icon-padding));
 		visibility: collapse;
+		opacity: 0;
 		transition: .2s ease;
 
 		&:is(.urlbar-input-container:hover &, [open]) {
 			margin-inline-start: 0;
 			visibility: visible;
+			opacity: 1;
 		}
 	}
-	
+
 	.urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
 		margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
 		visibility: collapse;
@@ -560,6 +577,24 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
+#notification-popup-box {
+	background: none !important;
+	height: auto !important;
+	fill-opacity: 0.6 !important;
+
+	> * {
+		height: calc(var(--urlbar-min-height) - 2 * var(--urlbar-icon-padding));
+	}
+
+	&:hover {
+		fill-opacity: 0.8 !important;
+	}
+
+	&:is(:hover:active, [open]) {
+		fill-opacity: 1 !important;
+	}
+}
+
 .urlbar-page-action,
 .urlbar-revert-button,
 .urlbar-go-button,
@@ -579,12 +614,6 @@ textarea:not(#select-translations-panel-text-area) {
 #urlbar-zoom-button {
 	margin-inline: 2px !important;
 	padding-block: 2px !important;
-}
-
-#identity-popup,
-#permission-popup,
-#protections-popup {
-	font-size: 10.5px !important;
 }
 
 .sharing-icon,
@@ -660,8 +689,8 @@ textarea:not(#select-translations-panel-text-area) {
 			margin-inline: var(--tab-block-margin) !important;
 		}
 
-		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & > .tab-group-label-container {
-			height: inherit !important;
+		#tabbrowser-tabs[orient="vertical"] & {
+			margin-block: 0 !important;
 		}
 
 		.tab-group-label {
@@ -803,8 +832,8 @@ textarea:not(#select-translations-panel-text-area) {
 		&[multiselected] {
 			background-color: var(--neptune-tab-selected-background) !important;
 			background-image: linear-gradient(90deg, transparent 0%,
-				var(--neptune-item-selection-color) 25%, transparent 50%,
-				var(--neptune-item-selection-color) 75%, transparent 100%);
+				var(--neptune-item-selection-background) 25%, transparent 50%,
+				var(--neptune-item-selection-background) 75%, transparent 100%);
 			background-size: 200% 100%;
 			animation: downloadProgressSlideX 2s linear infinite;
 		}
@@ -816,7 +845,7 @@ textarea:not(#select-translations-panel-text-area) {
 		> .tab-label-container {
 			height: inherit !important;
 		}
-		
+
 		> .tab-close-button {
 			background-color: var(--neptune-button-field-color) !important;
 			fill: ActiveCaption !important;
@@ -901,9 +930,10 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #sidebar-header {
+	font-size: 1.2em !important;
 	border: none !important;
 
-	#sidebar-switcher-target { 
+	#sidebar-switcher-target {
 		padding-block: 0 !important;
 		border-radius: var(--border-radius-small) !important;
 	}
@@ -927,7 +957,6 @@ textarea:not(#select-translations-panel-text-area) {
 	padding: 0 var(--space-xsmall) !important;
 
 	moz-card {
-		background-color: var(--sidebar-box-background) !important;
 		border: none !important;
 		border-radius: var(--border-radius-small) !important;
 
@@ -937,16 +966,8 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-.sidebar-panel-header {
-	margin-block-end: var(--space-medium);
-
-	h4 {
-		margin-block: 0 !important;
-	}
-
-	.header-close-button {
-		scale: 0.8;
-	}
+.sidebar-panel-header .header-close-button {
+	scale: 0.6;
 }
 
 .search-container {
@@ -1016,19 +1037,25 @@ sidebar-tab-row {
 	}
 }
 
-fieldset #inputs,
-[slot="main"].selectedTab {
-	background-color: var(--sidebar-box-background) !important;
-	border: none !important;
-}
-
 moz-radio, moz-checkbox {
 	padding-block: var(--space-small) !important;
 	border-color: var(--neptune-sidebar-border-color) !important;
 }
 
-a {
-	color: inherit !important;
+treechildren::-moz-tree-row,
+treecol:not([hideheader="true"]),
+.tree-columnpicker-button {
+	min-height: max(22px, 1.3em) !important;
+}
+
+treechildren::-moz-tree-row(selected) {
+	background-color: var(--theme-primary-active-color) !important;
+}
+
+treechildren::-moz-tree-image(selected),
+treechildren::-moz-tree-twisty(selected),
+treechildren::-moz-tree-cell-text(selected) {
+	color: var(--button-text-color-primary) !important;
 }
 
 .content-shortcuts {
@@ -1136,6 +1163,7 @@ input[type=radio] {
 menupopup,
 panel {
 	--panel-color: MenuText !important;
+	--panel-padding-block: 5px !important;
 	--panel-border-radius: var(--arrowpanel-border-radius) !important;
 	--panel-border-color: var(--neptune-toolbar-border-color) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
@@ -1150,12 +1178,16 @@ panel {
 		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
 	}
 
-	menulist {
-		padding-block: 3px !important;
+	select:where(:not([size], [multiple])) {
+		margin: 0 !important;
 	}
 
-	#searchmode-switcher-popup-description {
-		margin-inline: var(--space-large) !important;
+	toolbarseparator {
+		margin-inline: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
+	}
+
+	menulist {
+		padding-block: 2px !important;
 	}
 
 	#searchmode-switcher-popup-search-settings-button.panel-subview-footer-button {
@@ -1183,9 +1215,18 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 		--panel-background: var(--menupopup-background-color) !important;
 		--content-select-background-image: none !important;
 
-		>menu,
-		>menuitem {
+		> menu,
+		> menuitem {
 			padding-block: 2px !important;
+			padding-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
+
+			> .menu-right {
+				margin-inline-end: var(--arrowpanel-menuitem-padding-inline) !important;
+			}
+
+			menupopup[needsgutter] &:not([checked="true"], [icon], .menu-iconic, .menuitem-iconic) {
+				padding-inline-start: var(--space-xlarge) !important;
+			}
 
 			&:where([_moz-menuactive]:not([disabled="true"])) {
 				background-color: var(--color-accent-primary-hover) !important;
@@ -1198,35 +1239,33 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 		}
 
 		> menuitem[checked="true"] {
-			padding-inline-start: 2px !important;
+			padding-inline-start: 0 !important;
 
 			> .menu-iconic-left {
-				margin-inline-end: 2px !important;
+				margin-inline-end: var(--space-xsmall) !important;
 			}
 		}
 
-		menuseparator {
-			padding-block: 5px !important;
+		> menuseparator {
+			padding: var(--panel-separator-margin) !important;
 		}
-		
-		.ContentSelectDropdown-item-0:not([_moz-menuactive="true"]) {
-			background-color: var(--menupopup-background-color) !important;
-			color: inherit !important;
+
+		#ContentSelectDropdown > & > .ContentSelectDropdown-item-0 {
+			font-size: 1rem !important;
+
+			&:not([_moz-menuactive="true"]) {
+				background-color: var(--menupopup-background-color) !important;
+				color: inherit !important;
+			}
+		}
+
+		#ContentSelectDropdown > & > :is(menucaption, menuitem) > .menu-iconic-text {
+			padding-block: 2px !important;
 		}
 	}
 
 	arrowscrollbox.menupopup-arrowscrollbox {
 		background-color: var(--menupopup-background-color) !important;
-	}
-
-	menupopup[needsgutter] menu:not([icon], .menu-iconic),
-	menupopup[needsgutter] menuitem:not([checked="true"], [icon], .menuitem-iconic) {
-		padding-inline-start: 20px !important;
-	}
-
-	#ContentSelectDropdown > menupopup > menucaption > .menu-iconic-text,
-	#ContentSelectDropdown > menupopup > menuitem > .menu-iconic-text {
-		padding-block: 1px !important;
 	}
 }
 
@@ -1241,10 +1280,6 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 	#confirmation-hint-message {
 		color: var(--button-text-color-primary);
 	}
-}
-
-.PanelUI-subView toolbarseparator.proton-zap {
-	border-image: unset !important;
 }
 
 #sidebar-switcher-target > #sidebar-icon,
@@ -1262,18 +1297,42 @@ toolbarbutton.subviewbutton:not(.subviewbutton-back),
 	height: 12px !important;
 }
 
+:is(#identity-popup, #permission-popup, #protections-popup) {
+	font-size: 10.5px !important;
+}
+
+#protections-popup #protections-popup-show-report-stack {
+	&:hover {
+		> .protections-popup-footer-button {
+			background-color: var(--color-accent-primary-hover) !important;
+			color: var(--button-text-color-primary) !important;
+		}
+
+		#protections-popup-trackers-blocked-counter-description {
+			color: var(--button-text-color-primary) !important;
+		}
+	}
+
+	&:hover:active > .protections-popup-footer-button {
+		background-color: var(--color-accent-primary-active) !important;
+	}
+}
+
 .permission-popup-section {
-	padding-bottom: 4px !important;
+	padding-bottom: var(--panel-subview-body-padding-block) !important;
 }
 
-#permission-popup-menulist,
-.permission-popup-permission-remove-button {
-	padding: 2px !important;
-}
-
-.permission-popup-permission-state-label,
 .permission-popup-permission-item {
+	min-height: var(--button-min-height) !important;
 	margin-block: 0 !important;
+
+	> :is(#permission-popup-menulist, .permission-popup-permission-remove-button) {
+		padding-block: 2px !important;
+	}
+
+	.permission-popup-permission-state-label {
+		margin-block: 0 !important;
+	}
 }
 
 .toolbar-menupopup :is(menu, menuitem),
@@ -1313,10 +1372,6 @@ panelview .toolbarbutton-1,
 #select-translations-panel-text-area.translating {
 	background-image: none !important;
 	padding-inline-start: var(--space-medium) !important;
-}
-
-#select-translations-panel-footer {
-	margin-block: var(--space-small) !important;
 }
 
 #downloadsPanel-mainView {
@@ -1383,22 +1438,6 @@ panelview .toolbarbutton-1,
 		transform: scale(.6);
 		color: var(--toolbar-color);
 	}
-}
-
-treechildren::-moz-tree-row,
-treecol:not([hideheader="true"]),
-.tree-columnpicker-button {
-	min-height: max(22px, 1.3em) !important;
-}
-
-treechildren::-moz-tree-row(selected) {
-	background-color: var(--theme-primary-active-color) !important;
-}
-
-treechildren::-moz-tree-image(selected),
-treechildren::-moz-tree-twisty(selected),
-treechildren::-moz-tree-cell-text(selected) {
-	color: var(--button-text-color-primary) !important;
 }
 
 #PopupAutoComplete > richlistbox {
@@ -1809,12 +1848,6 @@ treechildren::-moz-tree-cell-text(selected) {
 			position: revert;
 		}
 	}
-
-	@media (-moz-bool-pref: "sidebar.verticalTabs") {
-		&:not(#tabbrowser-tabs[orient="vertical"] #tabs-newtab-button) {
-			display: none;
-		}
-	}
 }
 
 #unified-extensions-button {
@@ -1823,6 +1856,10 @@ treechildren::-moz-tree-cell-text(selected) {
 	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
 		position: fixed;
 		right: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding));
+
+		:root[customizing] & {
+			display: none;
+		}
 
 		@media (width <= 728px) {
 			position: revert;
@@ -1976,7 +2013,6 @@ tooltip,
 #statuspanel:not([type=overLink]),
 .customization-checkbox,
 .findbar-container > checkbox,
-#appMenu-fullscreen-button2,
 .unified-extensions-item-message,
 #context-navigation>.menuitem-iconic,
 #context-sep-navigation,
