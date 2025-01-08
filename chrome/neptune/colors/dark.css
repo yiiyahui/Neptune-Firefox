@@ -16,10 +16,10 @@
 		--neptune-item-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-item-hover-background: color-mix(in srgb, currentColor 14%, transparent);
 		--neptune-item-active-background: color-mix(in srgb, currentColor 16%, transparent);
-		--neptune-item-selection-color: color-mix(in srgb, accentcolor 45%, #646464);
+		--neptune-item-selection-background: color-mix(in srgb, accentcolor 45%, transparent);
+		--neptune-item-selection-hover-background: color-mix(in srgb, accentcolor 25%, transparent);
 		--neptune-button-field-color: color-mix(in srgb, currentColor 70%, transparent);
 		--neptune-button-field-hover-color: color-mix(in srgb, currentColor 85%, transparent);
-		--neptune-content-selection-color: color-mix(in srgb, accentcolor 35%, transparent);
 
 		/* Sidebar */
 		--neptune-sidebar-box-background: color-mix(in srgb, currentColor 7%, transparent);
