@@ -4,7 +4,9 @@
 :root {
 	--in-content-page-background: var(--neptune-main-background) !important;
 	--in-content-box-background: var(--neptune-content-background) !important;
+	--in-content-box-info-background: var(--neptune-content-background) !important;
 	--in-content-table-background: var(--neptune-content-background) !important;
+	--in-content-border-color: var(--neptune-sidebar-border-color)  !important;
 	--in-content-primary-button-text-color: #fff !important;
 	--background-color-box: var(--neptune-content-background) !important;
 	--newtab-primary-element-text-color: #fff !important;
@@ -31,7 +33,24 @@
 	--brand-color-accent-active: var(--theme-primary-active-color) !important;
 	--newtab-primary-action-background: var(--theme-primary-color) !important;
 	--color-accent-primary: var(--theme-primary-color) !important;
+	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--theme-body-background: var(--neptune-main-background) !important;
+	--theme-selection-background: var(--theme-primary-active-color) !important;
+	--theme-selection-background-hover: var(--neptune-item-selection-hover-background) !important;
+	--theme-text-selection-background: var(--neptune-item-selection-hover-background) !important;
+	--theme-tab-toolbar-background: var(--neptune-main-background) !important;
+	--theme-link-color: var(--theme-primary-color) !important;
+	--theme-toolbar-background: var(--neptune-main-background) !important;
+	--theme-toolbar-hover: var(--neptune-item-hover-background) !important;
+	--theme-toolbar-hover-active: var(--neptune-item-active-background) !important;
+	--theme-toolbar-selected-color: var(--theme-primary-color) !important;
+	--theme-toolbar-alternate-hover: var(--neptune-item-active-background) !important;
+	--theme-focus-textinput-outline-color: var(--neptune-input-outline-color) !important;
+	--theme-arrowpanel-border-radius: 8px !important;
+	--tab-line-selected-color: transparent !important;
+	--tab-line-hover-color: transparent !important;
 	--default-focusring: none !important;
+	--theme-toolbar-height: 22px !important;
 	--border-radius-small: 6px !important;
 }
 
@@ -116,6 +135,7 @@
 		background-image: none !important;
 		padding-inline-start: 0 !important;
 		margin-inline-start: 28px !important;
+		border-radius: var(--border-radius-medium) !important;
 	}
 
 	.face-sad::before {
@@ -126,6 +146,11 @@
 	.face-smile::before {
 		content: "\2764" !important;
 		font-size: 1em !important;
+	}
+
+	.cpu {
+		background: linear-gradient(to left, var(--theme-primary-color) calc(var(--bar-width) * 1%), transparent calc(var(--bar-width) * 1%)) !important;
+		color: #fff;
 	}
 
 	.fxaProfileImage {
@@ -144,12 +169,13 @@
 	.container, .action-box,
 	.info-box-container,
 	.web-appearance-choice,
-	table, div.opsRow {
-		border-radius: 8px !important;
+	table, div.opsRow, .sidebar-item,
+	#reportBox {
+		border-radius: var(--border-radius-medium) !important;
 	}
 
 	input[type="search"]:not(.search-handoff-button, .search-wrapper input),
-	search-textbox {
+	search-textbox, .default-input {
 		appearance: none;
 		font: menu;
 		padding-block: 0 !important;
@@ -158,7 +184,7 @@
 	}
 
 	input:where([type="search"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(:read-only, .search-handoff-button, .search-wrapper input),
-	search-textbox,
+	search-textbox, .devtools-searchbox, #storage-searchbox,
 	textarea {
 		background-color: var(--neptune-input-bgcolor) !important;
 		border-color: transparent !important;
@@ -166,7 +192,7 @@
 
 		&:where(:focus-visible, [focused]) {
 			outline: 4px solid var(--neptune-input-outline-color) !important;
-			outline-offset: -2px;
+			outline-offset: -2px !important;
 			transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
 		}
 	}
@@ -182,13 +208,17 @@
 		}
 	}
 
-	.addon.card {
-		border: 1px solid var(--neptune-toolbar-border-color) !important;
-		border-radius: 12px !important;
+	.card {
+		border-color: var(--neptune-toolbar-border-color) !important;
+		border-radius: var(--border-radius-medium) !important;
 		box-shadow: none !important;
 
 		&:hover {
-			box-shadow: 0 0 2px var(--neptune-menu-shadow-color) !important;
+			box-shadow: var(--card-shadow) !important;
+		}
+
+		#legend input:focus + label {
+			outline: none !important;
 		}
 	}
 
@@ -254,6 +284,71 @@
 		transform: scaleX(-1);
 	}
 
+	#root > ul[role="tree"] { 
+		outline: none !important;
+		padding: 0 !important;
+	}
+
+	.devtools-toolbar {
+		height: calc(var(--theme-toolbar-height) + 7px) !important;
+		padding: 3px !important;
+
+		.devtools-togglebutton {
+			margin: 0 !important;
+			border: none !important;
+		}
+	}
+
+	.devtools-input-toolbar > .devtools-searchbox {
+		background-color: transparent !important;
+		height: var(--theme-toolbar-height) !important;
+		margin: 0 !important;
+		border: none !important;
+	}
+
+	.tabs .tabs-navigation {
+		height: calc(var(--theme-toolbar-height) + 7px) !important;
+
+		.tabs-menu {
+			margin-block: auto !important;
+		}
+	}
+
+	.devtools-togglebutton {
+		margin: 0 !important;
+		border: none !important;
+	}
+
+	.tooltip-container[type="doorhanger"] .menuitem > .command {
+		&:not([disabled],[open],:active):hover {
+			background-color: var(--theme-primary-hover-color) !important;
+			color: white !important;
+		}
+
+		&:not([disabled]):is([open],:hover:active) {
+			background-color: var(--theme-primary-active-color) !important;
+			color: inherit !important;
+		}
+	}
+
+	.devtools-button[data-standalone] {
+		min-height: var(--theme-toolbar-height) !important;
+		padding-block: 0 !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.perf-photon-button-primary {
+		background-color: var(--theme-primary-color) !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.perf-photon-button-default {
+		background-color: var(--theme-toolbar-highlighted-color) !important;
+		color: white !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.devtools-separator,
 	.permission-icon,
 	.category-icon,
 	.dialogClose,
@@ -814,8 +909,6 @@
 
 @-moz-document url-prefix(about:firefoxview) {
 	.search-container {
-		margin-inline-start: var(--space-xsmall);
-
 		.search-icon {
 			background-size: 12px !important;
 			padding: 0 !important;
@@ -826,6 +919,7 @@
 
 		input {
 			padding-inline: var(--space-xlarge) !important;
+			width: 16em !important;
 		}
 
 		.clear-icon {
@@ -955,13 +1049,12 @@
 	}
 }
 
-div.sponsor,
 .pip-wrapper {
-	display: none !important;
+	display: none;
 }
 
 ::selection {
-	background-color: var(--neptune-content-selection-color) !important;
+	background-color: var(--neptune-item-selection-background) !important;
 }
 
 .controlBar {
