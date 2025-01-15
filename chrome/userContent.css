@@ -14,6 +14,7 @@
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 	--newtab-background-color: var(--neptune-main-background) !important;
 	--newtab-background-color-secondary: var(--neptune-content-background) !important;
+	--newtab-border-color: var(--neptune-toolbar-border-color) !important;
 	--sidebar-toolbar-bg-color: var(--neptune-main-background) !important;
 	--thumbnail-hover-color: var(--theme-primary-hover-color) !important;
 	--thumbnail-selected-color: var(--theme-primary-active-color) !important;
@@ -40,12 +41,15 @@
 	--theme-text-selection-background: var(--neptune-item-selection-hover-background) !important;
 	--theme-tab-toolbar-background: var(--neptune-main-background) !important;
 	--theme-link-color: var(--theme-primary-color) !important;
+	--theme-icon-checked-color: var(--theme-primary-active-color) !important;
 	--theme-toolbar-background: var(--neptune-main-background) !important;
 	--theme-toolbar-hover: var(--neptune-item-hover-background) !important;
 	--theme-toolbar-hover-active: var(--neptune-item-active-background) !important;
 	--theme-toolbar-selected-color: var(--theme-primary-color) !important;
 	--theme-toolbar-alternate-hover: var(--neptune-item-active-background) !important;
 	--theme-focus-textinput-outline-color: var(--neptune-input-outline-color) !important;
+	--theme-arrowpanel-background: var(--neptune-menu-background) !important;
+	--theme-arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--theme-arrowpanel-border-radius: 8px !important;
 	--tab-line-selected-color: transparent !important;
 	--tab-line-hover-color: transparent !important;
@@ -90,6 +94,7 @@
 	}
 
 	menulist > menupopup {
+		--panel-background: var(--neptune-menu-background) !important;
 		--panel-border-radius: var(--border-radius-small) !important;
 
 		> menu,
@@ -146,11 +151,6 @@
 	.face-smile::before {
 		content: "\2764" !important;
 		font-size: 1em !important;
-	}
-
-	.cpu {
-		background: linear-gradient(to left, var(--theme-primary-color) calc(var(--bar-width) * 1%), transparent calc(var(--bar-width) * 1%)) !important;
-		color: #fff;
 	}
 
 	.fxaProfileImage {
@@ -314,11 +314,6 @@
 		}
 	}
 
-	.devtools-togglebutton {
-		margin: 0 !important;
-		border: none !important;
-	}
-
 	.tooltip-container[type="doorhanger"] .menuitem > .command {
 		&:not([disabled],[open],:active):hover {
 			background-color: var(--theme-primary-hover-color) !important;
@@ -448,6 +443,7 @@
 	.customize-menu .close-button-wrapper,
 	.contentSearchHeaderRow > td > img,
 	.contentSearchSuggestionTable .contentSearchSettingsButton,
+	.weatherSponsorText,
 	.top-site-outer .title .sponsored-label	{
 		display: none !important;
 	}
@@ -511,6 +507,7 @@
 			height: 64px !important;
 			width: 64px !important;
 			background-color: var(--neptune-content-background) !important;
+			outline: none !important;
 			border-radius: 12px !important;
 			box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
 
@@ -656,13 +653,15 @@
 	.customize-menu {
 		position: absolute !important;
 		width: 18em !important;
-		height: 20em !important;
-		padding: var(--space-small) 0 !important;
-		border-radius: 12px !important;
+		height: fit-content !important;
+		padding: 0 !important;
+		border-radius: var(--border-radius-medium) !important;
 		transform: translateY(100%) !important;
 		background-color: var(--neptune-popover-background) !important;
-		box-shadow: var(--neptune-menu-shadow) !important;
 		backdrop-filter: blur(33px);
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		overflow-x: hidden !important;
+		transition: none !important;
 	}
 
 	.customize-menu.customize-animate-enter-done,
@@ -671,20 +670,20 @@
 	}
 
 	.home-section {
-		grid-row-gap: 12px !important;
-		padding: 0 12px !important;
+		grid-row-gap: var(--space-medium) !important;
+		padding: var(--space-medium) !important;
 
 		.section .selector {
 			background-color: var(--neptune-item-background) !important;
 			border-radius: var(--border-radius-small) !important;
-			width: 80px !important;
 			padding-block: 2px !important;
+			box-shadow: none !important;
 		}
 
 		.external-link {
 			background: none !important;
 			padding: 0 !important;
-			margin: 0 !important;
+			margin-block-end: var(--space-xsmall) !important;
 
 			&:hover {
 				color: var(--theme-primary-color) !important;
@@ -693,20 +692,25 @@
 	}
 
 	.arrow-button {
-		margin: 0 10px !important;
-		padding-inline-start: 18px !important;
+		background: url("chrome://global/skin/icons/arrow-left-12.svg") no-repeat left !important;
+		font: menu !important;
+		margin: 0 var(--space-medium) !important;
+		padding-inline-start: var(--space-large) !important;
 	}
 
 	.wallpaper-list.category {
-		inset-inline-start: 0 !important;
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(33px);
+		inset: 0 !important;
 		margin: 0 !important;
 		height: 100% !important;
 		width: 100% !important;
+		transition: none !important;
 	}
 
 	.wallpaper-list.category fieldset {
-		gap: 24px !important;
-		grid-auto-rows: 32px !important;
+		gap: 22px !important;
+		grid-auto-rows: 36px !important;
 	}
 
 	.category-list {
@@ -714,7 +718,7 @@
 	}
 
 	.wallpaper-input {
-		height: 46px !important;
+		height: 42px !important;
 		cursor: default !important;
 
 		&:checked {
@@ -725,8 +729,8 @@
 	}
 
 	.wallpapers-reset {
-		margin-top: 4px !important;
-		font-size: .7em !important;
+		margin-block-start: var(--space-xsmall) !important;
+		font-size: 0.75em !important;
 
 		&:hover {
 			color: var(--theme-primary-color) !important;
@@ -735,7 +739,28 @@
 
 	.category-list label,
 	.text-deemphasized {
-		font-size: .7em !important;
+		font-size: 0.75em !important;
+	}
+
+	.weatherCard, .weatherButtonContextMenuWrapper {
+		background: none !important;
+		box-shadow: none !important;
+	}
+
+	.weatherInfoLink {
+		background-color: var(--newtab-weather-background-color) !important;
+		backdrop-filter: blur(12px);
+		border-radius: var(--border-radius-medium) !important;
+	}
+
+	.weatherButtonContextMenuWrapper {
+		height: var(--space-small);
+		width: 32px !important;
+		visibility: collapse;
+
+		.weatherCard:hover & {
+			visibility: visible;
+		}
 	}
 
 	.top-site-button[href*="github.com"] .top-site-icon {
@@ -760,23 +785,17 @@
 		border: none !important;
 		padding: 0 !important;
 		box-shadow: none !important;
-	}
 
-	.toolbar-button {
-		border: none !important;
-		border-radius: 50% !important;
-	}
-
-	.open .toolbar-button,
-	.toolbar-button:hover:active {
-		background-color: var(--theme-primary-active-color) !important;
-		fill: #fff !important;
+		.toolbar-button {
+			border: none !important;
+			border-radius: 50% !important;
+		}
 	}
 
 	.text-size-buttons > button,
 	.accordion-header .chevron-icon	{
-		height: 20px !important;
-		width: 20px !important;
+		height: 16px !important;
+		width: 16px !important;
 		background-size: 12px;
 		border-radius: 50% !important;
 	}
@@ -793,26 +812,26 @@
 	.dropdown .dropdown-popup {
 		background: var(--neptune-popover-background) !important;
 		backdrop-filter: blur(33px);
-		border: 1px solid var(--neptune-toolbar-border-color) !important;
-		border-radius: 12px !important;
+		border-color: var(--neptune-toolbar-border-color) !important;
+		border-radius: var(--border-radius-medium) !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
-
-		hr {
-			border-top: none !important;
-			margin-block: 0 !important;
-		}
 	}
 
 	#text-layout-controls {
-		width: 18em !important;
-		padding-block-end: 0 !important;
-		font-size: 12.5px !important;
+		width: auto !important;
+		padding: var(--space-small) var(--space-medium) var(--space-xsmall) !important;
+		font: menu !important;
+
+		> *:not(#about-reader-advanced-layout),
+		> #about-reader-advanced-layout > *:not(.accordion-header) {
+			padding-block: var(--space-xsmall) !important;
+		}
 	}
 
 	.dropdown-selector > select {
+		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
 		min-height: 22px !important;
-		font-weight: unset !important;
-		background-size: 12px;
+		font: menu !important;
 	}
 
 	.text-alignment-buttons {
@@ -820,7 +839,7 @@
 
 		> label {
 			min-height: 22px !important;
-			border-radius: 5px !important;
+			border-radius: 4px !important;
 
 			&[checked] {
 				color: #fff !important;
@@ -834,42 +853,40 @@
 		gap: var(--space-xsmall) !important;
 	}
 
-	button-group {
-		padding-block: 0 !important;
-	}
-
-	button[is="named-deck-button"] {
-		border-top: none !important;
-	}
-
 	#color-controls {
-		width: 22em !important;
-		padding-block-end: 7px !important;
+		width: 24em !important;
+		padding-block: 0 !important;
+
+		> button-group {
+			padding-block: 0 !important;
+
+			> button[is="named-deck-button"] {
+				border-top: none !important;
+			}
+		}
 	}
 
-	.colors-menu-color-scheme-buttons > label {
-		height: 28px !important;
-		font-size: 10.5px !important;
+	.colors-menu-color-scheme-buttons {
+		padding-block: var(--space-small) !important;
 
-		&:before {
-			width: 16px !important;
-			height: 16px !important;
+		> label {
+			height: 28px !important;
+			font: menu !important;
+
+			&:before {
+				width: 16px !important;
+				height: 16px !important;
+			}
 		}
 	}
 
 	.color-input-container {
 		min-height: 26px !important;
-	}
 
-	#color-swatch {
-		width: 24px !important;
-		height: 24px !important;
-	}
-
-	.custom-colors-selection,
-	.reset-button,
-	.slider-label {
-		font-size: 10.5px !important;
+		> #color-swatch {
+			width: 24px !important;
+			height: 24px !important;
+		}
 	}
 
 	#inputSlider[type="range"] {
@@ -898,10 +915,15 @@
 		}
 	}
 
+	.reset-button, .custom-colors-selection {
+		font-size: 0.7rem !important;
+	}
+
 	.close-button,
 	.hover-label,
 	.icon-container,
 	.dropdown .dropdown-popup h2,
+	.dropdown .dropdown-popup hr,
 	#slider-ticks {
 		display: none !important;
 	}
@@ -960,12 +982,17 @@
 		box-shadow: none !important;
 		border-radius: 8px !important;
 	}
+
+	.submenu-icon {
+		background-image: url("chrome://global/skin/icons/arrow-right-12.svg") !important;
+	}
 }
 
 @-moz-document regexp(".*\\.pdf") {
 	:root {
 		--toolbar-horizontal-padding: 12px !important;
 		--button-hover-color: var(--neptune-item-hover-background) !important;
+		--dropdown-btn-bg-color: var(--neptune-item-background) !important;
 		--toggled-btn-bg-color: var(--neptune-item-background) !important;
 		--toggled-hover-active-btn-color: var(--neptune-item-active-background) !important;
 	}
@@ -1062,7 +1089,7 @@
 	background-color: #00000066 !important;
 	backdrop-filter: blur(8px);
 	margin: 6px;
-	border-radius: 8px;
+	border-radius: var(--border-radius-small);
 
 	> .button:enabled:is(:hover, :hover:active) {
 		fill: #fff !important;
