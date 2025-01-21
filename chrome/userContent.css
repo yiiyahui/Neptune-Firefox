@@ -10,7 +10,9 @@
 	--in-content-primary-button-text-color: #fff !important;
 	--background-color-box: var(--neptune-content-background) !important;
 	--newtab-primary-element-text-color: #fff !important;
-	--in-content-item-hover: var(--neptune-item-hover-background) !important;
+	--in-content-item-hover: var(--theme-primary-hover-color) !important;
+	--in-content-item-selected: var(--theme-primary-active-color) !important;
+	--in-content-item-hover-text: #fff !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 	--newtab-background-color: var(--neptune-main-background) !important;
 	--newtab-background-color-secondary: var(--neptune-content-background) !important;
@@ -34,28 +36,37 @@
 	--brand-color-accent-active: var(--theme-primary-active-color) !important;
 	--newtab-primary-action-background: var(--theme-primary-color) !important;
 	--color-accent-primary: var(--theme-primary-color) !important;
-	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--theme-arrowpanel-background: var(--neptune-menu-background) !important;
+	--theme-arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--theme-body-background: var(--neptune-main-background) !important;
+	--theme-link-color: var(--theme-primary-color) !important;
+	--theme-icon-checked-color: var(--theme-primary-active-color) !important;
 	--theme-selection-background: var(--theme-primary-active-color) !important;
 	--theme-selection-background-hover: var(--neptune-item-selection-hover-background) !important;
 	--theme-text-selection-background: var(--neptune-item-selection-hover-background) !important;
 	--theme-tab-toolbar-background: var(--neptune-main-background) !important;
-	--theme-link-color: var(--theme-primary-color) !important;
-	--theme-icon-checked-color: var(--theme-primary-active-color) !important;
 	--theme-toolbar-background: var(--neptune-main-background) !important;
 	--theme-toolbar-hover: var(--neptune-item-hover-background) !important;
 	--theme-toolbar-hover-active: var(--neptune-item-active-background) !important;
 	--theme-toolbar-selected-color: var(--theme-primary-color) !important;
 	--theme-toolbar-alternate-hover: var(--neptune-item-active-background) !important;
 	--theme-focus-textinput-outline-color: var(--neptune-input-outline-color) !important;
-	--theme-arrowpanel-background: var(--neptune-menu-background) !important;
-	--theme-arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
+	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--button-min-height: 24px !important;
+	--theme-toolbar-height: 22px !important;
 	--theme-arrowpanel-border-radius: 8px !important;
 	--tab-line-selected-color: transparent !important;
 	--tab-line-hover-color: transparent !important;
 	--default-focusring: none !important;
-	--theme-toolbar-height: 22px !important;
 	--border-radius-small: 6px !important;
+	--font-size-root: 13.5px !important;
+	--font-size-small: 0.926rem !important;
+	--font-size-large: 1.111rem !important;
+	--font-size-xlarge: 1.444rem !important;
+	--font-size-xxlarge: 1.63rem !important;
+	--space-xsmall: 0.296rem !important;
 }
 
 .toggle-button {
@@ -87,23 +98,29 @@
 		--panel-border-color: var(--neptune-toolbar-border-color) !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
-		--in-content-primary-button-background:  light-dark(color-mix(in srgb, accentcolor 85%, #939597), color-mix(in srgb, accentcolor 80%, #c3c5c7)) !important;
-		--in-content-primary-button-background-hover: light-dark(color-mix(in srgb, accentcolor 85%, #616365), color-mix(in srgb, accentcolor 80%, #818385)) !important;
-		--in-content-primary-button-background-active: accentcolor !important;
+		--in-content-primary-button-background: color-mix(in srgb, accentcolor 80%, #181818) !important;
+		--in-content-primary-button-background-hover:color-mix(in srgb, accentcolor 85%, #262626) !important;
+		--in-content-primary-button-background-active:  color-mix(in srgb, accentcolor 85%, #646464) !important;
+		--in-content-primary-button-text-color: #fff !important;
+		--in-content-focus-outline-color: accentcolor !important;
 		text-decoration: inherit !important;
 	}
 
-	menulist > menupopup {
-		--panel-background: var(--neptune-menu-background) !important;
-		--panel-border-radius: var(--border-radius-small) !important;
+	menulist {
+		padding-inline: var(--space-small) !important;
 
-		> menu,
-		> menuitem {
-			padding-block: 2px !important;
-		}
+		> menupopup {
+			--panel-background: var(--neptune-menu-background) !important;
+			--panel-border-radius: var(--border-radius-small) !important;
 
-		menuseparator {
-			border: none !important;
+			> menu,
+			> menuitem {
+				padding-block: 2px !important;
+			}
+
+			menuseparator {
+				border: none !important;
+			}
 		}
 	}
 
@@ -113,7 +130,7 @@
 		mask-image: linear-gradient(to top, transparent 6%, black 24%);
 	}
 
-	.dialogBox, dialog {
+	.dialogBox {
 		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: 12px !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
@@ -125,9 +142,7 @@
 	}
 
 	.dialog-button-box > button {
-		font-size: 12.5px !important;
 		padding-block: 0 !important;
-		min-height: 24px !important;
 		border-radius: var(--border-radius-small) !important;
 	}
 
@@ -197,6 +212,41 @@
 		}
 	}
 
+	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem,
+	select, menulist, textarea, button:not([is="named-deck-button"], .toggle-button, .reset-button),
+	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
+		padding-block: 2px !important;
+	}
+
+	tree {
+		font: menu !important;
+	}
+
+	#engineList, #blocklistsTree {
+		> treechildren::-moz-tree-row,
+		> treechildren::-moz-tree-row {
+			min-height: var(--button-min-height) !important;
+		}
+
+		> treechildren::-moz-tree-image(engineShown, checked),
+		> treechildren::-moz-tree-image(selectionCol, checked) {
+			fill: currentColor !important;
+		}
+	}
+
+	#handlersView {
+		height: auto !important;
+
+		> richlistitem {
+			min-height: var(--button-min-height) !important;
+		}
+	}
+
+	#siteCol, #statusCol,
+	#permissionsBox > richlistitem {
+		min-height: var(--button-min-height) !important;
+	}
+
 	.search-tooltip {
 		background-color: var(--theme-primary-color) !important;
 		border: none !important;
@@ -222,7 +272,7 @@
 		}
 	}
 
-	.info-box-container {
+	.more-options-button, .info-box-container {
 		background-color: transparent !important;
 	}
 
@@ -248,14 +298,13 @@
 		border-radius: var(--border-radius-small) !important;
 	}
 
-	input[type=checkbox],
-	.checkbox-check {
+	input[type=checkbox]:not(.ruleview-enableproperty, .layout-content input),
+	.checkbox-check:not([native]) {
 		appearance: none !important;
 		margin-block: 0 !important;
-		width: 16px;
-		height: 16px;
 		border: 2px solid graytext;
 		border-radius: 4px;
+		box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
 
 		&:is(:checked, [checked="true"]) {
 			background-color: var(--theme-primary-color) !important;
@@ -267,10 +316,9 @@
 	input[type=radio]:not(.wallpaper-input),
 	.radio-check {
 		appearance: none !important;
-		width: 16px;
-		height: 16px;
 		border: 2px solid graytext;
 		border-radius: 50%;
+		box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
 
 		&:is(:checked, [selected="true"]) {
 			background-color: var(--theme-primary-color) !important;
@@ -671,7 +719,7 @@
 
 	.home-section {
 		grid-row-gap: var(--space-medium) !important;
-		padding: var(--space-medium) !important;
+		padding: 0 var(--space-medium) !important;
 
 		.section .selector {
 			background-color: var(--neptune-item-background) !important;
@@ -683,7 +731,7 @@
 		.external-link {
 			background: none !important;
 			padding: 0 !important;
-			margin-block-end: var(--space-xsmall) !important;
+			margin-block-end: 16px !important;
 
 			&:hover {
 				color: var(--theme-primary-color) !important;
@@ -694,7 +742,7 @@
 	.arrow-button {
 		background: url("chrome://global/skin/icons/arrow-left-12.svg") no-repeat left !important;
 		font: menu !important;
-		margin: 0 var(--space-medium) !important;
+		margin: 0 var(--space-xsmall) !important;
 		padding-inline-start: var(--space-large) !important;
 	}
 
@@ -723,7 +771,7 @@
 
 		&:checked {
 			outline: none !important;
-			filter: brightness(30%);
+			filter: brightness(50%);
 			padding: 0 !important;
 		}
 	}
@@ -930,6 +978,14 @@
 }
 
 @-moz-document url-prefix(about:firefoxview) {
+	* {
+		cursor: default !important;
+	}
+
+	button {
+		height: 28px;
+	}
+
 	.search-container {
 		.search-icon {
 			background-size: 12px !important;
@@ -978,9 +1034,26 @@
 	}
 
 	.card-container {
-		border: 1px solid var(--fxview-border);
-		box-shadow: none !important;
+		padding: var(--space-xsmall) !important;
 		border-radius: 8px !important;
+
+		> .card-container-header {
+			padding-block: 0 !important;
+			margin-block: 0 !important;
+		}
+
+		> .view-all-link {
+			padding-block: 0 !important;
+		}
+	}
+
+	.fxview-tab-row-main {
+		font: menu;
+		margin-block: auto;
+	}
+
+	.fxview-tab-row-button {
+		scale: 0.8;
 	}
 
 	.submenu-icon {

@@ -64,14 +64,14 @@
 			padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding)) !important;
 		}
 	}
-}
 
-#PersonalToolbar {
-	background-color: var(--neptune-toolbar-background) !important;
+	#PersonalToolbar {
+		background-color: var(--neptune-toolbar-background) !important;
 
-	toolbarbutton.bookmark-item:not(.subviewbutton) {
-		padding-inline: var(--space-xsmall) !important;
-		border-radius: var(--border-radius-small) !important;
+		toolbarbutton.bookmark-item:not(.subviewbutton) {
+			padding-inline: var(--space-xsmall) !important;
+			border-radius: var(--border-radius-small) !important;
+		}
 	}
 }
 
@@ -153,6 +153,7 @@ findbar {
 
 :root {
 	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
+	--space-xsmall: 0.25rem !important;
 	--urlbar-min-height: 28px !important;
 	--urlbarView-labeled-row-label-top: calc(-1.27em - 5px) !important;
 	--tab-min-height: 28px !important;
@@ -197,7 +198,7 @@ findbar {
 	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
 	--link-color: light-dark(#909090, #7c7c7c) !important;
 	--icon-color: light-dark(#383838, #ececec) !important;
-	--menupopup-background-color: light-dark(#f0f0f0, #323232);
+	--theme-menupopup-background: light-dark(#f0f0f0, #323232);
 	--tab-loading-fill: var(--theme-primary-color) !important;
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
@@ -369,7 +370,7 @@ textarea:not(#select-translations-panel-text-area) {
 	margin: 4px 0 0 -8px !important;
 	border: none !important;
 	border-radius: 12px;
-	background-color: var(--menupopup-background-color);
+	background-color: var(--theme-menupopup-background);
 	color: MenuText;
 	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
@@ -381,7 +382,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .urlbarView-results {
-	padding: 6px !important;
+	padding: var(--urlbarView-item-block-padding) !important;
 
 	> .urlbarView-row {
 		border: var(--button-border) !important;
@@ -431,7 +432,7 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			> .urlbarView-button:not(:empty):not(.urlbarView-button-menu) {
-				padding-block: 4px !important;
+				padding-block: var(--urlbarView-results-padding) !important;
 				outline: none !important;
 				border-radius: var(--border-radius-small) !important;
 			}
@@ -448,7 +449,7 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		&[rich-suggestion] > .urlbarView-row-inner {
-			 > .urlbarView-favicon {
+			> .urlbarView-favicon {
 				width: 24px !important;
 				height: 24px !important;
 			}
@@ -674,6 +675,10 @@ textarea:not(#select-translations-panel-text-area) {
 			&[multiselected]:not([pinned]):not(tab-group[collapsed] > &) {
 				max-width: 100px !important;
 			}
+		}
+
+		> #tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button {
+			display: inherit !important;
 		}
 	}
 
@@ -1118,6 +1123,7 @@ treechildren::-moz-tree-cell-text(selected) {
 toolbar .toolbarbutton-1 {
 	padding: 0 !important;
 	margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
+	opacity: 1 !important;
 
 	> .toolbarbutton-icon,
 	> .toolbarbutton-text,
@@ -1171,6 +1177,7 @@ input[type=checkbox],
 	appearance: none !important;
 	border-radius: 4px;
 	border: 2px solid var(--input-border-color);
+	box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
 
 	&:is(:checked, [checked="true"]) {
 		background-color: var(--theme-primary-color) !important;
@@ -1183,6 +1190,7 @@ input[type=radio] {
 	appearance: none !important;
 	border: 2px solid var(--input-border-color);
 	border-radius: 50%;
+	box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
 
 	&:checked {
 		background-color: var(--theme-primary-color) !important;
@@ -1206,7 +1214,7 @@ panel {
 	--panel-border-radius: var(--arrowpanel-border-radius) !important;
 	--panel-border-color: var(--neptune-toolbar-border-color) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
-	--arrowpanel-header-back-icon-padding: 5px !important;
+	--arrowpanel-header-back-icon-padding: var(--arrowpanel-menuitem-margin-inline) !important;
 	--arrowpanel-header-back-icon-full-width: calc(12px + 2 * var(--arrowpanel-header-back-icon-padding)) !important;
 	--arrowpanel-header-min-height: calc(var(--arrowpanel-header-back-icon-full-width) + 2 * var(--panel-separator-margin-vertical)) !important;
 
@@ -1253,6 +1261,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 
 @media not (-moz-platform: macos) {
 	menupopup {
+		--panel-background: var(--menupopup-background-color) !important;
 		--content-select-background-image: none !important;
 
 		> menu,
@@ -1294,7 +1303,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 			font-size: 1rem !important;
 
 			&:not([_moz-menuactive="true"]) {
-				background-color: var(--menupopup-background-color) !important;
+				background-color: var(--theme-menupopup-background) !important;
 				color: inherit !important;
 			}
 		}
@@ -1305,7 +1314,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 	}
 
 	arrowscrollbox.menupopup-arrowscrollbox {
-		background-color: var(--menupopup-background-color) !important;
+		background-color: var(--theme-menupopup-background) !important;
 	}
 }
 
@@ -1330,7 +1339,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 .subviewbutton-iconic > .toolbarbutton-icon,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
-.bookmark-item > .toolbarbutton-icon,
 .menu-iconic-icon,
 .menu-right > image {
 	width: 12px !important;
@@ -1459,6 +1467,7 @@ panelview .toolbarbutton-1,
 	.infobar {
 		background-color: var(--neptune-item-active-background) !important;
 		border: none !important;
+		box-shadow: none !important;
 
 		&::before {
 			background-image: none !important;
@@ -1469,7 +1478,7 @@ panelview .toolbarbutton-1,
 .container {
 	padding-block: 0 !important;
 
-	.text-container{
+	.text-container {
 		flex: 1;
 		color: var(--toolbar-color);
 	}
