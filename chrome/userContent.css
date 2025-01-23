@@ -3,17 +3,24 @@
 
 :root {
 	--in-content-page-background: var(--neptune-main-background) !important;
+	--in-content-table-background: var(--neptune-menu-background) !important;
+	--in-content-border-color: var(--neptune-sidebar-border-color)  !important;
 	--in-content-box-background: var(--neptune-content-background) !important;
 	--in-content-box-info-background: var(--neptune-content-background) !important;
-	--in-content-table-background: var(--neptune-content-background) !important;
-	--in-content-border-color: var(--neptune-sidebar-border-color)  !important;
-	--in-content-primary-button-text-color: #fff !important;
-	--background-color-box: var(--neptune-content-background) !important;
-	--newtab-primary-element-text-color: #fff !important;
-	--in-content-item-hover: var(--theme-primary-hover-color) !important;
-	--in-content-item-selected: var(--theme-primary-active-color) !important;
-	--in-content-item-hover-text: #fff !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
+	--in-content-primary-button-text-color: white !important;
+	--in-content-button-background: var(--neptune-item-background) !important;
+	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
+	--in-content-button-background-active: var(--neptune-item-active-background) !important;
+	--in-content-primary-button-background: var(--theme-primary-color) !important;
+	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
+	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
+	--in-content-focus-outline-color: var(--neptune-input-outline-color) !important;
+	--color-accent-primary: var(--theme-primary-color) !important;
+	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--background-color-box: var(--neptune-menu-background) !important;
+	--newtab-primary-element-text-color: #fff !important;
 	--newtab-background-color: var(--neptune-main-background) !important;
 	--newtab-background-color-secondary: var(--neptune-content-background) !important;
 	--newtab-border-color: var(--neptune-toolbar-border-color) !important;
@@ -23,21 +30,11 @@
 	--checkbox-checked-bgcolor: var(--theme-primary-color) !important;
 	--checkbox-checked-hover-bgcolor: var(--theme-primary-hover-color) !important;
 	--checkbox-checked-active-bgcolor: var(--theme-primary-active-color) !important;
-	--in-content-button-background: var(--neptune-item-background) !important;
-	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
-	--in-content-button-background-active: var(--neptune-item-active-background) !important;
-	--in-content-primary-button-background: var(--theme-primary-color) !important;
-	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
-	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
-	--in-content-focus-outline-color: var(--neptune-input-outline-color) !important;
 	--focus-outline-color: var(--neptune-input-outline-color) !important;
 	--brand-color-accent: var(--theme-primary-color) !important;
 	--brand-color-accent-hover: var(--theme-primary-hover-color) !important;
 	--brand-color-accent-active: var(--theme-primary-active-color) !important;
 	--newtab-primary-action-background: var(--theme-primary-color) !important;
-	--color-accent-primary: var(--theme-primary-color) !important;
-	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
-	--color-accent-primary-active: var(--theme-primary-active-color) !important;
 	--theme-arrowpanel-background: var(--neptune-menu-background) !important;
 	--theme-arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--theme-body-background: var(--neptune-main-background) !important;
@@ -66,14 +63,7 @@
 	--font-size-large: 1.111rem !important;
 	--font-size-xlarge: 1.444rem !important;
 	--font-size-xxlarge: 1.63rem !important;
-	--space-xsmall: 0.296rem !important;
-}
-
-.toggle-button {
-	--toggle-background-color-pressed: var(--theme-primary-color) !important;
-	--toggle-background-color-pressed-hover: var(--theme-primary-hover-color) !important;
-	--toggle-background-color-pressed-active: var(--theme-primary-active-color) !important;
-	--toggle-dot-background-color-on-pressed: #fff !important;
+	--space-xsmall: 0.2963rem !important;
 }
 
 @-moz-document url-prefix(about:), url-prefix("chrome://") {
@@ -105,6 +95,12 @@
 		--in-content-focus-outline-color: accentcolor !important;
 		text-decoration: inherit !important;
 	}
+
+.toggle-button {
+	--toggle-dot-background-color: var(--neptune-slider-color) !important;
+	--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
+	--toggle-border-color: var(--neptune-toolbar-border-color) !important;
+}
 
 	menulist {
 		padding-inline: var(--space-small) !important;
@@ -212,8 +208,8 @@
 		}
 	}
 
-	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem,
-	select, menulist, textarea, button:not([is="named-deck-button"], .toggle-button, .reset-button),
+	treecol .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem,
+	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .toggle-button, .reset-button),
 	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
 		padding-block: 2px !important;
 	}
@@ -222,16 +218,11 @@
 		font: menu !important;
 	}
 
-	#engineList, #blocklistsTree {
-		> treechildren::-moz-tree-row,
-		> treechildren::-moz-tree-row {
-			min-height: var(--button-min-height) !important;
-		}
-
-		> treechildren::-moz-tree-image(engineShown, checked),
-		> treechildren::-moz-tree-image(selectionCol, checked) {
-			fill: currentColor !important;
-		}
+	#siteCol, #statusCol,
+	#permissionsBox > richlistitem,
+	#engineList > treechildren::-moz-tree-row, 
+	#blocklistsTree > treechildren::-moz-tree-row {
+		min-height: var(--button-min-height) !important;
 	}
 
 	#handlersView {
@@ -240,11 +231,6 @@
 		> richlistitem {
 			min-height: var(--button-min-height) !important;
 		}
-	}
-
-	#siteCol, #statusCol,
-	#permissionsBox > richlistitem {
-		min-height: var(--button-min-height) !important;
 	}
 
 	.search-tooltip {
@@ -262,6 +248,7 @@
 		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: var(--border-radius-medium) !important;
 		box-shadow: none !important;
+		outline: none !important;
 
 		&:hover {
 			box-shadow: var(--card-shadow) !important;
@@ -301,7 +288,6 @@
 	input[type=checkbox]:not(.ruleview-enableproperty, .layout-content input),
 	.checkbox-check:not([native]) {
 		appearance: none !important;
-		margin-block: 0 !important;
 		border: 2px solid graytext;
 		border-radius: 4px;
 		box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
@@ -615,25 +601,8 @@
 		}
 	}
 
-	.compact-cards .card-outer .card-preview-image-outer {
-		height: 80px !important;
-	}
-
-	.compact-cards .card-outer .card-details {
-		padding: 0 8px !important;
-	}
-
-	.compact-cards .card-outer .card-context {
-		top: 60px !important;
-	}
-
-	.ds-highlights .section .section-list .card-outer {
-		height: 125px !important;
-
-		.card-host-name,
-		.card-title {
-			font-size: 10.5px !important;
-		}
+	.card-outer:has(.card-preview-image.loaded) {
+		box-shadow: var(--neptune-small-shadow), 0 0 12px var(--neptune-menu-shadow-color) !important;
 	}
 
 	.modalOverlayOuter {
@@ -677,25 +646,20 @@
 	}
 
 	.personalize-button {
+		-moz-context-properties: fill, fill-opacity !important;
+		background-image: url("neptune/icons/settings.svg") !important;
+		background-color: transparent !important;
 		padding: 0 !important;
 		background-size: 28px !important;
-		background-color: transparent !important;
-		fill: MenuText !important;
-		opacity: .8;
-
-		&:is(:hover, :active) {
-			opacity: 1;
-		}
-	}
-
-	.personalize-button.personalize-animate-exit-done {
-		visibility: visible !important;
-	}
-
-	.icon.icon-settings {
-		background-image: url("neptune/icons/settings.svg") !important;
 		width: 28px !important;
 		height: 28px !important;
+		visibility: visible !important;
+		fill: MenuText !important;
+		fill-opacity: 0.8;
+
+		&:is(:hover, :active) {
+			fill-opacity: 1;
+		}
 	}
 
 	.customize-menu {
@@ -982,10 +946,6 @@
 		cursor: default !important;
 	}
 
-	button {
-		height: 28px;
-	}
-
 	.search-container {
 		.search-icon {
 			background-size: 12px !important;
@@ -1033,13 +993,27 @@
 		}
 	}
 
+	card-container h3 {
+		font-size: var(--font-size-small) !important;
+	}
+	
 	.card-container {
 		padding: var(--space-xsmall) !important;
 		border-radius: 8px !important;
+		font: menu;
 
 		> .card-container-header {
 			padding-block: 0 !important;
 			margin-block: 0 !important;
+
+			> .chevron-icon {
+				background-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+				background-color: transparent !important;
+
+				.card-container:not([open]) & {
+					background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+				}
+			}
 		}
 
 		> .view-all-link {
@@ -1047,13 +1021,8 @@
 		}
 	}
 
-	.fxview-tab-row-main {
-		font: menu;
-		margin-block: auto;
-	}
-
-	.fxview-tab-row-button {
-		scale: 0.8;
+	.button-background {
+		background-size: 12px !important;
 	}
 
 	.submenu-icon {

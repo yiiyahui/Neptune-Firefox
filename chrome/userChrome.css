@@ -1200,10 +1200,9 @@ input[type=radio] {
 }
 
 .toggle-button {
-	--toggle-background-color-pressed: var(--theme-primary-color) !important;
-	--toggle-background-color-pressed-hover: var(--theme-primary-hover-color) !important;
-	--toggle-background-color-pressed-active: var(--theme-primary-active-color) !important;
-	--toggle-dot-background-color-on-pressed: var(--button-text-color-primary) !important;
+	--toggle-dot-background-color: var(--neptune-slider-color) !important;
+	--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
+	--toggle-border-color: var(--neptune-toolbar-border-color) !important;
 }
 
 /*---------- Popups ----------*/
@@ -1484,29 +1483,27 @@ panelview .toolbarbutton-1,
 	}
 
 	.close {
-		transform: scale(.6);
+		scale: 0.6;
 		color: var(--toolbar-color);
 	}
 }
 
 #PopupAutoComplete > richlistbox {
+	background-color: var(--neptune-menu-background) !important;
+
 	> richlistitem > .ac-login-item > .ac-secondary-action {
 		background: none !important;
 	}
 
-	> richlistitem[originaltype="loginsFooter"] {
-		border: none !important;
-	}
-}
+	> .autocomplete-richlistitem {
+		&:not([disabled="true"]):not([selected]):hover {
+			background-color: var(--color-accent-primary-hover) !important;
+			color: var(--button-text-color-primary) !important;
+		}
 
-.autocomplete-richlistitem {
-	&:not([disabled="true"]):not([selected]):hover {
-		background-color: var(--neptune-item-background) !important;
-	}
-
-	&[selected] {
-		background-color: var(--neptune-item-active-background) !important;
-		color: MenuText !important;
+		&[selected] {
+			background-color: var(--color-accent-primary-active) !important;
+		}
 	}
 }
 
@@ -1606,8 +1603,7 @@ panelview .toolbarbutton-1,
 		gap: unset !important;
 	}
 
-	#unpip,
-	#close {
+	#unpip, #close {
 		height: 16px !important;
 		width: 16px !important;
 		left: 10px !important;
@@ -1677,7 +1673,7 @@ panelview .toolbarbutton-1,
 	}
 
 	.slider {
-		background-color: gray !important;
+		background-color: #cacaca80 !important;
 
 		&::before {
 			background-color: var(--button-text-color-primary) !important;
