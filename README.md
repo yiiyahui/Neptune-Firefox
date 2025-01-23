@@ -42,10 +42,11 @@ body {
 
 - **Adaptive Tab Bar Color settings**
 
-    - Turn off all `Customization` colors,
-    - configure `advanced`
-        - light:`rgb 246,246,246`
-        - dark:`rgb 56,56,56`
-
+    - Set all values in the `Theme builder` to `0%`.
+    - Configure `Advanced`
+        - Light mode contrast:`21%`(Recommend)
+        - Dark mode contrast:`3%`(Recommend)
+        - Home page color light:`#f6f6f6`
+        - Home page color dark:`#383838`
 
 ENJOY!
