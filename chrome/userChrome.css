@@ -1087,6 +1087,14 @@ sidebar-tab-row {
 	}
 }
 
+@layer input-common {
+	#input {
+		--input-width: 14px !important;
+		--input-height: 14px !important;
+		--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
+	}
+}
+
 moz-radio, moz-checkbox {
 	padding-block: var(--space-small) !important;
 	border-color: var(--neptune-sidebar-border-color) !important;
@@ -1175,9 +1183,11 @@ screenshots-buttons {
 input[type=checkbox],
 .checkbox-check:not([native]) {
 	appearance: none !important;
+	width: 14px !important;
+	height: 14px !important;
+	border: var(--neptune-checkbox-border);
 	border-radius: 4px;
-	border: 2px solid var(--input-border-color);
-	box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
+	box-shadow: var(--neptune-checkbox-shadow);
 
 	&:is(:checked, [checked="true"]) {
 		background-color: var(--theme-primary-color) !important;
@@ -1188,9 +1198,11 @@ input[type=checkbox],
 
 input[type=radio] {
 	appearance: none !important;
-	border: 2px solid var(--input-border-color);
+	width: 14px !important;
+	height: 14px !important;
+	border: var(--neptune-checkbox-border);
 	border-radius: 50%;
-	box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
+	box-shadow: var(--neptune-checkbox-shadow);
 
 	&:checked {
 		background-color: var(--theme-primary-color) !important;
@@ -1342,6 +1354,10 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 .menu-right > image {
 	width: 12px !important;
 	height: 12px !important;
+}
+
+#appMenu-popup :is(.panel-banner-item, .addon-banner-item) {
+	align-items: center !important;
 }
 
 :is(#identity-popup, #permission-popup, #protections-popup) {
@@ -1615,7 +1631,7 @@ panelview .toolbarbutton-1,
 	}
 
 	#playpause {
-		background-size: 24px !important;
+		background-size: 28px !important;
 	}
 
 	#timestamp {
@@ -1685,7 +1701,7 @@ panelview .toolbarbutton-1,
 	}
 
 	.font-size-selection-radio > input[type="radio"] {
-		border: 2px solid graytext !important;
+		border: 2px solid #cacaca80 !important;
 
 		&:checked {
 			border: none !important;

@@ -13,6 +13,8 @@
 		--neptune-input-bgcolor: color-mix(in srgb, currentColor 14%, transparent);
 		--neptune-input-outline-color: color-mix(in srgb, accentcolor 50%, #646464);
 		--neptune-slider-color: #cacaca;
+		--neptune-checkbox-border: 1px solid #6a6a6a;
+		--neptune-checkbox-shadow: inset 0 0 5px #ffffff33;
 		--neptune-item-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-item-hover-background: color-mix(in srgb, currentColor 14%, transparent);
 		--neptune-item-active-background: color-mix(in srgb, currentColor 16%, transparent);

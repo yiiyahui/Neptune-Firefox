@@ -288,9 +288,11 @@
 	input[type=checkbox]:not(.ruleview-enableproperty, .layout-content input),
 	.checkbox-check:not([native]) {
 		appearance: none !important;
-		border: 2px solid graytext;
+		width: 14px !important;
+		height: 14px !important;
+		border: var(--neptune-checkbox-border);
 		border-radius: 4px;
-		box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
+		box-shadow: var(--neptune-checkbox-shadow);
 
 		&:is(:checked, [checked="true"]) {
 			background-color: var(--theme-primary-color) !important;
@@ -302,9 +304,11 @@
 	input[type=radio]:not(.wallpaper-input),
 	.radio-check {
 		appearance: none !important;
-		border: 2px solid graytext;
+		width: 14px !important;
+		height: 14px !important;
+		border: var(--neptune-checkbox-border);
 		border-radius: 50%;
-		box-shadow: inset 0 1px 2px var(--neptune-menu-shadow-color);
+		box-shadow: var(--neptune-checkbox-shadow);
 
 		&:is(:checked, [selected="true"]) {
 			background-color: var(--theme-primary-color) !important;
@@ -381,7 +385,8 @@
 	.permission-icon,
 	.category-icon,
 	.dialogClose,
-	.sidebar-footer-icon {
+	.sidebar-footer-icon,
+	#homeContentsGroup .checkbox-icon[src] {
 		display: none !important;
 	}
 }
