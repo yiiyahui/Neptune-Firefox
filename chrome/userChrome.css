@@ -76,6 +76,7 @@
 }
 
 #customization-container {
+	background-image: none !important;
 	background-color: var(--neptune-main-background) !important;
 
 	#customization-panelWrapper {
@@ -924,13 +925,11 @@ textarea:not(#select-translations-panel-text-area) {
 .all-tabs-item {
 	&[selected] {
 		font-weight: unset !important;
-		color: var(--theme-primary-color);
+		background-color: var(--neptune-tab-background);
 	}
 
 	> .all-tabs-close-button {
 		background: none !important;
-		padding: var(--toolbarbutton-outer-padding) !important;
-		margin-inline-end: var(--arrowpanel-menuitem-margin-inline) !important;
 	}
 
 	> .all-tabs-secondary-button:hover {
@@ -1092,6 +1091,14 @@ sidebar-tab-row {
 		--input-width: 14px !important;
 		--input-height: 14px !important;
 		--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
+	}
+
+	.icon {
+		display: none;
+
+		+ .text {
+			margin-inline-start: 0 !important;
+		}
 	}
 }
 
@@ -1342,6 +1349,22 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 	}
 }
 
+#feature-callout {
+	&[arrow-position=top-end] .arrow-box {
+		top: 0 !important;
+	}
+
+	.screen[pos=callout] .section-main > .main-content {
+		border-radius: 8px !important;
+		box-shadow: none !important;
+	}
+
+	.screen[pos=callout] .action-buttons > :is(.primary, .secondary) {
+		padding-block: 0 !important;
+		min-height: var(--button-min-height) !important;
+	}
+}
+
 #sidebar-switcher-target > #sidebar-icon,
 #protections-popup-mainView .subviewbutton-nav:not(.notFound)::after,
 .widget-overflow-list .subviewbutton-nav::after,
@@ -1521,12 +1544,6 @@ panelview .toolbarbutton-1,
 			background-color: var(--color-accent-primary-active) !important;
 		}
 	}
-}
-
-#feature-callout .screen[pos=callout] .action-buttons .primary,
-#feature-callout .screen[pos=callout] .action-buttons .secondary {
-	padding-block: 0 !important;
-	min-height: 24px !important;
 }
 
 @-moz-document url("chrome://browser/content/places/places.xhtml") {
