@@ -24,6 +24,7 @@
 	--newtab-background-color: var(--neptune-main-background) !important;
 	--newtab-background-color-secondary: var(--neptune-content-background) !important;
 	--newtab-border-color: var(--neptune-toolbar-border-color) !important;
+	--fxview-border: var(--neptune-toolbar-border-color) !important;
 	--sidebar-toolbar-bg-color: var(--neptune-main-background) !important;
 	--thumbnail-hover-color: var(--theme-primary-hover-color) !important;
 	--thumbnail-selected-color: var(--theme-primary-active-color) !important;
@@ -142,6 +143,10 @@
 		.info-box-container:not(:has(.doh-status-label.tail-with-learn-more)) {
 			padding-block-start: 0 !important;
 
+			.info-icon {
+				margin-block: auto !important;
+			}
+
 			.extra-information-label {
 				margin-top: var(--space-small) !important;
 			}
@@ -149,17 +154,30 @@
 			.content-blocking-warning {
 				margin-block-end: 0 !important;
 				padding-block: 0 !important;
+
+				> .reload-tabs-button {
+					list-style-image: none !important;
+					min-height: var(--button-min-height) !important;
+				}
 			}
 		}
 
 		.indent {
-			&:is(:not((#browserPrivateEngineSelection) > description), description.indent) {
+			description.indent {
 				margin-block: auto !important;
 				margin-inline-start: 0 !important;
 			}
-			.privacy-extra-information > & {
-				margin-bottom: 0 !important;
+
+			.privacy-extra-information {
+				> .indent {
+					margin-bottom: 0 !important;
+				}
+
+				> .custom-option {
+					margin-block: var(--space-xxsmall) !important;
+				}
 			}
+
 			checkbox.indent {
 				margin-inline-start: 0 !important;
 			}
@@ -911,15 +929,13 @@
 
 	.dropdown-selector > select {
 		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
-		min-height: 22px !important;
-		font: menu !important;
+		font-weight: normal !important;
 	}
 
 	.text-alignment-buttons {
 		gap: var(--space-small) !important;
 
 		> label {
-			min-height: 22px !important;
 			border-radius: 4px !important;
 
 			&[checked] {
@@ -1052,21 +1068,13 @@
 		.history-sort-option, .open-tabs-sort-option {
 			gap: 0 !important;
 		}
-
-		button.small-button {
-			padding-block: 0 !important;
-			min-height: 22px !important;
-			border-radius: var(--border-radius-small) !important;
-			font: menu !important;
-			order: -1;
-		}
 	}
 
 	.card-container {
 		padding: var(--space-xsmall) !important;
-		border-radius: 8px !important;
+		border: 1px solid var(--fxview-border);
+		border-radius: 12px !important;
 		box-shadow: var(--shadow-10) !important;
-		font: menu;
 
 		> .card-container-header {
 			padding-block: 0 !important;
