@@ -1603,6 +1603,10 @@ panelview .toolbarbutton-1,
 		left: 50%;
 		transform: translateX(-50%);
 
+		@media (height <= 350px), @media (width <= 650px) {
+			bottom: max(calc(var(--controls-bottom-upper-height) - var(--scrubber-vertical-margin)), 25%) !important;
+		}
+
 		@media (height <= 200px), (width <= 300px) {
 			display: none;
 		}
@@ -1613,6 +1617,14 @@ panelview .toolbarbutton-1,
 		width: min(50%, 30em) !important;
 		left: 50%;
 		transform: translateX(-50%);
+
+		@media (height <= 350px), @media (width <= 650px) {
+			bottom: max(calc(var(--controls-bottom-upper-height) - var(--scrubber-vertical-margin)), 25%) !important;
+		}
+
+		@media (height <= 100px), @media (width <= 150px) {
+			bottom: max(var(--scrubber-vertical-margin), 25%) !important;
+		}
 
 		> .controls-bottom-upper {
 			width: calc(100% - 24px) !important;

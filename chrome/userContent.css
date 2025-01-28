@@ -560,7 +560,6 @@
 	.info, .promo,
 	.top-site-outer .title .icon,
 	.home-section .divider,
-	.home-section .section .check-wrapper,
 	.wallpaper-attribution,
 	.customize-menu .close-button-wrapper,
 	.contentSearchHeaderRow > td > img,
@@ -772,17 +771,27 @@
 		grid-row-gap: var(--space-medium) !important;
 		padding: 0 var(--space-medium) !important;
 
-		.section .selector {
-			background-color: var(--neptune-item-background) !important;
+		> .section moz-toggle {
+			margin-block: 2px !important;
+		}
+
+		> .section .selector {
+			background: url("chrome://devtools/skin/images/select-arrow.svg") right no-repeat !important;
+			background-origin: content-box !important;
 			border-radius: var(--border-radius-small) !important;
+			margin-block: var(--space-xxsmall) !important;
 			padding-block: 2px !important;
 			box-shadow: none !important;
+		}
+
+		.more-info-top-wrapper .check-wrapper {
+			margin-block: 0 !important;
 		}
 
 		.external-link {
 			background: none !important;
 			padding: 0 !important;
-			margin-block-end: 16px !important;
+			margin-block-end: 12px !important;
 
 			&:hover {
 				color: var(--theme-primary-color) !important;
@@ -928,7 +937,7 @@
 	}
 
 	.dropdown-selector > select {
-		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+		background-image: url("chrome://devtools/skin/images/select-arrow.svg") !important;
 		font-weight: normal !important;
 	}
 
@@ -1055,6 +1064,7 @@
 		flex-direction: row !important;
 		align-items: center;
 		justify-content: space-between;
+		padding-block-end: var(--space-large) !important;
 
 		.open-tabs-options, .open-tabs-sort-wrapper,
 		.history-sort-options:not([hidden]) {
@@ -1072,7 +1082,6 @@
 
 	.card-container {
 		padding: var(--space-xsmall) !important;
-		border: 1px solid var(--fxview-border);
 		border-radius: 12px !important;
 		box-shadow: var(--shadow-10) !important;
 
