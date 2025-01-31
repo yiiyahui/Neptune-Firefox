@@ -97,11 +97,11 @@
 		text-decoration: inherit !important;
 	}
 
-.toggle-button {
-	--toggle-dot-background-color: var(--neptune-slider-color) !important;
-	--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
-	--toggle-border-color: var(--neptune-toolbar-border-color) !important;
-}
+	.toggle-button {
+		--toggle-dot-background-color: var(--neptune-slider-color) !important;
+		--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
+		--toggle-border-color: var(--neptune-toolbar-border-color) !important;
+	}
 
 	menulist {
 		padding-inline: var(--space-small) !important;
@@ -343,15 +343,19 @@
 	}
 
 	#downloadsListBox:focus > richlistitem[selected] {
-		background-color: var(--neptune-urlbarView-hover-background) !important;
+		background-image: none !important;
+		background-color: var(--color-accent-primary-active) !important;
 		color: #fff !important;
 		border-radius: 0 !important;
-		background-image: none !important;
 		outline: none !important;
 	}
 
 	.downloadButton > .button-box {
 		border-radius: 50% !important;
+
+		 > .button-icon {
+			list-style-image: url("chrome://global/skin/icons/search-glass.svg") !important;
+		}
 	}
 
 	.stp_button_wide .stp_button {
@@ -510,7 +514,7 @@
 	.search-wrapper input,
 	.search-handoff-button {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(33px);
+		backdrop-filter: blur(28px);
 		background-size: 24px !important;
 		border: none !important;
 		box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
@@ -525,23 +529,21 @@
 	.contentSearchSuggestionTable {
 		border-radius: 12px !important;
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(33px);
-		box-shadow: var(--neptune-menu-shadow) !important;
+		backdrop-filter: blur(28px);
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
 		.contentSearchHeader,
 		.contentSearchOneOffsTable {
 			border: none !important;
 			background-color: var(--neptune-popover-background) !important;
-			backdrop-filter: blur(33px);
 		}
 
 		.contentSearchOneOffItem {
 			border: none !important;
 			border-radius: var(--border-radius-small);
-			margin: 2px 7px !important;
-			padding-bottom: 2px !important;
-			height: 24px !important;
-			width: 24px !important;
+			margin: var(--space-xsmall) !important;
+			height: 28px !important;
+			width: 28px !important;
 		}
 
 		.contentSearchOneOffItem.selected,
@@ -608,11 +610,19 @@
 
 	.collapsible-section {
 		padding-inline: 0 !important;
+
+		.top-sites-list {
+			margin-inline: auto !important;
+		}
 	}
 
 	.top-site-outer {
 		width: 100px !important;
 		margin-block-end: 0 !important;
+
+		.top-sites-list:not(.dnd-active) &:is(.active, :focus, :hover) {
+			background: none !important;
+		}
 
 		.top-site-inner > a {
 			padding-inline: 0 !important;
@@ -653,17 +663,9 @@
 		}
 	}
 
-	.outer-wrapper .ds-top-sites .top-sites .top-sites-list {
-		margin: 0 !important;
-	}
-
-	.top-sites-list:not(.dnd-active) .top-site-outer:is(.active, :focus, :hover) {
-		background: none !important;
-	}
-
 	.context-menu {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(33px);
+		backdrop-filter: blur(28px);
 		margin-inline-start: -12px !important;
 		border: 1px solid var(--neptune-toolbar-border-color);
 		border-radius: 8px !important;
@@ -692,24 +694,30 @@
 		box-shadow: var(--neptune-small-shadow), 0 0 12px var(--neptune-menu-shadow-color) !important;
 	}
 
-	.modalOverlayOuter {
+	.modalOverlayOuter, .modal-overlay {
 		background: none !important;
 	}
 
-	.edit-topsites-wrapper .modal {
-		width: 32em !important;
-		top: 25vh !important;
+	.modal {
 		border-radius: 12px !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
+		font-size: var(--font-size-root) !important;
 
-		> .topsite-form .form-wrapper input[type=text] {
-			height: 22px !important;
-			border-radius: var(--border-radius-small) !important;
-			font-size: 12.5px !important;
-		}
+		.edit-topsites-wrapper & {
+			width: 36em !important;
+			top: 25vh !important;
+			border-radius: 12px !important;
+			box-shadow: var(--neptune-menu-shadow) !important;
 
-		> .topsite-form .top-site-outer .top-site-inner > a {
-			padding-block: var(--space-xsmall) !important;
+			> .topsite-form .form-wrapper input[type=text] {
+				height: 22px !important;
+				border-radius: var(--border-radius-small) !important;
+				font-size: 12.5px !important;
+			}
+
+			> .topsite-form .top-site-outer .top-site-inner > a {
+				padding-block: var(--space-xsmall) !important;
+			}
 		}
 	}
 
@@ -718,7 +726,7 @@
 		border: none !important;
 
 		button {
-			padding: 0 var(--space-medium) !important;
+			padding: var(--space-xxsmall) var(--space-medium) !important;
 			border-radius: var(--border-radius-small) !important;
 			box-shadow: none !important;
 		}
@@ -756,7 +764,7 @@
 		border-radius: var(--border-radius-medium) !important;
 		transform: translateY(100%) !important;
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(33px);
+		backdrop-filter: blur(28px);
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 		overflow-x: hidden !important;
 		transition: none !important;
@@ -808,7 +816,7 @@
 
 	.wallpaper-list.category {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(33px);
+		backdrop-filter: blur(28px);
 		inset: 0 !important;
 		margin: 0 !important;
 		height: 100% !important;
@@ -919,7 +927,7 @@
 
 	.dropdown .dropdown-popup {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(33px);
+		backdrop-filter: blur(28px);
 		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: var(--border-radius-medium) !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
@@ -1037,7 +1045,7 @@
 
 @-moz-document url-prefix(about:firefoxview) {
 	* {
-		cursor: default !important;
+		cursor: auto !important;
 	}
 
 	.search-container {

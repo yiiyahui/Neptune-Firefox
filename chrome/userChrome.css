@@ -240,7 +240,7 @@ search-textbox {
 #searchbar,
 .findbar-textbox,
 search-textbox,
-input:where([type="search"], [type="text"], [type="url"]),
+input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox),
 textarea {
 	outline: 16px solid transparent !important;
 }
@@ -249,7 +249,7 @@ textarea {
 #searchbar:focus-within,
 .findbar-textbox:focus,
 search-textbox[focused],
-input:where([type="search"], [type="text"], [type="url"]):focus-visible,
+input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox):focus-visible,
 textarea:focus-visible {
 	outline: 4px solid var(--neptune-input-outline-color) !important;
 	outline-offset: -2px;
@@ -287,7 +287,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #search-container {
-	flex-grow: 0.2 !important;
+	flex-grow: 100 !important;
 	padding: 0 !important;
 }
 
@@ -521,7 +521,7 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-#urlbar .search-one-offs {
+.search-one-offs {
 	padding: var(--urlbar-icon-padding) !important;
 
 	> .search-panel-header {
@@ -643,6 +643,7 @@ textarea:not(#select-translations-panel-text-area) {
 #searchmode-switcher-close,
 #searchmode-switcher-popup-search-settings-icon,
 #urlbar-search-mode-indicator-close,
+.searchbar-search-icon,
 .searchbar-engine-one-off-item > .button-box > .button-icon {
 	width: 12px !important;
 	height: 12px !important;
@@ -1260,6 +1261,34 @@ panel {
 	#searchmode-switcher-popup-search-settings-button.panel-subview-footer-button {
 		margin-block: 0 !important;
 	}
+
+	&[type="autocomplete-richlistbox"] {
+		--panel-background: var(--arrowpanel-background) !important;
+
+		> .autocomplete-richlistbox {
+			background-color: var(--neptune-menu-background) !important;
+
+			> .autocomplete-richlistitem {
+				&:not([disabled="true"]):not([selected]):hover {
+					background-color: var(--color-accent-primary-hover) !important;
+					color: var(--button-text-color-primary) !important;
+				}
+
+				&[selected] {
+					background-color: var(--color-accent-primary-active) !important;
+				}
+
+				> .ac-type-icon {
+					min-height: 12px !important;
+					min-width: 12px !important;
+				}
+			}
+		}
+
+		> menuseparator::before {
+			display: none !important;
+		}
+	}
 }
 
 panelview .toolbarbutton-1,
@@ -1355,8 +1384,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 	}
 
 	.screen[pos=callout] .section-main > .main-content {
-		border-radius: 8px !important;
-		box-shadow: none !important;
+		border-radius: var(--arrowpanel-border-radius) !important;
 	}
 
 	.screen[pos=callout] .action-buttons > :is(.primary, .secondary) {
@@ -1463,40 +1491,40 @@ panelview .toolbarbutton-1,
 #downloadsPanel-mainView {
 	min-width: calc(var(--menu-panel-width-wide) + var(--size-item-large)) !important;
 	padding-block: 0 !important;
-}
 
-#downloadsListBox {
-	width: var(--menu-panel-width-wide) !important;
+	#downloadsListBox {
+		width: var(--menu-panel-width-wide) !important;
 
-	> richlistitem {
-		background: none !important;
-		margin: 0 !important;
-		border-radius: 0 !important;
+		> richlistitem {
+			background: none !important;
+			margin: 0 !important;
+			border-radius: 0 !important;
 
-		&:not(:first-child) {
-			border-top: 1px solid var(--neptune-popover-separator-color);
+			&:not(:first-child) {
+				border-top: 1px solid var(--neptune-popover-separator-color);
+			}
+		}
+
+		.downloadButton {
+			min-width: 24px !important;
+			height: 24px !important;
+			border-radius: 50% !important;
+		}
+
+		.downloadTypeIcon {
+			width: 28px !important;
+			height: 28px !important;
+		}
+
+		.downloadProgress {
+			height: 3px !important;
+			margin-inline: 0 !important;
 		}
 	}
-}
 
-.downloadTypeIcon {
-	width: 28px !important;
-	height: 28px !important;
-}
-
-.downloadButton {
-	min-width: 24px !important;
-	height: 24px !important;
-	border-radius: 50% !important;
-}
-
-.downloadProgress {
-	height: 3px !important;
-	margin-inline: 0 !important;
-}
-
-#emptyDownloads {
-	padding-block: 1.5em !important;
+	#emptyDownloads {
+		padding-block: 1.5em !important;
+	}
 }
 
 .notificationbox-stack {
@@ -1527,51 +1555,34 @@ panelview .toolbarbutton-1,
 	}
 }
 
-#PopupAutoComplete > richlistbox {
-	background-color: var(--neptune-menu-background) !important;
-
-	> richlistitem > .ac-login-item > .ac-secondary-action {
-		background: none !important;
-	}
-
-	> .autocomplete-richlistitem {
-		&:not([disabled="true"]):not([selected]):hover {
-			background-color: var(--color-accent-primary-hover) !important;
-			color: var(--button-text-color-primary) !important;
-		}
-
-		&[selected] {
-			background-color: var(--color-accent-primary-active) !important;
-		}
-	}
-}
-
 @-moz-document url("chrome://browser/content/places/places.xhtml") {
-	#placesMenu > menu,
-	#placesToolbar > toolbarbutton {
-		border-radius: 7px !important;
+	treecol, .tree-columnpicker-button {
+		background-color: var(--neptune-item-background) !important;
+
+		&:where(:hover) {
+			background-color: var(--neptune-item-hover-background) !important;
+		}
+
+		&:where(:hover:active) {
+			background-color: var(--neptune-item-active-background) !important;
+		}
 	}
 
-	richlistbox,
-	#placesToolbar,
-	#placesView > splitter	{
+	richlistbox	{
 		border: none !important;
 	}
 
-	.downloadButton,
-	.downloadButton > .button-box {
-		height: auto !important;
-		border-radius: 50% !important;
-	}
-
 	#downloadsListBox {
-		width: auto !important;
-
 		> richlistitem[selected="true"] {
+			background-image: none !important;
 			background-color: var(--color-accent-primary-active) !important;
 			color: var(--button-text-color-primary) !important;
 			border-radius: 0 !important;
 			outline: none !important;
+		}
+
+		.downloadButton > .button-box {
+			border-radius: 50% !important;
 		}
 	}
 }
@@ -1604,7 +1615,7 @@ panelview .toolbarbutton-1,
 		transform: translateX(-50%);
 
 		@media (height <= 350px), @media (width <= 650px) {
-			bottom: max(calc(var(--controls-bottom-upper-height) - var(--scrubber-vertical-margin)), 25%) !important;
+			bottom: 25vmin !important;
 		}
 
 		@media (height <= 200px), (width <= 300px) {
@@ -1619,11 +1630,7 @@ panelview .toolbarbutton-1,
 		transform: translateX(-50%);
 
 		@media (height <= 350px), @media (width <= 650px) {
-			bottom: max(calc(var(--controls-bottom-upper-height) - var(--scrubber-vertical-margin)), 25%) !important;
-		}
-
-		@media (height <= 100px), @media (width <= 150px) {
-			bottom: max(var(--scrubber-vertical-margin), 25%) !important;
+			bottom: 25vmin !important;
 		}
 
 		> .controls-bottom-upper {
@@ -2147,6 +2154,7 @@ tab-group::before,
 .titlebar-spacer,
 #toolbar-menubar,
 #searchmode-switcher-dropmarker,
+.search-go-button,
 #urlbar .search-one-offs {
 	display: none !important;
 }
