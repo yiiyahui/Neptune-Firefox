@@ -162,7 +162,7 @@ findbar {
 	--tab-group-label-height: var(--tab-min-height) !important;
 	--tab-shadow-max-size: 0 !important;
 	--button-min-height: 22px !important;
-	--button-size-icon: var(--size-item-medium) !important;
+	--button-padding: 0 var(--space-large) !important;
 	--border-radius-small: 6px !important;
 	--border-radius-medium: 7px !important;
 	--menu-panel-width-wide: 24em !important;
@@ -224,7 +224,7 @@ findbar {
 	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
 	--organizer-pane-background: var(--neptune-main-background) !important;
-	--organizer-content-background: var(--neptune-content-background) !important;
+	--organizer-content-background: var(--neptune-menu-background) !important;
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
 }
 
@@ -640,9 +640,8 @@ textarea:not(#select-translations-panel-text-area) {
 #blocked-permissions-container>.blocked-permission-icon,
 .urlbarView-action-btn > img,
 #searchmode-switcher-icon,
-#searchmode-switcher-close,
 #searchmode-switcher-popup-search-settings-icon,
-#urlbar-search-mode-indicator-close,
+.urlbar-input-container [id$="close"],
 .searchbar-search-icon,
 .searchbar-engine-one-off-item > .button-box > .button-icon {
 	width: 12px !important;
@@ -710,8 +709,8 @@ textarea:not(#select-translations-panel-text-area) {
 			margin-inline: var(--tab-block-margin) !important;
 		}
 
-		#tabbrowser-tabs[orient="vertical"] & {
-			margin-block: 0 !important;
+		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & > .tab-group-label-container {
+			height: auto !important;
 		}
 
 		.tab-group-label {
@@ -737,10 +736,10 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			#tabbrowser-tabs[orient="vertical"] & {
-				padding: 0 !important;
+				padding: 0 var(--space-medium) !important;
 				margin-block: auto calc(4 * var(--tab-block-margin)) !important;
 
-				&::first-letter {
+				&:first-letter {
 					line-height: initial !important;
 				}
 			}
@@ -939,10 +938,14 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .tab-group-editor-panel {
-	--panel-padding: var(--space-small) !important;
+	--panel-padding: var(--space-small) var(--space-medium) !important;
 
-	.panel-header > h1 {
-		margin: 0 !important;
+	.panel-header {
+		padding: 0 !important;
+
+		> h1 {
+			margin-block: var(--space-xsmall) !important;
+		}
 	}
 
 	toolbarseparator {
@@ -986,6 +989,8 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .actions-list > moz-button:not(.tools-overflow) {
+	--button-size-icon: var(--size-item-medium) !important;
+	--icon-size-default: var(--size-item-small) !important;
 	--button-outer-padding-block: var(--space-xsmall) !important;
 
 	&:first-of-type {
@@ -994,6 +999,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .sidebar-panel {
+	--icon-size-default: 12px !important;
 	padding: 0 var(--space-xsmall) !important;
 
 	moz-card {
@@ -1001,37 +1007,17 @@ textarea:not(#select-translations-panel-text-area) {
 		border-radius: var(--border-radius-small) !important;
 
 		h3 {
-			margin: var(--space-xsmall) !important;
+			display: none;
 		}
 	}
 }
 
-.sidebar-panel-header {
-	> h4 {
-		margin-block: var(--space-small) !important;
-	}
-
-	> .header-close-button {
-		scale: 0.6;
-	}
-}
-
-#header > :is(#header-more, #header-close) {
-	scale: 0.6;
-}
-
 .search-container {
-	background-color: var(--input-bgcolor) !important;
-	border-radius: var(--border-radius-small) !important;
+	height: var(--button-min-height) !important;
 
 	.search-icon {
 		background-size: 12px !important;
-		left: var(--space-xsmall) !important;
 		transform: scaleX(-1);
-	}
-
-	input {
-		padding-inline: var(--space-xxlarge) !important;
 	}
 
 	.clear-icon {
@@ -1042,16 +1028,13 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-.options-container > .menu-button {
-	height: 0 !important;
-	scale: 0.8;
-}
-
 #heading-wrapper {
 	padding-inline-start: var(--space-xsmall) !important;
 	gap: var(--space-xsmall) !important;
 
 	.chevron-icon {
+		min-height: var(--button-min-height) !important;
+		height: var(--button-min-height) !important;
 		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
 
 		details[open] & {
@@ -1067,6 +1050,9 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 sidebar-tab-row {
+	height: var(--button-min-height) !important;
+	border-radius: calc(var(--border-radius-small) - 2px) !important;
+
 	&:hover {
 		background-color: var(--color-accent-primary-hover) !important;
 	}
@@ -1078,8 +1064,7 @@ sidebar-tab-row {
 
 .fxview-tab-row-main {
 	background: none !important;
-	padding-block: var(--space-xsmall) !important;
-	gap: var(--space-small) !important;
+	padding-block: 0 !important;
 	cursor: default !important;
 
 	&:is(:hover, :active) {
@@ -1104,14 +1089,14 @@ sidebar-tab-row {
 }
 
 moz-radio, moz-checkbox {
-	padding-block: var(--space-small) !important;
+	padding-block: var(--space-xsmall) !important;
 	border-color: var(--neptune-sidebar-border-color) !important;
 }
 
 treechildren::-moz-tree-row,
 treecol:not([hideheader="true"]),
 .tree-columnpicker-button {
-	min-height: max(22px, 1.3em) !important;
+	min-height: var(--button-min-height) !important;
 }
 
 treechildren::-moz-tree-row(selected) {
@@ -1127,6 +1112,15 @@ treechildren::-moz-tree-cell-text(selected) {
 .content-shortcuts {
 	fill: var(--color-accent-primary) !important;
 	box-shadow: 0 0 5px var(--neptune-menu-shadow-color);
+}
+
+#header {
+	--icon-size-default: 12px !important;
+	padding-inline: 0 !important;
+
+	> select {
+		margin: 0 !important;
+	}
 }
 
 #tabbrowser-tabbox {
@@ -1276,6 +1270,7 @@ panel {
 
 				&[selected] {
 					background-color: var(--color-accent-primary-active) !important;
+					color: inherit !important;
 				}
 
 				> .ac-type-icon {
@@ -1394,15 +1389,13 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 }
 
 #sidebar-switcher-target > #sidebar-icon,
-#protections-popup-mainView .subviewbutton-nav:not(.notFound)::after,
-.widget-overflow-list .subviewbutton-nav::after,
-.PanelUI-subView .subviewbutton-nav::after,
 .identity-popup-security-connection-icon,
 .subviewbutton-iconic > .toolbarbutton-icon,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
 .menu-iconic-icon,
-.menu-right > image {
+.menu-right > image,
+:is(#protections-popup-mainView, .widget-overflow-list, .PanelUI-subView) .subviewbutton-nav::after {
 	width: 12px !important;
 	height: 12px !important;
 }
@@ -1568,7 +1561,11 @@ panelview .toolbarbutton-1,
 		}
 	}
 
-	richlistbox	{
+	#placesToolbar > toolbarbutton {
+		margin-inline: var(--space-xsmall) !important;
+	}
+
+	richlistbox {
 		border: none !important;
 	}
 

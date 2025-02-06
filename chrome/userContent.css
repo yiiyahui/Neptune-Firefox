@@ -84,9 +84,6 @@
 		--link-color-hover: var(--theme-primary-hover-color) !important;
 		--link-color-active: var(--theme-primary-active-color) !important;
 		--link-color-visited: mediumpurple !important;
-		--panel-border-radius: var(--border-radius-small) !important;
-		--panel-shadow-margin: 15px !important;
-		--panel-border-color: var(--neptune-toolbar-border-color) !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
 		--in-content-primary-button-background: color-mix(in srgb, accentcolor 80%, #181818) !important;
@@ -103,21 +100,25 @@
 		--toggle-border-color: var(--neptune-toolbar-border-color) !important;
 	}
 
-	menulist {
-		padding-inline: var(--space-small) !important;
+	menupopup, panel {
+		--panel-background: var(--neptune-menu-background) !important;
+		--panel-border-color: var(--neptune-toolbar-border-color) !important;
+		--panel-border-radius: var(--border-radius-small) !important;
+		--panel-separator-color: var(--neptune-popover-separator-color) !important;
+		--panel-shadow-margin: 22px !important;
+		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
 
-		> menupopup {
-			--panel-background: var(--neptune-menu-background) !important;
-			--panel-border-radius: var(--border-radius-small) !important;
+		> menu,
+		> menuitem {
+			padding: 2px 16px !important;
+		}
 
-			> menu,
-			> menuitem {
-				padding-block: 2px !important;
-			}
+		.actionsMenu > & > menuitem {
+			padding-inline-start: 10px !important;
+		}
 
-			menuseparator {
-				border: none !important;
-			}
+		> menuseparator {
+			border: none !important;
 		}
 	}
 
@@ -138,6 +139,12 @@
 
 		> #saveWhere > #downloadFolder {
 			background-size: 12px !important;
+		}
+
+		.permission-icon {
+			width: 14px !important;
+			height: 14px !important;
+			margin: var(--space-xsmall) !important;
 		}
 
 		.info-box-container:not(:has(.doh-status-label.tail-with-learn-more)) {
@@ -468,7 +475,6 @@
 	}
 
 	.devtools-separator,
-	.permission-icon,
 	.category-icon,
 	.dialogClose,
 	.sidebar-footer-icon,
@@ -514,7 +520,8 @@
 	.search-wrapper input,
 	.search-handoff-button {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(28px);
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
 		background-size: 24px !important;
 		border: none !important;
 		box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
@@ -529,7 +536,8 @@
 	.contentSearchSuggestionTable {
 		border-radius: 12px !important;
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(28px);
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
 		.contentSearchHeader,
@@ -665,7 +673,8 @@
 
 	.context-menu {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(28px);
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
 		margin-inline-start: -12px !important;
 		border: 1px solid var(--neptune-toolbar-border-color);
 		border-radius: 8px !important;
@@ -764,7 +773,8 @@
 		border-radius: var(--border-radius-medium) !important;
 		transform: translateY(100%) !important;
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(28px);
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 		overflow-x: hidden !important;
 		transition: none !important;
@@ -777,29 +787,34 @@
 
 	.home-section {
 		grid-row-gap: var(--space-medium) !important;
-		padding: 0 var(--space-medium) !important;
+		padding: 0 var(--space-small) !important;
 
-		> .section moz-toggle {
-			margin-block: 2px !important;
+		.settings-toggles {
+			gap: var(--space-medium) !important;
 		}
 
-		> .section .selector {
-			background: url("chrome://devtools/skin/images/select-arrow.svg") right no-repeat !important;
-			background-origin: content-box !important;
-			border-radius: var(--border-radius-small) !important;
-			margin-block: var(--space-xxsmall) !important;
-			padding-block: 2px !important;
+		.section .selector {
+			background-color: transparent !important;
+			width: 8em !important;
 			box-shadow: none !important;
 		}
 
-		.more-info-top-wrapper .check-wrapper {
-			margin-block: 0 !important;
+		.section .sponsored {
+			font: menu !important;
+		}
+
+		.section .more-info-top-wrapper {
+			--space-large: 0.64rem !important;
+
+			.check-wrapper {
+				margin-block: auto !important;
+			}
 		}
 
 		.external-link {
 			background: none !important;
 			padding: 0 !important;
-			margin-block-end: 12px !important;
+			margin-block: 0 !important;
 
 			&:hover {
 				color: var(--theme-primary-color) !important;
@@ -816,7 +831,8 @@
 
 	.wallpaper-list.category {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(28px);
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
 		inset: 0 !important;
 		margin: 0 !important;
 		height: 100% !important;
@@ -826,7 +842,7 @@
 
 	.wallpaper-list.category fieldset {
 		gap: 22px !important;
-		grid-auto-rows: 36px !important;
+		grid-auto-rows: auto !important;
 	}
 
 	.category-list {
@@ -855,7 +871,8 @@
 
 	.category-list label,
 	.text-deemphasized {
-		font-size: 0.75em !important;
+		margin-block: auto !important;
+		font: menu !important;
 	}
 
 	.weatherCard, .weatherButtonContextMenuWrapper {
@@ -927,7 +944,8 @@
 
 	.dropdown .dropdown-popup {
 		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(28px);
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
 		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: var(--border-radius-medium) !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
@@ -945,7 +963,7 @@
 	}
 
 	.dropdown-selector > select {
-		background-image: url("chrome://devtools/skin/images/select-arrow.svg") !important;
+		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
 		font-weight: normal !important;
 	}
 
@@ -980,11 +998,12 @@
 		}
 	}
 
-	.colors-menu-color-scheme-buttons {
+	.color-scheme-buttons {
 		padding-block: var(--space-small) !important;
 
 		> label {
 			height: 28px !important;
+			margin-inline: var(--space-small) !important;
 			font: menu !important;
 
 			&:before {
@@ -1089,6 +1108,7 @@
 	}
 
 	.card-container {
+		--icon-size-default: 12px !important;
 		padding: var(--space-xsmall) !important;
 		border-radius: 12px !important;
 		box-shadow: var(--shadow-10) !important;
@@ -1115,10 +1135,6 @@
 			border: none !important;
 			box-shadow: none !important;
 		}
-	}
-
-	.button-background {
-		background-size: 12px !important;
 	}
 
 	.submenu-icon {
