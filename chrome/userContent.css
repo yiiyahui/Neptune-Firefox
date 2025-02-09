@@ -214,25 +214,29 @@
 		backdrop-filter: blur(8px);
 	}
 
-	.dialog-button-box > button {
-		padding-block: 0 !important;
-		border-radius: var(--border-radius-small) !important;
-	}
-
-	.dialogTitleBar,
-	separator.groove:not([orient="vertical"]) {
+	.dialogTitleBar, separator.groove:not([orient="vertical"]) {
 		border: none !important;
 	}
 
 	*#categories > *.category {
-		background-image: none !important;
-		padding-inline-start: 0 !important;
-		margin-inline-start: 28px !important;
+		background-size: 16px !important;
+		background-position: 16px !important;
 		border-radius: var(--border-radius-medium) !important;
 
 		> .category-name {
 			font-size: 1.12em !important;
 		}
+
+		> .category-icon {
+			width: 14px !important;
+			height: 14px !important;
+		}
+	}
+
+	.sidebar-footer-icon {
+		width: 12px !important;
+		height: 12px !important;
+		margin-inline: var(--space-medium) var(--space-xsmall) !important;
 	}
 
 	.face-sad::before {
@@ -289,7 +293,7 @@
 		}
 	}
 
-	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem,
+	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem:not(dialog richlistitem),
 	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .toggle-button, .reset-button),
 	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
 		padding-block: 2px !important;
@@ -347,6 +351,10 @@
 	panel-list, .menu {
 		border-radius: 8px !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
+
+		> .menuitem-button {
+			background-size: 12px !important;
+		}
 	}
 
 	#downloadsListBox:focus > richlistitem[selected] {
@@ -475,9 +483,7 @@
 	}
 
 	.devtools-separator,
-	.category-icon,
 	.dialogClose,
-	.sidebar-footer-icon,
 	#formAutofillGroupBox,
 	#homeContentsGroup .checkbox-icon[src] {
 		display: none !important;
@@ -617,16 +623,20 @@
 	}
 
 	.collapsible-section {
-		padding-inline: 0 !important;
+		padding: 0 !important;
 
 		.top-sites-list {
 			margin-inline: auto !important;
+
+			:is(.layout-variant-a, .layout-variant-b) & {
+				row-gap: var(--space-xsmall) !important;
+			}
 		}
 	}
 
 	.top-site-outer {
 		width: 100px !important;
-		margin-block-end: 0 !important;
+		margin-block: 0 !important;
 
 		.top-sites-list:not(.dnd-active) &:is(.active, :focus, :hover) {
 			background: none !important;
@@ -701,6 +711,10 @@
 
 	.card-outer:has(.card-preview-image.loaded) {
 		box-shadow: var(--neptune-small-shadow), 0 0 12px var(--neptune-menu-shadow-color) !important;
+	}
+
+	.ds-card .context-menu-button {
+		border-radius: 50% !important;
 	}
 
 	.modalOverlayOuter, .modal-overlay {
@@ -875,9 +889,13 @@
 		font: menu !important;
 	}
 
-	.weatherCard, .weatherButtonContextMenuWrapper {
-		background: none !important;
-		box-shadow: none !important;
+	.weather {
+		inset-inline-end: 0 !important;
+
+		.weatherCard, .weatherButtonContextMenuWrapper {
+			background: none !important;
+			box-shadow: none !important;
+		}
 	}
 
 	.weatherInfoLink {

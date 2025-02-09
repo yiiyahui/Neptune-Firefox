@@ -68,6 +68,10 @@
 	#PersonalToolbar {
 		background-color: var(--neptune-toolbar-background) !important;
 
+		&[customizing] {
+			outline: none !important;
+		}
+
 		toolbarbutton.bookmark-item:not(.subviewbutton) {
 			padding-inline: var(--space-xsmall) !important;
 			border-radius: var(--border-radius-small) !important;
@@ -103,52 +107,50 @@ findbar {
 	&:where([hidden]) {
 		margin-right: -266px !important;
 	}
-}
 
-.findbar-container {
-	margin: 0 !important;
-}
+	> .findbar-container {
+		margin: 0 !important;
 
-.findbar-textbox {
-	width: 12em !important;
-	padding: 0 4px !important;
-	background-color: transparent !important;
-	border-color: var(--border-color-deemphasized) !important;
-}
+		.findbar-textbox {
+			width: 12em !important;
+			padding: 0 var(--space-xsmall) !important;
+			background-color: transparent !important;
+			border-color: var(--border-color-deemphasized) !important;
+		}
 
-.findbar-find-next,
-.findbar-find-previous {
-	padding: 0 2px !important;
-	border: 1px solid var(--border-color-deemphasized);
-}
+		:is(.findbar-find-next, .findbar-find-previous) {
+			padding: 0 2px !important;
+			border: 1px solid var(--border-color-deemphasized);
+		}
 
-.findbar-find-next {
-	list-style-image: url("neptune/icons/arrow-right.svg") !important;
-	margin-left: -1px !important;
-	border-radius: 0 4px 4px 0 !important;
-	border-left: none;
-}
+		.findbar-find-next {
+			list-style-image: url("neptune/icons/arrow-right.svg") !important;
+			margin-left: -1px !important;
+			border-radius: 0 4px 4px 0 !important;
+			border-left: none;
+		}
 
-.findbar-find-previous {
-	list-style-image: url("neptune/icons/arrow-left.svg") !important;
-	border-radius: 4px 0 0 4px !important;
-}
+		.findbar-find-previous {
+			list-style-image: url("neptune/icons/arrow-left.svg") !important;
+			border-radius: 4px 0 0 4px !important;
+		}
 
-.findbar-find-status,
-.found-matches {
-	order: -1;
-	margin-inline: 3px !important;
-}
+		> :is(.findbar-find-status, .found-matches) {
+			order: -1;
+			margin-inline: var(--space-xsmall) !important;
+		}
+	}
 
-.findbar-closebutton {
-	width: 42px !important;
-	padding: 0 !important;
-	margin-block: auto !important;
-	list-style-image: url("neptune/icons/done.svg") !important;
-	border: 1px solid var(--border-color-deemphasized);
+	> .findbar-closebutton {
+		width: 42px !important;
+		padding: 0 !important;
+		margin-block: auto !important;
+		list-style-image: url("neptune/icons/done.svg") !important;
+		border: 1px solid var(--border-color-deemphasized);
 
-	@media (-moz-platform: macos) {
-		order: 1;
+		@media (-moz-platform: macos) {
+			order: 1;
+		}
 	}
 }
 
@@ -156,10 +158,11 @@ findbar {
 	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
 	--space-xsmall: 0.25rem !important;
 	--urlbar-min-height: 28px !important;
-	--urlbarView-labeled-row-label-top: calc(-1.27em - 5px) !important;
+	--urlbarView-labeled-row-label-top: calc(-1.2em - 5px) !important;
 	--tab-min-height: 28px !important;
 	--tabstrip-min-height: var(--tab-min-height) !important;
 	--tab-group-label-height: var(--tab-min-height) !important;
+	--tab-label-line-height: 1.6 !important;
 	--tab-shadow-max-size: 0 !important;
 	--button-min-height: 22px !important;
 	--button-padding: 0 var(--space-large) !important;
@@ -207,7 +210,7 @@ findbar {
 	--in-content-page-background: var(--neptune-main-background) !important;
 	--in-content-box-background: var(--neptune-input-bgcolor) !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
-	--tabpanel-background-color: var(--neptune-main-background) !important;
+	--tabpanel-background-color: transparent !important;
 	--sidebar-box-background: var(--neptune-sidebar-box-background) !important;
 	--sidebar-background-color: var(--neptune-toolbar-background) !important;
 	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
@@ -220,6 +223,7 @@ findbar {
 	--input-bgcolor: var(--neptune-input-bgcolor) !important;
 	--background-color-box: var(--input-bgcolor) !important;
 	--focus-outline-color: var(--theme-primary-color) !important;
+	--arrowpanel-color: FieldText !important;
 	--arrowpanel-background: var(--neptune-menu-background) !important;
 	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--organizer-toolbar-background: var(--neptune-main-background) !important;
@@ -471,6 +475,10 @@ textarea:not(#select-translations-panel-text-area) {
 					color: var(--urlbarView-highlight-color) !important;
 				}
 			}
+
+			.urlbarView-dynamic-onboardTabToSearch-description {
+				margin-block: 0 !important;
+			}
 		}
 
 		&[has-action]:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
@@ -616,6 +624,7 @@ textarea:not(#select-translations-panel-text-area) {
 .urlbar-go-button,
 .search-go-button {
 	background: none !important;
+	height: auto !important;
 	color: var(--neptune-button-field-color) !important;
 
 	&:not([disabled]):hover {
@@ -715,7 +724,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 		.tab-group-label {
 			background-color: var(--tab-group-color) !important;
-			border: none !important;
 			outline: none !important;
 			border-radius: var(--border-radius-medium) !important;
 			line-height: var(--tab-min-height) !important;
@@ -862,8 +870,21 @@ textarea:not(#select-translations-panel-text-area) {
 	.tab-content {
 		font-size: 12.5px;
 
+		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[soundplaying] & {
+			font-size: 0.88em;
+
+			> .tab-label-container > .tab-label {
+				line-height: calc(var(--tab-min-height) / 2) !important;
+			}
+		}
+
 		> .tab-label-container {
 			height: inherit !important;
+
+			> .tab-secondary-label {
+				margin-block: 0 !important;
+				font-size: 9px !important;
+			}
 		}
 
 		> .tab-close-button {
@@ -988,13 +1009,17 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-.actions-list > moz-button:not(.tools-overflow) {
+.actions-list {
+	--button-min-height: var(--size-item-medium) !important;
 	--button-size-icon: var(--size-item-medium) !important;
 	--icon-size-default: var(--size-item-small) !important;
-	--button-outer-padding-block: var(--space-xsmall) !important;
 
-	&:first-of-type {
-		--button-outer-padding-block-start: 0 !important;
+	> moz-button:not(.tools-overflow) {
+		--button-outer-padding-block: var(--space-xsmall) !important;
+
+		&:first-of-type {
+			--button-outer-padding-block-start: 0 !important;
+		}
 	}
 }
 
@@ -1009,6 +1034,10 @@ textarea:not(#select-translations-panel-text-area) {
 		h3 {
 			display: none;
 		}
+	}
+
+	> #manage-settings > a {
+		color: FieldText !important;
 	}
 }
 
@@ -1043,8 +1072,7 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-#moz-card-details summary,
-#moz-card-details #content {
+#moz-card-details > :is(summary, #content) {
 	padding: 0 !important;
 	cursor: default !important;
 }
@@ -1284,6 +1312,12 @@ panel {
 			display: none !important;
 		}
 	}
+
+	.toolbarbutton-badge {
+		background-color: var(--icon-color-warning) !important;
+		line-height: 14px !important;
+		border-radius: 50% !important;
+	}
 }
 
 panelview .toolbarbutton-1,
@@ -1337,6 +1371,17 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 			}
 		}
 
+		> #context-navigation {
+			 > menuitem:where([_moz-menuactive]:not([disabled="true"])) {
+				background: none !important;
+				color: var(--color-accent-primary-hover) !important;
+			}
+
+			> .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon {
+				padding-block: var(--space-xsmall) !important;
+			}
+		}
+
 		> menuseparator {
 			padding: var(--panel-separator-margin) !important;
 		}
@@ -1374,9 +1419,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 }
 
 #feature-callout {
-	&[arrow-position=top-end] .arrow-box {
-		top: 0 !important;
-	}
+	--arrow-offset: 0 !important;
 
 	.screen[pos=callout] .section-main > .main-content {
 		border-radius: var(--arrowpanel-border-radius) !important;
@@ -1393,7 +1436,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 .subviewbutton-iconic > .toolbarbutton-icon,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
-.menu-iconic-icon,
+.menu-iconic-icon:not(#context-navigation .menu-iconic-icon),
 .menu-right > image,
 :is(#protections-popup-mainView, .widget-overflow-list, .PanelUI-subView) .subviewbutton-nav::after {
 	width: 12px !important;
@@ -1483,7 +1526,7 @@ panelview .toolbarbutton-1,
 
 #downloadsPanel-mainView {
 	min-width: calc(var(--menu-panel-width-wide) + var(--size-item-large)) !important;
-	padding-block: 0 !important;
+	padding-block: var(--panel-subview-body-padding-block) !important;
 
 	#downloadsListBox {
 		width: var(--menu-panel-width-wide) !important;
@@ -1496,17 +1539,21 @@ panelview .toolbarbutton-1,
 			&:not(:first-child) {
 				border-top: 1px solid var(--neptune-popover-separator-color);
 			}
+
+			> .downloadMainArea {
+				padding-block: 0 !important;
+
+				> .downloadTypeIcon {
+					width: 28px !important;
+					height: 28px !important;
+				}
+			}
 		}
 
 		.downloadButton {
 			min-width: 24px !important;
 			height: 24px !important;
 			border-radius: 50% !important;
-		}
-
-		.downloadTypeIcon {
-			width: 28px !important;
-			height: 28px !important;
 		}
 
 		.downloadProgress {
@@ -1741,6 +1788,14 @@ panelview .toolbarbutton-1,
 		}
 	}
 
+	#fullscreen {
+		background-image: url("neptune/icons/picture-in-picture-enter-fullscreen-button.svg") !important;
+
+		body:fullscreen & {
+			background-image: url("neptune/icons/picture-in-picture-exit-fullscreen-button.svg") !important;
+		}
+	}
+
 	#closed-caption {
 		background-image: url("neptune/icons/closed-caption-settings-button.svg") !important;
 	}
@@ -1755,7 +1810,7 @@ panelview .toolbarbutton-1,
 }
 
 .pointerlockfswarning {
-	background: #00000099 !important;
+	background-color: var(--neptune-popover-background) !important;
 	padding: var(--space-small) !important;
 	border: none !important;
 	box-shadow: none !important;
@@ -1765,12 +1820,19 @@ panelview .toolbarbutton-1,
 		height: 12px !important;
 		margin-inline-end: var(--space-xsmall) !important;
 	}
-}
 
-.pointerlockfswarning-domain-text,
-.pointerlockfswarning-generic-text {
-	font-size: 16px !important;
-	margin: 0 !important;
+	> #fullscreen-exit-button {
+		appearance: none !important;
+		background-color: var(--neptune-content-background) !important;
+		margin-inline-start: var(--space-small) !important;
+		border: none !important;
+		border-radius: var(--toolbarbutton-border-radius) !important;
+	}
+
+	> .pointerlockfswarning-domain-text {
+		font-size: 1.25em !important;
+		margin-inline-start: 0 !important;
+	}
 }
 
 /*---------- Dialogs ----------*/
@@ -1828,10 +1890,6 @@ panelview .toolbarbutton-1,
 
 /*---------- Browser ----------*/
 @media (-moz-platform: macos) {
-	#tabbrowser-tabpanels {
-		background: transparent !important;
-	}
-
 	.titlebar-buttonbox-container {
 		position: absolute;
 		left: 7px;
@@ -2012,11 +2070,11 @@ panelview .toolbarbutton-1,
 	list-style-image: url("neptune/icons/forward.svg") !important;
 }
 
-#reload-button {
+#reload-button, #context-reload {
 	list-style-image: url("neptune/icons/reload.svg") !important;
 }
 
-#stop-button {
+#stop-button, #context-stop {
 	list-style-image: url("neptune/icons/stop.svg") !important;
 }
 
@@ -2101,7 +2159,7 @@ panelview .toolbarbutton-1,
 }
 
 #pageAction-panel-bookmark,
-#star-button {
+#star-button, #context-bookmarkpage {
 	list-style-image: url("neptune/icons/bookmark-hollow.svg") !important;
 
 	&[starred] {
@@ -2111,10 +2169,7 @@ panelview .toolbarbutton-1,
 
 /*---------- Hidden ----------*/
 tooltip,
-#fullscreen,
 .control-item::after,
-.scrollbar-topmost,
-#manage-settings,
 #scrollbutton-up,
 #scrollbutton-down,
 #nav-bar-overflow-button,
@@ -2123,16 +2178,10 @@ tooltip,
 .private-browsing-indicator-with-label,
 .urlbar-go-button,
 .urlbarView-type-icon,
-.urlbarView-dynamic-onboardTabToSearch-description,
-.tab-secondary-label,
 .unified-extensions-item-menu-button.subviewbutton,
-.translations-panel-settings-gear-icon,
-.fxview-tab-row-button.delete-button,
-#translations-button-locale,
+.fxview-tab-row-button,
 #downloadsFooter,
-#fullscreen-exit-button,
 #statuspanel:not([type=overLink]),
-.customization-checkbox,
 .findbar-container > checkbox,
 .unified-extensions-item-message,
 #context-navigation>.menuitem-iconic,
@@ -2140,9 +2189,9 @@ tooltip,
 #context-sep-sharing,
 #context-stop,
 #context-openlink,
-#context-bookmarklink,
-#context-setDesktopBackground,
-#toggle_toolbar-menubar,
+menuitem.share-tab-url-item,
+menuitem[id^="context"]:is([id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="Background"]),
+#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar),
 #tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
 #tabbrowser-tabs[orient="vertical"][overflow]::after,
