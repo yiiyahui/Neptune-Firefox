@@ -391,7 +391,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 	> .urlbarView-row {
 		border: var(--button-border) !important;
-		border-radius: var(--border-radius-small) !important;
 
 		> .urlbarView-row-inner {
 			flex-wrap: nowrap !important;
@@ -588,15 +587,33 @@ textarea:not(#select-translations-panel-text-area) {
 	margin: 0 !important;
 	fill-opacity: 0.6 !important;
 
-	&[pageproxystate="valid"] > .identity-box-button {
-		background: none !important;
+	&[pageproxystate="valid"] {
+		> .identity-box-button {
+			background: none !important;
 
-		&:hover:not([open]) {
-			fill-opacity: 0.8;
+			&:hover:not([open]) {
+				fill-opacity: 0.8;
+			}
+
+			&:is(:hover:active, [open]) {
+				fill-opacity: 1;
+			}
 		}
 
-		&:is(:hover:active, [open]) {
-			fill-opacity: 1;
+		&:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon {
+			list-style-image: url("neptune/icons/security.svg") !important;
+		}
+
+		&:is(.weakCipher, .mixedDisplayContent, .mixedDisplayContentLoadedActiveBlocked, .certUserOverridden, .certErrorPage) #identity-icon {
+			list-style-image: url("neptune/icons/security-warning.svg") !important;
+		}
+
+		&:is(.notSecure, .mixedActiveContent, .httpsOnlyErrorPage) #identity-icon {
+			list-style-image: url("neptune/icons/security-broken.svg") !important;
+		}
+
+		&.chromeUI #identity-icon {
+			list-style-image: url("neptune/icons/firefox.svg") !important;
 		}
 	}
 }
@@ -1012,7 +1029,6 @@ textarea:not(#select-translations-panel-text-area) {
 .actions-list {
 	--button-min-height: var(--size-item-medium) !important;
 	--button-size-icon: var(--size-item-medium) !important;
-	--icon-size-default: var(--size-item-small) !important;
 
 	> moz-button:not(.tools-overflow) {
 		--button-outer-padding-block: var(--space-xsmall) !important;
@@ -1078,26 +1094,26 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 sidebar-tab-row {
+	--button-background-color-ghost-hover: var(--color-accent-primary-hover) !important;
+	--button-background-color-ghost-active: var(--color-accent-primary-active) !important;
+	--button-text-color-ghost-hover: var(--button-text-color-primary) !important;
+	--button-text-color-ghost-active: var(--button-text-color-primary) !important;
+	--fxview-text-primary-color: var(--button-text-color-primary) !important;
 	height: var(--button-min-height) !important;
 	border-radius: calc(var(--border-radius-small) - 2px) !important;
-
-	&:hover {
-		background-color: var(--color-accent-primary-hover) !important;
-	}
-
-	&:active {
-		background-color: var(--color-accent-primary-active) !important;
-	}
 }
 
 .fxview-tab-row-main {
 	background: none !important;
 	padding-block: 0 !important;
 	cursor: default !important;
+}
 
-	&:is(:hover, :active) {
-		color: var(--button-text-color-primary) !important;
-	}
+.fxview-tab-row-button {
+	--button-size-icon: var(--size-item-small) !important;
+	--button-min-height: var(--button-min-height) !important;
+	--button-outer-padding-block: var(--space-xsmall) !important;
+	--button-outer-padding-inline: var(--space-xsmall) !important;
 }
 
 @layer input-common {
@@ -2121,13 +2137,21 @@ panelview .toolbarbutton-1,
 	content: url("neptune/icons/favicon.svg");
 }
 
+.identity-popup-security-connection {
+	list-style-image: url("neptune/icons/security-broken.svg") !important;
+
+	#identity-popup[connection^=secure] & {
+		list-style-image: url("neptune/icons/security.svg") !important;
+	}
+
+	#identity-popup:is([ciphers=weak], [mixedcontent~=passive-loaded][isbroken], [connection=secure-cert-user-overridden], [connection=cert-error-page]) & {
+		list-style-image: url("neptune/icons/security-warning.svg") !important;
+	}
+}
+
 #identity-popup[connection=file] .identity-popup-security-connection,
 #identity-box[pageproxystate="valid"].localResource #identity-icon {
 	list-style-image: url(chrome://global/skin/icons/defaultFavicon.svg) !important;
-}
-
-#identity-box[pageproxystate="valid"].chromeUI #identity-icon {
-	list-style-image: url("neptune/icons/firefox.svg") !important;
 }
 
 .expander-up {
@@ -2179,7 +2203,6 @@ tooltip,
 .urlbar-go-button,
 .urlbarView-type-icon,
 .unified-extensions-item-menu-button.subviewbutton,
-.fxview-tab-row-button,
 #downloadsFooter,
 #statuspanel:not([type=overLink]),
 .findbar-container > checkbox,
