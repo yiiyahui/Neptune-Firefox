@@ -587,33 +587,15 @@ textarea:not(#select-translations-panel-text-area) {
 	margin: 0 !important;
 	fill-opacity: 0.6 !important;
 
-	&[pageproxystate="valid"] {
-		> .identity-box-button {
-			background: none !important;
+	&[pageproxystate="valid"] > .identity-box-button {
+		background: none !important;
 
-			&:hover:not([open]) {
-				fill-opacity: 0.8;
-			}
-
-			&:is(:hover:active, [open]) {
-				fill-opacity: 1;
-			}
+		&:hover:not([open]) {
+			fill-opacity: 0.8;
 		}
 
-		&:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon {
-			list-style-image: url("neptune/icons/security.svg") !important;
-		}
-
-		&:is(.weakCipher, .mixedDisplayContent, .mixedDisplayContentLoadedActiveBlocked, .certUserOverridden, .certErrorPage) #identity-icon {
-			list-style-image: url("neptune/icons/security-warning.svg") !important;
-		}
-
-		&:is(.notSecure, .mixedActiveContent, .httpsOnlyErrorPage) #identity-icon {
-			list-style-image: url("neptune/icons/security-broken.svg") !important;
-		}
-
-		&.chromeUI #identity-icon {
-			list-style-image: url("neptune/icons/firefox.svg") !important;
+		&:is(:hover:active, [open]) {
+			fill-opacity: 1;
 		}
 	}
 }
@@ -663,7 +645,7 @@ textarea:not(#select-translations-panel-text-area) {
 #permissions-granted-icon,
 #tracking-protection-icon,
 #tracking-protection-icon-box,
-#blocked-permissions-container>.blocked-permission-icon,
+#blocked-permissions-container > .blocked-permission-icon,
 .urlbarView-action-btn > img,
 #searchmode-switcher-icon,
 #searchmode-switcher-popup-search-settings-icon,
@@ -887,7 +869,7 @@ textarea:not(#select-translations-panel-text-area) {
 	.tab-content {
 		font-size: 12.5px;
 
-		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[soundplaying] & {
+		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked], [pictureinpicture]) & {
 			font-size: 0.88em;
 
 			> .tab-label-container > .tab-label {
@@ -1314,7 +1296,7 @@ panel {
 
 				&[selected] {
 					background-color: var(--color-accent-primary-active) !important;
-					color: inherit !important;
+					color: var(--button-text-color-primary) !important;
 				}
 
 				> .ac-type-icon {
@@ -1454,13 +1436,28 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 .downloadButton > .button-box > .button-icon,
 .menu-iconic-icon:not(#context-navigation .menu-iconic-icon),
 .menu-right > image,
+.pointerlockfswarning::before
 :is(#protections-popup-mainView, .widget-overflow-list, .PanelUI-subView) .subviewbutton-nav::after {
 	width: 12px !important;
 	height: 12px !important;
 }
 
-#appMenu-popup :is(.panel-banner-item, .addon-banner-item) {
-	align-items: center !important;
+#appMenu-popup {
+	#appMenu-fxa-status2:not([fxastatus]) > #appMenu-fxa-label2 {
+		padding-block: 0 !important;
+	}
+
+	#fxa-menu-header-title {
+		color: inherit !important;
+	}
+
+	.subviewbutton > :is(.toolbarbutton-icon, .toolbarbutton-text) {
+		margin-block: auto !important;
+	}
+
+	.PanelUI-remotetabs-clientcontainer > label[itemtype="client"] {
+		margin: 0 calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) var(--space-xsmall) !important;
+	}
 }
 
 :is(#identity-popup, #permission-popup, #protections-popup) {
@@ -1602,12 +1599,10 @@ panelview .toolbarbutton-1,
 
 	.text-container {
 		flex: 1;
-		color: var(--toolbar-color);
 	}
 
 	.close {
 		scale: 0.6;
-		color: var(--toolbar-color);
 	}
 }
 
@@ -1831,23 +1826,16 @@ panelview .toolbarbutton-1,
 	border: none !important;
 	box-shadow: none !important;
 
-	&::before {
-		width: 12px !important;
-		height: 12px !important;
-		margin-inline-end: var(--space-xsmall) !important;
-	}
-
 	> #fullscreen-exit-button {
 		appearance: none !important;
 		background-color: var(--neptune-content-background) !important;
-		margin-inline-start: var(--space-small) !important;
 		border: none !important;
 		border-radius: var(--toolbarbutton-border-radius) !important;
 	}
 
 	> .pointerlockfswarning-domain-text {
 		font-size: 1.25em !important;
-		margin-inline-start: 0 !important;
+		margin-inline: var(--space-small) !important;
 	}
 }
 
@@ -2124,8 +2112,32 @@ panelview .toolbarbutton-1,
 	}
 }
 
+#identity-box[pageproxystate="valid"]:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon,
+#identity-popup[connection^=secure] .identity-popup-security-connection {
+	list-style-image: url("neptune/icons/security.svg") !important;
+}
+
+#identity-box[pageproxystate="valid"]:is(.weakCipher, .mixedDisplayContent, .mixedDisplayContentLoadedActiveBlocked, .certUserOverridden, .certErrorPage) #identity-icon,
+#identity-popup:is([ciphers=weak], [mixedcontent~=passive-loaded][isbroken], [connection=secure-cert-user-overridden], [connection=cert-error-page]) .identity-popup-security-connection {
+	list-style-image: url("neptune/icons/security-warning.svg") !important;
+}
+
+#identity-box[pageproxystate="valid"]:is(.notSecure, .mixedActiveContent, .httpsOnlyErrorPage) #identity-icon,
+.identity-popup-security-connection {
+	list-style-image: url("neptune/icons/security-broken.svg") !important;
+}
+
+#identity-box[pageproxystate="valid"].localResource #identity-icon,
+#identity-popup[connection=file] .identity-popup-security-connection {
+	list-style-image: url(chrome://global/skin/icons/defaultFavicon.svg) !important;
+}
+
+#identity-box[pageproxystate="valid"].chromeUI #identity-icon {
+	list-style-image: url("neptune/icons/firefox.svg") !important;
+}
+
 .close-icon:not(.findbar-closebutton),
-.permission-popup-permission-remove-button>.button-box>.button-icon {
+.permission-popup-permission-remove-button > .button-box>.button-icon {
 	height: 12px !important;
 	width: 12px !important;
 	padding: 0 !important;
@@ -2135,23 +2147,6 @@ panelview .toolbarbutton-1,
 .tab-icon-image[src="chrome://branding/content/icon32.png"],
 .tab-icon-image[src="chrome://browser/skin/privatebrowsing/favicon.svg"] {
 	content: url("neptune/icons/favicon.svg");
-}
-
-.identity-popup-security-connection {
-	list-style-image: url("neptune/icons/security-broken.svg") !important;
-
-	#identity-popup[connection^=secure] & {
-		list-style-image: url("neptune/icons/security.svg") !important;
-	}
-
-	#identity-popup:is([ciphers=weak], [mixedcontent~=passive-loaded][isbroken], [connection=secure-cert-user-overridden], [connection=cert-error-page]) & {
-		list-style-image: url("neptune/icons/security-warning.svg") !important;
-	}
-}
-
-#identity-popup[connection=file] .identity-popup-security-connection,
-#identity-box[pageproxystate="valid"].localResource #identity-icon {
-	list-style-image: url(chrome://global/skin/icons/defaultFavicon.svg) !important;
 }
 
 .expander-up {
@@ -2166,7 +2161,7 @@ panelview .toolbarbutton-1,
 	list-style-image: url("neptune/icons/downloads.svg") !important;
 }
 
-.downloadIconShow>.button-box>.button-icon {
+.downloadIconShow>.button-box > .button-icon {
 	list-style-image: url("chrome://global/skin/icons/search-glass.svg") !important;
 }
 
@@ -2207,14 +2202,13 @@ tooltip,
 #statuspanel:not([type=overLink]),
 .findbar-container > checkbox,
 .unified-extensions-item-message,
-#context-navigation>.menuitem-iconic,
+#context-navigation > .menuitem-iconic,
 #context-sep-navigation,
 #context-sep-sharing,
-#context-stop,
 #context-openlink,
 menuitem.share-tab-url-item,
 menuitem[id^="context"]:is([id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="Background"]),
-#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar),
+#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="download"]),
 #tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
 #tabbrowser-tabs[orient="vertical"][overflow]::after,

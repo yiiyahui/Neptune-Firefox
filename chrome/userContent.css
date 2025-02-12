@@ -19,6 +19,9 @@
 	--color-accent-primary: var(--theme-primary-color) !important;
 	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
 	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--button-background-color: var(--neptune-item-background) !important;
+	--button-background-color-hover: var(--neptune-item-hover-background) !important;
+	--button-background-color-active: var(--neptune-item-active-background) !important;
 	--background-color-box: var(--neptune-menu-background) !important;
 	--newtab-primary-element-text-color: #fff !important;
 	--newtab-background-color: var(--neptune-main-background) !important;
@@ -69,7 +72,7 @@
 
 @-moz-document url-prefix(about:), url-prefix("chrome://") {
 	* {
-		--in-content-page-background: var(--neptune-main-background) !important;
+		--in-content-page-background: light-dark(#f6f6f6, #383838) !important;
 		--popup-background: var(--neptune-menu-background) !important;
 		--popup-button-background: var(--neptune-item-background) !important;
 		--popup-button-background-hover: var(--neptune-item-hover-background) !important;
@@ -80,16 +83,17 @@
 		--toolbar-button-background-active: var(--neptune-item-active-background) !important;
 		--toolbar-button-foreground-active: var(--theme-primary-color) !important;
 		--primary-color: var(--theme-primary-color) !important;
-		--link-color: var(--theme-primary-color) !important;
-		--link-color-hover: var(--theme-primary-hover-color) !important;
-		--link-color-active: var(--theme-primary-active-color) !important;
+		--link-color: light-dark(color-mix(in srgb, accentcolor 80%, #323232), color-mix(in srgb, accentcolor 80%, #cacaca)) !important;
+		--link-color-hover: light-dark(color-mix(in srgb, accentcolor 85%, #646464), color-mix(in srgb, accentcolor 85%, #ececec)) !important;
+		--link-color-active: accentcolor !important;
 		--link-color-visited: mediumpurple !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
 		--in-content-primary-button-background: color-mix(in srgb, accentcolor 80%, #181818) !important;
 		--in-content-primary-button-background-hover:color-mix(in srgb, accentcolor 85%, #262626) !important;
 		--in-content-primary-button-background-active:  color-mix(in srgb, accentcolor 85%, #646464) !important;
-		--in-content-primary-button-text-color: #fff !important;
+		--in-content-primary-button-text-color: white !important;
+		--in-content-primary-button-text-color-hover: var(--in-content-primary-button-text-color) !important;
 		--in-content-focus-outline-color: accentcolor !important;
 		text-decoration: inherit !important;
 	}
@@ -1067,7 +1071,7 @@
 	}
 
 	.reset-button, .custom-colors-selection {
-		font-size: 0.7rem !important;
+		font-size: 0.92em !important;
 	}
 
 	.close-button,
@@ -1111,24 +1115,27 @@
 		justify-content: space-between;
 		padding-block-end: var(--space-large) !important;
 
-		.open-tabs-options, .open-tabs-sort-wrapper,
-		.history-sort-options:not([hidden]) {
-			gap: var(--space-small) !important;
-
-			> :first-child {
-				order: 1;
-			}
+		> :is(.open-tabs-options, .history-sort-options:not([hidden]), .syncedtabs-header) {
+			flex-direction: row-reverse;
 		}
 
-		.history-sort-option, .open-tabs-sort-option {
+		.open-tabs-options, .open-tabs-sort-wrapper, .history-sort-options:not([hidden]) {
+			gap: var(--space-small) !important;
+		}
+
+		.open-tabs-sort-option, .history-sort-option {
 			gap: 0 !important;
+		}
+
+		.syncedtabs-header button {
+			background-color: transparent !important;
+			min-height: var(--button-min-height) !important;
 		}
 	}
 
 	.card-container {
-		--icon-size-default: 12px !important;
+		--icon-size-default: 10px !important;
 		padding: var(--space-xsmall) !important;
-		border-radius: 12px !important;
 		box-shadow: var(--shadow-10) !important;
 
 		> .card-container-header {
@@ -1152,6 +1159,32 @@
 		&.inner {
 			border: none !important;
 			box-shadow: none !important;
+		}
+	}
+
+	.cards-container {
+		> .import-history-banner [slot="main"] {
+			padding-inline: var(--space-small) 0 !important;
+		}
+
+		> card-container > h3.device-header {
+			gap: var(--space-small) !important;
+		}
+	}
+
+	card-container h3.device-header:not([slot="header"]) {
+		margin-block: var(--space-xsmall) !important;
+	}
+
+	virtual-list > :is(opentabs-tab-row, fxview-tab-row, syncedtabs-tab-row) {
+		align-items: center !important;
+	}
+	
+	.fxview-tab-row-main {
+		padding-block: 3px !important;
+
+		> .fxview-tab-row-favicon-wrapper > *::after {
+			display: none !important;
 		}
 	}
 
