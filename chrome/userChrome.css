@@ -25,11 +25,16 @@
 
 		> .customization-target:not(#widget-overflow-fixed-list) {
 			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring {
-				max-width: 20em !important;
+				max-width: 40em !important;
 
 				#nav-bar & {
-					flex-grow: 500 !important;
+					flex-grow: 400 !important;
 				}
+			}
+
+			 > toolbarpaletteitem[place="toolbar"] > toolbarspring {
+				outline-offset: 0 !important;
+				margin-block: var(--toolbarbutton-outer-padding) !important;
 			}
 
 			:root[customizing] & {
@@ -158,6 +163,7 @@ findbar {
 	--toolbar-start-end-padding: 10px !important;
 	--space-xsmall: 0.25rem !important;
 	--urlbar-min-height: 28px !important;
+	--urlbarView-small-font-size: 0.84em !important;
 	--urlbarView-labeled-row-label-top: calc(-1.2em - 6px) !important;
 	--tab-min-height: 28px !important;
 	--tabstrip-min-height: var(--tab-min-height) !important;
@@ -399,6 +405,10 @@ textarea:not(#select-translations-panel-text-area) {
 			> .urlbarView-no-wrap {
 				flex-basis: revert !important;
 			}
+
+			.urlbarView-title {
+				line-height: 1.28 !important;
+			}
 		}
 
 		&[has-url]:not([type$=tab]) > .urlbarView-row-inner > .urlbarView-no-wrap {
@@ -407,6 +417,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 		&[has-url] > .urlbarView-row-inner > .urlbarView-url {
 			margin-inline: revert !important;
+			line-height: 1.333 !important;
 		}
 
 		&[has-url]:not([type$=tab], [sponsored], [restyled-search]) .urlbarView-title-separator {
@@ -435,7 +446,7 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			> .urlbarView-button:not(:empty):not(.urlbarView-button-menu) {
-				padding-block: var(--urlbarView-results-padding) !important;
+				padding-block: var(--space-xsmall) !important;
 				outline: none !important;
 				border-radius: var(--border-radius-small) !important;
 			}
@@ -676,7 +687,7 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			&[selected]:not([pinned]) {
-				flex-grow: 1000 !important;
+				flex-grow: 200 !important;
 				min-width: 100px !important;
 				max-width: 170px !important;
 			}
@@ -1663,10 +1674,6 @@ panelview .toolbarbutton-1,
 		background-color: transparent !important;
 	}
 
-	body:fullscreen {
-		background-color: var(--player-bg-color);
-	}
-
 	.player-holder {
 		border-radius: var(--border-radius-large);
 	}
@@ -1680,7 +1687,7 @@ panelview .toolbarbutton-1,
 		height: calc(2 * var(--player-control-item-height) + var(--scrubber-vertical-margin)) !important;
 		bottom: max(calc(3 * var(--controls-bottom-upper-height)), 15%) !important;
 		margin-inline: 0 !important;
-		border-radius: 8px;
+		border-radius: var(--border-radius-small);
 		width: min(50%, 30em) !important;
 		left: 50%;
 		transform: translateX(-50%);

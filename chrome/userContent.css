@@ -1280,7 +1280,7 @@
 
 .controlBar {
 	height: 31px !important;
-	background-color: #00000066 !important;
+	background-color: #00000080 !important;
 	backdrop-filter: blur(8px);
 	margin: 6px;
 	border-radius: var(--border-radius-small);
