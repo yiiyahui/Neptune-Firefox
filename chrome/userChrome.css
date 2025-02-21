@@ -12,7 +12,7 @@
 	background-color: var(--neptune-toolbar-background) !important;
 	border: none !important;
 
-	> *:not(#nav-bar, .browser-titlebar) {
+	> *:not(#nav-bar, #TabsToolbar) {
 		grid-column: 1 / span 2;
 	}
 
@@ -25,7 +25,7 @@
 
 		> .customization-target:not(#widget-overflow-fixed-list) {
 			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring {
-				max-width: 40em !important;
+				max-width: 100% !important;
 
 				#nav-bar & {
 					flex-grow: 400 !important;
@@ -33,8 +33,7 @@
 			}
 
 			 > toolbarpaletteitem[place="toolbar"] > toolbarspring {
-				outline-offset: 0 !important;
-				margin-block: var(--toolbarbutton-outer-padding) !important;
+				margin-block: 0 !important;
 			}
 
 			:root[customizing] & {
@@ -262,7 +261,7 @@ search-textbox[focused],
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox):focus-visible,
 textarea:focus-visible {
 	outline: 4px solid var(--neptune-input-outline-color) !important;
-	outline-offset: -2px;
+	outline-offset: var(--toolbarbutton-outline-offset);
 	transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
 }
 
@@ -377,9 +376,9 @@ textarea:not(#select-translations-panel-text-area) {
 .urlbarView {
 	color-scheme: light dark;
 	width: calc(100% + 16px) !important;
-	margin: 4px 0 0 -8px !important;
+	margin: 5px 0 0 -8px !important;
 	border: none !important;
-	border-radius: var(--border-radius-large);
+	border-radius: calc(var(--border-radius-medium) + 2px);
 	background-color: var(--theme-menupopup-background);
 	color: MenuText;
 	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
@@ -408,6 +407,18 @@ textarea:not(#select-translations-panel-text-area) {
 
 			.urlbarView-title {
 				line-height: 1.28 !important;
+			}
+
+			:is(.urlbarView-overflowable, .urlbarView-url)[overflow] {
+				mask-image: none !important;
+				text-overflow: ellipsis;
+			}
+
+			> .urlbarView-action-btn {
+				padding-block: 2px !important;
+				border: none !important;
+				outline: none !important;
+				color: var(--button-text-color-primary);
 			}
 		}
 
@@ -454,7 +465,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 		&[rich-suggestion][type=search] {
 			:root:not([uidensity=compact]) & {
-				min-height: 32px !important;
+				min-height: fit-content !important;
 			}
 		}
 
@@ -474,7 +485,7 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		&[dynamicType=onboardTabToSearch] > .urlbarView-row-inner {
-			min-height: 36px !important;
+			min-height: fit-content !important;
 
 			> .urlbarView-no-wrap > .urlbarView-favicon {
 				height: 16px !important;
@@ -483,10 +494,6 @@ textarea:not(#select-translations-panel-text-area) {
 				.urlbarView-row:hover & {
 					color: var(--urlbarView-highlight-color) !important;
 				}
-			}
-
-			.urlbarView-dynamic-onboardTabToSearch-description {
-				margin-block: 0 !important;
 			}
 		}
 
@@ -502,17 +509,24 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: var(--identity-tab-color) !important;
 			}
 		}
+
+		> .urlbarView-button:not(.urlbarView-row[type=tip] > .urlbarView-button) {
+			background-color: transparent !important;
+			min-width: 16px !important;
+			min-height: 16px !important;
+
+			.urlbarView-row:is([row-selectable]:hover, [selected]) > &:not(:hover, [open]) {
+				color: var(--color-blue-05) !important;
+			}
+
+			&:is(:hover, [open]) {
+				color: revert !important;
+			}
+		}
 	}
 
 	[label]::before {
 		color: MenuText !important;
-	}
-
-	.urlbarView-action-btn {
-		padding-block: 2px !important;
-		border: none !important;
-		outline: none !important;
-		color: var(--button-text-color-primary);
 	}
 
 	.urlbarView-title-separator::before {
@@ -521,20 +535,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
 		padding: 0 !important;
-	}
-}
-
-.urlbarView-button:not(.urlbarView-row[type=tip] > .urlbarView-button) {
-	background-color: transparent !important;
-	min-width: 16px !important;
-	min-height: 16px !important;
-
-	.urlbarView-row:is([row-selectable]:hover, [selected]) > &:not(:hover, [open]) {
-		color: var(--color-blue-05) !important;
-	}
-
-	&:is(:hover, [open]) {
-		color: revert !important;
 	}
 }
 
@@ -689,7 +689,7 @@ textarea:not(#select-translations-panel-text-area) {
 			&[selected]:not([pinned]) {
 				flex-grow: 200 !important;
 				min-width: 100px !important;
-				max-width: 170px !important;
+				max-width: 200px !important;
 			}
 
 			&[multiselected]:not([pinned]):not(tab-group[collapsed] > &) {
@@ -725,7 +725,11 @@ textarea:not(#select-translations-panel-text-area) {
 	tab-group {
 		#tabbrowser-tabs[orient="horizontal"] & > .tab-group-label-container {
 			padding-inline: 0 !important;
-			margin-inline: var(--tab-block-margin) !important;
+			margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
+		}
+
+		#tabbrowser-tabs[orient="horizontal"] &:not([collapsed]) > .tab-group-label-container {
+			margin-inline-end: calc(var(--tab-block-margin) / 2 - 1px) !important;
 		}
 
 		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & > .tab-group-label-container {
@@ -800,6 +804,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .tabbrowser-tab {
+	--tab-label-mask-size: 0 !important;
 	background-image: none !important;
 	padding: 0 !important;
 
@@ -890,6 +895,12 @@ textarea:not(#select-translations-panel-text-area) {
 
 		> .tab-label-container {
 			height: inherit !important;
+
+			> .tab-label {
+				width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 
 			> .tab-secondary-label {
 				margin-block: 0 !important;
@@ -1588,6 +1599,7 @@ panelview .toolbarbutton-1,
 		.downloadButton {
 			min-width: 24px !important;
 			height: 24px !important;
+			border: none !important;
 			border-radius: 50% !important;
 		}
 
