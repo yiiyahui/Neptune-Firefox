@@ -914,6 +914,8 @@ textarea:not(#select-translations-panel-text-area) {
 			margin: 0 !important;
 			border-radius: 2px !important;
 			visibility: collapse;
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
 
 			#tabbrowser-tabs[closebuttons="activetab"][orient="horizontal"] &:not([selected], [pinned]) {
 				display: revert !important;
@@ -929,6 +931,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 			tab:hover & {
 				visibility: visible;
+				opacity: 1;
 			}
 		}
 

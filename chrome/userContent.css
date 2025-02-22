@@ -1247,13 +1247,13 @@
 	}
 
 	#sidebarContent {
-		background-color: var(--toolbar-bg-color);
+		background-color: var(--sidebar-toolbar-bg-color);
 	}
 
 	.thumbnail {
 		border-width: 3px !important;
 		margin-block-end: 2em !important;
-		box-shadow: 0 2px 10px var(--neptune-menu-shadow-color);
+		box-shadow: 0 0 10px var(--neptune-menu-shadow-color);
 	}
 
 	.toolbarField {
