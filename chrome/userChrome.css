@@ -457,6 +457,8 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			> .urlbarView-button:not(:empty):not(.urlbarView-button-menu) {
+				background-color: var(--color-accent-primary) !important;
+				color: var(--button-text-color-primary) !important;
 				padding-block: var(--space-xsmall) !important;
 				outline: none !important;
 				border-radius: var(--border-radius-small) !important;
@@ -465,7 +467,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 		&[rich-suggestion][type=search] {
 			:root:not([uidensity=compact]) & {
-				min-height: fit-content !important;
+				min-height: 30px !important;
 			}
 		}
 
@@ -473,15 +475,9 @@ textarea:not(#select-translations-panel-text-area) {
 			margin-inline-end: calc(var(--urlbarView-icon-margin-end) - var(--urlbarView-favicon-margin-start) - 1px) !important;
 		}
 
-		&[rich-suggestion] > .urlbarView-row-inner {
-			> .urlbarView-favicon {
+		&[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
 				width: 24px !important;
 				height: 24px !important;
-			}
-
-			> .urlbarView-row-body > :is(.urlbarView-row-body-description, .urlbarView-row-body-bottom) {
-				color: var(--urlbarView-highlight-color);
-			}
 		}
 
 		&[dynamicType=onboardTabToSearch] > .urlbarView-row-inner {
@@ -729,7 +725,7 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] &:not([collapsed]) > .tab-group-label-container {
-			margin-inline-end: calc(var(--tab-block-margin) / 2 - 1px) !important;
+			margin-inline-end: calc(var(--tab-block-margin) / 2) !important;
 		}
 
 		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & > .tab-group-label-container {
@@ -915,7 +911,7 @@ textarea:not(#select-translations-panel-text-area) {
 			border-radius: 2px !important;
 			visibility: collapse;
 			opacity: 0;
-			transition: opacity 0.3s ease-in-out;
+			transition: opacity 250ms ease-in-out;
 
 			#tabbrowser-tabs[closebuttons="activetab"][orient="horizontal"] &:not([selected], [pinned]) {
 				display: revert !important;
@@ -1334,6 +1330,10 @@ panel {
 				> .ac-type-icon {
 					min-height: 12px !important;
 					min-width: 12px !important;
+				}
+
+				> .ac-title {
+					margin-inline: auto !important;
 				}
 			}
 		}
@@ -1864,7 +1864,7 @@ panelview .toolbarbutton-1,
 
 .pointerlockfswarning {
 	background-color: var(--neptune-popover-background) !important;
-	padding: var(--space-small) !important;
+	padding: var(--space-medium) !important;
 	border: none !important;
 	box-shadow: none !important;
 

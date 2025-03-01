@@ -252,7 +252,7 @@
 	}
 
 	.face-smile::before {
-		content: "\2764" !important;
+		content: "\1f1fa\1f1e6" !important;
 		font-size: 1em !important;
 	}
 
@@ -895,7 +895,9 @@
 	}
 
 	.weather {
-		inset-inline-end: 0 !important;
+		:is(.layout-variant-a, .layout-variant-b) & {
+			inset-inline-end: 0 !important;
+		}
 
 		.weatherCard, .weatherButtonContextMenuWrapper {
 			background: none !important;
@@ -976,7 +978,7 @@
 
 	#text-layout-controls {
 		width: auto !important;
-		padding: var(--space-small) !important;
+		padding: var(--space-xsmall) var(--space-small) var(--space-xxsmall) !important;
 		font: menu !important;
 
 		> *:not(#about-reader-advanced-layout),
