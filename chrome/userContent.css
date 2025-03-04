@@ -498,10 +498,10 @@
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
 	body {
-		background: url("neptune/image/RainbowLight.png") center/cover no-repeat fixed !important;
+		background: url("neptune/image/Abstract_Dreamscapes_Light.png") center/cover fixed !important;
 
 		@media (prefers-color-scheme: dark) {
-			background: url("neptune/image/RainbowDark.png") center/cover no-repeat fixed !important;
+			background: url("neptune/image/Abstract_Dreamscapes_Dark.png") center/cover fixed !important;
 		}
 	}
 
@@ -514,6 +514,18 @@
 
 		.search-inner-wrapper {
 			width: 164px !important;
+
+			:is(.layout-variant-a, .layout-variant-b) & {
+				width: 264px !important;
+
+				@media (min-width: 724px) {
+					width: 564px !important;
+				}
+
+				@media (min-width: 1122px) {
+					width: 764px !important;
+				}
+			}
 
 			@media (min-width: 610px) {
 				width: 364px !important;
@@ -682,6 +694,17 @@
 			height: 24px !important;
 			width: 24px !important;
 		}
+
+		.title .title-label {
+			min-height: 1lh !important;
+			width: 80px !important;
+			overflow: clip !important;
+
+			.top-site-outer:is(:hover, :focus-within) & {
+				-webkit-line-clamp: 1 !important;
+				white-space: nowrap !important;
+			}
+		}
 	}
 
 	.context-menu {
@@ -745,6 +768,13 @@
 				font-size: 12.5px !important;
 			}
 
+			> .topsite-form .form-wrapper .error-tooltip {
+				inset-inline-start: 0 !important;
+				border-radius: var(--border-radius-small) !important;
+				font-size: var(--font-size-root);
+				box-shadow: 0 2px 10px var(--neptune-menu-shadow-color);
+			}
+
 			> .topsite-form .top-site-outer .top-site-inner > a {
 				padding-block: var(--space-xsmall) !important;
 			}
@@ -763,24 +793,23 @@
 	}
 
 	.personalizeButtonWrapper {
-		position: fixed !important;
 		inset: auto var(--space-large) var(--space-large) auto !important;
-	}
 
-	.personalize-button {
-		-moz-context-properties: fill, fill-opacity !important;
-		background-image: url("neptune/icons/settings.svg") !important;
-		background-color: transparent !important;
-		padding: 0 !important;
-		background-size: 28px !important;
-		width: 28px !important;
-		height: 28px !important;
-		visibility: visible !important;
-		fill: MenuText !important;
-		fill-opacity: 0.8;
+		.personalize-button {
+			-moz-context-properties: fill, fill-opacity !important;
+			background-image: url("neptune/icons/settings.svg") !important;
+			background-color: transparent !important;
+			padding: 0 !important;
+			background-size: 28px !important;
+			width: 28px !important;
+			height: 28px !important;
+			visibility: visible !important;
+			fill: MenuText !important;
+			fill-opacity: 0.8;
 
-		&:is(:hover, :active) {
-			fill-opacity: 1;
+			&:is(:hover, :active) {
+				fill-opacity: 1;
+			}
 		}
 	}
 
@@ -826,7 +855,7 @@
 			--space-large: 0.64rem !important;
 
 			.check-wrapper {
-				margin-block: auto !important;
+				margin-block-start: var(--space-xsmall) !important;
 			}
 		}
 
@@ -923,10 +952,6 @@
 
 	.top-site-button[href*="github.com"] .top-site-icon {
 		background-image: url("neptune/cards/github.svg") !important;
-	}
-
-	.top-site-button[href*="instagram.com"] .top-site-icon {
-		background-image: url("neptune/cards/instagram.svg") !important
 	}
 
 	.top-site-button[href*="youtube.com"] .top-site-icon {
