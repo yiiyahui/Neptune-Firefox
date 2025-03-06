@@ -67,6 +67,10 @@
 		:root[customizing] & {
 			padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding)) !important;
 		}
+
+		@media (-moz-bool-pref: "sidebar.verticalTabs") {
+			display: contents;
+		}
 	}
 
 	#PersonalToolbar {
@@ -861,12 +865,9 @@ textarea:not(#select-translations-panel-text-area) {
 				}
 			}
 
-			.tabbrowser-tab[soundplaying] & {
+			#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab[soundplaying] & {
 				background-color: var(--neptune-tab-soundplaying-background) !important;
-
-				#tabbrowser-tabs[orient="vertical"] & {
-					background-color: var(--neptune-verticaltab-soundplaying-background) !important;
-				}
+				animation: var(--tab-sharing-icon-animation);
 			}
 		}
 
@@ -884,7 +885,19 @@ textarea:not(#select-translations-panel-text-area) {
 		font-size: 12.5px;
 
 		tab:hover &:not(#tabbrowser-tabs[orient="vertical"]:not([expanded]) &) > .tab-icon-stack:not([pinned]) {
-			visibility: collapse;
+			display: none;
+		}
+
+		#tabbrowser-tabs[orient="horizontal"] & > .tab-icon-stack > .tab-icon-image:not([src], [busy]) {
+			display: revert !important;
+		}
+
+		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pictureinpicture] & {
+			font-size: 0.88em;
+
+			> .tab-label-container > .tab-label {
+				line-height: calc(var(--tab-min-height) / 2) !important;
+			}
 		}
 
 		> .tab-label-container {
@@ -894,6 +907,11 @@ textarea:not(#select-translations-panel-text-area) {
 				width: 100%;
 				overflow: hidden;
 				text-overflow: ellipsis;
+			}
+
+			> .tab-secondary-label {
+				margin-block: 0 !important;
+				font-size: 9px !important;
 			}
 		}
 
@@ -985,12 +1003,12 @@ textarea:not(#select-translations-panel-text-area) {
 		background-color: var(--neptune-tab-background);
 	}
 
-	> .all-tabs-close-button {
-		background: none !important;
-	}
+	> .all-tabs-secondary-button {
+		background-color: transparent !important;
 
-	> .all-tabs-secondary-button:hover {
-		fill: var(--icon-color-critical) !important;
+		&:hover {
+			fill: var(--color-accent-primary-hover) !important;
+		}
 	}
 }
 
@@ -1372,7 +1390,7 @@ panel {
 }
 
 panelview .toolbarbutton-1,
-toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
+toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back),
 .widget-overflow-list .toolbarbutton-1,
 .toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem=true]) > toolbarbutton {
 
@@ -1488,7 +1506,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-close-button, .subviewbutton-back),
 
 #sidebar-switcher-target > #sidebar-icon,
 .identity-popup-security-connection-icon,
-.subviewbutton-iconic > .toolbarbutton-icon,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
 .menu-iconic-icon:not(#context-navigation .menu-iconic-icon),
@@ -2285,7 +2302,7 @@ tooltip,
 #context-openlink,
 menuitem.share-tab-url-item,
 menuitem[id^="context"]:is([id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="Background"]),
-#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"],[id*="remove"], [id*="download"]),
+#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"], [id*="download"]),
 #tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
 #tabbrowser-tabs[orient="vertical"][overflow]::after,

@@ -855,7 +855,7 @@
 			--space-large: 0.64rem !important;
 
 			.check-wrapper {
-				margin-block-start: var(--space-xsmall) !important;
+				margin-block: 0 !important;
 			}
 		}
 
@@ -1003,7 +1003,7 @@
 
 	#text-layout-controls {
 		width: auto !important;
-		padding: var(--space-xsmall) var(--space-small) var(--space-xxsmall) !important;
+		padding: var(--space-xsmall) var(--space-small) !important;
 		font: menu !important;
 
 		> *:not(#about-reader-advanced-layout),
