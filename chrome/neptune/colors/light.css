@@ -42,6 +42,7 @@
 		--neptune-urlbar-background: color-mix(in srgb, currentColor 10%, transparent);
 		--neptune-urlbar-hover-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-urlbar-focused-background: color-mix(in srgb, currentColor 16%, transparent);
+		--neptune-urlbar-background-color: color-mix(in srgb, currentColor 3%, transparent);
 		--neptune-urlbarView-hover-background: color-mix(in srgb, accentcolor 85%, #262626);
 		--neptune-urlbarView-button-background: color-mix(in srgb, accentcolor 70%, #939597);
 		--neptune-focused-urlbar-highlight-color: color-mix(in srgb, accentcolor 85%, #383838);
@@ -55,6 +56,5 @@
 		--neptune-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);
 		--neptune-verticaltab-pinned-background: color-mix(in srgb, currentColor 6%, transparent);
 		--neptune-verticaltab-hover-background: color-mix(in srgb, currentColor 8%, transparent);
-		--neptune-tab-soundplaying-background: color-mix(in srgb, accentcolor 25%, transparent);
 	}
 }

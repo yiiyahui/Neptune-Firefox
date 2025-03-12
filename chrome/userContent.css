@@ -61,7 +61,7 @@
 	--theme-focus-textinput-outline-color: var(--neptune-input-outline-color) !important;
 	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
 	--button-min-height: 22px !important;
-	--theme-toolbar-height: 22px !important;
+	--theme-toolbar-height: var(--button-min-height) !important;
 	--theme-arrowpanel-border-radius: 8px !important;
 	--tab-line-selected-color: transparent !important;
 	--tab-line-hover-color: transparent !important;
@@ -651,13 +651,13 @@
 		}
 
 		.top-site-inner > a {
-			padding-inline: 0 !important;
+			padding: var(--space-large) 0 0 !important;
 		}
 
 		.context-menu-button {
 			background-color: transparent !important;
 			inset-inline-end: 15px !important;
-			top: -2px !important;
+			top: 0 !important;
 		}
 
 		.tile {
@@ -695,13 +695,15 @@
 			width: 24px !important;
 		}
 
-		.title .title-label {
-			min-height: 1lh !important;
-			width: 80px !important;
-			overflow: clip !important;
+		.title {
+			padding-top: var(--space-xsmall) !important;
 
-			.top-site-outer:is(:hover, :focus-within) & {
-				-webkit-line-clamp: 1 !important;
+			.title-label {
+				min-height: 1lh !important;
+				line-height: 1.333 !important;
+				width: 72px !important;
+				padding-inline: 0 !important;
+				overflow: clip !important;
 				white-space: nowrap !important;
 			}
 		}
@@ -826,6 +828,18 @@
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 		overflow-x: hidden !important;
 		transition: none !important;
+
+		.close-button-wrapper {
+			top: 0 !important;
+			padding-block: 0 !important;
+			background-color: transparent !important;
+
+			.close-button {
+				background-color: transparent !important;
+				margin-inline-end: 0 !important;
+				border: none !important;
+			}
+		}
 	}
 
 	.customize-menu.customize-animate-enter-done,
@@ -834,11 +848,11 @@
 	}
 
 	.home-section {
-		grid-row-gap: var(--space-medium) !important;
+		grid-row-gap: 12px !important;
 		padding: 0 var(--space-small) !important;
 
 		.settings-toggles {
-			gap: var(--space-medium) !important;
+			gap: 16px !important;
 		}
 
 		.section .selector {
@@ -853,10 +867,6 @@
 
 		.section .more-info-top-wrapper {
 			--space-large: 0.64rem !important;
-
-			.check-wrapper {
-				margin-block: 0 !important;
-			}
 		}
 
 		.external-link {
@@ -1225,7 +1235,7 @@
 	}
 
 	.fxview-tab-row-main {
-		padding-block: 3px !important;
+		padding-block: calc((var(--button-min-height) - var(--size-item-small)) / 2) !important;
 
 		> .fxview-tab-row-favicon-wrapper > *::after {
 			display: none !important;
@@ -1249,13 +1259,16 @@
 	.thumbnail,
 	.toolbarButton:not(.labeled),
 	.dropdownToolbarButton,
-	.dropdownToolbarButton > select,
 	.dialogButton {
 		border-radius: var(--border-radius-small) !important;
 	}
 
 	.toolbarHorizontalGroup {
 		gap: 8px !important;
+
+		> .dropdownToolbarButton > select {
+			background: none !important;
+		}
 
 		.toolbarButtonWithContainer {
 			aspect-ratio: auto !important;
