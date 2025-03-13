@@ -86,14 +86,18 @@
 			outline: none !important;
 		}
 
-		.toolbarbutton-1 > .toolbarbutton-icon {
-			height: var(--size-item-small) !important;
-			border-radius: var(--toolbarbutton-border-radius) !important;
+		.toolbarbutton-1 {
+			margin: auto auto var(--space-small) !important;
+
+			> .toolbarbutton-icon {
+				height: var(--size-item-small) !important;
+				border-radius: var(--toolbarbutton-border-radius) !important;
+			}
 		}
 
 		toolbarbutton.bookmark-item:not(.subviewbutton) {
 			padding-block: 0 !important;
-			margin-block: 0 var(--space-small) !important;
+			margin-block: auto var(--space-small) !important;
 
 			&[container] {
 				list-style-image: url("neptune/icons/folder.svg") !important;
@@ -954,6 +958,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 			tab:is([label="New Tab"], [label="New Private Tab"]) & > .tab-icon-image {
 				content: url("neptune/icons/favicon.svg");
+				fill: var(--toolbarbutton-icon-fill) !important;
 			}
 
 			> .tab-icon-overlay {
@@ -1126,7 +1131,7 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 
 	&:has(.expanded-button) {
-			flex-direction: row !important;
+		flex-direction: row !important;
 	}
 }
 
@@ -1271,7 +1276,6 @@ treechildren::-moz-tree-cell-text(selected) {
 
 #tabbrowser-tabbox {
 	outline: none !important;
-	border-radius: 0 !important;
 	box-shadow: none !important;
 }
 
@@ -1571,7 +1575,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back)
 .subviewbutton-iconic:not(.all-tabs-button.subviewbutton-iconic) > .toolbarbutton-icon,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
-.menu-iconic-icon:not(#context-navigation .menu-iconic-icon),
+.menu-iconic-icon:not(#context-navigation .menu-iconic-icon, .bookmark-item .menu-iconic-icon),
 .menu-right > image,
 .pointerlockfswarning::before,
 :is(#protections-popup-mainView, .widget-overflow-list, .PanelUI-subView) .subviewbutton-nav::after {
