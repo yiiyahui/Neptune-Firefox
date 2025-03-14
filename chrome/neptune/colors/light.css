@@ -56,5 +56,6 @@
 		--neptune-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);
 		--neptune-verticaltab-pinned-background: color-mix(in srgb, currentColor 6%, transparent);
 		--neptune-verticaltab-hover-background: color-mix(in srgb, currentColor 8%, transparent);
+		--neptune-tab-soundplaying-background: color-mix(in srgb, accentcolor 35%, transparent);
 	}
 }

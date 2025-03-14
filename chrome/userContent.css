@@ -578,14 +578,13 @@
 	}
 
 	.search-button,
-	.logo-and-wordmark,
-	.info, .promo,
-	.top-site-outer .title .icon,
+	.logo-and-wordmark-wrapper,
+	.info-border,
 	.home-section .divider,
 	.wallpaper-attribution,
 	.customize-menu .close-button-wrapper,
 	.weatherSponsorText,
-	.top-site-outer .title .sponsored-label	{
+	.top-site-outer .title :is(.icon, .sponsored-label) {
 		display: none !important;
 	}
 }
@@ -631,10 +630,7 @@
 
 		.top-sites-list {
 			margin-inline: auto !important;
-
-			:is(.layout-variant-a, .layout-variant-b) & {
-				row-gap: var(--space-xsmall) !important;
-			}
+			row-gap: unset !important;
 		}
 	}
 
@@ -642,10 +638,6 @@
 		background: none !important;
 		width: calc(3 * var(--size-item-large)) !important;
 		margin-block-end: var(--space-small) !important;
-
-		:is(.layout-variant-a, .layout-variant-b) & {
-			margin-block-end: var(--space-xsmall) !important;
-		}
 
 		.top-site-icon {
 			background-color: transparent !important;
@@ -658,23 +650,23 @@
 		.context-menu-button {
 			width: var(--size-item-small) !important;
 			height: var(--size-item-small) !important;
-			background-size: 12px !important;
+			background-size: 10px !important;
 			border-radius: 50% !important;
 			inset-inline-end: 4px !important;
 			top: -10px !important;
 		}
 
 		.tile {
-			height: 64px !important;
-			width: 64px !important;
+			height: calc(2 * var(--size-item-large)) !important;
+			width: calc(2 * var(--size-item-large)) !important;
 			background-color: var(--neptune-content-background) !important;
 			outline: none !important;
 			border-radius: calc(var(--border-radius-large) - 2px) !important;
 			box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
 
 			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
-				width: 100% !important;
-				height: 100% !important;
+				height: calc(2 * var(--size-item-large)) !important;
+				width: calc(2 * var(--size-item-large)) !important;
 				border-radius: calc(var(--border-radius-large) - 2px) !important;
 
 				&.letter-fallback::before {

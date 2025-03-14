@@ -879,7 +879,7 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: var(--neptune-tab-hover-background) !important;
 			}
 
-			#tabbrowser-tabs[orient="vertical"] & {
+			#tabbrowser-tabs[orient="vertical"] &:not(.tabbrowser-tab[soundplaying] &) {
 				background-color: var(--neptune-verticaltab-background) !important;
 
 				.tabbrowser-tab[pinned] & {
@@ -899,8 +899,8 @@ textarea:not(#select-translations-panel-text-area) {
 				}
 			}
 
-			#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab:not([pinned])[soundplaying] & {
-				background-color: var(--neptune-item-selection-background) !important;
+			.tabbrowser-tab[soundplaying]:not(#tabbrowser-tabs[orient="vertical"][expanded] .tabbrowser-tab:not([pinned])[soundplaying], #tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab:not([pinned])[soundplaying]) & {
+				background-color: var(--neptune-tab-soundplaying-background) !important;
 				animation: var(--tab-sharing-icon-animation) -1s;
 			}
 		}
@@ -952,7 +952,8 @@ textarea:not(#select-translations-panel-text-area) {
 				display: revert !important;
 			}
 
-			tab:hover .tab-content:not(#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content) > &:not([pinned]) {
+			tab:hover .tab-content:not(#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content) > &:not([pinned]),
+			tab[pinned][soundplaying]:hover .tab-content > & > :is(.tab-icon-image, .tab-throbber) {
 				display: none;
 			}
 
@@ -962,24 +963,21 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			> .tab-icon-overlay {
-				#tabbrowser-tabs[orient="vertical"] & {
-					top: -6px !important;
-					inset-inline-end: -8px !important;
-
-					&:not([pinned]) {
+				#tabbrowser-tabs[orient="vertical"]:not([expanded]) &:not([pinned]) {
 						display: none;
-					}
-				}
-
-				#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
-					top: -8px !important;
-					inset-inline-end: 14px !important;
 				}
 
 				&[pinned]:not([crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
-					background-color: transparent !important;
+					background-color: currentColor !important;
 					background-image: none !important;
-					fill: color-mix(in srgb, accentcolor 75%, var(--button-icon-fill) 25%) !important;
+					fill: ActiveCaption !important;
+					inset: auto !important;
+					visibility: collapse;
+
+					tab:hover & {
+						visibility: visible;
+						animation: urlbar-zoom-reset-pulse 250ms ease-in-out;
+					}
 				}
 			}
 		}
@@ -1089,7 +1087,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #sidebar-header {
-	font-size: 1.2em !important;
+	font-size: 1.25em !important;
 	border: none !important;
 
 	#sidebar-switcher-target {
