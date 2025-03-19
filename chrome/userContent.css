@@ -579,7 +579,7 @@
 
 	.search-button,
 	.logo-and-wordmark-wrapper,
-	.info-border,
+	.showPrivate.showSearch.container,
 	.home-section .divider,
 	.wallpaper-attribution,
 	.customize-menu .close-button-wrapper,
@@ -680,8 +680,8 @@
 
 		.default-icon {
 			background-size: auto !important;
-			width: 100% !important;
-			height: 100% !important;
+			width: calc(2 * var(--size-item-large)) !important;
+			height: calc(2 * var(--size-item-large)) !important;
 		}
 
 		.search-topsite {
@@ -843,10 +843,10 @@
 
 	.home-section {
 		grid-row-gap: 12px !important;
-		padding: 0 var(--space-small) !important;
+		padding: 0 12px !important;
 
 		.settings-toggles {
-			gap: 16px !important;
+			gap: 12px !important;
 		}
 
 		.section .selector {
@@ -860,7 +860,11 @@
 		}
 
 		.section .more-info-top-wrapper {
-			--space-large: 0.64rem !important;
+			--space-large: 0.666rem !important;
+
+			.check-wrapper {
+				margin-block: auto !important;
+			}
 		}
 
 		.external-link {
@@ -897,12 +901,13 @@
 	}
 
 	.category-list {
-		grid-auto-rows: 52px !important;
+		grid-auto-rows: 64px !important;
 		gap: 12px !important;
-		margin-inline: 0 !important;
+		margin: auto auto var(--space-xsmall) !important;
 
 		label {
 			font: menu !important;
+			vertical-align: top;
 		}
 	}
 
@@ -1226,6 +1231,10 @@
 
 	virtual-list > :is(opentabs-tab-row, fxview-tab-row, syncedtabs-tab-row) {
 		align-items: center !important;
+	}
+
+	.fxview-tab-list > opentabs-tab-row {
+		margin-inline: 5px !important;
 	}
 
 	.fxview-tab-row-main {
