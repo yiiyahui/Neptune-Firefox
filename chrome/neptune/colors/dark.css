@@ -1,8 +1,8 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		/* Browser */
-		--neptune-main-background: #383838;
-		--neptune-content-background: #262626;
+		--neptune-main-background: #1c1b22;
+		--neptune-content-background: #15141a;
 		--theme-primary-color: color-mix(in srgb, accentcolor 80%, #060606);
 		--theme-primary-hover-color: color-mix(in srgb, accentcolor 85%, #121212);
 		--theme-primary-active-color: color-mix(in srgb, accentcolor 85%, #565656);
@@ -29,10 +29,10 @@
 		--neptune-sidebar-border-color: color-mix(in srgb, currentColor 10%, transparent);
 
 		/* Popups */
-		--neptune-menu-background: #323232;
-		--neptune-popover-background: #32323266;
+		--neptune-menu-background: #2b2a33;
+		--neptune-popover-background: #2b2a3380;
 		--neptune-popover-separator-color: color-mix(in srgb, currentColor 15%, transparent);
-		--neptune-small-shadow: 0 0 1px color-mix(in srgb, currentColor 55%, transparent);
+		--neptune-small-shadow: 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
 		--neptune-menu-shadow: 0 1px 8px #00000016, 0 5px 15px #00000011, 0 8px 20px #00000011, 0 3px 22px #00000019;
 		--neptune-menu-shadow-color: #00000033;
 		--neptune-panel-shadow: 0 1px 8px #00000016, 0 5px 15px #00000011, 0 8px 20px #00000011;

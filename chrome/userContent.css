@@ -78,7 +78,7 @@
 
 @-moz-document url-prefix(about:), url-prefix("chrome://") {
 	* {
-		--in-content-page-background: light-dark(#f6f6f6, #383838) !important;
+		--in-content-page-background: light-dark(#f6f6f6, #1c1b22) !important;
 		--popup-background: var(--neptune-menu-background) !important;
 		--popup-button-background: var(--neptune-item-background) !important;
 		--popup-button-background-hover: var(--neptune-item-hover-background) !important;
@@ -846,7 +846,7 @@
 		padding: 0 12px !important;
 
 		.settings-toggles {
-			gap: 12px !important;
+			gap: 16px !important;
 		}
 
 		.section .selector {
@@ -863,7 +863,7 @@
 			--space-large: 0.666rem !important;
 
 			.check-wrapper {
-				margin-block: auto !important;
+				margin-block-start: 4px !important;
 			}
 		}
 

@@ -30,7 +30,7 @@
 
 		/* Popups */
 		--neptune-menu-background: #f0f0f0;
-		--neptune-popover-background: #ececec66;
+		--neptune-popover-background: #ececec80;
 		--neptune-popover-separator-color: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-small-shadow: 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
 		--neptune-menu-shadow: 0 1px 8px #00000019, 0 5px 15px #00000016, 0 8px 20px #00000011, 0 3px 22px #00000016;

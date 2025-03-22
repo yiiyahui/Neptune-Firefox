@@ -1,9 +1,94 @@
 @import "neptune/colors/light.css";
 @import "neptune/colors/dark.css";
 
+:root {
+	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
+	--toolbar-start-end-padding: 10px !important;
+	--space-xsmall: 0.25rem !important;
+	--urlbar-min-height: 28px !important;
+	--urlbarView-small-font-size: 0.84em !important;
+	--urlbarView-labeled-row-label-top: calc(-1.2em - 6px) !important;
+	--tab-min-height: var(--urlbar-min-height) !important;
+	--tabstrip-min-height: var(--tab-min-height) !important;
+	--tab-group-label-height: var(--tab-min-height) !important;
+	--tab-label-line-height: 1.6 !important;
+	--tab-shadow-max-size: 0 !important;
+	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
+	--button-padding: 0 var(--space-large) !important;
+	--border-radius-small: 6px !important;
+	--border-radius-large: 12px;
+	--menu-panel-width-wide: 24em !important;
+	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
+	--panel-subview-body-padding-block: 5px !important;
+	--panel-separator-margin-vertical: 5px !important;
+	--panel-separator-margin-horizontal: 9px !important;
+	--panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal) !important;
+	--arrowpanel-menuitem-margin-inline: 5px !important;
+	--arrowpanel-menuitem-padding-inline: 9px !important;
+	--arrowpanel-menuitem-padding-block: 0 !important;
+	--default-focusring: none !important;
+	--tabpanel-background-color: transparent !important;
+	--in-content-page-background: var(--neptune-main-background) !important;
+	--in-content-box-background: var(--neptune-input-bgcolor) !important;
+	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
+	--in-content-primary-button-text-color: white !important;
+	--in-content-button-background: var(--neptune-item-background) !important;
+	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
+	--in-content-button-background-active: var(--neptune-item-active-background) !important;
+	--in-content-primary-button-background: var(--theme-primary-color) !important;
+	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
+	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
+	--color-accent-primary: var(--theme-primary-color) !important;
+	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
+	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
+	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
+	--button-background-color: var(--neptune-item-background) !important;
+	--button-background-color-hover: var(--neptune-item-hover-background) !important;
+	--button-background-color-active: var(--neptune-item-active-background) !important;
+	--button-text-color-primary: white !important;
+	--button-background-color-primary: var(--theme-primary-color) !important;
+	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
+	--button-background-color-primary-active: var(--theme-primary-active-color) !important;
+	--link-color: light-dark(#909090, #7c7c7c) !important;
+	--icon-color: light-dark(#383838, #ececec) !important;
+	--tab-loading-fill: var(--theme-primary-color) !important;
+	--download-progress-fill-color: var(--theme-primary-color) !important;
+	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
+	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
+	--sidebar-box-background: var(--neptune-sidebar-box-background) !important;
+	--sidebar-background-color: var(--neptune-toolbar-background) !important;
+	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
+	--urlbar-box-bgcolor: transparent !important;
+	--urlbar-box-focus-bgcolor: transparent !important;
+	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
+	--urlbarView-hover-background: var(--neptune-urlbarView-hover-background) !important;
+	--urlbarView-highlight-background: var(--neptune-focused-urlbar-highlight-color) !important;
+	--urlbarView-highlight-color: #fff !important;
+	--input-bgcolor: var(--neptune-input-bgcolor) !important;
+	--background-color-box: var(--input-bgcolor) !important;
+	--focus-outline-color: var(--theme-primary-color) !important;
+	--arrowpanel-shadow-margin: 22px !important;
+	--arrowpanel-color: FieldText !important;
+	--arrowpanel-background: menu !important;
+	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
+	--organizer-toolbar-background: var(--neptune-content-background) !important;
+	--organizer-hover-background: var(--neptune-item-hover-background) !important;
+	--organizer-selected-background: var(--neptune-item-active-background) !important;
+	--organizer-pane-background: var(--neptune-main-background) !important;
+	--organizer-content-background: var(--neptune-content-background) !important;
+	--organizer-hover-background: var(--neptune-item-hover-background) !important;
+}
+
 /*---------- Toolbox ----------*/
 :root#main-window {
 	min-width: 650px !important;
+}
+
+#browser {
+	background-color: transparent !important;
 }
 
 #navigator-toolbox {
@@ -180,86 +265,6 @@ findbar {
 	}
 }
 
-:root {
-	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
-	--toolbar-start-end-padding: 10px !important;
-	--space-xsmall: 0.25rem !important;
-	--urlbar-min-height: 28px !important;
-	--urlbarView-small-font-size: 0.84em !important;
-	--urlbarView-labeled-row-label-top: calc(-1.2em - 6px) !important;
-	--tab-min-height: var(--urlbar-min-height) !important;
-	--tabstrip-min-height: var(--tab-min-height) !important;
-	--tab-group-label-height: var(--tab-min-height) !important;
-	--tab-label-line-height: 1.6 !important;
-	--tab-shadow-max-size: 0 !important;
-	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
-	--button-padding: 0 var(--space-large) !important;
-	--border-radius-small: 6px !important;
-	--border-radius-large: 12px;
-	--menu-panel-width-wide: 24em !important;
-	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
-	--panel-subview-body-padding-block: 5px !important;
-	--arrowpanel-menuitem-margin-inline: 5px !important;
-	--panel-separator-margin-vertical: 5px !important;
-	--panel-separator-margin-horizontal: 9px !important;
-	--panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal) !important;
-	--arrowpanel-menuitem-padding-block: 0 !important;
-	--arrowpanel-menuitem-padding-inline: 9px !important;
-	--panel-separator-zap-gradient: none !important;
-	--default-focusring: none !important;
-	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
-	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
-	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
-	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
-	--button-background-color: var(--neptune-item-background) !important;
-	--button-background-color-hover: var(--neptune-item-hover-background) !important;
-	--button-background-color-active: var(--neptune-item-active-background) !important;
-	--color-accent-primary: var(--theme-primary-color) !important;
-	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
-	--color-accent-primary-active: var(--theme-primary-active-color) !important;
-	--button-text-color-primary: #fff !important;
-	--button-background-color-primary: var(--theme-primary-color) !important;
-	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
-	--button-background-color-primary-active: var(--theme-primary-active-color) !important;
-	--in-content-button-background: var(--neptune-item-background) !important;
-	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
-	--in-content-button-background-active: var(--neptune-item-active-background) !important;
-	--in-content-primary-button-text-color: #fff !important;
-	--in-content-primary-button-background: var(--theme-primary-color) !important;
-	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
-	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
-	--link-color: light-dark(#909090, #7c7c7c) !important;
-	--icon-color: light-dark(#383838, #ececec) !important;
-	--theme-menupopup-background: light-dark(#f0f0f0, #323232);
-	--tab-loading-fill: var(--theme-primary-color) !important;
-	--download-progress-fill-color: var(--theme-primary-color) !important;
-	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
-	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
-	--in-content-page-background: var(--neptune-main-background) !important;
-	--in-content-box-background: var(--neptune-input-bgcolor) !important;
-	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
-	--tabpanel-background-color: transparent !important;
-	--sidebar-box-background: var(--neptune-sidebar-box-background) !important;
-	--sidebar-background-color: var(--neptune-toolbar-background) !important;
-	--sidebar-border-color: var(--neptune-sidebar-border-color) !important;
-	--urlbar-box-bgcolor: transparent !important;
-	--urlbar-box-focus-bgcolor: transparent !important;
-	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
-	--urlbarView-hover-background: var(--neptune-urlbarView-hover-background) !important;
-	--urlbarView-highlight-background: var(--neptune-focused-urlbar-highlight-color) !important;
-	--urlbarView-highlight-color: #fff !important;
-	--input-bgcolor: var(--neptune-input-bgcolor) !important;
-	--background-color-box: var(--input-bgcolor) !important;
-	--focus-outline-color: var(--theme-primary-color) !important;
-	--arrowpanel-color: FieldText !important;
-	--arrowpanel-background: var(--neptune-menu-background) !important;
-	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
-	--organizer-toolbar-background: var(--neptune-main-background) !important;
-	--organizer-pane-background: var(--neptune-main-background) !important;
-	--organizer-content-background: var(--neptune-menu-background) !important;
-	--organizer-hover-background: var(--neptune-item-hover-background) !important;
-}
-
 /*---------- Search box ----------*/
 search-textbox {
 	appearance: none !important;
@@ -412,7 +417,7 @@ textarea:not(#select-translations-panel-text-area) {
 	margin: 5px 0 0 -8px !important;
 	border: none !important;
 	border-radius: calc(var(--border-radius-medium) + 2px);
-	background-color: var(--theme-menupopup-background);
+	background-color: var(--arrowpanel-background);
 	color: MenuText;
 	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
@@ -710,15 +715,11 @@ textarea:not(#select-translations-panel-text-area) {
 		--tab-min-width: 64px !important;
 
 		.tabbrowser-tab {
-			&:not([pinned]) {
+			&:not([pinned], tab-group[collapsed] > &) {
 				padding-inline: 0 !important;
 				margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
-				tab-group[collapsed] > & {
-					margin: revert !important;
-				}
-
-				&[fadein]:not([selected], [multiselected]):not(tab-group[collapsed] > &) {
+				&[fadein]:not([selected], [multiselected]) {
 					max-width: 150px !important;
 				}
 
@@ -728,7 +729,7 @@ textarea:not(#select-translations-panel-text-area) {
 					max-width: 200px !important;
 				}
 
-				&[multiselected]:not(tab-group[collapsed] > &) {
+				&[multiselected] {
 					max-width: 100px !important;
 				}
 			}
@@ -967,9 +968,24 @@ textarea:not(#select-translations-panel-text-area) {
 				display: none;
 			}
 
-			tab:is([label="New Tab"], [label="New Private Tab"]) & > .tab-icon-image {
-				content: url("neptune/icons/favicon.svg");
+			> .tab-icon-image {
 				fill: var(--toolbarbutton-icon-fill) !important;
+
+				tab:is([label="New Tab"], [label="New Private Tab"]) & {
+					content: url("neptune/icons/favicon.svg");
+				}
+
+				tab[label="Add-ons Manager"] & {
+					content: url("neptune/icons/extension.svg");
+				}
+
+				tab[label="Passwords"] & {
+					content: url("neptune/icons/login.svg");
+				}
+
+				tab[label="About Profiles"] & {
+					content: var(--avatar-image-url);
+				}
 			}
 
 			> .tab-icon-overlay {
@@ -988,7 +1004,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 		> .tab-close-button {
 			background-color: var(--neptune-button-field-color) !important;
-			fill: ActiveCaption !important;
+			fill: Field !important;
 			margin-inline-end: calc(var(--tab-icon-end-margin) + 4px) !important;
 			border-radius: 2px !important;
 			order: -1;
@@ -1009,17 +1025,17 @@ textarea:not(#select-translations-panel-text-area) {
 				}
 			}
 
-			&:hover {
-				background-color: var(--neptune-button-field-hover-color) !important;
-			}
-
-			&:hover:active {
-				background-color: currentColor !important;
-			}
-
 			tab:hover &:not([pinned]) {
 				display: revert !important;
 				animation: tab-hover-preview-fadein 0.3s ease-in-out both;
+			}
+
+			&:hover {
+				background-color: var(--neptune-button-field-hover-color) !important;
+
+				&:active {
+					background-color: currentColor !important;
+				}
 			}
 		}
 
@@ -1076,10 +1092,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 #scrollbutton-up, #scrollbutton-down { 
 	display: var(--theme-scrollbutton-display, inherit);
-
-	~ spacer { 
-		background-image: none !important;
-	}
 }
 
 /*---------- Sidebar ----------*/
@@ -1379,14 +1391,25 @@ input[type=radio] {
 }
 
 /*---------- Popups ----------*/
-menupopup,
-panel {
-	--panel-color: MenuText !important;
-	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
-	--panel-border-radius: var(--arrowpanel-border-radius) !important;
+menupopup, panel {
+	--panel-background: var(--arrowpanel-background) !important;
 	--panel-border-color: var(--neptune-toolbar-border-color) !important;
+	--panel-border-radius: var(--arrowpanel-border-radius) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
-	--arrowpanel-header-back-icon-padding: var(--arrowpanel-menuitem-margin-inline) !important;
+	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
+	--panel-shadow-margin: var(--arrowpanel-shadow-margin) !important;
+	--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
+
+	@media (-moz-platform: macos) {
+		appearance: auto !important;
+		-moz-default-appearance: menupopup !important;
+		--panel-border-color: transparent !important;
+		--panel-shadow-margin: 0 !important;
+	}
+}
+
+panel {
+	--arrowpanel-header-back-icon-padding: var(--space-xsmall) !important;
 	--arrowpanel-header-back-icon-full-width: calc(12px + 2 * var(--arrowpanel-header-back-icon-padding)) !important;
 	--arrowpanel-header-min-height: calc(var(--arrowpanel-header-back-icon-full-width) + 2 * var(--panel-separator-margin-vertical)) !important;
 
@@ -1394,32 +1417,23 @@ panel {
 		color-scheme: light dark !important;
 	}
 
-	@media (-moz-platform: linux) or (-moz-platform: windows) {
-		--panel-shadow-margin: 22px !important;
-		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
-	}
-
 	select:where(:not([size], [multiple])) {
 		margin: 0 !important;
-	}
-
-	toolbarseparator {
-		margin-inline: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
 	}
 
 	menulist {
 		padding-block: 2px !important;
 	}
 
-	#searchmode-switcher-popup-search-settings-button.panel-subview-footer-button {
-		margin-block: 0 !important;
+	toolbarseparator {
+		margin-inline: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
 	}
 
 	&[type="autocomplete-richlistbox"] {
 		--panel-background: var(--arrowpanel-background) !important;
 
 		> .autocomplete-richlistbox {
-			background-color: var(--neptune-menu-background) !important;
+			background-color: var(--arrowpanel-background) !important;
 
 			> .autocomplete-richlistitem {
 				&:not([disabled="true"]):not([selected]):hover {
@@ -1472,7 +1486,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back)
 
 @media not (-moz-platform: macos) {
 	menupopup {
-		--panel-background: var(--menupopup-background-color) !important;
 		--content-select-background-image: none !important;
 
 		> menu,
@@ -1529,18 +1542,14 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back)
 			font-size: 1rem !important;
 
 			&:not([_moz-menuactive="true"]) {
-				background-color: var(--theme-menupopup-background) !important;
-				color: inherit !important;
+				background-color: transparent !important;
+				color: menutext !important;
 			}
 		}
 
 		#ContentSelectDropdown > & > :is(menucaption, menuitem) > .menu-iconic-text {
 			padding-block: 1px !important;
 		}
-	}
-
-	arrowscrollbox.menupopup-arrowscrollbox {
-		background-color: var(--theme-menupopup-background) !important;
 	}
 }
 
@@ -1767,7 +1776,7 @@ panelview .toolbarbutton-1,
 	}
 
 	#placesToolbar > toolbarbutton {
-		margin-inline: var(--space-xsmall) !important;
+		margin-inline: var(--space-small) !important;
 	}
 
 	richlistbox {
@@ -2039,7 +2048,7 @@ panelview .toolbarbutton-1,
 	}
 }
 
-/*---------- Browser ----------*/
+/*-------- Titlebar buttons --------*/
 @media (-moz-platform: macos) {
 	.titlebar-buttonbox-container {
 		position: absolute;
@@ -2223,7 +2232,7 @@ panelview .toolbarbutton-1,
 	list-style-image: url("neptune/icons/forward.svg") !important;
 }
 
-#reload-button {
+#reload-button, .downloadIconRetry .button-icon {
 	list-style-image: url("neptune/icons/reload.svg") !important;
 }
 
@@ -2237,12 +2246,10 @@ panelview .toolbarbutton-1,
 
 #alltabs-button {
 	list-style-image: url("neptune/icons/view-opentabs.svg") !important;
+}
 
-	> .toolbarbutton-badge-stack > .toolbarbutton-icon {
-		--panel-and-palette-icon-size: var(--size-item-small) !important;
-		width: var(--size-item-small) !important;
-		margin: 0 !important;
-	}
+#logins-button {
+	list-style-image: url("neptune/icons/login.svg") !important;
 }
 
 #permissions-granted-icon {
@@ -2305,7 +2312,7 @@ panelview .toolbarbutton-1,
 	list-style-image: url("neptune/icons/downloads.svg") !important;
 }
 
-.downloadIconShow>.button-box > .button-icon {
+.downloadIconShow .button-icon {
 	list-style-image: url("chrome://global/skin/icons/search-glass.svg") !important;
 }
 
@@ -2351,6 +2358,7 @@ tooltip,
 menuitem.share-tab-url-item,
 menuitem[id^="context"]:is([id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="Background"]),
 #toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="download"]),
+#scrollbutton-up ~ spacer,
 #tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
 #tabbrowser-tabs[orient="vertical"][overflow]::after,
