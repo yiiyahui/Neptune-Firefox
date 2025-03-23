@@ -903,11 +903,10 @@
 	.category-list {
 		grid-auto-rows: 64px !important;
 		gap: 12px !important;
-		margin: auto auto var(--space-xsmall) !important;
+		margin: auto auto var(--space-small) !important;
 
 		label {
 			font: menu !important;
-			vertical-align: top;
 		}
 	}
 

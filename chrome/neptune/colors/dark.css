@@ -29,8 +29,8 @@
 		--neptune-sidebar-border-color: color-mix(in srgb, currentColor 10%, transparent);
 
 		/* Popups */
-		--neptune-menu-background: #2b2a33;
-		--neptune-popover-background: #2b2a3380;
+		--neptune-menu-background: Field;
+		--neptune-popover-background: #32323280;
 		--neptune-popover-separator-color: color-mix(in srgb, currentColor 15%, transparent);
 		--neptune-small-shadow: 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
 		--neptune-menu-shadow: 0 1px 8px #00000016, 0 5px 15px #00000011, 0 8px 20px #00000011, 0 3px 22px #00000019;
