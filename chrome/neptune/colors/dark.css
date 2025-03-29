@@ -10,6 +10,7 @@
 		/* Toolbars */
 		--neptune-toolbar-background: var(--lwt-accent-color);
 		--neptune-toolbar-border-color: color-mix(in srgb, currentColor 18%, transparent);
+		--neptune-content-border-color: color-mix(in srgb, currentColor 10%, transparent);
 		--neptune-input-bgcolor: color-mix(in srgb, currentColor 14%, transparent);
 		--neptune-input-outline-color: color-mix(in srgb, accentcolor 50%, #646464);
 		--neptune-slider-color: #cacaca;
@@ -23,10 +24,6 @@
 		--neptune-item-selection-hover-background: color-mix(in srgb, accentcolor 25%, transparent);
 		--neptune-button-field-color: color-mix(in srgb, currentColor 70%, transparent);
 		--neptune-button-field-hover-color: color-mix(in srgb, currentColor 85%, transparent);
-
-		/* Sidebar */
-		--neptune-sidebar-box-background: color-mix(in srgb, currentColor 7%, transparent);
-		--neptune-sidebar-border-color: color-mix(in srgb, currentColor 10%, transparent);
 
 		/* Popups */
 		--neptune-menu-background: Field;

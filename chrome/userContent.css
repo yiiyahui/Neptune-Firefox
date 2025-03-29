@@ -4,7 +4,7 @@
 :root {
 	--in-content-page-background: var(--neptune-main-background) !important;
 	--in-content-table-background: var(--neptune-content-background) !important;
-	--in-content-border-color: var(--neptune-sidebar-border-color) !important;
+	--in-content-border-color: var(--neptune-content-border-color) !important;
 	--in-content-box-background: var(--neptune-content-background) !important;
 	--in-content-box-info-background: var(--neptune-content-background) !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
