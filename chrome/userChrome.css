@@ -20,6 +20,7 @@
 	--border-radius-large: 12px;
 	--menu-panel-width-wide: 28em !important;
 	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
+	--panel-separator-zap-gradient: none !important;
 	--panel-subview-body-padding-block: 5px !important;
 	--panel-separator-margin-vertical: 5px !important;
 	--panel-separator-margin-horizontal: 9px !important;
@@ -62,7 +63,7 @@
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
-	--sidebar-background-color: var(--toolbox-bgcolor) !important;
+	--sidebar-background-color: transparent !important;
 	--sidebar-border-color: var(--neptune-content-border-color) !important;
 	--urlbar-box-bgcolor: transparent !important;
 	--urlbar-box-focus-bgcolor: transparent !important;
@@ -76,7 +77,6 @@
 	--arrowpanel-shadow-margin: 22px !important;
 	--arrowpanel-color: FieldText !important;
 	--arrowpanel-background: var(--neptune-menu-background) !important;
-	--arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
 	--organizer-toolbar-background: var(--neptune-content-background) !important;
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
 	--organizer-selected-background: var(--neptune-item-active-background) !important;
@@ -97,7 +97,12 @@
 #navigator-toolbox {
 	display: grid;
 	grid-template-columns: minmax(auto, 0) auto;
+	background-color: var(--neptune-toolbar-background) !important;
 	border: none !important;
+
+	&.fullscreen-with-menubar {
+		box-shadow: none !important;
+	}
 
 	> *:not(#nav-bar, #TabsToolbar) {
 		grid-column: 1 / span 2;
@@ -114,7 +119,7 @@
 			padding-inline-start: var(--toolbar-start-end-padding) !important;
 		}
 
-		@media (-moz-bool-pref: "sidebar.verticalTabs") {
+		@media -moz-pref("sidebar.verticalTabs") {
 			grid-column: 1 / span 2;
 			width: auto;
 		}
@@ -132,7 +137,7 @@
 				}
 
 				/* Remove flexible spacers in the horizontal layout. */
-				@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+				@media not -moz-pref("sidebar.verticalTabs") {
 					display: none;
 				}
 			}
@@ -160,14 +165,14 @@
 			padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding)) !important;
 		}
 
-		@media (-moz-bool-pref: "sidebar.verticalTabs") {
+		@media -moz-pref("sidebar.verticalTabs") {
 			display: contents;
 		}
 	}
 
 	#PersonalToolbar {
 		--toolbarbutton-inner-padding: var(--toolbarbutton-outer-padding) !important;
-		background-color: var(--toolbox-bgcolor) !important;
+		background-color: transparent !important;
 
 		&[customizing] {
 			outline: none !important;
@@ -188,6 +193,28 @@
 
 			&[container] {
 				list-style-image: url("neptune/icons/folder.svg") !important;
+			}
+		}
+	}
+
+	.browser-toolbar {
+		background-color: transparent !important;
+
+		.notificationbox-stack {
+			background: none !important;
+
+			.infobar {
+				--icon-size-default: 12px !important;
+				--button-size-icon-small: 20px !important;
+				--button-min-height-small: 20px !important;
+				--message-bar-container-min-height: 28px !important;
+				background-color: var(--neptune-item-active-background) !important;
+				border: none !important;
+				box-shadow: none !important;
+
+				&::before {
+					background-image: none !important;
+				}
 			}
 		}
 	}
@@ -214,7 +241,7 @@
 		position: absolute;
 		inset-block-start: 0;
 		min-width: 100% !important;
-		background-color: var(--toolbox-bgcolor) !important;
+		background-color: transparent !important;
 		border: none !important;
 		padding-block: 0 !important;
 		transition: opacity 150ms ease-in-out, margin-top 150ms ease-in-out, visibility 0s linear !important;
@@ -342,7 +369,7 @@ textarea:not(#select-translations-panel-text-area) {
 	box-shadow: none !important;
 	transition: background-color .2s ease;
 
-	@media (-moz-bool-pref: "sidebar.verticalTabs") {
+	@media -moz-pref("sidebar.verticalTabs") {
 		background-color: var(--neptune-urlbar-background-color) !important;
 	}
 }
@@ -369,7 +396,7 @@ textarea:not(#select-translations-panel-text-area) {
 			background-color: var(--neptune-urlbar-focused-background) !important;
 		}
 
-		@media (-moz-bool-pref: "sidebar.verticalTabs") {
+		@media -moz-pref("sidebar.verticalTabs") {
 			#urlbar:hover > & {
 				background-color: var(--neptune-urlbar-background-color) !important;
 			}
@@ -390,7 +417,7 @@ textarea:not(#select-translations-panel-text-area) {
 		border: none !important;
 		border-radius: var(--border-radius-small) !important;
 
-		@media (-moz-bool-pref: "sidebar.verticalTabs") {
+		@media -moz-pref("sidebar.verticalTabs") {
 			> .urlbar-input-box > .urlbar-input {
 				text-align: center !important;
 
@@ -616,7 +643,7 @@ textarea:not(#select-translations-panel-text-area) {
 	padding-inline: var(--urlbar-icon-padding) !important;
 }
 
-@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+@media not -moz-pref("sidebar.verticalTabs") {
 	#identity-permission-box,
 	#notification-popup-box,
 	#tracking-protection-icon-container {
@@ -1143,7 +1170,7 @@ textarea:not(#select-translations-panel-text-area) {
 		&:first-of-type {
 			--button-outer-padding-block-start: var(--space-xsmall) !important;
 
-			@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+			@media not -moz-pref("sidebar.verticalTabs") {
 				--button-outer-padding-block-start: 0 !important;
 			}
 		}
@@ -1258,17 +1285,13 @@ sidebar-tab-row {
 		}
 	}
 
-	[slot="nested"]:first-child {
-		margin-block-start: var(--space-small) !important;
-	}
-
 	.nested {
 		margin-inline: 0 !important;
 	}
 }
 
-moz-radio, moz-checkbox {
-	padding-block: var(--space-xsmall) !important;
+moz-radio, moz-checkbox:not(:last-of-type) {
+	padding-block: var(--space-small) !important;
 	border-color: var(--neptune-content-border-color) !important;
 }
 
@@ -1355,15 +1378,17 @@ toolbar .toolbaritem-combined-buttons {
 }
 
 screenshots-buttons {
-	background-color: var(--neptune-toolbar-background) !important;
+	top: 0 !important;
+	background-color: var(--neptune-popover-background) !important;
 	padding: var(--space-medium) !important;
+	border-radius: 0 0 var(--arrowpanel-border-radius) var(--arrowpanel-border-radius) !important;
 }
 
 #full-page,
 #visible-page {
 	background-size: 32px 32px !important;
 	padding: 28px 0 14px !important;
-	font-size: 9px !important;
+	font-size: smaller !important;
 }
 
 input[type=checkbox],
@@ -1404,21 +1429,16 @@ input[type=radio] {
 }
 
 /*---------- Popups ----------*/
-menupopup, panel:not(#feature-callout, #confirmation-hint) {
-	--panel-background: var(--arrowpanel-background) !important;
-	--panel-border-color: var(--neptune-toolbar-border-color) !important;
-	--panel-border-radius: var(--arrowpanel-border-radius) !important;
-	--panel-separator-color: var(--neptune-popover-separator-color) !important;
+menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
-	--panel-shadow-margin: var(--arrowpanel-shadow-margin) !important;
-	--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
+	--panel-separator-color: var(--neptune-popover-separator-color) !important;
 
-	@media (-moz-platform: macos) {
-		appearance: auto !important;
-		-moz-default-appearance: menupopup !important;
-		--panel-background: Menu !important;
-		--panel-border-color: transparent !important;
-		--panel-shadow-margin: 0 !important;
+	@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
+		--panel-background: var(--arrowpanel-background) !important;
+		--panel-border-color: var(--neptune-toolbar-border-color) !important;
+		--panel-border-radius: var(--arrowpanel-border-radius) !important;
+		--panel-shadow-margin: var(--arrowpanel-shadow-margin) !important;
+		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
 	}
 }
 
@@ -1429,6 +1449,16 @@ panel {
 
 	:root[lwtheme] & {
 		color-scheme: light dark !important;
+	}
+
+	@media (-moz-platform: macos) or (-moz-platform: windows) {
+		appearance: auto !important;
+		-moz-default-appearance: menupopup !important;
+		--panel-background: Menu !important;
+	}
+
+	@media (-moz-platform: windows) and (-moz-windows-mica-popups) {
+		--panel-background: var(--neptune-popover-background) !important;
 	}
 
 	&[type="arrow"] {
@@ -1591,6 +1621,8 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 #feature-callout {
 	--arrow-offset: 0 !important;
+	--arrowpanel-background: Menu !important;
+	--panel-shadow-margin: var(--arrowpanel-shadow-margin) !important;
 
 	.screen[pos=callout] .action-buttons :is(.primary, .secondary) {
 		min-height: var(--button-min-height) !important;
@@ -1738,32 +1770,6 @@ panelview .toolbarbutton-1,
 
 	#emptyDownloads {
 		padding-block: var(--space-xlarge) !important;
-	}
-}
-
-.notificationbox-stack {
-	background: none !important;
-
-	.infobar {
-		background-color: var(--neptune-item-active-background) !important;
-		border: none !important;
-		box-shadow: none !important;
-
-		&::before {
-			background-image: none !important;
-		}
-	}
-}
-
-.container {
-	padding-block: 0 !important;
-
-	.text-container {
-		flex: 1;
-	}
-
-	.close {
-		scale: 0.6;
 	}
 }
 
@@ -2180,7 +2186,7 @@ panelview .toolbarbutton-1,
 		list-style-image: url("neptune/icons/menu-badged.svg") !important;
 	}
 
-	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+	@media not -moz-pref("sidebar.verticalTabs") {
 		position: fixed;
 		inset-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
 
@@ -2189,7 +2195,7 @@ panelview .toolbarbutton-1,
 		}
 	}
 
-	@media (-moz-bool-pref: "sidebar.verticalTabs") {
+	@media -moz-pref("sidebar.verticalTabs") {
 		margin-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 	}
 }
@@ -2197,7 +2203,7 @@ panelview .toolbarbutton-1,
 #tabs-newtab-button, #new-tab-button {
 	list-style-image: url("neptune/icons/plus.svg") !important;
 
-	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+	@media not -moz-pref("sidebar.verticalTabs") {
 		position: absolute;
 		inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
 
@@ -2210,7 +2216,7 @@ panelview .toolbarbutton-1,
 #unified-extensions-button {
 	list-style-image: url("neptune/icons/extension.svg") !important;
 
-	@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+	@media not -moz-pref("sidebar.verticalTabs") {
 		position: fixed;
 		inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
 
@@ -2232,7 +2238,7 @@ panelview .toolbarbutton-1,
 		list-style-image: url("neptune/icons/sidebars.svg") !important;
 	}
 
-	@media (-moz-bool-pref: "sidebar.revamp") {
+	@media -moz-pref("sidebar.revamp") {
 		list-style-image: url("neptune/icons/sidebar-collapsed-right.svg") !important;
 
 		&[expanded] {

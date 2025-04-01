@@ -958,16 +958,20 @@
 		}
 	}
 
+	.top-site-button[href*="facebook.com"] .top-site-icon {
+		background-image: url("neptune/cards/facebook.svg") !important;
+	}
+
 	.top-site-button[href*="github.com"] .top-site-icon {
 		background-image: url("neptune/cards/github.svg") !important;
 	}
 
-	.top-site-button[href*="youtube.com"] .top-site-icon {
-		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/youtube-com@2x.png") !important;
+	.top-site-button[href*="reddit.com"] .top-site-icon {
+		background-image: url("neptune/cards/reddit.svg") !important;
 	}
 
-	.top-site-button[href*="reddit.com"] .top-site-icon {
-		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/reddit-com@2x.png") !important;
+	.top-site-button[href*="youtube.com"] .top-site-icon {
+		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/youtube-com@2x.png") !important;
 	}
 }
 
@@ -1031,7 +1035,7 @@
 	}
 
 	.text-alignment-buttons {
-		gap: var(--space-small) !important;
+		gap: var(--space-xsmall) !important;
 
 		> label {
 			border-radius: 4px !important;
@@ -1058,7 +1062,7 @@
 	}
 
 	#color-controls {
-		width: 24em !important;
+		width: 26em !important;
 		padding-block: 0 !important;
 
 		> button-group {
@@ -1068,18 +1072,13 @@
 				border-top: none !important;
 			}
 		}
-
-		.reset-button {
-			font: menu !important;
-			padding-block-start: 0 !important; 
-		}
 	}
 
 	.color-scheme-buttons {
 		padding-block: var(--space-small) !important;
 
 		> label {
-			height: 28px !important;
+			height: 36px !important;
 			margin-inline: var(--space-small) !important;
 			font: menu !important;
 
@@ -1090,13 +1089,11 @@
 		}
 	}
 
-	.color-input-container {
-		min-height: 26px !important;
+	.custom-colors-selection {
 		font: menu !important;
 
-		> #color-swatch {
-			width: 24px !important;
-			height: 24px !important;
+		moz-input-color {
+			--moz-input-color-swatch-size: 16px !important;
 		}
 	}
 
