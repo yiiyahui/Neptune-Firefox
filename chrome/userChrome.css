@@ -1429,7 +1429,7 @@ input[type=radio] {
 }
 
 /*---------- Popups ----------*/
-menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
+menupopup, panel {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
 
@@ -1442,7 +1442,7 @@ menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	}
 }
 
-panel {
+panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--arrowpanel-header-back-icon-padding: var(--space-xsmall) !important;
 	--arrowpanel-header-back-icon-full-width: calc(12px + 2 * var(--arrowpanel-header-back-icon-padding)) !important;
 	--arrowpanel-header-min-height: calc(var(--arrowpanel-header-back-icon-full-width) + 2 * var(--panel-separator-margin-vertical)) !important;
