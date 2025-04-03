@@ -431,7 +431,7 @@
 		transform: scaleX(-1);
 	}
 
-	#root > ul[role="tree"] { 
+	#root > ul[role="tree"] {
 		outline: none !important;
 		padding: 0 !important;
 	}
@@ -1338,9 +1338,9 @@
 	}
 }
 
-.pip-wrapper {
+/* .pip-wrapper {
 	display: none;
-}
+} */
 
 ::selection {
 	background-color: var(--neptune-item-selection-background) !important;
