@@ -498,10 +498,10 @@
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
 	body {
-		background: url("neptune/image/Abstract_Dreamscapes_Light.png") center/cover fixed !important;
+		background: url("./prettier-girl2.jpg") center/cover fixed !important;
 
 		@media (prefers-color-scheme: dark) {
-			background: url("neptune/image/Abstract_Dreamscapes_Dark.png") center/cover fixed !important;
+			background: url("./prettier-girl2.jpg") center/cover fixed !important;
 		}
 	}
 
@@ -1338,9 +1338,9 @@
 	}
 }
 
-/* .pip-wrapper {
+/*.pip-wrapper {
 	display: none;
-} */
+}*/
 
 ::selection {
 	background-color: var(--neptune-item-selection-background) !important;
