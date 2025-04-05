@@ -111,10 +111,10 @@
 	}
 
 	menupopup, panel {
-		--panel-border-color: var(--neptune-toolbar-border-color) !important;
-		--panel-border-radius: var(--border-radius-small) !important;
+		appearance: menupopup !important;
+		--panel-background: menu !important;
+		--panel-shadow-margin: 0 !important;
 		--panel-separator-color: var(--neptune-popover-separator-color) !important;
-		--panel-shadow-margin: 20px !important;
 
 		> menu,
 		> menuitem {
@@ -846,7 +846,7 @@
 		padding: 0 12px !important;
 
 		.settings-toggles {
-			gap: 16px !important;
+			gap: 12px !important;
 		}
 
 		.section .selector {
@@ -860,7 +860,7 @@
 		}
 
 		.section .more-info-top-wrapper {
-			--space-large: 0.666rem !important;
+			--space-large: 0.766rem !important;
 
 			.check-wrapper {
 				margin-block-start: 4px !important;
@@ -933,12 +933,13 @@
 
 	.weather {
 		:is(.layout-variant-a, .layout-variant-b) & {
-			inset-inline-end: 0 !important;
+			inset-inline-end: var(--space-large) !important;
 		}
 
 		.weatherCard, .weatherButtonContextMenuWrapper {
 			background: none !important;
 			box-shadow: none !important;
+			flex-direction: row-reverse;
 		}
 	}
 
@@ -1011,6 +1012,41 @@
 		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: var(--border-radius-medium) !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
+
+		.narrate-dropdown & {
+			padding-inline: var(--space-small) !important;
+
+			> .narrate-row {
+				padding-block: var(--space-xsmall) !important;
+
+				&:last-of-type {
+					padding-block-end: 0 !important;
+				}
+
+				> .narrate-rate-icon {
+					background-size: 16px !important;
+				}
+
+				> .voiceselect {
+					--icon-size-default: 12px !important;
+
+					button:is(.select-toggle, .option) {
+						min-height: 28px !important;
+						font: menu !important;
+					}
+				}
+			}
+
+			> .narrate-control {
+				gap: var(--space-large) !important;
+
+				button {
+					min-height: 32px !important;
+					background-size: 16px 16px !important;
+					border-radius: var(--border-radius-small) !important;
+				}
+			}
+		}
 	}
 
 	#text-layout-controls {
@@ -1035,7 +1071,7 @@
 	}
 
 	.text-alignment-buttons {
-		gap: var(--space-xsmall) !important;
+		gap: var(--space-small) !important;
 
 		> label {
 			border-radius: 4px !important;
@@ -1097,7 +1133,7 @@
 		}
 	}
 
-	#inputSlider[type="range"] {
+	#inputSlider[type="range"], .narrate-rate-input {
 		appearance: none;
 		background: none;
 

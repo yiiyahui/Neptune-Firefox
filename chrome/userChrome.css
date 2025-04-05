@@ -116,7 +116,15 @@
 		border: none !important;
 
 		:root[inFullscreen] & {
-			padding-inline-start: var(--toolbar-start-end-padding) !important;
+			padding-inline-start: 0 !important;
+		}
+
+		/* When there is only one tab, the tab bar will be hidden, and the address bar will occupy the available space in the navigation bar,
+		so at least one flexible spacer should be used to fill the navigation bar. */
+		#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type) & {
+			grid-column: 1 / span 2;
+			width: auto;
+			padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
 		}
 
 		@media -moz-pref("sidebar.verticalTabs") {
@@ -134,11 +142,18 @@
 
 				#nav-bar & {
 					flex-grow: 400 !important;
+					min-width: unset !important;
 				}
 
-				/* Remove flexible spacers in the horizontal layout. */
+				/* Remove flexible spacers in the horizontal layout(with two or fewer tabs). */
 				@media not -moz-pref("sidebar.verticalTabs") {
-					display: none;
+					#nav-bar & {
+						flex-grow: 800 !important;
+					}
+
+					&:not(#navigator-toolbox:has(tab:only-of-type) &) {
+						display: none;
+					}
 				}
 			}
 
@@ -163,6 +178,12 @@
 
 		:root[customizing] & {
 			padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding)) !important;
+		}
+
+		@media not -moz-pref("sidebar.verticalTabs") {
+			&:not(:has(tab-group)):has(tab:only-of-type) .toolbarbutton-1 {
+				z-index: var(--browser-stack-z-index-rdm-toolbar);
+			}
 		}
 
 		@media -moz-pref("sidebar.verticalTabs") {
@@ -386,6 +407,7 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 
 	> #urlbar-background {
+		animation: none !important;
 		transition: background-color 0.2s ease;
 
 		#urlbar:hover > & {
@@ -556,8 +578,8 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		&[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
-			width: calc(var(--size-item-medium) - var(--urlbarView-row-gutter)) !important;
-			height: calc(var(--size-item-medium) - var(--urlbarView-row-gutter)) !important;
+			width: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
+			height: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
 		}
 
 		&[dynamicType=onboardTabToSearch] > .urlbarView-row-inner {
@@ -585,6 +607,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 			.urlbarView-row:is(:hover, [selected]) & {
 				background-color: transparent !important;
+				color: var(--button-text-color-primary) !important;
 			}
 		}
 
@@ -662,11 +685,13 @@ textarea:not(#select-translations-panel-text-area) {
 	.urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
 		margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
 		visibility: collapse;
+		opacity: 0;
 		transition: .2s ease;
 
 		&:is(.urlbar-input-container:hover &, [open]) {
 			margin-inline-end: 0;
 			visibility: visible;
+			opacity: 1;
 		}
 	}
 }
@@ -757,6 +782,10 @@ textarea:not(#select-translations-panel-text-area) {
 	&[orient="horizontal"] {
 		--tab-min-width: 64px !important;
 
+		&:not(:has(tab-group)):has(tab:only-of-type) {
+			display: contents;
+		}
+
 		.tabbrowser-tab {
 			&:not([pinned], tab-group[collapsed] > &) {
 				padding-inline: 0 !important;
@@ -779,6 +808,10 @@ textarea:not(#select-translations-panel-text-area) {
 
 			&[pinned]{
 				padding-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
+			}
+
+			#tabbrowser-tabs:not(:has(tab-group)) &:not(tab-group > &):only-of-type {
+				display: none;
 			}
 		}
 
@@ -828,10 +861,9 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		.tab-group-label {
-			background-color: var(--tab-group-color) !important;
+			line-height: var(--tab-min-height) !important;
 			outline: none !important;
 			border-radius: var(--border-radius-small) !important;
-			line-height: var(--tab-min-height) !important;
 			transition: background-color 0.2s ease;
 
 			tab-group[collapsed] > .tab-group-label-container > & {
@@ -851,10 +883,11 @@ textarea:not(#select-translations-panel-text-area) {
 			#tabbrowser-tabs[orient="vertical"] & {
 				padding: 0 var(--space-medium) !important;
 				margin-block: auto calc(3 * var(--tab-block-margin)) !important;
+			}
 
-				&:first-letter {
-					line-height: initial !important;
-				}
+			#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
+				min-height: var(--tab-min-height) !important;
+				line-height: inherit !important;
 			}
 		}
 
@@ -867,17 +900,13 @@ textarea:not(#select-translations-panel-text-area) {
 			border-radius: var(--border-radius-small) !important;
 			transition: background-color 0.2s ease;
 
-			.tab-background:not(#tabbrowser-tabs[orient="vertical"][expanded] .tab-background, [multiselected]):has(&) {
-				background-color: revert !important;
-			}
-
-			.tab-background[selected]:has(&) & {
+			tab-group:not([collapsed]) > .tabbrowser-tab .tab-background[selected] & {
 				background-color: light-dark(
 					color-mix(in srgb, var(--tab-group-color) 20%, transparent),
 					color-mix(in srgb, var(--tab-group-color) 30%, transparent)) !important;
 			}
 
-			.tab-background[multiselected]:has(&) & {
+			tab-group:not([collapsed]) > .tabbrowser-tab .tab-background[multiselected] & {
 				background-color: transparent !important;
 			}
 
@@ -885,6 +914,13 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: light-dark(
 					color-mix(in srgb, var(--tab-group-color) 25%, transparent),
 					color-mix(in srgb, var(--tab-group-color) 35%, transparent)) !important;
+			}
+
+			#tabbrowser-tabs[orient="vertical"]:not([expanded]) tab-group:not([collapsed]) > .tabbrowser-tab[soundplaying] .tab-background:not([selected], [multiselected]) & {
+				background-color: light-dark(
+					color-mix(in srgb, var(--tab-group-color) 35%, transparent),
+					color-mix(in srgb, var(--tab-group-color) 40%, transparent)) !important;
+				animation: var(--tab-sharing-icon-animation) -1s;
 			}
 
 			#tabbrowser-tabs[orient="vertical"][expanded] & {
@@ -910,15 +946,15 @@ textarea:not(#select-translations-panel-text-area) {
 		box-shadow: none !important;
 		transition: background-color .2s ease;
 
-		&[selected] {
+		&[selected]:not([multiselected]):not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"]) tab-group > .tabbrowser-tab &) {
 			background-color: var(--neptune-tab-active-background) !important;
 
-			.tabbrowser-tab[usercontextid] &:not([multiselected]) {
+			.tabbrowser-tab[usercontextid] & {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
 			}
 		}
 
-		&:not([selected], [multiselected]) {
+		&:not([selected], [multiselected]):not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"]) tab-group > .tabbrowser-tab &) {
 			background-color: var(--neptune-tab-background) !important;
 
 			.tabbrowser-tab[pending] & {
@@ -949,7 +985,7 @@ textarea:not(#select-translations-panel-text-area) {
 				}
 			}
 
-			.tabbrowser-tab[soundplaying]:not(:is(#tabbrowser-tabs[orient="vertical"][expanded],  #tabbrowser-tabs[orient="horizontal"]) .tabbrowser-tab:not([pinned])[soundplaying]) &:not(tab:hover &) {
+			.tabbrowser-tab[soundplaying]:not(:is(#tabbrowser-tabs[orient="vertical"][expanded], #tabbrowser-tabs[orient="horizontal"]) .tabbrowser-tab:not([pinned])[soundplaying]) &:not(tab:hover &) {
 				background-color: var(--neptune-tab-soundplaying-background) !important;
 				animation: var(--tab-sharing-icon-animation) -1s;
 			}
@@ -961,7 +997,7 @@ textarea:not(#select-translations-panel-text-area) {
 				var(--neptune-item-selection-background) 25%, transparent 50%,
 				var(--neptune-item-selection-background) 75%, transparent 100%);
 			background-size: 200% 100%;
-			animation: downloadProgressSlideX 2s linear infinite;
+			animation: downloadProgressSlideX 3s linear infinite;
 		}
 	}
 
@@ -1062,6 +1098,10 @@ textarea:not(#select-translations-panel-text-area) {
 				box-shadow: none !important;
 				outline: none !important;
 				border-radius: 50% !important;
+
+				tab-group:not([collapsed]) > .tabbrowser-tab & {
+					background-color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
+				}
 
 				.tabbrowser-tab[soundplaying] & {
 					display: none !important;
@@ -1429,9 +1469,19 @@ input[type=radio] {
 }
 
 /*---------- Popups ----------*/
-menupopup, panel {
+menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
+
+	@media (-moz-platform: macos) or (-moz-platform: windows) {
+		appearance: menupopup !important;
+		--panel-background: Menu !important;
+		--panel-shadow-margin: 0 !important;
+	}
+
+	@media (-moz-platform: windows) and (-moz-windows-mica-popups) {
+		--panel-background: var(--neptune-popover-background) !important;
+	}
 
 	@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
 		--panel-background: var(--arrowpanel-background) !important;
@@ -1442,23 +1492,13 @@ menupopup, panel {
 	}
 }
 
-panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
+panel {
 	--arrowpanel-header-back-icon-padding: var(--space-xsmall) !important;
 	--arrowpanel-header-back-icon-full-width: calc(12px + 2 * var(--arrowpanel-header-back-icon-padding)) !important;
 	--arrowpanel-header-min-height: calc(var(--arrowpanel-header-back-icon-full-width) + 2 * var(--panel-separator-margin-vertical)) !important;
 
 	:root[lwtheme] & {
 		color-scheme: light dark !important;
-	}
-
-	@media (-moz-platform: macos) or (-moz-platform: windows) {
-		appearance: auto !important;
-		-moz-default-appearance: menupopup !important;
-		--panel-background: Menu !important;
-	}
-
-	@media (-moz-platform: windows) and (-moz-windows-mica-popups) {
-		--panel-background: var(--neptune-popover-background) !important;
 	}
 
 	&[type="arrow"] {
@@ -2182,7 +2222,7 @@ panelview .toolbarbutton-1,
 #PanelUI-menu-button {
 	list-style-image: url("neptune/icons/menu.svg") !important;
 
-	&:is([badge-status="update-available"], [badge-status="update-downloading"], [badge-status="update-manual"], [badge-status="update-restart"], [badge-status="update-unsupported"], [badge-status="addon-alert"], [badge-status="fxa-needs-authentication"]) {
+	&:is([badge-status^="update-"], [badge-status="addon-alert"], [badge-status="fxa-needs-authentication"]) {
 		list-style-image: url("neptune/icons/menu-badged.svg") !important;
 	}
 
