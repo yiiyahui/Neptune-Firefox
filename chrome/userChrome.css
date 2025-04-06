@@ -3,6 +3,9 @@
 
 :root {
 	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
+	--theme-tab-width: 150px;
+	--theme-tab-max-width: 200px;
+	--theme-urlbar-focus-width: 35em;
 	--toolbar-start-end-padding: 10px !important;
 	--space-xsmall: 0.25rem !important;
 	--urlbar-min-height: 28px !important;
@@ -121,10 +124,20 @@
 
 		/* When there is only one tab, the tab bar will be hidden, and the address bar will occupy the available space in the navigation bar,
 		so at least one flexible spacer should be used to fill the navigation bar. */
-		#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type) & {
-			grid-column: 1 / span 2;
-			width: auto;
-			padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
+		@media not -moz-pref("sidebar.verticalTabs") {
+			#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type) & {
+				grid-column: 1 / span 2;
+				width: auto;
+				padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
+			}
+
+			#navigator-toolbox:not(:has(tab:only-of-type, tab:nth-of-type(8), tab-group)) & #urlbar-container {
+				transition: width 0.1s linear;
+
+				&:focus-within {
+					width: var(--theme-urlbar-focus-width) !important;
+				}
+			}
 		}
 
 		@media -moz-pref("sidebar.verticalTabs") {
@@ -142,17 +155,77 @@
 
 				#nav-bar & {
 					flex-grow: 400 !important;
-					min-width: unset !important;
 				}
 
-				/* Remove flexible spacers in the horizontal layout(with two or fewer tabs). */
+				/* A flexible spacer must be used on both sides of the address bar. */
 				@media not -moz-pref("sidebar.verticalTabs") {
 					#nav-bar & {
 						flex-grow: 800 !important;
-					}
 
-					&:not(#navigator-toolbox:has(tab:only-of-type) &) {
-						display: none;
+						#navigator-toolbox:has(tab:nth-of-type(2)) & {
+							min-width: calc(50vw - 346px - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+
+							&:last-of-type {
+								:root:not([customizing]) & {
+									display: none;
+								}
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(3)) & {
+							min-width: calc(50vw - 346px - (3 * var(--toolbar-start-end-padding) /2 ) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 0.1s linear;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (3 * var(--toolbar-start-end-padding) /2 ) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(4)) & {
+							min-width: calc(50vw - 346px - (4 * var(--toolbar-start-end-padding) /2 ) - (3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 0.1s linear;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (4 * var(--toolbar-start-end-padding) /2 ) - (3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(5)) & {
+							min-width: calc(50vw - 346px - (5 * var(--toolbar-start-end-padding) /2 ) - (4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 0.1s linear;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (5 * var(--toolbar-start-end-padding) /2 ) - (4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(6)) & {
+							min-width: calc(50vw - 346px - (6 * var(--toolbar-start-end-padding) /2 ) - (5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 0.1s linear;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (6 * var(--toolbar-start-end-padding) /2 ) - (5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(7)) & {
+							min-width: calc(50vw - 346px - (7 * var(--toolbar-start-end-padding) /2 ) - (6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 0.1s linear;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (7 * var(--toolbar-start-end-padding) /2 ) - (6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(8), tab-group) & {
+							:root:not([customizing]) & {
+								display: none;
+							}
+						}
 					}
 				}
 			}
@@ -182,6 +255,7 @@
 
 		@media not -moz-pref("sidebar.verticalTabs") {
 			&:not(:has(tab-group)):has(tab:only-of-type) .toolbarbutton-1 {
+				align-self: center;
 				z-index: var(--browser-stack-z-index-rdm-toolbar);
 			}
 		}
@@ -792,17 +866,17 @@ textarea:not(#select-translations-panel-text-area) {
 				margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
 				&[fadein]:not([selected], [multiselected]) {
-					max-width: 150px !important;
+					max-width: var(--theme-tab-width) !important;
 				}
 
 				&[selected] {
 					flex-grow: 200 !important;
-					min-width: 100px !important;
-					max-width: 200px !important;
+					min-width: calc(var(--theme-tab-max-width) / 2) !important;
+					max-width: var(--theme-tab-max-width) !important;
 				}
 
 				&[multiselected] {
-					max-width: 100px !important;
+					max-width: calc(var(--theme-tab-max-width) / 2) !important;
 				}
 			}
 
@@ -811,7 +885,7 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			#tabbrowser-tabs:not(:has(tab-group)) &:not(tab-group > &):only-of-type {
-				display: none;
+				visibility: collapse;
 			}
 		}
 
@@ -2229,10 +2303,6 @@ panelview .toolbarbutton-1,
 	@media not -moz-pref("sidebar.verticalTabs") {
 		position: fixed;
 		inset-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-
-		@media (width <= 728px) {
-			position: revert;
-		}
 	}
 
 	@media -moz-pref("sidebar.verticalTabs") {
@@ -2246,10 +2316,6 @@ panelview .toolbarbutton-1,
 	@media not -moz-pref("sidebar.verticalTabs") {
 		position: absolute;
 		inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-
-		@media (width <= 728px) {
-			position: revert;
-		}
 	}
 }
 
@@ -2262,10 +2328,6 @@ panelview .toolbarbutton-1,
 
 		:root[customizing] & {
 			display: none;
-		}
-
-		@media (width <= 728px) {
-			position: revert;
 		}
 	}
 }
