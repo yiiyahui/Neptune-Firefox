@@ -479,7 +479,7 @@ textarea:not(#select-translations-panel-text-area) {
 		> .urlbarView-row-inner {
 			flex-wrap: nowrap !important;
 			align-items: center !important;
-			padding: 0 !important;
+			padding: 8px !important;
 
 			> .urlbarView-no-wrap {
 				flex-basis: revert !important;
