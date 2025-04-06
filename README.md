@@ -23,17 +23,12 @@ body {
 
 ## Configuration
 
-- **about:preferences**
-    - Set `appearance` to `automatic`.
-
 - **about:config**
     - Set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
     - Set `svg.context-properties.content.enabled` to `true`.
     - Set `widget.non-native-theme.use-theme-accent` to `true`.
 
-- **Adaptive Tab Bar Color settings**
-    - Set all values in the `Theme builder` to `0%`.
-    - Home page color light:`#f6f6f6`
-    - Home page color dark:`#383838`
+- **Required settings**
+    - In a horizontal layout, a flexible spacer (Customize Toolbar) must be placed on both sides of the address bar (very important). If more flexible spacers are being used, the excess ones must be removed.
 
 ENJOY!
