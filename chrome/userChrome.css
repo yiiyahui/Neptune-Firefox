@@ -5,7 +5,8 @@
 	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
 	--theme-tab-width: 150px;
 	--theme-tab-max-width: 200px;
-	--theme-urlbar-focus-width: 35em;
+	--theme-urlbar-width: max(320px, 27em);
+	--theme-urlbar-focus-width: max(390px, 33em);
 	--toolbar-start-end-padding: 10px !important;
 	--space-xsmall: 0.25rem !important;
 	--urlbar-min-height: 28px !important;
@@ -131,8 +132,13 @@
 				padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
 			}
 
-			#navigator-toolbox:not(:has(tab:only-of-type, tab:nth-of-type(8), tab-group)) & #urlbar-container {
-				transition: width 0.1s linear;
+			#navigator-toolbox:is(:not(:has(tab:only-of-type)), :has(tab-group)) & #urlbar-container {
+				width: var(--theme-urlbar-width) !important;
+				transition: width 150ms linear;
+
+				#navigator-toolbox:has(tab:nth-of-type(9)) &:not(:focus-within) {
+					width: calc(var(--theme-urlbar-width) - var(--theme-tab-width) / 2) !important;
+				}
 
 				&:focus-within {
 					width: var(--theme-urlbar-focus-width) !important;
@@ -157,16 +163,26 @@
 					flex-grow: 400 !important;
 				}
 
-				/* A flexible spacer must be used on both sides of the address bar. */
 				@media not -moz-pref("sidebar.verticalTabs") {
 					#nav-bar & {
-						flex-grow: 800 !important;
+						flex-grow: 1000 !important;
 
-						#navigator-toolbox:has(tab:nth-of-type(2)) & {
-							min-width: calc(50vw - 346px - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+						/* The width is based on the default number of buttons. If there are more buttons on both sides of the toolbar, 
+						their total width should be calculated for adjustment. which will affect the horizontal scaling of the address bar & tabs.
+						The width of each button is ("--size-item-medium" + "--toolbar-start-end-padding"). */
+						#navigator-toolbox:has(tab-group, tab:nth-of-type(2)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#navigator-toolbox:has(tab-group) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - var(--toolbar-start-end-padding) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+								#nav-bar:has(#urlbar-container:focus-within) & {
+									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - var(--toolbar-start-end-padding) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								}
+							}
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
-								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
 							}
 
 							&:last-of-type {
@@ -177,51 +193,76 @@
 						}
 
 						#navigator-toolbox:has(tab:nth-of-type(3)) & {
-							min-width: calc(50vw - 346px - (3 * var(--toolbar-start-end-padding) /2 ) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 0.1s linear;
+							min-width: calc(50vw - var(--theme-urlbar-width) - (3 * var(--toolbar-start-end-padding) + 2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 150ms linear;
+
+							#navigator-toolbox:has(tab-group) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - (3 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + 2 * var(--theme-tab-max-width)) / 2) !important;
+
+								#nav-bar:has(#urlbar-container:focus-within) & {
+									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (3 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) +  2 * var(--theme-tab-max-width)) / 2) !important;
+								}
+							}
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
-								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (3 * var(--toolbar-start-end-padding) /2 ) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (3 * var(--toolbar-start-end-padding) + 2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
 							}
 						}
 
 						#navigator-toolbox:has(tab:nth-of-type(4)) & {
-							min-width: calc(50vw - 346px - (4 * var(--toolbar-start-end-padding) /2 ) - (3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 0.1s linear;
+							min-width: calc(50vw - var(--theme-urlbar-width) - (4 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 150ms linear;
+
+							#navigator-toolbox:has(tab-group) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - (4 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + 3 * var(--theme-tab-max-width)) / 2) !important;
+
+								#nav-bar:has(#urlbar-container:focus-within) & {
+									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (4 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + 3 * var(--theme-tab-max-width)) / 2) !important;
+								}
+							}
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
-								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (4 * var(--toolbar-start-end-padding) /2 ) - (3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (4 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
 							}
 						}
 
 						#navigator-toolbox:has(tab:nth-of-type(5)) & {
-							min-width: calc(50vw - 346px - (5 * var(--toolbar-start-end-padding) /2 ) - (4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 0.1s linear;
+							min-width: calc(50vw - var(--theme-urlbar-width) - (5 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 150ms linear;
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
-								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (5 * var(--toolbar-start-end-padding) /2 ) - (4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (5 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
 							}
 						}
 
 						#navigator-toolbox:has(tab:nth-of-type(6)) & {
-							min-width: calc(50vw - 346px - (6 * var(--toolbar-start-end-padding) /2 ) - (5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 0.1s linear;
+							min-width: calc(50vw - var(--theme-urlbar-width) - (6 * var(--toolbar-start-end-padding) + 5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 150ms linear;
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
-								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (6 * var(--toolbar-start-end-padding) /2 ) - (5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (6 * var(--toolbar-start-end-padding) + 5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
 							}
 						}
 
 						#navigator-toolbox:has(tab:nth-of-type(7)) & {
-							min-width: calc(50vw - 346px - (7 * var(--toolbar-start-end-padding) /2 ) - (6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 0.1s linear;
+							min-width: calc(50vw - var(--theme-urlbar-width) - (7 * var(--toolbar-start-end-padding) + 6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 150ms linear;
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
-								min-width: calc(50vw - 346px - ((var(--theme-urlbar-focus-width) - 346px) / 2) - (7 * var(--toolbar-start-end-padding) /2 ) - (6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (7 * var(--toolbar-start-end-padding) + 6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
 							}
 						}
 
-						#navigator-toolbox:has(tab:nth-of-type(8), tab-group) & {
+						#navigator-toolbox:has(tab:nth-of-type(8)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - (8 * var(--toolbar-start-end-padding) + 7 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							transition: min-width 150ms linear;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (8 * var(--toolbar-start-end-padding) + 7 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(9)) & {
 							:root:not([customizing]) & {
 								display: none;
 							}
