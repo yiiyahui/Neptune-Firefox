@@ -849,6 +849,10 @@
 			gap: 12px !important;
 		}
 
+		.wallpapers-section h2 {
+			margin-block: 8px !important;
+		}
+
 		.section .selector {
 			background-color: transparent !important;
 			width: 8em !important;
@@ -860,7 +864,7 @@
 		}
 
 		.section .more-info-top-wrapper {
-			--space-large: 0.766rem !important;
+			--space-large: 8px !important;
 
 			.check-wrapper {
 				margin-block-start: 4px !important;

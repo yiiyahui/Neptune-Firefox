@@ -5,8 +5,8 @@
 	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
 	--theme-tab-width: 150px;
 	--theme-tab-max-width: 200px;
-	--theme-urlbar-width: max(320px, 27em);
-	--theme-urlbar-focus-width: max(390px, 33em);
+	--theme-urlbar-width: max(320px, 28em);
+	--theme-urlbar-focus-width: max(400px, 34em);
 	--toolbar-start-end-padding: 10px !important;
 	--space-xsmall: 0.25rem !important;
 	--urlbar-min-height: 28px !important;
@@ -63,7 +63,7 @@
 	--icon-color: light-dark(#383838, #ececec) !important;
 	--tab-loading-fill: var(--theme-primary-color) !important;
 	--tab-hover-background-color: var(--neptune-item-hover-background) !important;
-	--tab-selected-bgcolor:  var(--neptune-item-active-background) !important;
+	--tab-selected-bgcolor: var(--neptune-item-active-background) !important;
 	--download-progress-fill-color: var(--theme-primary-color) !important;
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
@@ -134,7 +134,6 @@
 
 			#navigator-toolbox:is(:not(:has(tab:only-of-type)), :has(tab-group)) & #urlbar-container {
 				width: var(--theme-urlbar-width) !important;
-				transition: width 150ms linear;
 
 				#navigator-toolbox:has(tab:nth-of-type(9)) &:not(:focus-within) {
 					width: calc(var(--theme-urlbar-width) - var(--theme-tab-width) / 2) !important;
@@ -165,7 +164,9 @@
 
 				@media not -moz-pref("sidebar.verticalTabs") {
 					#nav-bar & {
-						flex-grow: 1000 !important;
+						flex-grow: 800 !important;
+						min-width: unset !important;
+						transition: min-width 150ms linear;
 
 						/* The width is based on the default number of buttons. If there are more buttons on both sides of the toolbar, 
 						their total width should be calculated for adjustment. which will affect the horizontal scaling of the address bar & tabs.
@@ -194,13 +195,12 @@
 
 						#navigator-toolbox:has(tab:nth-of-type(3)) & {
 							min-width: calc(50vw - var(--theme-urlbar-width) - (3 * var(--toolbar-start-end-padding) + 2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 150ms linear;
 
 							#navigator-toolbox:has(tab-group) & {
 								min-width: calc(50vw - var(--theme-urlbar-width) - (3 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + 2 * var(--theme-tab-max-width)) / 2) !important;
 
 								#nav-bar:has(#urlbar-container:focus-within) & {
-									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (3 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) +  2 * var(--theme-tab-max-width)) / 2) !important;
+									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (3 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + 2 * var(--theme-tab-max-width)) / 2) !important;
 								}
 							}
 
@@ -211,7 +211,6 @@
 
 						#navigator-toolbox:has(tab:nth-of-type(4)) & {
 							min-width: calc(50vw - var(--theme-urlbar-width) - (4 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 150ms linear;
 
 							#navigator-toolbox:has(tab-group) & {
 								min-width: calc(50vw - var(--theme-urlbar-width) - (4 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + 3 * var(--theme-tab-max-width)) / 2) !important;
@@ -228,7 +227,6 @@
 
 						#navigator-toolbox:has(tab:nth-of-type(5)) & {
 							min-width: calc(50vw - var(--theme-urlbar-width) - (5 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 150ms linear;
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
 								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (5 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
@@ -237,7 +235,6 @@
 
 						#navigator-toolbox:has(tab:nth-of-type(6)) & {
 							min-width: calc(50vw - var(--theme-urlbar-width) - (6 * var(--toolbar-start-end-padding) + 5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 150ms linear;
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
 								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (6 * var(--toolbar-start-end-padding) + 5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
@@ -246,7 +243,6 @@
 
 						#navigator-toolbox:has(tab:nth-of-type(7)) & {
 							min-width: calc(50vw - var(--theme-urlbar-width) - (7 * var(--toolbar-start-end-padding) + 6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 150ms linear;
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
 								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (7 * var(--toolbar-start-end-padding) + 6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
@@ -255,7 +251,6 @@
 
 						#navigator-toolbox:has(tab:nth-of-type(8)) & {
 							min-width: calc(50vw - var(--theme-urlbar-width) - (8 * var(--toolbar-start-end-padding) + 7 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
-							transition: min-width 150ms linear;
 
 							#nav-bar:has(#urlbar-container:focus-within) & {
 								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (8 * var(--toolbar-start-end-padding) + 7 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
@@ -495,6 +490,10 @@ textarea:not(#select-translations-panel-text-area) {
 #urlbar-container,
 #search-container {
 	padding: 0 !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		transition: width 150ms linear;
+	}
 }
 
 #searchbar,
@@ -925,8 +924,12 @@ textarea:not(#select-translations-panel-text-area) {
 				padding-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 			}
 
+			&:not(#tabbrowser-tabs:has(&:nth-of-type(2))):first-of-type:not(tab-group > &:first-of-type) {
+				--tab-loading-fill: transparent !important;
+			}
+
 			#tabbrowser-tabs:not(:has(tab-group)) &:not(tab-group > &):only-of-type {
-				visibility: collapse;
+				display: none;
 			}
 		}
 
@@ -976,15 +979,13 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		.tab-group-label {
-			line-height: var(--tab-min-height) !important;
+			line-height: var(--tab-group-label-height) !important;
 			outline: none !important;
 			border-radius: var(--border-radius-small) !important;
 			transition: background-color 0.2s ease;
 
 			tab-group[collapsed] > .tab-group-label-container > & {
-				background-color: light-dark(
-					color-mix(in srgb, var(--tab-group-color) 25%, transparent),
-					color-mix(in srgb, var(--tab-group-color) 35%, transparent)) !important;
+				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 25%, transparent), color-mix(in srgb, var(--tab-group-color) 35%, transparent)) !important;
 			}
 
 			tab-group:not([collapsed]) > .tab-group-label-container > & {
@@ -1007,40 +1008,9 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		.tab-group-line {
-			background-color: light-dark(
-				color-mix(in srgb, var(--tab-group-color) 15%, transparent),
-				color-mix(in srgb, var(--tab-group-color) 25%, transparent)) !important;
-			height: var(--tab-min-height) !important;
+			background-color: transparent !important;
 			margin: 0 !important;
-			border-radius: var(--border-radius-small) !important;
-			transition: background-color 0.2s ease;
-
-			tab-group:not([collapsed]) > .tabbrowser-tab .tab-background[selected] & {
-				background-color: light-dark(
-					color-mix(in srgb, var(--tab-group-color) 20%, transparent),
-					color-mix(in srgb, var(--tab-group-color) 30%, transparent)) !important;
-			}
-
-			tab-group:not([collapsed]) > .tabbrowser-tab .tab-background[multiselected] & {
-				background-color: transparent !important;
-			}
-
-			.tabbrowser-tab:hover & {
-				background-color: light-dark(
-					color-mix(in srgb, var(--tab-group-color) 25%, transparent),
-					color-mix(in srgb, var(--tab-group-color) 35%, transparent)) !important;
-			}
-
-			#tabbrowser-tabs[orient="vertical"]:not([expanded]) tab-group:not([collapsed]) > .tabbrowser-tab[soundplaying] .tab-background:not([selected], [multiselected]) & {
-				background-color: light-dark(
-					color-mix(in srgb, var(--tab-group-color) 35%, transparent),
-					color-mix(in srgb, var(--tab-group-color) 40%, transparent)) !important;
-				animation: var(--tab-sharing-icon-animation) -1s;
-			}
-
-			#tabbrowser-tabs[orient="vertical"][expanded] & {
-				display: none;
-			}
+			display: none !important;
 		}
 	}
 }
@@ -1061,16 +1031,28 @@ textarea:not(#select-translations-panel-text-area) {
 		box-shadow: none !important;
 		transition: background-color .2s ease;
 
-		&[selected]:not([multiselected]):not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"]) tab-group > .tabbrowser-tab &) {
+		&[selected]:not([multiselected]) {
 			background-color: var(--neptune-tab-active-background) !important;
+
+			tab-group:not([collapsed]) > .tabbrowser-tab &:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
+				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 20%, transparent), color-mix(in srgb, var(--tab-group-color) 25%, transparent)) !important;
+			}
 
 			.tabbrowser-tab[usercontextid] & {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
 			}
 		}
 
-		&:not([selected], [multiselected]):not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"]) tab-group > .tabbrowser-tab &) {
+		&:not([selected], [multiselected]) {
 			background-color: var(--neptune-tab-background) !important;
+
+			tab-group:not([collapsed]) > .tabbrowser-tab &:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
+				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 10%, transparent), color-mix(in srgb, var(--tab-group-color) 15%, transparent)) !important;
+
+				.tabbrowser-tab:hover & {
+					background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, transparent), color-mix(in srgb, var(--tab-group-color) 20%, transparent)) !important;
+				}
+			}
 
 			.tabbrowser-tab[pending] & {
 				background-color: var(--neptune-tab-unloaded-background) !important;
@@ -1103,6 +1085,10 @@ textarea:not(#select-translations-panel-text-area) {
 			.tabbrowser-tab[soundplaying]:not(:is(#tabbrowser-tabs[orient="vertical"][expanded], #tabbrowser-tabs[orient="horizontal"]) .tabbrowser-tab:not([pinned])[soundplaying]) &:not(tab:hover &) {
 				background-color: var(--neptune-tab-soundplaying-background) !important;
 				animation: var(--tab-sharing-icon-animation) -1s;
+
+				tab-group:not([collapsed]) > .tabbrowser-tab &:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
+					background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 30%, transparent), color-mix(in srgb, var(--tab-group-color) 35%, transparent)) !important;
+				}
 			}
 		}
 
@@ -1591,6 +1577,7 @@ menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	@media (-moz-platform: macos) or (-moz-platform: windows) {
 		appearance: menupopup !important;
 		--panel-background: Menu !important;
+		--panel-border-color: transparent !important;
 		--panel-shadow-margin: 0 !important;
 	}
 
@@ -2467,7 +2454,7 @@ panelview .toolbarbutton-1,
 }
 
 .close-icon:not(.findbar-closebutton),
-.permission-popup-permission-remove-button > .button-box>.button-icon {
+.permission-popup-permission-remove-button > .button-box > .button-icon {
 	height: 12px !important;
 	width: 12px !important;
 	padding: 0 !important;
