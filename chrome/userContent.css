@@ -296,7 +296,7 @@
 		&:where(:focus-visible, [focused]) {
 			outline: 4px solid var(--neptune-input-outline-color) !important;
 			outline-offset: var(--toolbarbutton-outline-offset) !important;
-			transition: all .2s cubic-bezier(0.33, 0, 0.67, 1);
+			transition: all 250ms cubic-bezier(0.33, 0, 0.67, 1);
 		}
 	}
 
@@ -864,7 +864,7 @@
 		}
 
 		.section .more-info-top-wrapper {
-			--space-large: 8px !important;
+			--space-large: 10px !important;
 
 			.check-wrapper {
 				margin-block-start: 4px !important;
@@ -907,7 +907,7 @@
 	.category-list {
 		grid-auto-rows: 64px !important;
 		gap: 12px !important;
-		margin-block: auto !important;
+		margin: auto !important;
 
 		label {
 			font: menu !important;
@@ -1144,9 +1144,9 @@
 
 		&::-moz-range-thumb {
 			background-color: var(--neptune-slider-color);
-			width: 4px;
+			width: 14px;
 			height: 14px;
-			border-radius: 2px;
+			border-radius: 50%;
 			border-color: var(--neptune-toolbar-border-color);
 			box-shadow: 0 0 3px var(--neptune-menu-shadow-color);
 		}
