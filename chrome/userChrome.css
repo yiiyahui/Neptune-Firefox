@@ -901,7 +901,7 @@ textarea:not(#select-translations-panel-text-area) {
 				padding-inline: 0 !important;
 				margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 
-				&[fadein]:not([selected], [multiselected]) {
+				&[fadein]:not([selected]) {
 					max-width: var(--theme-tab-width) !important;
 				}
 
@@ -909,10 +909,6 @@ textarea:not(#select-translations-panel-text-area) {
 					flex-grow: 200 !important;
 					min-width: calc(var(--theme-tab-max-width) / 2) !important;
 					max-width: var(--theme-tab-max-width) !important;
-				}
-
-				&[multiselected] {
-					max-width: calc(var(--theme-tab-max-width) / 2) !important;
 				}
 
 				&:not([multiselected-move-together], [tabdrop-samewindow], #tabbrowser-tabs[movingtab] &[fadein]:not([selected])) {
@@ -1029,6 +1025,10 @@ textarea:not(#select-translations-panel-text-area) {
 			.tabbrowser-tab[usercontextid] & {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
 			}
+
+			#tabbrowser-tabs[movingtab-createGroup] & {
+				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
+			}
 		}
 
 		&:not([selected], [multiselected]) {
@@ -1087,6 +1087,10 @@ textarea:not(#select-translations-panel-text-area) {
 				var(--neptune-item-selection-background) 75%, transparent 100%);
 			background-size: 200% 100%;
 			animation: downloadProgressSlideX 3s linear infinite;
+
+			#tabbrowser-tabs[movingtab-createGroup] & {
+				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
+			}
 		}
 	}
 
@@ -1131,8 +1135,8 @@ textarea:not(#select-translations-panel-text-area) {
 				display: revert !important;
 			}
 
-			tab:hover .tab-content:not(#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content) > &:not([pinned]),
-			tab[soundplaying]:hover .tab-content > & > :is(.tab-icon-image, .tab-throbber) {
+			tab:not(#tabbrowser-tabs[movingtab] tab):hover .tab-content:not(#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content) > &:not([pinned]),
+			tab:not(#tabbrowser-tabs[movingtab]:not(#tabbrowser-tabs[orient="vertical"]:not([expanded])[movingtab]) tab:not([pinned]))[soundplaying]:hover .tab-content > & > :is(.tab-icon-image, .tab-throbber) {
 				display: none;
 			}
 
@@ -1197,7 +1201,7 @@ textarea:not(#select-translations-panel-text-area) {
 				}
 			}
 
-			tab:hover &:not([pinned]) {
+			tab:not(#tabbrowser-tabs[movingtab] tab):hover &:not([pinned]) {
 				display: revert !important;
 				animation: tab-hover-preview-fadein 0.3s ease-in-out both;
 			}
