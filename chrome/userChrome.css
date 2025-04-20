@@ -884,13 +884,9 @@ textarea:not(#select-translations-panel-text-area) {
 	--scrollbutton-display: none;
 	border-inline-start: none !important;
 
-	&[movingtab] {
-		padding: 0 !important;
-		margin: 0 !important;
-	}
-
 	&[orient="horizontal"] {
-		--tab-min-width: 64px !important;
+		--tab-min-width: 48px !important;
+		--tab-min-width-pref: var(--tab-min-width) !important;
 
 		&:not(:has(tab-group)):has(tab:only-of-type) {
 			display: contents;
@@ -911,12 +907,16 @@ textarea:not(#select-translations-panel-text-area) {
 					max-width: var(--theme-tab-max-width) !important;
 				}
 
+				&:not([selected]):is([muted], [soundplaying], [activemedia-blocked]) {
+					min-width: calc(var(--size-item-small) + var(--button-size-icon-small) + var(--tab-icon-end-margin) + 2 * var(--tab-inline-padding) - 6px - 4px) !important;
+				}
+
 				&:not([multiselected-move-together], [tabdrop-samewindow], #tabbrowser-tabs[movingtab] &[fadein]:not([selected])) {
 					transition-duration: 150ms !important;
 				}
 			}
 
-			&[pinned]{
+			&[pinned] {
 				padding-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 			}
 
@@ -1097,10 +1097,6 @@ textarea:not(#select-translations-panel-text-area) {
 	.tab-content {
 		font-size: 12.5px;
 
-		:root:not([uidensity=compact]) #tabbrowser-tabs[orient="horizontal"] &[pinned] {
-			padding-inline: calc(2 * var(--tab-inline-padding)) !important;
-		}
-
 		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pictureinpicture] & {
 			font-size: 0.88em;
 
@@ -1122,6 +1118,10 @@ textarea:not(#select-translations-panel-text-area) {
 				margin-block: 0 !important;
 				font-size: 9px !important;
 			}
+
+			#tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected]) & {
+				display: none;
+			}
 		}
 
 		> .tab-audio-button {
@@ -1135,8 +1135,12 @@ textarea:not(#select-translations-panel-text-area) {
 				display: revert !important;
 			}
 
-			tab:not(#tabbrowser-tabs[movingtab] tab):hover .tab-content:not(#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-content) > &:not([pinned]),
-			tab:not(#tabbrowser-tabs[movingtab]:not(#tabbrowser-tabs[orient="vertical"]:not([expanded])[movingtab]) tab:not([pinned]))[soundplaying]:hover .tab-content > & > :is(.tab-icon-image, .tab-throbber) {
+			#tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected], [pinned], [muted], [soundplaying], [activemedia-blocked]) .tab-content > & > * {
+				margin-inline: calc((var(--tab-min-width-pref) - var(--size-item-small)) / 2 - var(--tab-inline-padding)) !important;
+			}
+
+			tab:not(#tabbrowser-tabs[movingtab] tab):hover .tab-content:not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected])) .tab-content) > &:not([pinned]),
+			tab:not(#tabbrowser-tabs[movingtab]:not(#tabbrowser-tabs[orient="vertical"]:not([expanded])[movingtab]) tab:not([pinned]), #tabbrowser-tabs[orient="horizontal"][overflow] tab:not([pinned])):is([muted], [soundplaying], [activemedia-blocked]):hover .tab-content > & > :is(.tab-icon-image, .tab-throbber) {
 				display: none;
 			}
 
@@ -1196,12 +1200,12 @@ textarea:not(#select-translations-panel-text-area) {
 					background-color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
 				}
 
-				.tabbrowser-tab[soundplaying] & {
+				.tabbrowser-tab:is([muted], [soundplaying], [activemedia-blocked]) & {
 					display: none !important;
 				}
 			}
 
-			tab:not(#tabbrowser-tabs[movingtab] tab):hover &:not([pinned]) {
+			tab:not(#tabbrowser-tabs[movingtab] tab):hover &:not([pinned], #tabbrowser-tabs[orient="vertical"]:not([expanded]) tab:is([muted], [soundplaying], [activemedia-blocked]) &, #tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected]) &) {
 				display: revert !important;
 				animation: tab-hover-preview-fadein 0.3s ease-in-out both;
 			}
