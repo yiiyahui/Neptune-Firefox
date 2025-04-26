@@ -67,7 +67,7 @@
 	--tab-line-hover-color: transparent !important;
 	--default-focusring: none !important;
 	--border-radius-small: 6px !important;
-	--border-radius-large: 12px !important;
+	--border-radius-large: 10px !important;
 	--font-size-root: 12.5px !important;
 	--font-size-small: 0.96rem !important;
 	--font-size-large: 1.2rem !important;
@@ -111,10 +111,19 @@
 	}
 
 	menupopup, panel {
-		appearance: menupopup !important;
-		--panel-background: menu !important;
-		--panel-shadow-margin: 0 !important;
-		--panel-separator-color: var(--neptune-popover-separator-color) !important;
+		@media (-moz-platform: macos) or (-moz-platform: windows) {
+			appearance: menupopup !important;
+			--panel-background: Menu !important;
+			--panel-shadow-margin: 0 !important;
+			--panel-separator-color: var(--neptune-popover-separator-color) !important;
+		}
+
+		@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
+			--panel-border-color: var(--neptune-toolbar-border-color) !important;
+			--panel-border-radius: var(--border-radius-small) !important;
+			--panel-separator-color: var(--neptune-popover-separator-color) !important;
+			--panel-shadow-margin: 22px !important;
+		}
 
 		> menu,
 		> menuitem {
@@ -584,7 +593,7 @@
 	.wallpaper-attribution,
 	.customize-menu .close-button-wrapper,
 	.weatherSponsorText,
-	.top-site-outer .title :is(.icon, .sponsored-label) {
+	.top-site-outer :is(.icon.icon-pin-small, .sponsored-label) {
 		display: none !important;
 	}
 }
@@ -661,13 +670,13 @@
 			width: calc(2 * var(--size-item-large)) !important;
 			background-color: var(--neptune-content-background) !important;
 			outline: none !important;
-			border-radius: calc(var(--border-radius-large) - 2px) !important;
+			border-radius: var(--border-radius-large) !important;
 			box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
 
 			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
 				height: calc(2 * var(--size-item-large)) !important;
 				width: calc(2 * var(--size-item-large)) !important;
-				border-radius: calc(var(--border-radius-large) - 2px) !important;
+				border-radius: var(--border-radius-large) !important;
 
 				&.letter-fallback::before {
 					font-size: 1.22em !important;

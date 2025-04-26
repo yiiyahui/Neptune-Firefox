@@ -22,7 +22,7 @@
 	--button-padding: 0 var(--space-large) !important;
 	--border-radius-small: 6px !important;
 	--border-radius-xsmall: 4px;
-	--border-radius-large: 12px;
+	--border-radius-large: 10px;
 	--menu-panel-width-wide: 28em !important;
 	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
 	--panel-separator-zap-gradient: none !important;
@@ -591,7 +591,7 @@ textarea:not(#select-translations-panel-text-area) {
 	width: calc(100% + 16px) !important;
 	margin: 5px 0 0 -8px !important;
 	border: none !important;
-	border-radius: calc(var(--border-radius-medium) + 2px);
+	border-radius: var(--border-radius-large);
 	background-color: var(--arrowpanel-background);
 	color: MenuText;
 	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
@@ -1969,10 +1969,6 @@ panelview .toolbarbutton-1,
 		background-color: transparent !important;
 	}
 
-	.player-holder {
-		border-radius: var(--border-radius-large);
-	}
-
 	* {
 		cursor: default !important;
 	}
@@ -1980,16 +1976,11 @@ panelview .toolbarbutton-1,
 	#controls-bottom-gradient {
 		background: #00000080 !important;
 		height: calc(2 * var(--player-control-item-height) + var(--scrubber-vertical-margin)) !important;
-		bottom: max(calc(3 * var(--controls-bottom-upper-height)), 15%) !important;
-		margin-inline: 0 !important;
+		bottom: calc(15vmin - var(--resize-margin)) !important;
 		border-radius: var(--border-radius-small);
 		width: min(50%, 30em) !important;
-		left: 50%;
-		transform: translateX(-50%);
-
-		@media (height <= 350px), (width <= 650px) {
-			bottom: 25vmin !important;
-		}
+		inset-inline-end: 50%;
+		transform: translateX(50%);
 
 		@media (height <= 200px), (width <= 300px) {
 			display: none;
@@ -1997,14 +1988,10 @@ panelview .toolbarbutton-1,
 	}
 
 	#controls-bottom {
-		bottom: max(calc(3 * var(--controls-bottom-upper-height)), 15%) !important;
+		bottom: calc(15vmin - var(--resize-margin)) !important;
 		width: min(50%, 30em) !important;
-		left: 50%;
-		transform: translateX(-50%);
-
-		@media (height <= 350px), (width <= 650px) {
-			bottom: 25vmin !important;
-		}
+		inset-inline-end: 50%;
+		transform: translateX(50%);
 
 		> .controls-bottom-upper {
 			width: calc(100% - 24px) !important;
