@@ -966,8 +966,12 @@ textarea:not(#select-translations-panel-text-area) {
 			margin-inline-end: calc(var(--tab-block-margin) / 2) !important;
 		}
 
-		#tabbrowser-tabs[orient="vertical"] & {
+		#tabbrowser-tabs[orient="vertical"] & > .tab-group-label-container {
 			margin-block: 0 !important;
+
+			tab-group:not([collapsed]) > & {
+				padding-block: 0 !important;
+			}
 		}
 
 		.tab-group-label {
@@ -1242,6 +1246,8 @@ textarea:not(#select-translations-panel-text-area) {
 
 .tab-group-editor-panel {
 	--panel-padding: var(--space-small) var(--space-medium) !important;
+	--button-border: none !important;
+	--button-min-height-small: var(--button-min-height) !important;
 	--icon-size-default: var(--theme-menu-icon-size) !important;
 
 	.panel-header {
@@ -1583,10 +1589,6 @@ menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 		--panel-shadow-margin: 0 !important;
 	}
 
-	@media (-moz-platform: windows) and (-moz-windows-mica-popups) {
-		--panel-background: var(--neptune-popover-background) !important;
-	}
-
 	@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
 		--panel-background: var(--arrowpanel-background) !important;
 		--panel-border-color: var(--neptune-toolbar-border-color) !important;
@@ -1607,6 +1609,15 @@ panel {
 
 	&[type="arrow"] {
 		--popup-width: var(--menu-panel-width-wide) !important;
+
+		/*Account menu fix*/
+		.PanelUI-fxa-menu-section-title {
+			margin: 0 calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
+		}
+
+		:is(#PanelUI-fxa-cta-menu, #PanelUI-fxa-menu-services) .fxa-cta-button {
+			margin: var(--space-xsmall) var(--arrowpanel-menuitem-margin-inline) 0 !important;
+		}
 
 		#full-page-translations-panel-error {
 			border: none !important;
@@ -1673,6 +1684,10 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	&:not([disabled]):hover {
 		background-color: var(--color-accent-primary-hover) !important;
 		color: var(--button-text-color-primary) !important;
+
+		#fxa-menu-header-title {
+			color: inherit !important;
+		}
 
 		&:active {
 			background-color: var(--color-accent-primary-active) !important;
@@ -1979,7 +1994,7 @@ panelview .toolbarbutton-1,
 		bottom: calc(15vmin - var(--resize-margin)) !important;
 		border-radius: var(--border-radius-small);
 		width: min(50%, 30em) !important;
-		inset-inline-end: 50%;
+		inset-inline-end: calc(50% + var(--resize-margin));
 		transform: translateX(50%);
 
 		@media (height <= 200px), (width <= 300px) {
@@ -2145,6 +2160,14 @@ panelview .toolbarbutton-1,
 	> .pointerlockfswarning-domain-text {
 		font-size: 1.25em !important;
 		margin-inline: var(--space-small) !important;
+	}
+
+	&[data-identity="verifiedDomain"]::before {
+		background-image: url("neptune/icons/security-warning.svg") !important;
+	}
+
+	&[data-identity="unknownIdentity"]::before {
+		background-image: url("neptune/icons/security-broken.svg") !important;
 	}
 }
 
