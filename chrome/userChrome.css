@@ -288,6 +288,10 @@
 		}
 
 		@media not -moz-pref("sidebar.verticalTabs") {
+			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+				padding-inline-end: calc(var(--toolbar-start-end-padding) / 2 + var(--toolbarbutton-outer-padding)) !important;
+			}
+
 			&:not(:has(tab-group)):has(tab:only-of-type) .toolbarbutton-1 {
 				align-self: center;
 				z-index: var(--browser-stack-z-index-rdm-toolbar);
@@ -1256,6 +1260,11 @@ textarea:not(#select-translations-panel-text-area) {
 		> h1 {
 			margin-block: var(--space-xsmall) !important;
 		}
+	}
+
+	.tab-group-editor-name, .tab-group-editor-swatches {
+		padding-block: var(--panel-subview-body-padding-block) !important;
+		margin-inline: var(--arrowpanel-menuitem-margin-inline);
 	}
 
 	toolbarseparator {
@@ -2349,6 +2358,10 @@ panelview .toolbarbutton-1,
 	@media not -moz-pref("sidebar.verticalTabs") {
 		position: fixed;
 		inset-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+
+		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+			position: revert;
+		}
 	}
 
 	@media -moz-pref("sidebar.verticalTabs") {
@@ -2364,6 +2377,10 @@ panelview .toolbarbutton-1,
 			position: absolute;
 			inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
 		}
+
+		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+			position: revert;
+		}
 	}
 }
 
@@ -2373,6 +2390,11 @@ panelview .toolbarbutton-1,
 	@media not -moz-pref("sidebar.verticalTabs") {
 		position: fixed;
 		inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+
+		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+			position: revert;
+			order: -1;
+		}
 
 		:root[customizing] & {
 			display: none;
