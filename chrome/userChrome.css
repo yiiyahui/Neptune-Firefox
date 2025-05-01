@@ -283,13 +283,15 @@
 		grid-area: 1 / 2 / span 1 / span 1;
 		padding: var(--theme-browser-toolbox-padding) calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) var(--theme-browser-toolbox-padding) 0 !important;
 
-		:root[customizing] & {
-			padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding)) !important;
-		}
-
 		@media not -moz-pref("sidebar.verticalTabs") {
 			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
 				padding-inline-end: calc(var(--toolbar-start-end-padding) / 2 + var(--toolbarbutton-outer-padding)) !important;
+			}
+
+			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) &:not(#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) &) {
+				:root:not([customizing]) & {
+					padding-inline-end: calc(4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
+				}
 			}
 
 			&:not(:has(tab-group)):has(tab:only-of-type) .toolbarbutton-1 {
@@ -2402,6 +2404,24 @@ panelview .toolbarbutton-1,
 	}
 }
 
+#nav-bar-overflow-button {
+	list-style-image: url("neptune/icons/chevron.svg") !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		position: fixed;
+		inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+
+		:root[customizing] & {
+			inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+		}
+
+		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+			position: revert;
+			order: -1;
+		}
+	}
+}
+
 #sidebar-button {
 	list-style-image: url("neptune/icons/sidebars-right.svg") !important;
 
@@ -2482,6 +2502,10 @@ panelview .toolbarbutton-1,
 
 #alltabs-button {
 	list-style-image: url("neptune/icons/view-opentabs.svg") !important;
+}
+
+#home-button {
+	list-style-image: url("neptune/icons/home.svg") !important;
 }
 
 #logins-button {
@@ -2583,7 +2607,6 @@ panelview .toolbarbutton-1,
 /*---------- Hidden ----------*/
 tooltip,
 .control-item::after, #fullscreen,
-#nav-bar-overflow-button,
 #identity-icon-label,
 #blocked-permissions-container,
 .private-browsing-indicator-with-label,
