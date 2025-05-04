@@ -93,7 +93,7 @@
 
 /*---------- Toolbox ----------*/
 #main-window {
-	min-width: 720px !important;
+	min-width: 650px !important;
 }
 
 #browser:not(.browser-toolbox-background) {
@@ -363,8 +363,14 @@
 		--panel-arrow-offset: 0 !important;
 
 		> .panel-arrowcontent {
+			border-color: var(--in-content-box-border-color) !important;
 			border-radius: var(--arrowpanel-border-radius) !important;
 			box-shadow: var(--neptune-menu-shadow) !important;
+		}
+
+		> .panel-arrowbox > .panel-arrow[side="top"] {
+			stroke: var(--in-content-box-border-color) !important;
+			margin-inline-end: calc(var(--tab-min-height) + var(--toolbar-start-end-padding) - var(--toolbar-start-end-padding) / 2) !important;
 		}
 	}
 }
@@ -557,12 +563,24 @@ textarea:not(#select-translations-panel-text-area) {
 		border: none !important;
 		border-radius: var(--border-radius-small) !important;
 
-		@media -moz-pref("sidebar.verticalTabs") {
-			> .urlbar-input-box > .urlbar-input {
-				text-align: center !important;
+		#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type) #urlbar:not([textoverflow]) > & > .urlbar-input-box > .urlbar-input {
+			text-align: center !important;
+			animation: slide-Out 250ms ease-in-out;
 
-				#urlbar:is([focused], [open]) & {
+			#urlbar[focused] & {
+				text-align: revert !important;
+				animation: slide-In 250ms ease-in-out;
+			}
+		}
+
+		@media -moz-pref("sidebar.verticalTabs") {
+			#urlbar:not([textoverflow]) > & > .urlbar-input-box > .urlbar-input {
+				text-align: center !important;
+				animation: slide-Out 250ms ease-in-out;
+
+				#urlbar[focused] & {
 					text-align: revert !important;
+					animation: slide-In 250ms ease-in-out;
 				}
 			}
 		}
@@ -791,9 +809,9 @@ textarea:not(#select-translations-panel-text-area) {
 		margin-inline-start: calc(-1 * var(--theme-menu-icon-size) - 2 * var(--urlbar-icon-padding));
 		visibility: collapse;
 		opacity: 0;
-		transition: .2s ease;
+		transition: 0.2s ease;
 
-		&:is(.urlbar-input-container:hover &, [open]) {
+		&:is(#urlbar:is(:hover, [open]) &, [open]) {
 			margin-inline-start: 0;
 			visibility: visible;
 			opacity: 1;
@@ -804,9 +822,9 @@ textarea:not(#select-translations-panel-text-area) {
 		margin-inline-end: calc(-1 * var(--size-item-small) - 2 * var(--urlbar-icon-padding));
 		visibility: collapse;
 		opacity: 0;
-		transition: .2s ease;
+		transition: 0.2s ease;
 
-		&:is(.urlbar-input-container:hover &, [open]) {
+		&:is(#urlbar:is(:hover, [open]) &, [open]) {
 			margin-inline-end: 0;
 			visibility: visible;
 			opacity: 1;
@@ -885,6 +903,38 @@ textarea:not(#select-translations-panel-text-area) {
 	height: var(--theme-menu-icon-size) !important;
 }
 
+@keyframes slide-In {
+	0% {
+		opacity: 0;
+		transform: translatex(25%);
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+		transform: translatex(0);
+	}
+}
+
+@keyframes slide-Out {
+	0% {
+		opacity: 0;
+		transform: translatex(-25%);
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+		transform: translatex(0);
+	}
+}
+
 /*---------- Tabs Bar ----------*/
 #tabbrowser-tabs {
 	--scrollbutton-display: none;
@@ -893,10 +943,6 @@ textarea:not(#select-translations-panel-text-area) {
 	&[orient="horizontal"] {
 		--tab-min-width: 48px !important;
 		--tab-min-width-pref: var(--tab-min-width) !important;
-
-		&:not(:has(tab-group)):has(tab:only-of-type) {
-			display: contents;
-		}
 
 		.tabbrowser-tab {
 			&:not([pinned], tab-group[collapsed] > &) {
@@ -2364,6 +2410,12 @@ panelview .toolbarbutton-1,
 		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
 			position: revert;
 		}
+
+		@media (width <= 650px) {
+			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+			}
+		}
 	}
 
 	@media -moz-pref("sidebar.verticalTabs") {
@@ -2378,10 +2430,21 @@ panelview .toolbarbutton-1,
 		&:not(#customization-palette .toolbarbutton-1) {
 			position: absolute;
 			inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-		}
 
-		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
-			position: revert;
+			/* When the overflow button is enabled, it will move one button's position to the left.*/
+			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
+				inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+			}
+
+			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+			}
+
+			@media (width <= 650px) {
+				#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+					position: revert;
+				}
+			}
 		}
 	}
 }
@@ -2393,9 +2456,20 @@ panelview .toolbarbutton-1,
 		position: fixed;
 		inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
 
+		/* When the overflow button is enabled, it will move one button's position to the left.*/
+		#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
+			inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+		}
+
 		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
 			position: revert;
 			order: -1;
+		}
+
+		@media (width <= 650px) {
+			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+			}
 		}
 
 		:root[customizing] & {
@@ -2408,16 +2482,18 @@ panelview .toolbarbutton-1,
 	list-style-image: url("neptune/icons/chevron.svg") !important;
 
 	@media not -moz-pref("sidebar.verticalTabs") {
-		position: fixed;
-		inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-
-		:root[customizing] & {
-			inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-		}
+		position: fixed;	/*When it is enabled, it will occupy the position of the new tab button.*/
+		inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
 
 		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
 			position: revert;
 			order: -1;
+		}
+
+		@media (width <= 650px) {
+			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+			}
 		}
 	}
 }
@@ -2616,7 +2692,6 @@ tooltip,
 #downloadsFooter,
 #statuspanel:not([type=overLink]),
 .findbar-container > checkbox,
-.unified-extensions-item-message,
 #placesContext_open\:newwindow,
 #context-navigation > .menuitem-iconic,
 #context-sep-navigation,
