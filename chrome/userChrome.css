@@ -118,7 +118,7 @@
 		grid-area: 1 / 1 / span 1 / span 1;
 		width: fit-content;
 		background-color: transparent !important;
-		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(92px - var(--toolbar-start-end-padding) / 2) !important;
+		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 		border: none !important;
 
 		:root[inFullscreen] & {
@@ -128,10 +128,14 @@
 		/* When there is only one tab, the tab bar will be hidden, and the address bar will occupy the available space in the navigation bar,
 		so at least one flexible spacer should be used to fill the navigation bar. */
 		@media not -moz-pref("sidebar.verticalTabs") {
+			/* If the private browsing label is on the left side, padding needs to be increased. */
+			/*:root[privatebrowsingmode=temporary] & {
+				padding-inline-start: calc(76px + var(--size-item-medium) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+			}*/
+
 			#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type) & {
 				grid-column: 1 / span 2;
-				width: auto;
-				padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
+				width: calc(100% - (4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)));
 			}
 
 			#navigator-toolbox:is(:not(:has(tab:only-of-type)), :has(tab-group)) & #urlbar-container {
@@ -166,7 +170,7 @@
 
 				@media not -moz-pref("sidebar.verticalTabs") {
 					#nav-bar & {
-						flex-grow: 800 !important;
+						flex-grow: 600 !important;
 						min-width: unset !important;
 						transition: min-width 150ms linear;
 
@@ -275,7 +279,6 @@
 	}
 
 	.browser-titlebar {
-		align-self: center;
 		will-change: unset !important;
 	}
 
@@ -295,7 +298,7 @@
 			}
 
 			&:not(:has(tab-group)):has(tab:only-of-type) .toolbarbutton-1 {
-				align-self: center;
+				align-self: end;
 				z-index: var(--browser-stack-z-index-rdm-toolbar);
 			}
 		}
@@ -313,6 +316,10 @@
 			outline: none !important;
 		}
 
+		> #personal-bookmarks:has(toolbarbutton[collapsed="true"]) > #PlacesToolbar > #PlacesToolbarItems {
+			justify-content: center;
+		}
+
 		.toolbarbutton-1 {
 			margin: auto auto var(--space-small) !important;
 
@@ -324,10 +331,10 @@
 
 		toolbarbutton.bookmark-item:not(.subviewbutton) {
 			padding-block: 0 !important;
-			margin-block: auto var(--space-small) !important;
+			margin: auto var(--bookmark-block-padding) calc(2 * var(--bookmark-block-padding)) !important;
 
-			&[container] {
-				list-style-image: url("neptune/icons/folder.svg") !important;
+			> .toolbarbutton-icon[type="menu"] {
+				display: none;	/* Hide the folder icon on the bookmarks bar. */
 			}
 		}
 	}
@@ -563,26 +570,8 @@ textarea:not(#select-translations-panel-text-area) {
 		border: none !important;
 		border-radius: var(--border-radius-small) !important;
 
-		#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type) #urlbar:not([textoverflow]) > & > .urlbar-input-box > .urlbar-input {
+		#urlbar:not([focused], [textoverflow]) > & > .urlbar-input-box > .urlbar-input {
 			text-align: center !important;
-			animation: slide-Out 250ms ease-in-out;
-
-			#urlbar[focused] & {
-				text-align: revert !important;
-				animation: slide-In 250ms ease-in-out;
-			}
-		}
-
-		@media -moz-pref("sidebar.verticalTabs") {
-			#urlbar:not([textoverflow]) > & > .urlbar-input-box > .urlbar-input {
-				text-align: center !important;
-				animation: slide-Out 250ms ease-in-out;
-
-				#urlbar[focused] & {
-					text-align: revert !important;
-					animation: slide-In 250ms ease-in-out;
-				}
-			}
 		}
 
 		> #urlbar-search-mode-indicator {
@@ -596,6 +585,10 @@ textarea:not(#select-translations-panel-text-area) {
 
 			&[open] {
 				background-color: var(--neptune-item-active-background) !important;
+			}
+
+			> #searchmode-switcher-dropmarker {
+				margin-inline-start: var(--urlbar-icon-padding) !important;
 			}
 		}
 
@@ -903,38 +896,6 @@ textarea:not(#select-translations-panel-text-area) {
 	height: var(--theme-menu-icon-size) !important;
 }
 
-@keyframes slide-In {
-	0% {
-		opacity: 0;
-		transform: translatex(25%);
-	}
-
-	50% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-		transform: translatex(0);
-	}
-}
-
-@keyframes slide-Out {
-	0% {
-		opacity: 0;
-		transform: translatex(-25%);
-	}
-
-	50% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-		transform: translatex(0);
-	}
-}
-
 /*---------- Tabs Bar ----------*/
 #tabbrowser-tabs {
 	--scrollbutton-display: none;
@@ -942,9 +903,14 @@ textarea:not(#select-translations-panel-text-area) {
 
 	&[orient="horizontal"] {
 		--tab-min-width: 48px !important;
-		--tab-min-width-pref: var(--tab-min-width) !important;
+
+		&:not(:has(tab-group)):has(tab:only-of-type) {
+			display: contents;
+		}
 
 		.tabbrowser-tab {
+			--tab-min-width-pref: var(--tab-min-width) !important;
+
 			&:not([pinned], tab-group[collapsed] > &) {
 				padding-inline: 0 !important;
 				margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
@@ -1207,6 +1173,10 @@ textarea:not(#select-translations-panel-text-area) {
 					content: url("neptune/icons/favicon.svg");
 				}
 
+				tab[label="Customize Firefox"] & {
+					content: url("neptune/icons/customize.svg");
+				}
+
 				tab[label="Add-ons Manager"] & {
 					content: url("neptune/icons/extension.svg");
 				}
@@ -1245,7 +1215,7 @@ textarea:not(#select-translations-panel-text-area) {
 			#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
 				list-style-image: url("neptune/icons/minus.svg") !important;
 				background-image: none !important;
-				background-color: var(--attention-dot-color) !important;
+				background-color: light-dark(#ff6f61, #f0c05a) !important;
 				padding: var(--toolbarbutton-outer-padding) !important;
 				inset: 0 var(--space-xsmall) !important;
 				box-shadow: none !important;
@@ -1337,6 +1307,7 @@ textarea:not(#select-translations-panel-text-area) {
 #sidebar {
 	box-shadow: none !important;
 	border: none !important;
+	outline: none !important;
 }
 
 #sidebar-header {
@@ -1387,11 +1358,31 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 }
 
-.button-background.labelled {
-	justify-content: var(--button-label-directiony, inherit) !important;
+.button-background {
+	&.labelled {
+		justify-content: var(--button-label-directiony, inherit) !important;
 
-	label {
-		display: var(--button-label-display, inherit);
+		label {
+			display: var(--button-label-display, inherit);
+		}
+	}
+
+	&[type~="icon"] {
+		button[title^="Open bookmarks"] > & > img {
+			content: url("neptune/icons/bookmark-hollow.svg");
+		}
+
+		button[title^="Open history"] > & > img {
+			content: url("neptune/icons/history.svg");
+		}
+
+		button[title^="Passwords"] > & > img {
+			content: url("neptune/icons/login.svg");
+		}
+
+		button[title^="Tabs from other devices"] > & > img {
+			content: url("neptune/icons/synced-tabs.svg");
+		}
 	}
 }
 
@@ -1410,6 +1401,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 	> #manage-settings > a {
 		color: FieldText !important;
+		text-decoration: none !important;
 	}
 }
 
@@ -1559,10 +1551,14 @@ toolbar .toolbarbutton-1 {
 }
 
 toolbar .toolbaritem-combined-buttons {
-	margin: 0 !important;
+	margin-inline: 0 !important;
 
-	> #zoom-reset-button > .toolbarbutton-text {
-		min-width: unset !important;
+	> #zoom-reset-button {
+		margin-inline: 0 !important;
+
+		> .toolbarbutton-text {
+			min-width: unset !important;
+		}
 	}
 
 	> separator {
@@ -1664,8 +1660,12 @@ panel {
 		color-scheme: light dark !important;
 	}
 
-	&[type="arrow"] {
+	&:where([type="arrow"]) {
 		--popup-width: var(--menu-panel-width-wide) !important;
+
+		&#link-preview-panel {
+			--panel-border-radius: 0 !important;
+		}
 
 		/*Account menu fix*/
 		.PanelUI-fxa-menu-section-title {
@@ -1733,8 +1733,8 @@ panel {
 	}
 }
 
-panelview .toolbarbutton-1,
-toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back, #appMenu-zoom-controls > *),
+panelview .toolbarbutton-1:not(#downloadsHistory),
+toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back, .unified-extensions-item-menu-button.subviewbutton, #appMenu-zoom-controls > *),
 .widget-overflow-list .toolbarbutton-1,
 .toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem=true]) > toolbarbutton:not(#appMenu-zoom-controls > *) {
 
@@ -1843,7 +1843,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 #feature-callout {
 	--arrow-offset: 0 !important;
-	--arrowpanel-background: Menu !important;
 	--panel-shadow-margin: var(--arrowpanel-shadow-margin) !important;
 
 	.screen[pos=callout] .action-buttons :is(.primary, .secondary) {
@@ -1916,6 +1915,15 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	}
 }
 
+.unified-extensions-item-menu-button.subviewbutton {
+	padding-inline-end: var(--arrowpanel-menuitem-padding-inline) !important;
+	/*display: none;*/		/* Remove Extensions menu setting button */
+
+	> .toolbarbutton-icon {
+		padding: var(--arrowpanel-menuitem-margin-inline) !important;
+	}
+}
+
 .toolbar-menupopup :is(menu, menuitem),
 .subview-subheader,
 panelview .toolbarbutton-1,
@@ -1961,18 +1969,19 @@ panelview .toolbarbutton-1,
 			background: none !important;
 			color: inherit !important;
 			margin: 0 !important;
-			border-radius: 0 !important;
 
 			&:not(:first-child) {
-				border-top: 1px solid var(--neptune-popover-separator-color);
+				border-top: 1px solid transparent;
+				border-image: linear-gradient(90deg, transparent calc(var(--size-item-medium) + 8px), var(--panel-separator-color) 0, var(--panel-separator-color) calc(100% - var(--space-xsmall)), transparent 0) 1 0 0 0;
 			}
 
 			> .downloadMainArea {
 				padding-block: var(--panel-subview-body-padding-block) !important;
 
 				> .downloadTypeIcon {
-					width: 28px !important;
-					height: 28px !important;
+					width: var(--size-item-medium) !important;
+					height: var(--size-item-medium) !important;
+					margin-inline-end: var(--space-xsmall) !important;
 				}
 			}
 		}
@@ -1987,6 +1996,20 @@ panelview .toolbarbutton-1,
 		.downloadProgress {
 			height: 3px !important;
 			margin-inline: 0 !important;
+		}
+	}
+
+	> #downloadsFooter {
+		flex-direction: row !important;
+		justify-content: flex-end;
+		/*display: none;*/		/* Remove "Show all downloads" button */
+
+		#downloadsHistory {
+			min-height: unset !important;
+		}
+
+		toolbarseparator {
+			display: none;
 		}
 	}
 
@@ -2177,10 +2200,10 @@ panelview .toolbarbutton-1,
 	}
 
 	#fullscreen {
-		background-image: url("neptune/icons/picture-in-picture-enter-fullscreen-button.svg") !important;
+		background-image: url("neptune/icons/fullscreen.svg") !important;
 
 		body:fullscreen & {
-			background-image: url("neptune/icons/picture-in-picture-exit-fullscreen-button.svg") !important;
+			background-image: url("neptune/icons/fullscreen-exit.svg") !important;
 		}
 
 		@media (width <= 650px) {
@@ -2577,7 +2600,7 @@ panelview .toolbarbutton-1,
 }
 
 #alltabs-button {
-	list-style-image: url("neptune/icons/view-opentabs.svg") !important;
+	list-style-image: url("neptune/icons/tabs.svg") !important;
 }
 
 #home-button {
@@ -2586,6 +2609,112 @@ panelview .toolbarbutton-1,
 
 #logins-button {
 	list-style-image: url("neptune/icons/login.svg") !important;
+}
+
+#library-button {
+	list-style-image: url("neptune/icons/library.svg") !important;
+}
+
+#email-link-button {
+	list-style-image: url("neptune/icons/mail.svg") !important;
+}
+
+#zoom-in-button {
+	list-style-image: url("neptune/icons/zoom-in.svg") !important;
+}
+
+#zoom-out-button {
+	list-style-image: url("neptune/icons/zoom-out.svg") !important;
+}
+
+#bookmarks-menu-button {
+	list-style-image: url("neptune/icons/bookmark-hollow.svg") !important;
+}
+
+#sync-button {
+	list-style-image: url("neptune/icons/synced-tabs.svg") !important;
+}
+
+#print-button {
+	list-style-image: url("neptune/icons/print.svg") !important;
+}
+
+#new-window-button {
+	list-style-image: url("neptune/icons/window.svg") !important;
+}
+
+#save-page-button {
+	list-style-image: url("neptune/icons/save.svg") !important;
+}
+
+#open-file-button {
+	list-style-image: url("neptune/icons/open.svg") !important;
+}
+
+#history-panelmenu {
+	list-style-image: url("neptune/icons/history.svg") !important;
+}
+
+#panic-button {
+	list-style-image: url("neptune/icons/forget.svg") !important;
+}
+
+#developer-button {
+	list-style-image: url("neptune/icons/developer.svg") !important;
+}
+
+#fullscreen-button, #appMenu-fullscreen-button2 {
+	list-style-image: url("neptune/icons/fullscreen.svg") !important;
+}
+
+#appMenu-fullscreen-button2[checked] {
+	list-style-image: url("neptune/icons/fullscreen-exit.svg") !important;
+}
+
+#privatebrowsing-button {
+	list-style-image: url("neptune/icons/privateBrowsing.svg") !important;
+}
+
+#characterencoding-button {
+	list-style-image: url("neptune/icons/characterEncoding.svg") !important;
+}
+
+#cut-button {
+	list-style-image: url("neptune/icons/edit-cut.svg") !important;
+}
+
+#copy-button {
+	list-style-image: url("neptune/icons/edit-copy.svg") !important;
+}
+
+#paste-button {
+	list-style-image: url("neptune/icons/edit-paste.svg") !important;
+}
+
+#import-button {
+	list-style-image: url("neptune/icons/import.svg") !important;
+}
+
+treechildren::-moz-tree-image(title, container),
+treechildren::-moz-tree-image(title, open),
+.bookmark-item[container], .folder-icon {
+	list-style-image: url("neptune/icons/folder.svg") !important;
+} 
+
+treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+#editBMPanel_folderMenuList[selectedGuid="toolbar_____"], #editBMPanel_toolbarFolderItem,
+#bookmarks-toolbar-button, #bookmarks-toolbar-placeholder {
+	list-style-image: url("neptune/icons/bookmarks-toolbar.svg") !important;
+}
+
+treechildren::-moz-tree-image(container, queryFolder_menu________),
+#editBMPanel_folderMenuList[selectedGuid="menu________"], #editBMPanel_bmRootItem {
+	list-style-image: url("neptune/icons/bookmarksMenu.svg") !important;
+}
+
+treechildren::-moz-tree-image(title, query, tagContainer),
+treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
+	list-style-image: url("neptune/icons/tag.svg") !important;
 }
 
 #permissions-granted-icon {
@@ -2615,7 +2744,7 @@ panelview .toolbarbutton-1,
 }
 
 #identity-box[pageproxystate="valid"]:is(.notSecure, .mixedActiveContent, .httpsOnlyErrorPage) #identity-icon,
-.identity-popup-security-connection:not(#identity-popup[connection=chrome], [connection="file"], [connection=net-error-page], [connection=net-error-page], .identity-popup-security-connection) {
+.identity-popup-security-connection:not(#identity-popup[connection=chrome], [connection="file"], [connection=net-error-page], [connection=net-error-page]) {
 	list-style-image: url("neptune/icons/security-broken.svg") !important;
 }
 
@@ -2680,16 +2809,39 @@ panelview .toolbarbutton-1,
 	}
 }
 
+.private-browsing-indicator-with-label {
+	-moz-context-properties: fill;
+	fill: var(--toolbarbutton-icon-fill);
+	margin-inline: calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) / 2) !important;
+
+	/* Move the private browsing label to the left side. */
+	/*@media not -moz-pref("sidebar.verticalTabs") {
+		position: absolute;
+		align-self: center;
+		inset-inline-start: calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding));
+	}*/
+
+	#navigator-toolbox[tabs-hidden] #nav-bar > & {
+		margin-inline: calc(var(--toolbarbutton-inner-padding) - var(--toolbarbutton-outer-padding)) calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+	}
+
+	> .private-browsing-indicator-icon {
+		list-style-image: url("neptune/icons/indicator-private-browsing.svg") !important;
+	}
+
+	> .private-browsing-indicator-label {
+		margin-inline-end: 0 !important;
+		display: none;
+	}
+}
+
 /*---------- Hidden ----------*/
 tooltip,
-.control-item::after, #fullscreen,
+.control-item::after,
 #identity-icon-label,
 #blocked-permissions-container,
-.private-browsing-indicator-with-label,
 .urlbar-go-button,
 .urlbarView-type-icon,
-.unified-extensions-item-menu-button.subviewbutton,
-#downloadsFooter,
 #statuspanel:not([type=overLink]),
 .findbar-container > checkbox,
 #placesContext_open\:newwindow,
@@ -2701,10 +2853,8 @@ menuitem.share-tab-url-item,
 menuitem[id^="context"]:is([id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="Background"]):not(.menuitem-iconic),
 #toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="download"]),
 #scrollbutton-up ~ spacer,
-#tabbrowser-tabs .tab-context-line,
 #vertical-pinned-tabs-container-separator,
-#tabbrowser-tabs[orient="vertical"][overflow]::after,
-tab-group::before,
+.tab-context-line,
 .tab-group-label-container::after,
 .titlebar-spacer,
 #searchmode-switcher-dropmarker,

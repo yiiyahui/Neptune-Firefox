@@ -502,14 +502,6 @@
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
-	body {
-		background: url("neptune/image/Abstract_Dreamscapes_Light.png") center/cover fixed !important;
-
-		@media (prefers-color-scheme: dark) {
-			background: url("neptune/image/Abstract_Dreamscapes_Dark.png") center/cover fixed !important;
-		}
-	}
-
 	.non-collapsible-section {
 		padding: 0 !important;
 
@@ -553,7 +545,7 @@
 		filter: saturate(1.2);
 		background-size: 24px !important;
 		border: none !important;
-		box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
+		box-shadow: var(--box-shadow-level-3) !important;
 		border-radius: var(--border-radius-large) !important;
 	}
 
@@ -595,6 +587,10 @@
 }
 
 @-moz-document url("about:privatebrowsing") {
+	body {
+		background: url("neptune/image/Flowers_Purple.svg") center/cover fixed;
+	}
+
 	.search-inner-wrapper {
 		height: 52px !important;
 		padding: 0 !important;
@@ -610,6 +606,14 @@
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome") {
+	body {
+		background: url("neptune/image/Flowers_Light.svg") center/cover fixed !important;
+
+		@media (prefers-color-scheme: dark) {
+			background: url("neptune/image/Flowers_Dark.svg") center/cover fixed !important;
+		}
+	}
+
 	* {
 		cursor: auto !important;
 	}
@@ -667,7 +671,7 @@
 			background-color: var(--neptune-content-background) !important;
 			outline: none !important;
 			border-radius: var(--border-radius-large) !important;
-			box-shadow: 0 0 10px var(--neptune-menu-shadow-color) !important;
+			box-shadow: var(--box-shadow-level-3) !important;
 
 			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
 				height: calc(2 * var(--size-item-large)) !important;
@@ -907,9 +911,9 @@
 	}
 
 	.category-list {
-		grid-auto-rows: 64px !important;
+		grid-auto-rows: 60px !important;
 		gap: 12px !important;
-		margin: auto !important;
+		margin: auto auto var(--space-xsmall) !important;
 
 		label {
 			font: menu !important;
@@ -921,6 +925,11 @@
 		padding: 0 !important;
 		outline: none !important;
 		box-shadow: none !important;
+	}
+
+	.wallpaper-input.theme-custom-wallpaper {
+		background-color: var(--button-background-color) !important;
+		border: none !important;
 	}
 
 	.wallpapers-reset {
@@ -1149,7 +1158,7 @@
 			height: 14px;
 			border-radius: 50%;
 			border-color: var(--neptune-toolbar-border-color);
-			box-shadow: 0 0 3px var(--neptune-menu-shadow-color);
+			box-shadow: 0 0 3px var(--box-shadow-color-darker-layer-1);
 		}
 
 		&::-moz-range-progress {
