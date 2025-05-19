@@ -125,8 +125,6 @@
 			padding-inline-start: 0 !important;
 		}
 
-		/* When there is only one tab, the tab bar will be hidden, and the address bar will occupy the available space in the navigation bar,
-		so at least one flexible spacer should be used to fill the navigation bar. */
 		@media not -moz-pref("sidebar.verticalTabs") {
 			/* If the private browsing label is on the left side, padding needs to be increased. */
 			/*:root[privatebrowsingmode=temporary] & {
@@ -311,27 +309,19 @@
 	#PersonalToolbar {
 		--toolbarbutton-inner-padding: var(--toolbarbutton-outer-padding) !important;
 		background-color: transparent !important;
-
-		&[customizing] {
-			outline: none !important;
-		}
+		outline: none !important;
 
 		> #personal-bookmarks:has(toolbarbutton[collapsed="true"]) > #PlacesToolbar > #PlacesToolbarItems {
 			justify-content: center;
 		}
 
 		.toolbarbutton-1 {
-			margin: auto auto var(--space-small) !important;
-
-			> .toolbarbutton-icon {
-				height: var(--size-item-small) !important;
-				border-radius: var(--toolbarbutton-border-radius) !important;
-			}
+			margin-block: auto var(--bookmark-block-padding) !important;
 		}
 
 		toolbarbutton.bookmark-item:not(.subviewbutton) {
-			padding-block: 0 !important;
-			margin: auto var(--bookmark-block-padding) calc(2 * var(--bookmark-block-padding)) !important;
+			padding: 0 calc(2 * var(--bookmark-block-padding)) !important;
+			margin: 0 0 calc(2 * var(--bookmark-block-padding)) !important;
 
 			> .toolbarbutton-icon[type="menu"] {
 				display: none;	/* Hide the folder icon on the bookmarks bar. */
@@ -383,30 +373,47 @@
 }
 
 .browserContainer {
-	transition: padding 150ms ease-in-out;
+	flex-direction: column-reverse;
 
 	> findbar {
-		position: absolute;
-		inset-block-start: 0;
-		min-width: 100% !important;
 		background-color: transparent !important;
 		border: none !important;
 		padding-block: 0 !important;
-		transition: opacity 150ms ease-in-out, margin-top 150ms ease-in-out, visibility 0s linear !important;
 
-		&:where([hidden]) {
-			margin-top: calc(-1 * var(--theme-browser-toolbox-padding)) !important;
-			opacity: 0;
-			transition-delay: 0s, 0s, 150ms !important;
+		@media (-moz-platform: macos) {
+			flex-direction: row-reverse;
 		}
 
-		.browserContainer:has(&:not([hidden])) {
-			padding-top: var(--size-item-medium);
+		&:where([hidden]) {
+			margin-bottom: calc(-1 * 28px) !important;
 		}
 
 		> .findbar-container {
-			margin: 0 !important;
-			justify-content: flex-end;
+			margin-inline: 0 !important;
+			flex-direction: row-reverse;
+
+			> checkbox {
+				margin-inline: 0 var(--space-medium) !important;
+
+				> .checkbox-check, .findbar-container:has(.found-matches[hidden="true"]):not(:has(.findbar-find-status[status="notfound"])) & {
+					display: none;
+				}
+
+				> .checkbox-label-box > .checkbox-label {
+					padding-inline: var(--space-small);
+					border: 1px solid var(--border-color-deemphasized);
+					border-radius: var(--border-radius-xsmall);
+
+					&:hover {
+						background-color: var(--button-background-color-hover);
+					}
+
+					checkbox[checked="true"] & {
+						background-color: var(--button-background-color-primary-active);
+						color: var(--button-text-color-primary);
+					}
+				}
+			}
 
 			.findbar-textbox {
 				width: 12em !important;
@@ -433,8 +440,7 @@
 			}
 
 			> :is(.findbar-find-status, .found-matches) {
-				order: -1;
-				margin-inline: var(--space-small) !important;
+				margin-inline: 0 var(--space-large) !important;
 			}
 		}
 
@@ -444,10 +450,6 @@
 			margin-block: auto !important;
 			list-style-image: url("neptune/icons/done.svg") !important;
 			border: 1px solid var(--border-color-deemphasized);
-
-			@media (-moz-platform: macos) {
-				order: 1;
-			}
 		}
 	}
 }
@@ -589,6 +591,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 			> #searchmode-switcher-dropmarker {
 				margin-inline-start: var(--urlbar-icon-padding) !important;
+				display: none;
 			}
 		}
 
@@ -2000,8 +2003,7 @@ panelview .toolbarbutton-1,
 	}
 
 	> #downloadsFooter {
-		flex-direction: row !important;
-		justify-content: flex-end;
+		align-items: flex-end;
 		/*display: none;*/		/* Remove "Show all downloads" button */
 
 		#downloadsHistory {
@@ -2843,7 +2845,6 @@ tooltip,
 .urlbar-go-button,
 .urlbarView-type-icon,
 #statuspanel:not([type=overLink]),
-.findbar-container > checkbox,
 #placesContext_open\:newwindow,
 #context-navigation > .menuitem-iconic,
 #context-sep-navigation,
@@ -2857,7 +2858,6 @@ menuitem[id^="context"]:is([id*="bookmark"], [id*="duplicate"], [id*="Duplicate"
 .tab-context-line,
 .tab-group-label-container::after,
 .titlebar-spacer,
-#searchmode-switcher-dropmarker,
 #urlbar .search-one-offs {
 	display: none !important;
 }
