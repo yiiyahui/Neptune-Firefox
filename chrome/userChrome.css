@@ -101,22 +101,23 @@
 }
 
 #navigator-toolbox {
-	display: grid;
-	grid-template-columns: minmax(auto, 0) auto;
 	background-color: var(--neptune-toolbar-background) !important;
 	border: none !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		display: grid;
+		grid-template-columns: minmax(auto, 0) auto;
+
+		> *:not(#nav-bar, #TabsToolbar) {
+			grid-column: 1 / span 2;
+		}
+	}
 
 	&.fullscreen-with-menubar {
 		box-shadow: none !important;
 	}
 
-	> *:not(#nav-bar, #TabsToolbar) {
-		grid-column: 1 / span 2;
-	}
-
 	#nav-bar {
-		grid-area: 1 / 1 / span 1 / span 1;
-		width: fit-content;
 		background-color: transparent !important;
 		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 		border: none !important;
@@ -126,12 +127,10 @@
 		}
 
 		@media not -moz-pref("sidebar.verticalTabs") {
-			/* If the private browsing label is on the left side, padding needs to be increased. */
-			/*:root[privatebrowsingmode=temporary] & {
-				padding-inline-start: calc(76px + var(--size-item-medium) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
-			}*/
+			grid-area: 1 / 1 / span 1 / span 1;
+			width: fit-content;
 
-			#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type) & {
+			#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type, tab[hidden]):not(:has(tab:nth-of-type(3))) & {
 				grid-column: 1 / span 2;
 				width: calc(100% - (4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)));
 			}
@@ -147,11 +146,6 @@
 					width: var(--theme-urlbar-focus-width) !important;
 				}
 			}
-		}
-
-		@media -moz-pref("sidebar.verticalTabs") {
-			grid-column: 1 / span 2;
-			width: auto;
 		}
 
 		> .customization-target:not(#widget-overflow-fixed-list) {
@@ -190,7 +184,7 @@
 								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
 							}
 
-							&:last-of-type {
+							&:last-of-type:not(#navigator-toolbox:not(:has(tab-group, tab:nth-of-type(3))):has(tab[hidden]) &) {
 								:root:not([customizing]) & {
 									display: none;
 								}
@@ -281,21 +275,21 @@
 	}
 
 	#TabsToolbar {
-		grid-area: 1 / 2 / span 1 / span 1;
-		padding: var(--theme-browser-toolbox-padding) calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) var(--theme-browser-toolbox-padding) 0 !important;
-
 		@media not -moz-pref("sidebar.verticalTabs") {
+			grid-area: 1 / 2 / span 1 / span 1;
+			padding: var(--theme-browser-toolbox-padding) calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) var(--theme-browser-toolbox-padding) 0 !important;
+
 			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
 				padding-inline-end: calc(var(--toolbar-start-end-padding) / 2 + var(--toolbarbutton-outer-padding)) !important;
 			}
 
-			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) &:not(#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) &) {
+			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) &:not(:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) &) {
 				:root:not([customizing]) & {
 					padding-inline-end: calc(4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
 				}
 			}
 
-			&:not(:has(tab-group)):has(tab:only-of-type) .toolbarbutton-1 {
+			&:not(:has(tab-group), tab:nth-of-type(3)):has(tab:only-of-type, tab[hidden]) .toolbarbutton-1 {
 				align-self: end;
 				z-index: var(--browser-stack-z-index-rdm-toolbar);
 			}
@@ -309,7 +303,7 @@
 	#PersonalToolbar {
 		--toolbarbutton-inner-padding: var(--toolbarbutton-outer-padding) !important;
 		background-color: transparent !important;
-		outline: none !important;
+		outline-color: var(--border-color-deemphasized) !important;
 
 		> #personal-bookmarks:has(toolbarbutton[collapsed="true"]) > #PlacesToolbar > #PlacesToolbarItems {
 			justify-content: center;
@@ -320,13 +314,28 @@
 		}
 
 		toolbarbutton.bookmark-item:not(.subviewbutton) {
-			padding: 0 calc(2 * var(--bookmark-block-padding)) !important;
-			margin: 0 0 calc(2 * var(--bookmark-block-padding)) !important;
+			:root:not([customizing]) & {
+				padding: 0 calc(2 * var(--bookmark-block-padding)) !important;
+				margin: 0 0 calc(2 * var(--bookmark-block-padding)) !important;
+			}
 
 			> .toolbarbutton-icon[type="menu"] {
 				display: none;	/* Hide the folder icon on the bookmarks bar. */
 			}
 		}
+
+		/* Show the bookmarks bar when hovering over the blank area of the toolbar. */
+		/*:root[sessionrestored] &:not(:has(toolbarbutton[open="true"]), body:has(#placesContext:hover) &, [customizing], [collapsed="true"]) {
+			visibility: hidden;
+			max-height: 0 !important;
+			transition: 200ms ease-out 200ms !important;
+
+			#navigator-toolbox:not(:has(:is(.toolbarbutton-1:not(#PlacesChevron), #urlbar, tab):hover)):hover > & {
+				visibility: visible;
+				max-height: calc(16px + 2 * var(--bookmark-block-padding)) !important;
+				transition-delay: 400ms !important;
+			}
+		}*/
 	}
 
 	.browser-toolbar {
@@ -560,9 +569,9 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: var(--neptune-verticaltab-background) !important;
 			}
 
-			&:not(#urlbar[open] > &):not(:has([pageproxystate="invalid"]) > &) {
+			#urlbar[pageproxystate="valid"]:not([focused]) > & {
 				background: none !important;
-				border: 1px solid var(--neptune-toolbar-border-color) !important;
+				border: 1px solid var(--toolbar-field-border-color) !important;
 			}
 		}
 	}
@@ -653,6 +662,26 @@ textarea:not(#select-translations-panel-text-area) {
 				border: none !important;
 				outline: none !important;
 				color: var(--button-text-color-primary);
+
+				&:is([data-action="addons"], [data-action="themes"], [data-action="extensions"]) > img {
+					content: url("neptune/icons/extension.svg");
+				}
+
+				&[data-action="bookmarks"] > img {
+					content: url("neptune/icons/bookmark.svg");
+				}
+
+				&[data-action="downloads"] > img {
+					content: url("neptune/icons/downloads.svg");
+				}
+
+				&[data-action="firefoxview"] > img {
+					content: url("neptune/icons/firefox-view.svg");
+				}
+
+				&[data-action="private"] > img {
+					content: url("neptune/icons/indicator-private-browsing.svg");
+				}
 			}
 		}
 
@@ -707,6 +736,14 @@ textarea:not(#select-translations-panel-text-area) {
 
 		.urlbarView-favicon {
 			margin-inline-end: calc(var(--urlbarView-icon-margin-end) - var(--urlbarView-favicon-margin-start) - 1px) !important;
+
+			.urlbarView-row[type="restrict_keyword_bookmarks"] & {
+				content: url("neptune/icons/bookmark.svg");
+			}
+
+			.urlbarView-row[type="restrict_keyword_history"] & {
+				content: url("neptune/icons/history.svg");
+			}
 		}
 
 		&[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
@@ -907,7 +944,7 @@ textarea:not(#select-translations-panel-text-area) {
 	&[orient="horizontal"] {
 		--tab-min-width: 48px !important;
 
-		&:not(:has(tab-group)):has(tab:only-of-type) {
+		&:not(:has(tab-group, tab:nth-of-type(3))):has(tab:only-of-type, tab[hidden]) {
 			display: contents;
 		}
 
@@ -945,7 +982,7 @@ textarea:not(#select-translations-panel-text-area) {
 				--tab-loading-fill: transparent !important;
 			}
 
-			&:only-of-type:not(#tabbrowser-tabs:has(tab-group) &:only-of-type) {
+			#tabbrowser-tabs:not(:has(tab-group, &:nth-of-type(3))) :is(&:only-of-type, :has(&[hidden]) &:nth-of-type(-n+2)) {
 				display: none;
 			}
 		}
@@ -1019,11 +1056,26 @@ textarea:not(#select-translations-panel-text-area) {
 				line-height: inherit !important;
 			}
 		}
+	}
 
-		.tab-group-line {
-			background-color: transparent !important;
+	.tab-group-line {
+		border-radius: var(--border-radius-small) !important;
+		background-color: transparent !important;
+		display: none !important;
+
+		#tabbrowser-tabs[orient="horizontal"] & {
+			height: var(--tab-min-height) !important;
 			margin: 0 !important;
-			display: none !important;
+		}
+
+		#tabbrowser-tabs[orient="vertical"] & {
+			width: auto !important;
+			inset: 0 var(--tab-inner-inline-margin) !important;
+		}
+
+		#tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab:is(:active,[multiselected]) > .tab-stack > .tab-background > & {
+			background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
+			display: revert !important;
 		}
 	}
 }
@@ -1040,10 +1092,10 @@ textarea:not(#select-translations-panel-text-area) {
 		box-shadow: none !important;
 		transition: background-color .2s ease;
 
-		&[selected]:not([multiselected]) {
+		&[selected]:not([multiselected], #tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab > .tab-stack > &) {
 			background-color: var(--neptune-tab-active-background) !important;
 
-			tab-group:not([collapsed]) > .tabbrowser-tab &:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
+			tab-group:not([collapsed]) > .tabbrowser-tab & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 20%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 25%, transparent)) !important;
 			}
 
@@ -1052,14 +1104,14 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			#tabbrowser-tabs[movingtab-createGroup] & {
-				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
+				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color-invert) 25%, transparent)) !important;
 			}
 		}
 
 		&:not([selected], [multiselected]) {
 			background-color: var(--neptune-tab-background) !important;
 
-			tab-group:not([collapsed]) > .tabbrowser-tab &:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
+			tab-group:not([collapsed]) > .tabbrowser-tab & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 10%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 15%, transparent)) !important;
 
 				.tabbrowser-tab:hover & {
@@ -1075,7 +1127,7 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: var(--neptune-tab-hover-background) !important;
 			}
 
-			#tabbrowser-tabs[orient="vertical"] & {
+			#tabbrowser-tabs[orient="vertical"] &:not(:is(#tabbrowser-tabs[movingtab-createGroup], tab-group:not([collapsed])) .tabbrowser-tab > .tab-stack > &) {
 				background-color: var(--neptune-verticaltab-background) !important;
 
 				.tabbrowser-tab[pinned] & {
@@ -1114,7 +1166,7 @@ textarea:not(#select-translations-panel-text-area) {
 			animation: downloadProgressSlideX 3s linear infinite;
 
 			#tabbrowser-tabs[movingtab-createGroup] & {
-				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
+				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color-invert) 25%, transparent)) !important;
 			}
 		}
 	}
@@ -1500,6 +1552,7 @@ treechildren::-moz-tree-row,
 treecol:not([hideheader="true"]),
 .tree-columnpicker-button {
 	min-height: var(--button-min-height) !important;
+	border-radius: var(--border-radius-xsmall);
 }
 
 treechildren::-moz-tree-row(selected) {
@@ -1920,7 +1973,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 .unified-extensions-item-menu-button.subviewbutton {
 	padding-inline-end: var(--arrowpanel-menuitem-padding-inline) !important;
-	/*display: none;*/		/* Remove Extensions menu setting button */
 
 	> .toolbarbutton-icon {
 		padding: var(--arrowpanel-menuitem-margin-inline) !important;
@@ -2004,7 +2056,6 @@ panelview .toolbarbutton-1,
 
 	> #downloadsFooter {
 		align-items: flex-end;
-		/*display: none;*/		/* Remove "Show all downloads" button */
 
 		#downloadsHistory {
 			min-height: unset !important;
@@ -2128,11 +2179,10 @@ panelview .toolbarbutton-1,
 	}
 
 	#timestamp {
-		width: auto !important;
-
-		@media (width <= 700px) {
-			display: none;
-		}
+		width: 100% !important;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	#audio-scrubber {
@@ -2206,10 +2256,6 @@ panelview .toolbarbutton-1,
 
 		body:fullscreen & {
 			background-image: url("neptune/icons/fullscreen-exit.svg") !important;
-		}
-
-		@media (width <= 650px) {
-			display: none;
 		}
 	}
 
@@ -2815,13 +2861,6 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 	-moz-context-properties: fill;
 	fill: var(--toolbarbutton-icon-fill);
 	margin-inline: calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) / 2) !important;
-
-	/* Move the private browsing label to the left side. */
-	/*@media not -moz-pref("sidebar.verticalTabs") {
-		position: absolute;
-		align-self: center;
-		inset-inline-start: calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding));
-	}*/
 
 	#navigator-toolbox[tabs-hidden] #nav-bar > & {
 		margin-inline: calc(var(--toolbarbutton-inner-padding) - var(--toolbarbutton-outer-padding)) calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
