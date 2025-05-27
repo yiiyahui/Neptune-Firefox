@@ -300,7 +300,7 @@
 	textarea {
 		background-color: var(--neptune-input-bgcolor) !important;
 		border-color: transparent !important;
-		outline: 16px solid transparent !important;
+		outline: 20px solid transparent !important;
 
 		&:where(:focus-visible, [focused]) {
 			outline: 4px solid var(--neptune-input-outline-color) !important;
@@ -310,7 +310,7 @@
 	}
 
 	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem:not(dialog richlistitem),
-	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .toggle-button, .reset-button),
+	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .reset-button),
 	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
 		padding-block: 2px !important;
 	}
@@ -722,10 +722,6 @@
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 		font: menu !important;
 
-		&:not(.ds-card .card-stp-button-hover-background .context-menu) {
-			margin-inline-start: -12px !important;
-		}
-
 		> ul > li > a,
 		> ul > li > button {
 			&:is(:focus, :hover) {
@@ -740,6 +736,11 @@
 
 		> ul > li.separator {
 			border-color: var(--neptune-toolbar-border-color) !important;
+		}
+
+		.top-site-outer & {
+			inset-block-start: 0 !important;
+			inset-inline-start: calc(100% - var(--space-small)) !important;
 		}
 	}
 
@@ -820,7 +821,7 @@
 
 	.customize-menu {
 		position: absolute !important;
-		width: 18em !important;
+		width: calc(3 * 92px + 4 * 12px) !important;
 		height: fit-content !important;
 		padding: 0 !important;
 		border-radius: var(--border-radius-large) !important;
@@ -912,8 +913,8 @@
 
 	.category-list {
 		grid-auto-rows: 60px !important;
-		gap: 12px !important;
-		margin: auto auto var(--space-xsmall) !important;
+		gap: 20px 12px !important;
+		margin: auto auto var(--space-medium) !important;
 
 		label {
 			font: menu !important;
@@ -921,15 +922,29 @@
 	}
 
 	.wallpaper-input {
-		height: 48px !important;
-		padding: 0 !important;
-		outline: none !important;
+		height: 56px !important;
 		box-shadow: none !important;
 	}
 
-	.wallpaper-input.theme-custom-wallpaper {
+	.wallpaper-input.theme-custom-wallpaper, .theme-custom-color-picker {
 		background-color: var(--button-background-color) !important;
 		border: none !important;
+
+		&:hover {
+			background-color: var(--button-background-color-hover) !important;
+		}
+	}
+
+	.theme-custom-color-picker {
+		outline: none !important;
+
+		&::after {
+			background-image: url("chrome://global/skin/icons/plus-20.svg") !important;
+		}
+
+		::-moz-color-swatch, label {
+			display: none !important;
+		}
 	}
 
 	.wallpapers-reset {
@@ -980,6 +995,10 @@
 
 	.top-site-button[href*="github.com"] .top-site-icon {
 		background-image: url("neptune/cards/github.svg") !important;
+	}
+
+	.top-site-button[href*="instagram.com"] .top-site-icon {
+		background-image: url("neptune/cards/instagram.svg") !important;
 	}
 
 	.top-site-button[href*="reddit.com"] .top-site-icon {

@@ -330,7 +330,7 @@
 			max-height: 0 !important;
 			transition: 200ms ease-out 200ms !important;
 
-			#navigator-toolbox:not(:has(:is(.toolbarbutton-1:not(#PlacesChevron), #urlbar, tab):hover)):hover > & {
+			#navigator-toolbox:not(:has(:is(.toolbarbutton-1:not(#PlacesChevron), .titlebar-button, #urlbar, tab, tab-group):hover)):hover > & {
 				visibility: visible;
 				max-height: calc(16px + 2 * var(--bookmark-block-padding)) !important;
 				transition-delay: 400ms !important;
@@ -381,85 +381,82 @@
 	}
 }
 
-.browserContainer {
-	flex-direction: column-reverse;
+findbar {
+	background-color: transparent !important;
+	border: none !important;
+	padding-block: 0 !important;
+	order: -1;
 
-	> findbar {
-		background-color: transparent !important;
-		border: none !important;
-		padding-block: 0 !important;
+	@media (-moz-platform: macos) {
+		flex-direction: row-reverse;
+	}
 
-		@media (-moz-platform: macos) {
-			flex-direction: row-reverse;
-		}
+	&:where([hidden]) {
+		margin-bottom: calc(-1 * 28px) !important;
+	}
 
-		&:where([hidden]) {
-			margin-bottom: calc(-1 * 28px) !important;
-		}
+	> .findbar-container {
+		margin-inline: 0 !important;
+		flex-direction: row-reverse;
 
-		> .findbar-container {
-			margin-inline: 0 !important;
-			flex-direction: row-reverse;
+		> checkbox {
+			margin-inline: 0 var(--space-medium) !important;
 
-			> checkbox {
-				margin-inline: 0 var(--space-medium) !important;
-
-				> .checkbox-check, .findbar-container:has(.found-matches[hidden="true"]):not(:has(.findbar-find-status[status="notfound"])) & {
-					display: none;
-				}
-
-				> .checkbox-label-box > .checkbox-label {
-					padding-inline: var(--space-small);
-					border: 1px solid var(--border-color-deemphasized);
-					border-radius: var(--border-radius-xsmall);
-
-					&:hover {
-						background-color: var(--button-background-color-hover);
-					}
-
-					checkbox[checked="true"] & {
-						background-color: var(--button-background-color-primary-active);
-						color: var(--button-text-color-primary);
-					}
-				}
+			> .checkbox-check, .findbar-container:has(.found-matches[hidden="true"]):not(:has(.findbar-find-status[status="notfound"])) & {
+				display: none;
 			}
 
-			.findbar-textbox {
-				width: 12em !important;
-				padding: 0 var(--space-xsmall) !important;
-				background-color: transparent !important;
-				border-color: var(--border-color-deemphasized) !important;
-			}
-
-			:is(.findbar-find-next, .findbar-find-previous) {
-				padding: 0 2px !important;
+			> .checkbox-label-box > .checkbox-label {
+				padding-inline: var(--space-small);
 				border: 1px solid var(--border-color-deemphasized);
-			}
+				border-radius: var(--border-radius-xsmall);
 
-			.findbar-find-next {
-				list-style-image: url("neptune/icons/arrow-right.svg") !important;
-				margin-left: -1px !important;
-				border-radius: 0 var(--border-radius-xsmall) var(--border-radius-xsmall) 0 !important;
-				border-left: none;
-			}
+				&:hover {
+					background-color: var(--button-background-color-hover);
+				}
 
-			.findbar-find-previous {
-				list-style-image: url("neptune/icons/arrow-left.svg") !important;
-				border-radius: var(--border-radius-xsmall) 0 0 var(--border-radius-xsmall) !important;
-			}
-
-			> :is(.findbar-find-status, .found-matches) {
-				margin-inline: 0 var(--space-large) !important;
+				checkbox[checked="true"] & {
+					background-color: var(--button-background-color-primary-active);
+					color: var(--button-text-color-primary);
+				}
 			}
 		}
 
-		> .findbar-closebutton {
-			width: 42px !important;
-			padding: 0 !important;
-			margin-block: auto !important;
-			list-style-image: url("neptune/icons/done.svg") !important;
+		.findbar-textbox {
+			width: 12em !important;
+			padding: 0 var(--space-xsmall) !important;
+			background-color: transparent !important;
+			border-color: var(--border-color-deemphasized) !important;
+		}
+
+		:is(.findbar-find-next, .findbar-find-previous) {
+			padding: 0 2px !important;
 			border: 1px solid var(--border-color-deemphasized);
 		}
+
+		.findbar-find-next {
+			list-style-image: url("neptune/icons/arrow-right.svg") !important;
+			margin-left: -1px !important;
+			border-radius: 0 var(--border-radius-xsmall) var(--border-radius-xsmall) 0 !important;
+			border-left: none;
+		}
+
+		.findbar-find-previous {
+			list-style-image: url("neptune/icons/arrow-left.svg") !important;
+			border-radius: var(--border-radius-xsmall) 0 0 var(--border-radius-xsmall) !important;
+		}
+
+		> :is(.findbar-find-status, .found-matches) {
+			margin-inline: 0 var(--space-large) !important;
+		}
+	}
+
+	> .findbar-closebutton {
+		width: 42px !important;
+		padding: 0 !important;
+		margin-block: auto !important;
+		list-style-image: url("neptune/icons/done.svg") !important;
+		border: 1px solid var(--border-color-deemphasized);
 	}
 }
 
@@ -477,7 +474,7 @@ search-textbox {
 search-textbox,
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox),
 textarea {
-	outline: 16px solid transparent !important;
+	outline: 20px solid transparent !important;
 }
 
 #urlbar[open] > #urlbar-background,
@@ -571,7 +568,7 @@ textarea:not(#select-translations-panel-text-area) {
 
 			#urlbar[pageproxystate="valid"]:not([focused]) > & {
 				background: none !important;
-				border: 1px solid var(--toolbar-field-border-color) !important;
+				border: 1px solid var(--neptune-toolbar-border-color) !important;
 			}
 		}
 	}
@@ -680,7 +677,7 @@ textarea:not(#select-translations-panel-text-area) {
 				}
 
 				&[data-action="private"] > img {
-					content: url("neptune/icons/indicator-private-browsing.svg");
+					content: url("neptune/icons/privateBrowsing.svg");
 				}
 			}
 		}
@@ -995,6 +992,22 @@ textarea:not(#select-translations-panel-text-area) {
 			margin-block-end: calc(3 * var(--tab-block-margin)) !important;
 		}
 
+		&[expanded] .tabbrowser-tab {
+			transition: 150ms ease-out !important;
+
+			tab-group:not([collapsed]) > & {
+				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
+
+				#tabbrowser-tabs:has(&[selected]) &:not([selected]) {
+					margin-inline-end: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
+				}
+			}
+
+			&:not([pinned], [selected], tab-group > &) {
+				margin-inline-end: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
+			}
+		}
+
 		#tabs-newtab-button, #vertical-tabs-newtab-button {
 			margin: auto auto var(--space-xsmall) !important;
 			border-radius: var(--border-radius-small) !important;
@@ -1006,11 +1019,6 @@ textarea:not(#select-translations-panel-text-area) {
 			#tabbrowser-tabs[expanded] & {
 				width: inherit !important;
 			}
-		}
-
-		> #vertical-pinned-tabs-container {
-			scrollbar-width: none !important;
-			max-height: calc(5 * var(--tabstrip-min-height) + 5 * (3 * var(--tab-block-margin))) !important;
 		}
 	}
 
@@ -1034,12 +1042,17 @@ textarea:not(#select-translations-panel-text-area) {
 
 		.tab-group-label {
 			line-height: var(--tab-group-label-height) !important;
-			outline: none !important;
 			border-radius: var(--border-radius-small) !important;
 			transition: background-color 0.2s ease;
 
 			tab-group[collapsed] > .tab-group-label-container > & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 25%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 35%, transparent)) !important;
+				outline-width: var(--focus-outline-width) !important;
+				outline-offset: var(--focus-outline-inset) !important;
+
+				&:not(#tabbrowser-tabs[orient="vertical"][expanded][movingtab] .tab-group-label-container:active > &) {
+					outline: none !important;
+				}
 			}
 
 			#tabbrowser-tabs[orient="horizontal"] & {
@@ -1047,8 +1060,23 @@ textarea:not(#select-translations-panel-text-area) {
 			}
 
 			#tabbrowser-tabs[orient="vertical"] & {
-				padding: 0 var(--space-medium) !important;
+				padding-block: 0 !important;
 				margin-block: auto calc(3 * var(--tab-block-margin)) !important;
+			}
+
+			#tabbrowser-tabs[orient="vertical"][expanded] & {
+				-moz-context-properties: fill;
+				min-width: -moz-available !important;
+				padding-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
+				background: url("neptune/icons/tab-group.svg") no-repeat calc(var(--tab-inline-padding) - var(--tab-inner-inline-margin)) transparent !important;
+				color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
+				fill: light-dark(var(--tab-group-color), var(--tab-group-color-invert));
+				text-align: left !important;
+
+				tab-group[collapsed] > .tab-group-label-container > & {
+					background: url("neptune/icons/tab-group-collapsed.svg") no-repeat calc(var(--tab-inline-padding) - var(--tab-inner-inline-margin)) !important;
+					color: inherit !important;
+				}
 			}
 
 			#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
@@ -1061,7 +1089,6 @@ textarea:not(#select-translations-panel-text-area) {
 	.tab-group-line {
 		border-radius: var(--border-radius-small) !important;
 		background-color: transparent !important;
-		display: none !important;
 
 		#tabbrowser-tabs[orient="horizontal"] & {
 			height: var(--tab-min-height) !important;
@@ -1075,7 +1102,6 @@ textarea:not(#select-translations-panel-text-area) {
 
 		#tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab:is(:active,[multiselected]) > .tab-stack > .tab-background > & {
 			background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
-			display: revert !important;
 		}
 	}
 }
@@ -1092,11 +1118,11 @@ textarea:not(#select-translations-panel-text-area) {
 		box-shadow: none !important;
 		transition: background-color .2s ease;
 
-		&[selected]:not([multiselected], #tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab > .tab-stack > &) {
+		&[selected]:not([multiselected], #tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) tab:active > .tab-stack > &) {
 			background-color: var(--neptune-tab-active-background) !important;
 
 			tab-group:not([collapsed]) > .tabbrowser-tab & {
-				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 20%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 25%, transparent)) !important;
+				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 20%, transparent)) !important;
 			}
 
 			.tabbrowser-tab[usercontextid] & {
@@ -1112,7 +1138,7 @@ textarea:not(#select-translations-panel-text-area) {
 			background-color: var(--neptune-tab-background) !important;
 
 			tab-group:not([collapsed]) > .tabbrowser-tab & {
-				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 10%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 15%, transparent)) !important;
+				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 5%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 10%, transparent)) !important;
 
 				.tabbrowser-tab:hover & {
 					background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 20%, transparent)) !important;
@@ -1127,7 +1153,7 @@ textarea:not(#select-translations-panel-text-area) {
 				background-color: var(--neptune-tab-hover-background) !important;
 			}
 
-			#tabbrowser-tabs[orient="vertical"] &:not(:is(#tabbrowser-tabs[movingtab-createGroup], tab-group:not([collapsed])) .tabbrowser-tab > .tab-stack > &) {
+			#tabbrowser-tabs[orient="vertical"] &:not(tab-group:not([collapsed]) .tabbrowser-tab > .tab-stack > &) {
 				background-color: var(--neptune-verticaltab-background) !important;
 
 				.tabbrowser-tab[pinned] & {
@@ -1202,7 +1228,7 @@ textarea:not(#select-translations-panel-text-area) {
 		}
 
 		> .tab-audio-button {
-			--button-min-height-small: var(--size-item-medium) !important;
+			--button-min-height-small: min(var(--tab-min-height), var(--size-item-medium)) !important;
 			--button-background-color-ghost-hover: transparent !important;
 			--button-background-color-ghost-active: transparent !important;
 		}
@@ -1386,8 +1412,8 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 .actions-list {
-	--button-min-height: var(--size-item-medium) !important;
-	--button-size-icon: var(--size-item-medium) !important;
+	--button-min-height: var(--tab-min-height) !important;
+	--button-size-icon: var(--tab-min-height) !important;
 	--button-border-radius: var(--border-radius-small) !important;
 	--button-label-directiony: center;
 	--button-label-display: none;
@@ -1423,11 +1449,11 @@ textarea:not(#select-translations-panel-text-area) {
 	}
 
 	&[type~="icon"] {
-		button[title^="Open bookmarks"] > & > img {
+		button:is([title^="Open bookmarks"], [title^="Close bookmarks"]) > & > img {
 			content: url("neptune/icons/bookmark-hollow.svg");
 		}
 
-		button[title^="Open history"] > & > img {
+		button:is([title^="Open history"], [title^="Close history"]) > & > img {
 			content: url("neptune/icons/history.svg");
 		}
 
@@ -1450,7 +1476,7 @@ textarea:not(#select-translations-panel-text-area) {
 		border-radius: var(--border-radius-small) !important;
 
 		h3 {
-			display: none;
+			margin-block: 0 var(--space-small) !important;
 		}
 	}
 
@@ -1690,6 +1716,7 @@ input[type=radio] {
 menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
 	--panel-separator-color: var(--neptune-popover-separator-color) !important;
+	--menu-arrow-size: var(--theme-menu-icon-size) !important;
 
 	@media (-moz-platform: macos) or (-moz-platform: windows) {
 		appearance: menupopup !important;
@@ -1818,10 +1845,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			border-radius: var(--arrowpanel-menuitem-border-radius) !important;
 			padding-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
 
-			> .menu-right {
-				margin-inline-end: var(--arrowpanel-menuitem-padding-inline) !important;
-			}
-
 			menupopup[needsgutter] &:not([checked="true"], [icon], .menu-iconic, .menuitem-iconic) {
 				padding-inline-start: var(--space-xlarge) !important;
 			}
@@ -1843,7 +1866,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 				padding-inline-start: var(--space-medium) !important;
 			}
 
-			> .menu-iconic-left {
+			> .menu-icon {
 				margin-inline-end: var(--space-xsmall) !important;
 			}
 		}
@@ -1858,7 +1881,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 				background: none !important;
 			}
 
-			> .menuitem-iconic > .menu-iconic-left > .menu-iconic-icon {
+			> .menuitem-iconic > .menu-icon {
 				padding-block: var(--space-xsmall) !important;
 			}
 		}
@@ -1876,7 +1899,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			> :is(menucaption, menuitem) {
 				padding-block: 0 !important;
 
-				> .menu-iconic-text {
+				> .menu-text {
 					padding-block: var(--space-xsmall) !important;
 				}
 			}
@@ -1911,8 +1934,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 .subviewbutton-iconic:not(.all-tabs-button.subviewbutton-iconic) > .toolbarbutton-icon,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
-.menu-iconic-icon:not(:is(#context-navigation, .bookmark-item) .menu-iconic-icon),
-.menu-right > image,
+.menu-icon:not(:is(#context-navigation, .bookmark-item) .menu-icon),
 .pointerlockfswarning::before,
 :is(#protections-popup-mainView, .widget-overflow-list, .PanelUI-subView) .subviewbutton-nav::after {
 	width: var(--theme-menu-icon-size) !important;
@@ -2124,11 +2146,9 @@ panelview .toolbarbutton-1,
 	#controls-bottom-gradient {
 		background: #00000080 !important;
 		height: calc(2 * var(--player-control-item-height) + var(--scrubber-vertical-margin)) !important;
-		bottom: calc(15vmin - var(--resize-margin)) !important;
 		border-radius: var(--border-radius-small);
 		width: min(50%, 30em) !important;
-		inset-inline-end: calc(50% + var(--resize-margin));
-		transform: translateX(50%);
+		inset: auto calc((100% + 2 * var(--resize-margin) - min(50%, 30em)) / 2) calc(15vmin - var(--resize-margin)) !important;
 
 		@media (height <= 200px), (width <= 300px) {
 			display: none;
@@ -2136,10 +2156,8 @@ panelview .toolbarbutton-1,
 	}
 
 	#controls-bottom {
-		bottom: calc(15vmin - var(--resize-margin)) !important;
 		width: min(50%, 30em) !important;
-		inset-inline-end: 50%;
-		transform: translateX(50%);
+		inset: auto calc((100% - min(50%, 30em)) / 2) calc(15vmin - var(--resize-margin)) !important;
 
 		> .controls-bottom-upper {
 			width: calc(100% - 24px) !important;
@@ -2331,7 +2349,7 @@ panelview .toolbarbutton-1,
 
 .dialogBox {
 	border-radius: var(--border-radius-large) !important;
-	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+	box-shadow: var(--neptune-menu-shadow) !important;
 }
 
 .dialog-button-box button {
@@ -2524,22 +2542,24 @@ panelview .toolbarbutton-1,
 	list-style-image: url("neptune/icons/extension.svg") !important;
 
 	@media not -moz-pref("sidebar.verticalTabs") {
-		position: fixed;
-		inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+		:root:not([customizing]) & {
+			position: fixed;
+			inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
 
-		/* When the overflow button is enabled, it will move one button's position to the left.*/
-		#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
-			inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-		}
+			/* When the overflow button is enabled, it will move one button's position to the left.*/
+			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
+				inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+			}
 
-		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
-			position: revert;
-			order: -1;
-		}
-
-		@media (width <= 650px) {
-			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
 				position: revert;
+				order: -1;
+			}
+
+			@media (width <= 650px) {
+				#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+					position: revert;
+				}
 			}
 		}
 
