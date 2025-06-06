@@ -1,0 +1,496 @@
+@-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
+	.non-collapsible-section {
+		padding: 0 !important;
+
+		.search-wrapper {
+			padding-block-start: 0 !important;
+		}
+
+		.search-inner-wrapper {
+			width: 156px !important;
+
+			:is(.layout-variant-a, .layout-variant-b) & {
+				width: 252px !important;
+
+				@media (min-width: 724px) {
+					width: 540px !important;
+				}
+
+				@media (min-width: 1122px) {
+					width: 732px !important;
+				}
+			}
+
+			@media (min-width: 610px) {
+				width: 348px !important;
+			}
+
+			@media (min-width: 866px) {
+				width: 540px !important;
+			}
+
+			@media (min-width: 1122px) {
+				width: 732px !important;
+			}
+		}
+	}
+
+	.search-wrapper input,
+	.search-handoff-button {
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
+		background-size: 24px !important;
+		border: none !important;
+		box-shadow: var(--box-shadow-level-3) !important;
+		border-radius: var(--border-radius-large) !important;
+	}
+
+	.contentSearchSuggestionTable {
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(32px);
+		border-radius: var(--border-radius-large) !important;
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+
+		.contentSearchHeader, .contentSearchSettingsButton {
+			background-color: var(--neptune-popover-background) !important;
+			backdrop-filter: blur(8px);
+			filter: saturate(1.2);
+			border-color: transparent !important;
+		}
+
+		.contentSearchOneOffsTable {
+			background-color: transparent !important;
+			border: none !important;
+		}
+
+		.contentSearchOneOffItem {
+			height: 28px !important;
+			border: none !important;
+			border-radius: var(--border-radius-small);
+		}
+	}
+
+	.search-button,
+	.logo-and-wordmark-wrapper,
+	.showPrivate.showSearch.container,
+	.home-section .divider,
+	.wallpaper-attribution,
+	.customize-menu .close-button-wrapper,
+	.weatherSponsorText,
+	.top-site-outer :is(.icon.icon-pin-small, .sponsored-label) {
+		display: none !important;
+	}
+}
+
+@-moz-document url("about:privatebrowsing") {
+	.search-inner-wrapper {
+		height: 52px !important;
+		padding: 0 !important;
+	}
+
+	.search-handoff-button {
+		fill: var(--icon-color) !important;
+	}
+
+	.fake-textbox {
+		color: CaptionText !important;
+	}
+}
+
+@-moz-document url("about:home"), url("about:newtab"), url("about:welcome") {
+	* {
+		cursor: auto !important;
+	}
+
+	.ds-outer-wrapper-breakpoint-override main {
+		width: 192px !important;
+
+		@media (min-width: 610px) {
+			width: 384px !important;
+		}
+
+		@media (min-width: 866px) {
+			width: 576px !important;
+		}
+
+		@media (min-width: 1122px) {
+			width: 768px !important;
+		}
+	}
+
+	.collapsible-section {
+		padding: 0 !important;
+
+		.top-sites-list {
+			margin-inline: auto !important;
+			row-gap: unset !important;
+		}
+	}
+
+	.top-site-outer {
+		background: none !important;
+		width: calc(3 * var(--size-item-large)) !important;
+		margin-block-end: var(--space-small) !important;
+
+		.top-site-icon {
+			background-color: transparent !important;
+		}
+
+		.top-site-inner > a {
+			padding: 0 !important;
+		}
+
+		.context-menu-button {
+			width: var(--size-item-small) !important;
+			height: var(--size-item-small) !important;
+			background-size: 10px !important;
+			border-radius: 50% !important;
+			inset-inline-end: 4px !important;
+			top: -10px !important;
+		}
+
+		.tile {
+			height: calc(2 * var(--size-item-large)) !important;
+			width: calc(2 * var(--size-item-large)) !important;
+			background-color: var(--neptune-content-background) !important;
+			outline: none !important;
+			border-radius: var(--border-radius-large) !important;
+			box-shadow: var(--box-shadow-level-3) !important;
+
+			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
+				height: calc(2 * var(--size-item-large)) !important;
+				width: calc(2 * var(--size-item-large)) !important;
+				border-radius: var(--border-radius-large) !important;
+
+				&.letter-fallback::before {
+					font-size: 1.22em !important;
+					font-weight: normal !important;
+					inset: 0 !important;
+					transform: none !important;
+				}
+			}
+		}
+
+		.default-icon {
+			background-size: auto !important;
+			width: calc(2 * var(--size-item-large)) !important;
+			height: calc(2 * var(--size-item-large)) !important;
+		}
+
+		.search-topsite {
+			background-color: var(--theme-primary-color) !important;
+			background-size: 12px !important;
+			height: 24px !important;
+			width: 24px !important;
+		}
+
+		.title {
+			padding-top: 6px !important;
+
+			.title-label {
+				-webkit-line-clamp: 2;
+				line-height: 1.333 !important;
+				width: 72px !important;
+				padding-inline: 0 !important;
+				white-space: wrap !important;
+				word-break: break-word;
+			}
+		}
+	}
+
+	.context-menu {
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
+		border-radius: var(--border-radius-medium) !important;
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		font: menu !important;
+
+		> ul > li > a,
+		> ul > li > button {
+			&:is(:focus, :hover) {
+				background: var(--theme-primary-hover-color) !important;
+				color: #fff !important;
+			}
+
+			&:active {
+				background: var(--theme-primary-active-color) !important;
+			}
+		}
+
+		> ul > li.separator {
+			border-color: var(--neptune-toolbar-border-color) !important;
+		}
+
+		.top-site-outer & {
+			inset-block-start: 0 !important;
+			inset-inline-start: calc(100% - var(--space-small)) !important;
+		}
+	}
+
+	.card-outer:has(.card-preview-image.loaded),
+	.ds-card-grid .sections-card-ui:not(.placeholder) {
+		box-shadow: var(--box-shadow-level-4) !important;
+	}
+
+	.ds-card .context-menu-button {
+		border-radius: 50% !important;
+	}
+
+	.modalOverlayOuter, .modal-overlay {
+		background: none !important;
+	}
+
+	.modal {
+		border-radius: var(--border-radius-large) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
+		font-size: var(--font-size-root) !important;
+
+		.edit-topsites-wrapper & {
+			width: 36em !important;
+			top: 25vh !important;
+			border-radius: var(--border-radius-large) !important;
+			box-shadow: var(--neptune-menu-shadow) !important;
+
+			> .topsite-form .form-wrapper input[type=text] {
+				height: 22px !important;
+				border-radius: var(--border-radius-small) !important;
+				font-size: 12.5px !important;
+			}
+
+			> .topsite-form .form-wrapper .error-tooltip {
+				inset-inline-start: 0 !important;
+				border-radius: var(--border-radius-small) !important;
+				font-size: var(--font-size-root);
+				box-shadow: var(--box-shadow-level-3);
+			}
+
+			> .topsite-form .top-site-outer .top-site-inner > a {
+				padding-block: var(--space-xsmall) !important;
+			}
+		}
+	}
+
+	.actions {
+		padding-block: 0 !important;
+		border: none !important;
+
+		button {
+			padding: var(--space-xxsmall) var(--space-medium) !important;
+			border-radius: var(--border-radius-small) !important;
+			box-shadow: none !important;
+		}
+	}
+
+	.personalizeButtonWrapper {
+		inset: auto var(--space-large) var(--space-large) auto !important;
+
+		.personalize-button {
+			-moz-context-properties: fill, fill-opacity !important;
+			background-image: url("../assets/icons/settings.svg") !important;
+			background-color: transparent !important;
+			padding: 0 !important;
+			background-size: 28px !important;
+			width: 28px !important;
+			height: 28px !important;
+			visibility: visible !important;
+			fill: MenuText !important;
+			fill-opacity: 0.8;
+
+			&:is(:hover, :active) {
+				fill-opacity: 1;
+			}
+		}
+	}
+
+	.customize-menu {
+		position: absolute !important;
+		width: calc(3 * 96px + 4 * 10px) !important;
+		height: fit-content !important;
+		padding: 0 !important;
+		border-radius: var(--border-radius-large) !important;
+		transform: translateY(100%) !important;
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		overflow-x: hidden !important;
+		transition: none !important;
+
+		.close-button-wrapper {
+			top: 0 !important;
+			padding-block: 0 !important;
+			background-color: transparent !important;
+
+			.close-button {
+				background-color: transparent !important;
+				margin-inline-end: 0 !important;
+				border: none !important;
+			}
+		}
+	}
+
+	.customize-menu.customize-animate-enter-done,
+	.customize-menu.customize-animate-enter-active {
+		transform: translateY(-100%) !important;
+	}
+
+	.home-section {
+		grid-row-gap: 10px !important;
+		padding: 0 10px !important;
+
+		.settings-toggles {
+			gap: 10px !important;
+		}
+
+		.wallpapers-section h2 {
+			margin-block: 10px !important;
+		}
+
+		.section .selector {
+			background-color: transparent !important;
+			width: 8em !important;
+			box-shadow: none !important;
+		}
+
+		.section .sponsored {
+			font: menu !important;
+		}
+
+		.section .more-info-top-wrapper {
+			--space-large: 10px !important;
+		}
+
+		.external-link {
+			margin-block: 0 !important;
+			color: var(--newtab-text-primary-color) !important;
+			font-size: smaller !important;
+
+			&:hover {
+				color: var(--link-color) !important;
+				fill: var(--link-color) !important;
+			}
+		}
+	}
+
+	.arrow-button {
+		background: url("chrome://global/skin/icons/arrow-left-12.svg") no-repeat left !important;
+		font: menu !important;
+		margin: 0 var(--space-xsmall) !important;
+		padding-inline-start: var(--space-large) !important;
+	}
+
+	.wallpaper-list.category {
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(32px);
+		inset: 0 !important;
+		margin: 0 !important;
+		height: 100% !important;
+		width: 100% !important;
+		transition: none !important;
+
+		fieldset {
+			gap: 10px !important;
+			grid-auto-rows: auto !important;
+		}
+	}
+
+	.category-list {
+		grid-auto-rows: 64px !important;
+		gap: 20px 10px !important;
+		margin: auto auto var(--space-medium) !important;
+
+		label {
+			font: menu !important;
+		}
+	}
+
+	.wallpaper-input {
+		height: 56px !important;
+		box-shadow: none !important;
+	}
+
+	.wallpaper-input.theme-custom-wallpaper, .theme-custom-color-picker {
+		background-color: var(--button-background-color) !important;
+		border: none !important;
+
+		&:hover {
+			background-color: var(--button-background-color-hover) !important;
+		}
+	}
+
+	.theme-custom-color-picker {
+		outline: none !important;
+
+		&::after {
+			background-image: url("chrome://global/skin/icons/plus-20.svg") !important;
+		}
+
+		::-moz-color-swatch, label {
+			display: none !important;
+		}
+	}
+
+	.wallpapers-reset {
+		margin-block-start: var(--space-xsmall) !important;
+		font-size: 0.75em !important;
+
+		&:hover {
+			color: var(--theme-primary-color) !important;
+		}
+	}
+
+	.text-deemphasized {
+		margin-block: auto !important;
+		font: menu !important;
+	}
+
+	.weather {
+		:is(.layout-variant-a, .layout-variant-b) & {
+			inset-inline-end: var(--space-large) !important;
+		}
+
+		.weatherCard, .weatherButtonContextMenuWrapper {
+			background: none !important;
+			box-shadow: none !important;
+			flex-direction: row-reverse;
+		}
+	}
+
+	.weatherInfoLink {
+		background-color: var(--newtab-weather-background-color) !important;
+		backdrop-filter: blur(12px);
+		border-radius: var(--border-radius-medium) !important;
+	}
+
+	.weatherButtonContextMenuWrapper {
+		height: var(--space-small);
+		width: 32px !important;
+		visibility: collapse;
+
+		.weatherCard:hover & {
+			visibility: visible;
+		}
+	}
+
+	.top-site-button[href*="facebook.com"] .top-site-icon {
+		background-image: url("../assets/cards/facebook.svg") !important;
+	}
+
+	.top-site-button[href*="github.com"] .top-site-icon {
+		background-image: url("../assets/cards/github.svg") !important;
+	}
+
+	.top-site-button[href*="instagram.com"] .top-site-icon {
+		background-image: url("../assets/cards/instagram.svg") !important;
+	}
+
+	.top-site-button[href*="reddit.com"] .top-site-icon {
+		background-image: url("../assets/cards/reddit.svg") !important;
+	}
+
+	.top-site-button[href*="youtube.com"] .top-site-icon {
+		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/youtube-com@2x.png") !important;
+	}
+}

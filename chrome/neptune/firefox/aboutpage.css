@@ -1,0 +1,428 @@
+@-moz-document url-prefix(about:), url-prefix("chrome://") {
+	* {
+		--in-content-page-background: light-dark(#f6f6f6, #1c1b22) !important;
+		--popup-background: var(--neptune-menu-background) !important;
+		--popup-button-background: var(--neptune-item-background) !important;
+		--popup-button-background-hover: var(--neptune-item-hover-background) !important;
+		--popup-button-background-active: var(--neptune-item-active-background) !important;
+		--page-nav-button-background-color-hover: var(--neptune-item-hover-background) !important;
+		--page-nav-button-background-color-selected: transparent !important;
+		--toolbar-button-background-hover: var(--neptune-item-hover-background) !important;
+		--toolbar-button-background-active: var(--neptune-item-active-background) !important;
+		--toolbar-button-foreground-active: var(--theme-primary-color) !important;
+		--primary-color: var(--theme-primary-color) !important;
+		--link-color: light-dark(color-mix(in srgb, accentcolor 80%, #323232), color-mix(in srgb, accentcolor 80%, #cacaca)) !important;
+		--link-color-hover: light-dark(color-mix(in srgb, accentcolor 85%, #646464), color-mix(in srgb, accentcolor 85%, #ececec)) !important;
+		--link-color-active: accentcolor !important;
+		--link-color-visited: mediumpurple !important;
+		--fxview-background-color: var(--neptune-main-background) !important;
+		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
+		--in-content-primary-button-background: color-mix(in srgb, accentcolor 80%, #181818) !important;
+		--in-content-primary-button-background-hover: color-mix(in srgb, accentcolor 85%, #262626) !important;
+		--in-content-primary-button-background-active: color-mix(in srgb, accentcolor 85%, #646464) !important;
+		--in-content-primary-button-text-color: white !important;
+		--in-content-primary-button-text-color-hover: var(--in-content-primary-button-text-color) !important;
+		--in-content-focus-outline-color: accentcolor !important;
+		text-decoration: inherit !important;
+	}
+
+	.toggle-button {
+		--toggle-dot-background-color: var(--neptune-slider-color) !important;
+		--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
+		--toggle-border-color: var(--neptune-toolbar-border-color) !important;
+	}
+
+	menupopup, panel {
+		@media (-moz-platform: macos) or (-moz-platform: windows) {
+			appearance: menupopup !important;
+			--panel-background: Menu !important;
+			--panel-shadow-margin: 0 !important;
+			--panel-separator-color: var(--neptune-popover-separator-color) !important;
+		}
+
+		@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
+			--panel-border-color: var(--neptune-toolbar-border-color) !important;
+			--panel-border-radius: var(--border-radius-small) !important;
+			--panel-separator-color: var(--neptune-popover-separator-color) !important;
+			--panel-shadow-margin: 22px !important;
+		}
+
+		> menu,
+		> menuitem {
+			padding: 2px 16px !important;
+		}
+
+		.actionsMenu > & > menuitem {
+			padding-inline-start: 10px !important;
+		}
+
+		> menuseparator {
+			border: none !important;
+		}
+	}
+
+	groupbox[data-category] {
+		margin-bottom: var(--space-xlarge) !important;
+
+		> #updateBox {
+			margin-block-end: 0 !important;
+		}
+
+		> .updateSettingCrossUserWarningContainer {
+			margin-block: 0 !important;
+
+			> #updateSettingCrossUserWarningDesc {
+				margin-block-start: var(--space-small) !important;
+			}
+		}
+
+		> #saveWhere > #downloadFolder {
+			background-size: 12px !important;
+		}
+
+		.section-checkbox .checkbox-icon {
+			width: 14px !important;
+		}
+
+		.permission-icon {
+			width: 14px !important;
+			height: 14px !important;
+			margin: auto var(--space-small) auto 0 !important;
+		}
+
+		.info-box-container:not(:has(.doh-status-label.tail-with-learn-more)) {
+			padding-block-start: 0 !important;
+
+			.info-icon {
+				margin-block: auto !important;
+			}
+
+			.extra-information-label {
+				margin-top: var(--space-small) !important;
+			}
+
+			.content-blocking-warning {
+				margin-block-end: 0 !important;
+				padding-block: 0 !important;
+
+				> .reload-tabs-button {
+					list-style-image: none !important;
+					min-height: var(--button-min-height) !important;
+				}
+			}
+		}
+
+		.indent {
+			description.indent {
+				margin-block: auto !important;
+			}
+
+			.privacy-extra-information {
+				> .indent {
+					margin-bottom: 0 !important;
+				}
+
+				> .custom-option {
+					margin-block: var(--space-xxsmall) !important;
+				}
+			}
+		}
+	}
+
+	checkbox, radio {
+		margin-block: var(--space-xsmall) !important;
+
+		&.tail-with-learn-more + a {
+			margin-block: var(--space-xsmall) !important;
+		}
+	}
+
+	.subcategory:not([hidden]) ~ .subcategory {
+		padding-top: var(--space-xlarge) !important;
+	}
+
+	.dialogBox {
+		border-color: var(--neptune-toolbar-border-color) !important;
+		border-radius: var(--border-radius-large) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
+	}
+
+	.dialogOverlay[topmost="true"], dialog::backdrop {
+		background-color: transparent !important;
+		backdrop-filter: blur(8px);
+	}
+
+	.dialogTitleBar, separator.groove:not([orient="vertical"]) {
+		border: none !important;
+	}
+
+	*#categories > *.category {
+		background-size: 16px !important;
+		background-position: 16px !important;
+		border-radius: var(--border-radius-medium) !important;
+
+		> .category-name {
+			font-size: 1.12em !important;
+		}
+
+		> .category-icon {
+			width: 14px !important;
+			height: 14px !important;
+		}
+	}
+
+	.sidebar-footer-icon {
+		width: 12px !important;
+		height: 12px !important;
+		margin-inline: var(--space-medium) var(--space-xsmall) !important;
+	}
+
+	.face-sad::before {
+		content: "\2602" !important;
+		font-size: 1em !important;
+	}
+
+	.face-smile::before {
+		content: "\1f1fa\1f1e6" !important;
+		font-size: 1em !important;
+	}
+
+	.fxaProfileImage {
+		border: none !important;
+	}
+
+	.featureGate {
+		border-radius: var(--border-radius-large) !important;
+		box-shadow: none !important;
+	}
+
+	.back-button,
+	.default-button,
+	.primary-button,
+	.more-options-button,
+	.container, .action-box,
+	.info-box-container,
+	.web-appearance-choice,
+	table, div.opsRow, .sidebar-item,
+	#reportBox {
+		border-radius: var(--border-radius-medium) !important;
+	}
+
+	input[type="search"]:not(.search-handoff-button, .search-wrapper input),
+	search-textbox, .default-input {
+		appearance: none;
+		font: menu;
+		padding-block: 0 !important;
+		min-height: var(--button-min-height) !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	input:where([type="search"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(:read-only, .search-handoff-button, .search-wrapper input),
+	search-textbox, .devtools-searchbox, #storage-searchbox,
+	textarea {
+		background-color: var(--neptune-input-bgcolor) !important;
+		border-color: transparent !important;
+		outline: 20px solid transparent !important;
+
+		&:where(:focus-visible, [focused]) {
+			outline: 4px solid var(--neptune-input-outline-color) !important;
+			outline-offset: var(--toolbarbutton-outline-offset) !important;
+			transition: all 250ms cubic-bezier(0.33, 0, 0.67, 1);
+		}
+	}
+
+	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem:not(dialog richlistitem),
+	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .reset-button),
+	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
+		padding-block: 2px !important;
+	}
+
+	#siteCol, #statusCol,
+	#permissionsBox > richlistitem,
+	:is(#engineList, #blocklistsTree) > treechildren::-moz-tree-row {
+		min-height: var(--button-min-height) !important;
+	}
+
+	#handlersView {
+		height: auto !important;
+
+		> richlistitem {
+			min-height: var(--button-min-height) !important;
+		}
+	}
+
+	.translations-manage-language:first-child {
+		padding-block: 0 !important;
+		margin-block: 0 !important;
+	}
+
+	.search-tooltip {
+		background-color: var(--theme-primary-color) !important;
+		border: none !important;
+		box-shadow: var(--neptune-panel-shadow);
+		color: #fff !important;
+
+		&::before, &::after {
+			border-top-color: var(--theme-primary-color) !important;
+		}
+	}
+
+	.card {
+		border-color: var(--neptune-toolbar-border-color) !important;
+		border-radius: var(--border-radius-medium) !important;
+		box-shadow: none !important;
+		outline: none !important;
+
+		#legend input:focus + label {
+			outline: none !important;
+		}
+
+		.addon-badge-private-browsing-allowed {
+			background-size: var(--size-item-small) !important;
+		}
+	}
+
+	.more-options-button, .info-box-container {
+		background-color: transparent !important;
+	}
+
+	panel-list, .menu {
+		border-radius: var(--border-radius-medium) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
+
+		> .menuitem-button {
+			background-size: 12px !important;
+		}
+	}
+
+	#downloadsListBox:focus > richlistitem[selected] {
+		background-image: none !important;
+		background-color: var(--color-accent-primary-active) !important;
+		color: #fff !important;
+		border-radius: 0 !important;
+		outline: none !important;
+	}
+
+	.downloadButton > .button-box {
+		border-radius: 50% !important;
+
+		 > .button-icon {
+			list-style-image: url("chrome://global/skin/icons/search-glass.svg") !important;
+		}
+	}
+
+	.stp_button_wide .stp_button {
+		padding-block: 4px !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	@layer input-common {
+		#input {
+			--input-width: 14px !important;
+			--input-height: 14px !important;
+			--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
+		}
+	}
+
+	input[type=checkbox]:not(.ruleview-enableproperty, .devtools-checkbox-toggle),
+	.checkbox-check:not([native]) {
+		appearance: none !important;
+		width: 14px !important;
+		height: 14px !important;
+		border: var(--neptune-checkbox-border);
+		border-radius: 4px;
+		box-shadow: var(--neptune-checkbox-shadow);
+		vertical-align: bottom;
+
+		&:is(:checked, [checked="true"]) {
+			background-color: var(--theme-primary-color) !important;
+			background-image: url("../assets/icons/check.svg") !important;
+			border: none;
+		}
+	}
+
+	input[type=radio]:not(.wallpaper-input, .wrapper input),
+	.radio-check {
+		appearance: none !important;
+		width: 14px !important;
+		height: 14px !important;
+		border: var(--neptune-checkbox-border);
+		border-radius: 50%;
+		box-shadow: var(--neptune-checkbox-shadow);
+
+		&:is(:checked, [selected="true"]) {
+			background-color: var(--theme-primary-color) !important;
+			background-image: url("../assets/icons/radio.svg");
+			border: none;
+		}
+	}
+
+	.textbox-search-icon,
+	.textbox-search-sign {
+		transform: scaleX(-1);
+	}
+
+	#root > ul[role="tree"] { 
+		outline: none !important;
+		padding: 0 !important;
+	}
+
+	.devtools-toolbar {
+		height: calc(var(--theme-toolbar-height) + 7px) !important;
+		padding: 3px !important;
+
+		.devtools-togglebutton {
+			margin: 0 !important;
+			border: none !important;
+		}
+	}
+
+	.devtools-input-toolbar > .devtools-searchbox {
+		background-color: transparent !important;
+		margin: 0 !important;
+		border: none !important;
+	}
+
+	.tabs .tabs-navigation {
+		height: calc(var(--theme-toolbar-height) + 7px) !important;
+
+		.tabs-menu {
+			margin-block: auto !important;
+		}
+	}
+
+	.tooltip-container[type="doorhanger"] .menuitem > .command {
+		&:not([disabled],[open],:active):hover {
+			background-color: var(--theme-primary-hover-color) !important;
+			color: white !important;
+		}
+
+		&:not([disabled]):is([open],:hover:active) {
+			background-color: var(--theme-primary-active-color) !important;
+			color: inherit !important;
+		}
+	}
+
+	.devtools-button[data-standalone] {
+		min-height: var(--theme-toolbar-height) !important;
+		padding-block: 0 !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.perf-photon-button-primary {
+		background-color: var(--theme-primary-color) !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.perf-photon-button-default {
+		background-color: var(--theme-toolbar-highlighted-color) !important;
+		color: white !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.devtools-separator,
+	.dialogClose,
+	#formAutofillGroupBox {
+		display: none !important;
+	}
+}

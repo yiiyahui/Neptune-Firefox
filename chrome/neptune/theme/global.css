@@ -1,0 +1,99 @@
+:root {
+	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
+	--theme-tab-width: 150px;
+	--theme-tab-max-width: 200px;
+	--theme-urlbar-width: max(320px, 28em);
+	--theme-urlbar-focus-width: max(400px, 34em);
+	--theme-menu-icon-size: 12px;
+	--toolbar-start-end-padding: 10px !important;
+	--space-xsmall: 0.25rem !important;
+	--urlbar-min-height: 28px !important;
+	--urlbarView-small-font-size: 0.84em !important;
+	--urlbarView-labeled-row-label-top: calc(-1.2em - 6px) !important;
+	--tab-min-height: var(--urlbar-min-height) !important;
+	--tabstrip-min-height: var(--tab-min-height) !important;
+	--tab-group-label-height: var(--tab-min-height) !important;
+	--tab-label-line-height: 1.6 !important;
+	--tab-selected-shadow-size: 0 !important;
+	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
+	--button-padding: 0 var(--space-large) !important;
+	--border-radius-small: 6px !important;
+	--border-radius-xsmall: 4px;
+	--border-radius-large: 10px;
+	--menu-panel-width-wide: 28em !important;
+	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
+	--panel-separator-zap-gradient: none !important;
+	--panel-subview-body-padding-block: 5px !important;
+	--panel-separator-margin-vertical: 5px !important;
+	--panel-separator-margin-horizontal: 9px !important;
+	--panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal) !important;
+	--arrowpanel-menuitem-margin-inline: 5px !important;
+	--arrowpanel-menuitem-padding-inline: 9px !important;
+	--arrowpanel-menuitem-padding-block: 0 !important;
+	--arrowpanel-padding: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
+	--default-focusring: none !important;
+	--tabpanel-background-color: transparent !important;
+	--in-content-clip-path: inset(0 round 0.01px 0 0);
+	--in-content-page-background: var(--neptune-popover-background) !important;
+	--in-content-box-background: var(--neptune-input-bgcolor) !important;
+	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
+	--in-content-primary-button-text-color: white !important;
+	--in-content-button-background: var(--neptune-item-background) !important;
+	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
+	--in-content-button-background-active: var(--neptune-item-active-background) !important;
+	--in-content-primary-button-background: var(--theme-primary-color) !important;
+	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
+	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
+	--color-accent-primary: var(--theme-primary-color) !important;
+	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
+	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
+	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
+	--button-background-color: var(--neptune-item-background) !important;
+	--button-background-color-hover: var(--neptune-item-hover-background) !important;
+	--button-background-color-active: var(--neptune-item-active-background) !important;
+	--button-text-color-primary: white !important;
+	--button-background-color-primary: var(--theme-primary-color) !important;
+	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
+	--button-background-color-primary-active: var(--theme-primary-active-color) !important;
+	--link-color: color-mix(in srgb, currentColor 46%, transparent) !important;
+	--icon-color: light-dark(#383838, #ececec) !important;
+	--tab-loading-fill: var(--theme-primary-color) !important;
+	--tab-hover-background-color: var(--neptune-item-hover-background) !important;
+	--tab-selected-bgcolor: var(--neptune-item-active-background) !important;
+	--download-progress-fill-color: var(--theme-primary-color) !important;
+	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
+	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
+	--sidebar-background-color: transparent !important;
+	--sidebar-border-color: var(--neptune-content-border-color) !important;
+	--urlbar-box-bgcolor: transparent !important;
+	--urlbar-box-focus-bgcolor: transparent !important;
+	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
+	--urlbarView-hover-background: var(--neptune-urlbarView-hover-background) !important;
+	--urlbarView-highlight-background: var(--neptune-focused-urlbar-highlight-color) !important;
+	--urlbarView-highlight-color: #fff !important;
+	--input-bgcolor: var(--neptune-input-bgcolor) !important;
+	--background-color-box: var(--input-bgcolor) !important;
+	--focus-outline-color: var(--theme-primary-color) !important;
+	--arrowpanel-shadow-margin: 22px !important;
+	--arrowpanel-color: FieldText !important;
+	--arrowpanel-background: var(--neptune-menu-background) !important;
+	--organizer-toolbar-background: var(--neptune-content-background) !important;
+	--organizer-hover-background: var(--neptune-item-hover-background) !important;
+	--organizer-selected-background: var(--neptune-item-active-background) !important;
+	--organizer-pane-background: var(--neptune-main-background) !important;
+	--organizer-content-background: var(--neptune-content-background) !important;
+	--organizer-hover-background: var(--neptune-item-hover-background) !important;
+	--organizer-border-color: var(--neptune-content-border-color) !important;
+}
+
+/*---------- Hidden ----------*/
+tooltip,
+.control-item::after,
+menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="Background"]):not(.menuitem-iconic),
+#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="download"]),
+#scrollbutton-up ~ spacer, .titlebar-spacer {
+	display: none !important;
+}

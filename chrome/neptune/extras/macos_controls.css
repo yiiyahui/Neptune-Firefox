@@ -1,0 +1,90 @@
+/* macos traffic light titlebar buttons for windows */
+@media (-moz-platform: windows) {
+	.titlebar-buttonbox-container {
+		position: absolute;
+		inset: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 12px) / 2) auto auto 16px;
+
+		:root[inFullscreen] & {
+			display: none;
+		}
+	}
+
+	.titlebar-button {
+		padding: 0 !important;
+		margin-inline: 4px !important;
+		background: none !important;
+	}
+
+	.titlebar-close {
+		order: -1;
+		list-style-image: url("../assets/macos_controls/close.svg") !important;
+
+		.titlebar-buttonbox:hover & {
+			list-style-image: url("../assets/macos_controls/close-hover.svg") !important;
+
+			&:active {
+				list-style-image: url("../assets/macos_controls/close-active.svg") !important;
+
+				@media (prefers-color-scheme: dark) {
+					list-style-image: url("../assets/macos_controls/close-active-dark.svg") !important;
+				}
+			}
+		}
+	}
+
+	.titlebar-min {
+		list-style-image: url("../assets/macos_controls/minimize.svg") !important;
+
+		.titlebar-buttonbox:hover & {
+			list-style-image: url("../assets/macos_controls/minimize-hover.svg") !important;
+
+			&:active {
+				list-style-image: url("../assets/macos_controls/minimize-active.svg") !important;
+
+				@media (prefers-color-scheme: dark) {
+					list-style-image: url("../assets/macos_controls/minimize-active-dark.svg") !important;
+				}
+			}
+		}
+	}
+
+	.titlebar-max {
+		list-style-image: url("../assets/macos_controls/maximize.svg") !important;
+
+		.titlebar-buttonbox:hover & {
+			list-style-image: url("../assets/macos_controls/maximize-hover.svg") !important;
+
+			&:active {
+				list-style-image: url("../assets/macos_controls/maximize-active.svg") !important;
+
+				@media (prefers-color-scheme: dark) {
+					list-style-image: url("../assets/macos_controls/maximize-active-dark.svg") !important;
+				}
+			}
+		}
+	}
+
+	.titlebar-restore {
+		list-style-image: url("../assets/macos_controls/maximize.svg") !important;
+
+		.titlebar-buttonbox:hover & {
+			list-style-image: url("../assets/macos_controls/restore-hover.svg") !important;
+
+			&:active {
+				list-style-image: url("../assets/macos_controls/restore-active.svg") !important;
+
+				@media (prefers-color-scheme: dark) {
+					list-style-image: url("../assets/macos_controls/restore-active-dark.svg") !important;
+				}
+			}
+		}
+	}
+
+	.titlebar-button:-moz-window-inactive {
+		list-style-image: url("../assets/macos_controls/backdrop.svg") !important;
+
+		@media (prefers-color-scheme: dark) {
+			list-style-image: url("../assets/macos_controls/backdrop-dark.svg") !important;
+		}
+	}
+}

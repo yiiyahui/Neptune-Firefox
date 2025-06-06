@@ -1,0 +1,221 @@
+/*---------- Sidebar ----------*/
+#sidebar {
+	box-shadow: none !important;
+	border: none !important;
+	outline: none !important;
+}
+
+#sidebar-header {
+	font-size: 1.25em !important;
+	border: none !important;
+
+	#sidebar-switcher-target {
+		padding-block: 0 !important;
+		border-radius: var(--border-radius-xsmall) !important;
+	}
+}
+
+#viewButton {
+	background-color: var(--neptune-item-background) !important;
+	border: none !important;
+	border-radius: var(--border-radius-xsmall) !important;
+
+	&[open] {
+		background-color: var(--neptune-item-active-background) !important;
+	}
+}
+
+.actions-list {
+	--button-min-height: var(--tab-min-height) !important;
+	--button-size-icon: var(--tab-min-height) !important;
+	--button-border-radius: var(--border-radius-small) !important;
+	--button-label-directiony: center;
+	--button-label-display: none;
+
+	> moz-button:not(.tools-overflow) {
+		--button-outer-padding-block: var(--space-xsmall) !important;
+
+		&:first-of-type {
+			--button-outer-padding-block-start: var(--space-xsmall) !important;
+
+			@media not -moz-pref("sidebar.verticalTabs") {
+				--button-outer-padding-block-start: 0 !important;
+			}
+		}
+
+		&:last-of-type {
+			--button-outer-padding-block-end: var(--space-xsmall) !important;
+		}
+	}
+
+	&:has(.expanded-button) {
+		flex-direction: row !important;
+	}
+}
+
+.button-background {
+	&.labelled {
+		justify-content: var(--button-label-directiony, inherit) !important;
+
+		label {
+			display: var(--button-label-display, inherit);
+		}
+	}
+
+	&[type~="icon"] {
+		button:is([title^="Open bookmarks"], [title^="Close bookmarks"]) > & > img {
+			content: url("../assets/icons/bookmark-hollow.svg");
+		}
+
+		button:is([title^="Open history"], [title^="Close history"]) > & > img {
+			content: url("../assets/icons/history.svg");
+		}
+
+		button[title^="Passwords"] > & > img {
+			content: url("../assets/icons/login.svg");
+		}
+
+		button[title^="Tabs from other devices"] > & > img {
+			content: url("../assets/icons/synced-tabs.svg");
+		}
+	}
+}
+
+.sidebar-panel {
+	--icon-size-default: var(--theme-menu-icon-size) !important;
+	padding: 0 var(--space-small) !important;
+
+	moz-card {
+		border: none !important;
+		border-radius: var(--border-radius-small) !important;
+
+		h3 {
+			margin-block: 0 var(--space-small) !important;
+		}
+	}
+
+	> #manage-settings > a {
+		color: FieldText !important;
+		text-decoration: none !important;
+	}
+}
+
+.search-container {
+	height: var(--button-min-height) !important;
+
+	.search-icon {
+		background-size: var(--theme-menu-icon-size) !important;
+		transform: scaleX(-1);
+	}
+
+	.clear-icon {
+		background-image: url(resource://content-accessible/searchfield-cancel.svg) !important;
+		background-size: var(--theme-menu-icon-size) !important;
+		right: var(--space-xsmall) !important;
+		cursor: default !important;
+	}
+}
+
+#heading-wrapper {
+	padding-inline-start: var(--space-xsmall) !important;
+	gap: var(--space-xsmall) !important;
+
+	.chevron-icon {
+		min-height: var(--button-min-height) !important;
+		height: var(--button-min-height) !important;
+		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+
+		details[open] & {
+			background-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+		}
+	}
+}
+
+#moz-card-details > :is(summary, #content) {
+	padding: 0 !important;
+	cursor: default !important;
+}
+
+sidebar-tab-row {
+	--button-background-color-ghost-hover: var(--color-accent-primary-hover) !important;
+	--button-background-color-ghost-active: var(--color-accent-primary-active) !important;
+	--button-text-color-ghost-hover: var(--button-text-color-primary) !important;
+	--button-text-color-ghost-active: var(--button-text-color-primary) !important;
+	--fxview-text-primary-color: var(--button-text-color-primary) !important;
+	height: var(--button-min-height) !important;
+	border-radius: var(--border-radius-xsmall) !important;
+}
+
+.fxview-tab-row-main {
+	background: none !important;
+	padding-block: 0 !important;
+	cursor: default !important;
+}
+
+.fxview-tab-row-button {
+	--button-size-icon: var(--size-item-small) !important;
+	--button-min-height: var(--button-min-height) !important;
+	--button-outer-padding-block: var(--space-xsmall) !important;
+	--button-outer-padding-inline: var(--space-xsmall) !important;
+}
+
+@layer input-common {
+	#input {
+		--input-width: 14px !important;
+		--input-height: 14px !important;
+		--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
+	}
+
+	.icon {
+		display: none;
+
+		+ .text {
+			margin-inline-start: 0 !important;
+		}
+	}
+
+	[slot="nested"]:first-child {
+		margin-block-start: var(--space-small) !important;
+	}
+
+	.nested {
+		margin-inline: 0 !important;
+	}
+}
+
+moz-radio, moz-checkbox:not(:last-of-type) {
+	padding-block: var(--space-small) !important;
+	border-color: var(--neptune-content-border-color) !important;
+}
+
+treechildren::-moz-tree-row,
+treecol:not([hideheader="true"]),
+.tree-columnpicker-button {
+	min-height: var(--button-min-height) !important;
+	border-radius: var(--border-radius-xsmall);
+}
+
+treechildren::-moz-tree-row(selected) {
+	background-color: var(--theme-primary-active-color) !important;
+}
+
+treechildren::-moz-tree-image(selected),
+treechildren::-moz-tree-twisty(selected),
+treechildren::-moz-tree-cell-text(selected) {
+	color: var(--button-text-color-primary) !important;
+}
+
+#header {
+	--icon-size-default: var(--theme-menu-icon-size) !important;
+	padding-inline: 0 !important;
+
+	> select {
+		margin: 0 !important;
+	}
+}
+
+#tabbrowser-tabbox {
+	outline: none !important;
+	box-shadow: none !important;
+	clip-path: var(--in-content-clip-path);
+}

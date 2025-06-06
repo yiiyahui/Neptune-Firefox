@@ -1,0 +1,112 @@
+@-moz-document url-prefix(about:firefoxview) {
+	* {
+		cursor: auto !important;
+	}
+
+	.search-container {
+		.search-icon {
+			background-size: 12px !important;
+			padding: 0 !important;
+			width: 12px !important;
+			height: 12px !important;
+			transform: scaleX(-1);
+		}
+
+		input {
+			padding-inline: var(--space-xlarge) !important;
+			width: 16em !important;
+		}
+
+		.clear-icon {
+			background-image: url(resource://content-accessible/searchfield-cancel.svg) !important;
+			background-size: 12px !important;
+		}
+	}
+
+	.sticky-container {
+		flex-direction: row !important;
+		align-items: center;
+		justify-content: space-between;
+		padding-block-end: var(--space-large) !important;
+
+		> :is(.open-tabs-options, .history-sort-options:not([hidden]), .syncedtabs-header) {
+			flex-direction: row-reverse;
+		}
+
+		.open-tabs-options, .open-tabs-sort-wrapper, .history-sort-options:not([hidden]) {
+			gap: var(--space-medium) !important;
+		}
+
+		.open-tabs-sort-option, .history-sort-option {
+			gap: 0 !important;
+		}
+
+		.syncedtabs-header button {
+			background-color: transparent !important;
+			min-height: var(--button-min-height) !important;
+		}
+	}
+
+	.card-container {
+		--icon-size-default: 10px !important;
+		padding: var(--space-xsmall) !important;
+		box-shadow: var(--box-shadow-level-2) !important;
+
+		> .card-container-header {
+			padding-block: 0 !important;
+			margin-block: 0 !important;
+
+			> .chevron-icon {
+				background-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+				background-color: transparent !important;
+
+				.card-container:not([open]) & {
+					background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+				}
+			}
+		}
+
+		> .view-all-link {
+			padding-block: 0 !important;
+		}
+
+		&.inner {
+			border: none !important;
+			box-shadow: none !important;
+		}
+	}
+
+	.cards-container {
+		> .import-history-banner [slot="main"] {
+			padding-inline: var(--space-small) 0 !important;
+		}
+
+		> card-container > h3.device-header {
+			gap: var(--space-small) !important;
+		}
+	}
+
+	card-container h3.device-header:not([slot="header"]) {
+		margin-block: var(--space-xsmall) !important;
+	}
+
+	virtual-list > :is(opentabs-tab-row, fxview-tab-row, syncedtabs-tab-row) {
+		align-items: center !important;
+	}
+
+	.fxview-tab-list > opentabs-tab-row {
+		margin-inline: 5px !important;
+	}
+
+	.fxview-tab-row-main {
+		padding-block: calc((var(--button-min-height) - var(--size-item-small)) / 2) !important;
+
+		> .fxview-tab-row-favicon-wrapper > *::after {
+			display: none !important;
+		}
+	}
+
+	.submenu-icon {
+		background-image: url("chrome://global/skin/icons/arrow-right-12.svg") !important;
+	}
+}

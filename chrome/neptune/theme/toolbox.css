@@ -1,0 +1,359 @@
+/*---------- Toolbox ----------*/
+#main-window {
+	min-width: 650px !important;
+}
+
+#browser:not(.browser-toolbox-background) {
+	background-color: transparent !important;
+}
+
+#navigator-toolbox {
+	background-color: var(--neptune-toolbar-background) !important;
+	border: none !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		display: grid;
+		grid-template-columns: minmax(auto, 0) auto;
+
+		> *:not(#nav-bar, #TabsToolbar) {
+			grid-column: 1 / span 2;
+		}
+	}
+
+	&.fullscreen-with-menubar {
+		box-shadow: none !important;
+	}
+
+	#nav-bar {
+		background-color: transparent !important;
+		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+		border: none !important;
+
+		:root[inFullscreen] & {
+			padding-inline-start: 0 !important;
+		}
+
+		@media not -moz-pref("sidebar.verticalTabs") {
+			grid-area: 1 / 1 / span 1 / span 1;
+			width: fit-content;
+
+			#navigator-toolbox:not(:has(tab-group)):has(tab:only-of-type, tab[hidden]):not(:has(tab:nth-of-type(3))) & {
+				grid-column: 1 / span 2;
+				width: calc(100% - (4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)));
+			}
+
+			#navigator-toolbox:is(:not(:has(tab:only-of-type)), :has(tab-group)) & #urlbar-container {
+				width: var(--theme-urlbar-width) !important;
+
+				#navigator-toolbox:has(tab:nth-of-type(9)) &:not(:focus-within) {
+					width: calc(var(--theme-urlbar-width) - var(--theme-tab-width) / 2) !important;
+				}
+
+				&:focus-within {
+					width: var(--theme-urlbar-focus-width) !important;
+				}
+			}
+		}
+
+		> .customization-target:not(#widget-overflow-fixed-list) {
+			:root[customizing] & {
+				animation: emeTeachingMoment 1s linear infinite;
+			}
+
+			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring {
+				max-width: 100% !important;
+
+				#nav-bar & {
+					flex-grow: 400 !important;
+				}
+
+				@media not -moz-pref("sidebar.verticalTabs") {
+					#nav-bar & {
+						flex-grow: 600 !important;
+						min-width: unset !important;
+						transition: min-width 150ms linear;
+
+						/* The width is based on the default number of buttons. If there are more buttons on both sides of the toolbar, 
+						their total width should be calculated for adjustment. which will affect the horizontal scaling of the address bar & tabs.
+						The width of each button is ("--size-item-medium" + "--toolbar-start-end-padding"). */
+						#navigator-toolbox:has(tab-group, tab:nth-of-type(2)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#navigator-toolbox:has(tab-group) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - var(--toolbar-start-end-padding) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+								#nav-bar:has(#urlbar-container:focus-within) & {
+									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - var(--toolbar-start-end-padding) - (2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+								}
+							}
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - var(--toolbar-start-end-padding) - (var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+
+							&:last-of-type:not(#navigator-toolbox:not(:has(tab-group, tab:nth-of-type(3))):has(tab[hidden]) &) {
+								:root:not([customizing]) & {
+									display: none;
+								}
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(3)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - (3 * var(--toolbar-start-end-padding) + 2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#navigator-toolbox:has(tab-group) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - (3 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + 2 * var(--theme-tab-max-width)) / 2) !important;
+
+								#nav-bar:has(#urlbar-container:focus-within) & {
+									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (3 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + 2 * var(--theme-tab-max-width)) / 2) !important;
+								}
+							}
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (3 * var(--toolbar-start-end-padding) + 2 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(4)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - (4 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#navigator-toolbox:has(tab-group) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - (4 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + 3 * var(--theme-tab-max-width)) / 2) !important;
+
+								#nav-bar:has(#urlbar-container:focus-within) & {
+									min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (4 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + 3 * var(--theme-tab-max-width)) / 2) !important;
+								}
+							}
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (4 * var(--toolbar-start-end-padding) + 3 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(5)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - (5 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (5 * var(--toolbar-start-end-padding) + 4 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(6)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - (6 * var(--toolbar-start-end-padding) + 5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (6 * var(--toolbar-start-end-padding) + 5 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(7)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - (7 * var(--toolbar-start-end-padding) + 6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (7 * var(--toolbar-start-end-padding) + 6 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(8)) & {
+							min-width: calc(50vw - var(--theme-urlbar-width) - (8 * var(--toolbar-start-end-padding) + 7 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+
+							#nav-bar:has(#urlbar-container:focus-within) & {
+								min-width: calc(50vw - var(--theme-urlbar-width) - ((var(--theme-urlbar-focus-width) - var(--theme-urlbar-width)) / 2) - (8 * var(--toolbar-start-end-padding) + 7 * var(--theme-tab-width) + var(--theme-tab-max-width)) / 2) !important;
+							}
+						}
+
+						#navigator-toolbox:has(tab:nth-of-type(9)) & {
+							:root:not([customizing]) & {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+
+			 > toolbarpaletteitem[place="toolbar"] > toolbarspring {
+				margin-block: 0 !important;
+			}
+		}
+	}
+
+	.browser-titlebar {
+		will-change: unset !important;
+
+		@media (-moz-platform: macos) {
+			> .titlebar-buttonbox-container {
+				position: absolute;
+				inset: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2) auto auto 7px;
+			}
+		}
+	}
+
+	#TabsToolbar {
+		@media not -moz-pref("sidebar.verticalTabs") {
+			grid-area: 1 / 2 / span 1 / span 1;
+			padding: var(--theme-browser-toolbox-padding) calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) var(--theme-browser-toolbox-padding) 0 !important;
+
+			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+				padding-inline-end: calc(var(--toolbar-start-end-padding) / 2 + var(--toolbarbutton-outer-padding)) !important;
+			}
+
+			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) &:not(:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) &) {
+				:root:not([customizing]) & {
+					padding-inline-end: calc(4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2) !important;
+				}
+			}
+
+			&:not(:has(tab-group), tab:nth-of-type(3)):has(tab:only-of-type, tab[hidden]) .toolbarbutton-1 {
+				align-self: end;
+				z-index: var(--browser-stack-z-index-rdm-toolbar);
+			}
+		}
+
+		@media -moz-pref("sidebar.verticalTabs") {
+			display: contents;
+		}
+	}
+
+	#PersonalToolbar {
+		--toolbarbutton-inner-padding: var(--toolbarbutton-outer-padding) !important;
+		background-color: transparent !important;
+		outline-color: var(--border-color-deemphasized) !important;
+
+		> #personal-bookmarks:has(toolbarbutton[collapsed="true"]) > #PlacesToolbar > #PlacesToolbarItems {
+			justify-content: center;
+		}
+
+		.toolbarbutton-1 {
+			margin-block: auto var(--bookmark-block-padding) !important;
+		}
+
+		toolbarbutton.bookmark-item:not(.subviewbutton) {
+			:root:not([customizing]) & {
+				padding: 0 calc(2 * var(--bookmark-block-padding)) !important;
+				margin: 0 0 calc(2 * var(--bookmark-block-padding)) !important;
+			}
+
+			> .toolbarbutton-icon[type="menu"] {
+				display: none;	/* Hide the folder icon on the bookmarks bar. */
+			}
+		}
+	}
+
+	.browser-toolbar:not(.browser-titlebar) {
+		background-color: inherit !important;
+
+		.notificationbox-stack > .infobar {
+			--icon-size-default: var(--theme-menu-icon-size) !important;
+			--button-size-icon-small: 20px !important;
+			--button-min-height-small: 20px !important;
+			--message-bar-container-min-height: 28px !important;
+			background-color: var(--neptune-item-active-background) !important;
+			margin-block: 0 !important;
+			border: none !important;
+			box-shadow: none !important;
+
+			&::before {
+				background-image: none !important;
+			}
+		}
+	}
+}
+
+#customization-container {
+	background-image: none !important;
+	background-color: var(--toolbox-bgcolor) !important;
+
+	#customization-panelWrapper {
+		--panel-arrow-offset: 0 !important;
+
+		> .panel-arrowcontent {
+			border-color: var(--in-content-box-border-color) !important;
+			border-radius: var(--arrowpanel-border-radius) !important;
+			box-shadow: var(--neptune-menu-shadow) !important;
+		}
+
+		> .panel-arrowbox > .panel-arrow[side="top"] {
+			stroke: var(--in-content-box-border-color) !important;
+			margin-inline-end: calc(var(--tab-min-height) + var(--toolbar-start-end-padding) - var(--toolbar-start-end-padding) / 2) !important;
+		}
+	}
+}
+
+findbar {
+	background-color: transparent !important;
+	border: none !important;
+	padding-block: 0 !important;
+	order: -1;
+
+	@media (-moz-platform: macos) {
+		flex-direction: row-reverse;
+	}
+
+	&:where([hidden]) {
+		margin-bottom: calc(-1 * 28px) !important;
+	}
+
+	> .findbar-container {
+		margin-inline: 0 !important;
+		flex-direction: row-reverse;
+
+		> checkbox {
+			margin-inline: 0 var(--space-medium) !important;
+
+			> .checkbox-check, .findbar-container:has(.found-matches[hidden="true"]):not(:has(.findbar-find-status[status="notfound"])) & {
+				display: none;
+			}
+
+			> .checkbox-label-box > .checkbox-label {
+				padding-inline: var(--space-small);
+				border: 1px solid var(--border-color-deemphasized);
+				border-radius: var(--border-radius-xsmall);
+
+				&:hover {
+					background-color: var(--button-background-color-hover);
+				}
+
+				checkbox[checked="true"] & {
+					background-color: var(--button-background-color-primary-active);
+					color: var(--button-text-color-primary);
+				}
+			}
+		}
+
+		.findbar-textbox {
+			width: 12em !important;
+			padding: 0 var(--space-xsmall) !important;
+			background-color: transparent !important;
+			border-color: var(--border-color-deemphasized) !important;
+		}
+
+		:is(.findbar-find-next, .findbar-find-previous) {
+			padding: 0 2px !important;
+			border: 1px solid var(--border-color-deemphasized);
+		}
+
+		.findbar-find-next {
+			list-style-image: url("../assets/icons/arrow-right.svg") !important;
+			margin-left: -1px !important;
+			border-radius: 0 var(--border-radius-xsmall) var(--border-radius-xsmall) 0 !important;
+			border-left: none;
+		}
+
+		.findbar-find-previous {
+			list-style-image: url("../assets/icons/arrow-left.svg") !important;
+			border-radius: var(--border-radius-xsmall) 0 0 var(--border-radius-xsmall) !important;
+		}
+
+		> :is(.findbar-find-status, .found-matches) {
+			margin-inline: 0 var(--space-large) !important;
+		}
+	}
+
+	> .findbar-closebutton {
+		width: 42px !important;
+		padding: 0 !important;
+		margin-block: auto !important;
+		list-style-image: url("../assets/icons/done.svg") !important;
+		border: 1px solid var(--border-color-deemphasized);
+	}
+}

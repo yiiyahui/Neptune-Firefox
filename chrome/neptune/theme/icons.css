@@ -1,0 +1,421 @@
+/*---------- Icons ----------*/
+#PanelUI-menu-button {
+	list-style-image: url("../assets/icons/menu.svg") !important;
+
+	&:is([badge-status^="update-"], [badge-status="addon-alert"], [badge-status="fxa-needs-authentication"]) {
+		list-style-image: url("../assets/icons/menu-badged.svg") !important;
+	}
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		position: fixed;
+		inset-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+
+		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+			position: revert;
+		}
+
+		@media (width <= 650px) {
+			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+			}
+		}
+	}
+
+	@media -moz-pref("sidebar.verticalTabs") {
+		margin-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+	}
+}
+
+#tabs-newtab-button, #new-tab-button {
+	list-style-image: url("../assets/icons/plus.svg") !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		&:not(#customization-palette .toolbarbutton-1) {
+			position: absolute;
+			inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+
+			/* When the overflow button is enabled, it will move one button's position to the left.*/
+			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
+				inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+			}
+
+			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+			}
+
+			@media (width <= 650px) {
+				#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+					position: revert;
+				}
+			}
+		}
+	}
+}
+
+#unified-extensions-button {
+	list-style-image: url("../assets/icons/extension.svg") !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		:root:not([customizing]) & {
+			position: fixed;
+			inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+
+			/* When the overflow button is enabled, it will move one button's position to the left.*/
+			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
+				inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+			}
+
+			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+				order: -1;
+			}
+
+			@media (width <= 650px) {
+				#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+					position: revert;
+				}
+			}
+		}
+
+		:root[customizing] & {
+			display: none;
+		}
+	}
+}
+
+#nav-bar-overflow-button {
+	list-style-image: url("../assets/icons/chevron.svg") !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		position: fixed;	/*When it is enabled, it will occupy the position of the new tab button.*/
+		inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
+
+		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+			position: revert;
+			order: -1;
+		}
+
+		@media (width <= 650px) {
+			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
+				position: revert;
+			}
+		}
+	}
+}
+
+#sidebar-button {
+	list-style-image: url("../assets/icons/sidebars-right.svg") !important;
+
+	&:-moz-locale-dir(ltr):not([positionend]),
+	&:-moz-locale-dir(rtl)[positionend] {
+		list-style-image: url("../assets/icons/sidebars.svg") !important;
+	}
+
+	@media -moz-pref("sidebar.revamp") {
+		list-style-image: url("../assets/icons/sidebar-collapsed-right.svg") !important;
+
+		@media -moz-pref("sidebar.verticalTabs") {
+			&:hover {
+				list-style-image: url("../assets/icons/sidebars-right.svg") !important;
+			}
+		}
+
+		&[expanded] {
+			list-style-image: url("../assets/icons/sidebars-right.svg") !important;
+
+			&:hover {
+				list-style-image: url("../assets/icons/sidebar-collapsed-right.svg") !important;
+			}
+		}
+
+		&:-moz-locale-dir(ltr):not([positionend]),
+		&:-moz-locale-dir(rtl)[positionend] {
+			list-style-image: url("../assets/icons/sidebar-collapsed.svg") !important;
+
+			@media -moz-pref("sidebar.verticalTabs") {
+				&:hover {
+					list-style-image: url("../assets/icons/sidebars.svg") !important;
+				}
+			}
+
+			&[expanded] {
+				list-style-image: url("../assets/icons/sidebars.svg") !important;
+
+				&:hover {
+					list-style-image: url("../assets/icons/sidebar-collapsed.svg") !important;
+				}
+			}
+		}
+	}
+}
+
+#stop-reload-button[animate] .toolbarbutton-animatable-box > .toolbarbutton-animatable-image {
+	/*animation-duration: 0s !important;*/	/* Enable or disable the reload/stop button animation. */
+
+	#reload-button & {
+		background-image: url("../assets/icons/stop-to-reload.svg") !important;
+	}
+
+	#reload-button[displaystop] + #stop-button & {
+		background-image: url("../assets/icons/reload-to-stop.svg") !important;
+	}
+}
+
+#back-button, .unified-nav-back[_moz-menuactive] {
+	list-style-image: url("../assets/icons/back.svg") !important;
+}
+
+#forward-button, .unified-nav-forward[_moz-menuactive] {
+	list-style-image: url("../assets/icons/forward.svg") !important;
+}
+
+#reload-button, .downloadIconRetry .button-icon {
+	list-style-image: url("../assets/icons/reload.svg") !important;
+}
+
+#stop-button {
+	list-style-image: url("../assets/icons/stop.svg") !important;
+}
+
+#firefox-view-button {
+	list-style-image: url("../assets/icons/firefox-view.svg") !important;
+}
+
+#alltabs-button {
+	list-style-image: url("../assets/icons/tabs.svg") !important;
+}
+
+#home-button {
+	list-style-image: url("../assets/icons/home.svg") !important;
+}
+
+#logins-button {
+	list-style-image: url("../assets/icons/login.svg") !important;
+}
+
+#library-button {
+	list-style-image: url("../assets/icons/library.svg") !important;
+}
+
+#email-link-button {
+	list-style-image: url("../assets/icons/mail.svg") !important;
+}
+
+#zoom-in-button {
+	list-style-image: url("../assets/icons/zoom-in.svg") !important;
+}
+
+#zoom-out-button {
+	list-style-image: url("../assets/icons/zoom-out.svg") !important;
+}
+
+#bookmarks-menu-button {
+	list-style-image: url("../assets/icons/bookmark-hollow.svg") !important;
+}
+
+#sync-button {
+	list-style-image: url("../assets/icons/synced-tabs.svg") !important;
+}
+
+#print-button {
+	list-style-image: url("../assets/icons/print.svg") !important;
+}
+
+#new-window-button {
+	list-style-image: url("../assets/icons/window.svg") !important;
+}
+
+#save-page-button {
+	list-style-image: url("../assets/icons/save.svg") !important;
+}
+
+#open-file-button {
+	list-style-image: url("../assets/icons/open.svg") !important;
+}
+
+#history-panelmenu {
+	list-style-image: url("../assets/icons/history.svg") !important;
+}
+
+#panic-button {
+	list-style-image: url("../assets/icons/forget.svg") !important;
+}
+
+#developer-button {
+	list-style-image: url("../assets/icons/developer.svg") !important;
+}
+
+#fullscreen-button, #appMenu-fullscreen-button2 {
+	list-style-image: url("../assets/icons/fullscreen.svg") !important;
+}
+
+#appMenu-fullscreen-button2[checked] {
+	list-style-image: url("../assets/icons/fullscreen-exit.svg") !important;
+}
+
+#privatebrowsing-button {
+	list-style-image: url("../assets/icons/privateBrowsing.svg") !important;
+}
+
+#characterencoding-button {
+	list-style-image: url("../assets/icons/characterEncoding.svg") !important;
+}
+
+#cut-button {
+	list-style-image: url("../assets/icons/edit-cut.svg") !important;
+}
+
+#copy-button {
+	list-style-image: url("../assets/icons/edit-copy.svg") !important;
+}
+
+#paste-button {
+	list-style-image: url("../assets/icons/edit-paste.svg") !important;
+}
+
+#import-button {
+	list-style-image: url("../assets/icons/import.svg") !important;
+}
+
+treechildren::-moz-tree-image(title, container),
+treechildren::-moz-tree-image(title, open),
+.bookmark-item[container], .folder-icon {
+	list-style-image: url("../assets/icons/folder.svg") !important;
+} 
+
+treechildren::-moz-tree-image(container, queryFolder_toolbar_____),
+#editBMPanel_folderMenuList[selectedGuid="toolbar_____"], #editBMPanel_toolbarFolderItem,
+#bookmarks-toolbar-button, #bookmarks-toolbar-placeholder {
+	list-style-image: url("../assets/icons/bookmarks-toolbar.svg") !important;
+}
+
+treechildren::-moz-tree-image(container, queryFolder_menu________),
+#editBMPanel_folderMenuList[selectedGuid="menu________"], #editBMPanel_bmRootItem {
+	list-style-image: url("../assets/icons/bookmarksMenu.svg") !important;
+}
+
+treechildren::-moz-tree-image(title, query, tagContainer),
+treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
+	list-style-image: url("../assets/icons/tag.svg") !important;
+}
+
+#permissions-granted-icon {
+	list-style-image: url("../assets/icons/permissions.svg") !important;
+}
+
+#tracking-protection-icon-box {
+	list-style-image: url("../assets/icons/tracking-protection.svg") !important;
+
+	&[active] {
+		list-style-image: url("../assets/icons/tracking-protection-active.svg") !important;
+	}
+
+	&[hasException] {
+		list-style-image: url("../assets/icons/tracking-protection-disabled.svg") !important;
+	}
+}
+
+#identity-box[pageproxystate="valid"]:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon,
+#identity-popup[connection^=secure] .identity-popup-security-connection {
+	list-style-image: url("../assets/icons/security.svg") !important;
+}
+
+#identity-box[pageproxystate="valid"]:is(.weakCipher, .mixedDisplayContent, .mixedDisplayContentLoadedActiveBlocked, .certUserOverridden, .certErrorPage) #identity-icon,
+#identity-popup:is([ciphers=weak], [mixedcontent~=passive-loaded][isbroken], [connection=secure-cert-user-overridden], [connection=cert-error-page]) .identity-popup-security-connection {
+	list-style-image: url("../assets/icons/security-warning.svg") !important;
+}
+
+#identity-box[pageproxystate="valid"]:is(.notSecure, .mixedActiveContent, .httpsOnlyErrorPage) #identity-icon {
+	list-style-image: url("../assets/icons/security-broken.svg") !important;
+}
+
+#identity-box[pageproxystate="valid"] {
+	&.localResource #identity-icon {
+		list-style-image: url(chrome://global/skin/icons/defaultFavicon.svg) !important;
+	}
+
+	&.extensionPage #identity-icon {
+		list-style-image: url("../assets/icons/extension.svg") !important;
+	}
+
+	&.chromeUI #identity-icon {
+		list-style-image: url("../assets/icons/firefox.svg") !important;
+	}
+}
+
+#urlbar[actiontype="extension"] > .urlbar-input-container > #identity-box #identity-icon,
+#identity-popup[connection=extension] .identity-popup-security-connection {
+		list-style-image: url("../assets/icons/extension.svg") !important;
+}
+
+.close-icon:not(.findbar-closebutton),
+.permission-popup-permission-remove-button > .button-box > .button-icon {
+	height: var(--theme-menu-icon-size) !important;
+	width: var(--theme-menu-icon-size) !important;
+	padding: 0 !important;
+	list-style-image: url("../assets/icons/close-12.svg") !important;
+}
+
+.expander-up {
+	list-style-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+}
+
+.expander-down {
+	list-style-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+}
+
+#downloads-indicator-anchor, #downloads-button {
+	list-style-image: url("../assets/icons/downloads.svg") !important;
+}
+
+#downloads-indicator-start-image {
+	list-style-image: url("../assets/icons/notification-start-animation.svg") !important;
+}
+
+#downloads-indicator-finish-image {
+	list-style-image: url("../assets/icons/notification-finish-animation.svg") !important;
+}
+
+.downloadIconShow .button-icon {
+	list-style-image: url("chrome://global/skin/icons/search-glass.svg") !important;
+}
+
+#reader-mode-button > .urlbar-icon {
+	list-style-image: url("../assets/icons/reader-mode.svg") !important;
+}
+
+#picture-in-picture-button > .urlbar-icon {
+	list-style-image: url("../assets/icons/picture-in-picture-open.svg") !important;
+}
+
+#picture-in-picture-button[pipactive] > .urlbar-icon {
+	list-style-image: url("../assets/icons/picture-in-picture-closed.svg") !important;
+}
+
+#pageAction-panel-bookmark,
+#star-button {
+	list-style-image: url("../assets/icons/bookmark-hollow.svg") !important;
+
+	&[starred] {
+		list-style-image: url("../assets/icons/bookmark.svg") !important;
+	}
+}
+
+.private-browsing-indicator-with-label {
+	-moz-context-properties: fill;
+	fill: var(--toolbarbutton-icon-fill);
+	margin-inline: calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) / 2) !important;
+
+	#navigator-toolbox[tabs-hidden] #nav-bar > & {
+		margin-inline: calc(var(--toolbarbutton-inner-padding) - var(--toolbarbutton-outer-padding)) calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+	}
+
+	> .private-browsing-indicator-icon {
+		list-style-image: url("../assets/icons/indicator-private-browsing.svg") !important;
+	}
+
+	> .private-browsing-indicator-label {
+		margin-inline-end: 0 !important;
+		display: none;
+	}
+}

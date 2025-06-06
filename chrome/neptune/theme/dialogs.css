@@ -1,0 +1,105 @@
+/*---------- Dialogs ----------*/
+#window-modal-dialog {
+	--chrome-offset: 15vh !important;
+}
+
+#titleContainer {
+	margin-inline: auto !important;
+}
+
+.dialogOverlay[topmost="true"],
+#window-modal-dialog::backdrop {
+	background: none !important;
+}
+
+.onboardingContainer {
+	.screen[pos="center"] {
+		background-color: transparent !important;
+	}
+
+	.main-content {
+		border-radius: var(--border-radius-large) !important;
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+	}
+
+	:is(.primary, .secondary, .additional-cta, .submenu-button) {
+		padding-block: 2px !important;
+		border-radius: var(--border-radius-small) !important;
+	}
+}
+
+.dialogBox {
+	border-radius: var(--border-radius-large) !important;
+	box-shadow: var(--neptune-menu-shadow) !important;
+	backdrop-filter: blur(1in) !important;
+}
+
+.dialog-button-box button {
+	height: var(--button-min-height) !important;
+	min-height: var(--button-min-height) !important;
+	border-radius: var(--border-radius-small) !important;
+}
+
+.toolbarButton,
+.toolbarCenter {
+	min-height: var(--button-min-height) !important;
+}
+
+#cancel-button,
+#print-button.primary {
+	min-height: var(--button-min-height) !important;
+	padding: 0 !important;
+	border-radius: var(--border-radius-small) !important;
+}
+
+@-moz-document url("chrome://browser/content/places/places.xhtml") {
+	treecol, .tree-columnpicker-button {
+		background-color: var(--neptune-item-background) !important;
+
+		&:where(:hover) {
+			background-color: var(--neptune-item-hover-background) !important;
+		}
+
+		&:where(:hover:active) {
+			background-color: var(--neptune-item-active-background) !important;
+		}
+	}
+
+	#placesToolbar > toolbarbutton {
+		margin-inline: var(--space-small) !important;
+	}
+
+	richlistbox {
+		border: none !important;
+	}
+
+	#downloadsListBox {
+		> richlistitem[selected="true"] {
+			background-image: none !important;
+			background-color: var(--color-accent-primary-active) !important;
+			color: var(--button-text-color-primary) !important;
+			border-radius: 0 !important;
+			outline: none !important;
+		}
+
+		.downloadButton > .button-box {
+			border-radius: 50% !important;
+		}
+	}
+}
+
+@-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
+	#bottomBox,
+	#aboutDialogContainer {
+		background-color: #383838 !important;
+	}
+
+	#leftBox {
+		background-size: 12em !important;
+		margin: 0 !important;
+	}
+
+	.text-link {
+		color: var(--link-color) !important;
+	}
+}

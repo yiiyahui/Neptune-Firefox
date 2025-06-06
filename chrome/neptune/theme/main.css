@@ -1,0 +1,13 @@
+@import "../colors/light.css";
+@import "../colors/dark.css";
+@import "./global.css";
+@import "./toolbox.css";
+@import "./searchbox.css";
+@import "./urlBar.css";
+@import "./tabsBar.css";
+@import "./sidebar.css";
+@import "./buttons.css";
+@import "./popups.css";
+@import "./dialogs.css";
+@import "./icons.css";
+@import "./player.css";

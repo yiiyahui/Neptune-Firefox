@@ -1,0 +1,132 @@
+:root {
+	--in-content-page-background: var(--neptune-main-background) !important;
+	--in-content-table-background: var(--neptune-content-background) !important;
+	--in-content-border-color: var(--neptune-content-border-color) !important;
+	--in-content-box-background: var(--neptune-content-background) !important;
+	--in-content-box-info-background: var(--neptune-content-background) !important;
+	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
+	--in-content-primary-button-text-color: white !important;
+	--in-content-button-background: var(--neptune-item-background) !important;
+	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
+	--in-content-button-background-active: var(--neptune-item-active-background) !important;
+	--in-content-primary-button-background: var(--theme-primary-color) !important;
+	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
+	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
+	--in-content-focus-outline-color: var(--neptune-input-outline-color) !important;
+	--table-row-background-color: var(--neptune-main-background) !important;
+	--table-row-background-color-alternate: var(--neptune-content-background) !important;
+	--color-accent-primary: var(--theme-primary-color) !important;
+	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--button-background-color: var(--neptune-item-background) !important;
+	--button-background-color-hover: var(--neptune-item-hover-background) !important;
+	--button-background-color-active: var(--neptune-item-active-background) !important;
+	--background-color-box: var(--neptune-menu-background) !important;
+	--newtab-primary-element-text-color: #fff !important;
+	--newtab-background-color: var(--neptune-main-background) !important;
+	--newtab-background-color-secondary: var(--neptune-content-background) !important;
+	--newtab-element-hover-color: var(--neptune-item-hover-background) !important;
+	--newtab-element-active-color: var(--neptune-item-active-background) !important;
+	--newtab-border-color: var(--neptune-toolbar-border-color) !important;
+	--border-color-deemphasized: var(--neptune-toolbar-border-color) !important;
+	--fxview-border: var(--neptune-toolbar-border-color) !important;
+	--sidebar-toolbar-bg-color: var(--neptune-main-background) !important;
+	--thumbnail-hover-color: var(--theme-primary-hover-color) !important;
+	--thumbnail-selected-color: var(--theme-primary-active-color) !important;
+	--checkbox-checked-bgcolor: var(--theme-primary-color) !important;
+	--checkbox-checked-hover-bgcolor: var(--theme-primary-hover-color) !important;
+	--checkbox-checked-active-bgcolor: var(--theme-primary-active-color) !important;
+	--focus-outline-color: var(--neptune-input-outline-color) !important;
+	--brand-color-accent: var(--theme-primary-color) !important;
+	--brand-color-accent-hover: var(--theme-primary-hover-color) !important;
+	--brand-color-accent-active: var(--theme-primary-active-color) !important;
+	--newtab-primary-action-background: var(--theme-primary-color) !important;
+	--theme-arrowpanel-background: var(--neptune-menu-background) !important;
+	--theme-arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
+	--theme-body-background: var(--neptune-main-background) !important;
+	--theme-link-color: var(--theme-primary-color) !important;
+	--theme-icon-checked-color: var(--theme-primary-active-color) !important;
+	--theme-selection-background: var(--theme-primary-active-color) !important;
+	--theme-selection-background-hover: var(--neptune-item-selection-hover-background) !important;
+	--theme-text-selection-background: var(--neptune-item-selection-hover-background) !important;
+	--theme-tab-toolbar-background: var(--neptune-main-background) !important;
+	--theme-toolbar-background: var(--neptune-main-background) !important;
+	--theme-toolbar-hover: var(--neptune-item-hover-background) !important;
+	--theme-toolbar-hover-active: var(--neptune-item-active-background) !important;
+	--theme-toolbar-selected-color: var(--theme-primary-color) !important;
+	--theme-toolbar-alternate-hover: var(--neptune-item-active-background) !important;
+	--theme-focus-textinput-outline-color: var(--neptune-input-outline-color) !important;
+	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--button-min-height: 22px !important;
+	--theme-toolbar-height: var(--button-min-height) !important;
+	--theme-arrowpanel-border-radius: 8px !important;
+	--tab-line-selected-color: transparent !important;
+	--tab-line-hover-color: transparent !important;
+	--default-focusring: none !important;
+	--border-radius-small: 6px !important;
+	--border-radius-large: 10px !important;
+	--font-size-root: 12.5px !important;
+	--font-size-small: 0.96rem !important;
+	--font-size-large: 1.2rem !important;
+	--font-size-xlarge: 1.44rem !important;
+	--font-size-xxlarge: 1.76rem !important;
+	--space-xsmall: 0.32rem !important;
+}
+
+.pip-wrapper {
+	display: none;
+}
+
+::selection {
+	background-color: var(--neptune-item-selection-background) !important;
+}
+
+.controlBar {
+	height: 31px !important;
+	background-color: #00000080 !important;
+	backdrop-filter: blur(8px);
+	margin: 6px;
+	border-radius: var(--border-radius-small);
+
+	> .button:enabled:is(:hover, :hover:active) {
+		fill: #fff !important;
+	}
+}
+
+.scrubber::-moz-range-thumb {
+	height: 17px !important;
+	width: 4px !important;
+	border-radius: 2px !important;
+}
+
+.volumeControl::-moz-range-thumb {
+	height: 12px !important;
+	width: 12px !important;
+}
+
+.bufferBar,
+.volumeControl::-moz-range-track {
+	background-color: #666 !important;
+}
+
+.bufferBar::-moz-progress-bar {
+	background-color: #888 !important;
+}
+
+.volumeControl::-moz-range-progress,
+.progressBar::-moz-progress-bar {
+	background-color: #aaa !important;
+}
+
+.scrubber:hover::-moz-range-thumb,
+.volumeControl:hover::-moz-range-thumb {
+	background-color: #fff !important;
+}
+
+#eDivResult {
+	background: var(--neptune-popover-background) !important;
+	backdrop-filter: blur(16px) !important;
+	border: 1px solid var(--neptune-toolbar-border-color) !important;
+	border-radius: 12px !important;
+	box-shadow: var(--neptune-panel-shadow) !important;
+}

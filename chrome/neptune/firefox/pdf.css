@@ -1,0 +1,91 @@
+@-moz-document regexp(".*\\.pdf") {
+	:root {
+		--toolbar-horizontal-padding: 12px !important;
+		--button-hover-color: var(--neptune-item-hover-background) !important;
+		--dropdown-btn-bg-color: var(--neptune-item-background) !important;
+		--toggled-btn-bg-color: var(--neptune-item-background) !important;
+		--toggled-hover-active-btn-color: var(--neptune-item-active-background) !important;
+	}
+
+	.thumbnail,
+	.toolbarButton:not(.labeled),
+	.dropdownToolbarButton,
+	.dialogButton {
+		border-radius: var(--border-radius-small) !important;
+	}
+
+	.toolbarHorizontalGroup {
+		gap: 8px !important;
+
+		> .dropdownToolbarButton > select {
+			background: none !important;
+		}
+
+		.toolbarButtonWithContainer {
+			aspect-ratio: auto !important;
+
+			.toolbarButton.labeled {
+				min-height: var(--button-min-height) !important;
+			}
+		}
+	}
+
+	#sidebarContainer,
+	#toolbarContainer,
+	#toolbarSidebar {
+		box-shadow: none !important;
+		border: none !important;
+	}
+
+	#sidebarContent {
+		background-color: var(--sidebar-toolbar-bg-color);
+	}
+
+	.thumbnail {
+		border-width: 3px !important;
+		margin-block-end: 2em !important;
+		box-shadow: 0 0 10px var(--neptune-menu-shadow-color);
+	}
+
+	.toolbarField {
+		padding-block: 0 !important;
+		border-radius: 4px !important;
+
+		&:focus {
+			border-color: var(--neptune-input-outline-color) !important;
+		}
+	}
+
+	#secondaryToolbar,
+	.editorParamsToolbar {
+		border-radius: var(--border-radius-small) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
+	}
+
+	.editorParamsToolbarContainer .editorParamsColor {
+		width: 16px !important;
+		height: 16px !important;
+		border: none;
+	}
+
+	.pdfViewer .page {
+		margin-bottom: 30px !important;
+		border: none !important;
+		box-shadow: var(--neptune-panel-shadow) !important;
+	}
+
+	.toolbarButtonSpacer,
+	.splitToolbarButtonSeparator,
+	.verticalToolbarSeparator {
+		display: none !important;
+	}
+}
+
+@-moz-document media-document(image) {
+	@media not print {
+		:root {
+			background-color: var(--neptune-main-background) !important;
+			background-image: none !important;
+		}
+	}
+}

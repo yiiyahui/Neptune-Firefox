@@ -1,0 +1,192 @@
+@-moz-document url-prefix(about:reader) {
+	.toolbar {
+		border: none !important;
+		padding: 0 !important;
+		box-shadow: none !important;
+
+		.toolbar-button {
+			border: none !important;
+			border-radius: 50% !important;
+		}
+	}
+
+	.text-size-buttons > button,
+	.accordion-header .chevron-icon	{
+		height: 16px !important;
+		width: 16px !important;
+		background-size: 12px;
+		border-radius: 50% !important;
+	}
+
+	.accordion-header .chevron-icon {
+		background-image: url("chrome://global/skin/icons/more.svg") !important;
+		border: none !important;
+
+		#about-reader-advanced-layout[open] & {
+			fill: var(--theme-primary-active-color) !important;
+		}
+	}
+
+	.dropdown .dropdown-popup {
+		background-color: var(--neptune-popover-background) !important;
+		backdrop-filter: blur(32px);
+		filter: saturate(1.2);
+		border-color: var(--neptune-toolbar-border-color) !important;
+		border-radius: var(--border-radius-large) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
+
+		.narrate-dropdown & {
+			padding-inline: var(--space-small) !important;
+
+			> .narrate-row {
+				padding-block: var(--space-xsmall) !important;
+
+				&:last-of-type {
+					padding-block-end: 0 !important;
+				}
+
+				> .narrate-rate-icon {
+					background-size: 16px !important;
+				}
+
+				> .voiceselect {
+					--icon-size-default: 12px !important;
+
+					button:is(.select-toggle, .option) {
+						min-height: 28px !important;
+						font: menu !important;
+					}
+				}
+			}
+
+			> .narrate-control {
+				gap: var(--space-large) !important;
+
+				button {
+					min-height: 32px !important;
+					background-size: 16px 16px !important;
+					border-radius: var(--border-radius-small) !important;
+				}
+			}
+		}
+	}
+
+	#text-layout-controls {
+		width: auto !important;
+		padding: var(--space-xsmall) var(--space-small) !important;
+		font: menu !important;
+
+		> *:not(#about-reader-advanced-layout),
+		> #about-reader-advanced-layout > *:not(.accordion-header, .reset-button) {
+			padding-block: var(--space-xsmall) !important;
+		}
+
+		.reset-button {
+			font: menu !important;
+			padding-block: var(--space-xxsmall) !important;
+		}
+	}
+
+	.dropdown-selector > select {
+		background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+		font-weight: normal !important;
+	}
+
+	.text-alignment-buttons {
+		gap: var(--space-small) !important;
+
+		> label {
+			border-radius: 4px !important;
+
+			&[checked] {
+				color: #fff !important;
+			}
+		}
+	}
+
+	.container {
+		grid-template-areas: "title" "slider" !important;
+		grid-template-columns: 1fr !important;
+		gap: var(--space-xxsmall) !important;
+
+		> .icon-container > .icon {
+			height: 12px !important;
+			width: 12px !important;
+		}
+
+		> .slider-container > datalist {
+			font-size: 0.92em !important;
+		}
+	}
+
+	#color-controls {
+		width: 26em !important;
+		padding-block: 0 !important;
+
+		> button-group {
+			padding-block: 0 !important;
+
+			> button[is="named-deck-button"] {
+				border-top: none !important;
+			}
+		}
+	}
+
+	.color-scheme-buttons {
+		padding-block: var(--space-small) !important;
+
+		> label {
+			height: 36px !important;
+			margin-inline: var(--space-small) !important;
+			font: menu !important;
+
+			&:before {
+				width: 16px !important;
+				height: 16px !important;
+			}
+		}
+	}
+
+	.custom-colors-selection {
+		font: menu !important;
+
+		moz-input-color {
+			--moz-input-color-swatch-size: 16px !important;
+		}
+	}
+
+	#inputSlider[type="range"], .narrate-rate-input {
+		appearance: none;
+		background: none;
+
+		&::-moz-range-thumb {
+			background-color: var(--neptune-slider-color);
+			width: 14px;
+			height: 14px;
+			border-radius: 50%;
+			border-color: var(--neptune-toolbar-border-color);
+			box-shadow: 0 0 3px var(--box-shadow-color-darker-layer-1);
+		}
+
+		&::-moz-range-progress {
+			background-color: var(--theme-primary-color);
+			height: 4px;
+			border-radius: 2px;
+		}
+
+		&::-moz-range-track {
+			background-color: var(--neptune-slider-track-color);
+			height: 4px;
+			border-radius: 2px;
+		}
+	}
+
+	.close-button,
+	.hover-label,
+	.icon-container,
+	.dropdown .dropdown-popup h2,
+	.dropdown .dropdown-popup hr,
+	.slider-container > datalist {
+		display: none !important;
+	}
+}

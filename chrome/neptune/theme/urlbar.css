@@ -1,0 +1,451 @@
+/*---------- Urlbar ----------*/
+#urlbar-container,
+#search-container {
+	padding: 0 !important;
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		transition: width 150ms linear;
+	}
+}
+
+#searchbar,
+#urlbar-background {
+	background-color: var(--neptune-urlbar-background) !important;
+	border: none !important;
+	border-radius: var(--border-radius-small) !important;
+	box-shadow: none !important;
+	transition: background-color .2s ease;
+
+	@media -moz-pref("sidebar.verticalTabs") {
+		background-color: var(--neptune-urlbar-background-color) !important;
+	}
+}
+
+#urlbar {
+	height: var(--urlbar-height) !important;
+	width: var(--urlbar-width) !important;
+	margin: 0 !important;
+	font-size: 12.5px !important;
+	transition: opacity var(--inactive-window-transition);
+
+	&:-moz-window-inactive {
+		opacity: var(--inactive-titlebar-opacity);
+	}
+
+	> #urlbar-background {
+		animation: none !important;
+		transition: background-color 0.2s ease;
+
+		#urlbar:hover > & {
+			background-color: var(--neptune-urlbar-hover-background) !important;
+		}
+
+		#urlbar:is([focused], [open]) > & {
+			background-color: var(--neptune-urlbar-focused-background) !important;
+		}
+
+		@media -moz-pref("sidebar.verticalTabs") {
+			#urlbar:hover > & {
+				background-color: var(--neptune-urlbar-background-color) !important;
+			}
+
+			#urlbar:is([focused], [open]) > & {
+				background-color: var(--neptune-verticaltab-background) !important;
+			}
+
+			#urlbar[pageproxystate="valid"]:not([focused]) > & {
+				background: none !important;
+				border: 1px solid var(--neptune-toolbar-border-color) !important;
+			}
+		}
+	}
+
+	> .urlbar-input-container {
+		padding: 0 !important;
+		border: none !important;
+		border-radius: var(--border-radius-small) !important;
+
+		#urlbar:not([focused], [textoverflow]) > & > .urlbar-input-box > .urlbar-input {
+			text-align: center !important;
+		}
+
+		> #urlbar-search-mode-indicator {
+			margin-inline: 0 !important;
+			padding-inline: var(--urlbar-icon-padding) !important;
+			font-size: var(--urlbarView-small-font-size);
+		}
+
+		> #urlbar-searchmode-switcher {
+			margin-inline: 0 !important;
+
+			&[open] {
+				background-color: var(--neptune-item-active-background) !important;
+			}
+
+			> #searchmode-switcher-dropmarker {
+				margin-inline-start: var(--urlbar-icon-padding) !important;
+				display: none;
+			}
+		}
+
+		> #searchmode-switcher-chicklet {
+			margin-inline: 0 !important;
+			font-size: var(--urlbarView-small-font-size);
+
+			> #searchmode-switcher-close {
+				margin-inline: var(--urlbar-icon-padding) !important;
+			}
+		}
+
+		> #urlbar-label-box,
+		> #identity-box:is([pageproxystate="valid"], [pageproxystate="invalid"]) > .identity-box-button {
+			padding-inline: var(--urlbar-icon-padding) !important;
+		}
+
+		> #page-action-buttons > #urlbar-zoom-button {
+			margin-inline: 0 !important;
+			padding-block: 2px !important;
+		}
+
+		> .urlbar-go-button {
+			display: none;
+		}
+	}
+}
+
+.urlbarView {
+	color-scheme: light dark;
+	width: calc(100% + 16px) !important;
+	margin: 5px 0 0 -8px !important;
+	border: none !important;
+	border-radius: var(--border-radius-large);
+	background-color: var(--neptune-popover-background);
+	backdrop-filter: blur(4em);
+	color: MenuText;
+	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+
+	> .urlbarView-body-outer > .urlbarView-body-inner {
+		width: inherit !important;
+		margin-inline: 0 !important;
+		border: none !important;
+	}
+
+	> .search-one-offs {
+		display: none !important;
+	}
+}
+
+.urlbarView-results {
+	padding: var(--urlbarView-item-block-padding) !important;
+
+	> .urlbarView-row {
+		border: var(--button-border) !important;
+		border-radius: calc(var(--border-radius-small) - 1px) !important;
+
+		> .urlbarView-row-inner {
+			flex-wrap: nowrap !important;
+			align-items: center !important;
+			padding: 0 !important;
+
+			> .urlbarView-no-wrap {
+				flex-basis: revert !important;
+
+				> .urlbarView-type-icon {
+					display: none;
+				}
+			}
+
+			.urlbarView-title {
+				line-height: 1.28 !important;
+			}
+
+			:is(.urlbarView-overflowable, .urlbarView-url)[overflow] {
+				mask-image: none !important;
+				text-overflow: ellipsis;
+			}
+
+			> .urlbarView-action-btn {
+				padding-block: var(--urlbarView-row-gutter) !important;
+				border: none !important;
+				outline: none !important;
+				color: var(--button-text-color-primary);
+
+				&:is([data-action="addons"], [data-action="themes"], [data-action="extensions"]) > img {
+					content: url("../assets/icons/extension.svg");
+				}
+
+				&[data-action="bookmarks"] > img {
+					content: url("../assets/icons/bookmark.svg");
+				}
+
+				&[data-action="downloads"] > img {
+					content: url("../assets/icons/downloads.svg");
+				}
+
+				&[data-action="firefoxview"] > img {
+					content: url("../assets/icons/firefox-view.svg");
+				}
+
+				&[data-action="private"] > img {
+					content: url("../assets/icons/privateBrowsing.svg");
+				}
+			}
+		}
+
+		&[has-url]:not([type$=tab]) > .urlbarView-row-inner > .urlbarView-no-wrap {
+			max-width: calc(70% - 2 * (var(--urlbarView-favicon-width) + (6px + 2px))) !important;
+		}
+
+		&[has-url] > .urlbarView-row-inner > .urlbarView-url {
+			margin-inline: revert !important;
+			line-height: 1.333 !important;
+		}
+
+		&[has-url]:not([type$=tab], [sponsored], [restyled-search]) .urlbarView-title-separator {
+			display: revert !important;
+		}
+
+		&[row-selectable]:not([selected]):hover {
+			color: var(--urlbarView-highlight-color);
+
+			.urlbarView-url {
+				color: inherit !important;
+			}
+		}
+
+		&:not([type=tip], [type=dynamic]) {
+			:root:not([uidensity=compact]) & {
+				min-height: var(--button-min-height) !important;
+			}
+		}
+
+		&[type=tip] {
+			padding-block: var(--urlbarView-item-block-padding) !important;
+
+			> .urlbarView-row-inner {
+				margin-inline-end: 0 !important;
+			}
+
+			> .urlbarView-button:not(:empty):not(.urlbarView-button-menu) {
+				background-color: var(--color-accent-primary) !important;
+				color: var(--button-text-color-primary) !important;
+				padding-block: var(--space-xsmall) !important;
+				outline: none !important;
+				border-radius: var(--border-radius-small) !important;
+			}
+		}
+
+		&[rich-suggestion][type=search] {
+			:root:not([uidensity=compact]) & {
+				min-height: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter) + var(--toolbarbutton-inner-padding)) !important;
+			}
+		}
+
+		.urlbarView-favicon {
+			margin-inline-end: calc(var(--urlbarView-icon-margin-end) - var(--urlbarView-favicon-margin-start) - 1px) !important;
+
+			.urlbarView-row[type="restrict_keyword_bookmarks"] & {
+				content: url("../assets/icons/bookmark.svg");
+			}
+
+			.urlbarView-row[type="restrict_keyword_history"] & {
+				content: url("../assets/icons/history.svg");
+			}
+		}
+
+		&[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
+			width: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
+			height: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
+		}
+
+		&[dynamicType=onboardTabToSearch] > .urlbarView-row-inner {
+			min-height: fit-content !important;
+
+			> .urlbarView-no-wrap > .urlbarView-favicon {
+				height: var(--size-item-small) !important;
+				min-width: var(--size-item-small) !important;
+
+				.urlbarView-row:hover & {
+					color: var(--urlbarView-highlight-color) !important;
+				}
+			}
+		}
+
+		&[has-action]:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
+			padding: 0 var(--space-small) !important;
+			border: none !important;
+			background-image: none !important;
+			background-color: var(--in-content-button-background) !important;
+
+			&.urlbarView-userContext {
+				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
+			}
+
+			.urlbarView-row:is(:hover, [selected]) & {
+				background-color: transparent !important;
+				color: var(--button-text-color-primary) !important;
+			}
+		}
+
+		> .urlbarView-button:not(.urlbarView-row[type=tip] > .urlbarView-button) {
+			background-color: transparent !important;
+			min-width: var(--size-item-small) !important;
+			min-height: var(--size-item-small) !important;
+
+			.urlbarView-row:is([row-selectable]:hover, [selected]) > &:not(:hover, [open]) {
+				color: var(--color-blue-05) !important;
+			}
+
+			&:is(:hover, [open]) {
+				color: revert !important;
+			}
+		}
+	}
+
+	[label]::before {
+		color: MenuText !important;
+	}
+
+	.urlbarView-title-separator::before {
+		content: "\2013" !important;
+	}
+
+	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {
+		padding: 0 !important;
+	}
+}
+
+.search-one-offs {
+	padding-inline: var(--urlbarView-item-block-padding) !important;
+
+	> .search-panel-header {
+		min-height: var(--button-min-height) !important;
+
+		> .search-panel-one-offs-header-label {
+			padding-inline-end: var(--space-xsmall) !important;
+		}
+	}
+
+	.searchbar-engine-one-off-item {
+		min-width: var(--button-min-height) !important;
+		height: var(--button-min-height) !important;
+		margin-inline: var(--urlbar-icon-padding) !important;
+
+		&:hover {
+			background-color: var(--neptune-item-hover-background) !important;
+		}
+	}
+}
+
+@media not -moz-pref("sidebar.verticalTabs") {
+	#tracking-protection-icon-container {
+		margin-inline-start: calc(-1 * var(--theme-menu-icon-size) - 2 * var(--urlbar-icon-padding));
+		visibility: collapse;
+		transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
+
+		&:is(#urlbar:is(:hover, [open]) &, [open]) {
+			margin-inline-start: 0;
+			visibility: visible;
+		}
+	}
+
+	.urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
+		margin-inline-end: calc(-1 * var(--size-item-small) - 2 * var(--urlbar-icon-padding));
+		visibility: collapse;
+		opacity: 0;
+		transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
+
+		&:is(#urlbar:is(:hover, [open]) &, [open]) {
+			margin-inline-end: 0;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+
+#identity-box {
+	margin: 0 !important;
+	fill-opacity: 0.6 !important;
+
+	&[pageproxystate="valid"] > .identity-box-button {
+		background: none !important;
+
+		&:hover:not([open]) {
+			fill-opacity: 0.8;
+		}
+
+		&:is(:hover:active, [open]) {
+			fill-opacity: 1;
+		}
+	}
+
+	> #notification-popup-box {
+		background: none !important;
+		height: auto !important;
+		fill-opacity: 0.6 !important;
+
+		> .notification-anchor-icon {
+			height: calc(var(--urlbar-min-height) - 2 * var(--urlbar-icon-padding));
+		}
+
+		&:hover {
+			fill-opacity: 0.8 !important;
+		}
+
+		&:is(:hover:active, [open]) {
+			fill-opacity: 1 !important;
+		}
+	}
+
+	> :is(#identity-permission-box, #notification-popup-box) {
+		margin-inline-start: calc(-1 * var(--theme-menu-icon-size) - 2 * var(--urlbar-icon-padding));
+		visibility: collapse;
+		opacity: 0;
+		transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
+
+		&:is(#identity-box:hover &, [open]) {
+			margin-inline-start: 0;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	> #identity-permission-box > #blocked-permissions-container > .blocked-permission-icon {
+		margin-inline-start: calc(2 * var(--urlbar-icon-padding)) !important;
+	}
+
+	> #identity-icon-box > #identity-icon-label {
+		display: none;
+	}
+}
+
+.urlbar-page-action,
+.urlbar-revert-button,
+.urlbar-go-button,
+.search-go-button {
+	background: none !important;
+	height: auto !important;
+	color: var(--neptune-button-field-color) !important;
+
+	&:not([disabled]):hover {
+		color: var(--neptune-button-field-hover-color) !important;
+	}
+
+	&:not([disabled]):is(:hover:active, [open]) {
+		color: revert !important;
+	}
+}
+
+.sharing-icon,
+#identity-icon,
+#permissions-granted-icon,
+#tracking-protection-icon,
+#tracking-protection-icon-box,
+#blocked-permissions-container > .blocked-permission-icon,
+.urlbarView-action-btn > img,
+#searchmode-switcher-icon,
+#searchmode-switcher-popup-search-settings-icon,
+.urlbar-input-container [id$="close"] {
+	width: var(--theme-menu-icon-size) !important;
+	height: var(--theme-menu-icon-size) !important;
+}

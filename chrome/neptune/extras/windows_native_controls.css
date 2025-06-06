@@ -1,0 +1,93 @@
+/* Windows native title buttons */
+@media (-moz-platform: windows) {
+	#navigator-toolbox #nav-bar {
+		padding-inline-start: calc(var(--toolbar-start-end-padding) / 2) !important;
+	}
+
+	.titlebar-buttonbox-container .titlebar-button {
+		margin: 4px 6px !important;
+		padding: 4px !important;
+		border-radius: var(--border-radius-xsmall) !important;
+
+		&.titlebar-close {
+			list-style-image: url("../assets/windows_controls/close.svg") !important;
+		}
+
+		&.titlebar-min {
+			list-style-image: url("../assets/windows_controls/minimize.svg") !important;
+		}
+
+		&.titlebar-max {
+			list-style-image: url("../assets/windows_controls/maximize.svg") !important;
+		}
+
+		&.titlebar-restore {
+			list-style-image: url("../assets/windows_controls/restore.svg") !important;
+		}
+	}
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		#navigator-toolbox #TabsToolbar {
+			:root:not([inFullscreen]) & {
+				padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
+
+				#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
+					padding-inline-end: calc(var(--toolbar-start-end-padding) / 2 + var(--toolbarbutton-outer-padding) + 96px) !important;
+				}
+
+				#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) &:not(:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) &) {
+					:root:not([customizing]) & {
+						padding-inline-end: calc(4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
+					}
+				}
+			}
+
+			> .titlebar-buttonbox-container  {
+				position: absolute;
+				inset-inline-end: 0;
+
+				:root[inFullscreen] & {
+					display: none;
+				}
+			}
+		}
+
+		#PanelUI-menu-button {
+			:root:not([inFullscreen]) & {
+				inset-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+			}
+		}
+
+		#tabs-newtab-button, #new-tab-button {
+			&:not(#customization-palette .toolbarbutton-1) {
+				:root:not([inFullscreen]) & {
+					inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+
+					#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
+						inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+					}
+				}
+			}
+		}
+
+		#unified-extensions-button {
+			:root:not([customizing], [inFullscreen]) & {
+				inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+
+				#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
+					inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+				}
+			}
+		}
+
+		#nav-bar-overflow-button {
+			:root:not([inFullscreen]) & {
+				inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+			}
+		}
+	}
+
+	#customization-container #customization-panelWrapper > .panel-arrowbox > .panel-arrow[side="top"] {
+		margin-inline-end: calc(var(--tab-min-height) + var(--toolbar-start-end-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
+	}
+}

@@ -1,0 +1,50 @@
+/*---------- Search box ----------*/
+search-textbox {
+	appearance: none !important;
+	padding-block: 0 !important;
+	background-color: var(--neptune-input-bgcolor) !important;
+	border-radius: var(--border-radius-xsmall);
+}
+
+#urlbar-background,
+#searchbar,
+.findbar-textbox,
+search-textbox,
+input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox),
+textarea {
+	outline: 20px solid transparent !important;
+}
+
+#urlbar[open] > #urlbar-background,
+#searchbar:focus-within,
+.findbar-textbox:focus,
+search-textbox[focused],
+input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox):focus-visible,
+textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
+	outline: 4px solid var(--neptune-input-outline-color) !important;
+	outline-offset: var(--toolbarbutton-outline-offset);
+	transition: all 250ms cubic-bezier(0.33, 0, 0.67, 1);
+}
+
+select:where(:not([size], [multiple])),
+input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .findbar-textbox)),
+textarea:not(#select-translations-panel-text-area) {
+	min-height: var(--button-min-height) !important;
+	border: none !important;
+	border-radius: var(--border-radius-xsmall) !important;
+	padding-block: 0 !important;
+	font: menu !important;
+}
+
+.textbox-search-icon,
+.textbox-search-sign,
+.textbox-search-clear {
+	width: var(--theme-menu-icon-size) !important;
+	margin-inline: var(--space-xsmall) !important;
+	transform: scaleX(-1);
+}
+
+*::selection {
+	background-color: var(--neptune-item-selection-background) !important;
+	color: var(--lwt-text-color) !important;
+}
