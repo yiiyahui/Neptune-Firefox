@@ -119,8 +119,8 @@
 	margin: 5px 0 0 -8px !important;
 	border: none !important;
 	border-radius: var(--border-radius-large);
-	background-color: var(--neptune-popover-background);
-	backdrop-filter: blur(4em);
+	background-color: var(--neptune-secondary-background);
+	backdrop-filter: saturate(1.5) blur(3em);
 	color: MenuText;
 	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
@@ -130,7 +130,9 @@
 		border: none !important;
 	}
 
-	> .search-one-offs {
+	> .search-one-offs:not([hidden]) {
+		width: calc(100% - 2 * (var(--urlbarView-item-block-padding) + var(--urlbarView-favicon-margin-start) + var(--border-width))) !important;
+		margin-inline: auto;
 		display: none !important;
 	}
 }
@@ -157,6 +159,10 @@
 
 			.urlbarView-title {
 				line-height: 1.28 !important;
+
+				&:not(:empty) ~ .urlbarView-action:not(.urlbarView-row[has-url] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action) {
+					margin-inline-end: var(--urlbarView-favicon-margin-start);
+				}
 			}
 
 			:is(.urlbarView-overflowable, .urlbarView-url)[overflow] {
@@ -197,8 +203,12 @@
 		}
 
 		&[has-url] > .urlbarView-row-inner > .urlbarView-url {
-			margin-inline: revert !important;
+			margin-inline: unset !important;
 			line-height: 1.333 !important;
+
+			&[overflow] {
+				margin-inline-end: var(--urlbarView-item-inline-padding) !important;
+			}
 		}
 
 		&[has-url]:not([type$=tab], [sponsored], [restyled-search]) .urlbarView-title-separator {
@@ -253,9 +263,15 @@
 			}
 		}
 
-		&[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
-			width: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
-			height: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
+		&[rich-suggestion] > .urlbarView-row-inner {
+			> .urlbarView-favicon {
+				width: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
+				height: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter)) !important;
+			}
+
+			> .urlbarView-row-body > .urlbarView-row-body-top > .urlbarView-row-body-top-no-wrap {
+				width: 100%;
+			}
 		}
 
 		&[dynamicType=onboardTabToSearch] > .urlbarView-row-inner {
@@ -291,6 +307,7 @@
 			background-color: transparent !important;
 			min-width: var(--size-item-small) !important;
 			min-height: var(--size-item-small) !important;
+			margin-inline: var(--urlbarView-icon-margin-start) !important;
 
 			.urlbarView-row:is([row-selectable]:hover, [selected]) > &:not(:hover, [open]) {
 				color: var(--color-blue-05) !important;
@@ -300,10 +317,14 @@
 				color: revert !important;
 			}
 		}
-	}
 
-	[label]::before {
-		color: MenuText !important;
+		&[label]::before {
+			color: MenuText !important;
+			width: calc(100% - 2 * var(--urlbarView-icon-margin-start));
+			margin-inline-start: var(--urlbarView-icon-margin-start) !important;
+			padding-block-start: var(--urlbarView-item-block-padding);
+			border-top: var(--border-width) solid var(--in-content-box-border-color);
+		}
 	}
 
 	.urlbarView-title-separator::before {
@@ -316,20 +337,29 @@
 }
 
 .search-one-offs {
-	padding-inline: var(--urlbarView-item-block-padding) !important;
-
 	> .search-panel-header {
 		min-height: var(--button-min-height) !important;
 
 		> .search-panel-one-offs-header-label {
-			padding-inline-end: var(--space-xsmall) !important;
+			padding-inline: 0 var(--urlbar-icon-padding) !important;
 		}
 	}
 
 	.searchbar-engine-one-off-item {
 		min-width: var(--button-min-height) !important;
 		height: var(--button-min-height) !important;
-		margin-inline: var(--urlbar-icon-padding) !important;
+
+		#urlbar & {
+			margin-inline: var(--urlbar-icon-padding) !important;
+
+			&:first-child {
+				margin-inline-start: 0 !important;
+			}
+
+			&:last-child {
+				margin-inline-end: 0 !important;
+			}
+		}
 
 		&:hover {
 			background-color: var(--neptune-item-hover-background) !important;
@@ -410,10 +440,7 @@
 		}
 	}
 
-	> #identity-permission-box > #blocked-permissions-container > .blocked-permission-icon {
-		margin-inline-start: calc(2 * var(--urlbar-icon-padding)) !important;
-	}
-
+	> #identity-permission-box > #blocked-permissions-container,
 	> #identity-icon-box > #identity-icon-label {
 		display: none;
 	}

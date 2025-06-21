@@ -1,14 +1,14 @@
 /*---------- Popups ----------*/
 menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
-	--panel-separator-color: var(--neptune-popover-separator-color) !important;
+	--panel-separator-color: var(--neptune-separator-color) !important;
 	--menu-arrow-size: var(--theme-menu-icon-size) !important;
 
 	@media (-moz-platform: macos) or (-moz-platform: windows) {
 		appearance: menupopup !important;
 		--panel-background: Menu !important;
 		--panel-border-color: transparent !important;
-		--panel-shadow-margin: 0 !important;
+		--panel-shadow-margin: 0px !important;
 	}
 
 	@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
@@ -65,10 +65,7 @@ panel {
 	&[type="autocomplete-richlistbox"] {
 		--panel-background: var(--arrowpanel-background) !important;
 
-		> .autocomplete-richlistbox {
-			background-color: var(--arrowpanel-background) !important;
-
-			> .autocomplete-richlistitem {
+		> .autocomplete-richlistbox > .autocomplete-richlistitem {
 				&:not([disabled="true"]):not([selected]):hover {
 					background-color: var(--color-accent-primary-hover) !important;
 					color: var(--button-text-color-primary) !important;
@@ -229,7 +226,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 .permission-popup-permission-icon,
 .downloadButton > .button-box > .button-icon,
 .menu-icon:not(:is(#context-navigation, .bookmark-item) .menu-icon),
-.pointerlockfswarning::before,
 :is(#protections-popup-mainView, .widget-overflow-list, .PanelUI-subView) .subviewbutton-nav::after {
 	width: var(--theme-menu-icon-size) !important;
 	height: var(--theme-menu-icon-size) !important;

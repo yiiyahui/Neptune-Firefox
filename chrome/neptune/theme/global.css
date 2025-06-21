@@ -9,7 +9,8 @@
 	--space-xsmall: 0.25rem !important;
 	--urlbar-min-height: 28px !important;
 	--urlbarView-small-font-size: 0.84em !important;
-	--urlbarView-labeled-row-label-top: calc(-1.2em - 6px) !important;
+	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) + var(--border-width)) !important;
+	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - 2 * var(--border-width))) !important;
 	--tab-min-height: var(--urlbar-min-height) !important;
 	--tabstrip-min-height: var(--tab-min-height) !important;
 	--tab-group-label-height: var(--tab-min-height) !important;
@@ -34,7 +35,7 @@
 	--default-focusring: none !important;
 	--tabpanel-background-color: transparent !important;
 	--in-content-clip-path: inset(0 round 0.01px 0 0);
-	--in-content-page-background: var(--neptune-popover-background) !important;
+	--in-content-page-background: var(--neptune-secondary-background) !important;
 	--in-content-box-background: var(--neptune-input-bgcolor) !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 	--in-content-primary-button-text-color: white !important;
@@ -79,7 +80,6 @@
 	--focus-outline-color: var(--theme-primary-color) !important;
 	--arrowpanel-shadow-margin: 22px !important;
 	--arrowpanel-color: FieldText !important;
-	--arrowpanel-background: var(--neptune-menu-background) !important;
 	--organizer-toolbar-background: var(--neptune-content-background) !important;
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
 	--organizer-selected-background: var(--neptune-item-active-background) !important;
@@ -92,7 +92,7 @@
 /*---------- Hidden ----------*/
 tooltip,
 .control-item::after,
-menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="Background"]):not(.menuitem-iconic),
+menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"]):not(.menuitem-iconic),
 #toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="download"]),
 #scrollbutton-up ~ spacer, .titlebar-spacer {
 	display: none !important;

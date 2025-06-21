@@ -28,12 +28,11 @@
 	}
 
 	.dropdown .dropdown-popup {
-		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(32px);
-		filter: saturate(1.2);
+		background-color: var(--newtab-background-color-secondary) !important;
+		backdrop-filter: saturate(1.5) blur(3em);
 		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: var(--border-radius-large) !important;
-		box-shadow: var(--neptune-menu-shadow) !important;
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
 		.narrate-dropdown & {
 			padding-inline: var(--space-small) !important;

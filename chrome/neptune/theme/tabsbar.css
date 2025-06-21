@@ -130,6 +130,10 @@
 				&:not(#tabbrowser-tabs[orient="vertical"][expanded][movingtab] .tab-group-label-container:active > &) {
 					outline: none !important;
 				}
+
+				#tabbrowser-tabs[movingtab] &:active {
+					backdrop-filter: blur(2em);
+				}
 			}
 
 			#tabbrowser-tabs[orient="horizontal"] & {
@@ -193,7 +197,6 @@
 		outline: none !important;
 		border-radius: var(--border-radius-small) !important;
 		background-color: transparent !important;
-		backdrop-filter: blur(2em);
 		box-shadow: none !important;
 		transition: background-color .2s ease;
 
@@ -210,6 +213,10 @@
 
 			#tabbrowser-tabs[movingtab-createGroup] & {
 				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color-invert) 25%, transparent)) !important;
+			}
+
+			#tabbrowser-tabs[movingtab] tab:active > .tab-stack > & {
+				backdrop-filter: blur(1em);
 			}
 		}
 

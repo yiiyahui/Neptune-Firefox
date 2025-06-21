@@ -56,7 +56,7 @@ toolbar .toolbaritem-combined-buttons {
 
 screenshots-buttons {
 	top: 0 !important;
-	background-color: var(--neptune-popover-background) !important;
+	background-color: var(--toolbox-bgcolor, var(--in-content-page-background)) !important;
 	padding: var(--space-medium) !important;
 	border-radius: 0 0 var(--arrowpanel-border-radius) var(--arrowpanel-border-radius) !important;
 }

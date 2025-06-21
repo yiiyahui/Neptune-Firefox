@@ -8,7 +8,6 @@
 }
 
 #navigator-toolbox {
-	background-color: var(--neptune-toolbar-background) !important;
 	border: none !important;
 
 	@media not -moz-pref("sidebar.verticalTabs") {
@@ -267,6 +266,7 @@
 		--panel-arrow-offset: 0 !important;
 
 		> .panel-arrowcontent {
+			background-color: var(--toolbox-bgcolor) !important;
 			border-color: var(--in-content-box-border-color) !important;
 			border-radius: var(--arrowpanel-border-radius) !important;
 			box-shadow: var(--neptune-menu-shadow) !important;
@@ -274,6 +274,7 @@
 
 		> .panel-arrowbox > .panel-arrow[side="top"] {
 			stroke: var(--in-content-box-border-color) !important;
+			fill: var(--toolbox-bgcolor) !important;
 			margin-inline-end: calc(var(--tab-min-height) + var(--toolbar-start-end-padding) - var(--toolbar-start-end-padding) / 2) !important;
 		}
 	}

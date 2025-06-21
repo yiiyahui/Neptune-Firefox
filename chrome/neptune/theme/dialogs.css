@@ -31,7 +31,7 @@
 .dialogBox {
 	border-radius: var(--border-radius-large) !important;
 	box-shadow: var(--neptune-menu-shadow) !important;
-	backdrop-filter: blur(1in) !important;
+	backdrop-filter: saturate(1.5) blur(1in);
 }
 
 .dialog-button-box button {

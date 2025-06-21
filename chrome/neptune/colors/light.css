@@ -27,13 +27,15 @@
 
 		/* Popups */
 		--neptune-menu-background: #ececec;
-		--neptune-popover-background: #f8f8f8a5;
-		--neptune-popover-separator-color: color-mix(in srgb, currentColor 12%, transparent);
+		--neptune-glass-background: #ffffff3f;
+		--neptune-secondary-background: #f8f8f8a5;
+		--neptune-separator-color: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-small-shadow: 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
 		--neptune-menu-shadow: 0 1px 8px #00000019, 0 5px 15px #00000016, 0 8px 20px #00000011, 0 3px 22px #00000016;
 		--neptune-menu-shadow-color: #00000026;
 		--neptune-panel-shadow: 0 1px 8px #00000019, 0 5px 15px #00000016, 0 8px 20px #00000009;
 		--neptune-panel-shadow-color: #00000016;
+		--neptune-glass-shadow: inset 1px 1px 1px #ffffff80, inset -1px -1px 1px 0.5px #ffffff80;
 
 		/* Urlbar */
 		--neptune-urlbar-background: color-mix(in srgb, currentColor 10%, transparent);

@@ -37,25 +37,22 @@
 
 	.search-wrapper input,
 	.search-handoff-button {
-		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(32px);
-		filter: saturate(1.2);
 		background-size: 24px !important;
+		backdrop-filter: saturate(1.5) blur(2em);
 		border: none !important;
 		box-shadow: var(--box-shadow-level-3) !important;
 		border-radius: var(--border-radius-large) !important;
 	}
 
 	.contentSearchSuggestionTable {
-		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(32px);
+		background-color: var(--neptune-secondary-background) !important;
+		backdrop-filter: saturate(1.5) blur(2em);
 		border-radius: var(--border-radius-large) !important;
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
 		.contentSearchHeader, .contentSearchSettingsButton {
-			background-color: var(--neptune-popover-background) !important;
-			backdrop-filter: blur(8px);
-			filter: saturate(1.2);
+			background-color: var(--neptune-secondary-background) !important;
+			backdrop-filter: saturate(1.5) blur(2em);
 			border-color: transparent !important;
 		}
 
@@ -133,10 +130,6 @@
 		width: calc(3 * var(--size-item-large)) !important;
 		margin-block-end: var(--space-small) !important;
 
-		.top-site-icon {
-			background-color: transparent !important;
-		}
-
 		.top-site-inner > a {
 			padding: 0 !important;
 		}
@@ -146,14 +139,14 @@
 			height: var(--size-item-small) !important;
 			background-size: 10px !important;
 			border-radius: 50% !important;
+			inset-block-start: -10px !important;
 			inset-inline-end: 4px !important;
-			top: -10px !important;
 		}
 
 		.tile {
 			height: calc(2 * var(--size-item-large)) !important;
 			width: calc(2 * var(--size-item-large)) !important;
-			background-color: var(--neptune-content-background) !important;
+			backdrop-filter: saturate(1.5) blur(2em);
 			outline: none !important;
 			border-radius: var(--border-radius-large) !important;
 			box-shadow: var(--box-shadow-level-3) !important;
@@ -200,38 +193,52 @@
 	}
 
 	.context-menu {
-		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(32px);
-		filter: saturate(1.2);
+		backdrop-filter: saturate(1.5) blur(2em);
 		border-radius: var(--border-radius-medium) !important;
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 		font: menu !important;
 
-		> ul > li > a,
-		> ul > li > button {
-			&:is(:focus, :hover) {
-				background: var(--theme-primary-hover-color) !important;
-				color: #fff !important;
+		> ul > li {
+		  width: calc(100% - 10px) !important;
+		  margin-inline: 5px !important;
+
+			&.separator {
+				border-color: var(--neptune-separator-color) !important;
+				width: auto !important;
+				margin-inline: 15px !important;
 			}
 
-			&:active {
-				background: var(--theme-primary-active-color) !important;
+			> button {
+				padding-inline: 10px !important;
 			}
-		}
 
-		> ul > li.separator {
-			border-color: var(--neptune-toolbar-border-color) !important;
+			> :is(a,button) {
+				&:is(:focus, :hover) {
+					background-color: var(--theme-primary-hover-color) !important;
+					color: #fff !important;
+					border-radius: calc(var(--border-radius-medium) / 2) !important;
+				}
+
+				&:active {
+					background-color: var(--theme-primary-active-color) !important;
+				}
+			}
 		}
 
 		.top-site-outer & {
+			margin-inline-start: 0 !important;
 			inset-block-start: 0 !important;
-			inset-inline-start: calc(100% - var(--space-small)) !important;
 		}
 	}
 
 	.card-outer:has(.card-preview-image.loaded),
 	.ds-card-grid .sections-card-ui:not(.placeholder) {
 		box-shadow: var(--box-shadow-level-4) !important;
+	}
+
+	.ds-card-grid .sections-card-ui .meta,
+	.compact-cards .card-outer .card-details:not(:has(.card-text.no-host-name)) {
+		backdrop-filter: saturate(1.5) blur(2em);
 	}
 
 	.ds-card .context-menu-button {
@@ -243,20 +250,19 @@
 	}
 
 	.modal {
+		backdrop-filter: saturate(1.5) blur(2em);
 		border-radius: var(--border-radius-large) !important;
 		box-shadow: var(--neptune-menu-shadow) !important;
 		font-size: var(--font-size-root) !important;
 
 		.edit-topsites-wrapper & {
-			width: 36em !important;
+			width: 40em !important;
 			top: 25vh !important;
-			border-radius: var(--border-radius-large) !important;
-			box-shadow: var(--neptune-menu-shadow) !important;
 
 			> .topsite-form .form-wrapper input[type=text] {
-				height: 22px !important;
+				height: var(--button-min-height) !important;
 				border-radius: var(--border-radius-small) !important;
-				font-size: 12.5px !important;
+				font-size: var(--font-size-root) !important;
 			}
 
 			> .topsite-form .form-wrapper .error-tooltip {
@@ -311,9 +317,7 @@
 		padding: 0 !important;
 		border-radius: var(--border-radius-large) !important;
 		transform: translateY(100%) !important;
-		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(32px);
-		filter: saturate(1.2);
+		backdrop-filter: saturate(1.5) blur(3em);
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 		overflow-x: hidden !important;
 		transition: none !important;
@@ -382,11 +386,11 @@
 	}
 
 	.wallpaper-list.category {
-		background-color: var(--neptune-popover-background) !important;
-		backdrop-filter: blur(32px);
+		backdrop-filter: saturate(1.5) blur(2em);
 		inset: 0 !important;
 		margin: 0 !important;
-		height: 100% !important;
+		height: auto !important;
+		overflow-y: auto;
 		width: 100% !important;
 		transition: none !important;
 
@@ -411,7 +415,7 @@
 		box-shadow: none !important;
 	}
 
-	.wallpaper-input.theme-custom-wallpaper, .theme-custom-color-picker {
+	.wallpaper-input.theme-custom-wallpaper {
 		background-color: var(--button-background-color) !important;
 		border: none !important;
 
@@ -421,11 +425,8 @@
 	}
 
 	.theme-custom-color-picker {
+		background: linear-gradient(90deg, #f4e6f1cc 33%, #f3a0d7cc 66%, #b5e9f7cc 100%);
 		outline: none !important;
-
-		&::after {
-			background-image: url("chrome://global/skin/icons/plus-20.svg") !important;
-		}
 
 		::-moz-color-swatch, label {
 			display: none !important;
@@ -460,7 +461,7 @@
 
 	.weatherInfoLink {
 		background-color: var(--newtab-weather-background-color) !important;
-		backdrop-filter: blur(12px);
+		backdrop-filter: saturate(1.5) blur(1em);
 		border-radius: var(--border-radius-medium) !important;
 	}
 
@@ -484,6 +485,10 @@
 
 	.top-site-button[href*="instagram.com"] .top-site-icon {
 		background-image: url("../assets/cards/instagram.svg") !important;
+	}
+
+	.top-site-button:is([href*="chatgpt.com"], [href*="openai.com"]) .top-site-icon {
+		background-image: url("../assets/cards/openai.svg") !important;
 	}
 
 	.top-site-button[href*="reddit.com"] .top-site-icon {

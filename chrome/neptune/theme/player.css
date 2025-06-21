@@ -14,15 +14,14 @@
 
 	#controls-bottom-gradient {
 		background: #20202080 !important;
-		backdrop-filter: blur(2em);
+		backdrop-filter: saturate(1.5) blur(2em);
 		height: calc(var(--player-control-item-height) + var(--controls-bottom-upper-height) + var(--scrubber-vertical-margin)) !important;
 		width: min((50% + var(--player-control-item-half-width)), 30em) !important;
 		border-radius: var(--border-radius-small);
 		inset: auto calc((100% + 2 * var(--resize-margin) - min((50% + var(--player-control-item-half-width)), 30em)) / 2) calc(15vmin + var(--resize-margin) + 1px) !important;
 
-		&:hover,
 		#controls:is([keying], [showing], body:not(:fullscreen) #controls:hover) & {
-			opacity: 0.95 !important;
+			opacity: unset !important;
 		}
 
 		@media (height <= 200px), (width <= 300px) {
@@ -71,10 +70,16 @@
 	}
 
 	#unpip, #close {
+		background-color: #ffffffa5 !important;
+		backdrop-filter: saturate(1.5) blur(8px);
 		height: 16px !important;
 		width: 16px !important;
 		left: 10px !important;
-		border-radius: 50% !important;
+		border-radius: var(--border-radius-large) !important;
+
+		&:is(:hover, :focus-visible) {
+			background-color: #ffffffcc !important
+		}
 	}
 
 	#unpip {
@@ -123,7 +128,7 @@
 
 		> .box {
 			background-color: #20202080 !important;
-			backdrop-filter: blur(2em);
+			backdrop-filter: saturate(1.5) blur(2em);
 			padding: 0 !important;
 			font-size: 0.85em !important;
 
@@ -203,12 +208,12 @@
 }
 
 .pointerlockfswarning {
-	background-color: var(--neptune-popover-background) !important;
-	backdrop-filter: blur(1em);
-	color: var(--toolbox-textcolor) !important;
+	background-color: var(--neptune-glass-background) !important;
+	backdrop-filter: saturate(1.2) blur(1em);
+	color: var(--button-text-color-primary) !important;
 	padding: var(--space-medium) !important;
 	border: none !important;
-	box-shadow: none !important;
+	box-shadow: var(--neptune-glass-shadow) !important;
 
 	> #fullscreen-exit-button {
 		appearance: none !important;
@@ -220,6 +225,11 @@
 	> .pointerlockfswarning-domain-text {
 		font-size: 1.25em !important;
 		margin-inline: var(--space-small) !important;
+	}
+
+	&:is([data-identity="verifiedDomain"], [data-identity="unknownIdentity"])::before {
+		width: var(--size-item-small) !important;
+		height: var(--size-item-small) !important;
 	}
 
 	&[data-identity="verifiedDomain"]::before {

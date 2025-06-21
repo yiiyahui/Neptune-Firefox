@@ -33,17 +33,16 @@
 	}
 
 	menupopup, panel {
+		--panel-separator-color: var(--neptune-separator-color) !important;
+
 		@media (-moz-platform: macos) or (-moz-platform: windows) {
 			appearance: menupopup !important;
 			--panel-background: Menu !important;
-			--panel-shadow-margin: 0 !important;
-			--panel-separator-color: var(--neptune-popover-separator-color) !important;
 		}
 
 		@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
 			--panel-border-color: var(--neptune-toolbar-border-color) !important;
 			--panel-border-radius: var(--border-radius-small) !important;
-			--panel-separator-color: var(--neptune-popover-separator-color) !important;
 			--panel-shadow-margin: 22px !important;
 		}
 
@@ -168,6 +167,10 @@
 		> .category-icon {
 			width: 14px !important;
 			height: 14px !important;
+		}
+
+		&[badge-count]::after {
+			min-width: 8px !important;
 		}
 	}
 

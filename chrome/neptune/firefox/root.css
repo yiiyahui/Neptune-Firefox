@@ -24,7 +24,8 @@
 	--background-color-box: var(--neptune-menu-background) !important;
 	--newtab-primary-element-text-color: #fff !important;
 	--newtab-background-color: var(--neptune-main-background) !important;
-	--newtab-background-color-secondary: var(--neptune-content-background) !important;
+	--newtab-background-color-secondary: var(--neptune-secondary-background) !important;
+	--newtab-background-card: var(--neptune-secondary-background) !important;
 	--newtab-element-hover-color: var(--neptune-item-hover-background) !important;
 	--newtab-element-active-color: var(--neptune-item-active-background) !important;
 	--newtab-border-color: var(--neptune-toolbar-border-color) !important;
@@ -73,23 +74,60 @@
 	--space-xsmall: 0.32rem !important;
 }
 
-.pip-wrapper {
-	display: none;
-}
-
 ::selection {
 	background-color: var(--neptune-item-selection-background) !important;
+}
+
+.pip-wrapper {
+	--pip-icon-size: 20px !important;
+	cursor: default !important;
+	inset: calc(80% - 36px) auto auto calc(50% - 18px) !important;
+	display: none;	/*The PIP floating button is hidden here.*/
+
+	> .pip-small {
+		width: 36px !important;
+		height: 36px !important;
+
+		.pip-wrapper:not(.experiment) > & {
+			background-color: #ffffff3f !important;
+			backdrop-filter: saturate(1.5) blur(6px);
+			border: none !important;
+			border-radius: 50% !important;
+			box-shadow: var(--neptune-glass-shadow) !important;
+		}
+	}
+
+	> .pip-icon {
+		background-image: url("../assets/icons/picture-in-picture-open.svg") !important;
+		fill: #fff !important;
+	}
 }
 
 .controlBar {
 	height: 31px !important;
 	background-color: #00000080 !important;
-	backdrop-filter: blur(8px);
+	backdrop-filter: saturate(1.5) blur(2em);
 	margin: 6px;
 	border-radius: var(--border-radius-small);
 
 	> .button:enabled:is(:hover, :hover:active) {
 		fill: #fff !important;
+	}
+
+	> .muteButton {
+		background-image: url("../assets/icons/audio.svg") !important;
+
+		&[muted] {
+			background-image: url("../assets/icons/audio-muted.svg") !important;
+		}
+	}
+
+	> .fullscreenButton {
+		background-image: url("../assets/icons/fullscreenEnterButton.svg") !important;
+
+		&[fullscreened] {
+			background-image: url("../assets/icons/fullscreenExitButton.svg") !important;
+		}
 	}
 }
 
@@ -124,7 +162,7 @@
 }
 
 #eDivResult {
-	background: var(--neptune-popover-background) !important;
+	background: var(--neptune-secondary-background) !important;
 	backdrop-filter: blur(16px) !important;
 	border: 1px solid var(--neptune-toolbar-border-color) !important;
 	border-radius: 12px !important;
