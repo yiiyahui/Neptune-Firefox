@@ -118,7 +118,6 @@
 		}
 
 		.clear-icon {
-			background-image: url(resource://content-accessible/searchfield-cancel.svg) !important;
 			background-size: var(--theme-menu-icon-size) !important;
 			right: var(--space-xsmall) !important;
 			cursor: default !important;

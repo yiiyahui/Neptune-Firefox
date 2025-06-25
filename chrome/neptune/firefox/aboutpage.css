@@ -63,6 +63,10 @@
 	groupbox[data-category] {
 		margin-bottom: var(--space-xlarge) !important;
 
+		> .mission-message {
+			display: none !important;
+		}
+
 		> #updateBox {
 			margin-block-end: 0 !important;
 		}
@@ -76,7 +80,7 @@
 		}
 
 		> #saveWhere > #downloadFolder {
-			background-size: 12px !important;
+			background-size: var(--theme-menu-icon-size) !important;
 		}
 
 		.section-checkbox .checkbox-icon {
@@ -175,8 +179,8 @@
 	}
 
 	.sidebar-footer-icon {
-		width: 12px !important;
-		height: 12px !important;
+		width: var(--theme-menu-icon-size) !important;
+		height: var(--theme-menu-icon-size) !important;
 		margin-inline: var(--space-medium) var(--space-xsmall) !important;
 	}
 
@@ -294,7 +298,7 @@
 		box-shadow: var(--neptune-menu-shadow) !important;
 
 		> .menuitem-button {
-			background-size: 12px !important;
+			background-size: var(--theme-menu-icon-size) !important;
 		}
 	}
 
@@ -333,7 +337,7 @@
 		width: 14px !important;
 		height: 14px !important;
 		border: var(--neptune-checkbox-border);
-		border-radius: 4px;
+		border-radius: var(--border-radius-xsmall);
 		box-shadow: var(--neptune-checkbox-shadow);
 		vertical-align: bottom;
 

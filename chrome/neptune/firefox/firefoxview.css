@@ -5,10 +5,10 @@
 
 	.search-container {
 		.search-icon {
-			background-size: 12px !important;
+			background-size: var(--theme-menu-icon-size) !important;
 			padding: 0 !important;
-			width: 12px !important;
-			height: 12px !important;
+			width: var(--theme-menu-icon-size) !important;
+			height: var(--theme-menu-icon-size) !important;
 			transform: scaleX(-1);
 		}
 
@@ -18,8 +18,7 @@
 		}
 
 		.clear-icon {
-			background-image: url(resource://content-accessible/searchfield-cancel.svg) !important;
-			background-size: 12px !important;
+			background-size: var(--theme-menu-icon-size) !important;
 		}
 	}
 

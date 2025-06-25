@@ -86,12 +86,13 @@
 			}
 		}
 
-		#vertical-pinned-tabs-container {
-			max-height: calc(5 * (var(--tabstrip-min-height) + 3 * var(--tab-block-margin))) !important;
-
-			+ #vertical-pinned-tabs-container-separator {
-				display: none !important;
-			}
+		> #vertical-pinned-tabs-container + #vertical-pinned-tabs-splitter {
+			min-width: var(--border-width) !important;
+			min-height: calc(2 * var(--tab-block-margin)) !important;
+			margin-inline: auto !important;
+			margin-block-end: calc(3 * var(--tab-block-margin)) !important;
+			border: 2px solid var(--border-color-deemphasized) !important;
+			border-radius: var(--border-radius-small) !important;
 		}
 	}
 
@@ -141,7 +142,7 @@
 			}
 
 			#tabbrowser-tabs[orient="vertical"] & {
-				padding-block: 0 !important;
+				height: var(--tab-group-label-height) !important;
 				margin-block: auto calc(3 * var(--tab-block-margin)) !important;
 			}
 
@@ -161,8 +162,9 @@
 			}
 
 			#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
-				min-height: var(--tab-min-height) !important;
-				line-height: inherit !important;
+				width: var(--tab-group-label-height) !important;
+				max-width: unset !important;
+				margin-inline: var(--tab-inner-inline-margin) !important;
 			}
 		}
 	}
@@ -183,6 +185,7 @@
 
 		#tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab:is(:active,[multiselected]) > .tab-stack > .tab-background > & {
 			background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
+			backdrop-filter: blur(1em);
 		}
 	}
 }

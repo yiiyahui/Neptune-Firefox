@@ -14,7 +14,7 @@
 	.accordion-header .chevron-icon	{
 		height: 16px !important;
 		width: 16px !important;
-		background-size: 12px;
+		background-size: var(--theme-menu-icon-size);
 		border-radius: 50% !important;
 	}
 
@@ -32,7 +32,7 @@
 		backdrop-filter: saturate(1.5) blur(3em);
 		border-color: var(--neptune-toolbar-border-color) !important;
 		border-radius: var(--border-radius-large) !important;
-		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		box-shadow: var(--neptune-menu-shadow) !important;
 
 		.narrate-dropdown & {
 			padding-inline: var(--space-small) !important;
@@ -49,7 +49,7 @@
 				}
 
 				> .voiceselect {
-					--icon-size-default: 12px !important;
+					--icon-size-default: var(--theme-menu-icon-size) !important;
 
 					button:is(.select-toggle, .option) {
 						min-height: 28px !important;
@@ -95,7 +95,7 @@
 		gap: var(--space-small) !important;
 
 		> label {
-			border-radius: 4px !important;
+			border-radius: var(--border-radius-xsmall) !important;
 
 			&[checked] {
 				color: #fff !important;
@@ -109,8 +109,8 @@
 		gap: var(--space-xxsmall) !important;
 
 		> .icon-container > .icon {
-			height: 12px !important;
-			width: 12px !important;
+			height: var(--theme-menu-icon-size) !important;
+			width: var(--theme-menu-icon-size) !important;
 		}
 
 		> .slider-container > datalist {

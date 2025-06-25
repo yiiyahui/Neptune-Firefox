@@ -65,7 +65,10 @@ panel {
 	&[type="autocomplete-richlistbox"] {
 		--panel-background: var(--arrowpanel-background) !important;
 
-		> .autocomplete-richlistbox > .autocomplete-richlistitem {
+		> .autocomplete-richlistbox {
+			background-color: transparent !important;
+
+			> .autocomplete-richlistitem {
 				&:not([disabled="true"]):not([selected]):hover {
 					background-color: var(--color-accent-primary-hover) !important;
 					color: var(--button-text-color-primary) !important;
@@ -129,7 +132,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			padding-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
 
 			menupopup[needsgutter] &:not([checked="true"], [icon], .menu-iconic, .menuitem-iconic) {
-				padding-inline-start: var(--space-xlarge) !important;
+				padding-inline-start: 0 !important;
 			}
 
 			&:where([_moz-menuactive]:not([disabled="true"])) {
@@ -143,14 +146,14 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 		}
 
 		> menuitem[checked="true"] {
-			padding-inline-start: 0 !important;
+			padding-inline-start: var(--space-xxsmall) !important;
 
 			:is(#backForwardMenu, #nav-bar-customization-target) & {
-				padding-inline-start: var(--space-medium) !important;
+				padding-inline-start: var(--space-small) !important;
 			}
 
 			> .menu-icon {
-				margin-inline-end: var(--space-xsmall) !important;
+				margin-inline-end: var(--space-small) !important;
 			}
 		}
 

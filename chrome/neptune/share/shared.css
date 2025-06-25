@@ -1,0 +1,59 @@
+:root {
+	--theme-menu-icon-size: 12px;
+	--size-item-medium: 28px !important;
+	--border-radius-xsmall: 4px;
+	--border-radius-small: 6px !important;
+	--border-radius-large: 10px !important;
+	--default-focusring: none !important;
+	--color-accent-primary: var(--theme-primary-color) !important;
+	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--button-background-color: var(--neptune-item-background) !important;
+	--button-background-color-hover: var(--neptune-item-hover-background) !important;
+	--button-background-color-active: var(--neptune-item-active-background) !important;
+	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
+	--in-content-primary-button-text-color: white !important;
+	--in-content-button-background: var(--neptune-item-background) !important;
+	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
+	--in-content-button-background-active: var(--neptune-item-active-background) !important;
+	--in-content-primary-button-background: var(--theme-primary-color) !important;
+	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
+	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
+	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
+	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
+}
+
+/*#input {
+	--icon-size-default: 12px !important;
+
+	&.with-icon {
+		padding-inline-start: calc(var(--icon-size-default) + var(--space-large)) !important;
+		background-position: var(--space-small) center !important;
+
+		&:dir(rtl) {
+			background-position: center right var(--space-small) !important;
+		}
+	}
+
+	&::-moz-search-clear-button {
+		padding: var(--space-xxsmall) !important;
+		border-radius: var(--border-radius-large) !important;
+	}
+}*/
+
+/* animate */
+@keyframes menuBounce {
+	0% {
+		opacity: 0;
+		transform: scale(0);
+	}
+
+	75% {
+		transform: scale(1.025);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

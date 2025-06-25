@@ -115,8 +115,9 @@
 
 .urlbarView {
 	color-scheme: light dark;
-	width: calc(100% + 16px) !important;
-	margin: 5px 0 0 -8px !important;
+	width: calc(100% + var(--space-xlarge)) !important;
+	margin-inline: calc(-1 * var(--space-medium)) !important;
+	margin-block-start: var(--space-small);
 	border: none !important;
 	border-radius: var(--border-radius-large);
 	background-color: var(--neptune-secondary-background);
@@ -321,7 +322,7 @@
 		&[label]::before {
 			color: MenuText !important;
 			width: calc(100% - 2 * var(--urlbarView-icon-margin-start));
-			margin-inline-start: var(--urlbarView-icon-margin-start) !important;
+			margin-inline: var(--urlbarView-icon-margin-start) !important;
 			padding-block-start: var(--urlbarView-item-block-padding);
 			border-top: var(--border-width) solid var(--in-content-box-border-color);
 		}

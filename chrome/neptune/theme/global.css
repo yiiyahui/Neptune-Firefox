@@ -7,6 +7,7 @@
 	--theme-menu-icon-size: 12px;
 	--toolbar-start-end-padding: 10px !important;
 	--space-xsmall: 0.25rem !important;
+	--size-item-medium: 28px !important;
 	--urlbar-min-height: 28px !important;
 	--urlbarView-small-font-size: 0.84em !important;
 	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) + var(--border-width)) !important;
@@ -14,6 +15,7 @@
 	--tab-min-height: var(--urlbar-min-height) !important;
 	--tabstrip-min-height: var(--tab-min-height) !important;
 	--tab-group-label-height: var(--tab-min-height) !important;
+	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
 	--tab-label-line-height: 1.6 !important;
 	--tab-selected-shadow-size: 0 !important;
 	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
@@ -32,29 +34,12 @@
 	--arrowpanel-menuitem-padding-inline: 9px !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
 	--arrowpanel-padding: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
-	--default-focusring: none !important;
 	--tabpanel-background-color: transparent !important;
 	--in-content-clip-path: inset(0 round 0.01px 0 0);
 	--in-content-page-background: var(--neptune-secondary-background) !important;
 	--in-content-box-background: var(--neptune-input-bgcolor) !important;
-	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
-	--in-content-primary-button-text-color: white !important;
-	--in-content-button-background: var(--neptune-item-background) !important;
-	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
-	--in-content-button-background-active: var(--neptune-item-active-background) !important;
-	--in-content-primary-button-background: var(--theme-primary-color) !important;
-	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
-	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
-	--color-accent-primary: var(--theme-primary-color) !important;
-	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
-	--color-accent-primary-active: var(--theme-primary-active-color) !important;
-	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
-	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
 	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
-	--button-background-color: var(--neptune-item-background) !important;
-	--button-background-color-hover: var(--neptune-item-hover-background) !important;
-	--button-background-color-active: var(--neptune-item-active-background) !important;
 	--button-text-color-primary: white !important;
 	--button-background-color-primary: var(--theme-primary-color) !important;
 	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
@@ -93,7 +78,7 @@
 tooltip,
 .control-item::after,
 menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"]):not(.menuitem-iconic),
-#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="download"]),
+#toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="extensions"], [id*="download"]),
 #scrollbutton-up ~ spacer, .titlebar-spacer {
 	display: none !important;
 }

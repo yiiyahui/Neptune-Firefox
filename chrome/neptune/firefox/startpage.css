@@ -73,7 +73,6 @@
 	.showPrivate.showSearch.container,
 	.home-section .divider,
 	.wallpaper-attribution,
-	.customize-menu .close-button-wrapper,
 	.weatherSponsorText,
 	.top-site-outer :is(.icon.icon-pin-small, .sponsored-label) {
 		display: none !important;
@@ -128,7 +127,7 @@
 	.top-site-outer {
 		background: none !important;
 		width: calc(3 * var(--size-item-large)) !important;
-		margin-block-end: var(--space-small) !important;
+		margin-block-end: var(--space-medium) !important;
 
 		.top-site-inner > a {
 			padding: 0 !important;
@@ -173,13 +172,13 @@
 
 		.search-topsite {
 			background-color: var(--theme-primary-color) !important;
-			background-size: 12px !important;
+			background-size: var(--theme-menu-icon-size) !important;
 			height: 24px !important;
 			width: 24px !important;
 		}
 
 		.title {
-			padding-top: 6px !important;
+			padding-top: var(--space-xsmall) !important;
 
 			.title-label {
 				-webkit-line-clamp: 2;
@@ -297,9 +296,9 @@
 			background-image: url("../assets/icons/settings.svg") !important;
 			background-color: transparent !important;
 			padding: 0 !important;
-			background-size: 28px !important;
-			width: 28px !important;
-			height: 28px !important;
+			background-size: var(--size-item-medium) !important;
+			width: var(--size-item-medium) !important;
+			height: var(--size-item-medium) !important;
 			visibility: visible !important;
 			fill: MenuText !important;
 			fill-opacity: 0.8;
@@ -311,23 +310,24 @@
 	}
 
 	.customize-menu {
-		position: absolute !important;
-		width: calc(3 * 96px + 4 * 10px) !important;
+		width: calc(3 * 92px + 4 * var(--space-medium)) !important;
 		height: fit-content !important;
 		padding: 0 !important;
 		border-radius: var(--border-radius-large) !important;
-		transform: translateY(100%) !important;
 		backdrop-filter: saturate(1.5) blur(3em);
-		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 		overflow-x: hidden !important;
+		inset-block: auto calc(var(--space-large) + var(--size-item-medium)) !important;
+		inset-inline-end: var(--space-large) !important;
+		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		transform-origin: bottom right;
 		transition: none !important;
 
-		.close-button-wrapper {
-			top: 0 !important;
-			padding-block: 0 !important;
+		> .close-button-wrapper {
 			background-color: transparent !important;
+			padding-block: 0 !important;
+			display: none;
 
-			.close-button {
+			> .close-button {
 				background-color: transparent !important;
 				margin-inline-end: 0 !important;
 				border: none !important;
@@ -335,41 +335,40 @@
 		}
 	}
 
-	.customize-menu.customize-animate-enter-done,
-	.customize-menu.customize-animate-enter-active {
-		transform: translateY(-100%) !important;
+	@media (prefers-reduced-motion: no-preference) {
+		.customize-menu.customize-animate-enter-done, .customize-menu.customize-animate-enter-active {
+			animation: menuBounce 200ms linear backwards;
+		}
 	}
 
 	.home-section {
-		grid-row-gap: 10px !important;
-		padding: 0 10px !important;
+		grid-row-gap: var(--space-medium) !important;
+		padding: 0 var(--space-medium) !important;
 
 		.settings-toggles {
-			gap: 10px !important;
+			gap: var(--space-medium) !important;
 		}
 
 		.wallpapers-section h2 {
-			margin-block: 10px !important;
+			margin-block: var(--space-small) !important;
 		}
 
 		.section .selector {
-			background-color: transparent !important;
 			width: 8em !important;
 			box-shadow: none !important;
-		}
-
-		.section .sponsored {
-			font: menu !important;
 		}
 
 		.section .more-info-top-wrapper {
 			--space-large: 10px !important;
 		}
 
+		.wallpapers-reset:hover {
+			color: var(--theme-primary-color) !important;
+		}
+
 		.external-link {
-			margin-block: 0 !important;
+			margin: 0 !important;
 			color: var(--newtab-text-primary-color) !important;
-			font-size: smaller !important;
 
 			&:hover {
 				color: var(--link-color) !important;
@@ -380,8 +379,7 @@
 
 	.arrow-button {
 		background: url("chrome://global/skin/icons/arrow-left-12.svg") no-repeat left !important;
-		font: menu !important;
-		margin: 0 var(--space-xsmall) !important;
+		margin: var(--space-xsmall) var(--space-medium) !important;
 		padding-inline-start: var(--space-large) !important;
 	}
 
@@ -395,23 +393,20 @@
 		transition: none !important;
 
 		fieldset {
-			gap: 10px !important;
-			grid-auto-rows: auto !important;
+			gap: var(--space-small) var(--space-medium) !important;
+			grid-auto-rows: min-content !important;
 		}
 	}
 
 	.category-list {
-		grid-auto-rows: 64px !important;
-		gap: 20px 10px !important;
-		margin: auto auto var(--space-medium) !important;
-
-		label {
-			font: menu !important;
-		}
+		grid-auto-rows: min-content !important;
+		gap: var(--space-small) var(--space-medium) !important;
+		margin: auto auto var(--space-xsmall) !important;
 	}
 
 	.wallpaper-input {
 		height: 56px !important;
+		margin-block-end: var(--space-xsmall) !important;
 		box-shadow: none !important;
 	}
 
@@ -433,20 +428,6 @@
 		}
 	}
 
-	.wallpapers-reset {
-		margin-block-start: var(--space-xsmall) !important;
-		font-size: 0.75em !important;
-
-		&:hover {
-			color: var(--theme-primary-color) !important;
-		}
-	}
-
-	.text-deemphasized {
-		margin-block: auto !important;
-		font: menu !important;
-	}
-
 	.weather {
 		:is(.layout-variant-a, .layout-variant-b) & {
 			inset-inline-end: var(--space-large) !important;
@@ -456,6 +437,16 @@
 			background: none !important;
 			box-shadow: none !important;
 			flex-direction: row-reverse;
+		}
+
+		> .location-input-wrapper {
+			--button-size-icon-small: 16px !important;
+			--icon-size-default: 10px !important;
+			--button-min-height-small: 16px !important;
+			--button-border-radius: var(--border-radius-large) !important;
+			background-color: var(--newtab-background-color-secondary) !important;
+			backdrop-filter: saturate(1.5) blur(1em);
+			border-radius: var(--border-radius-circle) !important;
 		}
 	}
 
