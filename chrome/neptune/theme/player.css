@@ -220,6 +220,7 @@
 	> #fullscreen-exit-button {
 		appearance: none !important;
 		background-color: var(--neptune-content-background);
+		color: var(--lwt-text-color);
 		border: none;
 		border-radius: var(--toolbarbutton-border-radius);
 	}

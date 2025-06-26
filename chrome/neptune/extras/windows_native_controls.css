@@ -31,6 +31,14 @@
 			:root:not([inFullscreen]) & {
 				padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
 
+				#navigator-toolbox:has(#unified-extensions-button:not([hidden])) & {
+					padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
+				}
+
+				#navigator-toolbox:has(#unified-extensions-button[hidden]) & {
+					padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
+				}
+
 				#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
 					padding-inline-end: calc(var(--toolbar-start-end-padding) / 2 + var(--toolbarbutton-outer-padding) + 96px) !important;
 				}
@@ -38,6 +46,10 @@
 				#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) &:not(:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) &) {
 					:root:not([customizing]) & {
 						padding-inline-end: calc(4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
+						
+						#navigator-toolbox:has(#unified-extensions-button[hidden]) & {
+							padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
+						}
 					}
 				}
 			}
