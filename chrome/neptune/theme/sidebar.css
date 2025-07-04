@@ -16,13 +16,14 @@
 }
 
 #viewButton {
-	background-color: var(--neptune-item-background) !important;
+	background-color: var(--button-background-color) !important;
 	margin-inline-start: var(--space-medium) !important;
+	padding-inline: var(--space-small) !important;
 	border: none !important;
-	border-radius: var(--border-radius-xsmall) !important;
+	border-radius: var(--border-radius-circle) !important;
 
 	&[open] {
-		background-color: var(--neptune-item-active-background) !important;
+		background-color: var(--button-background-color-active) !important;
 	}
 }
 
@@ -32,6 +33,11 @@
 		--button-border-radius: var(--border-radius-small) !important;
 		--button-label-directiony: center;
 		--button-label-display: none;
+		--button-clip-path: circle(50%);
+
+		@media not -moz-pref("sidebar.verticalTabs") {
+			--button-size-icon: var(--urlbar-min-height) !important;
+		}
 
 		> moz-button:not(.tools-overflow) {
 			--button-outer-padding-block: var(--space-xsmall) !important;
@@ -43,10 +49,6 @@
 					--button-outer-padding-block-start: 0 !important;
 				}
 			}
-
-			&:last-of-type {
-				--button-outer-padding-block-end: var(--space-xsmall) !important;
-			}
 		}
 
 		&:has(.expanded-button) {
@@ -55,6 +57,8 @@
 	}
 
 	.button-background {
+		clip-path: var(--button-clip-path, inherit);
+
 		&.labelled {
 			justify-content: var(--button-label-directiony, inherit) !important;
 
@@ -199,6 +203,7 @@
 	#header {
 		--icon-size-default: var(--theme-menu-icon-size) !important;
 		padding-inline: 0 !important;
+		border: none !important;
 
 		> select {
 			margin: 0 !important;

@@ -323,7 +323,7 @@ panelview .toolbarbutton-1,
 	padding-block: var(--panel-subview-body-padding-block) !important;
 
 	#editBMPanel_folderTree {
-		background-color: var(--neptune-input-bgcolor) !important;
+		background-color: var(--input-bgcolor) !important;
 		border: none !important;
 	}
 
@@ -345,7 +345,7 @@ panelview .toolbarbutton-1,
 			margin: 0 !important;
 
 			&:not(:first-child) {
-				border-top: 1px solid transparent;
+				border-top: var(--button-border);
 				border-image: linear-gradient(90deg, transparent calc(var(--size-item-medium) + 8px), var(--panel-separator-color) 0, var(--panel-separator-color) calc(100% - var(--space-xsmall)), transparent 0) 1 0 0 0;
 			}
 
@@ -364,7 +364,7 @@ panelview .toolbarbutton-1,
 			min-width: 20px !important;
 			height: 20px !important;
 			border: none !important;
-			border-radius: 50% !important;
+			border-radius: var(--border-radius-large) !important;
 		}
 
 		.downloadProgress {

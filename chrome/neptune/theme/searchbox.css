@@ -2,8 +2,8 @@
 search-textbox {
 	appearance: none !important;
 	padding-block: 0 !important;
-	background-color: var(--neptune-input-bgcolor) !important;
-	border-radius: var(--border-radius-xsmall);
+	background-color: var(--input-bgcolor) !important;
+	border-radius: var(--border-radius-circle);
 }
 
 #urlbar-background,
@@ -11,8 +11,8 @@ search-textbox {
 .findbar-textbox,
 search-textbox,
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox),
-textarea {
-	outline: 20px solid transparent !important;
+textarea:not(#select-translations-panel-text-area) {
+	outline: 18px solid transparent !important;
 }
 
 #urlbar[open] > #urlbar-background,
@@ -21,9 +21,9 @@ textarea {
 search-textbox[focused],
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox):focus-visible,
 textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
-	outline: 4px solid var(--neptune-input-outline-color) !important;
-	outline-offset: var(--toolbarbutton-outline-offset);
-	transition: all 250ms cubic-bezier(0.33, 0, 0.67, 1);
+	outline: 3px solid var(--neptune-input-outline-color) !important;
+	box-shadow: inset 0 0 0.75px accentcolor !important;
+	transition: outline 250ms cubic-bezier(0.33, 0, 0.67, 1), box-shadow 250ms cubic-bezier(0.33, 0, 0.67, 1);
 }
 
 select:where(:not([size], [multiple])),
@@ -31,7 +31,7 @@ input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-inpu
 textarea:not(#select-translations-panel-text-area) {
 	min-height: var(--button-min-height) !important;
 	border: none !important;
-	border-radius: var(--border-radius-xsmall) !important;
+	border-radius: var(--border-radius-circle) !important;
 	padding-block: 0 !important;
 	font: menu !important;
 }

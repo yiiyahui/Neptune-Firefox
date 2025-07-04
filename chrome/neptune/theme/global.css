@@ -1,28 +1,22 @@
 :root {
-	--theme-browser-toolbox-padding: 12px;	/*This value will affect the height of the toolbar.*/
-	--theme-tab-width: 150px;
-	--theme-tab-max-width: 200px;
-	--theme-urlbar-width: max(320px, 28em);
-	--theme-urlbar-focus-width: max(400px, 34em);
-	--theme-menu-icon-size: 12px;
+	--theme-browser-toolbox-padding: 10px;	/*This value will affect the height of the toolbar.*/
+	--theme-tab-selected-min-width: 100px;
 	--toolbar-start-end-padding: 10px !important;
-	--space-xsmall: 0.25rem !important;
-	--size-item-medium: 28px !important;
-	--urlbar-min-height: 28px !important;
+	--space-xsmall: 3px !important;
+	--urlbar-min-height: var(--size-item-large) !important;
 	--urlbarView-small-font-size: 0.84em !important;
+	--urlbar-icon-padding: calc((var(--size-item-medium) - 2px - 2px - 16px ) / 2) !important;
 	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) + var(--border-width)) !important;
 	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - 2 * var(--border-width))) !important;
-	--tab-min-height: var(--urlbar-min-height) !important;
-	--tabstrip-min-height: var(--tab-min-height) !important;
+	--tab-min-height: var(--size-item-medium) !important;
+	--tabstrip-min-height: calc(var(--tab-min-height) + var(--tab-block-margin)) !important;
 	--tab-group-label-height: var(--tab-min-height) !important;
 	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
 	--tab-label-line-height: 1.6 !important;
 	--tab-selected-shadow-size: 0 !important;
-	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
+	--tab-selected-shadow: inset -0.35px 0.55px 0.45px var(--lwt-accent-color), inset -0.35px -0.55px 0.45px 0.25px var(--lwt-accent-color), 0 0 1.5px var(--neptune-menu-shadow-color) !important;
+	--button-min-height: calc(var(--size-item-small) + var(--space-small)) !important;
 	--button-padding: 0 var(--space-large) !important;
-	--border-radius-small: 6px !important;
-	--border-radius-xsmall: 4px;
-	--border-radius-large: 10px;
 	--menu-panel-width-wide: 28em !important;
 	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
 	--panel-separator-zap-gradient: none !important;

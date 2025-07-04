@@ -4,6 +4,8 @@
 	--border-radius-xsmall: 4px;
 	--border-radius-small: 6px !important;
 	--border-radius-large: 10px !important;
+	--border-radius-xlarge: 12px;
+	--border-radius-circle: 99px !important;
 	--default-focusring: none !important;
 	--color-accent-primary: var(--theme-primary-color) !important;
 	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;

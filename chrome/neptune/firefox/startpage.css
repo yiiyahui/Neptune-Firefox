@@ -40,18 +40,18 @@
 		background-size: 24px !important;
 		backdrop-filter: saturate(1.5) blur(2em);
 		border: none !important;
+		border-radius: var(--border-radius-circle) !important;
 		box-shadow: var(--box-shadow-level-3) !important;
-		border-radius: var(--border-radius-large) !important;
 	}
 
 	.contentSearchSuggestionTable {
-		background-color: var(--neptune-secondary-background) !important;
+		background-color: var(--newtab-background-color-secondary) !important;
 		backdrop-filter: saturate(1.5) blur(2em);
 		border-radius: var(--border-radius-large) !important;
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 
 		.contentSearchHeader, .contentSearchSettingsButton {
-			background-color: var(--neptune-secondary-background) !important;
+			background-color: var(--newtab-background-color-secondary) !important;
 			backdrop-filter: saturate(1.5) blur(2em);
 			border-color: transparent !important;
 		}
@@ -162,6 +162,10 @@
 					transform: none !important;
 				}
 			}
+
+			.top-site-outer.placeholder.add-button & {
+				background-color: var(--newtab-background-card) !important;
+			}
 		}
 
 		.default-icon {
@@ -211,7 +215,7 @@
 				padding-inline: 10px !important;
 			}
 
-			> :is(a,button) {
+			> :is(a, button) {
 				&:is(:focus, :hover) {
 					background-color: var(--theme-primary-hover-color) !important;
 					color: #fff !important;
@@ -260,13 +264,13 @@
 
 			> .topsite-form .form-wrapper input[type=text] {
 				height: var(--button-min-height) !important;
-				border-radius: var(--border-radius-small) !important;
+				border-radius: var(--border-radius-large) !important;
 				font-size: var(--font-size-root) !important;
 			}
 
 			> .topsite-form .form-wrapper .error-tooltip {
 				inset-inline-start: 0 !important;
-				border-radius: var(--border-radius-small) !important;
+				border-radius: var(--border-radius-large) !important;
 				font-size: var(--font-size-root);
 				box-shadow: var(--box-shadow-level-3);
 			}
@@ -322,6 +326,10 @@
 		transform-origin: bottom right;
 		transition: none !important;
 
+		@media (-moz-platform: macos) {
+			width: calc(3 * 92px + 5 * var(--space-medium)) !important;
+		}
+
 		> .close-button-wrapper {
 			background-color: transparent !important;
 			padding-block: 0 !important;
@@ -356,10 +364,14 @@
 		.section .selector {
 			width: 8em !important;
 			box-shadow: none !important;
+
+			&:not(:hover) {
+				background-color: transparent !important;
+			}
 		}
 
 		.section .more-info-top-wrapper {
-			--space-large: 10px !important;
+			--space-large: 0.8rem !important;
 		}
 
 		.wallpapers-reset:hover {
@@ -389,7 +401,7 @@
 		margin: 0 !important;
 		height: auto !important;
 		overflow-y: auto;
-		width: 100% !important;
+		width: auto !important;
 		transition: none !important;
 
 		fieldset {
@@ -453,7 +465,7 @@
 	.weatherInfoLink {
 		background-color: var(--newtab-weather-background-color) !important;
 		backdrop-filter: saturate(1.5) blur(1em);
-		border-radius: var(--border-radius-medium) !important;
+		border-radius: var(--border-radius-circle) !important;
 	}
 
 	.weatherButtonContextMenuWrapper {

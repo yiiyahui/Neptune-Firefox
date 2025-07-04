@@ -4,47 +4,56 @@
 	border-inline-start: none !important;
 
 	&[orient="horizontal"] {
-		--tab-min-width: 48px !important;
+		--tab-min-width: calc(48px + var(--tab-block-margin)) !important;
+		padding-block-end: calc(var(--theme-browser-toolbox-padding) / 2);
 
-		&:not(:has(tab-group, tab:nth-of-type(3))):has(tab:only-of-type, tab[hidden]) {
+		&:not(:has(tab-group, tab:nth-child(2 of :not([hidden])))):has(tab:only-of-type, tab[hidden]) {
 			display: contents;
+		}
+
+		> #tabbrowser-arrowscrollbox {
+			background-color: var(--neptune-tabs-default-background);
+			border-radius: var(--border-radius-circle);
+			margin-inline: var(--tab-inline-padding);
+
+			#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > & > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
+				margin-inline-start: var(--space-small) !important;
+			}
 		}
 
 		.tabbrowser-tab {
 			--tab-min-width-pref: var(--tab-min-width) !important;
 
 			&:not([pinned], tab-group[collapsed] > &) {
-				padding-inline: 0 !important;
-				margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
+				padding: calc(var(--tab-block-margin) / 2) !important;
+				max-width: 100% !important;
 
-				&[fadein]:not([selected]) {
-					max-width: var(--theme-tab-width) !important;
+				&:not(:first-of-type):not(&:nth-child(1 of :not([hidden], [pinned]))), tab-group:not(#tabbrowser-arrowscrollbox > &:not([hidden]) + tab-group) + &:first-of-type {
+					margin-inline-start: var(--space-small) !important;
+				}
+
+				&:not([fadein]) {
+					max-width: 0.1px !important;
 				}
 
 				&[selected] {
-					flex-grow: 200 !important;
-					min-width: calc(var(--theme-tab-max-width) / 2) !important;
-					max-width: var(--theme-tab-max-width) !important;
+					min-width: var(--theme-tab-selected-min-width) !important;
 				}
 
 				&:not([selected]):is([muted], [soundplaying], [activemedia-blocked]) {
-					min-width: calc(2 * (var(--size-item-small) + var(--tab-inline-padding)) + var(--tab-icon-end-margin)) !important;
+					min-width: calc(var(--size-item-small) + var(--theme-menu-icon-size) + var(--tab-block-margin) + 2 * (var(--tab-inline-padding) + var(--tab-icon-end-margin))) !important;
 				}
 
 				&:not([multiselected-move-together], [tabdrop-samewindow], #tabbrowser-tabs[movingtab] &[fadein]:not([selected])) {
-					transition-duration: 150ms !important;
+					transition-duration: 300ms !important;
 				}
-			}
-
-			&[pinned] {
-				padding-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
 			}
 
 			&:first-of-type:not([selected], [pinned], tab-group > &:first-of-type) {
 				--tab-loading-fill: transparent !important;
 			}
 
-			#tabbrowser-tabs:not(:has(tab-group, &:nth-of-type(3))) :is(&:only-of-type, :has(&[hidden]) &:nth-of-type(-n+2)) {
+			#tabbrowser-tabs:not(:has(tab-group,&:nth-child(2 of :not([hidden])))) :is(&:only-of-type, :has(&[hidden]) &:nth-of-type(-n+2)) {
 				display: none;
 			}
 		}
@@ -54,7 +63,7 @@
 		grid-gap: unset !important;
 
 		.tabbrowser-tab {
-			margin-block-end: calc(3 * var(--tab-block-margin)) !important;
+			padding-block: var(--space-xsmall) !important;
 		}
 
 		&[expanded] .tabbrowser-tab {
@@ -73,9 +82,13 @@
 			}
 		}
 
+		&[overflow]::after {
+			display: none;
+		}
+
 		#tabs-newtab-button, #vertical-tabs-newtab-button {
-			margin: auto auto var(--space-xsmall) !important;
-			border-radius: var(--border-radius-small) !important;
+			margin: var(--space-xsmall) auto !important;
+			border-radius: var(--border-radius-circle) !important;
 
 			> .toolbarbutton-text {
 				display: none;
@@ -90,7 +103,7 @@
 			min-width: var(--border-width) !important;
 			min-height: calc(2 * var(--tab-block-margin)) !important;
 			margin-inline: auto !important;
-			margin-block-end: calc(3 * var(--tab-block-margin)) !important;
+			margin-block: var(--space-xsmall) !important;
 			border: 2px solid var(--border-color-deemphasized) !important;
 			border-radius: var(--border-radius-small) !important;
 		}
@@ -98,11 +111,16 @@
 
 	.tab-group-label-container {
 		#tabbrowser-tabs[orient="horizontal"] tab-group > & {
-			padding-inline: 0 !important;
-			margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
+			padding-inline-end: calc(var(--tab-block-margin) / 2) !important;
+			margin-inline-start: calc(2 * var(--tab-block-margin)) !important;
+			
+			/*If the first tab is a tab group, keep the same start margin as a normal tab.*/
+			tab-group:first-of-type > &:not(#tabbrowser-arrowscrollbox[orient="horizontal"] > tab:not([hidden]) + tab-group > &) {
+				margin-inline-start: calc(var(--tab-block-margin) / 2) !important;
+			}
 
 			tab-group:not([collapsed]) > & {
-				margin-inline-end: calc(var(--tab-block-margin) / 2) !important;
+				margin-inline-end: var(--tab-block-margin) !important;
 			}
 		}
 
@@ -120,8 +138,8 @@
 
 		> .tab-group-label {
 			line-height: var(--tab-group-label-height) !important;
-			border-radius: var(--border-radius-small) !important;
-			transition: background-color 0.2s ease;
+			border-radius: var(--border-radius-circle) !important;
+			transition: background-color 0.2s ease-out;
 
 			tab-group[collapsed] > .tab-group-label-container > & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 25%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 35%, transparent)) !important;
@@ -143,7 +161,7 @@
 
 			#tabbrowser-tabs[orient="vertical"] & {
 				height: var(--tab-group-label-height) !important;
-				margin-block: auto calc(3 * var(--tab-block-margin)) !important;
+				margin-block: var(--space-xsmall) !important;
 			}
 
 			#tabbrowser-tabs[orient="vertical"][expanded] & {
@@ -152,6 +170,7 @@
 				padding-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
 				background: url("../assets/icons/tab-group.svg") no-repeat calc(var(--tab-inline-padding) - var(--tab-inner-inline-margin)) transparent !important;
 				color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
+				border-radius: var(--border-radius-small) !important;
 				fill: light-dark(var(--tab-group-color), var(--tab-group-color-invert));
 				text-align: left !important;
 
@@ -170,8 +189,8 @@
 	}
 
 	.tab-group-line {
-		border-radius: var(--border-radius-small) !important;
 		background-color: transparent !important;
+		border-radius: var(--border-radius-small) !important;
 
 		#tabbrowser-tabs[orient="horizontal"] & {
 			height: var(--tab-min-height) !important;
@@ -183,7 +202,11 @@
 			inset: 0 var(--tab-inner-inline-margin) !important;
 		}
 
-		#tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab:is(:active,[multiselected]) > .tab-stack > .tab-background > & {
+		&:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
+			border-radius: var(--border-radius-circle) !important;
+		}
+
+		#tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab:is(:active, [multiselected]) > .tab-stack > .tab-background > & {
 			background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color) 25%, transparent)) !important;
 			backdrop-filter: blur(1em);
 		}
@@ -193,29 +216,45 @@
 .tabbrowser-tab {
 	--tab-label-mask-size: 0 !important;
 	--tab-icon-end-margin: inherit !important;
-	padding-block: 0 !important;
 
 	.tab-background {
-		margin-block: 0 !important;
-		outline: none !important;
-		border-radius: var(--border-radius-small) !important;
 		background-color: transparent !important;
-		box-shadow: none !important;
-		transition: background-color .2s ease;
+		margin-block: 0 !important;
+		border-radius: var(--border-radius-circle) !important;
+		outline: none !important;
+		transition: var(--ext-theme-background-transition), box-shadow 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+
+		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pinned] > .tab-stack > & {
+			min-height: var(--tabstrip-min-height) !important;
+		}
+
+		#tabbrowser-tabs[orient="vertical"] & {
+			box-shadow: none !important;
+		}
 
 		&[selected]:not([multiselected], #tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) tab:active > .tab-stack > &) {
 			background-color: var(--neptune-tab-active-background) !important;
 
-			tab-group:not([collapsed]) > .tabbrowser-tab & {
-				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 20%, transparent)) !important;
+			#tabbrowser-tabs[orient="vertical"] & {
+				background-color: var(--neptune-verticaltab-active-background) !important;
 			}
 
-			.tabbrowser-tab[usercontextid] & {
-				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
+			tab-group:not([collapsed]) > .tabbrowser-tab > .tab-stack > & {
+				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, var(--lwt-accent-color, transparent)), color-mix(in srgb, var(--tab-group-color-invert) 20%, transparent)) !important;
+				box-shadow: none !important;
 			}
 
-			#tabbrowser-tabs[movingtab-createGroup] & {
+			tab[usercontextid] > .tab-stack > & {
+				background-color: color-mix(in srgb, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) !important;
+
+				#tabbrowser-tabs[orient="vertical"] & {
+					background-color: color-mix(in srgb, var(--identity-tab-color) 15%, transparent) !important;
+				}
+			}
+
+			#tabbrowser-tabs[movingtab-createGroup] tab > .tab-stack > & {
 				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color-invert) 25%, transparent)) !important;
+				box-shadow: none !important;
 			}
 
 			#tabbrowser-tabs[movingtab] tab:active > .tab-stack > & {
@@ -224,40 +263,40 @@
 		}
 
 		&:not([selected], [multiselected]) {
-			background-color: var(--neptune-tab-background) !important;
+			background-color: inherit !important;
 
-			tab-group:not([collapsed]) > .tabbrowser-tab & {
-				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 5%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 10%, transparent)) !important;
+			#tabbrowser-tabs[orient="horizontal"][movingtab] &:not(tab-group > tab &) {
+				background-color: var(--neptune-tab-background) !important;
+			}
 
-				.tabbrowser-tab:hover & {
-					background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 20%, transparent)) !important;
+			tab-group:not([collapsed]) > tab > .tab-stack > & {
+				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 5%, var(--lwt-accent-color, transparent)), color-mix(in srgb, var(--tab-group-color-invert) 8%, var(--lwt-accent-color, transparent))) !important;
+
+				tab:hover & {
+					background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 10%, var(--lwt-accent-color, transparent)), color-mix(in srgb, var(--tab-group-color-invert) 15%, var(--lwt-accent-color, transparent))) !important;
 				}
 			}
 
-			.tabbrowser-tab[pending] & {
-				background-color: var(--neptune-tab-unloaded-background) !important;
-			}
-
-			.tabbrowser-tab:hover & {
+			tab:hover & {
 				background-color: var(--neptune-tab-hover-background) !important;
 			}
 
-			#tabbrowser-tabs[orient="vertical"] &:not(tab-group:not([collapsed]) .tabbrowser-tab > .tab-stack > &) {
+			#tabbrowser-tabs[orient="vertical"] &:not(tab[usercontextid] > .tab-stack > &):not(tab-group:not([collapsed]) .tabbrowser-tab > .tab-stack > &) {
 				background-color: var(--neptune-verticaltab-background) !important;
 
-				.tabbrowser-tab[pinned] & {
+				.tabbrowser-tab[pinned] > .tab-stack > & {
 					background-color: var(--neptune-verticaltab-pinned-background) !important;
 				}
 
-				.tabbrowser-tab:hover & {
+				tab:hover & {
 					background-color: var(--neptune-verticaltab-hover-background) !important;
 				}
 			}
 
-			.tabbrowser-tab[usercontextid] & {
-				background-color: color-mix(in srgb, var(--identity-tab-color) 15%, transparent) !important;
+			tab[usercontextid] > .tab-stack > & {
+				background-color: color-mix(in srgb, var(--identity-tab-color) 6%, transparent) !important;
 
-				#tabbrowser-tabs[orient="vertical"] & {
+				tab:hover & {
 					background-color: color-mix(in srgb, var(--identity-tab-color) 8%, transparent) !important;
 				}
 			}
@@ -266,7 +305,7 @@
 				background-color: var(--neptune-tab-soundplaying-background) !important;
 				animation: var(--tab-sharing-icon-animation) -1s;
 
-				tab-group:not([collapsed]) > .tabbrowser-tab &:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
+				tab-group:not([collapsed]) > .tabbrowser-tab > .tab-stack > &:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
 					background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 30%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 35%, transparent)) !important;
 				}
 			}
@@ -280,7 +319,7 @@
 			background-size: 200% 100%;
 			animation: downloadProgressSlideX 3s linear infinite;
 
-			#tabbrowser-tabs[movingtab-createGroup] & {
+			#tabbrowser-tabs[movingtab-createGroup] tab > .tab-stack > & {
 				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color-invert) 25%, transparent)) !important;
 			}
 		}
@@ -291,8 +330,11 @@
 	}
 
 	.tab-content {
-		flex-direction: row-reverse;
 		font-size: 12.5px;
+
+		:root:not([uidensity="compact"]) #tabbrowser-tabs[orient="horizontal"] tab &[pinned] {
+			padding-inline: var(--tab-inline-padding) !important;
+		}
 
 		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pictureinpicture] & {
 			font-size: 0.88em;
@@ -304,6 +346,20 @@
 
 		> .tab-label-container {
 			height: inherit !important;
+
+			#tabbrowser-tabs[orient="horizontal"] &:not([pinned]) {
+				max-width: min-content;
+				margin-inline-end: auto;
+				padding-inline-end: calc(var(--theme-menu-icon-size) + var(--tab-inline-padding));
+
+				tab:is([muted], [soundplaying], [activemedia-blocked]) & {
+					padding-inline-end: calc(var(--tab-inline-padding) - var(--tab-icon-end-margin));
+				}
+
+				> .tab-label {
+					width: calc(100% + var(--theme-menu-icon-size));
+				}
+			}
 
 			> .tab-label {
 				width: 100%;
@@ -322,32 +378,38 @@
 		}
 
 		> .tab-audio-button {
-			margin-inline: var(--space-xsmall) auto !important;
 			--button-size-icon-small: var(--icon-size-default) !important;
 			--button-min-height-small: min(var(--tab-min-height), var(--size-item-medium)) !important;
 			--button-icon-fill: var(--toolbarbutton-icon-fill-attention) !important;
 			--button-background-color-ghost-hover: transparent !important;
 			--button-background-color-ghost-active: transparent !important;
+			margin-inline: var(--tab-icon-end-margin) 0 !important;
+			order: 1;
 		}
 
 		> .tab-icon-stack {
-			order: 1;
+			#tabbrowser-tabs[orient="horizontal"] .tab-content > & {
+				&:not([pinned], #tabbrowser-tabs[overflow] &:not([selected])) {
+					margin-inline-start: var(--tab-inline-padding);
+				}
 
-			#tabbrowser-tabs[orient="horizontal"] .tab-content > & > .tab-icon-image:not([src], [busy]) {
-				display: revert !important;
+				> .tab-icon-image:not([src], [busy]) {
+					display: revert !important;
+				}
 			}
 
 			#tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected], [pinned], [muted], [soundplaying], [activemedia-blocked]) .tab-content > & > * {
-				margin-inline: calc((var(--tab-min-width-pref) - var(--size-item-small)) / 2 - var(--tab-inline-padding)) !important;
+				margin-inline: calc((var(--tab-min-width-pref) - var(--size-item-small) - var(--tab-block-margin)) / 2 - var(--tab-inline-padding)) !important;
 			}
 
-			tab:not(#tabbrowser-tabs[movingtab] tab):hover .tab-content:not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected])) .tab-content) > &:not([pinned]),
-			tab:not(#tabbrowser-tabs[movingtab]:not(#tabbrowser-tabs[orient="vertical"]:not([expanded])[movingtab]) tab:not([pinned]), #tabbrowser-tabs[orient="horizontal"][overflow] tab:not([pinned])):is([muted], [soundplaying], [activemedia-blocked]):hover .tab-content > & > :is(.tab-icon-image, .tab-throbber) {
+			tab:not(#tabbrowser-tabs[movingtab] tab):hover .tab-content:not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"] tab) .tab-content) > &:not([pinned]),
+			tab:not(#tabbrowser-tabs[movingtab]:not(#tabbrowser-tabs[orient="vertical"]:not([expanded])[movingtab]) tab:not([pinned]), #tabbrowser-tabs[orient="horizontal"] tab:not([pinned])):is([muted], [soundplaying], [activemedia-blocked]):hover .tab-content > & > :is(.tab-icon-image, .tab-throbber) {
 				display: none;
 			}
 
 			> .tab-icon-image {
 				fill: var(--toolbarbutton-icon-fill) !important;
+				border-radius: var(--border-radius-medium);
 
 				tab:is([label="New Tab"], [label="New Private Tab"]) & {
 					content: url("../assets/icons/favicon.svg");
@@ -388,19 +450,38 @@
 		> .tab-close-button {
 			background-color: var(--neptune-button-field-color) !important;
 			fill: Field !important;
-			margin-inline-end: calc(var(--tab-icon-end-margin) + 4px) !important;
-			border-radius: 2px !important;
-			display: none;
+			border-radius: var(--border-radius-small) !important;
+			order: -1;
+
+			#tabbrowser-tabs[orient="horizontal"] & {
+				margin-inline-end: auto !important;
+				visibility: hidden;
+
+				tab:hover & {
+					visibility: visible;
+					animation: tab-hover-preview-fadein 0.3s ease-in-out both;
+				}
+			}
+
+			#tabbrowser-tabs[orient="vertical"] & {
+				margin-inline-end: calc(var(--tab-icon-end-margin) + 4px) !important;
+				display: none;
+
+				tab:not(#tabbrowser-tabs[movingtab] tab):hover &:not([pinned], #tabbrowser-tabs[orient="vertical"]:not([expanded]) tab:is([muted], [soundplaying], [activemedia-blocked]) &) {
+					display: revert !important;
+					animation: tab-hover-preview-fadein 0.3s ease-in-out both;
+				}
+			}
 
 			#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
 				list-style-image: url("../assets/icons/minus.svg") !important;
 				background-image: none !important;
 				background-color: light-dark(#ff6f61, #f0c05a) !important;
 				padding: var(--toolbarbutton-outer-padding) !important;
-				inset: 0 var(--space-xsmall) !important;
+				inset: calc(-1 * var(--space-xsmall)) var(--space-xsmall) !important;
 				box-shadow: none !important;
 				outline: none !important;
-				border-radius: 50% !important;
+				border-radius: var(--border-radius-large) !important;
 
 				tab-group:not([collapsed]) > .tabbrowser-tab & {
 					background-color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
@@ -409,11 +490,6 @@
 				.tabbrowser-tab:is([muted], [soundplaying], [activemedia-blocked]) & {
 					display: none !important;
 				}
-			}
-
-			tab:not(#tabbrowser-tabs[movingtab] tab):hover &:not([pinned], #tabbrowser-tabs[orient="vertical"]:not([expanded]) tab:is([muted], [soundplaying], [activemedia-blocked]) &, #tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected]) &) {
-				display: revert !important;
-				animation: tab-hover-preview-fadein 0.3s ease-in-out both;
 			}
 
 			&:hover {
@@ -434,7 +510,7 @@
 .all-tabs-item {
 	&[selected]:not(:hover) {
 		font-weight: unset !important;
-		background-color: var(--neptune-tab-background);
+		background-color: var(--button-background-color);
 	}
 
 	> .all-tabs-secondary-button {

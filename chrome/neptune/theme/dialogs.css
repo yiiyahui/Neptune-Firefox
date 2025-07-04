@@ -29,7 +29,7 @@
 }
 
 .dialogBox {
-	border-radius: var(--border-radius-large) !important;
+	border-radius: var(--border-radius-xlarge) !important;
 	box-shadow: var(--neptune-menu-shadow) !important;
 	backdrop-filter: saturate(1.5) blur(1in);
 }

@@ -11,7 +11,8 @@ toolbar .toolbarbutton-1 {
 		outline: none !important;
 		border-radius: var(--border-radius-small) !important;
 		box-shadow: none !important;
-		transition: background-color .2s ease;
+		clip-path: circle(50%);
+		transition: background-color 0.2s ease-out;
 	}
 
 	#nav-bar &:-moz-window-inactive {
@@ -36,13 +37,21 @@ toolbar .toolbaritem-combined-buttons {
 		}
 	}
 
+	> #profiler-button-button {
+		margin-inline-end: 0 !important;
+	}
+
+	> #profiler-button-dropmarker {
+		margin-inline-start: 0 !important;
+	}
+
 	> separator {
 		display: none;
 	}
 
 	.toolbarbutton-badge {
 		background-color: var(--color-accent-primary) !important;
-		border-radius: 50% !important;
+		border-radius: var(--border-radius-large) !important;
 		min-width: 14px !important;
 		padding-inline: 0 !important;
 		line-height: 14px !important;
@@ -89,7 +98,7 @@ input[type=radio] {
 	width: 14px !important;
 	height: 14px !important;
 	border: var(--neptune-checkbox-border);
-	border-radius: 50%;
+	border-radius: var(--border-radius-medium);
 	box-shadow: var(--neptune-checkbox-shadow);
 
 	&:checked {

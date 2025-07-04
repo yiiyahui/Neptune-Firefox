@@ -13,11 +13,11 @@
 	}
 
 	#controls-bottom-gradient {
-		background: #20202080 !important;
+		background: #202020a5 !important;
 		backdrop-filter: saturate(1.5) blur(2em);
 		height: calc(var(--player-control-item-height) + var(--controls-bottom-upper-height) + var(--scrubber-vertical-margin)) !important;
 		width: min((50% + var(--player-control-item-half-width)), 30em) !important;
-		border-radius: var(--border-radius-small);
+		border-radius: var(--border-radius-large);
 		inset: auto calc((100% + 2 * var(--resize-margin) - min((50% + var(--player-control-item-half-width)), 30em)) / 2) calc(15vmin + var(--resize-margin) + 1px) !important;
 
 		#controls:is([keying], [showing], body:not(:fullscreen) #controls:hover) & {
@@ -119,7 +119,7 @@
 				background-color: var(--button-text-color-primary) !important;
 				width: 2px !important;
 				height: 15px !important;
-				border: 1px solid #acacac33 !important;
+				border: 1px solid #cacaca33 !important;
 				filter: drop-shadow(0 0 1px #0000080);
 			}
 		}
@@ -129,22 +129,32 @@
 		bottom: calc(var(--controls-bottom-upper-height) + var(--controls-bottom-distance) + var(--resize-margin)) !important;
 
 		> .box {
-			background-color: #20202080 !important;
+			background-color: #202020a5 !important;
 			backdrop-filter: saturate(1.5) blur(2em);
 			padding: 0 !important;
-			font-size: 0.85em !important;
+			font-size: 0.875em !important;
 
 			> .grey-line {
 				background: #ffffff33 !important;
+				width: calc(100% - 32px) !important;
+				margin-inline-start: 16px;
 			}
 
 			> .panel-fieldset {
 				margin-block: 0 !important;
 			}
+
+			> .subtitle-grid {
+				padding-bottom: 0 !important;
+
+				> .switch {
+					margin-left: 6px !important;
+				}
+			}
 		}
 
 		> .arrow {
-			border-top-color: #20202080 !important;
+			border-top-color: #202020a5 !important;
 		}
 	}
 
@@ -220,7 +230,6 @@
 	> #fullscreen-exit-button {
 		appearance: none !important;
 		background-color: var(--neptune-content-background);
-		color: var(--lwt-text-color);
 		border: none;
 		border-radius: var(--toolbarbutton-border-radius);
 	}

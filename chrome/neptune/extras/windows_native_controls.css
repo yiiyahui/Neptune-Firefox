@@ -2,6 +2,12 @@
 @media (-moz-platform: windows) {
 	#navigator-toolbox #nav-bar {
 		padding-inline-start: calc(var(--toolbar-start-end-padding) / 2) !important;
+
+		@media not -moz-pref("sidebar.verticalTabs") {
+			:root[privatebrowsingmode=temporary] & {
+				padding-inline-start: calc(var(--toolbar-start-end-padding) / 2) !important;
+			}
+		}
 	}
 
 	.titlebar-buttonbox-container .titlebar-button {
@@ -27,79 +33,20 @@
 	}
 
 	@media not -moz-pref("sidebar.verticalTabs") {
-		#navigator-toolbox #TabsToolbar {
-			:root:not([inFullscreen]) & {
-				padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
-
-				#navigator-toolbox:has(#unified-extensions-button:not([hidden])) & {
-					padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
-				}
-
-				#navigator-toolbox:has(#unified-extensions-button[hidden]) & {
-					padding-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
-				}
-
-				#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
-					padding-inline-end: calc(var(--toolbar-start-end-padding) / 2 + var(--toolbarbutton-outer-padding) + 96px) !important;
-				}
-
-				#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) &:not(:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) &) {
-					:root:not([customizing]) & {
-						padding-inline-end: calc(4 * var(--tab-min-height) + 5 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
-						
-						#navigator-toolbox:has(#unified-extensions-button[hidden]) & {
-							padding-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
-						}
-					}
-				}
-			}
-
-			> .titlebar-buttonbox-container  {
-				position: absolute;
-				inset-inline-end: 0;
-
-				:root[inFullscreen] & {
-					display: none;
-				}
-			}
-		}
-
 		#PanelUI-menu-button {
 			:root:not([inFullscreen]) & {
-				inset-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+				margin-inline-end: calc(96px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 			}
 		}
 
-		#tabs-newtab-button, #new-tab-button {
-			&:not(#customization-palette .toolbarbutton-1) {
-				:root:not([inFullscreen]) & {
-					inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
+		.titlebar-buttonbox-container  {
+			position: absolute;
+			inset-inline-end: 0;
+			inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 28px) / 2);
 
-					#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
-						inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
-					}
-				}
+			:root[inFullscreen] & {
+				display: none;
 			}
 		}
-
-		#unified-extensions-button {
-			:root:not([customizing], [inFullscreen]) & {
-				inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
-
-				#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
-					inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
-				}
-			}
-		}
-
-		#nav-bar-overflow-button {
-			:root:not([inFullscreen]) & {
-				inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2 + 96px);
-			}
-		}
-	}
-
-	#customization-container #customization-panelWrapper > .panel-arrowbox > .panel-arrow[side="top"] {
-		margin-inline-end: calc(var(--tab-min-height) + var(--toolbar-start-end-padding) - var(--toolbar-start-end-padding) / 2 + 96px) !important;
 	}
 }

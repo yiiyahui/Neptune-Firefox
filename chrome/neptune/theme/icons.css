@@ -1,106 +1,23 @@
 /*---------- Icons ----------*/
 #PanelUI-menu-button {
 	list-style-image: url("../assets/icons/menu.svg") !important;
+	margin-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 
 	&:is([badge-status^="update-"], [badge-status="addon-alert"], [badge-status="fxa-needs-authentication"]) {
 		list-style-image: url("../assets/icons/menu-badged.svg") !important;
-	}
-
-	@media not -moz-pref("sidebar.verticalTabs") {
-		position: fixed;
-		inset-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-
-		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
-			position: revert;
-		}
-
-		@media (width <= 650px) {
-			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
-				position: revert;
-			}
-		}
-	}
-
-	@media -moz-pref("sidebar.verticalTabs") {
-		margin-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 	}
 }
 
 #tabs-newtab-button, #new-tab-button {
 	list-style-image: url("../assets/icons/plus.svg") !important;
-
-	@media not -moz-pref("sidebar.verticalTabs") {
-		&:not(#customization-palette .toolbarbutton-1) {
-			position: absolute;
-			inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-
-			/* When the overflow button is enabled, it will move one button's position to the left.*/
-			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
-				inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-			}
-
-			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
-				position: revert;
-			}
-
-			@media (width <= 650px) {
-				#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
-					position: revert;
-				}
-			}
-		}
-	}
 }
 
 #unified-extensions-button {
 	list-style-image: url("../assets/icons/extension.svg") !important;
-
-	@media not -moz-pref("sidebar.verticalTabs") {
-		:root:not([customizing]) & {
-			position: fixed;
-			inset-inline-end: calc(2 * var(--tab-min-height) + 3 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-
-			/* When the overflow button is enabled, it will move one button's position to the left.*/
-			#navigator-toolbox:has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
-				inset-inline-end: calc(3 * var(--tab-min-height) + 4 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-			}
-
-			#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
-				position: revert;
-				order: -1;
-			}
-
-			@media (width <= 650px) {
-				#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
-					position: revert;
-				}
-			}
-		}
-
-		:root[customizing] & {
-			display: none;
-		}
-	}
 }
 
 #nav-bar-overflow-button {
 	list-style-image: url("../assets/icons/chevron.svg") !important;
-
-	@media not -moz-pref("sidebar.verticalTabs") {
-		position: fixed;	/*When it is enabled, it will occupy the position of the new tab button.*/
-		inset-inline-end: calc(var(--tab-min-height) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding) - var(--toolbar-start-end-padding) / 2);
-
-		#navigator-toolbox:has(tab[pinned]):has(#tabbrowser-tabs[overflow]) & {
-			position: revert;
-			order: -1;
-		}
-
-		@media (width <= 650px) {
-			#navigator-toolbox:has(#tabbrowser-tabs[overflow]) & {
-				position: revert;
-			}
-		}
-	}
 }
 
 #sidebar-button {
@@ -402,9 +319,14 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 }
 
 .private-browsing-indicator-with-label {
-	-moz-context-properties: fill;
-	fill: var(--toolbarbutton-icon-fill);
-	margin-inline: calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) / 2) !important;
+	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
+
+	#TabsToolbar > & {
+		position: fixed;
+		inset-block-start: calc(var(--theme-browser-toolbox-padding) + var(--toolbarbutton-inner-padding));
+		inset-inline-start: calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+		margin-inline: calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) / 2) !important;
+	}
 
 	#navigator-toolbox[tabs-hidden] #nav-bar > & {
 		margin-inline: calc(var(--toolbarbutton-inner-padding) - var(--toolbarbutton-outer-padding)) calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
