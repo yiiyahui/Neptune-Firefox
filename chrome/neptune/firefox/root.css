@@ -103,6 +103,10 @@
 		&[muted] {
 			background-image: url("../assets/icons/audio-muted.svg") !important;
 		}
+
+		&[noAudio] {
+			background-image: url("../assets/icons/audioNoAudioButton.svg") !important;
+		}
 	}
 
 	> .fullscreenButton {

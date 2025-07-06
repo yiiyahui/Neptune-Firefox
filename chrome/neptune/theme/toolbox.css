@@ -55,9 +55,6 @@
 
 	#TabsToolbar {
 		@media not -moz-pref("sidebar.verticalTabs") {
-			background-color: var(--neptune-tabs-default-background) !important;
-			border-radius: var(--border-radius-circle);
-			margin-inline: var(--tab-inline-padding);
 			order: 1;
 
 			&:not(:has(tab-group), tab:nth-of-type(3)):has(tab:only-of-type, tab[hidden]) .toolbarbutton-1 {
@@ -144,7 +141,7 @@
 findbar {
 	background-color: transparent !important;
 	border: none !important;
-	padding-block: 0 !important;
+	padding-block: 0 var(--space-xsmall) !important;
 	order: -1;
 
 	@media (-moz-platform: macos) {
@@ -152,10 +149,11 @@ findbar {
 	}
 
 	&:where([hidden]) {
-		margin-bottom: calc(-1 * var(--size-item-medium)) !important;
+		margin-bottom: calc(-1 * (var(--size-item-small) + 2 * var(--border-width) + var(--space-xsmall) + 6px)) !important;
 	}
 
 	> .findbar-container {
+		height: calc(var(--size-item-small) + 2 * var(--border-width) + 6px) !important;
 		margin-inline: 0 !important;
 		flex-direction: row-reverse;
 
@@ -183,7 +181,7 @@ findbar {
 		}
 
 		.findbar-textbox {
-			width: 12em !important;
+			width: 14em !important;
 			padding: 0 var(--space-small) !important;
 			background-color: transparent !important;
 			border-color: var(--border-color-deemphasized) !important;

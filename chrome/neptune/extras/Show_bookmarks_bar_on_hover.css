@@ -1,14 +1,12 @@
 /* Show the bookmarks bar when hovering over the blank area of the toolbar. */
 #PersonalToolbar {
 	:root[sessionrestored] &:not(:has(toolbarbutton[open="true"]), body:has(#placesContext:hover) &, [customizing], [collapsed="true"]) {
-		visibility: hidden;
 		max-height: 0 !important;
-		transition: max-height 200ms ease-out, visibility 200ms linear, var(--ext-theme-background-transition) !important;
+		transition: max-height 200ms linear, var(--ext-theme-background-transition) !important;
 		transition-delay: 200ms !important;
 
-		#navigator-toolbox:not(:has(:is(.toolbarbutton-1:not(#PlacesChevron), .titlebar-button, #urlbar, tab, tab-group):hover)):hover > & {
-			visibility: visible;
-			max-height: calc(16px + 2 * var(--bookmark-block-padding)) !important;
+		#nav-bar:not(:has(:is(.toolbarbutton-1, #urlbar):hover)):hover + &, &:hover {
+			max-height: calc(var(--size-item-small) + 2 * var(--bookmark-block-padding)) !important;
 			transition-delay: 400ms !important;
 		}
 	}

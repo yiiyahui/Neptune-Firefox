@@ -10,7 +10,7 @@
 	border: none !important;
 	border-radius: var(--border-radius-circle) !important;
 	box-shadow: none !important;
-	transition: background-color 200ms ease;
+	transition: background-color 200ms ease-out;
 }
 
 #urlbar {
@@ -26,7 +26,6 @@
 
 	> #urlbar-background {
 		animation: none !important;
-		transition: background-color 0.2s ease;
 
 		#urlbar:hover > & {
 			background-color: var(--neptune-urlbar-hover-background) !important;
@@ -80,9 +79,19 @@
 		}
 
 		> #page-action-buttons > #urlbar-zoom-button {
-			margin-inline: 0 !important;
+			background-color: var(--button-background-color-primary) !important;
+			color: var(--button-text-color-primary)  !important;
+			margin-inline: var(--urlbar-icon-padding) !important;
 			padding-block: var(--urlbar-container-padding) !important;
 			border-radius: var(--border-radius-large) !important;
+
+			&:hover {
+				background-color: var(--button-background-color-primary-hover) !important;
+
+				&:active {
+					background-color: var(--button-background-color-primary-active) !important;
+				}
+			}
 		}
 
 		> .urlbar-go-button {
@@ -357,16 +366,29 @@
 	}
 }
 
-.urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
-	margin-inline-end: calc(-1 * var(--size-item-small) - 2 * var(--urlbar-icon-padding));
-	visibility: collapse;
-	opacity: 0;
-	transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
+#page-action-buttons {
+	--urlbar-icon-padding: calc((var(--urlbar-min-height) - 2px - 2px - 16px ) / 2) !important;
 
-	&:is(#urlbar:is(:hover, [open]) &, [open]) {
-		margin-inline-end: 0;
-		visibility: visible;
-		opacity: 1;
+	> .urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
+		margin-inline-end: calc(-1 * var(--size-item-small) - 2 * var(--urlbar-icon-padding));
+		visibility: collapse;
+		opacity: 0;
+		transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
+
+		&:is(#urlbar:is(:hover, [open]) &, [open]) {
+			margin-inline-end: 0;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	> #translations-button > #translations-button-locale {
+		height: var(--size-item-small) !important;
+		padding: 0 !important;
+		margin-block: 0 !important;
+		margin-inline-end: 0 !important;
+		font-size: 0.84em !important;
+		border-radius: var(--border-radius-medium) !important;
 	}
 }
 

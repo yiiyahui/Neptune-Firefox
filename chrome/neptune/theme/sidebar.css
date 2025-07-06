@@ -30,10 +30,9 @@
 @media -moz-pref("sidebar.revamp") {
 	.actions-list {
 		--button-size-icon: var(--tab-min-height) !important;
-		--button-border-radius: var(--border-radius-small) !important;
+		--button-border-radius: var(--border-radius-circle) !important;
 		--button-label-directiony: center;
 		--button-label-display: none;
-		--button-clip-path: circle(50%);
 
 		@media not -moz-pref("sidebar.verticalTabs") {
 			--button-size-icon: var(--urlbar-min-height) !important;
@@ -57,8 +56,6 @@
 	}
 
 	.button-background {
-		clip-path: var(--button-clip-path, inherit);
-
 		&.labelled {
 			justify-content: var(--button-label-directiony, inherit) !important;
 

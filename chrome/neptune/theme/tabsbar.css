@@ -5,7 +5,8 @@
 
 	&[orient="horizontal"] {
 		--tab-min-width: calc(48px + var(--tab-block-margin)) !important;
-		padding-block-end: calc(var(--theme-browser-toolbox-padding) / 2);
+		padding-bottom: calc(var(--theme-browser-toolbox-padding) / 2) !important;
+		margin: 0 !important;
 
 		&:not(:has(tab-group, tab:nth-child(2 of :not([hidden])))):has(tab:only-of-type, tab[hidden]) {
 			display: contents;
@@ -28,7 +29,7 @@
 				padding: calc(var(--tab-block-margin) / 2) !important;
 				max-width: 100% !important;
 
-				&:not(:first-of-type):not(&:nth-child(1 of :not([hidden], [pinned]))), tab-group:not(#tabbrowser-arrowscrollbox > &:not([hidden]) + tab-group) + &:first-of-type {
+				&:not(:nth-child(1 of :not([hidden], [pinned]))):not(tab-group:not([collapsed]) > &:first-of-type) {
 					margin-inline-start: var(--space-small) !important;
 				}
 
@@ -190,20 +191,17 @@
 
 	.tab-group-line {
 		background-color: transparent !important;
-		border-radius: var(--border-radius-small) !important;
+		inset-block: 0 !important;
+		border-radius: var(--border-radius-circle) !important;
 
 		#tabbrowser-tabs[orient="horizontal"] & {
 			height: var(--tab-min-height) !important;
-			margin: 0 !important;
+			inset-inline: 0 !important;
 		}
 
 		#tabbrowser-tabs[orient="vertical"] & {
 			width: auto !important;
-			inset: 0 var(--tab-inner-inline-margin) !important;
-		}
-
-		&:not(#tabbrowser-tabs[orient="vertical"][expanded] &) {
-			border-radius: var(--border-radius-circle) !important;
+			inset-inline: var(--tab-inner-inline-margin) !important;
 		}
 
 		#tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) .tabbrowser-tab:is(:active, [multiselected]) > .tab-stack > .tab-background > & {
