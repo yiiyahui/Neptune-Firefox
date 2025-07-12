@@ -460,6 +460,12 @@
 			backdrop-filter: saturate(1.5) blur(1em);
 			border-radius: var(--border-radius-circle) !important;
 		}
+
+		> .weatherNotAvailable {
+			background-color: var(--newtab-background-card) !important;
+			backdrop-filter: saturate(1.5) blur(1em);
+			border-radius: var(--border-radius-circle) !important;
+		}
 	}
 
 	.weatherInfoLink {
@@ -475,6 +481,17 @@
 
 		.weatherCard:hover & {
 			visibility: visible;
+		}
+	}
+
+	.weather-placeholder {
+		background: var(--newtab-background-card) !important;
+		backdrop-filter: saturate(1.5) blur(1em);
+		border-radius: var(--border-radius-xlarge) !important;
+
+		.placeholder-fill {
+			backdrop-filter: saturate(1.5) blur(1em);
+			border-radius: var(--border-radius-xlarge) !important;
 		}
 	}
 

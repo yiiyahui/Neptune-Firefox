@@ -171,7 +171,6 @@
 				padding-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
 				background: url("../assets/icons/tab-group.svg") no-repeat calc(var(--tab-inline-padding) - var(--tab-inner-inline-margin)) transparent !important;
 				color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
-				border-radius: var(--border-radius-small) !important;
 				fill: light-dark(var(--tab-group-color), var(--tab-group-color-invert));
 				text-align: left !important;
 

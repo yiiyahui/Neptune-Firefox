@@ -10,7 +10,7 @@
 	border: none !important;
 	border-radius: var(--border-radius-circle) !important;
 	box-shadow: none !important;
-	transition: background-color 200ms ease-out;
+	transition: var(--ext-theme-background-transition);
 }
 
 #urlbar {
@@ -130,7 +130,7 @@
 
 	> .urlbarView-row {
 		border: var(--button-border) !important;
-		border-radius: calc(var(--border-radius-small) - 1px) !important;
+		border-radius: var(--border-radius-small) !important;
 
 		> .urlbarView-row-inner {
 			flex-wrap: nowrap !important;

@@ -43,10 +43,6 @@
 
 			&:first-of-type {
 				--button-outer-padding-block-start: var(--space-xsmall) !important;
-
-				@media not -moz-pref("sidebar.verticalTabs") {
-					--button-outer-padding-block-start: 0 !important;
-				}
 			}
 		}
 

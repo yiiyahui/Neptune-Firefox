@@ -59,6 +59,7 @@
 	--focus-outline-color: var(--theme-primary-color) !important;
 	--arrowpanel-shadow-margin: 22px !important;
 	--arrowpanel-color: FieldText !important;
+	--arrowpanel-menuitem-border-radius: 5.5px !important;
 	--organizer-toolbar-background: var(--neptune-content-background) !important;
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
 	--organizer-selected-background: var(--neptune-item-active-background) !important;

@@ -3,6 +3,7 @@ menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
 	--panel-separator-color: var(--neptune-separator-color) !important;
 	--menu-arrow-size: var(--theme-menu-icon-size) !important;
+	--menuitem-border-radius: var(--arrowpanel-menuitem-border-radius) !important;
 
 	@media (-moz-platform: macos) or (-moz-platform: windows) {
 		appearance: menupopup !important;
@@ -127,8 +128,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 		> menu,
 		> menuitem {
-			padding-block: 2px !important;
-			border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+			padding-block: calc((var(--button-min-height) - 18px) / 2) !important;
 			padding-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
 
 			menupopup[needsgutter] &:not([checked="true"], [icon], .menu-iconic, .menuitem-iconic) {

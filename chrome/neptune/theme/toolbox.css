@@ -40,24 +40,24 @@
 		}
 	}
 
-	.browser-titlebar {
-		will-change: unset !important;
+	@media (-moz-platform: macos) {
+		.titlebar-buttonbox-container {
+			position: absolute;
+			inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2);
 
-		@media (-moz-platform: macos) {
-			min-height: unset !important;
-
-			> .titlebar-buttonbox-container {
-				position: absolute;
-				inset: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2) auto auto 7px;
+			> .titlebar-buttonbox {
+				margin-inline-start: calc(var(--space-xlarge) + 1px) !important;
 			}
 		}
 	}
 
 	#TabsToolbar {
+		min-height: unset !important;
+
 		@media not -moz-pref("sidebar.verticalTabs") {
 			order: 1;
 
-			&:not(:has(tab-group), tab:nth-of-type(3)):has(tab:only-of-type, tab[hidden]) .toolbarbutton-1 {
+			&:not(:has(tab-group), tab:nth-child(2 of :not([hidden]))):has(tab:only-of-type, tab[hidden]) .toolbarbutton-1 {
 				align-self: end;
 				z-index: var(--browser-stack-z-index-rdm-toolbar);
 			}
@@ -72,8 +72,9 @@
 		--toolbarbutton-inner-padding: var(--toolbarbutton-outer-padding) !important;
 		background-color: transparent !important;
 		outline-color: var(--border-color-deemphasized) !important;
+		transition-duration: 300ms !important;
 
-		> #personal-bookmarks:has(toolbarbutton[collapsed="true"]) > #PlacesToolbar > #PlacesToolbarItems {
+		> #personal-bookmarks > #PlacesToolbar > #PlacesToolbarItems:has(+ #PlacesChevron[collapsed]) {
 			justify-content: center;
 		}
 
@@ -160,7 +161,7 @@ findbar {
 		> checkbox {
 			margin-inline: 0 var(--space-medium) !important;
 
-			> .checkbox-check, .findbar-container:has(.found-matches[hidden="true"]):not(:has(.findbar-find-status[status="notfound"])) & {
+			&:has(~ .found-matches[hidden] ~ .findbar-find-status:not([status="notfound"])), > .checkbox-check {
 				display: none;
 			}
 
