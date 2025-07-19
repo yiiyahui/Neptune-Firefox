@@ -2,7 +2,7 @@
 
 **Instructions:** 
 - This theme is compatible with the latest release of Firefox and works on both Windows and macOS.
-- To enable adaptive colors, you need to install the **[Adaptive Tab Bar Color](https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour)** extension. 
+- To enable adaptive colors, you need to install the **[Adaptive Tab Bar Color](https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour)** extension. If not, the tabs will appear transparent.
 
 <img src="info/preview.png" alt="Preview Image" width="800px">
 
@@ -29,6 +29,7 @@ body {
     - Set `widget.non-native-theme.use-theme-accent` to `true`.
 
 - **Required settings**
-    - In a horizontal layout, a flexible spacer (Customize Toolbar) must be placed on both sides of the address bar (very important). If more flexible spacers are being used, the excess ones must be removed.
+    - Move all toolbar buttons to the top, and the tab bar does not display any buttons.
+    - If extension (Adaptive Tab Bar Color) is enabled, set all colors in the Options (theme builder) to `0%`.
 
 ENJOY!
