@@ -5,8 +5,11 @@
 
 	&[orient="horizontal"] {
 		--tab-min-width: calc(48px + var(--tab-block-margin)) !important;
-		padding-bottom: calc(var(--theme-browser-toolbox-padding) / 2) !important;
-		margin: 0 !important;
+
+		:root:not([customizing]) & {
+			padding-bottom: calc(var(--theme-browser-toolbox-padding) / 2) !important;
+			margin: 0 !important;
+		}
 
 		&:not(:has(tab-group, tab:nth-child(2 of :not([hidden])))):has(tab:only-of-type, tab[hidden]) {
 			display: contents;

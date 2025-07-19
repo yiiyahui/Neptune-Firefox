@@ -55,12 +55,8 @@
 		min-height: unset !important;
 
 		@media not -moz-pref("sidebar.verticalTabs") {
+			--toolbarbutton-inner-padding: inherit !important;
 			order: 1;
-
-			&:not(:has(tab-group), tab:nth-child(2 of :not([hidden]))):has(tab:only-of-type, tab[hidden]) .toolbarbutton-1 {
-				align-self: end;
-				z-index: var(--browser-stack-z-index-rdm-toolbar);
-			}
 		}
 
 		@media -moz-pref("sidebar.verticalTabs") {

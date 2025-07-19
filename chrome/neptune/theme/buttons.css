@@ -19,7 +19,7 @@ toolbar .toolbarbutton-1 {
 		opacity: var(--inactive-titlebar-opacity) !important;
 	}
 
-	#nav-bar &:where([disabled="true"]):not(#reload-button) {
+	&:not(#nav-bar &:not(:where([disabled="true"]):not(#reload-button))) {
 		:root:not([customizing]) & {
 			display: none;
 		}
