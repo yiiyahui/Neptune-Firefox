@@ -38,6 +38,7 @@
 		@media (-moz-platform: macos) or (-moz-platform: windows) {
 			appearance: menupopup !important;
 			--panel-background: Menu !important;
+			--panel-shadow-margin: 0px !important;
 		}
 
 		@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
@@ -363,11 +364,6 @@
 			background-image: url("../assets/icons/radio.svg");
 			border: none;
 		}
-	}
-
-	.textbox-search-icon,
-	.textbox-search-sign {
-		transform: scaleX(-1);
 	}
 
 	#root > ul[role="tree"] { 

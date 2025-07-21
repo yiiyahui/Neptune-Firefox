@@ -293,22 +293,24 @@
 	}
 
 	.personalizeButtonWrapper {
-		inset: auto var(--space-large) var(--space-large) auto !important;
+		inset-block-end: var(--space-large) !important;
+		inset-inline-end: var(--space-large) !important;
 
 		.personalize-button {
-			-moz-context-properties: fill, fill-opacity !important;
-			background-image: url("../assets/icons/settings.svg") !important;
+			--button-collapsed-width: var(--size-item-medium) !important;
+			--icon-size-medium: var(--size-item-medium) !important;
 			background-color: transparent !important;
+			min-width: unset !important;
 			padding: 0 !important;
-			background-size: var(--size-item-medium) !important;
-			width: var(--size-item-medium) !important;
-			height: var(--size-item-medium) !important;
+			box-shadow: none !important;
 			visibility: visible !important;
-			fill: MenuText !important;
-			fill-opacity: 0.8;
 
-			&:is(:hover, :active) {
-				fill-opacity: 1;
+			> div > img {
+				content: url("../assets/icons/settings.svg");
+			}
+
+			> label {
+				display: none;
 			}
 		}
 	}
@@ -435,7 +437,7 @@
 		background: linear-gradient(90deg, #f4e6f1cc 33%, #f3a0d7cc 66%, #b5e9f7cc 100%);
 		outline: none !important;
 
-		::-moz-color-swatch, label {
+		&::after, label {
 			display: none !important;
 		}
 	}

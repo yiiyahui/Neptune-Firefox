@@ -44,6 +44,7 @@
 		.titlebar-buttonbox-container {
 			position: absolute;
 			inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2);
+			inset-inline-start: 0;
 
 			> .titlebar-buttonbox {
 				margin-inline-start: calc(var(--space-xlarge) + 1px) !important;

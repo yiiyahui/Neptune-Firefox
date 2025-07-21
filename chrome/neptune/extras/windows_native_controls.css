@@ -14,21 +14,32 @@
 		margin: 4px 6px !important;
 		padding: 4px !important;
 		border-radius: var(--border-radius-xsmall) !important;
+		-moz-context-properties: stroke;
+		stroke: currentColor;
+
+		&::before {
+			content: normal !important;
+			display: none !important;
+		}
+
+		> .toolbarbutton-icon {
+			display: inline-block !important;
+		}
 
 		&.titlebar-close {
-			list-style-image: url("../assets/windows_controls/close.svg") !important;
+			list-style-image: url("../assets/windows_controls/close.svg");
 		}
 
 		&.titlebar-min {
-			list-style-image: url("../assets/windows_controls/minimize.svg") !important;
+			list-style-image: url("../assets/windows_controls/minimize.svg");
 		}
 
 		&.titlebar-max {
-			list-style-image: url("../assets/windows_controls/maximize.svg") !important;
+			list-style-image: url("../assets/windows_controls/maximize.svg");
 		}
 
 		&.titlebar-restore {
-			list-style-image: url("../assets/windows_controls/restore.svg") !important;
+			list-style-image: url("../assets/windows_controls/restore.svg");
 		}
 	}
 

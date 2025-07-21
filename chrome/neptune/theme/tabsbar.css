@@ -11,7 +11,8 @@
 			margin: 0 !important;
 		}
 
-		&:not(:has(tab-group, tab:nth-child(2 of :not([hidden])))):has(tab:only-of-type, tab[hidden]) {
+		&:not(:has(#tabbrowser-arrowscrollbox > tab:not([hidden]))):has(#pinned-tabs-container > tab:only-of-type),
+		&:not(:has(tab-group, #pinned-tabs-container:not(:empty), tab:nth-child(2 of :not([hidden])))):has(tab:only-of-type, tab[hidden]) {
 			display: contents;
 		}
 
@@ -19,10 +20,6 @@
 			background-color: var(--neptune-tabs-default-background);
 			border-radius: var(--border-radius-circle);
 			margin-inline: var(--tab-inline-padding);
-
-			#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > & > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
-				margin-inline-start: var(--space-small) !important;
-			}
 		}
 
 		.tabbrowser-tab {
@@ -53,11 +50,16 @@
 				}
 			}
 
+			&[pinned]:not(:first-of-type) {
+				padding-inline-start: var(--tab-block-margin) !important;
+			}
+
 			&:first-of-type:not([selected], [pinned], tab-group > &:first-of-type) {
 				--tab-loading-fill: transparent !important;
 			}
 
-			#tabbrowser-tabs:not(:has(tab-group,&:nth-child(2 of :not([hidden])))) :is(&:only-of-type, :has(&[hidden]) &:nth-of-type(-n+2)) {
+			#tabbrowser-tabs:not(:has(tab-group, #tabbrowser-arrowscrollbox > &:not([hidden]))) > #pinned-tabs-container > &:only-of-type,
+			#tabbrowser-tabs:not(:has(tab-group, #pinned-tabs-container:not(:empty), &:nth-child(2 of :not([hidden])))) :is(&:only-of-type, :has(&[hidden]) &:nth-of-type(-n+2)) {
 				display: none;
 			}
 		}
@@ -102,10 +104,15 @@
 				width: inherit !important;
 			}
 		}
+	}
 
-		> #vertical-pinned-tabs-container + #vertical-pinned-tabs-splitter {
+	> #pinned-tabs-container {
+		&[orient="horizontal"] {
+			margin-inline: calc(2 * var(--tab-block-margin)) auto !important;
+		}
+
+		+ #vertical-pinned-tabs-splitter {
 			min-width: var(--border-width) !important;
-			min-height: calc(2 * var(--tab-block-margin)) !important;
 			margin-inline: auto !important;
 			margin-block: var(--space-xsmall) !important;
 			border: 2px solid var(--border-color-deemphasized) !important;
@@ -117,7 +124,7 @@
 		#tabbrowser-tabs[orient="horizontal"] tab-group > & {
 			padding-inline-end: calc(var(--tab-block-margin) / 2) !important;
 			margin-inline-start: calc(2 * var(--tab-block-margin)) !important;
-			
+
 			/*If the first tab is a tab group, keep the same start margin as a normal tab.*/
 			tab-group:first-of-type > &:not(#tabbrowser-arrowscrollbox[orient="horizontal"] > tab:not([hidden]) + tab-group > &) {
 				margin-inline-start: calc(var(--tab-block-margin) / 2) !important;
@@ -235,6 +242,11 @@
 		&[selected]:not([multiselected], #tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) tab:active > .tab-stack > &) {
 			background-color: var(--neptune-tab-active-background) !important;
 
+			#pinned-tabs-container[orient="horizontal"] & {
+				background-color: var(--neptune-pinned-tab-active-background) !important;
+				box-shadow: none !important;
+			}
+
 			#tabbrowser-tabs[orient="vertical"] & {
 				background-color: var(--neptune-verticaltab-active-background) !important;
 			}
@@ -264,6 +276,14 @@
 
 		&:not([selected], [multiselected]) {
 			background-color: inherit !important;
+
+			#pinned-tabs-container[orient="horizontal"] & {
+				background-color: var(--neptune-pinned-tab-background) !important;
+							
+				tab:hover & {
+					background-color: var(--neptune-pinned-tab-hover-background) !important;
+				}
+			}
 
 			#tabbrowser-tabs[orient="horizontal"][movingtab] &:not(tab-group > tab &) {
 				background-color: var(--neptune-tab-background) !important;
@@ -527,6 +547,7 @@
 	--button-border: none !important;
 	--button-min-height-small: var(--button-min-height) !important;
 	--icon-size-default: var(--theme-menu-icon-size) !important;
+	/*--button-label-directiony: start;*/
 
 	.panel-header {
 		padding: 0 !important;

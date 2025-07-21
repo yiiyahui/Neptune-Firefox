@@ -36,15 +36,7 @@ textarea:not(#select-translations-panel-text-area) {
 	font: menu !important;
 }
 
-.textbox-search-icon,
-.textbox-search-sign,
-.textbox-search-clear {
-	width: var(--theme-menu-icon-size) !important;
-	margin-inline: var(--space-xsmall) !important;
-	transform: scaleX(-1);
-}
-
-*::selection {
+::selection {
 	background-color: var(--neptune-item-selection-background) !important;
 	color: var(--lwt-text-color) !important;
 }

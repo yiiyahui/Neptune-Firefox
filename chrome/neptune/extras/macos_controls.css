@@ -2,89 +2,99 @@
 @media (-moz-platform: windows) {
 	.titlebar-buttonbox-container {
 		position: absolute;
-		inset: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 12px) / 2) auto auto 16px;
+		inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 12px) / 2);
+		inset-inline-start: 16px;
 
 		:root[inFullscreen] & {
 			display: none;
 		}
-	}
 
-	.titlebar-button {
-		padding: 0 !important;
-		margin-inline: 4px !important;
-		background: none !important;
+		.titlebar-button {
+			padding: 0 !important;
+			margin-inline: 4px !important;
+			background: none !important;
+
+			&::before {
+				content: normal !important;
+				display: none !important;
+			}
+
+			> .toolbarbutton-icon {
+				display: inline-block !important;
+			}
+		}
 	}
 
 	.titlebar-close {
 		order: -1;
-		list-style-image: url("../assets/macos_controls/close.svg") !important;
+		list-style-image: url("../assets/macos_controls/close.svg");
 
 		.titlebar-buttonbox:hover & {
-			list-style-image: url("../assets/macos_controls/close-hover.svg") !important;
+			list-style-image: url("../assets/macos_controls/close-hover.svg");
 
 			&:active {
-				list-style-image: url("../assets/macos_controls/close-active.svg") !important;
+				list-style-image: url("../assets/macos_controls/close-active.svg");
 
 				@media (prefers-color-scheme: dark) {
-					list-style-image: url("../assets/macos_controls/close-active-dark.svg") !important;
+					list-style-image: url("../assets/macos_controls/close-active-dark.svg");
 				}
 			}
 		}
 	}
 
 	.titlebar-min {
-		list-style-image: url("../assets/macos_controls/minimize.svg") !important;
+		list-style-image: url("../assets/macos_controls/minimize.svg");
 
 		.titlebar-buttonbox:hover & {
-			list-style-image: url("../assets/macos_controls/minimize-hover.svg") !important;
+			list-style-image: url("../assets/macos_controls/minimize-hover.svg");
 
 			&:active {
-				list-style-image: url("../assets/macos_controls/minimize-active.svg") !important;
+				list-style-image: url("../assets/macos_controls/minimize-active.svg");
 
 				@media (prefers-color-scheme: dark) {
-					list-style-image: url("../assets/macos_controls/minimize-active-dark.svg") !important;
+					list-style-image: url("../assets/macos_controls/minimize-active-dark.svg");
 				}
 			}
 		}
 	}
 
 	.titlebar-max {
-		list-style-image: url("../assets/macos_controls/maximize.svg") !important;
+		list-style-image: url("../assets/macos_controls/maximize.svg");
 
 		.titlebar-buttonbox:hover & {
-			list-style-image: url("../assets/macos_controls/maximize-hover.svg") !important;
+			list-style-image: url("../assets/macos_controls/maximize-hover.svg");
 
 			&:active {
-				list-style-image: url("../assets/macos_controls/maximize-active.svg") !important;
+				list-style-image: url("../assets/macos_controls/maximize-active.svg");
 
 				@media (prefers-color-scheme: dark) {
-					list-style-image: url("../assets/macos_controls/maximize-active-dark.svg") !important;
+					list-style-image: url("../assets/macos_controls/maximize-active-dark.svg");
 				}
 			}
 		}
 	}
 
 	.titlebar-restore {
-		list-style-image: url("../assets/macos_controls/maximize.svg") !important;
+		list-style-image: url("../assets/macos_controls/maximize.svg");
 
 		.titlebar-buttonbox:hover & {
-			list-style-image: url("../assets/macos_controls/restore-hover.svg") !important;
+			list-style-image: url("../assets/macos_controls/restore-hover.svg");
 
 			&:active {
-				list-style-image: url("../assets/macos_controls/restore-active.svg") !important;
+				list-style-image: url("../assets/macos_controls/restore-active.svg");
 
 				@media (prefers-color-scheme: dark) {
-					list-style-image: url("../assets/macos_controls/restore-active-dark.svg") !important;
+					list-style-image: url("../assets/macos_controls/restore-active-dark.svg");
 				}
 			}
 		}
 	}
 
 	.titlebar-button:-moz-window-inactive {
-		list-style-image: url("../assets/macos_controls/backdrop.svg") !important;
+		list-style-image: url("../assets/macos_controls/backdrop.svg");
 
 		@media (prefers-color-scheme: dark) {
-			list-style-image: url("../assets/macos_controls/backdrop-dark.svg") !important;
+			list-style-image: url("../assets/macos_controls/backdrop-dark.svg");
 		}
 	}
 }

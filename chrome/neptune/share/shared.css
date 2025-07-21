@@ -25,8 +25,9 @@
 	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
 }
 
-/*#input {
-	--icon-size-default: 12px !important;
+#input {
+	--input-text-background-color: var(--input-bgcolor) !important;
+	--icon-size-default: var(--theme-menu-icon-size) !important;
 
 	&.with-icon {
 		padding-inline-start: calc(var(--icon-size-default) + var(--space-large)) !important;
@@ -41,7 +42,7 @@
 		padding: var(--space-xxsmall) !important;
 		border-radius: var(--border-radius-large) !important;
 	}
-}*/
+}
 
 /* animate */
 @keyframes menuBounce {

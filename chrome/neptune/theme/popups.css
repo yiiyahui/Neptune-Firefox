@@ -2,8 +2,8 @@
 menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
 	--panel-separator-color: var(--neptune-separator-color) !important;
-	--menu-arrow-size: var(--theme-menu-icon-size) !important;
 	--menuitem-border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+	--menu-arrow-size: var(--theme-menu-icon-size) !important;
 
 	@media (-moz-platform: macos) or (-moz-platform: windows) {
 		appearance: menupopup !important;
@@ -131,10 +131,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			padding-block: calc((var(--button-min-height) - 18px) / 2) !important;
 			padding-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
 
-			menupopup[needsgutter] &:not([checked="true"], [icon], .menu-iconic, .menuitem-iconic) {
-				padding-inline-start: 0 !important;
-			}
-
 			&:where([_moz-menuactive]:not([disabled="true"])) {
 				background-color: var(--color-accent-primary-hover) !important;
 				color: var(--button-text-color-primary) !important;
@@ -142,18 +138,6 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 			&:where([_moz-menuactive="true"][disabled="true"]) {
 				background: none !important;
-			}
-		}
-
-		> menuitem[checked="true"] {
-			padding-inline-start: var(--space-xxsmall) !important;
-
-			:is(#backForwardMenu, #nav-bar-customization-target) & {
-				padding-inline-start: var(--space-small) !important;
-			}
-
-			> .menu-icon {
-				margin-inline-end: var(--space-small) !important;
 			}
 		}
 
@@ -346,7 +330,7 @@ panelview .toolbarbutton-1,
 
 			&:not(:first-child) {
 				border-top: var(--button-border);
-				border-image: linear-gradient(90deg, transparent calc(var(--size-item-medium) + 8px), var(--panel-separator-color) 0, var(--panel-separator-color) calc(100% - var(--space-xsmall)), transparent 0) 1 0 0 0;
+				border-image: linear-gradient(90deg, transparent calc(var(--size-item-medium) + 8px), var(--panel-separator-color) 0, var(--panel-separator-color) calc(100% - var(--space-xsmall)), transparent 0) 1 0 0;
 			}
 
 			> .downloadMainArea {
