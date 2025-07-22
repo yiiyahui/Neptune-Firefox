@@ -112,11 +112,20 @@
 		}
 
 		+ #vertical-pinned-tabs-splitter {
-			min-width: var(--border-width) !important;
+			min-width: calc(2 * var(--default-focusring-width)) !important;
+			min-height: calc(2 * var(--default-focusring-width)) !important;
 			margin-inline: auto !important;
-			margin-block: var(--space-xsmall) !important;
-			border: 2px solid var(--border-color-deemphasized) !important;
+			border: none !important;
 			border-radius: var(--border-radius-small) !important;
+			transition: min-width 100ms linear, var(--ext-theme-background-transition);
+
+			#vertical-tabs:hover & {
+				background-color: var(--panel-separator-color) !important;
+
+				&:hover {
+					min-width: var(--size-item-small) !important;
+				}
+			}
 		}
 	}
 
@@ -547,7 +556,7 @@
 	--button-border: none !important;
 	--button-min-height-small: var(--button-min-height) !important;
 	--icon-size-default: var(--theme-menu-icon-size) !important;
-	/*--button-label-directiony: start;*/
+	--button-label-directiony: start;
 
 	.panel-header {
 		padding: 0 !important;

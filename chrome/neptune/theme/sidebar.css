@@ -42,7 +42,7 @@
 
 		&[orientation="horizontal"] {
 			justify-content: space-between !important;
-			gap: var(--space-xsmall) !important;
+			gap: var(--space-small) !important;
 			max-width: calc(100% - var(--space-xlarge)) !important;;
 		}
 	}
@@ -56,23 +56,27 @@
 	}
 
 	#sidebar-tools-and-extensions-splitter {
-		min-width: calc(var(--default-focusring-width) + var(--toolbarbutton-outer-padding)) !important;
-		border-width: var(--default-focusring-width) !important;
-		border-color: var(--border-color-deemphasized) !important;
+		min-width: calc(2 * var(--default-focusring-width)) !important;
+		min-height: calc(2 * var(--default-focusring-width)) !important;
+		border: none !important;
 		border-radius: var(--border-radius-small) !important;
 		margin-inline: auto !important;
 		margin-block-end: var(--space-xsmall) !important;
-		visibility: hidden;
+		transition: min-width 100ms linear, var(--ext-theme-background-transition);
 
-		.wrapper:hover & {
-			visibility: visible;
+		.wrapper:hover &:not(:has(~ .actions-list:hover)) {
+			background-color: var(--panel-separator-color) !important;
+
+			&:hover {
+				min-width: var(--size-item-small) !important;
+			}
 		}
 	}
 
 	.button-background {
-		/*&.labelled {
+		&.labelled {
 			justify-content: var(--button-label-directiony, initial) !important;
-		}*/
+		}
 
 		&[type~="icon"] {
 			button:is([title^="Open bookmarks"], [title^="Close bookmarks"]) > & > img {
@@ -126,11 +130,6 @@
 			color: FieldText !important;
 			text-decoration: none !important;
 		}
-	}
-
-	.search-container {
-		background-color: var(--input-bgcolor) !important;
-		border-radius: var(--border-radius-small) !important;
 	}
 
 	#heading-wrapper {

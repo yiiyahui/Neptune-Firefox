@@ -1,15 +1,7 @@
 /*---------- Search box ----------*/
-search-textbox {
-	appearance: none !important;
-	padding-block: 0 !important;
-	background-color: var(--input-bgcolor) !important;
-	border-radius: var(--border-radius-circle);
-}
-
 #urlbar-background,
 #searchbar,
 .findbar-textbox,
-search-textbox,
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox),
 textarea:not(#select-translations-panel-text-area) {
 	outline: 18px solid transparent !important;
@@ -18,7 +10,6 @@ textarea:not(#select-translations-panel-text-area) {
 #urlbar[open] > #urlbar-background,
 #searchbar:focus-within,
 .findbar-textbox:focus,
-search-textbox[focused],
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox):focus-visible,
 textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
 	outline: 3px solid var(--neptune-input-outline-color) !important;

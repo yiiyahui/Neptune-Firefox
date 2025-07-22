@@ -304,6 +304,7 @@
 			padding: 0 !important;
 			box-shadow: none !important;
 			visibility: visible !important;
+			transition: none !important;
 
 			> div > img {
 				content: url("../assets/icons/settings.svg");
@@ -434,10 +435,10 @@
 	}
 
 	.theme-custom-color-picker {
-		background: linear-gradient(90deg, #f4e6f1cc 33%, #f3a0d7cc 66%, #b5e9f7cc 100%);
+		background-color: transparent !important;
 		outline: none !important;
 
-		&::after, label {
+		label {
 			display: none !important;
 		}
 	}
