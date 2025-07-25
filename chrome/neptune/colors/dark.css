@@ -49,15 +49,15 @@
 		--neptune-tabs-default-background: #bcbcbc4c;
 		--neptune-tab-background: color-mix(in srgb, currentColor 8%, var(--lwt-accent-color, transparent));
 		--neptune-tab-hover-background: color-mix(in srgb, var(--lwt-accent-color) 80%, transparent 20%);
-		--neptune-tab-active-background: color-mix(in srgb, currentColor 3%, var(--lwt-accent-color, transparent));
-		--neptune-tab-selected-background: color-mix(in srgb, currentColor 25%, var(--lwt-accent-color, transparent));
+		--neptune-tab-selected-background: color-mix(in srgb, currentColor 3%, var(--lwt-accent-color, transparent));
+		--neptune-tab-multiselected-background: color-mix(in srgb, currentColor 25%, var(--lwt-accent-color, transparent));
 		--neptune-verticaltab-background: color-mix(in srgb, currentColor 3%, transparent);
 		--neptune-verticaltab-pinned-background: color-mix(in srgb, currentColor 8%, transparent);
 		--neptune-verticaltab-hover-background: color-mix(in srgb, currentColor 10%, transparent);
-		--neptune-verticaltab-active-background: color-mix(in srgb, currentColor 18%, transparent);
-		--neptune-pinned-tab-background: color-mix(in srgb, currentColor 12%, transparent);
+		--neptune-verticaltab-selected-background: color-mix(in srgb, currentColor 18%, transparent);
+		--neptune-pinned-tab-background: color-mix(in srgb, currentColor 14%, transparent);
 		--neptune-pinned-tab-hover-background: color-mix(in srgb, currentColor 20%, transparent);
-		--neptune-pinned-tab-active-background: color-mix(in srgb, currentColor 22%, transparent);
+		--neptune-pinned-tab-selected-background: color-mix(in srgb, currentColor 22%, transparent);
 		--neptune-tab-soundplaying-background: color-mix(in srgb, accentcolor 40%, transparent);
 	}
 }

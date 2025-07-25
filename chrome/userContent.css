@@ -15,6 +15,13 @@
 		@media (prefers-color-scheme: dark) {
 			background: url("neptune/assets/background_image/Flowers_Dark.svg") center/cover fixed !important;
 		}
+
+		&:not(.inline-onboarding) .fixed-search .search-wrapper {
+			background-color: transparent !important;
+			min-height: 52px !important;
+			padding: 0 !important;
+			border: none !important;
+		}
 	}
 }
 

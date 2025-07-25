@@ -4,33 +4,21 @@
 
 		.search-wrapper {
 			padding-block-start: 0 !important;
+
+			.search-button {
+				display: none;
+			}
 		}
 
 		.search-inner-wrapper {
-			width: 156px !important;
+			width: calc(3 * (2 * var(--size-item-large) + var(--space-xlarge)) - var(--space-xlarge)) !important;
 
-			:is(.layout-variant-a, .layout-variant-b) & {
-				width: 252px !important;
-
-				@media (min-width: 724px) {
-					width: 540px !important;
-				}
-
-				@media (min-width: 1122px) {
-					width: 732px !important;
-				}
-			}
-
-			@media (min-width: 610px) {
-				width: 348px !important;
-			}
-
-			@media (min-width: 866px) {
-				width: 540px !important;
+			@media (min-width: 724px) {
+				width:calc(6 * (2 * var(--size-item-large) + var(--space-xlarge)) - var(--space-xlarge)) !important;
 			}
 
 			@media (min-width: 1122px) {
-				width: 732px !important;
+				width: calc(8 * (2 * var(--size-item-large) + var(--space-xlarge)) - var(--space-xlarge)) !important;
 			}
 		}
 	}
@@ -68,7 +56,6 @@
 		}
 	}
 
-	.search-button,
 	.logo-and-wordmark-wrapper,
 	.showPrivate.showSearch.container,
 	.home-section .divider,
@@ -99,34 +86,17 @@
 		cursor: auto !important;
 	}
 
-	.ds-outer-wrapper-breakpoint-override main {
-		width: 192px !important;
-
-		@media (min-width: 610px) {
-			width: 384px !important;
-		}
-
-		@media (min-width: 866px) {
-			width: 576px !important;
-		}
-
-		@media (min-width: 1122px) {
-			width: 768px !important;
-		}
-	}
-
 	.collapsible-section {
 		padding: 0 !important;
 
 		.top-sites-list {
-			margin-inline: auto !important;
 			row-gap: unset !important;
 		}
 	}
 
 	.top-site-outer {
 		background: none !important;
-		width: calc(3 * var(--size-item-large)) !important;
+		width: calc(2 * var(--size-item-large) + var(--space-xlarge)) !important;
 		margin-block-end: var(--space-medium) !important;
 
 		.top-site-inner > a {
@@ -139,7 +109,7 @@
 			background-size: 10px !important;
 			border-radius: 50% !important;
 			inset-block-start: -10px !important;
-			inset-inline-end: 4px !important;
+			inset-inline-end: 0 !important;
 		}
 
 		.tile {
@@ -147,13 +117,13 @@
 			width: calc(2 * var(--size-item-large)) !important;
 			backdrop-filter: saturate(1.5) blur(2em);
 			outline: none !important;
-			border-radius: var(--border-radius-large) !important;
+			border-radius: var(--border-radius-xlarge) !important;
 			box-shadow: var(--box-shadow-level-3) !important;
 
 			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
 				height: calc(2 * var(--size-item-large)) !important;
 				width: calc(2 * var(--size-item-large)) !important;
-				border-radius: var(--border-radius-large) !important;
+				border-radius: var(--border-radius-xlarge) !important;
 
 				&.letter-fallback::before {
 					font-size: 1.22em !important;
@@ -444,9 +414,7 @@
 	}
 
 	.weather {
-		:is(.layout-variant-a, .layout-variant-b) & {
-			inset-inline-end: var(--space-large) !important;
-		}
+		inset-inline-end: var(--space-large) !important;
 
 		.weatherCard, .weatherButtonContextMenuWrapper {
 			background: none !important;

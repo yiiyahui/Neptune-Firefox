@@ -12,7 +12,7 @@
 		border: none !important;
 
 		:root[inFullscreen] & {
-			padding-inline-start: 0 !important;
+			padding-inline-start: var(--space-xsmall) !important;
 		}
 
 		@media not -moz-pref("sidebar.verticalTabs") {
@@ -58,6 +58,11 @@
 		@media not -moz-pref("sidebar.verticalTabs") {
 			--toolbarbutton-inner-padding: inherit !important;
 			order: 1;
+
+			> .titlebar-spacer {
+				width: calc(var(--size-item-small) / 2) !important;
+				display: revert !important;
+			}
 		}
 
 		@media -moz-pref("sidebar.verticalTabs") {

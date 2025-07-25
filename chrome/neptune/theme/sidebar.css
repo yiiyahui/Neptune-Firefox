@@ -62,7 +62,7 @@
 		border-radius: var(--border-radius-small) !important;
 		margin-inline: auto !important;
 		margin-block-end: var(--space-xsmall) !important;
-		transition: min-width 100ms linear, var(--ext-theme-background-transition);
+		transition: min-width 150ms linear, var(--ext-theme-background-transition);
 
 		.wrapper:hover &:not(:has(~ .actions-list:hover)) {
 			background-color: var(--panel-separator-color) !important;

@@ -1,9 +1,10 @@
 /*---------- Tabs Bar ----------*/
 #tabbrowser-tabs {
-	--scrollbutton-display: none;
+	padding-inline-start: 0 !important;
 	border-inline-start: none !important;
 
 	&[orient="horizontal"] {
+		--scrollbutton-display: none;
 		--tab-min-width: calc(48px + var(--tab-block-margin)) !important;
 
 		:root:not([customizing]) & {
@@ -19,7 +20,6 @@
 		> #tabbrowser-arrowscrollbox {
 			background-color: var(--neptune-tabs-default-background);
 			border-radius: var(--border-radius-circle);
-			margin-inline: var(--tab-inline-padding);
 		}
 
 		.tabbrowser-tab {
@@ -50,8 +50,8 @@
 				}
 			}
 
-			&[pinned]:not(:first-of-type) {
-				padding-inline-start: var(--tab-block-margin) !important;
+			&[pinned] {
+				padding-inline: 0 var(--tab-block-margin) !important;
 			}
 
 			&:first-of-type:not([selected], [pinned], tab-group > &:first-of-type) {
@@ -73,7 +73,7 @@
 		}
 
 		&[expanded] .tabbrowser-tab {
-			transition: 150ms ease-out !important;
+			transition: margin-inline 150ms linear !important;
 
 			tab-group:not([collapsed]) > & {
 				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
@@ -108,7 +108,7 @@
 
 	> #pinned-tabs-container {
 		&[orient="horizontal"] {
-			margin-inline: calc(2 * var(--tab-block-margin)) auto !important;
+			margin-inline-end: var(--tab-block-margin) !important;
 		}
 
 		+ #vertical-pinned-tabs-splitter {
@@ -117,7 +117,7 @@
 			margin-inline: auto !important;
 			border: none !important;
 			border-radius: var(--border-radius-small) !important;
-			transition: min-width 100ms linear, var(--ext-theme-background-transition);
+			transition: min-width 150ms linear, var(--ext-theme-background-transition);
 
 			#vertical-tabs:hover & {
 				background-color: var(--panel-separator-color) !important;
@@ -159,7 +159,7 @@
 		> .tab-group-label {
 			line-height: var(--tab-group-label-height) !important;
 			border-radius: var(--border-radius-circle) !important;
-			transition: background-color 0.2s ease-out;
+			transition: background-color 200ms ease-out, color 100ms ease-out;
 
 			tab-group[collapsed] > .tab-group-label-container > & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 25%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 35%, transparent)) !important;
@@ -249,15 +249,15 @@
 		}
 
 		&[selected]:not([multiselected], #tabbrowser-tabs[movingtab]:not([movingtab-createGroup], [movingtab-ungroup]) tab:active > .tab-stack > &) {
-			background-color: var(--neptune-tab-active-background) !important;
+			background-color: var(--neptune-tab-selected-background) !important;
 
 			#pinned-tabs-container[orient="horizontal"] & {
-				background-color: var(--neptune-pinned-tab-active-background) !important;
+				background-color: var(--neptune-pinned-tab-selected-background) !important;
 				box-shadow: none !important;
 			}
 
 			#tabbrowser-tabs[orient="vertical"] & {
-				background-color: var(--neptune-verticaltab-active-background) !important;
+				background-color: var(--neptune-verticaltab-selected-background) !important;
 			}
 
 			tab-group:not([collapsed]) > .tabbrowser-tab > .tab-stack > & {
@@ -330,7 +330,7 @@
 				}
 			}
 
-			.tabbrowser-tab[soundplaying]:not(:is(#tabbrowser-tabs[orient="vertical"][expanded], #tabbrowser-tabs[orient="horizontal"]) .tabbrowser-tab:not([pinned])[soundplaying]) &:not(tab:hover &) {
+			.tabbrowser-tab:is([muted], [soundplaying], [activemedia-blocked]):not(:is(#tabbrowser-tabs[orient="vertical"][expanded], #tabbrowser-tabs[orient="horizontal"]) .tabbrowser-tab:not([pinned]):is([muted], [soundplaying], [activemedia-blocked])) &:not(tab:hover &) {
 				background-color: var(--neptune-tab-soundplaying-background) !important;
 				animation: var(--tab-sharing-icon-animation) -1s;
 
@@ -341,12 +341,9 @@
 		}
 
 		&[multiselected] {
-			background-color: var(--neptune-tab-selected-background) !important;
-			background-image: linear-gradient(90deg, transparent 0%,
-				var(--neptune-item-selection-background) 25%, transparent 50%,
-				var(--neptune-item-selection-background) 75%, transparent 100%);
-			background-size: 200% 100%;
-			animation: downloadProgressSlideX 3s linear infinite;
+			background-color: var(--neptune-tab-multiselected-background) !important;
+			box-shadow: none !important;
+			animation: 2s linear tab-sharing-icon-pulse infinite;
 
 			#tabbrowser-tabs[movingtab-createGroup] tab > .tab-stack > & {
 				background-color: light-dark(color-mix(in srgb, var(--dragover-tab-group-color) 20%, transparent), color-mix(in srgb, var(--dragover-tab-group-color-invert) 25%, transparent)) !important;
@@ -532,6 +529,7 @@
 
 		.tabbrowser-tab[pending] & {
 			color: var(--text-color-disabled);
+			transition: color 1s linear;
 		}
 	}
 }
@@ -571,6 +569,10 @@
 		margin-inline: var(--arrowpanel-menuitem-margin-inline);
 	}
 
+	.tab-group-editor-swatch {
+		border-radius: var(--border-radius-circle) !important;
+	}
+
 	toolbarseparator {
 		margin: var(--arrowpanel-menuitem-margin-inline) !important;
 	}
@@ -586,5 +588,6 @@
 }
 
 #scrollbutton-up, #scrollbutton-down { 
-	display: var(--scrollbutton-display, inherit);
+	border-radius: var(--border-radius-circle) !important;
+	/*display: var(--scrollbutton-display, inherit);*/
 }
