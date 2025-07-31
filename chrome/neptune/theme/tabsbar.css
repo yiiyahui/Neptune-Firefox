@@ -159,16 +159,11 @@
 		> .tab-group-label {
 			line-height: var(--tab-group-label-height) !important;
 			border-radius: var(--border-radius-circle) !important;
+			outline: none !important;
 			transition: background-color 200ms ease-out, color 100ms ease-out;
 
 			tab-group[collapsed] > .tab-group-label-container > & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 25%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 35%, transparent)) !important;
-				outline-width: var(--focus-outline-width) !important;
-				outline-offset: var(--focus-outline-inset) !important;
-
-				&:not(#tabbrowser-tabs[orient="vertical"][expanded][movingtab] .tab-group-label-container:active > &) {
-					outline: none !important;
-				}
 
 				#tabbrowser-tabs[movingtab] &:active {
 					backdrop-filter: blur(2em);
@@ -196,6 +191,10 @@
 				tab-group[collapsed] > .tab-group-label-container > & {
 					background: url("../assets/icons/tab-group-collapsed.svg") no-repeat calc(var(--tab-inline-padding) - var(--tab-inner-inline-margin)) !important;
 					color: inherit !important;
+
+					#tabbrowser-tabs[movingtab] & {
+						background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 25%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 35%, transparent)) !important;
+					}
 				}
 			}
 
@@ -262,11 +261,22 @@
 
 			tab-group:not([collapsed]) > .tabbrowser-tab > .tab-stack > & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, var(--lwt-accent-color, transparent)), color-mix(in srgb, var(--tab-group-color-invert) 20%, transparent)) !important;
-				box-shadow: none !important;
+
+				#tabbrowser-tabs[orient="horizontal"] & {
+					box-shadow: inset -0.35px 0.65px 0.45px color-mix(in srgb, var(--tab-group-color) 20%, var(--lwt-accent-color)), inset -0.35px -0.65px 0.45px 0.25px color-mix(in srgb, var(--tab-group-color) 25%, var(--lwt-accent-color)), 0 0 0 2px var(--neptune-content-border-color) !important;
+
+					@media (prefers-color-scheme: dark) {
+						box-shadow: inset -0.35px 0.65px 0.45px color-mix(in srgb, var(--tab-group-color-invert) 20%, var(--lwt-accent-color)), inset -0.35px -0.65px 0.45px 0.25px color-mix(in srgb, var(--tab-group-color-invert) 25%, var(--lwt-accent-color)), 0 0 0 2px var(--neptune-content-border-color) !important;
+					}
+				}
 			}
 
 			tab[usercontextid] > .tab-stack > & {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) !important;
+
+				#tabbrowser-tabs[orient="horizontal"] & {
+					box-shadow: inset -0.35px 0.65px 0.45px color-mix(in srgb, var(--identity-tab-color) 20%, var(--lwt-accent-color)), inset -0.35px -0.65px 0.45px 0.25px color-mix(in srgb, var(--identity-tab-color) 25%, var(--lwt-accent-color)), 0 0 0 2px var(--neptune-content-border-color) !important;
+				}
 
 				#tabbrowser-tabs[orient="vertical"] & {
 					background-color: color-mix(in srgb, var(--identity-tab-color) 15%, transparent) !important;

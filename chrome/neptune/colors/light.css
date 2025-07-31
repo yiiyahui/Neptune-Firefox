@@ -26,9 +26,9 @@
 		--neptune-button-field-hover-color: color-mix(in srgb, currentColor 80%, transparent);
 
 		/* Popups */
-		--neptune-menu-background: #ececec;
+		--neptune-menu-background: #fafafa;
 		--neptune-glass-background: #ffffff3f;
-		--neptune-secondary-background: #ecececb2;
+		--neptune-secondary-background: #fafafabf;
 		--neptune-separator-color: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-small-shadow: 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
 		--neptune-menu-shadow: 0 1px 8px #00000019, 0 5px 15px #00000016, 0 8px 20px #00000011, 0 3px 22px #00000016;

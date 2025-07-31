@@ -21,12 +21,12 @@
 			}
 		}
 
-		> .customization-target:not(#widget-overflow-fixed-list) {
+		> #nav-bar-customization-target:not(#widget-overflow-fixed-list) {
 			:root[customizing] & {
 				animation: emeTeachingMoment 1s linear infinite;
 			}
 
-			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring {
+			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring:not(#vertical-spacer) {
 				max-width: 100% !important;
 
 				#nav-bar & {
@@ -36,6 +36,10 @@
 
 			 > toolbarpaletteitem[place="toolbar"] > toolbarspring {
 				margin-block: 0 !important;
+			}
+
+			> :is(#wrapper-vertical-spacer, #vertical-spacer) {
+				display: none;	/* Remove the spacer from the toolbar in vertical layout. */
 			}
 		}
 	}

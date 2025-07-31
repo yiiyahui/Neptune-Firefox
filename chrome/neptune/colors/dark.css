@@ -28,7 +28,7 @@
 		/* Popups */
 		--neptune-menu-background: Field;
 		--neptune-glass-background: #00000038;
-		--neptune-secondary-background: #333333b2;
+		--neptune-secondary-background: #1e1e1ebf;
 		--neptune-separator-color: color-mix(in srgb, currentColor 15%, transparent);
 		--neptune-small-shadow: 0 0 1px color-mix(in srgb, currentColor 50%, transparent);
 		--neptune-menu-shadow: 0 1px 8px #00000016, 0 5px 15px #00000011, 0 8px 20px #00000011, 0 3px 22px #00000019;
