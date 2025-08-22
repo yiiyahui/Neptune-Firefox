@@ -120,7 +120,7 @@
 			border-radius: var(--border-radius-xlarge) !important;
 			box-shadow: var(--box-shadow-level-3) !important;
 
-			.icon-wrapper:not(.top-site-outer.placeholder.add-button .tile .icon-wrapper) {
+			.icon-wrapper:not(.top-site-outer.add-button .tile .icon-wrapper) {
 				height: calc(2 * var(--size-item-large)) !important;
 				width: calc(2 * var(--size-item-large)) !important;
 				border-radius: var(--border-radius-xlarge) !important;
@@ -395,7 +395,7 @@
 		box-shadow: none !important;
 	}
 
-	.wallpaper-input.theme-custom-wallpaper {
+	.wallpaper-input.theme-custom-wallpaper, .theme-custom-color-picker {
 		background-color: var(--button-background-color) !important;
 		border: none !important;
 
