@@ -20,6 +20,10 @@
 	font-size: 12.5px !important;
 	transition: opacity var(--inactive-window-transition);
 
+	:root[customtitlebar] .browser-titlebar &:popover-open {
+		will-change: unset !important;
+	}
+
 	&:-moz-window-inactive {
 		opacity: var(--inactive-titlebar-opacity);
 	}
