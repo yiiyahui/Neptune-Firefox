@@ -267,8 +267,8 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 
 .close-icon:not(.findbar-closebutton),
 .permission-popup-permission-remove-button > .button-box > .button-icon {
-	height: var(--theme-menu-icon-size) !important;
-	width: var(--theme-menu-icon-size) !important;
+	height: var(--size-item-xsmall) !important;
+	width: var(--size-item-xsmall) !important;
 	padding: 0 !important;
 	list-style-image: url("../assets/icons/close-12.svg") !important;
 }
@@ -307,6 +307,14 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 
 #picture-in-picture-button[pipactive] > .urlbar-icon {
 	list-style-image: url("../assets/icons/picture-in-picture-closed.svg") !important;
+}
+
+#taskbar-tabs-button > .urlbar-icon {
+	list-style-image: url("../assets/icons/taskbar-tabs-add-tab.svg") !important;
+
+	:root[taskbartab] & {
+		list-style-image: url("../assets/icons/taskbar-tabs-move-tab.svg") !important;
+	}
 }
 
 #pageAction-panel-bookmark,

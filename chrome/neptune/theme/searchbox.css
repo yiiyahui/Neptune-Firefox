@@ -1,14 +1,14 @@
 /*---------- Search box ----------*/
-#urlbar-background,
 #searchbar,
+.urlbar-background,
 .findbar-textbox,
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox),
 textarea:not(#select-translations-panel-text-area) {
 	outline: 18px solid transparent !important;
 }
 
-#urlbar[open] > #urlbar-background,
 #searchbar:focus-within,
+#urlbar[open] > .urlbar-background,
 .findbar-textbox:focus,
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox):focus-visible,
 textarea:not(#select-translations-panel-text-area):where(:focus-visible) {

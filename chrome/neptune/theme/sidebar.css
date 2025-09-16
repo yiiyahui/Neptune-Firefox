@@ -102,7 +102,7 @@
 	}
 
 	.sidebar-panel {
-		--icon-size-default: var(--theme-menu-icon-size) !important;
+		--icon-size: var(--size-item-xsmall) !important;
 		padding-block: 0 !important;
 
 		&[lwt-sidebar] {
@@ -205,7 +205,7 @@
 	}
 
 	#header {
-		--icon-size-default: var(--theme-menu-icon-size) !important;
+		--icon-size-default: var(--size-item-xsmall) !important;
 		padding-inline: 0 !important;
 		border: none !important;
 

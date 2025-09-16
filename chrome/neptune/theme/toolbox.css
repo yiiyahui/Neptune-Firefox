@@ -27,7 +27,9 @@
 			}
 
 			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring:not(#vertical-spacer) {
-				max-width: 100% !important;
+				:root:not([taskbartab]) & {
+					max-width: 100% !important;
+				}
 
 				#nav-bar & {
 					flex-grow: 400 !important;
@@ -110,7 +112,7 @@
 		background-color: inherit !important;
 
 		.notificationbox-stack > .infobar {
-			--icon-size-default: var(--theme-menu-icon-size) !important;
+			--icon-size: var(--size-item-xsmall) !important;
 			--button-size-icon-small: 20px !important;
 			--button-min-height-small: 20px !important;
 			--button-border-radius: var(--border-radius-large) !important;

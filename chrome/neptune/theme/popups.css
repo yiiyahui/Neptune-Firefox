@@ -3,7 +3,7 @@ menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
 	--panel-separator-color: var(--neptune-separator-color) !important;
 	--menuitem-border-radius: var(--arrowpanel-menuitem-border-radius) !important;
-	--menu-arrow-size: var(--theme-menu-icon-size) !important;
+	--menu-arrow-size: var(--size-item-xsmall) !important;
 
 	@media (-moz-platform: macos) or (-moz-platform: windows) {
 		appearance: menupopup !important;
@@ -23,8 +23,8 @@ menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 
 panel {
 	--arrowpanel-header-back-icon-padding: var(--space-xsmall) !important;
-	--arrowpanel-header-back-icon-full-width: calc(var(--theme-menu-icon-size) + 2 * var(--arrowpanel-header-back-icon-padding)) !important;
-	--arrowpanel-header-min-height: calc(var(--arrowpanel-header-back-icon-full-width) + 2 * var(--panel-separator-margin-vertical)) !important;
+	--arrowpanel-header-back-icon-full-width: calc(var(--size-item-xsmall) + 2 * var(--arrowpanel-header-back-icon-padding)) !important;
+	--arrowpanel-header-min-height: calc(var(--arrowpanel-header-back-icon-full-width) + 2 * var(--panel-separator-padding-vertical)) !important;
 
 	:root[lwtheme] & {
 		color-scheme: light dark !important;
@@ -35,6 +35,11 @@ panel {
 
 		&#link-preview-panel {
 			--panel-border-radius: 0 !important;
+		}
+
+		.PanelUI-profiler-button {
+			padding-block: 2px !important;
+			border-radius: var(--border-radius-small) !important;
 		}
 
 		/*Account menu fix*/
@@ -59,8 +64,8 @@ panel {
 		padding-block: 2px !important;
 	}
 
-	toolbarseparator {
-		margin-inline: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
+	toolbarseparator:not(.tab-group-editor-panel toolbarseparator) {
+		--panel-separator-padding: var(--panel-separator-padding-vertical) calc(var(--panel-separator-padding-horizontal) + var(--arrowpanel-menuitem-margin-inline)) !important;
 	}
 
 	&[type="autocomplete-richlistbox"] {
@@ -81,8 +86,8 @@ panel {
 				}
 
 				> .ac-type-icon {
-					min-height: var(--theme-menu-icon-size) !important;
-					min-width: var(--theme-menu-icon-size) !important;
+					min-height: var(--size-item-xsmall) !important;
+					min-width: var(--size-item-xsmall) !important;
 				}
 
 				> .ac-title {
@@ -99,7 +104,7 @@ panel {
 	.toolbarbutton-badge {
 		background-color: var(--icon-color-warning) !important;
 		line-height: 14px !important;
-		border-radius: 50% !important;
+		border-radius: var(--border-radius-large) !important;
 	}
 }
 
@@ -165,7 +170,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 		}
 
 		> menuseparator {
-			padding: var(--panel-separator-margin) !important;
+			padding: var(--panel-separator-padding) !important;
 		}
 
 		#ContentSelectDropdown > & {
@@ -214,8 +219,8 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 .downloadButton > .button-box > .button-icon,
 .menu-icon:not(:is(#context-navigation, .bookmark-item) .menu-icon),
 :is(#protections-popup-mainView, .widget-overflow-list, .PanelUI-subView) .subviewbutton-nav::after {
-	width: var(--theme-menu-icon-size) !important;
-	height: var(--theme-menu-icon-size) !important;
+	width: var(--size-item-xsmall) !important;
+	height: var(--size-item-xsmall) !important;
 }
 
 #appMenu-popup {
@@ -254,7 +259,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 }
 
 #permission-popup-mainView {
-	--panel-separator-margin: var(--space-xxsmall) !important;
+	--panel-separator-padding: var(--space-xxsmall) !important;
 
 	> .permission-popup-section {
 		padding-bottom: var(--space-xsmall) !important;

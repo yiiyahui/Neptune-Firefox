@@ -267,21 +267,28 @@
 		inset-inline-end: var(--space-large) !important;
 
 		.personalize-button {
-			--button-collapsed-width: var(--size-item-medium) !important;
-			--icon-size-medium: var(--size-item-medium) !important;
-			background-color: transparent !important;
-			min-width: unset !important;
-			padding: 0 !important;
+			--button-collapsed-width: fit-content !important;
+			background-color: light-dark(#00000066, #ffffff3f) !important;
+			backdrop-filter: blur(2em);
+			color: var(--in-content-primary-button-text-color) !important;
+			padding: var(--space-xsmall) var(--space-medium) !important;
+			border-radius: var(--border-radius-circle) !important;
 			box-shadow: none !important;
 			visibility: visible !important;
 			transition: none !important;
 
-			> div > img {
-				content: url("../assets/icons/settings.svg");
+			&:is(:hover, :focus) {
+				background-color: light-dark(#00000059, #ffffff4c) !important;
+			}
+
+			> div {
+				display: none !important;
 			}
 
 			> label {
-				display: none;
+				margin-inline: auto !important;
+				opacity: unset !important;
+				transform: none !important;
 			}
 		}
 	}

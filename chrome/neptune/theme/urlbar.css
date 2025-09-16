@@ -5,7 +5,7 @@
 }
 
 #searchbar,
-#urlbar-background {
+.urlbar-background {
 	background-color: var(--neptune-urlbar-background) !important;
 	border: none !important;
 	border-radius: var(--border-radius-circle) !important;
@@ -28,7 +28,7 @@
 		opacity: var(--inactive-titlebar-opacity);
 	}
 
-	> #urlbar-background {
+	> .urlbar-background {
 		animation: none !important;
 
 		#urlbar:hover > & {
@@ -62,17 +62,17 @@
 				background-color: var(--neptune-item-active-background) !important;
 			}
 
-			> #searchmode-switcher-dropmarker {
+			> .searchmode-switcher-dropmarker {
 				margin-inline-start: var(--urlbar-icon-padding) !important;
 				display: none;
 			}
 		}
 
-		> #searchmode-switcher-chicklet {
+		> .searchmode-switcher-chicklet {
 			margin-inline: 0 !important;
 			font-size: var(--urlbarView-small-font-size);
 
-			> #searchmode-switcher-close {
+			> .searchmode-switcher-close {
 				margin-inline: var(--urlbar-icon-padding) !important;
 			}
 		}
@@ -360,7 +360,7 @@
 }
 
 #tracking-protection-icon-container {
-	margin-inline-start: calc(-1 * var(--theme-menu-icon-size) - 2 * var(--urlbar-icon-padding));
+	margin-inline-start: calc(-1 * var(--size-item-xsmall) - 2 * var(--urlbar-icon-padding));
 	visibility: collapse;
 	transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
 
@@ -431,7 +431,7 @@
 	}
 
 	> :is(#identity-permission-box, #notification-popup-box) {
-		margin-inline-start: calc(-1 * var(--theme-menu-icon-size) - 2 * var(--urlbar-icon-padding));
+		margin-inline-start: calc(-1 * var(--size-item-xsmall) - 2 * var(--urlbar-icon-padding));
 		visibility: collapse;
 		opacity: 0;
 		transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
@@ -473,9 +473,9 @@
 #tracking-protection-icon-box,
 #blocked-permissions-container > .blocked-permission-icon,
 .urlbarView-action-btn > img,
-#searchmode-switcher-icon,
+.searchmode-switcher-icon,
 #searchmode-switcher-popup-search-settings-icon,
 .urlbar-input-container [id$="close"] {
-	width: var(--theme-menu-icon-size) !important;
-	height: var(--theme-menu-icon-size) !important;
+	width: var(--size-item-xsmall) !important;
+	height: var(--size-item-xsmall) !important;
 }

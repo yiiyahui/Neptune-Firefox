@@ -6,6 +6,7 @@
 	--urlbar-min-height: var(--size-item-large) !important;
 	--urlbarView-small-font-size: 0.84em !important;
 	--urlbar-icon-padding: calc((var(--size-item-medium) - 2px - 2px - 16px ) / 2) !important;
+	--urlbar-icon-border-radius: var(--border-radius-circle) !important;
 	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) + var(--border-width)) !important;
 	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - 2 * var(--border-width))) !important;
 	--tab-min-height: var(--size-item-medium) !important;
@@ -21,9 +22,9 @@
 	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
 	--panel-separator-zap-gradient: none !important;
 	--panel-subview-body-padding-block: 5px !important;
-	--panel-separator-margin-vertical: 5px !important;
-	--panel-separator-margin-horizontal: 9px !important;
-	--panel-separator-margin: var(--panel-separator-margin-vertical) var(--panel-separator-margin-horizontal) !important;
+	--panel-separator-padding-vertical: 5px !important;
+	--panel-separator-padding-horizontal: 9px !important;
+	--panel-separator-padding: var(--panel-separator-padding-vertical) var(--panel-separator-padding-horizontal) !important;
 	--arrowpanel-menuitem-margin-inline: 5px !important;
 	--arrowpanel-menuitem-padding-inline: 9px !important;
 	--arrowpanel-menuitem-padding-block: 0 !important;
