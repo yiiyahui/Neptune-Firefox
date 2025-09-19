@@ -6,7 +6,6 @@
 	--urlbar-min-height: var(--size-item-large) !important;
 	--urlbarView-small-font-size: 0.84em !important;
 	--urlbar-icon-padding: calc((var(--size-item-medium) - 2px - 2px - 16px ) / 2) !important;
-	--urlbar-icon-border-radius: var(--border-radius-circle) !important;
 	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) + var(--border-width)) !important;
 	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - 2 * var(--border-width))) !important;
 	--tab-min-height: var(--size-item-medium) !important;
@@ -16,7 +15,7 @@
 	--tab-label-line-height: 1.6 !important;
 	--tab-selected-shadow-size: 0 !important;
 	--tab-selected-shadow: inset -0.35px 0.65px 0.45px var(--lwt-accent-color), inset -0.35px -0.65px 0.45px 0.25px var(--lwt-accent-color), 0 0 0 2px var(--neptune-content-border-color) !important;
-	--button-min-height: calc(var(--size-item-small) + var(--space-small)) !important;
+	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
 	--button-padding: 0 var(--space-large) !important;
 	--menu-panel-width-wide: 28em !important;
 	--uei-icon-size: var(--panel-and-palette-icon-size) !important;
@@ -31,10 +30,9 @@
 	--arrowpanel-padding: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
 	--tabpanel-background-color: transparent !important;
 	--in-content-clip-path: inset(0 round 0.01px 0 0);
-	--in-content-page-background: var(--neptune-secondary-background) !important;
-	--in-content-box-background: var(--neptune-input-bgcolor) !important;
 	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
+	--background-color-canvas: var(--neptune-secondary-background) !important;
 	--button-text-color-primary: white !important;
 	--button-background-color-primary: var(--theme-primary-color) !important;
 	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
@@ -60,7 +58,7 @@
 	--focus-outline-color: var(--theme-primary-color) !important;
 	--arrowpanel-shadow-margin: 22px !important;
 	--arrowpanel-color: FieldText !important;
-	--arrowpanel-menuitem-border-radius: 5.5px !important;
+	--arrowpanel-menuitem-border-radius: var(--border-radius-small) !important;
 	--organizer-toolbar-background: var(--neptune-content-background) !important;
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
 	--organizer-selected-background: var(--neptune-item-active-background) !important;

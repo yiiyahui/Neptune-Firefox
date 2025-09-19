@@ -15,6 +15,10 @@
 			padding-inline-start: var(--space-xsmall) !important;
 		}
 
+		:root[taskbartab] & > .titlebar-spacer[type="post-tabs"] {
+			display: none;
+		}
+
 		@media not -moz-pref("sidebar.verticalTabs") {
 			:root[privatebrowsingmode=temporary] & {
 				padding-inline-start: calc(76px + var(--size-item-large) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
@@ -50,11 +54,7 @@
 		.titlebar-buttonbox-container {
 			position: absolute;
 			inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2);
-			inset-inline-start: 0;
-
-			> .titlebar-buttonbox {
-				margin-inline-start: calc(var(--space-xlarge) + 1px) !important;
-			}
+			inset-inline-start: var(--space-small);
 		}
 	}
 

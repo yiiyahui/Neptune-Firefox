@@ -48,7 +48,7 @@
 		/* Tabs */
 		--neptune-tabs-default-background: #c9c9c94c;
 		--neptune-tab-background: color-mix(in srgb, currentColor 4%, var(--lwt-accent-color, transparent));
-		--neptune-tab-hover-background: color-mix(in srgb, var(--lwt-accent-color) 85%, transparent 15%);
+		--neptune-tab-hover-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-tab-selected-background: color-mix(in srgb, currentColor 2%, var(--lwt-accent-color, transparent));
 		--neptune-tab-multiselected-background: color-mix(in srgb, accentcolor 20%, var(--lwt-accent-color, transparent));
 		--neptune-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);

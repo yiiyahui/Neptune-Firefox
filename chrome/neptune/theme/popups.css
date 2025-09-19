@@ -38,8 +38,7 @@ panel {
 		}
 
 		.PanelUI-profiler-button {
-			padding-block: 2px !important;
-			border-radius: var(--border-radius-small) !important;
+			padding-block: calc((var(--button-min-height) - 18px) / 2) !important;
 		}
 
 		/*Account menu fix*/
@@ -61,7 +60,7 @@ panel {
 	}
 
 	menulist {
-		padding-block: 2px !important;
+		padding-block: var(--space-xsmall) !important;
 	}
 
 	toolbarseparator:not(.tab-group-editor-panel toolbarseparator) {
@@ -180,7 +179,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			}
 
 			> :is(menucaption, menuitem) {
-				padding-block: 0 !important;
+				padding-block: var(--toolbarbutton-outer-padding) !important;
 
 				> .menu-text {
 					padding-block: var(--space-xsmall) !important;
@@ -262,10 +261,10 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	--panel-separator-padding: var(--space-xxsmall) !important;
 
 	> .permission-popup-section {
-		padding-bottom: var(--space-xsmall) !important;
+		padding-bottom: var(--panel-subview-body-padding-block) !important;
 
 		.permission-popup-permission-item {
-			min-height: var(--button-min-height) !important;
+			min-height: var(--size-item-small) !important;
 			margin-block: var(--space-xxsmall) !important;
 
 			> :is(#permission-popup-menulist, .permission-popup-permission-remove-button) {
@@ -380,7 +379,7 @@ panelview .toolbarbutton-1,
 }
 
 #statuspanel-label {
-	background-color: var(--in-content-page-background) !important;
+	background-color: var(--background-color-canvas) !important;
 	border: none !important;
 	backdrop-filter: blur(2em);
 }

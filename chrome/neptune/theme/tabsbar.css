@@ -88,7 +88,7 @@
 			}
 
 			tab-group[collapsed] > &[visuallyselected] {
-				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin) + var(--space-xsmall)) !important;
+				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
 			}
 
 			&:not([pinned], [selected], tab-group > &) {
@@ -128,9 +128,10 @@
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] > & {
-			width: var(--tabstrip-min-height) !important;
 			height: var(--tabstrip-min-height) !important;
-			margin-inline-start: 0 !important;
+			margin-inline: 0 var(--tab-inline-padding) !important;
+			padding-inline: 0 !important;
+			align-items: center !important;
 		}
 
 		#tabbrowser-tabs[orient="vertical"] > & {
@@ -162,8 +163,8 @@
 
 	.tab-group-label-container {
 		#tabbrowser-tabs[orient="horizontal"] tab-group > & {
-			padding-inline-end: calc(var(--tab-block-margin) / 2) !important;
-			margin-inline-start: calc(2 * var(--tab-block-margin)) !important;
+			padding-inline-end: var(--tab-overflow-clip-margin) !important;
+			margin-inline-start: var(--space-small) !important;
 
 			/*If the first tab is a tab group, keep the same start margin as a normal tab.*/
 			tab-group:first-of-type > &:not(#tabbrowser-arrowscrollbox[orient="horizontal"] > tab:not([hidden]) + tab-group > &) {
@@ -264,17 +265,13 @@
 			margin-inline: 0 !important;
 		}
 
-		#tabbrowser-tabs[orient="vertical"] & {
-			padding-block-start: 0 !important;
-		}
-
 		#tabbrowser-tabs[orient="vertical"][expanded] & {
 			margin-block-start: calc(-1 * (var(--tab-min-height) + var(--space-xsmall)));
+			margin-inline-start: 0 !important;
 			padding-block-end: var(--space-xsmall);
 		}
 
 		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & > .tab-group-overflow-count {
-			margin-inline: auto !important;
 			padding-block-end: var(--space-xsmall) !important;
 		}
 

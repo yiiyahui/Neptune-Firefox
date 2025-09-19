@@ -134,7 +134,7 @@
 
 	> .urlbarView-row {
 		border: var(--button-border) !important;
-		border-radius: var(--border-radius-small) !important;
+		border-radius: var(--border-radius-medium) !important;
 
 		> .urlbarView-row-inner {
 			flex-wrap: nowrap !important;
