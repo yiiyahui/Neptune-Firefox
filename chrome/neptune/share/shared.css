@@ -1,5 +1,4 @@
 :root {
-	--theme-menu-icon-size: 12px;
 	--size-item-medium: 28px !important;
 	--border-radius-xsmall: 4px;
 	--border-radius-small: 6px !important;
@@ -27,10 +26,9 @@
 
 #input {
 	--input-text-background-color: var(--input-bgcolor) !important;
-	--icon-size-default: var(--theme-menu-icon-size) !important;
 
 	&.with-icon {
-		padding-inline-start: calc(var(--icon-size-default) + var(--space-large)) !important;
+		padding-inline-start: calc(var(--input-text-icon-size) + var(--space-large)) !important;
 		background-position: var(--space-small) center !important;
 
 		&:dir(rtl) {

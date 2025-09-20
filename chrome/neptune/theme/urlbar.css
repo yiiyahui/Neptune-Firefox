@@ -74,6 +74,7 @@
 
 			> .searchmode-switcher-close {
 				margin-inline: var(--urlbar-icon-padding) !important;
+				border-radius: var(--border-radius-medium) !important;
 			}
 		}
 
@@ -165,6 +166,7 @@
 			> .urlbarView-action-btn {
 				padding-block: var(--urlbarView-row-gutter) !important;
 				border: none !important;
+				border-radius: var(--border-radius-small) !important;
 				outline: none !important;
 				color: var(--button-text-color-primary);
 
@@ -280,8 +282,9 @@
 		}
 
 		&[has-action]:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
-			padding: 0 var(--space-small) !important;
+			padding: var(--urlbarView-row-gutter) var(--space-small) !important;
 			border: none !important;
+			border-radius: var(--border-radius-small) !important;
 			background-image: none !important;
 			background-color: var(--in-content-button-background) !important;
 

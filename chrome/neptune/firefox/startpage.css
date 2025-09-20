@@ -146,7 +146,7 @@
 
 		.search-topsite {
 			background-color: var(--theme-primary-color) !important;
-			background-size: var(--theme-menu-icon-size) !important;
+			background-size: var(--size-item-xsmall) !important;
 			height: 24px !important;
 			width: 24px !important;
 		}
@@ -178,18 +178,18 @@
 			&.separator {
 				border-color: var(--neptune-separator-color) !important;
 				width: auto !important;
-				margin-inline: 15px !important;
+				margin-inline: var(--space-medium) !important;
 			}
 
 			> button {
-				padding-inline: 10px !important;
+				padding: var(--space-xsmall) var(--space-small) !important;
 			}
 
 			> :is(a, button) {
 				&:is(:focus, :hover) {
 					background-color: var(--theme-primary-hover-color) !important;
 					color: #fff !important;
-					border-radius: calc(var(--border-radius-medium) / 2) !important;
+					border-radius: var(--border-radius-small) !important;
 				}
 
 				&:active {
@@ -256,8 +256,10 @@
 		border: none !important;
 
 		button {
-			padding: var(--space-xxsmall) var(--space-medium) !important;
-			border-radius: var(--border-radius-small) !important;
+			--newtab-button-secondary-color: var(--button-background-color) !important;
+			padding: var(--space-xsmall) var(--space-medium) !important;
+			border: none !important;
+			border-radius: var(--border-radius-medium) !important;
 			box-shadow: none !important;
 		}
 	}

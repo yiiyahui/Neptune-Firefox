@@ -3,25 +3,6 @@
 		cursor: auto !important;
 	}
 
-	.search-container {
-		.search-icon {
-			background-size: var(--theme-menu-icon-size) !important;
-			padding: 0 !important;
-			width: var(--theme-menu-icon-size) !important;
-			height: var(--theme-menu-icon-size) !important;
-			transform: scaleX(-1);
-		}
-
-		input {
-			padding-inline: var(--space-xlarge) !important;
-			width: 16em !important;
-		}
-
-		.clear-icon {
-			background-size: var(--theme-menu-icon-size) !important;
-		}
-	}
-
 	.sticky-container {
 		flex-direction: row !important;
 		align-items: center;
@@ -47,7 +28,7 @@
 	}
 
 	.card-container {
-		--icon-size-default: 10px !important;
+		--icon-size: var(--size-item-xsmall) !important;
 		padding: var(--space-xsmall) !important;
 		box-shadow: var(--box-shadow-level-2) !important;
 

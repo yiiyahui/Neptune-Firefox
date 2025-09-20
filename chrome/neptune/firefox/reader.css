@@ -12,9 +12,9 @@
 
 	.text-size-buttons > button,
 	.accordion-header .chevron-icon	{
-		height: 16px !important;
-		width: 16px !important;
-		background-size: var(--theme-menu-icon-size);
+		height: var(--size-item-small) !important;
+		width: var(--size-item-small) !important;
+		background-size: var(--size-item-xsmall);
 		border-radius: 50% !important;
 	}
 
@@ -49,7 +49,7 @@
 				}
 
 				> .voiceselect {
-					--icon-size-default: var(--theme-menu-icon-size) !important;
+					--icon-size: var(--size-item-xsmall) !important;
 
 					button:is(.select-toggle, .option) {
 						min-height: 28px !important;
@@ -95,7 +95,7 @@
 		gap: var(--space-small) !important;
 
 		> label {
-			border-radius: var(--border-radius-xsmall) !important;
+			border-radius: var(--border-radius-small) !important;
 
 			&[checked] {
 				color: #fff !important;
@@ -109,8 +109,8 @@
 		gap: var(--space-xxsmall) !important;
 
 		> .icon-container > .icon {
-			height: var(--theme-menu-icon-size) !important;
-			width: var(--theme-menu-icon-size) !important;
+			height: var(--size-item-xsmall) !important;
+			width: var(--size-item-xsmall) !important;
 		}
 
 		> .slider-container > datalist {

@@ -103,18 +103,11 @@
 
 	.sidebar-panel {
 		--icon-size: var(--size-item-xsmall) !important;
+		--button-border-radius: var(--border-radius-xlarge) !important;
 		padding-block: 0 !important;
 
 		&[lwt-sidebar] {
 			background-color: transparent !important;
-		}
-
-		> #sidebar-panel-header {
-			padding-block: 0 !important;
-		}
-
-		> #sidebar-search-container {
-			padding-top: 0 !important;
 		}
 
 		moz-card {
@@ -133,8 +126,8 @@
 	}
 
 	#heading-wrapper {
-		padding-inline-start: var(--space-xsmall) !important;
-		gap: var(--space-xsmall) !important;
+		padding-inline-start: var(--space-medium) !important;
+		gap: var(--space-medium) !important;
 
 		.chevron-icon {
 			min-height: var(--button-min-height) !important;
@@ -205,7 +198,7 @@
 	}
 
 	#header {
-		--icon-size-default: var(--size-item-xsmall) !important;
+		--icon-size: var(--size-item-xsmall) !important;
 		padding-inline: 0 !important;
 		border: none !important;
 
