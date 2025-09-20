@@ -31,6 +31,8 @@
 
 			&:not([pinned], tab-group[collapsed] > &:not([visuallyselected])) {
 				padding: var(--tab-overflow-clip-margin) !important;
+				transition-duration: 300ms !important;
+				transition-timing-function: linear !important;
 
 				&:not(:nth-child(1 of :not([hidden])), tab-group > &:first-of-type) {
 					padding-inline-start: var(--space-small) !important;
@@ -46,10 +48,6 @@
 
 				&:not([selected]):is([muted], [soundplaying], [activemedia-blocked]) {
 					min-width: calc(var(--size-item-small) + var(--size-item-xsmall) + var(--tab-block-margin) + 2 * (var(--tab-inline-padding) + var(--tab-icon-end-margin))) !important;
-				}
-
-				&:not([multiselected-move-together], [tabdrop-samewindow], #tabbrowser-tabs[movingtab] &[fadein]:not([selected])) {
-					transition-duration: 300ms !important;
 				}
 			}
 

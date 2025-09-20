@@ -1,6 +1,6 @@
 @-moz-document url-prefix(about:), url-prefix("chrome://") {
 	* {
-		--in-content-page-background: light-dark(#f6f6f6, #1c1b22) !important;
+		--background-color-canvas: var(--neptune-main-background) !important;
 		--popup-background: var(--neptune-menu-background) !important;
 		--popup-button-background: var(--neptune-item-background) !important;
 		--popup-button-background-hover: var(--neptune-item-hover-background) !important;
@@ -17,12 +17,12 @@
 		--link-color-visited: mediumpurple !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
 		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
-		--in-content-primary-button-background: color-mix(in srgb, accentcolor 80%, #181818) !important;
-		--in-content-primary-button-background-hover: color-mix(in srgb, accentcolor 85%, #262626) !important;
-		--in-content-primary-button-background-active: color-mix(in srgb, accentcolor 85%, #646464) !important;
-		--in-content-primary-button-text-color: white !important;
-		--in-content-primary-button-text-color-hover: var(--in-content-primary-button-text-color) !important;
-		--in-content-focus-outline-color: accentcolor !important;
+		--button-background-color-primary: color-mix(in srgb, accentcolor 80%, #181818) !important;
+		--button-background-color-primary-hover: color-mix(in srgb, accentcolor 85%, #262626) !important;
+		--button-background-color-primary-active: color-mix(in srgb, accentcolor 85%, #646464) !important;
+		--button-text-color-primary: white !important;
+		--button-text-color-primary-hover: var(--button-text-color-primary) !important;
+		--focus-outline-color: accentcolor !important;
 		text-decoration: inherit !important;
 	}
 
@@ -49,7 +49,7 @@
 
 		> menu,
 		> menuitem {
-			padding: 2px 16px !important;
+			padding: var(--space-xsmall) var(--space-large) !important;
 		}
 
 		.actionsMenu > & > menuitem {
@@ -85,7 +85,7 @@
 		}
 
 		> #saveWhere > #downloadFolder {
-			background-size: var(--theme-menu-icon-size) !important;
+			background-size: var(--size-item-xsmall) !important;
 		}
 
 		.section-checkbox .checkbox-icon {
@@ -184,8 +184,8 @@
 	}
 
 	.sidebar-footer-icon {
-		width: var(--theme-menu-icon-size) !important;
-		height: var(--theme-menu-icon-size) !important;
+		width: var(--size-item-xsmall) !important;
+		height: var(--size-item-xsmall) !important;
 		margin-inline: var(--space-medium) var(--space-xsmall) !important;
 	}
 
@@ -220,6 +220,13 @@
 		border-radius: var(--border-radius-medium) !important;
 	}
 
+	button,
+	select,
+	input[type="color"],
+	menulist {
+		border-radius: var(--border-radius-small) !important;
+	}
+
 	input[type="search"]:not(.search-handoff-button, .search-wrapper input), .default-input {
 		appearance: none;
 		font: menu;
@@ -234,19 +241,19 @@
 		background-color: var(--neptune-input-bgcolor) !important;
 		border-color: transparent !important;
 		border-radius: var(--border-radius-circle) !important;
-		outline: 20px solid transparent !important;
+		outline: 18px solid transparent !important;
 
 		&:where(:focus-visible, [focused]) {
-			outline: 4px solid var(--neptune-input-outline-color) !important;
-			outline-offset: var(--toolbarbutton-outline-offset) !important;
-			transition: all 250ms cubic-bezier(0.33, 0, 0.67, 1);
+			outline: 3px solid var(--neptune-input-outline-color) !important;
+			box-shadow: inset 0 0 0.75px accentcolor !important;
+			transition: outline 250ms cubic-bezier(0.33, 0, 0.67, 1), box-shadow 250ms cubic-bezier(0.33, 0, 0.67, 1);
 		}
 	}
 
 	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem:not(dialog richlistitem),
 	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .reset-button),
 	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
-		padding-block: 2px !important;
+		padding-block: var(--space-xsmall) !important;
 	}
 
 	#siteCol, #statusCol,
@@ -300,10 +307,10 @@
 
 	panel-list, .menu {
 		border-radius: var(--border-radius-medium) !important;
-		box-shadow: var(--neptune-menu-shadow) !important;
+		box-shadow: var(--box-shadow-level-4) !important;
 
 		> .menuitem-button {
-			background-size: var(--theme-menu-icon-size) !important;
+			background-size: var(--size-item-xsmall) !important;
 		}
 	}
 

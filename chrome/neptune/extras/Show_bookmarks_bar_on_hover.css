@@ -5,7 +5,7 @@
 		transition: max-height 200ms linear, var(--ext-theme-background-transition) !important;
 		transition-delay: 200ms !important;
 
-		#nav-bar:not(:has(:is(.toolbarbutton-1, #urlbar):hover)):hover + &, &:hover {
+		#nav-bar:not(:has(:is(.toolbarbutton-1, .urlbar):hover)):hover + &, &:hover {
 			max-height: calc(var(--size-item-small) + 2 * var(--bookmark-block-padding)) !important;
 			transition-delay: 400ms !important;
 		}

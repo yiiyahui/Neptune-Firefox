@@ -22,7 +22,6 @@ menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 }
 
 panel {
-	--arrowpanel-header-back-icon-padding: var(--space-xsmall) !important;
 	--arrowpanel-header-back-icon-full-width: calc(var(--size-item-xsmall) + 2 * var(--arrowpanel-header-back-icon-padding)) !important;
 	--arrowpanel-header-min-height: calc(var(--arrowpanel-header-back-icon-full-width) + 2 * var(--panel-separator-padding-vertical)) !important;
 
@@ -310,13 +309,19 @@ panelview .toolbarbutton-1,
 #editBookmarkPanelContent {
 	padding-block: var(--panel-subview-body-padding-block) !important;
 
+	#editBMPanel_folderMenuList.folder-icon {
+		border-radius: var(--border-radius-small) !important;
+	}
+
 	#editBMPanel_folderTree {
 		background-color: var(--input-bgcolor) !important;
 		border: none !important;
+		border-radius: var(--border-radius-small) !important;
 	}
 
 	#editBMPanel_newFolderButton {
 		padding-block: var(--space-xsmall) !important;
+		border-radius: var(--border-radius-small) !important;
 	}
 }
 

@@ -1,5 +1,4 @@
 :root {
-	--theme-menu-icon-size: 12px;
 	--size-item-medium: 28px !important;
 	--border-radius-xsmall: 4px;
 	--border-radius-small: 6px !important;
@@ -13,24 +12,17 @@
 	--button-background-color: var(--neptune-item-background) !important;
 	--button-background-color-hover: var(--neptune-item-hover-background) !important;
 	--button-background-color-active: var(--neptune-item-active-background) !important;
-	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
-	--in-content-primary-button-text-color: white !important;
-	--in-content-button-background: var(--neptune-item-background) !important;
-	--in-content-button-background-hover: var(--neptune-item-hover-background) !important;
-	--in-content-button-background-active: var(--neptune-item-active-background) !important;
-	--in-content-primary-button-background: var(--theme-primary-color) !important;
-	--in-content-primary-button-background-hover: var(--theme-primary-hover-color) !important;
-	--in-content-primary-button-background-active: var(--theme-primary-active-color) !important;
+	--button-text-color-primary: white !important;
 	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
 	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
+	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
 }
 
 #input {
 	--input-text-background-color: var(--input-bgcolor) !important;
-	--icon-size-default: var(--theme-menu-icon-size) !important;
 
 	&.with-icon {
-		padding-inline-start: calc(var(--icon-size-default) + var(--space-large)) !important;
+		padding-inline-start: calc(var(--input-text-icon-size) + var(--space-large)) !important;
 		background-position: var(--space-small) center !important;
 
 		&:dir(rtl) {

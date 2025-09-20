@@ -8,7 +8,7 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #searchbar:focus-within,
-#urlbar[open] > .urlbar-background,
+.urlbar[open] > .urlbar-background,
 .findbar-textbox:focus,
 input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox):focus-visible,
 textarea:not(#select-translations-panel-text-area):where(:focus-visible) {

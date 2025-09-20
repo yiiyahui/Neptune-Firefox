@@ -13,7 +13,7 @@
 	transition: var(--ext-theme-background-transition);
 }
 
-#urlbar {
+.urlbar {
 	height: var(--urlbar-height) !important;
 	width: var(--urlbar-width) !important;
 	margin: 0 !important;
@@ -31,11 +31,11 @@
 	> .urlbar-background {
 		animation: none !important;
 
-		#urlbar:hover > & {
+		.urlbar:hover > & {
 			background-color: var(--neptune-urlbar-hover-background) !important;
 		}
 
-		#urlbar:is([focused], [open]) > & {
+		.urlbar:is([focused], [open]) > & {
 			background-color: var(--neptune-urlbar-focused-background) !important;
 		}
 	}
@@ -45,7 +45,7 @@
 		border: none !important;
 		border-radius: var(--border-radius-circle) !important;
 
-		#urlbar:not([focused], [textoverflow]) > & > .urlbar-input-box > .urlbar-input {
+		.urlbar:not([focused], [textoverflow]) > & > .urlbar-input-box > .urlbar-input {
 			text-align: center !important;
 		}
 
@@ -74,6 +74,7 @@
 
 			> .searchmode-switcher-close {
 				margin-inline: var(--urlbar-icon-padding) !important;
+				border-radius: var(--border-radius-medium) !important;
 			}
 		}
 
@@ -165,6 +166,7 @@
 			> .urlbarView-action-btn {
 				padding-block: var(--urlbarView-row-gutter) !important;
 				border: none !important;
+				border-radius: var(--border-radius-small) !important;
 				outline: none !important;
 				color: var(--button-text-color-primary);
 
@@ -228,7 +230,7 @@
 				margin-inline-end: 0 !important;
 			}
 
-			> .urlbarView-button:not(:empty):not(.urlbarView-button-menu) {
+			> .urlbarView-button:where(:not(:empty):not(.urlbarView-button-result-menu)) {
 				background-color: var(--color-accent-primary) !important;
 				color: var(--button-text-color-primary) !important;
 				padding-block: var(--space-xsmall) !important;
@@ -280,10 +282,11 @@
 		}
 
 		&[has-action]:is([type=switchtab], [type=remotetab], [type=clipboard]) > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action {
-			padding: 0 var(--space-small) !important;
+			padding: var(--urlbarView-row-gutter) var(--space-small) !important;
 			border: none !important;
+			border-radius: var(--border-radius-small) !important;
 			background-image: none !important;
-			background-color: var(--in-content-button-background) !important;
+			background-color: var(--button-background-color) !important;
 
 			&.urlbarView-userContext {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
@@ -295,14 +298,13 @@
 			}
 		}
 
-		> .urlbarView-button:not(.urlbarView-row[type=tip] > .urlbarView-button) {
+		> .urlbarView-row-buttons > .urlbarView-button-result-menu {
 			background-color: transparent !important;
 			min-width: var(--size-item-small) !important;
-			min-height: var(--size-item-small) !important;
 			margin-inline: var(--urlbarView-icon-margin-start) !important;
 
-			.urlbarView-row:is([row-selectable]:hover, [selected]) > &:not(:hover, [open]) {
-				color: var(--color-blue-05) !important;
+			.urlbarView-row:is([row-selectable]:hover, [selected]) &:not(:hover, [open]) {
+				color: var(--urlbarView-secondary-text-color) !important;
 			}
 
 			&:is(:hover, [open]) {
@@ -341,7 +343,7 @@
 		min-width: var(--button-min-height) !important;
 		height: var(--button-min-height) !important;
 
-		#urlbar & {
+		.urlbar & {
 			margin-inline: var(--urlbar-icon-padding) !important;
 
 			&:first-child {
@@ -364,7 +366,7 @@
 	visibility: collapse;
 	transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
 
-	&:is(#urlbar:is(:hover, [open]) &, [open]) {
+	&:is(.urlbar:is(:hover, [open]) &, [open]) {
 		margin-inline-start: 0;
 		visibility: visible;
 	}
@@ -379,7 +381,7 @@
 		opacity: 0;
 		transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
 
-		&:is(#urlbar:is(:hover, [open]) &, [open]) {
+		&:is(.urlbar:is(:hover, [open]) &, [open]) {
 			margin-inline-end: 0;
 			visibility: visible;
 			opacity: 1;

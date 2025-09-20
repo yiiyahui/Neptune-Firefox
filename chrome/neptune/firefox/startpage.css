@@ -146,7 +146,7 @@
 
 		.search-topsite {
 			background-color: var(--theme-primary-color) !important;
-			background-size: var(--theme-menu-icon-size) !important;
+			background-size: var(--size-item-xsmall) !important;
 			height: 24px !important;
 			width: 24px !important;
 		}
@@ -178,18 +178,18 @@
 			&.separator {
 				border-color: var(--neptune-separator-color) !important;
 				width: auto !important;
-				margin-inline: 15px !important;
+				margin-inline: var(--space-medium) !important;
 			}
 
 			> button {
-				padding-inline: 10px !important;
+				padding: var(--space-xsmall) var(--space-small) !important;
 			}
 
 			> :is(a, button) {
 				&:is(:focus, :hover) {
 					background-color: var(--theme-primary-hover-color) !important;
 					color: #fff !important;
-					border-radius: calc(var(--border-radius-medium) / 2) !important;
+					border-radius: var(--border-radius-small) !important;
 				}
 
 				&:active {
@@ -256,8 +256,10 @@
 		border: none !important;
 
 		button {
-			padding: var(--space-xxsmall) var(--space-medium) !important;
-			border-radius: var(--border-radius-small) !important;
+			--newtab-button-secondary-color: var(--button-background-color) !important;
+			padding: var(--space-xsmall) var(--space-medium) !important;
+			border: none !important;
+			border-radius: var(--border-radius-medium) !important;
 			box-shadow: none !important;
 		}
 	}
@@ -270,7 +272,7 @@
 			--button-collapsed-width: fit-content !important;
 			background-color: light-dark(#00000066, #ffffff3f) !important;
 			backdrop-filter: blur(2em);
-			color: var(--in-content-primary-button-text-color) !important;
+			color: var(--button-text-color-primary) !important;
 			padding: var(--space-xsmall) var(--space-medium) !important;
 			border-radius: var(--border-radius-circle) !important;
 			box-shadow: none !important;
@@ -430,9 +432,9 @@
 		}
 
 		> .location-input-wrapper {
-			--button-size-icon-small: 16px !important;
-			--icon-size-default: 10px !important;
-			--button-min-height-small: 16px !important;
+			--icon-size: var(--size-item-xsmall) !important;
+			--button-size-icon-small: var(--size-item-small) !important;
+			--button-min-height-small: var(--size-item-small) !important;
 			--button-border-radius: var(--border-radius-large) !important;
 			background-color: var(--newtab-background-color-secondary) !important;
 			backdrop-filter: saturate(1.5) blur(1em);
@@ -453,12 +455,22 @@
 	}
 
 	.weatherButtonContextMenuWrapper {
-		height: var(--space-small);
-		width: 32px !important;
-		visibility: collapse;
+		width: auto !important;
 
-		.weatherCard:hover & {
-			visibility: visible;
+		&:not(:has(.context-menu)) {
+			visibility: collapse;
+
+			.weatherCard:hover & {
+				visibility: visible;
+			}
+		}
+
+		> .weatherButtonContextMenu {
+			background-size: var(--size-item-xsmall) auto !important;
+			background-color: var(--background-color-success) !important;
+			height: var(--size-item-small) !important;
+			min-width: var(--size-item-small) !important;
+			border-radius: var(--border-radius-medium) !important;
 		}
 	}
 
