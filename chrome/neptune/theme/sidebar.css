@@ -28,6 +28,10 @@
 }
 
 @media -moz-pref("sidebar.revamp") {
+	.sidebar-splitter {
+		background-color: transparent !important;
+	}
+
 	.actions-list {
 		--button-size-icon: var(--tab-min-height) !important;
 		--button-border-radius: var(--border-radius-circle) !important;

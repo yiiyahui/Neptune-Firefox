@@ -32,7 +32,6 @@
 			&:not([pinned], tab-group[collapsed] > &:not([visuallyselected])) {
 				padding: var(--tab-overflow-clip-margin) !important;
 				transition-duration: 300ms !important;
-				transition-timing-function: linear !important;
 
 				&:not(:nth-child(1 of :not([hidden])), tab-group > &:first-of-type) {
 					padding-inline-start: var(--space-small) !important;

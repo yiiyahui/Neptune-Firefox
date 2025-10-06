@@ -367,7 +367,32 @@ panelview .toolbarbutton-1,
 	}
 
 	> #downloadsFooter {
-		align-items: flex-end;
+		&:not([showingsummary]) {
+			align-items: flex-end;
+		}
+
+		&[showingsummary] {
+			#downloadsSummary {
+				background: none !important;
+				padding-inline: 4px 0 !important;
+				min-height: calc(48px + var(--panel-subview-body-padding-block)) !important;
+
+				.downloadTypeIcon {
+					width: var(--size-item-medium) !important;
+					height: var(--size-item-medium) !important;
+					margin-inline-end: var(--space-xsmall) !important;
+				}
+
+				.downloadProgress {
+					height: 3px !important;
+					margin-inline-end: var(--space-small) !important;
+				}
+			}
+
+			#downloadsHistory {
+				background: none !important;
+			}
+		}
 
 		#downloadsHistory {
 			min-height: unset !important;

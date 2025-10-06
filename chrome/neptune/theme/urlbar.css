@@ -55,7 +55,7 @@
 			font-size: var(--urlbarView-small-font-size);
 		}
 
-		> #urlbar-searchmode-switcher {
+		> .searchmode-switcher {
 			margin-inline: 0 !important;
 
 			&[open] {
@@ -230,7 +230,7 @@
 				margin-inline-end: 0 !important;
 			}
 
-			> .urlbarView-button:where(:not(:empty):not(.urlbarView-button-result-menu)) {
+			> .urlbarView-row-buttons > .urlbarView-button:where(:not(:empty):not(.urlbarView-button-result-menu)) {
 				background-color: var(--color-accent-primary) !important;
 				color: var(--button-text-color-primary) !important;
 				padding-block: var(--space-xsmall) !important;
@@ -301,7 +301,6 @@
 		> .urlbarView-row-buttons > .urlbarView-button-result-menu {
 			background-color: transparent !important;
 			min-width: var(--size-item-small) !important;
-			margin-inline: var(--urlbarView-icon-margin-start) !important;
 
 			.urlbarView-row:is([row-selectable]:hover, [selected]) &:not(:hover, [open]) {
 				color: var(--urlbarView-secondary-text-color) !important;
