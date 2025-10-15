@@ -175,7 +175,7 @@ findbar {
 
 			> .checkbox-label-box > .checkbox-label {
 				padding-inline: var(--space-medium);
-				border: 1px solid var(--border-color-deemphasized);
+				background-color: var(--button-background-color);
 				border-radius: var(--border-radius-large);
 
 				&:hover {

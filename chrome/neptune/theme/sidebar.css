@@ -29,7 +29,8 @@
 
 @media -moz-pref("sidebar.revamp") {
 	.sidebar-splitter {
-		background-color: transparent !important;
+		--splitter-width: var(--border-width) !important;
+		background-color: transparent !important;	/* Make the sidebar's border color transparent, or change it to "--sidebar-border-color". */
 	}
 
 	.actions-list {
@@ -38,16 +39,28 @@
 
 		@media not -moz-pref("sidebar.verticalTabs") {
 			--button-size-icon: var(--urlbar-min-height) !important;
+
+			/* Keeping the sidebar width consistent between horizontal and vertical layouts ensures smooth layout switching. So its width will be affected by the size of the vertical tabs. */
+			> moz-button:not(.tools-overflow) {
+				--button-outer-padding-block: var(--space-xsmall) !important;
+				--button-outer-padding-inline: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--urlbar-min-height)) / 2) !important;
+
+				&:last-of-type {
+					--button-outer-padding-block-end: 0 !important;
+				}
+			}
 		}
 
-		> moz-button:not(.tools-overflow) {
-			--button-outer-padding-block: var(--space-xsmall) !important;
+		@media -moz-pref("sidebar.verticalTabs") {
+			> moz-button:not(.tools-overflow) {
+				--button-outer-padding-block: calc(var(--toolbarbutton-inner-padding) / 2) !important;
+			}
 		}
 
 		&[orientation="horizontal"] {
+			flex-basis: 100%;
 			justify-content: space-between !important;
 			gap: var(--space-small) !important;
-			max-width: calc(100% - var(--space-xlarge)) !important;;
 		}
 	}
 
@@ -66,10 +79,10 @@
 		border: none !important;
 		border-radius: var(--border-radius-small) !important;
 		margin-inline: auto !important;
-		margin-block-end: var(--space-xsmall) !important;
+		margin-block: 0 !important;
 		transition: min-width 150ms linear, var(--ext-theme-background-transition);
 
-		.wrapper:hover &:not(:has(~ .actions-list:hover)) {
+		.wrapper:hover &:not(:has(~ .buttons-wrapper > .actions-list > moz-button:hover)) {
 			background-color: var(--panel-separator-color) !important;
 
 			&:hover {
@@ -79,6 +92,8 @@
 	}
 
 	.button-background {
+		--button-font-size: var(--font-size-small, initial) !important;
+
 		&.labelled {
 			justify-content: var(--button-label-directiony, initial) !important;
 		}
@@ -210,6 +225,12 @@
 		> select {
 			margin: 0 !important;
 		}
+	}
+
+	#summarize-btn-container {
+		--font-size-small: 12.5px !important;
+		padding: 0 var(--space-small) !important;
+		border: none !important;
 	}
 }
 

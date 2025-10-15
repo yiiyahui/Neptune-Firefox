@@ -13,7 +13,6 @@
 	--tab-group-label-height: var(--tab-min-height) !important;
 	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
 	--tab-label-line-height: 1.6 !important;
-	--tab-selected-shadow-size: 0 !important;
 	--tab-selected-shadow: inset -0.35px 0.65px 0.45px var(--lwt-accent-color), inset -0.35px -0.65px 0.45px 0.25px var(--lwt-accent-color), 0 0 0 2px var(--neptune-content-border-color) !important;
 	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
 	--button-padding: 0 var(--space-large) !important;
@@ -71,7 +70,7 @@
 /*---------- Hidden ----------*/
 tooltip,
 .control-item::after,
-menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"]):not(.menuitem-iconic),
+menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="undo"]):not(.menuitem-iconic),
 #toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="extensions"], [id*="download"]),
 #scrollbutton-up ~ spacer {
 	display: none !important;

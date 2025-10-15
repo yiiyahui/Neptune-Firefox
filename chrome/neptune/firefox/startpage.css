@@ -113,6 +113,7 @@
 		}
 
 		.tile {
+			background-color: var(--newtab-background-color-secondary) !important;
 			height: calc(2 * var(--size-item-large)) !important;
 			width: calc(2 * var(--size-item-large)) !important;
 			backdrop-filter: saturate(1.5) blur(2em);
@@ -362,11 +363,11 @@
 
 		.external-link {
 			margin: 0 !important;
+			fill: currentColor !important;
 			color: var(--newtab-text-primary-color) !important;
 
 			&:hover {
 				color: var(--link-color) !important;
-				fill: var(--link-color) !important;
 			}
 		}
 	}
