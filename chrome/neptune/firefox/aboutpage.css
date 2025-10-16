@@ -232,7 +232,7 @@
 		font: menu;
 		padding-block: 0 !important;
 		min-height: var(--button-min-height) !important;
-		border-radius: var(--border-radius-circle) !important;
+		border-radius: var(--border-radius-small) !important;
 	}
 
 	input:where([type="search"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(:read-only, .search-handoff-button, .search-wrapper input),
@@ -240,7 +240,7 @@
 	textarea {
 		background-color: var(--neptune-input-bgcolor) !important;
 		border-color: transparent !important;
-		border-radius: var(--border-radius-circle) !important;
+		border-radius: var(--border-radius-small) !important;
 		outline: 18px solid transparent !important;
 
 		&:where(:focus-visible, [focused]) {

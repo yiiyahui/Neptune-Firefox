@@ -272,6 +272,8 @@
 	}
 
 	.tab-group-overflow-count-container {
+		display: none !important;	/* Removed the count indicator for collapsed tab group. but kept the modified styles. It was really ugly. */
+
 		#tabbrowser-tabs[orient="horizontal"] & {
 			padding-inline: 0 !important;
 			margin-inline: 0 !important;
@@ -323,9 +325,13 @@
 
 			#tabbrowser-tabs[orient="vertical"] & {
 				background-color: var(--neptune-verticaltab-selected-background) !important;
+
+				tab-group[collapsed] > .tabbrowser-tab[visuallyselected] > .tab-stack > & {
+					background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 15%, transparent), color-mix(in srgb, var(--tab-group-color-invert) 25%, transparent)) !important;
+				}
 			}
 
-			tab-group:not([collapsed]) > .tabbrowser-tab > .tab-stack > & {
+			:is(tab-group:not([collapsed]) > .tabbrowser-tab, tab-group[collapsed] > .tabbrowser-tab[visuallyselected]) > .tab-stack > & {
 				background-color: light-dark(color-mix(in srgb, var(--tab-group-color) 10%, var(--lwt-accent-color, transparent)), color-mix(in srgb, var(--tab-group-color-invert) 15%, var(--lwt-accent-color, transparent))) !important;
 
 				#tabbrowser-tabs[orient="horizontal"] & {
@@ -597,7 +603,7 @@
 				outline: none !important;
 				border-radius: var(--border-radius-large) !important;
 
-				tab-group:not([collapsed]) > .tabbrowser-tab & {
+				:is(tab-group:not([collapsed]) > .tabbrowser-tab, tab-group[collapsed] > .tabbrowser-tab[visuallyselected]) & {
 					background-color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
 				}
 

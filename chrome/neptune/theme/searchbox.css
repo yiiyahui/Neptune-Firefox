@@ -19,10 +19,10 @@ textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
 
 select:where(:not([size], [multiple])),
 input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .findbar-textbox)),
-textarea:not(#select-translations-panel-text-area, .report-broken-site-view textarea) {
+textarea:not(#select-translations-panel-text-area) {
 	min-height: var(--button-min-height) !important;
 	border: none !important;
-	border-radius: var(--border-radius-circle) !important;
+	border-radius: var(--border-radius-small) !important;
 	padding-block: 0 !important;
 	font: menu !important;
 }

@@ -48,7 +48,7 @@
 	--sidebar-border-color: var(--neptune-content-border-color) !important;
 	--urlbar-box-bgcolor: transparent !important;
 	--urlbar-box-focus-bgcolor: transparent !important;
-	--urlbarView-action-button-background-color: var(--neptune-urlbarView-button-background) !important;
+	--urlbarView-action-button-background-color: var(--button-background-color) !important;
 	--urlbarView-hover-background: var(--neptune-urlbarView-hover-background) !important;
 	--urlbarView-highlight-background: var(--neptune-focused-urlbar-highlight-color) !important;
 	--urlbarView-highlight-color: #fff !important;

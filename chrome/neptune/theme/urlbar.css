@@ -164,11 +164,14 @@
 			}
 
 			> .urlbarView-action-btn {
-				padding-block: var(--urlbarView-row-gutter) !important;
+				padding: var(--urlbarView-row-gutter) var(--urlbarView-icon-margin-start) !important;
 				border: none !important;
 				border-radius: var(--border-radius-small) !important;
 				outline: none !important;
-				color: var(--button-text-color-primary);
+
+				&:hover {
+					color: var(--button-text-color-primary);
+				}
 
 				&:is([data-action="addons"], [data-action="themes"], [data-action="extensions"]) > img {
 					content: url("../assets/icons/extension.svg");

@@ -235,13 +235,13 @@
 
 			> .topsite-form .form-wrapper input[type=text] {
 				height: var(--button-min-height) !important;
-				border-radius: var(--border-radius-large) !important;
+				border-radius: var(--border-radius-small) !important;
 				font-size: var(--font-size-root) !important;
 			}
 
 			> .topsite-form .form-wrapper .error-tooltip {
 				inset-inline-start: 0 !important;
-				border-radius: var(--border-radius-large) !important;
+				border-radius: var(--border-radius-small) !important;
 				font-size: var(--font-size-root);
 				box-shadow: var(--box-shadow-level-3);
 			}

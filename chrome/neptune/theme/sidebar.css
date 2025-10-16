@@ -29,8 +29,9 @@
 
 @media -moz-pref("sidebar.revamp") {
 	.sidebar-splitter {
-		--splitter-width: var(--border-width) !important;
 		background-color: transparent !important;	/* Make the sidebar's border color transparent, or change it to "--sidebar-border-color". */
+		width: var(--splitter-width) !important;
+		border-width: var(--splitter-width) !important;
 	}
 
 	.actions-list {
@@ -123,8 +124,8 @@
 
 	.sidebar-panel {
 		--icon-size: var(--size-item-xsmall) !important;
-		--button-border-radius: var(--border-radius-xlarge) !important;
-		padding-block: 0 !important;
+		--button-border-radius: var(--border-radius-small) !important;
+		padding: 0 var(--space-small) !important;
 
 		&[lwt-sidebar] {
 			background-color: transparent !important;
@@ -139,8 +140,7 @@
 			}
 		}
 
-		> #manage-settings > a {
-			color: FieldText !important;
+		> .sidebar-panel-scrollable-content > #manage-settings > a {
 			text-decoration: none !important;
 		}
 	}

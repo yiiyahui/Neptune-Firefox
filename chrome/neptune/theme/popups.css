@@ -144,6 +144,14 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			}
 		}
 
+		> menuitem[badge]::after {
+			padding-block: 0 !important;
+		}
+
+		> menuitem.badge-new::after {
+			border: none !important;
+		}
+
 		> #context-navigation {
 			> menuitem:where([_moz-menuactive]:not([disabled="true"])) {
 				background: none !important;
