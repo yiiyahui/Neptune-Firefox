@@ -20,7 +20,7 @@
 	margin-inline-start: var(--space-medium) !important;
 	padding-inline: var(--space-small) !important;
 	border: none !important;
-	border-radius: var(--border-radius-circle) !important;
+	border-radius: var(--border-radius-small) !important;
 
 	&[open] {
 		background-color: var(--button-background-color-active) !important;
@@ -88,6 +88,10 @@
 
 			&:hover {
 				min-width: var(--size-item-small) !important;
+
+				&:has(~ .buttons-wrapper > .tools-and-extensions[orientation="horizontal"]) {
+					min-width: var(--size-item-medium) !important;
+				}
 			}
 		}
 	}
@@ -100,6 +104,10 @@
 		}
 
 		&[type~="icon"] {
+			button:is([title="Close"], [title="Close sidebar"]) > &:not(.labelled) {
+				--button-border-radius: var(--border-radius-xlarge) !important;
+			}
+
 			button:is([title^="Open bookmarks"], [title^="Close bookmarks"]) > & > img {
 				content: url("../assets/icons/bookmark-hollow.svg");
 			}
@@ -124,6 +132,7 @@
 
 	.sidebar-panel {
 		--icon-size: var(--size-item-xsmall) !important;
+		--panel-separator-color: var(--border-color-card) !important;
 		--button-border-radius: var(--border-radius-small) !important;
 		padding: 0 var(--space-small) !important;
 
@@ -131,12 +140,33 @@
 			background-color: transparent !important;
 		}
 
+		/* bookmarksPanel */
+		> #sidebar-panel-header {
+			padding-block-start: 0 !important;
+			padding-inline: var(--space-xsmall) !important;
+		}
+
+		> #sidebar-search-container {
+			padding: 0 var(--space-xsmall) var(--space-large) !important;
+		}
+
+		/* historyPanel */
+		> sidebar-panel-header {
+			padding-inline: var(--space-xsmall);
+			padding-block-end: var(--space-medium) !important;
+
+			+ * {
+				margin: 0 !important;
+			}
+		}
+
 		moz-card {
+			--card-padding-block: var(--space-small);
 			border: none !important;
 			border-radius: var(--border-radius-small) !important;
 
 			h3 {
-				margin-block: 0 var(--space-small) !important;
+				margin-block: 0 var(--space-xsmall) !important;
 			}
 		}
 
@@ -145,24 +175,25 @@
 		}
 	}
 
-	#heading-wrapper {
-		padding-inline-start: var(--space-medium) !important;
-		gap: var(--space-medium) !important;
+	#moz-card-details {
+		--card-padding: var(--space-small) !important;
 
-		.chevron-icon {
-			min-height: var(--button-min-height) !important;
-			height: var(--button-min-height) !important;
-			background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+		> summary {
+			padding-block: calc((var(--button-min-height) - var(--size-item-small)) / 2) !important;
+			cursor: default !important;
 
-			details[open] & {
-				background-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+			> #heading-wrapper {
+				padding-inline-start: var(--space-small) !important;
+
+				.chevron-icon {
+					background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+
+					details[open] & {
+						background-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+					}
+				}
 			}
 		}
-	}
-
-	#moz-card-details > :is(summary, #content) {
-		padding: 0 !important;
-		cursor: default !important;
 	}
 
 	sidebar-tab-row {
@@ -177,15 +208,12 @@
 
 	.fxview-tab-row-main {
 		background: none !important;
-		padding-block: 0 !important;
 		cursor: default !important;
 	}
 
 	.fxview-tab-row-button {
 		--button-size-icon: var(--size-item-small) !important;
 		--button-min-height: var(--button-min-height) !important;
-		--button-outer-padding-block: var(--space-xsmall) !important;
-		--button-outer-padding-inline: var(--space-xsmall) !important;
 	}
 
 	@layer input-common {
@@ -195,42 +223,64 @@
 			--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
 		}
 
-		.icon {
-			display: none;
-
-			+ .text {
-				margin-inline-start: 0 !important;
-			}
-		}
-
 		[slot="nested"]:first-child {
 			margin-block-start: var(--space-small) !important;
 		}
-
-		.nested {
-			margin-inline: 0 !important;
-		}
 	}
 
-	moz-radio, moz-checkbox:not(:last-of-type) {
-		padding-block: var(--space-small) !important;
-		border-color: var(--neptune-content-border-color) !important;
+	/* Chat */
+	#multi-stage-message-root {
+		background-color: Canvas !important;
+
+		.screen {
+			outline: none !important;
+			border-radius: var(--border-radius-large) !important;
+			box-shadow: var(--box-shadow-level-3);
+		}
+
+		.tiles-single-select-container {
+			--background-color-canvas: transparent !important;
+
+			.icon {
+				--icon-size: var(--size-item-small) !important;
+			}
+
+			label {
+				padding: 0 var(--space-medium) !important;
+				border: none !important;
+				outline: none !important;
+				margin: 0 !important;
+
+				&:has(.selected) {
+					background-color: var(--button-background-color-primary-active) !important;
+					color: var(--button-text-color-primary);
+				}
+			}
+		}
 	}
 
 	#header {
 		--icon-size: var(--size-item-xsmall) !important;
-		padding-inline: 0 !important;
+		padding-inline: var(--space-medium) !important;
 		border: none !important;
 
 		> select {
-			margin: 0 !important;
+			margin-block: 0 !important;
+		}
+
+		+ #message-container + #browser-container > browser {
+			border-radius: var(--border-radius-xlarge);
+			margin-inline: var(--space-medium);
+			box-shadow: var(--box-shadow-level-3);
 		}
 	}
 
 	#summarize-btn-container {
+		--button-background-color: transparent !important;
 		--font-size-small: 12.5px !important;
-		padding: 0 var(--space-small) !important;
+		padding: var(--space-small) var(--space-medium) 0 !important;
 		border: none !important;
+		margin-inline-start: auto;
 	}
 }
 
