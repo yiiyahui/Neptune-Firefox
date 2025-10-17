@@ -6,7 +6,7 @@
 	--urlbar-min-height: var(--size-item-large) !important;
 	--urlbarView-small-font-size: 0.84em !important;
 	--urlbar-icon-padding: calc((var(--size-item-medium) - 2px - 2px - 16px ) / 2) !important;
-	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) + var(--border-width)) !important;
+	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) - var(--border-width)) !important;
 	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - 2 * var(--border-width))) !important;
 	--tab-min-height: var(--size-item-medium) !important;
 	--tabstrip-min-height: calc(var(--tab-min-height) + var(--tab-block-margin)) !important;

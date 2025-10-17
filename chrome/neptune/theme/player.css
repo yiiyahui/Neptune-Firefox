@@ -225,13 +225,14 @@
 	color: var(--button-text-color-primary) !important;
 	padding: var(--space-medium) !important;
 	border: none !important;
+	border-radius: var(--border-radius-circle) !important;
 	box-shadow: var(--neptune-glass-shadow) !important;
 
 	> #fullscreen-exit-button {
 		appearance: none !important;
 		background-color: var(--neptune-content-background);
 		border: none;
-		border-radius: var(--toolbarbutton-border-radius);
+		border-radius: var(--border-radius-medium);
 	}
 
 	> .pointerlockfswarning-domain-text {

@@ -153,6 +153,10 @@
 
 			&:hover {
 				min-width: var(--size-item-small) !important;
+
+				#tabbrowser-tabs[orient="vertical"][expanded] & {
+					min-width: var(--size-item-medium) !important;
+				}
 			}
 		}
 	}
@@ -607,9 +611,10 @@
 					background-color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
 				}
 
-				.tabbrowser-tab:is([muted], [soundplaying], [activemedia-blocked]) & {
+				/* The close button for tabs that are playing media while the sidebar is collapsed is shown by default; you can hide or show it here. */
+				/*.tabbrowser-tab:is([muted], [soundplaying], [activemedia-blocked]) & {
 					display: none !important;
-				}
+				}*/
 			}
 
 			&:hover {

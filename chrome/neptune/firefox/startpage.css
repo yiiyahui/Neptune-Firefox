@@ -468,7 +468,7 @@
 
 		> .weatherButtonContextMenu {
 			background-size: var(--size-item-xsmall) auto !important;
-			background-color: var(--background-color-success) !important;
+			background-color: var(--newtab-background-color-secondary) !important;
 			height: var(--size-item-small) !important;
 			min-width: var(--size-item-small) !important;
 			border-radius: var(--border-radius-medium) !important;
