@@ -2,9 +2,11 @@
 	--size-item-medium: 28px !important;
 	--border-radius-xsmall: 4px !important;
 	--border-radius-small: 6px !important;
-	--border-radius-large: 10px !important;
-	--border-radius-xlarge: 12px;
+	--border-radius-large: 12px !important;
+	--border-radius-xlarge: 16px;
 	--border-radius-circle: 99px !important;
+	--input-icon-size: calc(var(--size-item-medium) / 2);
+	--default-font-size: 12.5px;
 	--default-focusring: none !important;
 	--color-accent-primary: var(--theme-primary-color) !important;
 	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
@@ -16,6 +18,8 @@
 	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
 	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
 	--in-content-box-border-color: var(--neptune-toolbar-border-color) !important;
+	--box-shadow-color-lighter-layer-1: light-dark(#0000000c, #00000019) !important;
+	--box-shadow-color-lighter-layer-2: light-dark(#00000019, #00000026) !important;
 }
 
 #input {

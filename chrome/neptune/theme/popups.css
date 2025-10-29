@@ -41,6 +41,10 @@ panel {
 		}
 
 		/*Account menu fix*/
+		.PanelUI-fxa-menu-setup-sync {
+			padding: var(--panel-separator-padding) !important;
+		}
+
 		.PanelUI-fxa-menu-section-title {
 			margin: 0 calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
 		}
@@ -95,7 +99,7 @@ panel {
 		}
 
 		> menuseparator::before {
-			display: none !important;
+			content: none !important;
 		}
 	}
 
@@ -193,6 +197,20 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 				}
 			}
 		}
+	}
+}
+
+.og-card {
+	--og-main-font-size: 1.25rem !important;
+	font: menu !important;
+
+	.ai-content .keypoints-header .chevron-icon {
+		width: var(--size-item-xsmall) !important;
+		height: auto !important;
+	}
+
+	img.icon {
+		height: auto !important;
 	}
 }
 
@@ -419,7 +437,7 @@ panelview .toolbarbutton-1,
 #statuspanel-label {
 	background-color: var(--background-color-canvas) !important;
 	border: none !important;
-	border-start-end-radius: var(--border-radius-medium) !important;
-	border-end-end-radius: var(--border-radius-medium) !important;
+	border-start-end-radius: var(--border-radius-xsmall) !important;
+	border-end-end-radius: var(--border-radius-xsmall) !important;
 	backdrop-filter: blur(2em);
 }

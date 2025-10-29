@@ -1,19 +1,19 @@
 :root {
 	--theme-browser-toolbox-padding: 10px;	/*This value will affect the height of the toolbar.*/
-	--theme-tab-selected-min-width: 100px;
 	--toolbar-start-end-padding: 10px !important;
 	--space-xsmall: 3px !important;
 	--urlbar-min-height: var(--size-item-large) !important;
 	--urlbarView-small-font-size: 0.84em !important;
 	--urlbar-icon-padding: calc((var(--size-item-medium) - 2px - 2px - 16px ) / 2) !important;
-	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-results-padding) - var(--border-width)) !important;
-	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - 2 * var(--border-width))) !important;
+	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-item-block-padding) - var(--urlbarView-row-gutter)) !important;
+	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - var(--urlbarView-row-gutter))) !important;
 	--tab-min-height: var(--size-item-medium) !important;
 	--tabstrip-min-height: calc(var(--tab-min-height) + var(--tab-block-margin)) !important;
 	--tab-group-label-height: var(--tab-min-height) !important;
+	--tab-group-label-highlight-thickness: var(--tab-group-line-thickness) !important;
 	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
 	--tab-label-line-height: 1.6 !important;
-	--tab-selected-shadow: inset -0.35px 0.65px 0.45px var(--lwt-accent-color), inset -0.35px -0.65px 0.45px 0.25px var(--lwt-accent-color), 0 0 0 2px var(--neptune-content-border-color) !important;
+	--tab-selected-shadow: inset -0.35px 0.65px 0.45px var(--lwt-accent-color), inset -0.35px -0.65px 0.45px 0.25px var(--lwt-accent-color), 0 0 0 2px var(--neptune-tab-shadow-color) !important;
 	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
 	--button-padding: 0 var(--space-large) !important;
 	--menu-panel-width-wide: 28em !important;
@@ -69,7 +69,6 @@
 
 /*---------- Hidden ----------*/
 tooltip,
-.control-item::after,
 menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="undo"]):not(.menuitem-iconic),
 #toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="extensions"], [id*="download"]),
 #scrollbutton-up ~ spacer {

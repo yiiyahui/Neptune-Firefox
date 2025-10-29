@@ -118,13 +118,13 @@
 			width: calc(2 * var(--size-item-large)) !important;
 			backdrop-filter: saturate(1.5) blur(2em);
 			outline: none !important;
-			border-radius: var(--border-radius-xlarge) !important;
+			border-radius: var(--border-radius-large) !important;
 			box-shadow: var(--box-shadow-level-3) !important;
 
 			.icon-wrapper:not(.top-site-outer.add-button .tile .icon-wrapper) {
 				height: calc(2 * var(--size-item-large)) !important;
 				width: calc(2 * var(--size-item-large)) !important;
-				border-radius: var(--border-radius-xlarge) !important;
+				border-radius: var(--border-radius-large) !important;
 
 				&.letter-fallback::before {
 					font-size: 1.22em !important;

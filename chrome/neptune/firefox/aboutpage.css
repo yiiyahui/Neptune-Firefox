@@ -64,6 +64,10 @@
 	groupbox[data-category] {
 		margin-bottom: var(--space-xlarge) !important;
 
+		.accessory-button {
+			margin: auto !important;
+		}
+
 		> .mission-message {
 			display: none !important;
 		}
@@ -220,13 +224,6 @@
 		border-radius: var(--border-radius-medium) !important;
 	}
 
-	button,
-	select,
-	input[type="color"],
-	menulist {
-		border-radius: var(--border-radius-small) !important;
-	}
-
 	input[type="search"]:not(.search-handoff-button, .search-wrapper input), .default-input {
 		appearance: none;
 		font: menu;
@@ -253,7 +250,7 @@
 	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem:not(dialog richlistitem),
 	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .reset-button),
 	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
-		padding-block: var(--space-xsmall) !important;
+		padding-block: var(--space-xxsmall) !important;
 	}
 
 	#siteCol, #statusCol,
@@ -337,8 +334,8 @@
 
 	@layer input-common {
 		#input {
-			--input-width: 14px !important;
-			--input-height: 14px !important;
+			--input-width: var(--input-icon-size) !important;
+			--input-height: var(--input-icon-size) !important;
 			--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
 		}
 	}
@@ -346,8 +343,8 @@
 	input[type=checkbox]:not(.ruleview-enableproperty, .devtools-checkbox-toggle),
 	.checkbox-check:not([native]) {
 		appearance: none !important;
-		width: 14px !important;
-		height: 14px !important;
+		width: var(--input-icon-size) !important;
+		height: var(--input-icon-size) !important;
 		border: var(--neptune-checkbox-border);
 		border-radius: var(--border-radius-xsmall);
 		box-shadow: var(--neptune-checkbox-shadow);
@@ -363,8 +360,8 @@
 	input[type=radio]:not(.wallpaper-input, .wrapper input),
 	.radio-check {
 		appearance: none !important;
-		width: 14px !important;
-		height: 14px !important;
+		width: var(--input-icon-size) !important;
+		height: var(--input-icon-size) !important;
 		border: var(--neptune-checkbox-border);
 		border-radius: 50%;
 		box-shadow: var(--neptune-checkbox-shadow);

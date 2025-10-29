@@ -1,24 +1,27 @@
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
 	:root {
 		--player-bg-color: transparent !important;
-		--controls-bottom-upper-height: 34px !important;
 	}
 
 	body {
 		clip-path: var(--in-content-clip-path);
 	}
 
-	* {
+	#controls .control-item {
 		cursor: default !important;
+
+		&::after {
+			content: none !important;
+		}
 	}
 
 	#controls-bottom-gradient {
 		background: #202020a5 !important;
 		backdrop-filter: saturate(1.5) blur(2em);
-		height: calc(var(--player-control-item-height) + var(--controls-bottom-upper-height) + var(--scrubber-vertical-margin)) !important;
+		height: calc(var(--player-control-item-height) + var(--controls-bottom-upper-height) + var(--scrubber-vertical-margin) + var(--resize-margin)) !important;
 		width: min((50% + var(--player-control-item-half-width)), 30em) !important;
 		border-radius: var(--border-radius-large);
-		inset: auto calc((100% + 2 * var(--resize-margin) - min((50% + var(--player-control-item-half-width)), 30em)) / 2) calc(15vmin + var(--resize-margin) + 1px) !important;
+		inset: auto calc((100% + 2 * var(--resize-margin) - min((50% + var(--player-control-item-half-width)), 30em)) / 2) calc(15vmin + var(--scrubber-vertical-margin) / 2) !important;
 
 		#controls:is([keying], [showing], body:not(:fullscreen) #controls:hover) & {
 			opacity: unset !important;
@@ -149,6 +152,7 @@
 
 				> .switch {
 					margin-left: 6px !important;
+					cursor: default !important;
 				}
 			}
 		}
@@ -170,11 +174,19 @@
 		}
 	}
 
-	.font-size-selection-radio > input[type="radio"] {
-		border: 2px solid #cacaca80 !important;
+	.font-size-selection-radio {
+		cursor: default !important;
 
-		&:checked {
-			border: none !important;
+		label {
+			cursor: default !important;
+		}
+
+		> input[type="radio"] {
+			border: 2px solid #cacaca80 !important;
+
+			&:checked {
+				border: none !important;
+			}
 		}
 	}
 
@@ -211,6 +223,10 @@
 
 		body:fullscreen & {
 			background-image: url("../assets/icons/fullscreen-exit.svg") !important;
+		}
+
+		@media (width <= 880px) {
+			display: none;
 		}
 	}
 

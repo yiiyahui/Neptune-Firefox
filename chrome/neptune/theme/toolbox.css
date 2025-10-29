@@ -15,12 +15,18 @@
 			padding-inline-start: var(--space-xsmall) !important;
 		}
 
-		:root[taskbartab] & > .titlebar-spacer[type="post-tabs"] {
-			display: none;
+		:root[taskbartab] & {
+			> .titlebar-spacer {
+				display: none;
+			}
+
+			> #nav-bar-customization-target > #customizableui-special-spring20 {
+				display: revert !important;
+			}
 		}
 
 		@media not -moz-pref("sidebar.verticalTabs") {
-			:root[privatebrowsingmode=temporary] & {
+			:root[privatebrowsingmode="temporary"] & {
 				padding-inline-start: calc(76px + var(--size-item-large) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 			}
 		}
@@ -31,16 +37,14 @@
 			}
 
 			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring:not(#vertical-spacer) {
-				:root:not([taskbartab]) & {
-					max-width: 100% !important;
-				}
+				max-width: 100% !important;
 
 				#nav-bar & {
 					flex-grow: 400 !important;
 				}
 			}
 
-			 > toolbarpaletteitem[place="toolbar"] > toolbarspring {
+			> toolbarpaletteitem[place="toolbar"] > toolbarspring {
 				margin-block: 0 !important;
 			}
 
@@ -59,6 +63,7 @@
 	}
 
 	#TabsToolbar {
+		will-change: unset !important;
 		min-height: unset !important;
 
 		@media not -moz-pref("sidebar.verticalTabs") {
@@ -67,7 +72,7 @@
 
 			> .titlebar-spacer {
 				width: calc(var(--size-item-small) / 2) !important;
-				display: revert !important;
+				display: initial !important;
 			}
 		}
 
@@ -112,19 +117,19 @@
 		background-color: inherit !important;
 
 		.notificationbox-stack > .infobar {
-			--icon-size: var(--size-item-xsmall) !important;
 			--button-size-icon-small: 20px !important;
 			--button-min-height-small: 20px !important;
+			--button-min-height: 20px !important;
 			--button-border-radius: var(--border-radius-large) !important;
-			--message-bar-container-min-height: 28px !important;
 			--message-bar-border-width: 0 !important;
 			--message-bar-border-radius: var(--border-radius-circle) !important;
+			--message-bar-icon-close-url: url("resource://content-accessible/close-12.svg") !important;
 			background-color: var(--neptune-tabs-default-background) !important;
 			margin-inline: var(--space-medium) !important;
 			box-shadow: none !important;
 
 			&::before {
-				background-image: none !important;
+				content: none !important;
 			}
 		}
 	}

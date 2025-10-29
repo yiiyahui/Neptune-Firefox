@@ -1,6 +1,6 @@
 /* Show the bookmarks bar when hovering over the blank area of the toolbar. */
 #PersonalToolbar {
-	:root[sessionrestored] &:not(:has(toolbarbutton[open="true"]), body:has(#placesContext:hover) &, [customizing], [collapsed="true"]) {
+	:root[sessionrestored] &:not(:has(toolbarbutton[open="true"]), body:has(#placesContext:hover) &, [customizing], [collapsed]) {
 		max-height: 0 !important;
 		transition: max-height 200ms linear, var(--ext-theme-background-transition) !important;
 		transition-delay: 200ms !important;

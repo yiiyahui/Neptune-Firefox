@@ -317,6 +317,10 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 	}
 }
 
+#translations-button-icon {
+	list-style-image: url("../assets/icons/translations.svg") !important;
+}
+
 #pageAction-panel-bookmark,
 #star-button {
 	list-style-image: url("../assets/icons/bookmark-hollow.svg") !important;

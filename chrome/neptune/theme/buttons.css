@@ -52,9 +52,9 @@ toolbar .toolbaritem-combined-buttons {
 	.toolbarbutton-badge {
 		background-color: var(--color-accent-primary) !important;
 		border-radius: var(--border-radius-large) !important;
-		min-width: 14px !important;
-		padding-inline: 0 !important;
-		line-height: 14px !important;
+		min-width: var(--size-item-small) !important;
+		padding: 0 !important;
+		line-height: var(--size-item-small) !important;
 		font-weight: normal !important;
 
 		toolbarbutton:is(:active, [open]) & {
@@ -80,8 +80,8 @@ screenshots-buttons {
 input[type=checkbox],
 .checkbox-check:not([native]) {
 	appearance: none !important;
-	width: 14px !important;
-	height: 14px !important;
+	width: var(--input-icon-size) !important;
+	height: var(--input-icon-size) !important;
 	border: var(--neptune-checkbox-border);
 	border-radius: var(--border-radius-xsmall);
 	box-shadow: var(--neptune-checkbox-shadow);
@@ -95,8 +95,8 @@ input[type=checkbox],
 
 input[type=radio] {
 	appearance: none !important;
-	width: 14px !important;
-	height: 14px !important;
+	width: var(--input-icon-size) !important;
+	height: var(--input-icon-size) !important;
 	border: var(--neptune-checkbox-border);
 	border-radius: var(--border-radius-medium);
 	box-shadow: var(--neptune-checkbox-shadow);

@@ -12,18 +12,19 @@
 	background: none !important;
 }
 
+/* welcome */
 .onboardingContainer {
 	.screen[pos="center"] {
 		background-color: transparent !important;
 	}
 
-	.main-content {
-		border-radius: var(--border-radius-large) !important;
+	.main-content:not(& .screen[pos="split"][fullscreen] .section-main .main-content) {
+		border-radius: var(--border-radius-xlarge) !important;
 		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
 	}
 
 	:is(.primary, .secondary, .additional-cta, .submenu-button) {
-		padding-block: 2px !important;
+		padding: 0 var(--space-large) !important;
 		border-radius: var(--border-radius-small) !important;
 	}
 }

@@ -17,7 +17,7 @@
 	height: var(--urlbar-height) !important;
 	width: var(--urlbar-width) !important;
 	margin: 0 !important;
-	font-size: 12.5px !important;
+	font-size: var(--default-font-size) !important;
 	transition: opacity var(--inactive-window-transition);
 
 	:root[customtitlebar] .browser-titlebar &:popover-open {
@@ -221,7 +221,7 @@
 		}
 
 		&:not([type=tip], [type=dynamic]) {
-			:root:not([uidensity=compact]) & {
+			:root:not([uidensity="compact"]) & {
 				min-height: var(--button-min-height) !important;
 			}
 		}
@@ -243,7 +243,7 @@
 		}
 
 		&[rich-suggestion][type=search] {
-			:root:not([uidensity=compact]) & {
+			:root:not([uidensity="compact"]) & {
 				min-height: calc(var(--size-item-medium) - 2 * var(--urlbarView-row-gutter) + var(--toolbarbutton-inner-padding)) !important;
 			}
 		}
@@ -365,6 +365,7 @@
 
 #tracking-protection-icon-container {
 	margin-inline-start: calc(-1 * var(--size-item-xsmall) - 2 * var(--urlbar-icon-padding));
+	border-radius: 0 !important;
 	visibility: collapse;
 	transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
 
@@ -391,12 +392,10 @@
 	}
 
 	> #translations-button > #translations-button-locale {
-		height: var(--size-item-small) !important;
+		height: var(--input-icon-size) !important;
 		padding: 0 !important;
-		margin-block: 0 !important;
-		margin-inline-end: 0 !important;
+		margin-block: auto !important;
 		font-size: 0.84em !important;
-		border-radius: var(--border-radius-medium) !important;
 	}
 }
 
