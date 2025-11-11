@@ -5,6 +5,7 @@
 
 	&[orient="horizontal"] {
 		--scrollbutton-display: none;
+		--scrollbutton-padding: calc((var(--tab-min-height) - var(--size-item-small)) / 2) var(--tab-overflow-clip-margin);
 		--tab-min-width: calc(48px + var(--tab-block-margin)) !important;
 
 		:root:not([customizing]) & {
@@ -93,12 +94,13 @@
 			}
 		}
 
-		&[overflow]::after {
+		&::after {
 			content: none !important;
 		}
 
 		#tabs-newtab-button, #vertical-tabs-newtab-button {
-			margin: var(--space-xsmall) auto !important;
+			margin-block: var(--space-xsmall) var(--space-small) !important;
+			margin-inline: auto !important;
 			border-radius: var(--border-radius-circle) !important;
 
 			> .toolbarbutton-text {
@@ -153,6 +155,7 @@
 
 			&:hover {
 				min-width: var(--size-item-small) !important;
+				animation: splitter-H-pulsing 500ms ease-in-out;
 
 				#tabbrowser-tabs[orient="vertical"][expanded] & {
 					min-width: var(--size-item-medium) !important;
@@ -506,7 +509,7 @@
 					padding-inline-end: calc(var(--size-item-xsmall) + var(--tab-inline-padding));
 				}
 
-				> .tab-label {
+				&[textoverflow] > .tab-label {
 					width: calc(100% + var(--size-item-xsmall));
 				}
 			}
@@ -707,6 +710,7 @@
 }
 
 #scrollbutton-up, #scrollbutton-down { 
-	border-radius: var(--border-radius-circle) !important;
+	--arrowscrollbox-scrollicon-border-radius: var(--border-radius-circle) !important;
+	--arrowscrollbox-scrollicon-padding: var(--scrollbutton-padding, inherit) !important;
 	/*display: var(--scrollbutton-display, inherit);*/
 }

@@ -3,15 +3,51 @@
 		--toolbar-horizontal-padding: 12px !important;
 		--button-hover-color: var(--neptune-item-hover-background) !important;
 		--dropdown-btn-bg-color: var(--neptune-item-background) !important;
+		--doorhanger-bg-color: Menu !important;
 		--toggled-btn-bg-color: var(--neptune-item-background) !important;
 		--toggled-hover-active-btn-color: var(--neptune-item-active-background) !important;
+		--focus-ring-color: var(--focus-outline-color) !important;
 	}
 
-	.thumbnail,
+	.toggle-button {
+		--color-accent-primary: var(--theme-primary-color) !important;
+		--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
+		--color-accent-primary-active: var(--theme-primary-active-color) !important;
+		--toggle-dot-background-color: var(--neptune-slider-color) !important;
+		--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
+	}
+
+	.dialog {
+		--textarea-bg-color: var(--neptune-input-bgcolor) !important;
+		--textarea-border-color: var(--border-color-deemphasized) !important;
+		--button-primary-bg-color: var(--color-accent-primary) !important;
+		--button-primary-hover-bg-color: var(--color-accent-primary-hover) !important;
+		--button-primary-active-bg-color: var(--color-accent-primary-active) !important;
+		--button-secondary-bg-color: var(--button-background-color) !important;
+		--button-secondary-hover-bg-color: var(--button-background-color-hover) !important;
+		--button-secondary-active-bg-color: var(--button-background-color-active) !important;
+		--text-primary-color: GrayText !important;
+		--text-secondary-color: GrayText !important;
+		--dialog-shadow: var(--neptune-panel-shadow) !important;
+
+		.mainContainer button:not(:is(.toggle-button, .closeButton, .clearInputButton)) {
+			border-radius: var(--border-radius-small) !important;
+			padding: 0 16px !important;
+			height: var(--button-min-height) !important;
+		}
+	}
+
+	.editToolbar {
+		--editor-toolbar-bg-color: menu !important;
+		--editor-toolbar-border-color: var(--doorhanger-border-color) !important;
+		--editor-toolbar-hover-bg-color: transparent !important;
+		--editor-toolbar-hover-fg-color: accentcolor !important;
+	}
+
 	.toolbarButton:not(.labeled),
 	.dropdownToolbarButton,
 	.dialogButton {
-		border-radius: var(--border-radius-small) !important;
+		border-radius: var(--border-radius-xlarge) !important;
 	}
 
 	.toolbarHorizontalGroup {
@@ -28,6 +64,19 @@
 
 		.toolbarButtonWithContainer {
 			aspect-ratio: auto !important;
+
+			.editorParamsToolbar.menu {
+				padding-block: 0 !important;
+
+				#editorCommentsSidebar #editorCommentsSidebarCloseButton {
+					--comment-close-button-icon: url("resource://content-accessible/close-12.svg") !important;
+					width: 16px !important;
+					height: 16px !important;
+					padding: 0 !important;
+					border-radius: var(--border-radius-large) !important;
+					cursor: default !important;
+				}
+			}
 
 			.toolbarButton.labeled {
 				min-height: var(--button-min-height) !important;
@@ -48,8 +97,9 @@
 
 	.thumbnail {
 		border-width: 3px !important;
-		margin-block-end: 2em !important;
-		box-shadow: 0 0 10px var(--neptune-menu-shadow-color);
+		border-radius: var(--border-radius-small) !important;
+		margin: 0 1em 2em !important;
+		box-shadow: 0 3px 12px var(--box-shadow-color-lighter-layer-2);
 	}
 
 	.toolbarField {

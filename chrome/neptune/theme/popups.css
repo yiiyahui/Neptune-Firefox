@@ -42,7 +42,20 @@ panel {
 
 		/*Account menu fix*/
 		.PanelUI-fxa-menu-setup-sync {
-			padding: var(--panel-separator-padding) !important;
+			padding: 0 var(--arrowpanel-menuitem-padding-inline) !important;
+
+			> .sync-status-container > :is(.sync-setup-icon, .sync-status-indicator) {
+				width: var(--size-item-small) !important;
+				height: var(--size-item-small) !important;
+			}
+
+			> .sync-setup-description {
+				padding: var(--panel-subview-body-padding-block) 0 !important;
+			}
+
+			> #PanelUI-fxa-menu-setup-sync-button {
+				padding: 0 var(--space-large) !important;
+			}
 		}
 
 		.PanelUI-fxa-menu-section-title {
@@ -51,6 +64,10 @@ panel {
 
 		:is(#PanelUI-fxa-cta-menu, #PanelUI-fxa-menu-services) .fxa-cta-button {
 			margin: var(--space-xsmall) var(--arrowpanel-menuitem-margin-inline) 0 !important;
+		}
+
+		.panel-footer {
+			margin: var(--space-small) var(--arrowpanel-padding) var(--space-large) !important;
 		}
 
 		#full-page-translations-panel-error {
@@ -233,6 +250,10 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 	.screen[pos=callout] .action-buttons :is(.primary, .secondary) {
 		min-height: var(--button-min-height) !important;
+	}
+
+	.screen[pos=callout] .dismiss-button {
+		border-radius: var(--border-radius-xlarge) !important;
 	}
 }
 

@@ -3,6 +3,7 @@
 	--in-content-table-background: var(--neptune-content-background) !important;
 	--in-content-border-color: var(--neptune-content-border-color) !important;
 	--in-content-box-info-background: var(--neptune-content-background) !important;
+	--background-color-box-info: var(--neptune-main-background) !important;
 	--table-row-background-color: var(--neptune-main-background) !important;
 	--table-row-background-color-alternate: var(--neptune-content-background) !important;
 	--background-color-box: var(--neptune-menu-background) !important;
@@ -26,8 +27,9 @@
 	--brand-color-accent-hover: var(--theme-primary-hover-color) !important;
 	--brand-color-accent-active: var(--theme-primary-active-color) !important;
 	--newtab-primary-action-background: var(--theme-primary-color) !important;
-	--theme-arrowpanel-background: var(--neptune-menu-background) !important;
+	--theme-arrowpanel-background: menu !important;
 	--theme-arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
+	--theme-arrowpanel-separator: var(--neptune-separator-color) !important;
 	--theme-body-background: var(--neptune-main-background) !important;
 	--theme-link-color: var(--theme-primary-color) !important;
 	--theme-icon-checked-color: var(--theme-primary-active-color) !important;
@@ -42,6 +44,7 @@
 	--theme-toolbar-alternate-hover: var(--neptune-item-active-background) !important;
 	--theme-focus-textinput-outline-color: var(--neptune-input-outline-color) !important;
 	--button-min-height: 24px !important;
+	--button-padding: 0 var(--space-large) !important;
 	--theme-toolbar-height: var(--button-min-height) !important;
 	--theme-arrowpanel-border-radius: 8px !important;
 	--tab-line-selected-color: transparent !important;

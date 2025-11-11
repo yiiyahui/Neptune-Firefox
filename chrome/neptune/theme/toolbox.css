@@ -209,13 +209,13 @@ findbar {
 
 		.findbar-find-next {
 			list-style-image: url("../assets/icons/arrow-right.svg") !important;
-			margin-left: calc(-1 * var(--border-width)) !important;
-			border-left: none;
+			border-left-width: 0.5px;
 			border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0 !important;
 		}
 
 		.findbar-find-previous {
 			list-style-image: url("../assets/icons/arrow-left.svg") !important;
+			border-right-width: 0.5px;
 			border-radius: var(--border-radius-large) 0 0 var(--border-radius-large) !important;
 		}
 

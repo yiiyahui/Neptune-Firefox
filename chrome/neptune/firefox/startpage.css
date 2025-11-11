@@ -25,7 +25,7 @@
 
 	.search-wrapper input,
 	.search-handoff-button {
-		background-size: 24px !important;
+		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
 		backdrop-filter: saturate(1.5) blur(2em);
 		border: none !important;
 		border-radius: var(--border-radius-circle) !important;
@@ -213,10 +213,14 @@
 	.ds-card-grid .sections-card-ui .meta,
 	.compact-cards .card-outer .card-details:not(:has(.card-text.no-host-name)) {
 		backdrop-filter: saturate(1.5) blur(2em);
+		border-end-start-radius: var(--border-radius-large);
+		border-end-end-radius: var(--border-radius-large);
 	}
 
 	.ds-card .context-menu-button {
-		border-radius: 50% !important;
+		width: var(--button-min-height) !important;
+		height: var(--button-min-height) !important;
+		border-radius: var(--border-radius-large) !important;
 	}
 
 	.modalOverlayOuter, .modal-overlay {
@@ -260,7 +264,7 @@
 			--newtab-button-secondary-color: var(--button-background-color) !important;
 			padding: var(--space-xsmall) var(--space-medium) !important;
 			border: none !important;
-			border-radius: var(--border-radius-medium) !important;
+			border-radius: var(--border-radius-small) !important;
 			box-shadow: none !important;
 		}
 	}

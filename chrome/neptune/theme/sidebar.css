@@ -28,6 +28,10 @@
 }
 
 @media -moz-pref("sidebar.revamp") {
+	:root:not(.system-font-size) {
+		--font-size-root: var(--default-font-size) !important;
+	}
+
 	.sidebar-splitter {
 		background-color: transparent !important;	/* Make the sidebar's border color transparent, or change it to "--sidebar-border-color". */
 		width: var(--splitter-width) !important;
@@ -44,16 +48,17 @@
 			/* Keeping the sidebar width consistent between horizontal and vertical layouts ensures smooth layout switching. So its width will be affected by the size of the vertical tabs. */
 			> moz-button:not(.tools-overflow) {
 				--button-outer-padding-block: var(--space-xsmall) !important;
+				--button-outer-padding-block-start: var(--space-xsmall) !important;
 				--button-outer-padding-inline: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--urlbar-min-height)) / 2) !important;
 
 				&:last-of-type {
-					--button-outer-padding-block-end: 0 !important;
+					--button-outer-padding-block-end: calc(var(--toolbarbutton-inner-padding) / 2) !important;
 				}
 			}
 		}
 
 		@media -moz-pref("sidebar.verticalTabs") {
-			> moz-button:not(.tools-overflow) {
+			> moz-button:not(.tools-overflow, .expanded-button) {
 				--button-outer-padding-block: calc(var(--toolbarbutton-inner-padding) / 2) !important;
 			}
 		}
@@ -88,6 +93,7 @@
 
 			&:hover {
 				min-width: var(--size-item-small) !important;
+				animation: splitter-H-pulsing 500ms ease-in-out;
 
 				&:has(~ .buttons-wrapper > .tools-and-extensions[orientation="horizontal"]) {
 					min-width: var(--size-item-medium) !important;
@@ -165,11 +171,23 @@
 				border: none !important;
 			}
 
+			> .first-row panel-list {
+				background-color: menu !important;
+				backdrop-filter: blur(1em);
+				border-radius: var(--border-radius-medium) !important;
+
+				> hr:not([hidden]) {
+					background-color: var(--panel-separator-color) !important;
+					margin: var(--panel-separator-padding) !important;
+				}
+			}
+
 			> .second-row {
 				margin-block-end: 0 !important;
 
 				input {
 					margin-block: auto !important;
+					vertical-align: bottom;
 				}
 			}
 		}
@@ -229,18 +247,6 @@
 	.fxview-tab-row-button {
 		--button-size-icon: var(--size-item-small) !important;
 		--button-min-height: var(--button-min-height) !important;
-	}
-
-	@layer input-common {
-		#input {
-			--input-width: var(--input-icon-size) !important;
-			--input-height: var(--input-icon-size) !important;
-			--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
-		}
-
-		[slot="nested"]:first-child {
-			margin-block-start: var(--space-small) !important;
-		}
 	}
 
 	/* Chat */

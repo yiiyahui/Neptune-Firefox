@@ -16,13 +16,18 @@
 		--link-color-active: accentcolor !important;
 		--link-color-visited: mediumpurple !important;
 		--fxview-background-color: var(--neptune-main-background) !important;
-		--newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
 		--button-background-color-primary: color-mix(in srgb, accentcolor 80%, #181818) !important;
 		--button-background-color-primary-hover: color-mix(in srgb, accentcolor 85%, #262626) !important;
 		--button-background-color-primary-active: color-mix(in srgb, accentcolor 85%, #646464) !important;
 		--button-text-color-primary: white !important;
 		--button-text-color-primary-hover: var(--button-text-color-primary) !important;
 		--focus-outline-color: accentcolor !important;
+		--border-color: var(--border-color-card) !important;
+		--input-text-border-color: var(--border-color-card) !important;
+		--visual-picker-item-border-color: var(--border-color-card) !important;
+		--box-border-color: var(--border-color-card) !important;
+		--box-icon-size: var(--icon-size-xsmall) !important;
+		--box-padding: var(--space-medium) !important;
 		text-decoration: inherit !important;
 	}
 
@@ -32,7 +37,7 @@
 		--toggle-border-color: var(--neptune-toolbar-border-color) !important;
 	}
 
-	menupopup, panel {
+	menupopup, panel:not(.tooltip-xul-wrapper) {
 		--panel-separator-color: var(--neptune-separator-color) !important;
 
 		@media (-moz-platform: macos) or (-moz-platform: windows) {
@@ -64,7 +69,7 @@
 	groupbox[data-category] {
 		margin-bottom: var(--space-xlarge) !important;
 
-		.accessory-button {
+		#profiles > .accessory-button {
 			margin: auto !important;
 		}
 
@@ -248,11 +253,12 @@
 	}
 
 	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem:not(dialog richlistitem),
-	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .reset-button),
+	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .button, .reset-button),
 	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
 		padding-block: var(--space-xxsmall) !important;
 	}
 
+	button.small-button,
 	#siteCol, #statusCol,
 	#permissionsBox > richlistitem,
 	:is(#engineList, #blocklistsTree) > treechildren::-moz-tree-row {
@@ -330,14 +336,6 @@
 	.stp_button_wide .stp_button {
 		padding-block: 4px !important;
 		border-radius: var(--border-radius-small) !important;
-	}
-
-	@layer input-common {
-		#input {
-			--input-width: var(--input-icon-size) !important;
-			--input-height: var(--input-icon-size) !important;
-			--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
-		}
 	}
 
 	input[type=checkbox]:not(.ruleview-enableproperty, .devtools-checkbox-toggle),

@@ -5,6 +5,7 @@
 	--border-radius-large: 12px !important;
 	--border-radius-xlarge: 16px;
 	--border-radius-circle: 99px !important;
+	--button-border-radius: var(--border-radius-small) !important;
 	--input-icon-size: calc(var(--size-item-medium) / 2);
 	--default-font-size: 12.5px;
 	--default-focusring: none !important;
@@ -22,21 +23,38 @@
 	--box-shadow-color-lighter-layer-2: light-dark(#00000019, #00000026) !important;
 }
 
-#input {
-	--input-text-background-color: var(--input-bgcolor) !important;
+@layer input-common {
+	#input {
+		--input-width: var(--input-icon-size) !important;
+		--input-height: var(--input-icon-size) !important;
+		--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
+		--input-text-background-color: var(--input-bgcolor) !important;
 
-	&.with-icon {
-		padding-inline-start: calc(var(--input-text-icon-size) + var(--space-large)) !important;
-		background-position: var(--space-small) center !important;
+		&.with-icon {
+			padding-inline-start: calc(var(--input-text-icon-size) + var(--space-large)) !important;
+			background-position: var(--space-small) center !important;
 
-		&:dir(rtl) {
-			background-position: center right var(--space-small) !important;
+			&:dir(rtl) {
+				background-position: center right var(--space-small) !important;
+			}
+
+			&[type="text"] {
+				margin-block: auto !important;
+
+				&:focus-visible {
+					outline: none;
+				}
+			}
 		}
-	}
 
-	&::-moz-search-clear-button {
-		padding: var(--space-xxsmall) !important;
-		border-radius: var(--border-radius-large) !important;
+		&::-moz-search-clear-button {
+			padding: var(--space-xxsmall) !important;
+			border-radius: var(--border-radius-large) !important;
+		}
+
+		[slot="nested"]:first-child {
+			margin-block-start: var(--space-small) !important;
+		}
 	}
 }
 
@@ -54,5 +72,25 @@
 	100% {
 		opacity: 1;
 		transform: scale(1);
+	}
+}
+
+@keyframes splitter-H-pulsing {
+	0%, 100% {
+		transform: scalex(1);
+	}
+
+	50% {
+		transform: scalex(1.5);
+	}
+}
+
+@keyframes splitter-V-pulsing {
+	0%, 100% {
+		transform: scaleY(1);
+	}
+
+	50% {
+		transform: scaleY(1.5);
 	}
 }
