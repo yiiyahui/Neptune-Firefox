@@ -49,13 +49,13 @@
 	--theme-arrowpanel-border-radius: 8px !important;
 	--tab-line-selected-color: transparent !important;
 	--tab-line-hover-color: transparent !important;
-	--font-size-root: 12.5px !important;
+	--font-size-root: var(--default-font-size) !important;
 	--font-size-small: 0.96rem !important;
 	--font-size-large: 1.2rem !important;
 	--font-size-xlarge: 1.44rem !important;
 	--font-size-xxlarge: 1.76rem !important;
+	--font-size-xxxlarge: 2rem !important;
 	--space-xsmall: 0.32rem !important;
-	--size-item-medium: 28px !important;
 }
 
 ::selection {

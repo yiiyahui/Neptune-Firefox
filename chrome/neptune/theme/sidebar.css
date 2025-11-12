@@ -28,10 +28,6 @@
 }
 
 @media -moz-pref("sidebar.revamp") {
-	:root:not(.system-font-size) {
-		--font-size-root: var(--default-font-size) !important;
-	}
-
 	.sidebar-splitter {
 		background-color: transparent !important;	/* Make the sidebar's border color transparent, or change it to "--sidebar-border-color". */
 		width: var(--splitter-width) !important;
@@ -256,6 +252,52 @@
 	.fxview-tab-row-button {
 		--button-size-icon: var(--size-item-small) !important;
 		--button-min-height: var(--button-min-height) !important;
+	}
+
+	/* password card */
+	@-moz-document url("chrome://global/content/megalist/megalist.html") {
+		:root:not(.system-font-size) {
+			--font-size-root: var(--default-font-size) !important;
+		}
+
+		.edit-line-container {
+			height: fit-content !important;
+
+			> .edit-button {
+				margin: var(--space-small) !important;
+			}
+		}
+
+		.line-container {
+			--inner-border-radius: var(--border-radius-medium) !important;
+			--line-container-height: var(--size-item-xlarge) !important;
+
+			.value-container {
+				align-items: center !important;
+
+				> .input-field {
+					text-decoration: none !important;
+				}
+			}
+
+			.input-container .input-label {
+				font-size: 0.72rem !important;
+			}
+		}
+
+		moz-message-bar {
+			--message-bar-border-radius: var(--border-radius-medium) !important;
+
+			&[type="warning"] {
+				--message-bar-background-color: color-mix(in srgb, var(--background-color-warning) 35%, transparent) !important;
+				height: fit-content !important;
+				border: none !important;
+			}
+
+			&[type="info"] {
+				--message-bar-background-color: color-mix(in srgb, var(--background-color-information) 35%, transparent) !important;
+			}
+		}
 	}
 
 	/* Chat */
