@@ -3,7 +3,7 @@
 .urlbar-background,
 .findbar-textbox,
 sidebar-panel-header .search-container,
-input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox, sidebar-panel-header .search-container .search),
+input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search),
 textarea:not(#select-translations-panel-text-area) {
 	outline: 18px solid transparent !important;
 }
@@ -12,7 +12,7 @@ textarea:not(#select-translations-panel-text-area) {
 .urlbar[open] > .urlbar-background,
 .findbar-textbox:focus,
 sidebar-panel-header .search-container:focus-within,
-input:where([type="search"], [type="text"], [type="url"]):not(.searchbar-textbox, sidebar-panel-header .search-container .search):focus-visible,
+input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search):focus-visible,
 textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
 	outline: 3px solid var(--neptune-input-outline-color) !important;
 	box-shadow: inset 0 0 0.75px accentcolor !important;
@@ -20,7 +20,7 @@ textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
 }
 
 select:where(:not([size], [multiple])),
-input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .findbar-textbox)),
+input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .findbar-textbox, #login-line-input)),
 textarea:not(#select-translations-panel-text-area) {
 	min-height: var(--button-min-height) !important;
 	border: none !important;

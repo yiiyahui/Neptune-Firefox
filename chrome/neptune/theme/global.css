@@ -46,6 +46,7 @@
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
 	--sidebar-background-color: transparent !important;
 	--sidebar-border-color: var(--neptune-content-border-color) !important;
+	--sidebar-box-border-color: var(--border-color-card) !important;
 	--urlbar-box-bgcolor: transparent !important;
 	--urlbar-box-focus-bgcolor: transparent !important;
 	--urlbarView-action-button-background-color: var(--button-background-color) !important;
