@@ -28,6 +28,10 @@
 }
 
 @media -moz-pref("sidebar.revamp") {
+	#sidebar-box {
+		padding-block-end: var(--space-xsmall) !important;
+	}
+
 	.sidebar-splitter {
 		background-color: transparent !important;	/* Make the sidebar's border color transparent, or change it to "--sidebar-border-color". */
 		width: var(--splitter-width) !important;
@@ -188,15 +192,6 @@
 			}
 		}
 
-		virtual-passwords-list.passwords-list password-card {
-			border: none !important;
-			margin-block: var(--space-medium) 0 !important;
-
-			&:first-of-type {
-				margin-block-start: 0 !important;
-			}
-		}
-
 		moz-card {
 			--card-padding-block: var(--space-small);
 			border: none !important;
@@ -256,8 +251,21 @@
 
 	/* password card */
 	@-moz-document url("chrome://global/content/megalist/megalist.html") {
-		:root:not(.system-font-size) {
-			--font-size-root: var(--default-font-size) !important;
+		:root {
+			--background-color-canvas: transparent !important;
+
+			&:not(.system-font-size) {
+				--font-size-root: var(--default-font-size) !important;
+			}
+		}
+
+		virtual-passwords-list.passwords-list password-card {
+			border: none !important;
+			margin-block: var(--space-medium) 0 !important;
+
+			&:first-of-type {
+				margin-block-start: 0 !important;
+			}
 		}
 
 		.edit-line-container {
@@ -271,6 +279,7 @@
 		.line-container {
 			--inner-border-radius: var(--border-radius-medium) !important;
 			--line-container-height: var(--size-item-xlarge) !important;
+			cursor: default !important;
 
 			.value-container {
 				align-items: center !important;
@@ -291,11 +300,22 @@
 			&[type="warning"] {
 				--message-bar-background-color: color-mix(in srgb, var(--background-color-warning) 35%, transparent) !important;
 				height: fit-content !important;
-				border: none !important;
+
+				.edit-line-container + & {
+					border: none !important;
+				}
 			}
 
 			&[type="info"] {
 				--message-bar-background-color: color-mix(in srgb, var(--background-color-information) 35%, transparent) !important;
+			}
+
+			&[type="success"] {
+				--message-bar-background-color: color-mix(in srgb, var(--background-color-success) 35%, transparent) !important;
+			}
+
+			&:is([type="error"], [type="critical"]) {
+				--message-bar-background-color: color-mix(in srgb, var(--background-color-critical) 35%, transparent) !important;
 			}
 		}
 	}
