@@ -77,10 +77,6 @@
 			display: none !important;
 		}
 
-		> listheader > :is(treecol, .tree-columnpicker-button) {
-			box-shadow: none !important;
-		}
-
 		> #updateBox {
 			margin-block-end: 0 !important;
 		}
@@ -144,6 +140,10 @@
 				}
 			}
 		}
+	}
+
+	treecol, .tree-columnpicker-button {
+		box-shadow: none !important;
 	}
 
 	checkbox, radio {
@@ -338,9 +338,10 @@
 		border-radius: var(--border-radius-small) !important;
 	}
 
-	input[type=checkbox]:not(.ruleview-enableproperty, .devtools-checkbox-toggle),
+	input[type="checkbox"]:not(.ruleview-enableproperty, .devtools-checkbox-toggle),
 	.checkbox-check:not([native]) {
 		appearance: none !important;
+		background-color: var(--neptune-checkbox-background);
 		width: var(--input-icon-size) !important;
 		height: var(--input-icon-size) !important;
 		border: var(--neptune-checkbox-border);
@@ -355,9 +356,10 @@
 		}
 	}
 
-	input[type=radio]:not(.wallpaper-input, .wrapper input),
+	input[type="radio"]:not(.wallpaper-input, .wrapper input),
 	.radio-check {
 		appearance: none !important;
+		background-color: var(--neptune-checkbox-background);
 		width: var(--input-icon-size) !important;
 		height: var(--input-icon-size) !important;
 		border: var(--neptune-checkbox-border);

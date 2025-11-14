@@ -77,9 +77,10 @@ screenshots-buttons {
 	font-size: smaller !important;
 }
 
-input[type=checkbox],
+input[type="checkbox"],
 .checkbox-check:not([native]) {
 	appearance: none !important;
+	background-color: var(--neptune-checkbox-background);
 	width: var(--input-icon-size) !important;
 	height: var(--input-icon-size) !important;
 	border: var(--neptune-checkbox-border);
@@ -93,8 +94,9 @@ input[type=checkbox],
 	}
 }
 
-input[type=radio] {
+input[type="radio"] {
 	appearance: none !important;
+	background-color: var(--neptune-checkbox-background);
 	width: var(--input-icon-size) !important;
 	height: var(--input-icon-size) !important;
 	border: var(--neptune-checkbox-border);
