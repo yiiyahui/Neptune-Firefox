@@ -155,7 +155,7 @@
 
 			&:hover {
 				min-width: var(--size-item-small) !important;
-				animation: splitter-H-pulsing 500ms ease-in-out;
+				animation: splitter-H-pulsing 500ms ease-in-out both;
 
 				#tabbrowser-tabs[orient="vertical"][expanded] & {
 					min-width: var(--size-item-medium) !important;
@@ -326,6 +326,7 @@
 
 		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pinned] > .tab-stack > & {
 			min-height: var(--tabstrip-min-height) !important;
+			box-shadow: none !important;
 		}
 
 		#tabbrowser-tabs[orient="vertical"] & {
@@ -460,8 +461,11 @@
 
 		&[multiselected] {
 			background-color: var(--neptune-tab-multiselected-background) !important;
-			box-shadow: 0 0 0 var(--tab-overflow-clip-margin) var(--neptune-tab-multiselected-shadow-color) !important;
 			animation: 2s linear tab-sharing-icon-pulse infinite;
+
+			#tabbrowser-tabs[orient="horizontal"] &:not(#pinned-tabs-container &) {
+				box-shadow: 0 0 0 var(--tab-overflow-clip-margin) var(--neptune-tab-multiselected-shadow-color) !important;
+			}
 
 			tab-group > tab > .tab-stack > & {
 				background-color: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 20%, transparent) !important;
@@ -521,7 +525,7 @@
 			}
 
 			> .tab-secondary-label {
-				margin-block: 0 !important;
+				margin: 0 !important;
 				font-size: 9px !important;
 			}
 

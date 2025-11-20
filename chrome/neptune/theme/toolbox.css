@@ -91,14 +91,8 @@
 			justify-content: center;
 		}
 
-		.toolbarbutton-1 {
-			margin-block: auto calc(2 * var(--bookmark-block-padding)) !important;
-
-			> .toolbarbutton-icon {
-				padding: 0 !important;
-				width: var(--size-item-small) !important;
-				height: var(--size-item-small) !important;
-			}
+		> #personal-bookmarks > #PlacesToolbar > .toolbarbutton-1 {
+			margin-block: auto var(--bookmark-block-padding) !important;
 		}
 
 		toolbarbutton.bookmark-item:not(.subviewbutton) {

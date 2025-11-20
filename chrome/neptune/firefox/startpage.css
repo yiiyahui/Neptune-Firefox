@@ -332,7 +332,7 @@
 
 	@media (prefers-reduced-motion: no-preference) {
 		.customize-menu.customize-animate-enter-done, .customize-menu.customize-animate-enter-active {
-			animation: menuBounce 200ms linear backwards;
+			animation: menuBounce 200ms ease-in-out backwards;
 		}
 	}
 

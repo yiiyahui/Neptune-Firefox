@@ -64,7 +64,8 @@
 		}
 
 		&[orientation="horizontal"] {
-			flex-basis: 100%;
+			flex-grow: 1;
+			flex-wrap: nowrap !important;
 			justify-content: space-between !important;
 			gap: var(--space-small) !important;
 		}
@@ -93,7 +94,7 @@
 
 			&:hover {
 				min-width: var(--size-item-small) !important;
-				animation: splitter-H-pulsing 500ms ease-in-out;
+				animation: splitter-H-pulsing 500ms ease-in-out both;
 
 				&:has(~ .buttons-wrapper > .tools-and-extensions[orientation="horizontal"]) {
 					min-width: var(--size-item-medium) !important;
@@ -169,6 +170,10 @@
 			> .first-row .search-container {
 				background-color: var(--input-bgcolor) !important;
 				border: none !important;
+
+				 > input[type="search"] {
+					padding: 0 var(--space-xsmall) !important;
+				}
 			}
 
 			> .first-row panel-list {
@@ -269,12 +274,12 @@
 			}
 		}
 
-		virtual-passwords-list.passwords-list password-card {
-			border: none !important;
-			margin-block: var(--space-medium) 0 !important;
+		virtual-passwords-list.passwords-list {
+			gap: var(--space-medium);
 
-			&:first-of-type {
-				margin-block-start: 0 !important;
+			> password-card {
+				border: none !important;
+				margin-block: 0 !important;
 			}
 		}
 
@@ -299,7 +304,11 @@
 				}
 			}
 
-			.input-container .input-label {
+			> .copy-container {
+				width: var(--button-min-height) !important;
+			}
+
+			> .input-container .input-label {
 				font-size: 0.72rem !important;
 			}
 		}
@@ -326,6 +335,11 @@
 
 			&:is([type="error"], [type="critical"]) {
 				--message-bar-background-color: color-mix(in srgb, var(--background-color-critical) 35%, transparent) !important;
+			}
+
+			&:is([type="success"], [type="error"]) {
+				margin-block-end: var(--space-medium);
+				border: none !important;
 			}
 		}
 	}

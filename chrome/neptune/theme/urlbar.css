@@ -81,6 +81,7 @@
 		> #urlbar-label-box,
 		> #identity-box:is([pageproxystate="valid"], [pageproxystate="invalid"]) > .identity-box-button {
 			padding-inline: var(--urlbar-icon-padding) !important;
+			border-radius: var(--border-radius-circle) !important;
 		}
 
 		> #page-action-buttons > #urlbar-zoom-button {
@@ -405,7 +406,8 @@
 }
 
 #identity-box {
-	margin: 0 !important;
+	margin-inline: 0 !important;
+	margin-block: var(--urlbar-icon-padding);
 	fill-opacity: 0.6 !important;
 
 	&[pageproxystate="valid"] > .identity-box-button {
