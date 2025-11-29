@@ -1,0 +1,228 @@
+:root {
+	--ex-theme-toolbox-height: calc(var(--urlbar-min-height) + 2 * var(--theme-browser-toolbox-padding));
+	--ex-theme-tabsToolbar-height: calc(var(--tab-min-height) + 2 * var(--tab-overflow-clip-margin) + var(--theme-browser-toolbox-padding) / 2);
+	--ex-theme-bookmarksbar-height: calc(var(--size-item-small) + var(--bookmark-block-padding));
+	--button-outer-padding-inline: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--urlbar-min-height)) / 2);
+}
+
+@media not -moz-pref("sidebar.verticalTabs") {
+	#navigator-toolbox:has(tab:not(tab-split-view-wrapper > tab)[selected]:is([label="New Tab"], [label="New Private Tab"])) {
+		--browser-area-z-index-toolbox: 3;
+		position: fixed !important;
+		background-color: transparent !important;
+		backdrop-filter: blur(2px);
+		width: 100%;
+
+		.urlbar > .urlbar-background {
+			background-color: light-dark(#ffffff33, #ffffff26) !important;
+
+			&:not(.urlbar[open] > &) {
+				border: 1px solid var(--border-color-card) !important;
+			}
+
+			.urlbar:hover > & {
+				background-color: light-dark(#ffffff4c, #ffffff33) !important;
+			}
+
+			.urlbar:is([focused], [open]) > & {
+				background-color: light-dark(#ffffff26, #ffffff19) !important;
+				backdrop-filter: saturate(1.2) blur(0.5em);
+			}
+		}
+
+		#tabbrowser-tabs[orient="horizontal"] {
+			> #tabbrowser-arrowscrollbox {
+				backdrop-filter: saturate(1.2) blur(2px);
+			}
+
+			:is(.tab-group-label-container, .tab-group-label, .tabbrowser-tab .tab-background[selected]) {
+				opacity: 0.5;
+			}
+		}
+
+		+ #browser > :is(#sidebar-main, #sidebar-box) {
+			position: absolute !important;
+			z-index: var(--browser-stack-z-index-rdm-toolbar);
+			inset-block-start: calc(var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height));
+			height: calc(100% - (var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height)));
+			transition: inset 250ms ease-out, height 250ms ease-out;
+			backdrop-filter: blur(0.5em);
+		}
+
+		+ #browser > #sidebar-box {
+			z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
+			inset-inline-start: calc(var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small));
+
+			&:not([sidebarcommand="viewGenaiChatSidebar"]) {
+				max-width: 24em !important;
+			}
+
+			+ .sidebar-splitter {
+				display: none;
+			}
+		}
+
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-main, #sidebar-box) {
+			inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-tabsToolbar-height) + var(--ex-theme-bookmarksbar-height));
+			height: calc(100% - (var(--ex-theme-toolbox-height) + var(--ex-theme-tabsToolbar-height) + var(--ex-theme-bookmarksbar-height)));
+		}
+
+		+ #browser > #tabbrowser-tabbox findbar {
+			background-image: none !important;
+			position: absolute;
+			inset-block-start: calc(var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height));
+			width: 100%;
+		}
+
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox findbar {
+			inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-tabsToolbar-height) + var(--ex-theme-bookmarksbar-height));
+		}
+
+		&:has(#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab:not(tab-group > tab):only-of-type) {
+			+ #browser > #tabbrowser-tabbox findbar {
+				inset-block-start: var(--ex-theme-toolbox-height);
+			}
+
+			&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox findbar {
+				inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height));
+			}
+
+			+ #browser > :is(#sidebar-main, #sidebar-box) {
+				inset-block-start: var(--ex-theme-toolbox-height);
+				height: calc(100% - var(--ex-theme-toolbox-height));
+			}
+
+			&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-main, #sidebar-box) {
+				inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height));
+				height: calc(100% - (var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height)));
+			}
+		}
+	}
+}
+
+@media -moz-pref("sidebar.verticalTabs") {
+	#navigator-toolbox:has(+ #browser #vertical-tabs tab:not(tab-split-view-wrapper > tab)[selected]:is([label="New Tab"], [label="New Private Tab"])) {
+		--browser-area-z-index-toolbox: 3;
+		position: fixed !important;
+		background-color: transparent !important;
+		backdrop-filter: blur(2px);
+		width: 100%;
+
+		.urlbar > .urlbar-background {
+			background-color: light-dark(#ffffff33, #ffffff26) !important;
+
+			&:not(.urlbar[open] > &) {
+				border: 1px solid var(--border-color-card) !important;
+			}
+
+			.urlbar:hover > & {
+				background-color: light-dark(#ffffff4c, #ffffff33) !important;
+			}
+
+			.urlbar:is([focused], [open]) > & {
+				background-color: light-dark(#ffffff26, #ffffff19) !important;
+				backdrop-filter: saturate(1.2) blur(0.5em);
+			}
+		}
+
+		+ #browser > #tabbrowser-tabbox findbar {
+			position: absolute;
+			background-image: none !important;
+			inset-block-start: var(--ex-theme-toolbox-height);
+			width: 100%;
+		}
+
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox findbar {
+			inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height));
+		}
+
+		+ #browser > :is(#sidebar-main, #sidebar-box) {
+			position: absolute !important;
+			inset-block-start: var(--ex-theme-toolbox-height) !important;
+			height: calc(100% - var(--ex-theme-toolbox-height));
+			transition: inset 250ms ease-out, height 250ms ease-out;
+			backdrop-filter: blur(0.5em);
+		}
+
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-main, #sidebar-box) {
+			inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height)) !important;
+			height: calc(100% - (var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height)));
+		}
+
+		+ #browser > #sidebar-main {
+			z-index: var(--browser-stack-z-index-rdm-toolbar);
+
+			:root[sidebar-expand-on-hover] & {
+				background: none !important;
+				border: none !important;
+			}
+
+			&:has(sidebar-main:not([expanded])) ~ #sidebar-box {
+				z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
+				inset-inline-start: calc(var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small));
+
+				&[sidebar-positionend]:not([sidebarcommand="viewGenaiChatSidebar"]) {
+					inset-inline-start: calc(100% - 24em - (var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small)));
+				}
+
+				&:not([sidebarcommand="viewGenaiChatSidebar"]) {
+					width: 24em !important;
+					max-width: 24em !important;
+				}
+
+				&[sidebarcommand="viewGenaiChatSidebar"] {
+						min-width: 32em !important;
+						max-width: 32em !important;
+
+						&[sidebar-positionend] {
+							inset-inline-start: calc(100% - 32em - (var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small)));
+						}
+				}
+
+				+ .sidebar-splitter {
+					display: none;
+				}
+			}
+
+			&:has(sidebar-main[expanded]) {
+				width: 20em !important;
+				max-width: 20em !important;
+
+				~ #sidebar-box {
+					z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
+					inset-inline-start: 20em;
+					
+					&[sidebar-positionend]:not([sidebarcommand="viewGenaiChatSidebar"]) {
+						inset-inline-start: calc(100% - 44em)
+					}
+
+					&:not([sidebarcommand="viewGenaiChatSidebar"]) {
+						width: 24em !important;
+						max-width: 24em !important;
+					}
+
+					&[sidebarcommand="viewGenaiChatSidebar"] {
+						min-width: 32em !important;
+						max-width: 32em !important;
+
+						&[sidebar-positionend] {
+							inset-inline-start: calc(100% - 52em);
+						}
+					}
+
+					+ .sidebar-splitter {
+						display: none;
+					}
+				}
+			}
+
+			&[sidebar-positionend] {
+				inset-inline-end: 0;
+			}
+
+			+ #sidebar-launcher-splitter {
+				display: none;
+			}
+		}
+	}
+}

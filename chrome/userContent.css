@@ -7,6 +7,8 @@
 @import "neptune/firefox/reader.css";
 @import "neptune/firefox/firefoxview.css";
 @import "neptune/firefox/pdf.css";
+/* This stylesheet is only activated when "Toolbox_transparent_startpage.css" in "userChrome.css" is enabled. */
+/* @import "neptune/extras/Startpage_for_transparent_toolbox.css"; */
 
 @-moz-document url("about:home"), url("about:newtab") {
 	body {

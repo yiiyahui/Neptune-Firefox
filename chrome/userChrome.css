@@ -6,3 +6,9 @@
 
 /* Extras */
 /* @import "neptune/extras/Show_bookmarks_bar_on_hover.css"; */
+
+/* Enabling this stylesheet will make the homepage toolbox completely transparent and display the background image.
+If using the default backgrounds provided by Firefox, you should match background images or colors with the same tone when switching between light and dark modes.
+It must work together with “Startpage_for_transparent_toolbox.css” in "userContent.css". It uses a somewhat clumsy method to achieve this, so it is not perfect. 
+The sidebar panels on the homepage cannot be resized, so a max width has been set. */
+/* @import "neptune/extras/Toolbox_transparent_startpage.css"; */
