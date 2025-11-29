@@ -45,7 +45,7 @@
 	--toolbarbutton-icon-fill-attention: var(--theme-primary-color) !important;
 	--toolbar-field-focus-background-color: var(--neptune-item-active-background) !important;
 	--sidebar-background-color: transparent !important;
-	--sidebar-border-color: var(--neptune-content-border-color) !important;
+	--sidebar-border-color: var(--border-color-card) !important;
 	--sidebar-box-border-color: var(--border-color-card) !important;
 	--urlbar-box-bgcolor: transparent !important;
 	--urlbar-box-focus-bgcolor: transparent !important;
@@ -65,7 +65,8 @@
 	--organizer-pane-background: var(--neptune-main-background) !important;
 	--organizer-content-background: var(--neptune-content-background) !important;
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
-	--organizer-border-color: var(--neptune-content-border-color) !important;
+	--organizer-border-color: var(--border-color-card) !important;
+	--organizer-outline-color: transparent !important;
 }
 
 /*---------- Hidden ----------*/

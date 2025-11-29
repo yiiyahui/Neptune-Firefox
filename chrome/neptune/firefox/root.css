@@ -1,7 +1,6 @@
 :root {
 	--background-color-canvas: var(--neptune-main-background) !important;
 	--in-content-table-background: var(--neptune-content-background) !important;
-	--in-content-border-color: var(--neptune-content-border-color) !important;
 	--in-content-box-info-background: var(--neptune-content-background) !important;
 	--background-color-box-info: var(--neptune-main-background) !important;
 	--table-row-background-color: var(--neptune-main-background) !important;

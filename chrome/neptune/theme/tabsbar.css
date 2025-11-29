@@ -74,23 +74,27 @@
 			padding-block: var(--space-xsmall) !important;
 		}
 
-		&[expanded] .tabbrowser-tab {
-			transition: margin-inline 150ms linear !important;
+		&[expanded] {
+			--tab-icon-end-margin: inherit !important;
 
-			tab-group:not([collapsed]) > & {
-				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
+			.tabbrowser-tab {
+				transition: margin-inline 150ms linear !important;
 
-				#tabbrowser-tabs:has(&[selected]) &:not([selected]) {
+				tab-group:not([collapsed]) > & {
+					margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
+
+					#tabbrowser-tabs:has(&[selected]) &:not([selected]) {
+						margin-inline-end: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
+					}
+				}
+
+				tab-group[collapsed] > &[visuallyselected] {
+					margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
+				}
+
+				&:not([pinned], [selected], tab-group > &) {
 					margin-inline-end: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
 				}
-			}
-
-			tab-group[collapsed] > &[visuallyselected] {
-				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
-			}
-
-			&:not([pinned], [selected], tab-group > &) {
-				margin-inline-end: calc(var(--size-item-small) + var(--tab-icon-end-margin) + (var(--tab-inline-padding) - var(--tab-inner-inline-margin))) !important;
 			}
 		}
 
@@ -206,7 +210,7 @@
 				outline: none !important;
 				transition: background-color 200ms ease-out, color 100ms ease-out;
 
-				#tabbrowser-tabs[movingtab] &:active {
+				#tabbrowser-tabs:not([orient="vertical"]:not([expanded]))[movingtab] &:active {
 					backdrop-filter: blur(2em);
 				}
 
@@ -230,10 +234,10 @@
 				#tabbrowser-tabs[orient="vertical"] & {
 					height: var(--tab-group-label-height) !important;
 					margin-block: var(--space-xsmall) !important;
-					box-shadow: none !important;
 
 					&[dragover-groupTarget] {
 						background-color: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 20%, transparent) !important;
+						box-shadow: none !important;
 					}
 				}
 
@@ -253,6 +257,10 @@
 
 						&[dragover-groupTarget] {
 							background-color: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, transparent) !important;
+						}
+
+						#tabbrowser-tabs[movingtab] &:active {
+							box-shadow: 0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 25%, transparent);
 						}
 					}
 				}
@@ -324,12 +332,11 @@
 		outline: none !important;
 		transition: var(--ext-theme-background-transition), box-shadow 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 
-		#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab[pinned] > .tab-stack > & {
+		#tabbrowser-tabs[orient="horizontal"] > #pinned-tabs-container > .tabbrowser-tab > .tab-stack > & {
 			min-height: var(--tabstrip-min-height) !important;
-			box-shadow: none !important;
 		}
 
-		#tabbrowser-tabs[orient="vertical"] & {
+		&:not(#tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox .tabbrowser-tab > .tab-stack > &) {
 			box-shadow: none !important;
 		}
 
@@ -338,7 +345,6 @@
 
 			#pinned-tabs-container[orient="horizontal"] & {
 				background-color: var(--neptune-pinned-tab-selected-background) !important;
-				box-shadow: none !important;
 			}
 
 			#tabbrowser-tabs[orient="vertical"] & {
@@ -349,17 +355,14 @@
 				}
 			}
 
-			:is(tab-group:not([collapsed]) > .tabbrowser-tab, tab-group[collapsed] > .tabbrowser-tab[visuallyselected]) > .tab-stack > & {
+			tab-group:is(:not([collapsed]), [collapsed][hasactivetab]) .tabbrowser-tab > .tab-stack > & {
 				background-color: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) !important;
 
 				#tabbrowser-tabs[orient="horizontal"] & {
 					box-shadow:
-						inset -0.35px 0.65px 0.45px
-							color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)),
-						inset -0.35px -0.65px 0.45px 0.25px
-							color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)),
-						0 0 0 var(--tab-group-label-highlight-thickness)
-							color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 5%, transparent)
+						inset -0.35px 0.65px 0.45px color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)),
+						inset -0.35px -0.65px 0.45px 0.25px color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)),
+						0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 5%, transparent)
 					!important;
 				}
 			}
@@ -368,7 +371,11 @@
 				background-color: color-mix(in srgb, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) !important;
 
 				#tabbrowser-tabs[orient="horizontal"] &:not(#pinned-tabs-container &) {
-					box-shadow: inset -0.35px 0.65px 0.45px color-mix(in srgb, var(--identity-tab-color) 15%, var(--lwt-accent-color)), inset -0.35px -0.65px 0.45px 0.25px color-mix(in srgb, var(--identity-tab-color) 15%, var(--lwt-accent-color)), 0 0 0 2px var(--neptune-tab-shadow-color) !important;
+					box-shadow: 
+						inset -0.35px 0.65px 0.45px color-mix(in srgb, var(--identity-tab-color) 15%, var(--lwt-accent-color)),
+						inset -0.35px -0.65px 0.45px 0.25px color-mix(in srgb, var(--identity-tab-color) 15%, var(--lwt-accent-color)),
+						0 0 0 var(--tab-overflow-clip-margin) var(--neptune-tab-shadow-color) 
+					!important;
 				}
 
 				#pinned-tabs-container[orient="horizontal"] & {
@@ -408,7 +415,7 @@
 				background-color: var(--neptune-tab-background) !important;
 			}
 
-			tab-group:not([collapsed]) > tab > .tab-stack > & {
+			tab-group:not([collapsed]) .tabbrowser-tab > .tab-stack > & {
 				background-color: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 3%, transparent) !important;
 
 				tab:hover & {
@@ -424,7 +431,7 @@
 			#tabbrowser-tabs[orient="vertical"] &:not(tab[usercontextid] > .tab-stack > &):not(tab-group:not([collapsed]) .tabbrowser-tab > .tab-stack > &) {
 				background-color: var(--neptune-verticaltab-background) !important;
 
-				.tabbrowser-tab[pinned] > .tab-stack > & {
+				#pinned-tabs-container[orient="vertical"] > .tabbrowser-tab > .tab-stack > & {
 					background-color: var(--neptune-verticaltab-pinned-background) !important;
 				}
 
@@ -461,10 +468,10 @@
 
 		&[multiselected] {
 			background-color: var(--neptune-tab-multiselected-background) !important;
-			animation: 2s linear tab-sharing-icon-pulse infinite;
+			box-shadow: 0 0 0 var(--tab-overflow-clip-margin) var(--neptune-tab-multiselected-shadow-color) !important;
 
-			#tabbrowser-tabs[orient="horizontal"] &:not(#pinned-tabs-container &) {
-				box-shadow: 0 0 0 var(--tab-overflow-clip-margin) var(--neptune-tab-multiselected-shadow-color) !important;
+			&:not(.tabbrowser-tab[dragtarget] > .tab-stack > &) {
+				animation: tab-sharing-icon-pulse infinite 2s ease-in-out;
 			}
 
 			tab-group > tab > .tab-stack > & {
@@ -566,6 +573,10 @@
 			> .tab-icon-image {
 				fill: var(--toolbarbutton-icon-fill) !important;
 				border-radius: var(--border-radius-medium);
+
+				&[pending] {
+					filter: grayscale(100%) opacity(50%);
+				}
 
 				tab:is([label="New Tab"], [label="New Private Tab"]) & {
 					content: url("../assets/icons/favicon.svg");
@@ -679,7 +690,7 @@
 }
 
 .tab-group-editor-panel {
-	--panel-padding: var(--space-small) var(--space-medium) !important;
+	--panel-padding: var(--space-medium) !important;
 	--panel-separator-padding: var(--arrowpanel-menuitem-margin-inline) !important;
 	--button-border: none !important;
 	--button-min-height-small: var(--button-min-height) !important;
@@ -690,13 +701,13 @@
 		padding: 0 !important;
 
 		> h1 {
-			margin-block: var(--space-xsmall) !important;
+			margin: var(--space-xsmall) !important;
 		}
 	}
 
 	.tab-group-editor-name, .tab-group-editor-swatches {
 		padding-block: var(--panel-subview-body-padding-block) !important;
-		margin-inline: var(--arrowpanel-menuitem-margin-inline);
+		padding-inline: var(--arrowpanel-menuitem-margin-inline);
 	}
 
 	.tab-group-editor-swatch {
@@ -713,7 +724,7 @@
 	border: none !important;
 }
 
-#scrollbutton-up, #scrollbutton-down { 
+#scrollbutton-up, #scrollbutton-down {
 	--arrowscrollbox-scrollicon-border-radius: var(--border-radius-circle) !important;
 	--arrowscrollbox-scrollicon-padding: var(--scrollbutton-padding, inherit) !important;
 	/*display: var(--scrollbutton-display, inherit);*/

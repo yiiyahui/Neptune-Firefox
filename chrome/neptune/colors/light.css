@@ -10,7 +10,6 @@
 		/* Toolbars */
 		--neptune-toolbar-background: var(--lwt-accent-color);
 		--neptune-toolbar-border-color: color-mix(in srgb, currentColor 20%, transparent);
-		--neptune-content-border-color: color-mix(in srgb, currentColor 8%, transparent);
 		--neptune-input-bgcolor: color-mix(in srgb, currentColor 10%, transparent);
 		--neptune-input-outline-color: color-mix(in srgb, accentcolor 50%, #f2f2f2);
 		--neptune-slider-color: #fff;

@@ -173,8 +173,8 @@
 		font: menu !important;
 
 		> ul > li {
-		  width: calc(100% - 10px) !important;
-		  margin-inline: 5px !important;
+			width: calc(100% - 10px) !important;
+			margin-inline: 5px !important;
 
 			&.separator {
 				border-color: var(--neptune-separator-color) !important;
@@ -487,6 +487,17 @@
 		.placeholder-fill {
 			backdrop-filter: saturate(1.5) blur(1em);
 			border-radius: var(--border-radius-xlarge) !important;
+		}
+	}
+
+	.feature-highlight .feature-highlight-modal {
+		border-radius: var(--border-radius-large) !important;
+		backdrop-filter: saturate(1.5) blur(2em) !important;
+		box-shadow: var(--box-shadow-level-4) !important;
+
+		&::after {;
+			backdrop-filter: saturate(1.5) blur(2em) !important;
+			box-shadow: var(--box-shadow-level-4) !important;
 		}
 	}
 
