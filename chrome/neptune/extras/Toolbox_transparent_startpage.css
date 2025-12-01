@@ -1,7 +1,11 @@
 :root {
 	--ex-theme-toolbox-height: calc(var(--urlbar-min-height) + 2 * var(--theme-browser-toolbox-padding));
 	--ex-theme-tabsToolbar-height: calc(var(--tab-min-height) + 2 * var(--tab-overflow-clip-margin) + var(--theme-browser-toolbox-padding) / 2);
-	--ex-theme-bookmarksbar-height: calc(var(--size-item-small) + var(--bookmark-block-padding));
+	--ex-theme-bookmarksbar-height: calc(var(--size-item-small) + 2 * var(--bookmark-block-padding));
+	--ex-theme-sidebar-collapsed-width: calc(var(--size-item-large) + 2 * var(--button-outer-padding-inline));
+	--ex-theme-sidebar-width: 20em;
+	--ex-theme-sidebar-box-width: 24em;
+	--ex-theme-sidebar-chat-box-width: 32em;
 	--button-outer-padding-inline: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--urlbar-min-height)) / 2);
 }
 
@@ -30,31 +34,93 @@
 			}
 		}
 
-		#tabbrowser-tabs[orient="horizontal"] {
-			> #tabbrowser-arrowscrollbox {
-				backdrop-filter: saturate(1.2) blur(2px);
-			}
+		#tabbrowser-tabs[orient="horizontal"] :is(.tab-group-label, .tabbrowser-tab .tab-background[selected]) {
+			opacity: 0.5;
 
-			:is(.tab-group-label-container, .tab-group-label, .tabbrowser-tab .tab-background[selected]) {
-				opacity: 0.5;
+			@media (prefers-color-scheme: dark) {
+				opacity: 0.35;
 			}
+		}
+
+		+ #browser > #tabbrowser-tabbox .dialogBox[sizeto="available"] {
+			--box-max-height-default: clamp(80%, 100% + (32em - 100%) / 2, 100%) !important;
+			margin-top: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-tabsToolbar-height) + var(--ex-theme-bookmarksbar-height)) !important;
+		}
+
+		+ #browser > #tabbrowser-tabbox findbar {
+			background-image: none !important;
+			position: absolute;
+			inset-block-start: calc(var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height));
+			width: 100%;
+		}
+
+		+ #browser > #tabbrowser-tabbox #screenshotsPagePanel {
+			inset-block-start: calc(var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height));
+
+			> screenshots-buttons {
+				background-color: transparent !important;
+				padding: 0 !important;
+			}
+		}
+
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox :is(findbar, #screenshotsPagePanel) {
+			inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-tabsToolbar-height) + var(--ex-theme-bookmarksbar-height));
+		}
+
+		+ #browser > #sidebar-main:not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - var(--ex-theme-sidebar-collapsed-width));
+			inset-inline-start: var(--ex-theme-sidebar-collapsed-width);
+		}
+
+		+ #browser > #sidebar-box:not([sidebarcommand="viewGenaiChatSidebar"]):not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - var(--ex-theme-sidebar-box-width) - var(--ex-theme-sidebar-collapsed-width));
+			inset-inline-start: calc(var(--ex-theme-sidebar-box-width) + var(--ex-theme-sidebar-collapsed-width));
+		}
+
+		+ #browser > #sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - (var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-collapsed-width)));
+			inset-inline-start: calc(var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-collapsed-width));
 		}
 
 		+ #browser > :is(#sidebar-main, #sidebar-box) {
 			position: absolute !important;
-			z-index: var(--browser-stack-z-index-rdm-toolbar);
 			inset-block-start: calc(var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height));
 			height: calc(100% - (var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height)));
 			transition: inset 250ms ease-out, height 250ms ease-out;
 			backdrop-filter: blur(0.5em);
+			
+			&[sidebar-positionend]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+				inset-inline-start: 0;
+			}
+		}
+
+		+ #browser > #sidebar-main {
+			z-index: var(--browser-stack-z-index-rdm-toolbar);
+
+			&[sidebar-positionend] {
+				inset-inline-end: 0;
+				
+				~ #sidebar-box:not([sidebarcommand="viewGenaiChatSidebar"]) {
+					inset-inline-start: calc(100% - (var(--ex-theme-sidebar-box-width) + var(--ex-theme-sidebar-collapsed-width)));
+				}
+
+				~ #sidebar-box[sidebarcommand="viewGenaiChatSidebar"] {
+					inset-inline-start: calc(100%  - (var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-collapsed-width)));
+				}
+			}
 		}
 
 		+ #browser > #sidebar-box {
 			z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
-			inset-inline-start: calc(var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small));
+			inset-inline-start: var(--ex-theme-sidebar-collapsed-width);
 
 			&:not([sidebarcommand="viewGenaiChatSidebar"]) {
-				max-width: 24em !important;
+				max-width: var(--ex-theme-sidebar-box-width) !important;
+			}
+
+			&[sidebarcommand="viewGenaiChatSidebar"] {
+				min-width: var(--ex-theme-sidebar-chat-box-width) !important;
+				max-width: var(--ex-theme-sidebar-chat-box-width) !important;
 			}
 
 			+ .sidebar-splitter {
@@ -67,23 +133,12 @@
 			height: calc(100% - (var(--ex-theme-toolbox-height) + var(--ex-theme-tabsToolbar-height) + var(--ex-theme-bookmarksbar-height)));
 		}
 
-		+ #browser > #tabbrowser-tabbox findbar {
-			background-image: none !important;
-			position: absolute;
-			inset-block-start: calc(var(--ex-theme-tabsToolbar-height) + var(--ex-theme-toolbox-height));
-			width: 100%;
-		}
-
-		&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox findbar {
-			inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-tabsToolbar-height) + var(--ex-theme-bookmarksbar-height));
-		}
-
 		&:has(#tabbrowser-tabs[orient="horizontal"] .tabbrowser-tab:not(tab-group > tab):only-of-type) {
-			+ #browser > #tabbrowser-tabbox findbar {
+			+ #browser > #tabbrowser-tabbox :is(findbar, #screenshotsPagePanel) {
 				inset-block-start: var(--ex-theme-toolbox-height);
 			}
 
-			&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox findbar {
+			&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox :is(findbar, #screenshotsPagePanel) {
 				inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height));
 			}
 
@@ -125,6 +180,12 @@
 			}
 		}
 
+		+ #browser > #tabbrowser-tabbox .dialogBox[sizeto="available"] {
+			--box-max-width-default: clamp(60%, 100% + (32em - 100%) / 2, 100%) !important;
+			--box-max-height-default: clamp(80%, 100% + (32em - 100%) / 2, 100%) !important;
+			margin-top: calc(var(--ex-theme-toolbox-height) + var(--space-xxlarge)) !important;
+		}
+
 		+ #browser > #tabbrowser-tabbox findbar {
 			position: absolute;
 			background-image: none !important;
@@ -132,8 +193,51 @@
 			width: 100%;
 		}
 
-		&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox findbar {
+		+ #browser > #tabbrowser-tabbox #screenshotsPagePanel {
+			inset-block-start: var(--ex-theme-toolbox-height);
+
+			> screenshots-buttons {
+				background-color: transparent !important;
+				padding: 0 !important;
+			}
+		}
+
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > #tabbrowser-tabbox :is(findbar, #screenshotsPagePanel) {
 			inset-block-start: calc(var(--ex-theme-toolbox-height) + var(--ex-theme-bookmarksbar-height));
+		}
+
+		+ #browser > #sidebar-main:not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - var(--ex-theme-sidebar-collapsed-width));
+			inset-inline-start: var(--ex-theme-sidebar-collapsed-width);
+		}
+
+		+ #browser > #sidebar-main[sidebar-launcher-expanded]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - var(--ex-theme-sidebar-width));
+			inset-inline-start: var(--ex-theme-sidebar-width);
+		}
+
+		+ #browser > #sidebar-box:not([sidebarcommand="viewGenaiChatSidebar"]):not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - (var(--ex-theme-sidebar-box-width) + var(--ex-theme-sidebar-collapsed-width)));
+			inset-inline-start: calc(var(--ex-theme-sidebar-box-width) + var(--ex-theme-sidebar-collapsed-width));
+		}
+
+		+ #browser > #sidebar-main[sidebar-launcher-expanded]:not([hidden]) ~ #sidebar-box:not([sidebarcommand="viewGenaiChatSidebar"]):not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - (var(--ex-theme-sidebar-width) + var(--ex-theme-sidebar-box-width)));
+			inset-inline-start: calc(var(--ex-theme-sidebar-width) + var(--ex-theme-sidebar-box-width));
+		}
+
+		+ #browser > #sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - (var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-collapsed-width)));
+			inset-inline-start: calc(var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-collapsed-width));
+		}
+
+		+ #browser > #sidebar-main[sidebar-launcher-expanded]:not([hidden]) ~ #sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+			width: calc(100% - (var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-width)));
+			inset-inline-start: calc(var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-width));
+		}
+
+		+ #browser > #sidebar-main[sidebar-launcher-expanded][sidebar-positionend]:not([hidden]) ~ #sidebar-box[sidebar-positionend]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+			inset-inline-start: 0;
 		}
 
 		+ #browser > :is(#sidebar-main, #sidebar-box) {
@@ -142,6 +246,10 @@
 			height: calc(100% - var(--ex-theme-toolbox-height));
 			transition: inset 250ms ease-out, height 250ms ease-out;
 			backdrop-filter: blur(0.5em);
+
+			&[sidebar-positionend]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+				inset-inline-start: 0;
+			}
 		}
 
 		&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-main, #sidebar-box) {
@@ -157,25 +265,25 @@
 				border: none !important;
 			}
 
-			&:has(sidebar-main:not([expanded])) ~ #sidebar-box {
+			&:not([sidebar-launcher-expanded]) ~ #sidebar-box {
 				z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
-				inset-inline-start: calc(var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small));
+				inset-inline-start: var(--ex-theme-sidebar-collapsed-width);
 
 				&[sidebar-positionend]:not([sidebarcommand="viewGenaiChatSidebar"]) {
-					inset-inline-start: calc(100% - 24em - (var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small)));
+					inset-inline-start: calc(100% - (var(--ex-theme-sidebar-box-width) + var(--ex-theme-sidebar-collapsed-width)));
 				}
 
 				&:not([sidebarcommand="viewGenaiChatSidebar"]) {
-					width: 24em !important;
-					max-width: 24em !important;
+					width: var(--ex-theme-sidebar-box-width) !important;
+					max-width: var(--ex-theme-sidebar-box-width) !important;
 				}
 
 				&[sidebarcommand="viewGenaiChatSidebar"] {
-						min-width: 32em !important;
-						max-width: 32em !important;
+						min-width: var(--ex-theme-sidebar-chat-box-width) !important;
+						max-width: var(--ex-theme-sidebar-chat-box-width) !important;
 
 						&[sidebar-positionend] {
-							inset-inline-start: calc(100% - 32em - (var(--size-item-large) + var(--button-outer-padding-inline) + var(--space-small)));
+							inset-inline-start: calc(100% - (var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-collapsed-width)));
 						}
 				}
 
@@ -184,29 +292,29 @@
 				}
 			}
 
-			&:has(sidebar-main[expanded]) {
-				width: 20em !important;
-				max-width: 20em !important;
+			&[sidebar-launcher-expanded] {
+				width: var(--ex-theme-sidebar-width) !important;
+				max-width: var(--ex-theme-sidebar-width) !important;
 
 				~ #sidebar-box {
 					z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
-					inset-inline-start: 20em;
+					inset-inline-start: var(--ex-theme-sidebar-width);
 					
 					&[sidebar-positionend]:not([sidebarcommand="viewGenaiChatSidebar"]) {
-						inset-inline-start: calc(100% - 44em)
+						inset-inline-start: calc(100% - (var(--ex-theme-sidebar-width) + var(--ex-theme-sidebar-box-width)));
 					}
 
 					&:not([sidebarcommand="viewGenaiChatSidebar"]) {
-						width: 24em !important;
-						max-width: 24em !important;
+						width: var(--ex-theme-sidebar-box-width) !important;
+						max-width: var(--ex-theme-sidebar-box-width) !important;
 					}
 
 					&[sidebarcommand="viewGenaiChatSidebar"] {
-						min-width: 32em !important;
-						max-width: 32em !important;
+						min-width: var(--ex-theme-sidebar-chat-box-width) !important;
+						max-width: var(--ex-theme-sidebar-chat-box-width) !important;
 
 						&[sidebar-positionend] {
-							inset-inline-start: calc(100% - 52em);
+							inset-inline-start: calc(100% - (var(--ex-theme-sidebar-chat-box-width) + var(--ex-theme-sidebar-width)));
 						}
 					}
 
