@@ -1,14 +1,12 @@
 @import "neptune/theme/main.css";
 
 /* On Windows, you must choose one of the titlebar buttons. macOS can ignore it. */
-@import "neptune/extras/macos_controls.css";
-/* @import "neptune/extras/windows_native_controls.css"; */
+@import "neptune/optionals/macos_controls.css";
+/* @import "neptune/optionals/windows_native_controls.css"; */
 
-/* Extras */
-/* @import "neptune/extras/Show_bookmarks_bar_on_hover.css"; */
+/* Optionals */
+/* @import "neptune/optionals/Show_bookmarks_bar_on_hover.css"; */
 
-/* Enabling this stylesheet will make the homepage toolbox completely transparent and display the background image.
-If using the default backgrounds provided by Firefox, you should match background images or colors with the same tone when switching between light and dark modes.
-It must work together with “Startpage_for_transparent_toolbox.css” in "userContent.css". It uses a somewhat clumsy method to achieve this, so it is not perfect. 
-The sidebar panels on the homepage cannot be resized, so a max width has been set. */
-/* @import "neptune/extras/Toolbox_transparent_startpage.css"; */
+/* This style will make the homepage toolbox completely transparent and display the background image.
+It must work together with “Startpage_for_transparent_toolbox.css” in "userContent.css". */
+@import "neptune/optionals/Toolbox_transparent_startpage.css";

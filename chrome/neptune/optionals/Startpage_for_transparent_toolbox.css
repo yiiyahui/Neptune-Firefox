@@ -1,0 +1,19 @@
+@-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
+	body:not(:has(.has-recommended-stories)) {
+		overflow: hidden;
+	}
+
+	.outer-wrapper.ds-outer-wrapper-breakpoint-override {
+		padding-top: calc(var(--space-xxlarge) + 81px) !important;
+	}
+
+	.weather {
+		inset-block-start: calc(var(--space-xxlarge) + 81px) !important;
+	}
+}
+
+@-moz-document url("about:privatebrowsing") {
+	body {
+		padding-top: 10em !important;
+	}
+}

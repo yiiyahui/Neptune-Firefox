@@ -121,7 +121,7 @@ panel {
 	}
 
 	.toolbarbutton-badge {
-		background-color: var(--icon-color-warning) !important;
+		background-color: var(--icon-color-critical) !important;
 		line-height: 14px !important;
 		border-radius: var(--border-radius-large) !important;
 	}
