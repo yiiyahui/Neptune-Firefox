@@ -1,0 +1,66 @@
+/* Windows native title buttons */
+@media (-moz-platform: windows) {
+	#navigator-toolbox #nav-bar {
+		padding-inline-start: var(--space-xsmall) !important;
+
+		@media not -moz-pref("sidebar.verticalTabs") {
+			:root[privatebrowsingmode=temporary] & {
+				padding-inline-start: var(--space-xsmall) !important;
+			}
+		}
+	}
+
+	.titlebar-buttonbox-container {
+		align-items: center !important;
+
+		.titlebar-button {
+			margin: 4px 8px !important;
+			padding: 5px !important;
+			border-radius: var(--border-radius-large);
+			color: DimGray !important;
+
+			&.titlebar-min {
+				content: "\ef2d" !important;
+			}
+
+			&.titlebar-max {
+				content: "\ef2e" !important;
+			}
+
+			&.titlebar-restore {
+				content: "\ef2f" !important;
+			}
+			
+			&.titlebar-close {
+				content: "\ef2c" !important;
+				
+				&:hover {
+					background-color: #C42B1C !important;
+					color: PeachPuff !important;
+
+					&:active {
+						background-color: #C83F31 !important;
+					}
+				}
+			}
+		}
+	}
+
+	@media not -moz-pref("sidebar.verticalTabs") {
+		#PanelUI-menu-button {
+			:root:not([inFullscreen]) & {
+				margin-inline-end: calc(108px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+			}
+		}
+
+		.titlebar-buttonbox-container  {
+			position: absolute;
+			inset-inline-end: 0;
+			inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 28px) / 2);
+
+			:root[inFullscreen] & {
+				display: none;
+			}
+		}
+	}
+}

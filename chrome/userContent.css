@@ -7,15 +7,15 @@
 @import "neptune/firefox/reader.css";
 @import "neptune/firefox/firefoxview.css";
 @import "neptune/firefox/pdf.css";
-/* This stylesheet is only activated when "Toolbox_transparent_startpage.css" in "userChrome.css" is enabled. */
-/* @import "neptune/extras/Startpage_for_transparent_toolbox.css"; */
+/* This style is only activated when "Toolbox_transparent_startpage.css" in "userChrome.css" is enabled. */
+@import "neptune/optionals/Startpage_for_transparent_toolbox.css";
 
 @-moz-document url("about:home"), url("about:newtab") {
 	body {
-		background: url("neptune/assets/background_image/Flowers_Light.svg") center/cover fixed !important;
+		background: url("neptune/assets/background_image/Topography_Greenblue.png") center/cover fixed !important;
 
 		@media (prefers-color-scheme: dark) {
-			background: url("neptune/assets/background_image/Flowers_Dark.svg") center/cover fixed !important;
+			background: url("neptune/assets/background_image/Topography_Pupple.png") center/cover fixed !important;
 		}
 
 		&:not(.inline-onboarding) .fixed-search .search-wrapper {

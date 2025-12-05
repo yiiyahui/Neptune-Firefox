@@ -45,7 +45,7 @@
 		border: none !important;
 		border-radius: var(--border-radius-circle) !important;
 
-		.urlbar:not([focused], [textoverflow]) > & > .urlbar-input-box > .urlbar-input {
+		.urlbar:not([focused]) > & > .urlbar-input-box > .urlbar-input {
 			text-align: center !important;
 		}
 

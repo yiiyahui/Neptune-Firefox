@@ -20,6 +20,7 @@
 
 		> #tabbrowser-arrowscrollbox {
 			background-color: var(--neptune-tabs-default-background);
+			backdrop-filter: saturate(1.2);
 			border-radius: var(--border-radius-circle);
 
 			#pinned-tabs-container:not(:empty) ~ & {
@@ -47,7 +48,7 @@
 				}
 
 				&:not([selected]):is([muted], [soundplaying], [activemedia-blocked]) {
-					min-width: calc(var(--size-item-small) + var(--size-item-xsmall) + var(--tab-block-margin) + 2 * (var(--tab-inline-padding) + var(--tab-icon-end-margin))) !important;
+					min-width: calc(var(--size-item-small) + var(--size-item-xsmall) + var(--tab-block-margin) + var(--tab-icon-end-margin) + 3 * var(--tab-inline-padding)) !important;
 				}
 			}
 
@@ -205,6 +206,7 @@
 			}
 
 			> .tab-group-label {
+				background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 75%, transparent) !important;
 				line-height: var(--tab-group-label-height) !important;
 				border-radius: var(--border-radius-circle) !important;
 				outline: none !important;
@@ -724,8 +726,9 @@
 	border: none !important;
 }
 
-#scrollbutton-up, #scrollbutton-down {
+#scrollbutton-up[tooltiptext="Scroll backwards"],
+#scrollbutton-down[tooltiptext="Scroll forwards"] {
 	--arrowscrollbox-scrollicon-border-radius: var(--border-radius-circle) !important;
-	--arrowscrollbox-scrollicon-padding: var(--scrollbutton-padding, inherit) !important;
+	--arrowscrollbox-scrollicon-padding: var(--scrollbutton-padding, 0) !important;
 	/*display: var(--scrollbutton-display, inherit);*/
 }
