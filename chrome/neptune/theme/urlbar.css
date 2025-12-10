@@ -1,7 +1,7 @@
 /*---------- Urlbar ----------*/
 #urlbar-container,
 #search-container {
-	padding: 0 !important;
+	padding-block: 0 !important;
 }
 
 #searchbar,

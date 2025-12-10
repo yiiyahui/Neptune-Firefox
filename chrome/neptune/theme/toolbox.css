@@ -6,6 +6,10 @@
 #navigator-toolbox {
 	border: none !important;
 
+	&.fullscreen-with-menubar {
+		box-shadow: none !important;
+	}
+
 	#nav-bar {
 		background-color: transparent !important;
 		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
@@ -142,6 +146,50 @@
 
 		> .panel-arrowbox > .panel-arrow[side="top"] {
 			stroke: var(--in-content-box-border-color) !important;
+		}
+	}
+}
+
+#tabbrowser-tabbox {
+	clip-path: var(--in-content-clip-path);
+
+	@media -moz-pref("sidebar.revamp") {
+		outline: none !important;
+		box-shadow: none !important;
+	}
+
+	> #tabbrowser-tabpanels[splitview] {
+		> .split-view-panel {
+			margin: var(--space-xsmall) var(--space-small) var(--space-small) !important;
+
+			> .browserContainer > .browserStack {
+				border-radius: var(--border-radius-xlarge) !important;
+				outline: none !important;
+				box-shadow: var(--content-area-shadow);
+			}
+
+			> split-view-footer {
+				background-color: var(--background-color-canvas) !important;
+				backdrop-filter: blur(1em);
+				display: none !important;
+			}
+		}
+
+		> .split-view-splitter {
+			background-color: var(--panel-separator-color) !important;
+			min-width: calc(2 * var(--default-focusring-width)) !important;
+			border: none !important;
+			border-radius: var(--border-radius-xsmall) !important;
+			height: var(--size-item-large);
+			margin-block: auto;
+
+			&:hover {
+				animation: splitter-V-pulsing 1s ease-in-out infinite;
+
+				&:active {
+					animation-play-state: paused;
+				}
+			}
 		}
 	}
 }

@@ -32,7 +32,6 @@
 	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
 	--background-color-canvas: var(--neptune-secondary-background) !important;
-	--button-text-color-primary: white !important;
 	--button-background-color-primary: var(--theme-primary-color) !important;
 	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
 	--button-background-color-primary-active: var(--theme-primary-active-color) !important;

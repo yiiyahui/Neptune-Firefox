@@ -33,9 +33,14 @@
 	}
 
 	.sidebar-splitter {
-		background-color: transparent !important;	/* Make the sidebar's border color transparent, or change it to "--sidebar-border-color". */
-		width: var(--splitter-width) !important;
-		border-width: var(--splitter-width) !important;
+		--focus-outline-color: var(--border-color) !important;
+		height: var(--size-item-large);
+		margin-block: auto;
+		border-radius: var(--border-radius-xsmall);
+
+		#sidebar-box:hover + & {
+			background-color: var(--sidebar-border-color) !important;
+		}
 	}
 
 	.actions-list {
@@ -218,8 +223,16 @@
 			}
 		}
 
-		> .sidebar-panel-scrollable-content > #manage-settings > a {
-			text-decoration: none !important;
+		> .sidebar-panel-scrollable-content {
+			moz-checkbox[type="checkbox"] {
+				--input-width: var(--input-icon-size) !important;
+				--input-height: var(--input-icon-size) !important;
+			}
+
+	 		> #manage-settings > a {
+				text-decoration: none !important;
+				cursor: default !important;
+			}
 		}
 	}
 
@@ -438,11 +451,4 @@ treechildren::-moz-tree-image(selected),
 treechildren::-moz-tree-twisty(selected),
 treechildren::-moz-tree-cell-text(selected) {
 	color: var(--button-text-color-primary) !important;
-}
-
-#tabbrowser-tabbox {
-	border-radius: 0 !important;
-	outline: none !important;
-	box-shadow: none !important;
-	clip-path: var(--in-content-clip-path);
 }

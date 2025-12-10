@@ -13,6 +13,8 @@
 	--color-accent-primary: var(--theme-primary-color) !important;
 	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
 	--color-accent-primary-active: var(--theme-primary-active-color) !important;
+	--color-accent-primary-selected: var(--theme-primary-active-color) !important;
+	--text-color-accent-primary-selected: white !important;
 	--button-background-color: var(--neptune-item-background) !important;
 	--button-background-color-hover: var(--neptune-item-hover-background) !important;
 	--button-background-color-active: var(--neptune-item-active-background) !important;

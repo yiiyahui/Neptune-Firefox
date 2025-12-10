@@ -284,7 +284,7 @@
 			visibility: visible !important;
 			transition: none !important;
 
-			&:is(:hover, :focus) {
+			&:is(:hover, :focus-visible) {
 				background-color: light-dark(#00000059, #ffffff4c) !important;
 			}
 
@@ -293,6 +293,7 @@
 			}
 
 			> label {
+				max-width: fit-content !important;
 				margin-inline: auto !important;
 				opacity: unset !important;
 				transform: none !important;
@@ -300,7 +301,7 @@
 		}
 	}
 
-	.customize-menu {
+	.customize-menu-animate-wrapper {
 		width: calc(3 * 92px + 4 * var(--space-medium)) !important;
 		height: fit-content !important;
 		padding: 0 !important;
@@ -317,7 +318,7 @@
 			width: calc(3 * 92px + 5 * var(--space-medium)) !important;
 		}
 
-		> .close-button-wrapper {
+		> .customize-menu > .close-button-wrapper {
 			background-color: transparent !important;
 			padding-block: 0 !important;
 			display: none;
@@ -331,7 +332,7 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		.customize-menu.customize-animate-enter-done, .customize-menu.customize-animate-enter-active {
+		.customize-menu-animate-wrapper.customize-animate-enter-done, .customize-menu-animate-wrapper.customize-animate-enter-active {
 			animation: menuBounce 200ms ease-in-out backwards;
 		}
 	}

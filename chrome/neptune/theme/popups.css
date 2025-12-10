@@ -218,7 +218,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 }
 
 .og-card {
-	--og-main-font-size: 1.25rem !important;
+	--og-main-font-size: 1rem !important;
 	font: menu !important;
 
 	.ai-content .keypoints-header .chevron-icon {
