@@ -365,13 +365,14 @@
 
 #tracking-protection-icon-container {
 	margin-inline-start: calc(-1 * var(--size-item-xsmall) - 2 * var(--urlbar-icon-padding));
-	border-radius: 0 !important;
+	border-radius: var(--border-radius-xlarge) 0 0 var(--border-radius-xlarge) !important;
 	visibility: collapse;
-	transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
+	transition: margin-inline 200ms ease-out, visibility 200ms linear;
 
 	&:is(.urlbar:is(:hover, [open]) &, [open]) {
 		margin-inline-start: 0;
 		visibility: visible;
+		transition-delay: 100ms;
 	}
 }
 
@@ -388,6 +389,7 @@
 			margin-inline-end: 0;
 			visibility: visible;
 			opacity: 1;
+			transition-delay: 100ms;
 		}
 	}
 

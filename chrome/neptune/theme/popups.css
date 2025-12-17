@@ -458,7 +458,6 @@ panelview .toolbarbutton-1,
 #statuspanel-label {
 	background-color: var(--background-color-canvas) !important;
 	border: none !important;
-	border-start-end-radius: var(--border-radius-xsmall) !important;
-	border-end-end-radius: var(--border-radius-xsmall) !important;
-	backdrop-filter: blur(2em);
+	border-radius: 0 var(--border-radius-xsmall) var(--border-radius-xsmall) 0;
+	backdrop-filter: blur(1em);
 }

@@ -32,7 +32,11 @@
 		padding-block-end: var(--space-xsmall) !important;
 	}
 
-	.sidebar-splitter {
+	#sidebar-launcher-splitter {
+		--focus-outline-color: var(--sidebar-border-color) !important;
+	}
+
+	.sidebar-splitter:not(#sidebar-launcher-splitter) {
 		--focus-outline-color: var(--border-color) !important;
 		height: var(--size-item-large);
 		margin-block: auto;
@@ -91,7 +95,7 @@
 		border: none !important;
 		border-radius: var(--border-radius-small) !important;
 		margin-inline: auto !important;
-		margin-block: 0 !important;
+		margin-block: var(--space-xsmall) 0 !important;
 		transition: min-width 150ms linear, var(--ext-theme-background-transition);
 
 		.wrapper:hover &:not(:has(~ .buttons-wrapper > .actions-list > moz-button:hover)) {
@@ -110,6 +114,7 @@
 
 	.button-background {
 		--button-font-size: var(--font-size-small, initial) !important;
+		--button-min-height-small: var(--button-min-height) !important;
 
 		&.labelled {
 			justify-content: var(--button-label-directiony, initial) !important;
@@ -201,12 +206,13 @@
 					align-items: center;
 					gap: var(--space-small);
 
-					> *:nth-child(odd):nth-child(n+3) {
-						margin-inline-start: var(--space-medium) !important;
-					}
-
 					> input[type="radio"] {
-						margin: auto !important;
+						margin-block: 0 !important;
+						margin-inline-end: 0 !important;
+
+						&:not(:first-of-type) {
+							margin-inline-start: var(--space-small) !important;
+						}
 					}
 				}
 			}
@@ -223,16 +229,9 @@
 			}
 		}
 
-		> .sidebar-panel-scrollable-content {
-			moz-checkbox[type="checkbox"] {
-				--input-width: var(--input-icon-size) !important;
-				--input-height: var(--input-icon-size) !important;
-			}
-
-	 		> #manage-settings > a {
-				text-decoration: none !important;
-				cursor: default !important;
-			}
+		> .sidebar-panel-scrollable-content moz-checkbox[type="checkbox"] {
+			--input-width: var(--input-icon-size) !important;
+			--input-height: var(--input-icon-size) !important;
 		}
 	}
 

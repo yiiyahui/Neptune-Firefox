@@ -22,7 +22,7 @@
 		> #tabbrowser-arrowscrollbox {
 			background-color: var(--neptune-tabs-default-background);
 			backdrop-filter: saturate(1.2);
-			border-radius: var(--border-radius-circle);
+			border-radius: var(--tab-border-radius);
 
 			#pinned-tabs-container:not(:empty) ~ & {
 				margin-inline-start: var(--tab-block-margin);
@@ -34,7 +34,6 @@
 
 			&:not([pinned], tab-group[collapsed] > &:not([visuallyselected])) {
 				padding: var(--tab-overflow-clip-margin) !important;
-				transition-duration: 300ms !important;
 
 				&:not(:nth-child(1 of :not([hidden])), tab-split-view-wrapper > &) {
 					margin-inline-start: var(--tab-block-margin) !important;
@@ -56,6 +55,10 @@
 
 				&:not([selected]):is([muted], [soundplaying], [activemedia-blocked]) {
 					min-width: calc(var(--size-item-small) + var(--size-item-xsmall) + var(--tab-block-margin) + var(--tab-icon-end-margin) + 3 * var(--tab-inline-padding)) !important;
+				}
+
+				#tabbrowser-tabs[orient="horizontal"]:not([overflow]) & {
+					transition-duration: 300ms !important;
 				}
 			}
 
@@ -121,9 +124,8 @@
 		}
 
 		#tabs-newtab-button, #vertical-tabs-newtab-button {
-			margin-block: var(--space-xsmall) var(--space-small) !important;
+			margin-block: var(--space-xsmall) !important;
 			margin-inline: auto !important;
-			border-radius: var(--border-radius-circle) !important;
 
 			> .toolbarbutton-text {
 				display: none;
@@ -137,7 +139,7 @@
 
 	> #pinned-drop-indicator {
 		outline: none !important;
-		border-radius: var(--border-radius-circle) !important;
+		border-radius: var(--tab-border-radius) !important;
 
 		&[visible] #pinned-drop-indicator-icon {
 			width: var(--size-item-xsmall) !important;
@@ -211,7 +213,7 @@
 
 		> .tab-group-label-hover-highlight {
 			background-color: transparent !important;
-			border-radius: var(--border-radius-circle) !important;
+			border-radius: var(--tab-border-radius) !important;
 			box-shadow: none !important;
 
 			#tabbrowser-tabs[orient="horizontal"] & {
@@ -225,7 +227,7 @@
 			> .tab-group-label {
 				background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 75%, transparent) !important;
 				line-height: var(--tab-group-label-height) !important;
-				border-radius: var(--border-radius-circle) !important;
+				border-radius: var(--tab-border-radius) !important;
 				outline: none !important;
 				transition: background-color 200ms ease-out, color 100ms ease-out;
 
@@ -302,16 +304,43 @@
 	.tab-group-line {
 		background-color: transparent !important;
 		inset-block: 0 !important;
-		border-radius: var(--border-radius-circle) !important;
+		border-radius: var(--tab-border-radius) !important;
 
 		#tabbrowser-tabs[orient="horizontal"] & {
 			height: var(--tab-min-height) !important;
 			inset-inline: 0 !important;
+
+			tab-split-view-wrapper > .tabbrowser-tab:first-of-type & {
+				border-radius: var(--tab-border-radius) 0 0 var(--tab-border-radius) !important;
+			}
+
+			tab-split-view-wrapper > .tabbrowser-tab:last-of-type & {
+				border-radius: 0 var(--tab-border-radius) var(--tab-border-radius) 0 !important;
+			}
 		}
 
 		#tabbrowser-tabs[orient="vertical"] & {
 			width: auto !important;
+		}
+
+		#tabbrowser-tabs[orient="vertical"][expanded] & {
+			inset-inline: 0 !important;
+
+			tab-split-view-wrapper > .tabbrowser-tab:first-of-type & {
+				border-radius: var(--tab-border-radius) 0 0 var(--tab-border-radius) !important;
+			}
+		}
+
+		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
 			inset-inline: var(--tab-inner-inline-margin) !important;
+
+			tab-split-view-wrapper > .tabbrowser-tab:first-of-type & {
+				border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important;
+			}
+
+			tab-split-view-wrapper > .tabbrowser-tab:last-of-type & {
+				border-radius: 0 0 var(--tab-border-radius) var(--tab-border-radius) !important;
+			}
 		}
 
 		#tabbrowser-tabs[movingtab]:not([movingtab-group], [movingtab-ungroup]) .tabbrowser-tab:is(:active, [multiselected]) > .tab-stack > .tab-background > & {
@@ -349,7 +378,6 @@
 		padding: 0 !important;
 		border: none !important;
 		outline: none !important;
-		border-radius: var(--border-radius-circle) !important;
 
 		#tabbrowser-tabs[orient="horizontal"] & {
 			--tab-min-width-pref: calc(2 * var(--tab-min-width)) !important;
@@ -367,6 +395,7 @@
 		}
 
 		#tabbrowser-tabs[orient="vertical"][expanded] & {
+			grid-template-columns: 50% 50% !important;
 			margin-inline: var(--tab-inner-inline-margin) !important;
 
 			tab-group > & {
@@ -383,16 +412,22 @@
 .tabbrowser-tab {
 	--tab-label-mask-size: 0 !important;
 	--tab-icon-end-margin: inherit !important;
-	border: none !important;
+
+	#tabbrowser-tabs tab-split-view-wrapper & {
+		border-inline: none !important;
+		border-block: none !important;
+	}
 
 	.tab-background {
-		--tab-min-height: var(--size-item-medium) !important;
 		--split-view-tab-clip: calc(var(--tab-overflow-clip-margin) / -1);
 		background-color: transparent !important;
 		margin-block: 0 !important;
-		border-radius: var(--border-radius-circle) !important;
 		outline: none !important;
 		transition: var(--ext-theme-background-transition), box-shadow 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+
+		#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper > .tabbrowser-tab > .tab-stack > & {
+			--tab-min-height: var(--size-item-medium) !important;
+		}
 
 		#tabbrowser-tabs:not([orient="vertical"]:not([expanded])) tab-split-view-wrapper > .tabbrowser-tab > .tab-stack > & {
 			margin-inline: 0 !important;
@@ -411,23 +446,19 @@
 		}
 
 		#tabbrowser-tabs:not([orient="vertical"]:not([expanded])) tab-split-view-wrapper > .tabbrowser-tab:first-of-type > .tab-stack > & {
-			border-start-end-radius: 0 !important;
-			border-end-end-radius: 0 !important;
+			border-radius: var(--tab-border-radius) 0 0 var(--tab-border-radius) !important;
 		}
 
 		#tabbrowser-tabs:not([orient="vertical"]:not([expanded])) tab-split-view-wrapper > .tabbrowser-tab:last-of-type > .tab-stack > & {
-			border-start-start-radius: 0 !important;
-			border-end-start-radius: 0 !important;
+			border-radius: 0 var(--tab-border-radius) var(--tab-border-radius) 0 !important;
 		}
 
 		#tabbrowser-tabs[orient="vertical"]:not([expanded]) tab-split-view-wrapper > .tabbrowser-tab:first-of-type > .tab-stack > & {
-			border-end-start-radius: 0 !important;
-			border-end-end-radius: 0 !important;
+			border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important;
 		}
 
 		#tabbrowser-tabs[orient="vertical"]:not([expanded]) tab-split-view-wrapper > .tabbrowser-tab:last-of-type > .tab-stack > & {
-			border-start-start-radius: 0 !important;
-			border-start-end-radius: 0 !important;
+			border-radius: 0 0 var(--tab-border-radius) var(--tab-border-radius) !important;
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] > #pinned-tabs-container > .tabbrowser-tab > .tab-stack > & {
@@ -718,7 +749,6 @@
 		> .tab-close-button {
 			background-color: var(--neptune-button-field-color) !important;
 			fill: Field !important;
-			border-radius: var(--border-radius-small) !important;
 			order: -1;
 
 			#tabbrowser-tabs[orient="horizontal"] & {
@@ -821,7 +851,7 @@
 	}
 
 	.tab-group-editor-swatch {
-		border-radius: var(--border-radius-circle) !important;
+		border-radius: var(--tab-border-radius) !important;
 	}
 }
 
@@ -836,7 +866,6 @@
 
 #scrollbutton-up[tooltiptext="Scroll backwards"],
 #scrollbutton-down[tooltiptext="Scroll forwards"] {
-	--arrowscrollbox-scrollicon-border-radius: var(--border-radius-circle) !important;
 	--arrowscrollbox-scrollicon-padding: var(--scrollbutton-padding, 0) !important;
 	/*display: var(--scrollbutton-display, inherit);*/
 }

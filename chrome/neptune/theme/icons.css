@@ -8,7 +8,7 @@
 	}
 }
 
-#tabs-newtab-button, #new-tab-button {
+#tabs-newtab-button, #new-tab-button, #vertical-tabs-newtab-button {
 	list-style-image: url("../assets/icons/plus.svg") !important;
 }
 
@@ -232,37 +232,34 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 	}
 }
 
-#identity-box[pageproxystate="valid"]:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon,
-#identity-popup[connection^=secure] .identity-popup-security-connection {
-	list-style-image: url("../assets/icons/security.svg") !important;
-}
-
-#identity-box[pageproxystate="valid"]:is(.weakCipher, .mixedDisplayContent, .mixedDisplayContentLoadedActiveBlocked, .certUserOverridden, .certErrorPage) #identity-icon,
-#identity-popup:is([ciphers=weak], [mixedcontent~=passive-loaded][isbroken], [connection=secure-cert-user-overridden], [connection=cert-error-page]) .identity-popup-security-connection {
-	list-style-image: url("../assets/icons/security-warning.svg") !important;
-}
-
+.identity-popup-security-connection:not(.site-information-popup:is([connection^="secure"], [ciphers="weak"], [mixedcontent~="passive-loaded"][isbroken], [connection="secure-cert-user-overridden"], [connection="cert-error-page"], [connection="chrome"], [connection="file"], [connection="associated"], [connection="net-error-page"], [connection="extension"]) .identity-popup-security-connection),
 #identity-box[pageproxystate="valid"]:is(.notSecure, .mixedActiveContent, .httpsOnlyErrorPage) #identity-icon {
 	list-style-image: url("../assets/icons/security-broken.svg") !important;
 }
 
-#identity-box[pageproxystate="valid"] {
-	&.localResource #identity-icon {
-		list-style-image: url(chrome://global/skin/icons/defaultFavicon.svg) !important;
-	}
-
-	&.extensionPage #identity-icon {
-		list-style-image: url("../assets/icons/extension.svg") !important;
-	}
-
-	&.chromeUI #identity-icon {
-		list-style-image: url("../assets/icons/firefox.svg") !important;
-	}
+.site-information-popup[connection^="secure"] .identity-popup-security-connection,
+#identity-box[pageproxystate="valid"]:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon {
+	list-style-image: url("../assets/icons/security.svg") !important;
 }
 
-#urlbar[actiontype="extension"] > .urlbar-input-container > #identity-box #identity-icon,
-#identity-popup[connection=extension] .identity-popup-security-connection {
-		list-style-image: url("../assets/icons/extension.svg") !important;
+.site-information-popup:is([ciphers="weak"], [mixedcontent~="passive-loaded"][isbroken], [connection="secure-cert-user-overridden"], [connection="cert-error-page"]) .identity-popup-security-connection,
+#identity-box[pageproxystate="valid"]:is(.weakCipher, .mixedDisplayContent, .mixedDisplayContentLoadedActiveBlocked, .certUserOverridden, .certErrorPage) #identity-icon {
+	list-style-image: url("../assets/icons/security-warning.svg") !important;
+}
+
+.site-information-popup[connection="chrome"] .identity-popup-security-connection,
+#identity-box[pageproxystate="valid"].chromeUI #identity-icon {
+	list-style-image: url("../assets/icons/firefox.svg") !important;
+}
+
+.site-information-popup[connection="extension"] .identity-popup-security-connection,
+#identity-box[pageproxystate="valid"].extensionPage #identity-icon,
+#urlbar[actiontype="extension"] > .urlbar-input-container > #identity-box #identity-icon {
+	list-style-image: url("../assets/icons/extension.svg") !important;
+}
+
+#identity-box[pageproxystate="valid"].localResource #identity-icon {
+	list-style-image: url(chrome://global/skin/icons/defaultFavicon.svg) !important;
 }
 
 .close-icon:not(.findbar-closebutton),

@@ -5,10 +5,12 @@
 	--urlbar-min-height: var(--size-item-large) !important;
 	--urlbarView-small-font-size: 0.84em !important;
 	--urlbar-icon-padding: calc((var(--size-item-medium) - 2px - 2px - 16px ) / 2) !important;
+	--urlbar-searchmodeswitcher-inline-padding: var(--urlbar-icon-padding) !important;
 	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-item-block-padding) - var(--urlbarView-row-gutter)) !important;
 	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - var(--urlbarView-row-gutter))) !important;
 	--tab-min-height: var(--size-item-medium) !important;
 	--tabstrip-min-height: calc(var(--tab-min-height) + var(--tab-block-margin)) !important;
+	--tab-border-radius: var(--border-radius-xlarge) !important;
 	--tab-group-label-height: var(--tab-min-height) !important;
 	--tab-group-label-highlight-thickness: var(--tab-group-line-thickness) !important;
 	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
@@ -68,10 +70,16 @@
 	--organizer-outline-color: transparent !important;
 }
 
+.text-link,
+a {
+	text-decoration: none !important;
+	cursor: default !important;
+}
+
 /*---------- Hidden ----------*/
 tooltip,
 menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="undo"]):not(.menuitem-iconic),
 #toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="extensions"], [id*="download"]),
-#scrollbutton-up ~ spacer {
+spacer:is([part="overflow-end-indicator"], [part="overflow-start-indicator"]) {
 	display: none !important;
 }

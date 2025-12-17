@@ -9,7 +9,6 @@ toolbar .toolbarbutton-1 {
 	> .toolbarbutton-text,
 	> .toolbarbutton-badge-stack {
 		outline: none !important;
-		border-radius: var(--border-radius-small) !important;
 		box-shadow: none !important;
 		clip-path: circle(50%);
 		transition: background-color 0.2s ease-out;
