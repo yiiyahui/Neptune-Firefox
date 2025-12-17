@@ -1,5 +1,6 @@
-<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
-<path style="fill:#0866FF;" d="M64,0v64H35.877V41.896h8.657l1.796-9.779H35.877v-3.458c0-5.168,2.027-7.155,7.275-7.155c1.63,0,2.942,0.04,3.697,0.119v-8.865c-1.431-0.398-4.929-0.795-6.956-0.795c-10.693,0-15.622,5.048-15.622,15.94v4.214h-6.599v9.779h6.599V56v8H0V0H64z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 192 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect x="0" y="0" width="192" height="192" style="fill:#0866ff;"/>
+    <path d="M107.6306,191.5575L72.8089,191.5575L72.8089,125.2444L53.0126,125.2444L53.0126,95.9085L72.8089,95.9085L72.8089,83.2676C72.8089,50.5924 87.5959,35.4469 119.6753,35.4469C125.7566,35.4469 136.2514,36.6398 140.5444,37.8323L140.5444,64.4254C138.2783,64.1869 134.3434,64.068 129.4534,64.068C113.7124,64.068 107.6306,70.0305 107.6306,85.5334L107.6306,95.9085L138.9874,95.9085L133.6005,125.2444L107.6306,125.2444L107.6306,191.5575Z" style="fill:#fff;"/>
 </svg>

@@ -127,7 +127,7 @@
 				border-radius: var(--border-radius-large) !important;
 
 				&.letter-fallback::before {
-					font-size: 1.22em !important;
+					font-size: 1.82em !important;
 					font-weight: normal !important;
 					inset: 0 !important;
 					transform: none !important;
@@ -428,6 +428,17 @@
 		}
 	}
 
+	.feature-highlight .feature-highlight-modal {
+		border-radius: var(--border-radius-large) !important;
+		backdrop-filter: saturate(1.5) blur(2em) !important;
+		box-shadow: var(--box-shadow-level-4) !important;
+
+		&::after {;
+			backdrop-filter: saturate(1.5) blur(2em) !important;
+			box-shadow: var(--box-shadow-level-4) !important;
+		}
+	}
+
 	.weather {
 		inset-inline-end: var(--space-large) !important;
 
@@ -502,27 +513,83 @@
 		}
 	}
 
-	.top-site-button[href*="facebook.com"] .top-site-icon {
-		background-image: url("../assets/cards/facebook.svg") !important;
-	}
-
-	.top-site-button[href*="github.com"] .top-site-icon {
-		background-image: url("../assets/cards/github.svg") !important;
-	}
-
-	.top-site-button[href*="instagram.com"] .top-site-icon {
-		background-image: url("../assets/cards/instagram.svg") !important;
+	.top-site-button[href*="canva.com"] .top-site-icon {
+		background-image: url("../assets/cards/canva.svg") !important;
 	}
 
 	.top-site-button:is([href*="chatgpt.com"], [href*="openai.com"]) .top-site-icon {
 		background-image: url("../assets/cards/openai.svg") !important;
 	}
 
+	.top-site-button[href*="claude.ai"] .top-site-icon {
+		background-image: url("../assets/cards/claude.svg") !important;
+	}
+
+	.top-site-button[href*="duckduckgo.com"] .top-site-icon {
+		background-image: url("../assets/cards/duckduckgo-com@2x.svg") !important;
+	}
+
+	.top-site-button[href*="facebook.com"] .top-site-icon {
+		background-image: url("../assets/cards/facebook.svg") !important;
+	}
+
+	.top-site-button[href*="figma.com"] .top-site-icon {
+		background-image: url("../assets/cards/figma.svg") !important;
+	}
+
+	.top-site-button[href*="github.com"] .top-site-icon {
+		background-image: url("../assets/cards/github.svg") !important;
+	}
+
+	.top-site-button[href*="gemini.google"] .top-site-icon {
+		background-image: url("../assets/cards/gemini.svg") !important;
+	}
+
+	.top-site-button[href*="grok.com"] .top-site-icon {
+		background-image: url("../assets/cards/grok.svg") !important;
+	}
+
+	.top-site-button[href*="instagram.com"] .top-site-icon {
+		background-image: url("../assets/cards/instagram.svg") !important;
+	}
+
+	.top-site-button[href*="kkbox.com"] .top-site-icon {
+		background-image: url("../assets/cards/kkbox.svg") !important;
+	}
+
+	.top-site-button[href*="netflix.com"] .top-site-icon {
+		background-image: url("../assets/cards/netflix.svg") !important;
+	}
+
+	.top-site-button[href*="news.google"] .top-site-icon {
+		background-image: url("../assets/cards/google_news.svg") !important;
+	}
+
+	.top-site-button[href*="perplexity.ai"] .top-site-icon {
+		background-image: url("../assets/cards/perplexity.svg") !important;
+	}
+
 	.top-site-button[href*="reddit.com"] .top-site-icon {
 		background-image: url("../assets/cards/reddit.svg") !important;
 	}
 
+	.top-site-button[href*="twitch.tv"] .top-site-icon {
+		background-image: url("../assets/cards/twitch.svg") !important;
+	}
+
+	.top-site-button[href*="whatsapp.com"] .top-site-icon {
+		background-image: url("../assets/cards/whatsapp.svg") !important;
+	}
+
 	.top-site-button[href*="youtube.com"] .top-site-icon {
 		background-image: url("chrome://activity-stream/content/data/content/tippytop/images/youtube-com@2x.png") !important;
+	}
+
+	.top-site-button[href*="youtubekids.com"] .top-site-icon {
+		background-image: url("../assets/cards/youtube_kids.svg") !important;
+	}
+
+	.top-site-button[href*="music.youtube"] .top-site-icon {
+		background-image: url("../assets/cards/youtube_music.svg") !important;
 	}
 }
