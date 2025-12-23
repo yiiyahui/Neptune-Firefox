@@ -35,22 +35,9 @@
 	backdrop-filter: saturate(1.5) blur(1in);
 }
 
-.dialog-button-box button {
-	height: var(--button-min-height) !important;
-	min-height: var(--button-min-height) !important;
-	border-radius: var(--border-radius-small) !important;
-}
-
-.toolbarButton,
-.toolbarCenter {
-	min-height: var(--button-min-height) !important;
-}
-
-#cancel-button,
-#print-button.primary {
-	min-height: var(--button-min-height) !important;
-	padding: 0 !important;
-	border-radius: var(--border-radius-small) !important;
+.dialog-button-box button,
+#print #print-footer.footer-container button {
+	padding: 0 var(--space-large) !important;
 }
 
 @-moz-document url("chrome://browser/content/places/places.xhtml") {
@@ -74,8 +61,8 @@
 		border: none !important;
 	}
 
-	#downloadsListBox {
-		> richlistitem[selected="true"] {
+	#downloadsListBox > richlistitem {
+		&[selected="true"] {
 			background-image: none !important;
 			background-color: var(--color-accent-primary-active) !important;
 			color: var(--button-text-color-primary) !important;
@@ -83,8 +70,9 @@
 			outline: none !important;
 		}
 
-		.downloadButton > .button-box {
-			border-radius: 50% !important;
+		> .downloadButton > .button-box {
+			padding: var(--space-small) !important;
+			border-radius: var(--border-radius-large) !important;
 		}
 	}
 }
@@ -100,7 +88,41 @@
 		margin: 0 !important;
 	}
 
+	#rightBox #updateIcon.apply {
+		content: url("../assets/icons/reload.svg") !important;
+	}
+
+	#rightBox button {
+		appearance: none;
+		margin: 0 !important;
+		background-color: var(--color-accent-primary) !important;
+		outline: none !important;
+		border: none !important;
+		border-radius: var(--border-radius-small);
+		box-shadow: var(--box-shadow-level-1);
+
+		&:where(:hover) {
+			background-color: var(--color-accent-primary-hover) !important;
+		}
+
+		&:where(:hover:active) {
+			background-color: var(--color-accent-primary-active) !important;
+		}
+
+		&:where([disabled="true"]) {
+			background-color: var(--button-background-color-disabled) !important;
+		}
+	}
+
 	.text-link {
 		color: var(--link-color) !important;
+
+		&:hover {
+			color: var(--link-color-hover) !important;
+		}
+
+		&:hover:active {
+			color: var(--link-color-active) !important;
+		}
 	}
 }

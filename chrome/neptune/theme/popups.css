@@ -1,5 +1,6 @@
 /*---------- Popups ----------*/
-menupopup, panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
+menupopup,
+panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
 	--panel-separator-color: var(--neptune-separator-color) !important;
 	--menuitem-border-radius: var(--arrowpanel-menuitem-border-radius) !important;
@@ -67,7 +68,7 @@ panel {
 		}
 
 		.panel-footer {
-			margin: var(--space-small) var(--arrowpanel-padding) var(--space-large) !important;
+			margin: var(--space-small) calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) var(--space-large) !important;
 		}
 
 		#full-page-translations-panel-error {
@@ -122,7 +123,7 @@ panel {
 
 	.toolbarbutton-badge {
 		background-color: var(--icon-color-critical) !important;
-		line-height: 14px !important;
+		line-height: calc(var(--size-item-medium) / 2) !important;
 		border-radius: var(--border-radius-large) !important;
 	}
 }
@@ -154,6 +155,10 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 		> menuitem {
 			padding-block: calc((var(--button-min-height) - 18px) / 2) !important;
 			padding-inline-start: var(--arrowpanel-menuitem-padding-inline) !important;
+
+			.toolbar-menupopup & {
+				padding-block: calc((var(--button-min-height) - 16px) / 2) !important;
+			}
 
 			&:where([_moz-menuactive]:not([disabled="true"])) {
 				background-color: var(--color-accent-primary-hover) !important;
@@ -317,6 +322,10 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 				padding-block: var(--space-xxsmall) !important;
 			}
 
+			> .permission-popup-permission-remove-button > .button-box > .button-icon {
+				list-style-image: url("resource://content-accessible/close-12.svg") !important;
+			}
+
 			.permission-popup-permission-state-label {
 				margin-block: 0 !important;
 			}
@@ -332,43 +341,27 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	}
 }
 
-.toolbar-menupopup :is(menu, menuitem),
-.subview-subheader,
-panelview .toolbarbutton-1,
-.subviewbutton,
-.widget-overflow-list .toolbarbutton-1 {
-	min-height: var(--button-min-height) !important;
-}
-
 .footer-button {
-	height: var(--button-min-height) !important;
 	min-height: var(--button-min-height) !important;
-	padding-block: 0 !important;
-}
-
-.expander-up,
-.expander-down {
-	min-height: var(--button-min-height) !important;
-	border: none !important;
-	border-radius: var(--border-radius-small) !important;
+	padding: 0 var(--space-large) !important;
 }
 
 #editBookmarkPanelContent {
 	padding-block: var(--panel-subview-body-padding-block) !important;
 
-	#editBMPanel_folderMenuList.folder-icon {
-		border-radius: var(--border-radius-small) !important;
-	}
-
 	#editBMPanel_folderTree {
 		background-color: var(--input-bgcolor) !important;
 		border: none !important;
-		border-radius: var(--border-radius-small) !important;
+	}
+
+	.expander-up,
+	.expander-down {
+		min-height: var(--button-min-height) !important;
+		border: none !important;
 	}
 
 	#editBMPanel_newFolderButton {
-		padding-block: var(--space-xsmall) !important;
-		border-radius: var(--border-radius-small) !important;
+		padding: var(--space-xsmall) var(--space-large) !important;
 	}
 }
 
@@ -455,7 +448,7 @@ panelview .toolbarbutton-1,
 	}
 }
 
-#statuspanel-label {
+#statuspanel #statuspanel-label {
 	background-color: var(--background-color-canvas) !important;
 	border: none !important;
 	border-radius: 0 var(--border-radius-xsmall) var(--border-radius-xsmall) 0;

@@ -72,7 +72,8 @@
 		background-color: unset !important;
 	}
 
-	#unpip, #close {
+	#unpip,
+	#close {
 		background-color: #ffffffa5 !important;
 		backdrop-filter: saturate(1.5) blur(8px);
 		height: 16px !important;
@@ -99,8 +100,9 @@
 			filter: drop-shadow(0 0 1px #0000080);
 		}
 
+		&,
 		&::-moz-range-track,
-		&::-moz-range-progress, & {
+		&::-moz-range-progress {
 			height: 4px !important;
 		}
 
@@ -113,8 +115,9 @@
 		height: 19px !important;
 
 		> #scrubber {
+			&,
 			&::-moz-range-track,
-			&::-moz-range-progress, & {
+			&::-moz-range-progress {
 				height: 3px !important;
 			}
 
@@ -238,7 +241,6 @@
 .pointerlockfswarning {
 	background-color: var(--neptune-glass-background) !important;
 	backdrop-filter: saturate(1.2) blur(1em);
-	color: var(--button-text-color-primary) !important;
 	padding: var(--space-medium) !important;
 	border: none !important;
 	border-radius: var(--border-radius-circle) !important;

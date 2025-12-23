@@ -79,6 +79,32 @@
 	}
 }
 
+@keyframes Bounce {
+	from,
+	20%,
+	55%,
+	80%,
+	to {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		transform: translateY(0);
+	}
+
+	40%,
+	45% {
+		animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+		transform: translateY(calc(var(--space-medium) / -1));
+	}
+
+	70% {
+		animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+		transform: translateY(calc(var(--space-small) / -1));
+	}
+
+	90% {
+		transform: translateY(calc(var(--space-xsmall) / -1));
+	}
+}
+
 @keyframes splitter-H-pulsing {
 	0%, 100% {
 		transform: scalex(1);

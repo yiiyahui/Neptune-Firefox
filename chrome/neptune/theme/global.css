@@ -38,6 +38,8 @@
 	--button-background-color-primary-hover: var(--theme-primary-hover-color) !important;
 	--button-background-color-primary-active: var(--theme-primary-active-color) !important;
 	--link-color: color-mix(in srgb, currentColor 46%, transparent) !important;
+	--link-color-hover: color-mix(in srgb, currentColor 52%, transparent) !important;
+	--link-color-active: color-mix(in srgb, currentColor 58%, transparent) !important;
 	--icon-color: light-dark(#383838, #ececec) !important;
 	--tab-loading-fill: var(--theme-primary-color) !important;
 	--tab-hover-background-color: var(--neptune-item-hover-background) !important;

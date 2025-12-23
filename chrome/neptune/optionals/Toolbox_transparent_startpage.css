@@ -41,7 +41,7 @@
 				backdrop-filter: saturate(1.2) blur(12px);
 
 				.tabbrowser-tab .tab-background {
-					&[selected] {
+					&:is([selected], [multiselected]) {
 						opacity: 0.7;
 
 						@media (prefers-color-scheme: dark) {

@@ -61,97 +61,85 @@
 	background-color: var(--neptune-item-selection-background) !important;
 }
 
-.pip-wrapper {
-	--pip-icon-size: 20px !important;
-	cursor: default !important;
-	inset: calc(80% - 36px) auto auto calc(50% - 18px) !important;
-	display: none;	/*The PIP floating button is hidden here.*/
+.videocontrols {
+	/* The PIP floating button is shown by default. It can be disabled in General settings. */
+	.pip-wrapper {
+		inset: calc(80% - var(--pip-icon-width-with-margins)) auto auto calc(50% - var(--pip-icon-width-with-margins) / 2) !important;
+		cursor: default !important;
 
-	> .pip-small {
-		width: 36px !important;
-		height: 36px !important;
+		&:not(.experiment) > .pip-small {
+				background-color: #ffffff3f !important;
+				backdrop-filter: saturate(1.5) blur(6px);
+				border: none !important;
+				border-radius: var(--border-radius-circle) !important;
+				box-shadow: var(--neptune-glass-shadow) !important;
+		}
 
-		.pip-wrapper:not(.experiment) > & {
-			background-color: #ffffff3f !important;
-			backdrop-filter: saturate(1.5) blur(6px);
-			border: none !important;
-			border-radius: 50% !important;
-			box-shadow: var(--neptune-glass-shadow) !important;
+		> .pip-icon {
+			background-image: url("../assets/icons/picture-in-picture-open.svg") !important;
+			fill: #fff !important;
 		}
 	}
 
-	> .pip-icon {
-		background-image: url("../assets/icons/picture-in-picture-open.svg") !important;
-		fill: #fff !important;
-	}
-}
+	.controlBar {
+		height: 31px !important;
+		background-color: #00000080 !important;
+		backdrop-filter: saturate(1.5) blur(2em);
+		margin: 6px;
+		border-radius: var(--border-radius-small);
 
-.controlBar {
-	height: 31px !important;
-	background-color: #00000080 !important;
-	backdrop-filter: saturate(1.5) blur(2em);
-	margin: 6px;
-	border-radius: var(--border-radius-small);
-
-	> .button:enabled:is(:hover, :hover:active) {
-		fill: #fff !important;
-	}
-
-	> .muteButton {
-		background-image: url("../assets/icons/audio.svg") !important;
-
-		&[muted] {
-			background-image: url("../assets/icons/audio-muted.svg") !important;
+		> .button:enabled:is(:hover, :hover:active) {
+			fill: #fff !important;
 		}
 
-		&[noAudio] {
-			background-image: url("../assets/icons/audioNoAudioButton.svg") !important;
+		> .muteButton {
+			background-image: url("../assets/icons/audio.svg") !important;
+
+			&[muted] {
+				background-image: url("../assets/icons/audio-muted.svg") !important;
+			}
+
+			&[noAudio] {
+				background-image: url("../assets/icons/audioNoAudioButton.svg") !important;
+			}
+		}
+
+		> .fullscreenButton {
+			background-image: url("../assets/icons/fullscreenEnterButton.svg") !important;
+
+			&[fullscreened] {
+				background-image: url("../assets/icons/fullscreenExitButton.svg") !important;
+			}
+		}
+
+		.scrubber::-moz-range-thumb {
+			height: 17px !important;
+			width: 4px !important;
+			border-radius: 2px !important;
+		}
+
+		.volumeControl::-moz-range-thumb {
+			height: 14px !important;
+			width: 14px !important;
+		}
+
+		.bufferBar,
+		.volumeControl::-moz-range-track {
+			background-color: #666 !important;
+		}
+
+		.bufferBar::-moz-progress-bar {
+			background-color: #888 !important;
+		}
+
+		.volumeControl::-moz-range-progress,
+		.progressBar::-moz-progress-bar {
+			background-color: #aaa !important;
+		}
+
+		.scrubber:hover::-moz-range-thumb,
+		.volumeControl:hover::-moz-range-thumb {
+			background-color: #fff !important;
 		}
 	}
-
-	> .fullscreenButton {
-		background-image: url("../assets/icons/fullscreenEnterButton.svg") !important;
-
-		&[fullscreened] {
-			background-image: url("../assets/icons/fullscreenExitButton.svg") !important;
-		}
-	}
-}
-
-.scrubber::-moz-range-thumb {
-	height: 17px !important;
-	width: 4px !important;
-	border-radius: 2px !important;
-}
-
-.volumeControl::-moz-range-thumb {
-	height: 14px !important;
-	width: 14px !important;
-}
-
-.bufferBar,
-.volumeControl::-moz-range-track {
-	background-color: #666 !important;
-}
-
-.bufferBar::-moz-progress-bar {
-	background-color: #888 !important;
-}
-
-.volumeControl::-moz-range-progress,
-.progressBar::-moz-progress-bar {
-	background-color: #aaa !important;
-}
-
-.scrubber:hover::-moz-range-thumb,
-.volumeControl:hover::-moz-range-thumb {
-	background-color: #fff !important;
-}
-
-#eDivResult {
-	background: var(--neptune-secondary-background) !important;
-	backdrop-filter: blur(16px) !important;
-	border: 1px solid var(--neptune-toolbar-border-color) !important;
-	border-radius: 12px !important;
-	box-shadow: var(--neptune-panel-shadow) !important;
 }

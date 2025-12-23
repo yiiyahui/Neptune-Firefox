@@ -262,11 +262,11 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 	list-style-image: url(chrome://global/skin/icons/defaultFavicon.svg) !important;
 }
 
-.close-icon:not(.findbar-closebutton),
-.permission-popup-permission-remove-button > .button-box > .button-icon {
+.close-icon:not(.findbar-closebutton) {
 	height: var(--size-item-xsmall) !important;
 	width: var(--size-item-xsmall) !important;
 	padding: 0 !important;
+	outline: none !important;
 	list-style-image: url("../assets/icons/close-12.svg") !important;
 }
 

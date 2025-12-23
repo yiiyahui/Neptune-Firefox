@@ -1,8 +1,4 @@
 /*---------- Toolbox ----------*/
-#browser:not(.browser-toolbox-background) {
-	background-color: transparent !important;
-}
-
 #navigator-toolbox {
 	border: none !important;
 
@@ -40,10 +36,11 @@
 				animation: emeTeachingMoment 1s linear infinite;
 			}
 
-			> toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring], toolbarspring:not(#vertical-spacer) {
+			toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring],
+			toolbarspring {
 				max-width: 100% !important;
 
-				#nav-bar & {
+				&:where(:not(#vertical-spacer)) {
 					flex-grow: 400 !important;
 				}
 			}
@@ -52,8 +49,10 @@
 				margin-block: 0 !important;
 			}
 
-			> :is(#wrapper-vertical-spacer, #vertical-spacer) {
-				display: none;	/* Remove the spacer from the toolbar in vertical layout. */
+			/* Remove the spacer from the toolbar in vertical layout. */
+			> #vertical-spacer {
+				min-width: unset !important;
+				display: none;
 			}
 		}
 	}
@@ -76,7 +75,7 @@
 
 			> .titlebar-spacer {
 				width: calc(var(--size-item-small) / 2) !important;
-				display: initial !important;
+				display: inherit !important;
 			}
 		}
 
@@ -150,44 +149,50 @@
 	}
 }
 
-#tabbrowser-tabbox {
-	clip-path: var(--in-content-clip-path);
+#browser {
+ 	:root[lwtheme] &:not(.browser-toolbox-background) {
+		background-color: transparent !important;
+ 	}
 
-	@media -moz-pref("sidebar.revamp") {
-		outline: none !important;
-		box-shadow: none !important;
-	}
+	> #tabbrowser-tabbox {
+		clip-path: var(--in-content-clip-path);
 
-	> #tabbrowser-tabpanels[splitview] {
-		> .split-view-panel {
-			margin: var(--space-xsmall) var(--space-small) var(--space-small) !important;
-
-			> .browserContainer > .browserStack {
-				border-radius: var(--border-radius-xlarge) !important;
-				outline: none !important;
-				box-shadow: var(--content-area-shadow);
-			}
-
-			> split-view-footer {
-				background-color: var(--background-color-canvas) !important;
-				backdrop-filter: blur(1em);
-				display: none !important;
-			}
+		@media -moz-pref("sidebar.revamp") {
+			outline: none !important;
+			box-shadow: none !important;
 		}
 
-		> .split-view-splitter {
-			background-color: var(--panel-separator-color) !important;
-			min-width: calc(2 * var(--default-focusring-width)) !important;
-			border: none !important;
-			border-radius: var(--border-radius-xsmall) !important;
-			height: var(--size-item-large);
-			margin-block: auto;
+		> #tabbrowser-tabpanels[splitview] {
+			> .split-view-panel {
+				margin: var(--space-xsmall) var(--space-small) var(--space-small) !important;
 
-			&:hover {
-				animation: splitter-V-pulsing 1s ease-in-out infinite;
+				> .browserContainer > .browserStack {
+					border-radius: var(--border-radius-large) !important;
+					outline: none !important;
+					box-shadow: var(--content-area-shadow);
+				}
 
-				&:active {
-					animation-play-state: paused;
+				> split-view-footer {
+					background-color: var(--background-color-canvas) !important;
+					backdrop-filter: blur(1em);
+					display: none !important;
+				}
+			}
+
+			> .split-view-splitter {
+				background-color: var(--panel-separator-color) !important;
+				min-width: calc(2 * var(--default-focusring-width)) !important;
+				border: none !important;
+				border-radius: var(--border-radius-xsmall) !important;
+				height: var(--size-item-large);
+				margin-block: auto;
+
+				&:hover {
+					animation: splitter-V-pulsing 1s ease-in-out infinite;
+
+					&:active {
+						animation-play-state: paused;
+					}
 				}
 			}
 		}

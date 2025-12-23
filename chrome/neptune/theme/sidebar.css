@@ -96,7 +96,7 @@
 		border-radius: var(--border-radius-small) !important;
 		margin-inline: auto !important;
 		margin-block: var(--space-xsmall) 0 !important;
-		transition: min-width 150ms linear, var(--ext-theme-background-transition);
+		transition: min-width 150ms ease-in-out, var(--ext-theme-background-transition);
 
 		.wrapper:hover &:not(:has(~ .buttons-wrapper > .actions-list > moz-button:hover)) {
 			background-color: var(--panel-separator-color) !important;
@@ -281,6 +281,28 @@
 		--button-min-height: var(--button-min-height) !important;
 	}
 
+	@-moz-document url("chrome://browser/content/sidebar/sidebar-customize.html") {
+		.label-wrapper .text-container .icon[src*="sidebar"] {
+			content: url("../assets/icons/sidebar-collapsed.svg");
+		}
+
+		.label-wrapper .text-container .icon[src*="synced"] {
+			content: url("../assets/icons/synced-tabs.svg");
+		}
+
+		.label-wrapper .text-container .icon[src*="history"] {
+			content: url("../assets/icons/history.svg");
+		}
+
+		.label-wrapper .text-container .icon[src*="bookmark"] {
+			content: url("../assets/icons/bookmark-hollow.svg");
+		}
+
+		.label-wrapper .text-container .icon[src*="login"] {
+			content: url("../assets/icons/login.svg");
+		}
+	}
+
 	/* password card */
 	@-moz-document url("chrome://global/content/megalist/megalist.html") {
 		:root {
@@ -429,14 +451,6 @@
 	}
 }
 
-@media not (-moz-platform: macos) {
-	.sidebar-placesTreechildren::-moz-tree-cell(leaf),
-	.sidebar-placesTreechildren::-moz-tree-image(leaf),
-	.sidebar-placesTreechildren::-moz-tree-cell-text(leaf, hover) {
-		cursor: default !important;
-	}
-}
-
 treechildren::-moz-tree-row {
 	margin-inline: var(--arrowpanel-menuitem-margin-inline);
 	border-radius: var(--border-radius-small);
@@ -450,4 +464,12 @@ treechildren::-moz-tree-image(selected),
 treechildren::-moz-tree-twisty(selected),
 treechildren::-moz-tree-cell-text(selected) {
 	color: var(--button-text-color-primary) !important;
+}
+
+@media not (-moz-platform: macos) {
+	.sidebar-placesTreechildren::-moz-tree-cell(leaf),
+	.sidebar-placesTreechildren::-moz-tree-image(leaf),
+	.sidebar-placesTreechildren::-moz-tree-cell-text(leaf, hover) {
+		cursor: default !important;
+	}
 }

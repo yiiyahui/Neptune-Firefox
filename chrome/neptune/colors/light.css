@@ -60,7 +60,7 @@
 		--neptune-pinned-tab-selected-background: color-mix(in srgb, currentColor 20%, transparent);
 		--neptune-tab-shadow-color: color-mix(in srgb, var(--lwt-accent-color, currentColor) 10%, #bcbcbc4c);
 		--neptune-tab-hover-shadow-color: color-mix(in srgb, var(--lwt-accent-color, currentColor) 20%, #bcbcbc4c);
-		--neptune-tab-multiselected-shadow-color: color-mix(in srgb, accentcolor 15%, var(--lwt-accent-color, transparent));
+		--neptune-tab-multiselected-shadow-color: color-mix(in oklab, currentColor 25%, var(--lwt-accent-color, transparent));
 		--neptune-tab-soundplaying-background: color-mix(in srgb, accentcolor 35%, var(--lwt-accent-color, transparent));
 	}
 }
