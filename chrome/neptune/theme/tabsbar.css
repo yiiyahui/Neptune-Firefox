@@ -92,10 +92,11 @@
 				#tabbrowser-tabs[movingtab][movingtab-addToGroup]:not([movingtab-group], [movingtab-ungroup]) &:is(:active, [multiselected]) {
 					margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
 					max-width: calc(100% - (var(--size-item-small) + var(--tab-icon-end-margin))) !important;
+					transition: margin-inline 100ms ease-out, max-width 100ms ease-out !important;
 				}
 
 				#tabbrowser-tabs:not([movingtab]) & {
-					transition: margin-inline 150ms ease-in-out !important;
+					transition: margin-inline 150ms ease-out !important;
 				}
 
 				tab-group:not([collapsed]) > &,
@@ -208,6 +209,11 @@
 			}
 		}
 
+ 		/* Reserve space for the "tab group overflow count" only when its shown. If the counter is removed, comment it out. */
+		#tabbrowser-tabs[orient="vertical"][expanded] tab-group[collapsed][hasactivetab][hasmultipletabs] & {
+			margin-inline-end: calc(var(--size-item-medium) + var(--space-small));
+		}
+
 		&::after {
 			content: none !important;
 		}
@@ -230,7 +236,7 @@
 				line-height: var(--tab-group-label-height) !important;
 				border-radius: var(--tab-border-radius) !important;
 				outline: none !important;
-				transition: background-color 200ms ease-out, color 100ms ease-out;
+				transition: background-color 200ms ease-in-out, color 100ms ease-in-out;
 
 				&[dragover-groupTarget] {
 					background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 25%, transparent) !important;
@@ -260,12 +266,15 @@
 					height: var(--tab-group-label-height) !important;
 					margin-block: var(--space-xsmall) !important;
 
-					tab-group[collapsed] > .tab-group-label-container &:not([dragover-groupTarget]) {
-						background-color: color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 50%, transparent) !important;
-					}
-
 					&[dragover-groupTarget] {
 						box-shadow: none !important;
+					}
+				}
+
+				#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
+					tab-group[collapsed] > .tab-group-label-container &:not([dragover-groupTarget]) {
+						background-color: color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 50%, transparent) !important;
+						box-shadow: inset -0.35px 0.65px 0.45px color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 10%, transparent), inset -0.35px -0.65px 0.45px 0.25px color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 10%, transparent);
 					}
 				}
 
@@ -297,6 +306,11 @@
 					width: var(--tab-group-label-height) !important;
 					max-width: unset !important;
 					margin-inline: var(--tab-inner-inline-margin) !important;
+
+					/* The label text turns transparent when the tab group count is activated. If the counter is removed, comment it out. */
+					tab-group[collapsed][hasactivetab][hasmultipletabs] > .tab-group-label-container:not(:hover) & {
+						color: transparent !important;
+					}
 				}
 			}
 		}
@@ -325,9 +339,12 @@
 		}
 
 		#tabbrowser-tabs[orient="vertical"][expanded] & {
-			inset-inline: 0 !important;
+			&:not(tab-split-view-wrapper > .tabbrowser-tab &) {
+				inset-inline: var(--tab-inner-inline-margin) !important;
+			}
 
 			tab-split-view-wrapper > .tabbrowser-tab:first-of-type & {
+				inset-inline: 0 !important;
 				border-radius: var(--tab-border-radius) 0 0 var(--tab-border-radius) !important;
 			}
 		}
@@ -350,28 +367,73 @@
 		}
 	}
 
-	/* Removed the count indicator for collapsed tab group. but kept the modified styles. It was really ugly. */
+	/* The count indicator for collapsed tab group, remove the comments to disable it */
 	.tab-group-overflow-count-container {
-		display: none !important;
+		font-family: monospace;
+		/*display: none !important;*/
 
 		#tabbrowser-tabs[orient="horizontal"] & {
-			padding-inline: 0 !important;
-			margin-inline: 0 !important;
+			--tab-group-line-toolbar-border-distance: var(--tab-overflow-clip-margin) !important;
+			--tab-group-line-thickness: var(--size-item-small) !important;
+			margin-inline: var(--tab-overflow-clip-margin) 0 !important;
+			padding-inline: var(--tab-group-label-padding) !important;
+
+			tab-group[collapsed][hasactivetab][hasmultipletabs]:has(+ #tabbrowser-arrowscrollbox-periphery) > & {
+				display: none !important;
+			}
+
+			> .tab-group-overflow-count {
+				padding: 0 !important;
+				margin: 0 auto auto !important;
+			}
+
+			&::after {
+				background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 8%, transparent) !important;
+				inset: 0 !important;
+				border-radius: 0 0 var(--border-radius-small) var(--border-radius-small) !important;
+			}
 		}
 
 		#tabbrowser-tabs[orient="vertical"][expanded] & {
-			margin-block-start: calc(-1 * (var(--tab-min-height) + var(--space-xsmall)));
-			margin-inline-start: 0 !important;
-			padding-block-end: var(--space-xsmall);
+			--tab-group-line-thickness: calc(var(--tab-min-height) - 4px) !important;
+
+			> .tab-group-overflow-count {
+				padding: 0 var(--space-small) !important;
+				margin-inline: auto calc(var(--tab-inner-inline-margin) - var(--space-xsmall)) !important;
+				margin-top: calc(var(--tab-min-height) / -2) !important;
+				transform: translateY(calc(-2 * var(--tab-min-height) + var(--space-large)));
+			}
+
+			&::after {
+				background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 12%, transparent) !important;
+				height: calc(var(--tab-min-height) / 2);
+				inset-block-start: calc((var(--tab-min-height) + var(--tab-min-height) / 2 + var(--space-medium) + 7px) / -1) !important;
+				inset-inline-end: var(--tab-inner-inline-margin);
+				border-radius: var(--border-radius-large) !important;
+			}
 		}
 
-		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & > .tab-group-overflow-count {
-			padding-block-end: var(--space-xsmall) !important;
-		}
+		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
+			--tab-group-line-thickness: calc(var(--tab-min-height) - 8px) !important;
 
-		tab-group[hasactivetab][hasmultipletabs] > &::after {
-			--tab-group-line-color: transparent !important;
-			content: none !important;
+			tab-group[collapsed][hasactivetab][hasmultipletabs] > .tab-group-label-container:hover ~ & {
+				display: none !important;
+			}
+
+			> .tab-group-overflow-count {
+				padding: 0 !important;
+				margin-inline: auto !important;
+				margin-top: calc(var(--tab-group-line-thickness) / -1) !important;
+				transform: translateY(calc(-1 * var(--tab-min-height) - var(--space-small) - 7px));
+			}
+
+			&::after {
+				background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 2%, transparent) !important;
+				height: var(--tab-group-line-thickness);
+				inset-block-start: calc((var(--tab-min-height) + var(--tab-group-line-thickness) + var(--space-medium) + 4px) / -1) !important;
+				inset-inline: calc(var(--tab-inner-inline-margin) + 4px) !important;
+				border-radius: var(--border-radius-large) !important;
+			}
 		}
 	}
 
@@ -398,7 +460,7 @@
 		}
 
 		#tabbrowser-tabs[orient="vertical"][expanded] & {
-			grid-template-columns: 50% 50% !important;
+			grid-template-columns: repeat(2, 1fr) !important;
 			margin-inline: var(--tab-inner-inline-margin) !important;
 
 			tab-group > & {
@@ -700,7 +762,7 @@
 
 		> .tab-icon-stack {
 			#tabbrowser-tabs .tab-content[multiselected] > &:not(:is(#tabbrowser-tabs[orient="vertical"][expanded], #tabbrowser-tabs[orient="horizontal"]) > #tabbrowser-arrowscrollbox &):not([dragtarget] &) {
-				animation: Bounce 2s ease-in-out infinite;
+				animation: Bounce 2s infinite;
 			}
 
 			#tabbrowser-tabs[orient="horizontal"] .tab-content > & {
@@ -804,7 +866,7 @@
 				outline: none !important;
 				transition: opacity 200ms ease-out;
 
-				:is(tab-group:not([collapsed]) > .tabbrowser-tab, tab-group[collapsed] > .tabbrowser-tab[visuallyselected]) & {
+				:is(tab-group:not([collapsed]) .tabbrowser-tab, tab-group[collapsed] > .tabbrowser-tab[visuallyselected]) & {
 					background-color: light-dark(var(--tab-group-color), var(--tab-group-color-invert)) !important;
 				}
 
@@ -834,9 +896,12 @@
 }
 
 .all-tabs-item {
-	&[selected]:not(:hover) {
+	&[selected] {
 		font-weight: unset !important;
-		background-color: var(--button-background-color);
+
+		&:not(:hover) {
+			background-color: var(--button-background-color);
+		}
 	}
 
 	> .all-tabs-secondary-button {

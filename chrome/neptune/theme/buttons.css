@@ -11,7 +11,7 @@ toolbar .toolbarbutton-1 {
 		outline: none !important;
 		box-shadow: none !important;
 		clip-path: circle(50%);
-		transition: background-color 0.2s ease-out;
+		transition: var(--ext-theme-background-transition);
 	}
 
 	#nav-bar &:-moz-window-inactive {
