@@ -50,7 +50,7 @@
 		--neptune-tab-background: color-mix(in srgb, currentColor 4%, var(--lwt-accent-color, transparent));
 		--neptune-tab-hover-background: color-mix(in srgb, currentColor 12%, transparent);
 		--neptune-tab-selected-background: color-mix(in srgb, currentColor 2%, var(--lwt-accent-color, transparent));
-		--neptune-tab-multiselected-background: color-mix(in srgb, accentcolor 20%, var(--lwt-accent-color, transparent));
+		--neptune-tab-multiselected-background: color-mix(in srgb, accentcolor 20%, transparent);
 		--neptune-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);
 		--neptune-verticaltab-pinned-background: color-mix(in srgb, currentColor 6%, transparent);
 		--neptune-verticaltab-hover-background: color-mix(in srgb, currentColor 8%, transparent);

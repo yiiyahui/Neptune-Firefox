@@ -45,6 +45,15 @@
 		#sidebar-box:hover + & {
 			background-color: var(--sidebar-border-color) !important;
 		}
+
+		&:hover {
+			animation: splitter-V-pulsing 1s ease-in-out infinite;
+			transform-origin: center !important;
+
+			&:active {
+				animation-play-state: paused;
+			}
+		}
 	}
 
 	.actions-list {
@@ -98,7 +107,7 @@
 		margin-block: var(--space-xsmall) 0 !important;
 		transition: min-width 150ms ease-in-out, var(--ext-theme-background-transition);
 
-		.wrapper:hover &:not(:has(~ .buttons-wrapper > .actions-list > moz-button:hover)) {
+		.wrapper:hover &:not(:has(~ .buttons-wrapper > .actions-list:hover)) {
 			background-color: var(--panel-separator-color) !important;
 
 			&:hover {
