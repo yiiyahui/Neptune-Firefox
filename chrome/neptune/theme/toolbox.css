@@ -68,6 +68,7 @@
 	#TabsToolbar {
 		will-change: unset !important;
 		min-height: unset !important;
+		min-width: unset !important;
 
 		@media not -moz-pref("sidebar.verticalTabs") {
 			--toolbarbutton-inner-padding: inherit !important;
@@ -186,8 +187,10 @@
 				border-radius: var(--border-radius-xsmall) !important;
 				height: var(--size-item-large);
 				margin-block: auto;
+				transition: background-color 500ms ease-in-out;
 
 				&:hover {
+					background-color: var(--border-color) !important;
 					animation: splitter-V-pulsing 1s ease-in-out infinite;
 
 					&:active {
@@ -221,7 +224,8 @@ findbar {
 		> checkbox {
 			margin-inline: 0 var(--space-medium) !important;
 
-			&:has(~ .found-matches[hidden] ~ .findbar-find-status:not([status="notfound"])), > .checkbox-check {
+			> .checkbox-check,
+			&:has(~ .found-matches[hidden] ~ .findbar-find-status:not([status="notfound"])) {
 				display: none;
 			}
 
@@ -249,7 +253,8 @@ findbar {
 			border-radius: var(--border-radius-large) !important;
 		}
 
-		:is(.findbar-find-next, .findbar-find-previous) {
+		.findbar-find-next,
+		.findbar-find-previous {
 			padding: 0 var(--toolbarbutton-outer-padding) !important;
 			border: 1px solid var(--border-color-deemphasized);
 		}

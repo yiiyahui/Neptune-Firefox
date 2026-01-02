@@ -1,5 +1,4 @@
 /* This style will partially cover the DevTools on the start page. */
-
 :root {
 	--opt-theme-toolbox-height: calc(var(--urlbar-min-height) + 2 * var(--theme-browser-toolbox-padding));
 	--opt-theme-tabsToolbar-height: calc(var(--tab-min-height) + 2 * var(--tab-overflow-clip-margin) + var(--theme-browser-toolbox-padding) / 2);
@@ -40,7 +39,7 @@
 				background-color: light-dark(#ffffff80, #ffffff3f);
 				backdrop-filter: saturate(1.2) blur(12px);
 
-				.tabbrowser-tab .tab-background {
+				.tabbrowser-tab:not([dragtarget]) .tab-background {
 					&:is([selected], [multiselected]) {
 						opacity: 0.7;
 

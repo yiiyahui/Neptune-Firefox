@@ -38,8 +38,11 @@
 
 	.sidebar-splitter:not(#sidebar-launcher-splitter) {
 		--focus-outline-color: var(--border-color) !important;
+		width: calc(2 * var(--splitter-width)) !important;
 		height: var(--size-item-large);
 		margin-block: auto;
+		margin-inline-end: var(--space-xsmall) !important;
+		border-inline: none !important;
 		border-radius: var(--border-radius-xsmall);
 
 		#sidebar-box:hover + & {

@@ -1,5 +1,7 @@
 :root {
 	--theme-browser-toolbox-padding: 10px;	/*This value will affect the height of the toolbar.*/
+	--shadow-inner-glow: inset -0.35px 0.65px 0.45px;
+	--shadow-inner-depth: inset -0.35px -0.65px 0.45px 0.25px;
 	--toolbar-start-end-padding: 10px !important;
 	--space-xsmall: 3px !important;
 	--urlbar-min-height: var(--size-item-large) !important;
@@ -15,7 +17,7 @@
 	--tab-group-label-highlight-thickness: var(--tab-group-line-thickness) !important;
 	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
 	--tab-label-line-height: 1.6 !important;
-	--tab-selected-shadow: inset -0.35px 0.65px 0.45px var(--lwt-accent-color), inset -0.35px -0.65px 0.45px 0.25px var(--lwt-accent-color), 0 0 0 2px var(--neptune-tab-shadow-color) !important;
+	--tab-selected-shadow: var(--shadow-inner-glow) var(--lwt-accent-color), var(--shadow-inner-depth) var(--lwt-accent-color), 0 0 0 2px var(--neptune-tab-shadow-color) !important;
 	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
 	--button-padding: 0 var(--space-large) !important;
 	--menu-panel-width-wide: 28em !important;

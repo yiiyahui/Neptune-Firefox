@@ -292,7 +292,7 @@
 			background-color: var(--button-background-color) !important;
 
 			&.urlbarView-userContext {
-				background-color: color-mix(in srgb, var(--identity-tab-color) 25%, transparent) !important;
+				background-color: color-mix(in oklab, var(--identity-icon-color) 20%, transparent) !important;
 			}
 
 			.urlbarView-row:is(:hover, [selected]) & {
