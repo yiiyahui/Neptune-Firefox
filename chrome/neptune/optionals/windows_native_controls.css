@@ -1,5 +1,29 @@
 /* Windows native title buttons */
 @media (-moz-platform: windows) {
+	:root {
+		--window-controls-size: 108px !important;
+	}
+
+	@media (min-width: 770px) {
+		#nav-bar > #nav-bar-customization-target:not(#widget-overflow-fixed-list) #urlbar-container ~ toolbarspring:where(:not(#vertical-spacer)) {
+			#nav-bar:not([customizing]) & {
+				flex-grow: 360 !important;
+
+				:root[taskbartab] & {
+					flex-grow: 400 !important;
+				}
+			}
+
+			#nav-bar:not([customizing]):is([downloadsbuttonshown], [unifiedextensionsbuttonshown]) & {
+				flex-grow: 300 !important;
+			}
+
+			#nav-bar:not([customizing])[downloadsbuttonshown][unifiedextensionsbuttonshown] & {
+				flex-grow: 240 !important;
+			}
+		}
+	}
+
 	#navigator-toolbox #nav-bar {
 		padding-inline-start: var(--space-xsmall) !important;
 
@@ -49,7 +73,7 @@
 	@media not -moz-pref("sidebar.verticalTabs") {
 		#PanelUI-menu-button {
 			:root:not([inFullscreen]) & {
-				margin-inline-end: calc(108px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+				margin-inline-end: calc(var(--window-controls-size) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 			}
 		}
 

@@ -72,6 +72,9 @@
 	--organizer-hover-background: var(--neptune-item-hover-background) !important;
 	--organizer-border-color: var(--border-color-card) !important;
 	--organizer-outline-color: transparent !important;
+	@media not -moz-pref("sidebar.verticalTabs") {
+		--window-min-width: 600px !important;
+	}
 }
 
 .text-link,

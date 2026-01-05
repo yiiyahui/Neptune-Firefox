@@ -21,16 +21,29 @@
 			margin-top: 0 !important;
 		}
 
-		.urlbar > .urlbar-background {
-			background-color: light-dark(#ffffff80, #ffffff33) !important;
-			backdrop-filter: saturate(1.2) blur(6px);
+		#urlbar-container {
+			/* Fix urlbar misalignment when returning to the homepage */
+			--urlbar-container-min-width: 320.1px;
 
-			.urlbar:hover > & {
-				background-color: light-dark(#ffffff99, #ffffff3f) !important;
+			@media (max-width: 770px) {
+				--urlbar-container-min-width: 155.1px;
 			}
 
-			.urlbar:is([focused], [open]) > & {
-				background-color: light-dark(#ffffff8c, #ffffff26) !important;
+			@media (max-width: 550px) {
+				--urlbar-container-min-width: 101.1px;
+			}
+
+			> .urlbar > .urlbar-background {
+				background-color: light-dark(#ffffff80, #ffffff33) !important;
+				backdrop-filter: saturate(1.2) blur(6px);
+
+				.urlbar:hover > & {
+					background-color: light-dark(#ffffff99, #ffffff3f) !important;
+				}
+
+				.urlbar:is([focused], [open]) > & {
+					background-color: light-dark(#ffffff8c, #ffffff26) !important;
+				}
 			}
 		}
 
@@ -188,16 +201,28 @@
 			margin-top: 0 !important;
 		}
 
-		.urlbar > .urlbar-background {
-			background-color: light-dark(#ffffff80, #ffffff33) !important;
-			backdrop-filter: saturate(1.2) blur(6px);
+		#urlbar-container {
+			--urlbar-container-min-width: 320.1px;
 
-			.urlbar:hover > & {
-				background-color: light-dark(#ffffff99, #ffffff3f) !important;
+			@media (max-width: 770px) {
+				--urlbar-container-min-width: 155.1px;
 			}
 
-			.urlbar:is([focused], [open]) > & {
-				background-color: light-dark(#ffffff8c, #ffffff26) !important;
+			@media (max-width: 550px) {
+				--urlbar-container-min-width: 101.1px;
+			}
+
+			> .urlbar > .urlbar-background {
+				background-color: light-dark(#ffffff80, #ffffff33) !important;
+				backdrop-filter: saturate(1.2) blur(6px);
+
+				.urlbar:hover > & {
+					background-color: light-dark(#ffffff99, #ffffff3f) !important;
+				}
+
+				.urlbar:is([focused], [open]) > & {
+					background-color: light-dark(#ffffff8c, #ffffff26) !important;
+				}
 			}
 		}
 

@@ -1,5 +1,29 @@
 /* macos traffic light titlebar buttons for windows */
 @media (-moz-platform: windows) {
+	:root {
+		--window-controls-size: 76px !important;
+	}
+
+	@media (min-width: 770px) {
+		#nav-bar > #nav-bar-customization-target:not(#widget-overflow-fixed-list) toolbarspring:where(:not(#vertical-spacer, #urlbar-container ~ toolbarspring)) {
+			#nav-bar:not([customizing]) & {
+				flex-grow: 240 !important;
+
+				:root[taskbartab] & {
+					flex-grow: 200 !important;
+				}
+			}
+
+			#nav-bar:not([customizing]):is([downloadsbuttonshown], [unifiedextensionsbuttonshown]) & {
+				flex-grow: 280 !important;
+			}
+
+			#nav-bar:not([customizing])[downloadsbuttonshown][unifiedextensionsbuttonshown] & {
+				flex-grow: 320 !important;
+			}
+		}
+	}
+
 	.titlebar-buttonbox-container {
 		position: absolute;
 		inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 12px) / 2);

@@ -1,4 +1,16 @@
 /*---------- Urlbar ----------*/
+:root {
+	--urlbar-container-min-width: 320px !important;
+
+	@media (max-width: 770px) {
+		--urlbar-container-min-width: 155px !important;
+	}
+
+	@media (max-width: 550px) {
+		--urlbar-container-min-width: 101px !important;
+	}
+}
+
 #urlbar-container,
 #search-container {
 	padding-block: 0 !important;

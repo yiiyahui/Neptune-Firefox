@@ -8,26 +8,20 @@
 
 	#nav-bar {
 		background-color: transparent !important;
-		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(var(--window-controls-size) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 		border: none !important;
 
 		:root[inFullscreen] & {
 			padding-inline-start: var(--space-xsmall) !important;
 		}
 
-		:root[taskbartab] & {
-			> .titlebar-spacer {
-				display: none;
-			}
-
-			> #nav-bar-customization-target > #customizableui-special-spring20 {
-				display: revert !important;
-			}
+		:root[taskbartab] & > .titlebar-spacer[type="post-tabs"] {
+			display: none;
 		}
 
 		@media not -moz-pref("sidebar.verticalTabs") {
 			:root[privatebrowsingmode="temporary"] & {
-				padding-inline-start: calc(76px + var(--size-item-large) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+				padding-inline-start: calc(var(--window-controls-size) + var(--size-item-large) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 			}
 		}
 
@@ -36,12 +30,30 @@
 				animation: emeTeachingMoment 1s linear infinite;
 			}
 
-			toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring],
-			toolbarspring {
-				max-width: 100% !important;
+			@media (min-width: 770px) {
+				toolbarpaletteitem[place=toolbar][id^=wrapper-customizableui-special-spring],
+				toolbarspring {
+					max-width: 100% !important;
 
-				&:where(:not(#vertical-spacer)) {
-					flex-grow: 400 !important;
+					&:where(:not(#vertical-spacer)) {
+						flex-grow: 400 !important;
+					}
+
+					@media (-moz-platform: macos) {
+						&:not(#vertical-spacer, #urlbar-container ~ toolbarspring) {
+							#nav-bar:not([customizing]) & {
+								flex-grow: 240 !important;
+							}
+
+							#nav-bar:not([customizing]):is([downloadsbuttonshown], [unifiedextensionsbuttonshown]) & {
+								flex-grow: 280 !important;
+							}
+
+							#nav-bar:not([customizing])[downloadsbuttonshown][unifiedextensionsbuttonshown] & {
+								flex-grow: 320 !important;
+							}
+						}
+					}
 				}
 			}
 
@@ -50,8 +62,7 @@
 			}
 
 			/* Remove the spacer from the toolbar in vertical layout. */
-			> #vertical-spacer {
-				min-width: unset !important;
+			> :is(#vertical-spacer, #wrapper-vertical-spacer) {
 				display: none;
 			}
 		}
