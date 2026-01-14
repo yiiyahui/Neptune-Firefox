@@ -332,7 +332,7 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 
 	#TabsToolbar > & {
 		position: fixed;
-		inset-block-start: calc(var(--theme-browser-toolbox-padding) + var(--toolbarbutton-inner-padding));
+		inset-block-start: calc(var(--nept-browser-toolbox-padding) + var(--toolbarbutton-inner-padding));
 		inset-inline-start: calc(76px + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 		margin-inline: calc(var(--toolbarbutton-inner-padding) + var(--toolbar-start-end-padding) / 2) !important;
 	}

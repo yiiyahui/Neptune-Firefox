@@ -78,15 +78,15 @@ screenshots-buttons {
 input[type="checkbox"],
 .checkbox-check:not([native]) {
 	appearance: none !important;
-	background-color: var(--neptune-checkbox-background);
+	background-color: var(--nept-checkbox-background);
 	width: var(--input-icon-size) !important;
 	height: var(--input-icon-size) !important;
-	border: var(--neptune-checkbox-border);
+	border: var(--nept-checkbox-border);
 	border-radius: var(--border-radius-xsmall);
-	box-shadow: var(--neptune-checkbox-shadow);
+	box-shadow: var(--nept-checkbox-shadow);
 
 	&:is(:checked, [checked="true"]) {
-		background-color: var(--theme-primary-color) !important;
+		background-color: var(--color-accent-primary) !important;
 		background-image: url("../assets/icons/check.svg");
 		border: none;
 	}
@@ -94,22 +94,22 @@ input[type="checkbox"],
 
 input[type="radio"] {
 	appearance: none !important;
-	background-color: var(--neptune-checkbox-background);
+	background-color: var(--nept-checkbox-background);
 	width: var(--input-icon-size) !important;
 	height: var(--input-icon-size) !important;
-	border: var(--neptune-checkbox-border);
+	border: var(--nept-checkbox-border);
 	border-radius: var(--border-radius-medium);
-	box-shadow: var(--neptune-checkbox-shadow);
+	box-shadow: var(--nept-checkbox-shadow);
 
 	&:checked {
-		background-color: var(--theme-primary-color) !important;
+		background-color: var(--color-accent-primary) !important;
 		background-image: url("../assets/icons/radio.svg");
 		border: none;
 	}
 }
 
 .toggle-button {
-	--toggle-dot-background-color: var(--neptune-slider-color) !important;
-	--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
-	--toggle-border-color: var(--neptune-toolbar-border-color) !important;
+	--toggle-dot-background-color: var(--nept-slider-color) !important;
+	--toggle-dot-background-color-on-pressed: var(--nept-slider-color) !important;
+	--toggle-border-color: var(--nept-toolbar-border-color) !important;
 }

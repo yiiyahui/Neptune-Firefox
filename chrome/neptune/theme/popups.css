@@ -2,7 +2,7 @@
 menupopup,
 panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--panel-padding-block: var(--panel-subview-body-padding-block) !important;
-	--panel-separator-color: var(--neptune-separator-color) !important;
+	--panel-separator-color: var(--nept-separator-color) !important;
 	--menuitem-border-radius: var(--arrowpanel-menuitem-border-radius) !important;
 	--menu-arrow-size: var(--size-item-xsmall) !important;
 
@@ -15,10 +15,10 @@ panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 
 	@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
 		--panel-background: var(--arrowpanel-background) !important;
-		--panel-border-color: var(--neptune-toolbar-border-color) !important;
+		--panel-border-color: var(--nept-toolbar-border-color) !important;
 		--panel-border-radius: var(--arrowpanel-border-radius) !important;
 		--panel-shadow-margin: var(--arrowpanel-shadow-margin) !important;
-		--panel-shadow: var(--neptune-panel-shadow), 0 3px var(--panel-shadow-margin) var(--neptune-panel-shadow-color) !important;
+		--panel-shadow: var(--nept-panel-shadow), 0 3px var(--panel-shadow-margin) var(--nept-panel-shadow-color) !important;
 	}
 }
 
@@ -35,6 +35,12 @@ panel {
 
 		&#link-preview-panel {
 			--panel-border-radius: 0 !important;
+		}
+
+		#report-broken-site-popup-preview-button {
+			--box-border: none !important;
+			--box-padding: var(--panel-subview-body-padding-block) !important;
+			--box-icon-size: var(--icon-size-xsmall) !important;
 		}
 
 		.PanelUI-profiler-button {
@@ -82,6 +88,26 @@ panel {
 
 	menulist {
 		padding-block: var(--space-xsmall) !important;
+	}
+
+	#trustpanel-popup-mainView {
+		--icon-size: var(--icon-size-xsmall) !important;
+
+		:is(#trustpanel-connection-icon, #trustpanel-siteinfo-icon) {
+			list-style-image: url("../assets/icons/security-broken.svg") !important;
+
+			#trustpanel-popup[connection^="secure"] & {
+				list-style-image: url("../assets/icons/security.svg") !important;
+			}
+		}
+
+		#trustpanel-insecure-section .trustpanel-header {
+			background-image: url("../assets/icons/security-broken.svg") !important;
+		}
+
+		#trustpanel-privacy-link {
+			margin-inline-start: auto !important;
+		}
 	}
 
 	toolbarseparator:not(.tab-group-editor-panel toolbarseparator) {
@@ -170,6 +196,10 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			}
 		}
 
+		> menu::after {
+			margin-inline-end: calc(var(--space-xsmall) / -1) !important;
+		}
+
 		> menuitem[badge]::after {
 			padding-block: 0 !important;
 		}
@@ -224,20 +254,26 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 .og-card {
 	--og-main-font-size: 1rem !important;
-	font: menu !important;
+	--icon-size: var(--icon-size-xsmall) !important;
 
-	.ai-content .keypoints-header .chevron-icon {
-		width: var(--size-item-xsmall) !important;
-		height: auto !important;
-	}
+	.ai-content > .keypoints-header {
+		align-items: center;
+		flex-direction: row-reverse;
 
-	img.icon {
-		height: auto !important;
+		img.icon {
+			margin-inline: auto var(--space-medium) !important;
+		}
+
+		&::before {
+			background-image: url("chrome://global/skin/icons/more.svg") !important;
+			margin-inline: auto 0 !important;
+			transform: none !important;
+		}
 	}
 }
 
 #confirmation-hint {
-	--arrowpanel-background: var(--theme-primary-color) !important;
+	--arrowpanel-background: var(--color-accent-primary) !important;
 	--arrowpanel-border-color: transparent !important;
 
 	#confirmation-hint-checkmark-animation-container[animate] > #confirmation-hint-checkmark-image {
@@ -288,6 +324,38 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 
 	.PanelUI-remotetabs-clientcontainer > label[itemtype="client"] {
 		margin: 0 calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) var(--space-xsmall) !important;
+	}
+}
+
+.report-broken-site-view {
+	&.main-view a {
+		margin-block: var(--arrowpanel-menuitem-margin-inline) !important;
+	}
+
+	#report-broken-site-panel-preview-items {
+		background-color: transparent !important;
+		margin: 0 calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
+		border: none !important;
+
+		.data {
+			background: var(--input-bgcolor) !important;
+			padding: var(--panel-separator-padding) !important;
+			border-radius: var(--border-radius-small);
+		}
+
+		details > summary {
+			background-image: url("chrome://global/skin/icons/arrow-down-12.svg") !important;
+			background-position: left !important;
+			padding: calc((var(--button-min-height) - 16px) / 2) var(--arrowpanel-menuitem-padding-inline) !important;
+			padding-inline-start: calc(var(--icon-size-xsmall) + var(--arrowpanel-menuitem-margin-inline)) !important;
+			border: none !important;
+			border-radius: var(--border-radius-small) !important;
+			cursor: default !important;
+			
+			details[open] > & {
+				background-image: url("chrome://global/skin/icons/arrow-up-12.svg") !important;
+			}
+		}
 	}
 }
 
@@ -446,11 +514,4 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	#emptyDownloads {
 		padding-block: var(--space-xlarge) !important;
 	}
-}
-
-#statuspanel #statuspanel-label {
-	background-color: var(--background-color-canvas) !important;
-	border: none !important;
-	border-radius: 0 var(--border-radius-xsmall) var(--border-radius-xsmall) 0;
-	backdrop-filter: blur(1em);
 }

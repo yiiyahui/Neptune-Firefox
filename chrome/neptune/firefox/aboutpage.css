@@ -1,21 +1,21 @@
 @-moz-document url-prefix(about:), url-prefix("chrome://") {
 	* {
-		--background-color-canvas: var(--neptune-main-background) !important;
-		--popup-background: var(--neptune-menu-background) !important;
-		--popup-button-background: var(--neptune-item-background) !important;
-		--popup-button-background-hover: var(--neptune-item-hover-background) !important;
-		--popup-button-background-active: var(--neptune-item-active-background) !important;
-		--page-nav-button-background-color-hover: var(--neptune-item-hover-background) !important;
+		--background-color-canvas: var(--nept-background-canvas) !important;
+		--popup-background: var(--nept-menu-background) !important;
+		--popup-button-background: var(--nept-item-background) !important;
+		--popup-button-background-hover: var(--nept-item-hover-background) !important;
+		--popup-button-background-active: var(--nept-item-active-background) !important;
+		--page-nav-button-background-color-hover: var(--nept-item-hover-background) !important;
 		--page-nav-button-background-color-selected: transparent !important;
-		--toolbar-button-background-hover: var(--neptune-item-hover-background) !important;
-		--toolbar-button-background-active: var(--neptune-item-active-background) !important;
-		--toolbar-button-foreground-active: var(--theme-primary-color) !important;
-		--primary-color: var(--theme-primary-color) !important;
+		--toolbar-button-background-hover: var(--nept-item-hover-background) !important;
+		--toolbar-button-background-active: var(--nept-item-active-background) !important;
+		--toolbar-button-foreground-active: var(--color-accent-primary) !important;
+		--primary-color: var(--color-accent-primary) !important;
 		--link-color: light-dark(color-mix(in srgb, accentcolor 80%, #323232), color-mix(in srgb, accentcolor 80%, #cacaca)) !important;
 		--link-color-hover: light-dark(color-mix(in srgb, accentcolor 85%, #646464), color-mix(in srgb, accentcolor 85%, #ececec)) !important;
 		--link-color-active: accentcolor !important;
 		--link-color-visited: mediumpurple !important;
-		--fxview-background-color: var(--neptune-main-background) !important;
+		--fxview-background-color: var(--nept-background-canvas) !important;
 		--button-background-color-primary: color-mix(in srgb, accentcolor 80%, #181818) !important;
 		--button-background-color-primary-hover: color-mix(in srgb, accentcolor 85%, #262626) !important;
 		--button-background-color-primary-active: color-mix(in srgb, accentcolor 85%, #646464) !important;
@@ -32,13 +32,13 @@
 	}
 
 	.toggle-button {
-		--toggle-dot-background-color: var(--neptune-slider-color) !important;
-		--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
-		--toggle-border-color: var(--neptune-toolbar-border-color) !important;
+		--toggle-dot-background-color: var(--nept-slider-color) !important;
+		--toggle-dot-background-color-on-pressed: var(--nept-slider-color) !important;
+		--toggle-border-color: var(--nept-toolbar-border-color) !important;
 	}
 
 	menupopup, panel:not(.tooltip-xul-wrapper) {
-		--panel-separator-color: var(--neptune-separator-color) !important;
+		--panel-separator-color: var(--nept-separator-color) !important;
 
 		@media (-moz-platform: macos) or (-moz-platform: windows) {
 			appearance: menupopup !important;
@@ -47,7 +47,7 @@
 		}
 
 		@media (-moz-platform: windows) and (not (-moz-windows-mica-popups)) {
-			--panel-border-color: var(--neptune-toolbar-border-color) !important;
+			--panel-border-color: var(--nept-toolbar-border-color) !important;
 			--panel-border-radius: var(--border-radius-small) !important;
 			--panel-shadow-margin: 22px !important;
 		}
@@ -159,9 +159,9 @@
 	}
 
 	.dialogBox {
-		border-color: var(--neptune-toolbar-border-color) !important;
+		border-color: var(--nept-toolbar-border-color) !important;
 		border-radius: var(--border-radius-large) !important;
-		box-shadow: var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-menu-shadow) !important;
 	}
 
 	.dialogOverlay[topmost="true"], dialog::backdrop {
@@ -240,13 +240,13 @@
 	input:where([type="search"], [type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]):not(:read-only, .search-handoff-button, .search-wrapper input),
 	.devtools-searchbox, #storage-searchbox,
 	textarea {
-		background-color: var(--neptune-input-bgcolor) !important;
+		background-color: var(--nept-input-bgcolor) !important;
 		border-color: transparent !important;
 		border-radius: var(--border-radius-small) !important;
 		outline: 18px solid transparent !important;
 
 		&:where(:focus-visible, [focused]) {
-			outline: 3px solid var(--neptune-input-outline-color) !important;
+			outline: 3px solid var(--nept-input-outline-color) !important;
 			box-shadow: inset 0 0 0.75px accentcolor !important;
 			transition: outline 250ms cubic-bezier(0.33, 0, 0.67, 1), box-shadow 250ms cubic-bezier(0.33, 0, 0.67, 1);
 		}
@@ -279,18 +279,18 @@
 	}
 
 	.search-tooltip {
-		background-color: var(--theme-primary-color) !important;
+		background-color: var(--color-accent-primary) !important;
 		border: none !important;
-		box-shadow: var(--neptune-panel-shadow);
+		box-shadow: var(--nept-panel-shadow);
 		color: #fff !important;
 
 		&::before, &::after {
-			border-top-color: var(--theme-primary-color) !important;
+			border-top-color: var(--color-accent-primary) !important;
 		}
 	}
 
 	.card {
-		border-color: var(--neptune-toolbar-border-color) !important;
+		border-color: var(--nept-toolbar-border-color) !important;
 		border-radius: var(--border-radius-medium) !important;
 		box-shadow: none !important;
 		outline: none !important;
@@ -338,19 +338,29 @@
 		border-radius: var(--border-radius-small) !important;
 	}
 
+	/* about memory */
+	body > .ancillary .opsRow {
+		> :is(.opsRowLabel, .sidebarLabel) {
+			display: flex !important;
+		}
+
+		> .opsRowLabel > label {
+			display: inherit;
+		}
+	}
+
 	input[type="checkbox"]:not(.ruleview-enableproperty, .devtools-checkbox-toggle),
 	.checkbox-check:not([native]) {
 		appearance: none !important;
-		background-color: var(--neptune-checkbox-background);
+		background-color: var(--nept-checkbox-background);
 		width: var(--input-icon-size) !important;
 		height: var(--input-icon-size) !important;
-		border: var(--neptune-checkbox-border);
+		border: var(--nept-checkbox-border);
 		border-radius: var(--border-radius-xsmall);
-		box-shadow: var(--neptune-checkbox-shadow);
-		vertical-align: bottom;
+		box-shadow: var(--nept-checkbox-shadow);
 
 		&:is(:checked, [checked="true"]) {
-			background-color: var(--theme-primary-color) !important;
+			background-color: var(--color-accent-primary) !important;
 			background-image: url("../assets/icons/check.svg") !important;
 			border: none;
 		}
@@ -359,15 +369,15 @@
 	input[type="radio"]:not(.wallpaper-input, .wrapper input),
 	.radio-check {
 		appearance: none !important;
-		background-color: var(--neptune-checkbox-background);
+		background-color: var(--nept-checkbox-background);
 		width: var(--input-icon-size) !important;
 		height: var(--input-icon-size) !important;
-		border: var(--neptune-checkbox-border);
+		border: var(--nept-checkbox-border);
 		border-radius: 50%;
-		box-shadow: var(--neptune-checkbox-shadow);
+		box-shadow: var(--nept-checkbox-shadow);
 
 		&:is(:checked, [selected="true"]) {
-			background-color: var(--theme-primary-color) !important;
+			background-color: var(--color-accent-primary) !important;
 			background-image: url("../assets/icons/radio.svg");
 			border: none;
 		}
@@ -404,12 +414,12 @@
 
 	.tooltip-container[type="doorhanger"] .menuitem > .command {
 		&:not([disabled],[open],:active):hover {
-			background-color: var(--theme-primary-hover-color) !important;
+			background-color: var(--color-accent-primary-hover) !important;
 			color: white !important;
 		}
 
 		&:not([disabled]):is([open],:hover:active) {
-			background-color: var(--theme-primary-active-color) !important;
+			background-color: var(--color-accent-primary-active) !important;
 			color: inherit !important;
 		}
 	}
@@ -421,7 +431,7 @@
 	}
 
 	.perf-photon-button-primary {
-		background-color: var(--theme-primary-color) !important;
+		background-color: var(--color-accent-primary) !important;
 		border-radius: var(--border-radius-small) !important;
 	}
 

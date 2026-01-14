@@ -26,7 +26,7 @@
 
 	.titlebar-buttonbox-container {
 		position: absolute;
-		inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 12px) / 2);
+		inset-block-start: calc(var(--nept-browser-toolbox-padding) + (var(--urlbar-min-height) - 12px) / 2);
 		inset-inline-start: 16px;
 
 		:root[inFullscreen] & {

@@ -1,24 +1,24 @@
 @-moz-document regexp(".*\\.pdf") {
 	:root {
 		--toolbar-horizontal-padding: 12px !important;
-		--button-hover-color: var(--neptune-item-hover-background) !important;
-		--dropdown-btn-bg-color: var(--neptune-item-background) !important;
+		--button-hover-color: var(--nept-item-hover-background) !important;
+		--dropdown-btn-bg-color: var(--nept-item-background) !important;
 		--doorhanger-bg-color: Menu !important;
-		--toggled-btn-bg-color: var(--neptune-item-background) !important;
-		--toggled-hover-active-btn-color: var(--neptune-item-active-background) !important;
+		--toggled-btn-bg-color: var(--nept-item-background) !important;
+		--toggled-hover-active-btn-color: var(--nept-item-active-background) !important;
 		--focus-ring-color: var(--focus-outline-color) !important;
 	}
 
 	.toggle-button {
-		--color-accent-primary: var(--theme-primary-color) !important;
-		--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
-		--color-accent-primary-active: var(--theme-primary-active-color) !important;
-		--toggle-dot-background-color: var(--neptune-slider-color) !important;
-		--toggle-dot-background-color-on-pressed: var(--neptune-slider-color) !important;
+		--color-accent-primary: var(--color-accent-primary) !important;
+		--color-accent-primary-hover: var(--color-accent-primary-hover) !important;
+		--color-accent-primary-active: var(--color-accent-primary-active) !important;
+		--toggle-dot-background-color: var(--nept-slider-color) !important;
+		--toggle-dot-background-color-on-pressed: var(--nept-slider-color) !important;
 	}
 
 	.dialog {
-		--textarea-bg-color: var(--neptune-input-bgcolor) !important;
+		--textarea-bg-color: var(--nept-input-bgcolor) !important;
 		--textarea-border-color: var(--border-color-deemphasized) !important;
 		--button-primary-bg-color: var(--color-accent-primary) !important;
 		--button-primary-hover-bg-color: var(--color-accent-primary-hover) !important;
@@ -28,7 +28,7 @@
 		--button-secondary-active-bg-color: var(--button-background-color-active) !important;
 		--text-primary-color: GrayText !important;
 		--text-secondary-color: GrayText !important;
-		--dialog-shadow: var(--neptune-panel-shadow) !important;
+		--dialog-shadow: var(--nept-panel-shadow) !important;
 
 		.mainContainer button:not(:is(.toggle-button, .closeButton, .clearInputButton)) {
 			border-radius: var(--border-radius-small) !important;
@@ -107,14 +107,14 @@
 		border-radius: var(--border-radius-xsmall) !important;
 
 		&:focus {
-			border-color: var(--neptune-input-outline-color) !important;
+			border-color: var(--nept-input-outline-color) !important;
 		}
 	}
 
 	#secondaryToolbar,
 	.editorParamsToolbar {
 		border-radius: var(--border-radius-small) !important;
-		box-shadow: var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-menu-shadow) !important;
 	}
 
 	.editorParamsToolbarContainer .editorParamsColor {
@@ -126,7 +126,7 @@
 	.pdfViewer .page {
 		margin-bottom: 30px !important;
 		border: none !important;
-		box-shadow: var(--neptune-panel-shadow) !important;
+		box-shadow: var(--nept-panel-shadow) !important;
 	}
 
 	.toolbarButtonSpacer,
@@ -139,7 +139,7 @@
 @-moz-document media-document(image) {
 	@media not print {
 		:root {
-			background-color: var(--neptune-main-background) !important;
+			background-color: var(--nept-background-canvas) !important;
 			background-image: none !important;
 		}
 	}

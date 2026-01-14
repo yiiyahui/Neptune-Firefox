@@ -36,7 +36,7 @@
 		background-color: var(--newtab-background-color-secondary) !important;
 		backdrop-filter: saturate(1.5) blur(2em);
 		border-radius: var(--border-radius-large) !important;
-		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 
 		.contentSearchHeader, .contentSearchSettingsButton {
 			background-color: var(--newtab-background-color-secondary) !important;
@@ -127,7 +127,7 @@
 				border-radius: var(--border-radius-large) !important;
 
 				&.letter-fallback::before {
-					font-size: 1.82em !important;
+					font-size: 1.22em !important;
 					font-weight: normal !important;
 					inset: 0 !important;
 					transform: none !important;
@@ -146,7 +146,7 @@
 		}
 
 		.search-topsite {
-			background-color: var(--theme-primary-color) !important;
+			background-color: var(--color-accent-primary) !important;
 			background-size: var(--size-item-xsmall) !important;
 			height: 24px !important;
 			width: 24px !important;
@@ -169,7 +169,7 @@
 	.context-menu {
 		backdrop-filter: saturate(1.5) blur(2em);
 		border-radius: var(--border-radius-medium) !important;
-		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 		font: menu !important;
 
 		> ul > li {
@@ -177,7 +177,7 @@
 			margin-inline: 5px !important;
 
 			&.separator {
-				border-color: var(--neptune-separator-color) !important;
+				border-color: var(--nept-separator-color) !important;
 				width: auto !important;
 				margin-inline: var(--space-medium) !important;
 			}
@@ -188,13 +188,13 @@
 
 			> :is(a, button) {
 				&:is(:focus, :hover) {
-					background-color: var(--theme-primary-hover-color) !important;
+					background-color: var(--color-accent-primary-hover) !important;
 					color: #fff !important;
 					border-radius: var(--border-radius-small) !important;
 				}
 
 				&:active {
-					background-color: var(--theme-primary-active-color) !important;
+					background-color: var(--color-accent-primary-active) !important;
 				}
 			}
 		}
@@ -230,7 +230,7 @@
 	.modal {
 		backdrop-filter: saturate(1.5) blur(2em);
 		border-radius: var(--border-radius-large) !important;
-		box-shadow: var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-menu-shadow) !important;
 		font-size: var(--font-size-root) !important;
 
 		.edit-topsites-wrapper & {
@@ -310,7 +310,7 @@
 		overflow-x: hidden !important;
 		inset-block: auto calc(var(--space-large) + var(--size-item-medium)) !important;
 		inset-inline-end: var(--space-large) !important;
-		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 		transform-origin: bottom right;
 		transition: none !important;
 
@@ -363,7 +363,7 @@
 		}
 
 		.wallpapers-reset:hover {
-			color: var(--theme-primary-color) !important;
+			color: var(--color-accent-primary) !important;
 		}
 
 		.external-link {

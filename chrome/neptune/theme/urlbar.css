@@ -18,11 +18,9 @@
 
 #searchbar,
 .urlbar-background {
-	background-color: var(--neptune-urlbar-background) !important;
+	background-color: var(--nept-urlbar-background) !important;
 	border: none !important;
 	border-radius: var(--border-radius-circle) !important;
-	box-shadow: none !important;
-	transition: var(--ext-theme-background-transition);
 }
 
 .urlbar {
@@ -43,12 +41,17 @@
 	> .urlbar-background {
 		animation: none !important;
 
+		&:not(.urlbar[open] > &) {
+			box-shadow: var(--nept-urlbar-inner-shadow-A) !important;
+			transition: var(--ext-theme-background-transition), box-shadow 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+		}
+
 		.urlbar:hover > & {
-			background-color: var(--neptune-urlbar-hover-background) !important;
+			background-color: var(--nept-urlbar-hover-background) !important;
 		}
 
 		.urlbar:is([focused], [open]) > & {
-			background-color: var(--neptune-urlbar-focused-background) !important;
+			background-color: var(--nept-urlbar-focused-background) !important;
 		}
 	}
 
@@ -61,6 +64,37 @@
 			text-align: center !important;
 		}
 
+		@media -moz-pref("browser.urlbar.trustPanel.featureGate") {
+			> :is(#urlbar-label-box, .urlbar-input-box) {
+				margin-inline-start: 0 !important;
+			}
+
+			> #trust-icon-container {
+				height: auto !important;
+				border-radius: var(--border-radius-xlarge) 0 0 var(--border-radius-xlarge) !important;
+
+				&:where(.insecure) {
+					list-style-image: url("../assets/icons/trust-icon-insecure.svg") !important;
+				}
+
+				&.secure {
+					list-style-image: url("../assets/icons/trust-icon-active.svg") !important;
+				}
+
+				&.inactive {
+					list-style-image: url("../assets/icons/trust-icon-disabled.svg") !important;
+				}
+
+				&.warning {
+					list-style-image: url("../assets/icons/trust-icon-warning.svg") !important;
+				}
+
+				> #trust-label {
+					display: none;
+				}
+			}
+		}
+
 		> #urlbar-search-mode-indicator {
 			margin-inline: 0 !important;
 			padding-inline: var(--urlbar-icon-padding) !important;
@@ -69,9 +103,10 @@
 
 		> .searchmode-switcher {
 			margin-inline: 0 !important;
+			border-radius: var(--border-radius-large) 0 0 var(--border-radius-large) !important;
 
 			&[open] {
-				background-color: var(--neptune-item-active-background) !important;
+				background-color: var(--nept-item-active-background) !important;
 			}
 
 			> .searchmode-switcher-dropmarker {
@@ -85,7 +120,6 @@
 			font-size: var(--urlbarView-small-font-size);
 
 			> .searchmode-switcher-close {
-				margin-inline: var(--urlbar-icon-padding) !important;
 				border-radius: var(--border-radius-medium) !important;
 			}
 		}
@@ -125,10 +159,10 @@
 	margin-block-start: var(--space-small);
 	border-inline: none !important;
 	border-radius: var(--border-radius-xlarge);
-	background-color: var(--neptune-secondary-background);
+	background-color: var(--nept-secondary-background);
 	backdrop-filter: saturate(1.5) blur(3em);
 	color: MenuText;
-	box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+	box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 
 	> .urlbarView-body-outer > .urlbarView-body-inner {
 		width: inherit !important;
@@ -157,7 +191,7 @@
 			padding-block: 0 !important;
 
 			> .urlbarView-no-wrap {
-				flex-basis: revert !important;
+				flex-basis: auto !important;
 
 				> .urlbarView-type-icon {
 					display: none;
@@ -322,7 +356,7 @@
 			}
 
 			&:is(:hover, [open]) {
-				color: revert !important;
+				color: inherit !important;
 			}
 		}
 
@@ -370,7 +404,7 @@
 		}
 
 		&:hover {
-			background-color: var(--neptune-item-hover-background) !important;
+			background-color: var(--nept-item-hover-background) !important;
 		}
 	}
 }
@@ -397,7 +431,7 @@
 		opacity: 0;
 		transition: opacity 200ms ease-out, margin-inline 200ms ease-out, visibility 200ms linear;
 
-		&:is(.urlbar:is(:hover, [open]) &, [open]) {
+		&:is(.urlbar:is(:hover, [open]) &, [open]):not(#trust-icon-container:hover ~ #page-action-buttons > &) {
 			margin-inline-end: 0;
 			visibility: visible;
 			opacity: 1;
@@ -479,18 +513,19 @@
 .search-go-button {
 	background: none !important;
 	height: auto !important;
-	color: var(--neptune-button-field-color) !important;
+	color: var(--nept-button-field-color) !important;
 
 	&:not([disabled]):hover {
-		color: var(--neptune-button-field-hover-color) !important;
+		color: var(--nept-button-field-hover-color) !important;
 	}
 
 	&:not([disabled]):is(:hover:active, [open]) {
-		color: revert !important;
+		color: inherit !important;
 	}
 }
 
 .sharing-icon,
+#trust-icon,
 #identity-icon,
 #permissions-granted-icon,
 #tracking-protection-icon,

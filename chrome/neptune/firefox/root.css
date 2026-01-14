@@ -1,47 +1,47 @@
 :root {
-	--background-color-canvas: var(--neptune-main-background) !important;
-	--in-content-table-background: var(--neptune-content-background) !important;
-	--in-content-box-info-background: var(--neptune-content-background) !important;
-	--background-color-box-info: var(--neptune-main-background) !important;
-	--table-row-background-color: var(--neptune-main-background) !important;
-	--table-row-background-color-alternate: var(--neptune-content-background) !important;
-	--background-color-box: var(--neptune-menu-background) !important;
+	--background-color-canvas: var(--nept-background-canvas) !important;
+	--in-content-table-background: var(--nept-content-background) !important;
+	--in-content-box-info-background: var(--nept-content-background) !important;
+	--background-color-box-info: var(--nept-background-canvas) !important;
+	--table-row-background-color: var(--nept-background-canvas) !important;
+	--table-row-background-color-alternate: var(--nept-content-background) !important;
+	--background-color-box: var(--nept-menu-background) !important;
 	--newtab-primary-element-text-color: #fff !important;
-	--newtab-background-color: var(--neptune-main-background) !important;
-	--newtab-background-color-secondary: var(--neptune-secondary-background) !important;
-	--newtab-background-card: var(--neptune-secondary-background) !important;
-	--newtab-element-hover-color: var(--neptune-item-hover-background) !important;
-	--newtab-element-active-color: var(--neptune-item-active-background) !important;
-	--newtab-border-color: var(--neptune-toolbar-border-color) !important;
-	--border-color-deemphasized: var(--neptune-toolbar-border-color) !important;
-	--fxview-border: var(--neptune-toolbar-border-color) !important;
-	--sidebar-toolbar-bg-color: var(--neptune-main-background) !important;
-	--thumbnail-hover-color: var(--theme-primary-hover-color) !important;
-	--thumbnail-selected-color: var(--theme-primary-active-color) !important;
-	--checkbox-checked-bgcolor: var(--theme-primary-color) !important;
-	--checkbox-checked-hover-bgcolor: var(--theme-primary-hover-color) !important;
-	--checkbox-checked-active-bgcolor: var(--theme-primary-active-color) !important;
-	--focus-outline-color: var(--neptune-input-outline-color) !important;
-	--brand-color-accent: var(--theme-primary-color) !important;
-	--brand-color-accent-hover: var(--theme-primary-hover-color) !important;
-	--brand-color-accent-active: var(--theme-primary-active-color) !important;
-	--newtab-primary-action-background: var(--theme-primary-color) !important;
+	--newtab-background-color: var(--nept-background-canvas) !important;
+	--newtab-background-color-secondary: var(--nept-secondary-background) !important;
+	--newtab-background-card: var(--nept-secondary-background) !important;
+	--newtab-element-hover-color: var(--nept-item-hover-background) !important;
+	--newtab-element-active-color: var(--nept-item-active-background) !important;
+	--newtab-border-color: var(--nept-toolbar-border-color) !important;
+	--border-color-deemphasized: var(--nept-toolbar-border-color) !important;
+	--fxview-border: var(--nept-toolbar-border-color) !important;
+	--sidebar-toolbar-bg-color: var(--nept-background-canvas) !important;
+	--thumbnail-hover-color: var(--color-accent-primary-hover) !important;
+	--thumbnail-selected-color: var(--color-accent-primary-active) !important;
+	--checkbox-checked-bgcolor: var(--color-accent-primary) !important;
+	--checkbox-checked-hover-bgcolor: var(--color-accent-primary-hover) !important;
+	--checkbox-checked-active-bgcolor: var(--color-accent-primary-active) !important;
+	--focus-outline-color: var(--nept-input-outline-color) !important;
+	--brand-color-accent: var(--color-accent-primary) !important;
+	--brand-color-accent-hover: var(--color-accent-primary-hover) !important;
+	--brand-color-accent-active: var(--color-accent-primary-active) !important;
+	--newtab-primary-action-background: var(--color-accent-primary) !important;
 	--theme-arrowpanel-background: menu !important;
-	--theme-arrowpanel-border-color: var(--neptune-toolbar-border-color) !important;
-	--theme-arrowpanel-separator: var(--neptune-separator-color) !important;
-	--theme-body-background: var(--neptune-main-background) !important;
-	--theme-link-color: var(--theme-primary-color) !important;
-	--theme-icon-checked-color: var(--theme-primary-active-color) !important;
-	--theme-selection-background: var(--theme-primary-active-color) !important;
-	--theme-selection-background-hover: var(--neptune-item-selection-hover-background) !important;
-	--theme-text-selection-background: var(--neptune-item-selection-hover-background) !important;
-	--theme-tab-toolbar-background: var(--neptune-main-background) !important;
-	--theme-toolbar-background: var(--neptune-main-background) !important;
-	--theme-toolbar-hover: var(--neptune-item-hover-background) !important;
-	--theme-toolbar-hover-active: var(--neptune-item-active-background) !important;
-	--theme-toolbar-selected-color: var(--theme-primary-color) !important;
-	--theme-toolbar-alternate-hover: var(--neptune-item-active-background) !important;
-	--theme-focus-textinput-outline-color: var(--neptune-input-outline-color) !important;
+	--theme-arrowpanel-border-color: var(--nept-toolbar-border-color) !important;
+	--theme-arrowpanel-separator: var(--nept-separator-color) !important;
+	--theme-body-background: var(--nept-background-canvas) !important;
+	--theme-link-color: var(--color-accent-primary) !important;
+	--theme-icon-checked-color: var(--color-accent-primary-active) !important;
+	--theme-selection-background: var(--color-accent-primary-active) !important;
+	--theme-selection-background-hover: var(--nept-item-selection-hover-background) !important;
+	--theme-text-selection-background: var(--nept-item-selection-hover-background) !important;
+	--theme-tab-toolbar-background: var(--nept-background-canvas) !important;
+	--theme-toolbar-background: var(--nept-background-canvas) !important;
+	--theme-toolbar-hover: var(--nept-item-hover-background) !important;
+	--theme-toolbar-hover-active: var(--nept-item-active-background) !important;
+	--theme-toolbar-selected-color: var(--color-accent-primary) !important;
+	--theme-toolbar-alternate-hover: var(--nept-item-active-background) !important;
+	--theme-focus-textinput-outline-color: var(--nept-input-outline-color) !important;
 	--button-min-height: 24px !important;
 	--button-padding: 0 var(--space-large) !important;
 	--theme-toolbar-height: var(--button-min-height) !important;
@@ -58,7 +58,7 @@
 }
 
 ::selection {
-	background-color: var(--neptune-item-selection-background) !important;
+	background-color: var(--nept-item-selection-background) !important;
 }
 
 .videocontrols {
@@ -72,7 +72,7 @@
 				backdrop-filter: saturate(1.5) blur(6px);
 				border: none !important;
 				border-radius: var(--border-radius-circle) !important;
-				box-shadow: var(--neptune-glass-shadow) !important;
+				box-shadow: var(--nept-glass-shadow) !important;
 		}
 
 		> .pip-icon {

@@ -1,4 +1,45 @@
 :root {
+	/* Nept Variable */
+	--nept-background-canvas: light-dark(#f6f6f6, #1c1b22);
+	--nept-content-background: light-dark(#fff, #15141a);
+	--nept-theme-primary-color: light-dark(color-mix(in srgb, accentcolor 80%, #181818), color-mix(in srgb, accentcolor 80%, #060606));
+	--nept-theme-primary-hover-color: light-dark(color-mix(in srgb, accentcolor 85%, #262626), color-mix(in srgb, accentcolor 85%, #121212));
+	--nept-theme-primary-active-color: light-dark(color-mix(in srgb, accentcolor 85%, #646464), color-mix(in srgb, accentcolor 85%, #565656));
+	/* Toolbars */
+	--nept-toolbar-background: var(--lwt-accent-color);
+	--nept-toolbar-border-color: light-dark(color-mix(in srgb, currentColor 20%, transparent), color-mix(in srgb, currentColor 18%, transparent));
+	--nept-input-bgcolor: light-dark(color-mix(in srgb, currentColor 10%, transparent), color-mix(in srgb, currentColor 14%, transparent));
+	--nept-input-outline-color: light-dark(color-mix(in srgb, accentcolor 50%, #f2f2f2), color-mix(in srgb, accentcolor 50%, #646464));
+	--nept-input-inner-shadow: inset 0 0 0 0.5px light-dark(color-mix(in srgb, accentcolor 35%, #f2f2f2), color-mix(in srgb, accentcolor 35%, #646464));
+	--nept-slider-color: light-dark(#fff, #cacaca);
+	--nept-slider-track-color: light-dark(color-mix(in srgb, currentColor 15%, transparent), color-mix(in srgb, currentColor 25%, transparent));
+	--nept-checkbox-background: light-dark(color-mix(in srgb, currentColor 2%, transparent), color-mix(in srgb, currentColor 20%, transparent));
+	--nept-checkbox-border: 1px solid light-dark(color-mix(in srgb, currentColor 20%, transparent), color-mix(in srgb, currentColor 10%, transparent));
+	--nept-checkbox-shadow: inset 0 1px 1px #00000026;
+	@media (prefers-color-scheme: dark) {
+		--nept-checkbox-shadow: inset 0 0 5px #ffffff33;
+	}
+	--nept-item-background: light-dark(color-mix(in srgb, currentColor 10%, transparent), color-mix(in srgb, currentColor 12%, transparent));
+	--nept-item-hover-background: light-dark(color-mix(in srgb, currentColor 8%, transparent), color-mix(in srgb, currentColor 10%, transparent));
+	--nept-item-active-background: light-dark(color-mix(in srgb, currentColor 14%, transparent), color-mix(in srgb, currentColor 16%, transparent));
+	--nept-item-selection-background: light-dark(color-mix(in srgb, accentcolor 30%, transparent), color-mix(in srgb, accentcolor 45%, transparent));
+	--nept-item-selection-hover-background: light-dark(color-mix(in srgb, accentcolor 15%, transparent), color-mix(in srgb, accentcolor 25%, transparent));
+	/* Popups */
+	--nept-menu-background: light-dark(#fafafa, Field);
+	--nept-glass-background: light-dark(#ffffff3f, #00000038);
+	--nept-secondary-background: light-dark(#fafafabf, #1e1e1ebf);
+	--nept-separator-color: light-dark(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 15%, transparent));
+	--nept-small-shadow: 0 0 1px light-dark(color-mix(in srgb, currentColor 40%, transparent), color-mix(in srgb, currentColor 50%, transparent));
+	--nept-menu-shadow: 0 1px 8px light-dark(#00000019, #00000016), 0 5px 15px light-dark(#00000016, #00000011), 0 8px 20px #00000011, 0 3px 22px light-dark(#00000016, #00000019);
+	--nept-menu-shadow-color: light-dark(#00000026, #00000033);
+	--nept-panel-shadow: 0 1px 8px light-dark(#00000019, #00000016), 0 5px 15px light-dark(#00000016, #00000011), 0 8px 20px light-dark(#00000009, #00000011);
+	--nept-panel-shadow-color: light-dark(#00000016, #00000019);
+	--nept-glass-shadow: inset 1px 1px 1px #ffffff80, inset -1px -1px 1px 0.5px #ffffff80;
+	@media (prefers-color-scheme: dark) {
+		--nept-glass-shadow: inset 1px 0.5px 1px #acacac80, inset -0.5px -1px 0.5px 0.5px #acacac80;
+	}
+
+	/* FF Variable */
 	--size-item-medium: 28px !important;
 	--size-item-xlarge: 36px !important;
 	--border-radius-xsmall: 4px !important;
@@ -10,18 +51,18 @@
 	--input-icon-size: calc(var(--size-item-medium) / 2);
 	--default-font-size: 12.5px;
 	--default-focusring: none !important;
-	--color-accent-primary: var(--theme-primary-color) !important;
-	--color-accent-primary-hover: var(--theme-primary-hover-color) !important;
-	--color-accent-primary-active: var(--theme-primary-active-color) !important;
-	--color-accent-primary-selected: var(--theme-primary-active-color) !important;
+	--color-accent-primary: var(--nept-theme-primary-color) !important;
+	--color-accent-primary-hover: var(--nept-theme-primary-hover-color) !important;
+	--color-accent-primary-active: var(--nept-theme-primary-active-color) !important;
+	--color-accent-primary-selected: var(--nept-theme-primary-active-color) !important;
 	--text-color-accent-primary-selected: white !important;
-	--button-background-color: var(--neptune-item-background) !important;
-	--button-background-color-hover: var(--neptune-item-hover-background) !important;
-	--button-background-color-active: var(--neptune-item-active-background) !important;
+	--button-background-color: var(--nept-item-background) !important;
+	--button-background-color-hover: var(--nept-item-hover-background) !important;
+	--button-background-color-active: var(--nept-item-active-background) !important;
 	--button-text-color-primary: white !important;
-	--toolbarbutton-hover-background: var(--neptune-item-hover-background) !important;
-	--toolbarbutton-active-background: var(--neptune-item-active-background) !important;
-	--in-content-border-color: var(--neptune-separator-color) !important;
+	--toolbarbutton-hover-background: var(--nept-item-hover-background) !important;
+	--toolbarbutton-active-background: var(--nept-item-active-background) !important;
+	--in-content-border-color: var(--nept-separator-color) !important;
 	--in-content-box-border-color: var(--border-color-card) !important;
 	--box-shadow-color-lighter-layer-1: light-dark(#0000000c, #00000019) !important;
 	--box-shadow-color-lighter-layer-2: light-dark(#00000019, #00000026) !important;

@@ -1,7 +1,7 @@
 /* This style will partially cover the DevTools on the start page. */
 :root {
-	--opt-theme-toolbox-height: calc(var(--urlbar-min-height) + 2 * var(--theme-browser-toolbox-padding));
-	--opt-theme-tabsToolbar-height: calc(var(--tab-min-height) + 2 * var(--tab-overflow-clip-margin) + var(--theme-browser-toolbox-padding) / 2);
+	--opt-theme-toolbox-height: calc(var(--urlbar-min-height) + 2 * var(--nept-browser-toolbox-padding));
+	--opt-theme-tabsToolbar-height: calc(var(--tab-min-height) + 2 * var(--tab-overflow-clip-margin) + var(--nept-browser-toolbox-padding) / 2);
 	--opt-theme-bookmarksbar-height: calc(var(--size-item-small) + 2 * var(--bookmark-block-padding));
 	--opt-theme-button-outer-padding: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--urlbar-min-height)) / 2);
 	--opt-theme-sidebar-collapsed-width: calc(var(--size-item-large) + 2 * var(--opt-theme-button-outer-padding));
@@ -36,6 +36,10 @@
 			> .urlbar > .urlbar-background {
 				background-color: light-dark(#ffffff80, #ffffff33) !important;
 				backdrop-filter: saturate(1.2) blur(6px);
+
+				&:not(.urlbar[open] > &) {
+					box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
+				}
 
 				.urlbar:hover > & {
 					background-color: light-dark(#ffffff99, #ffffff3f) !important;
@@ -215,6 +219,10 @@
 			> .urlbar > .urlbar-background {
 				background-color: light-dark(#ffffff80, #ffffff33) !important;
 				backdrop-filter: saturate(1.2) blur(6px);
+
+				&:not(.urlbar[open] > &) {
+					box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
+				}
 
 				.urlbar:hover > & {
 					background-color: light-dark(#ffffff99, #ffffff3f) !important;

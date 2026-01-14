@@ -20,7 +20,7 @@
 
 	.main-content:not(& .screen[pos="split"][fullscreen] .section-main .main-content) {
 		border-radius: var(--border-radius-xlarge) !important;
-		box-shadow: var(--neptune-small-shadow), var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 	}
 
 	:is(.primary, .secondary, .additional-cta, .submenu-button) {
@@ -31,7 +31,7 @@
 
 .dialogBox {
 	border-radius: var(--border-radius-xlarge) !important;
-	box-shadow: var(--neptune-menu-shadow) !important;
+	box-shadow: var(--nept-menu-shadow) !important;
 	backdrop-filter: saturate(1.5) blur(1in);
 }
 
@@ -42,14 +42,14 @@
 
 @-moz-document url("chrome://browser/content/places/places.xhtml") {
 	treecol, .tree-columnpicker-button {
-		background-color: var(--neptune-item-background) !important;
+		background-color: var(--nept-item-background) !important;
 
 		&:where(:hover) {
-			background-color: var(--neptune-item-hover-background) !important;
+			background-color: var(--nept-item-hover-background) !important;
 		}
 
 		&:where(:hover:active) {
-			background-color: var(--neptune-item-active-background) !important;
+			background-color: var(--nept-item-active-background) !important;
 		}
 	}
 

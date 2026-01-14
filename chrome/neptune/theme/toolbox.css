@@ -8,7 +8,7 @@
 
 	#nav-bar {
 		background-color: transparent !important;
-		padding: var(--theme-browser-toolbox-padding) 0 var(--theme-browser-toolbox-padding) calc(var(--window-controls-size) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+		padding: var(--nept-browser-toolbox-padding) 0 var(--nept-browser-toolbox-padding) calc(var(--window-controls-size) + var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
 		border: none !important;
 
 		:root[inFullscreen] & {
@@ -71,7 +71,7 @@
 	@media (-moz-platform: macos) {
 		.titlebar-buttonbox-container {
 			position: absolute;
-			inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2);
+			inset-block-start: calc(var(--nept-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2);
 			inset-inline-start: var(--space-small);
 		}
 	}
@@ -133,7 +133,7 @@
 			--message-bar-border-width: 0 !important;
 			--message-bar-border-radius: var(--border-radius-circle) !important;
 			--message-bar-icon-close-url: url("resource://content-accessible/close-12.svg") !important;
-			background-color: var(--neptune-tabs-default-background) !important;
+			background-color: var(--nept-tabs-default-background) !important;
 			margin-inline: var(--space-medium) !important;
 			box-shadow: none !important;
 
@@ -152,7 +152,7 @@
 		> .panel-arrowcontent {
 			border-color: var(--in-content-box-border-color) !important;
 			border-radius: var(--arrowpanel-border-radius) !important;
-			box-shadow: var(--neptune-menu-shadow) !important;
+			box-shadow: var(--nept-menu-shadow) !important;
 		}
 
 		> .panel-arrowbox > .panel-arrow[side="top"] {
@@ -169,25 +169,74 @@
 	> #tabbrowser-tabbox {
 		clip-path: var(--in-content-clip-path);
 
-		@media -moz-pref("sidebar.revamp") {
-			outline: none !important;
-			box-shadow: none !important;
+		.browserContainer {
+			@media -moz-pref("sidebar.revamp") {
+				outline: none !important;
+				box-shadow: none !important;
+			}
+
+			#statuspanel #statuspanel-label {
+				background-color: var(--background-color-canvas) !important;
+				border: none !important;
+				border-radius: 0 var(--border-radius-xsmall) var(--border-radius-xsmall) 0;
+				backdrop-filter: blur(6px);
+			}
 		}
 
 		> #tabbrowser-tabpanels[splitview] {
-			> .split-view-panel {
-				margin: var(--space-xsmall) var(--space-small) var(--space-small) !important;
+			:root:not([inDOMFullscreen]) & > .split-view-panel:not(.deck-selected) {
+				overflow: unset !important;
+			}
 
-				> .browserContainer > .browserStack {
-					border-radius: var(--border-radius-large) !important;
-					outline: none !important;
-					box-shadow: var(--content-area-shadow);
+			> .split-view-panel {
+				&[column="0"] {
+					margin: 0 var(--space-small) 0 0 !important;
+
+					> .browserContainer {
+						@media not -moz-pref("sidebar.verticalTabs") {
+							border-radius: 0 var(--border-radius-xlarge) 0 0 !important;
+						}
+
+						@media -moz-pref("sidebar.verticalTabs") {
+							border-radius: var(--border-radius-xlarge) var(--border-radius-xlarge) 0 0 !important;
+						}
+					}
 				}
 
-				> split-view-footer {
+				&[column="1"] {
+					margin: 0 0 0 var(--space-small) !important;
+
+					> .browserContainer {
+						border-radius: var(--border-radius-xlarge) 0 0 0 !important;
+					}
+				}
+
+				split-view-footer {
+					--icon-size: var(--size-item-xsmall) !important;
 					background-color: var(--background-color-canvas) !important;
-					backdrop-filter: blur(1em);
-					display: none !important;
+					padding-block: 0 !important;
+					border-inline: none !important;
+					border-block: none !important;
+					border-end-start-radius: var(--border-radius-medium) !important;
+					border-end-end-radius: 0 !important;
+					backdrop-filter: blur(6px);
+
+					> .split-view-uri {
+						display: none;
+					}
+
+					> toolbarbutton {
+						appearance: none !important;
+						padding: var(--toolbarbutton-outer-padding) !important;
+
+						&:where(:hover) {
+							color: var(--color-accent-primary-hover) !important;
+						}
+
+						&:where(:hover:active, [checked="true"], [open="true"]) {
+							color: var(--color-accent-primary-active) !important;
+						}
+					}
 				}
 			}
 

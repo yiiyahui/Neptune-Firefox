@@ -469,7 +469,7 @@ treechildren::-moz-tree-row {
 }
 
 treechildren::-moz-tree-row(selected) {
-	background-color: var(--theme-primary-active-color) !important;
+	background-color: var(--color-accent-primary-active) !important;
 }
 
 treechildren::-moz-tree-image(selected),

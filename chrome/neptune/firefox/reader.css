@@ -23,16 +23,16 @@
 		border: none !important;
 
 		#about-reader-advanced-layout[open] & {
-			fill: var(--theme-primary-active-color) !important;
+			fill: var(--color-accent-primary-active) !important;
 		}
 	}
 
 	.dropdown .dropdown-popup {
 		background-color: var(--newtab-background-color-secondary) !important;
 		backdrop-filter: saturate(1.5) blur(3em);
-		border-color: var(--neptune-toolbar-border-color) !important;
+		border-color: var(--nept-toolbar-border-color) !important;
 		border-radius: var(--border-radius-large) !important;
-		box-shadow: var(--neptune-menu-shadow) !important;
+		box-shadow: var(--nept-menu-shadow) !important;
 
 		.narrate-dropdown & {
 			padding-inline: var(--space-small) !important;
@@ -159,22 +159,22 @@
 		background: none;
 
 		&::-moz-range-thumb {
-			background-color: var(--neptune-slider-color);
+			background-color: var(--nept-slider-color);
 			width: 14px;
 			height: 14px;
 			border-radius: 50%;
-			border-color: var(--neptune-toolbar-border-color);
+			border-color: var(--nept-toolbar-border-color);
 			box-shadow: 0 0 3px var(--box-shadow-color-darker-layer-1);
 		}
 
 		&::-moz-range-progress {
-			background-color: var(--theme-primary-color);
+			background-color: var(--color-accent-primary);
 			height: 4px;
 			border-radius: 2px;
 		}
 
 		&::-moz-range-track {
-			background-color: var(--neptune-slider-track-color);
+			background-color: var(--nept-slider-track-color);
 			height: 4px;
 			border-radius: 2px;
 		}

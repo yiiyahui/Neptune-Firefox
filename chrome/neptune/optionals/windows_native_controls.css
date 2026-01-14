@@ -80,7 +80,7 @@
 		.titlebar-buttonbox-container  {
 			position: absolute;
 			inset-inline-end: 0;
-			inset-block-start: calc(var(--theme-browser-toolbox-padding) + (var(--urlbar-min-height) - 28px) / 2);
+			inset-block-start: calc(var(--nept-browser-toolbox-padding) + (var(--urlbar-min-height) - 28px) / 2);
 
 			:root[inFullscreen] & {
 				display: none;

@@ -109,6 +109,10 @@
 		&::-moz-range-progress {
 			background-color: var(--color-accent-primary) !important;
 		}
+
+		@media (width <= 660px) {
+			display: none;
+		}
 	}
 
 	.scrubber-no-drag {
@@ -235,16 +239,20 @@
 
 	#closed-caption {
 		background-image: url("../assets/icons/closed-caption-settings-button.svg") !important;
+
+		@media (width <= 780px) {
+			display: none;
+		}
 	}
 }
 
 .pointerlockfswarning {
-	background-color: var(--neptune-glass-background) !important;
+	background-color: var(--nept-glass-background) !important;
 	backdrop-filter: saturate(1.2) blur(1em);
 	padding: var(--space-medium) !important;
 	border: none !important;
 	border-radius: var(--border-radius-circle) !important;
-	box-shadow: var(--neptune-glass-shadow) !important;
+	box-shadow: var(--nept-glass-shadow) !important;
 
 	> #fullscreen-exit-button {
 		appearance: none !important;
