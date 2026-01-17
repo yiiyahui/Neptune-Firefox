@@ -1,7 +1,7 @@
 /*---------- Buttons ----------*/
 toolbar .toolbarbutton-1 {
 	padding: 0 !important;
-	margin-inline: calc(var(--toolbar-start-end-padding) / 2) !important;
+	margin: 0 calc(var(--toolbar-start-end-padding) / 2) !important;
 	transition: opacity var(--inactive-window-transition);
 
 	> .toolbarbutton-icon,
@@ -17,11 +17,9 @@ toolbar .toolbarbutton-1 {
 		opacity: var(--inactive-titlebar-opacity) !important;
 	}
 
- 	/*&:not(:is(#nav-bar, #PersonalToolbar) &:not(:where([disabled="true"]):not(#reload-button))) {
-		:root:not([customizing]) & {
-			display: none;
-		}
-	}*/
+	:root:not([customizing]) #TabsToolbar & {
+		display: none;
+	}
 }
 
 toolbar .toolbaritem-combined-buttons {
@@ -32,6 +30,7 @@ toolbar .toolbaritem-combined-buttons {
 
 		> .toolbarbutton-text {
 			min-width: unset !important;
+			padding: var(--toolbarbutton-inner-padding) var(--toolbarbutton-outer-padding) !important;
 		}
 	}
 

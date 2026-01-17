@@ -41,7 +41,7 @@
 	> .urlbar-background {
 		animation: none !important;
 
-		&:not(.urlbar[open] > &) {
+		&:not(:-moz-window-inactive, .urlbar[open] > &) {
 			box-shadow: var(--nept-urlbar-inner-shadow-A) !important;
 			transition: var(--ext-theme-background-transition), box-shadow 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 		}
@@ -423,7 +423,7 @@
 }
 
 #page-action-buttons {
-	--urlbar-icon-padding: calc((var(--urlbar-min-height) - 2px - 2px - 16px ) / 2) !important;
+	--urlbar-icon-padding: calc((var(--size-item-large) - 2px - 2px - 16px ) / 2) !important;
 
 	> .urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
 		margin-inline-end: calc(-1 * var(--size-item-small) - 2 * var(--urlbar-icon-padding));
@@ -513,6 +513,7 @@
 .search-go-button {
 	background: none !important;
 	height: auto !important;
+	width: calc(var(--size-item-large) - 2 * var(--urlbar-container-border-padding)) !important;
 	color: var(--nept-button-field-color) !important;
 
 	&:not([disabled]):hover {

@@ -1,7 +1,7 @@
 /*---------- Icons ----------*/
 #PanelUI-menu-button {
 	list-style-image: url("../assets/icons/menu.svg") !important;
-	margin-inline-end: calc(var(--toolbar-start-end-padding) + var(--toolbarbutton-outer-padding)) !important;
+	margin-inline-end: var(--toolbar-start-end-padding) !important;
 
 	&:is([badge-status^="update-"], [badge-status="addon-alert"], [badge-status="fxa-needs-authentication"]) {
 		list-style-image: url("../assets/icons/menu-badged.svg") !important;

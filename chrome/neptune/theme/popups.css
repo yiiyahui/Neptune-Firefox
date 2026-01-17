@@ -409,6 +409,22 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	}
 }
 
+#select-translations-panel {
+	.select-translations-panel-content > #select-translations-panel-text-area {
+		border-color: var(--border-color-deemphasized) !important;
+		outline: none !important;
+	}
+
+	#select-translations-panel-footer {
+		padding-block-end: 0 !important;
+
+		> .select-translations-panel-copy-button,
+		> #select-translations-panel-footer-button-group > .footer-button {
+			height: var(--button-min-height) !important;
+		}
+	}
+}
+
 .footer-button {
 	min-height: var(--button-min-height) !important;
 	padding: 0 var(--space-large) !important;

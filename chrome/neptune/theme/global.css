@@ -1,22 +1,22 @@
 :root {
 	/* Nept Variable */
 	--nept-browser-toolbox-padding: 10px;	/*This value will affect the height of the toolbar.*/
-	--shadow-inner-glow: inset -0.35px 0.65px 0.45px;
-	--shadow-inner-depth: inset -0.35px -0.65px 0.45px 0.25px;
+	--shadow-inner-glow: inset 1.25px 1.25px 0.25px -0.5px;
+	--shadow-inner-depth: inset -1.25px -1.25px 0.25px -0.25px;
 	/* Urlbar */
-	--nept-urlbar-background: light-dark(color-mix(in srgb, currentColor 8%, var(--lwt-accent-color, transparent)), color-mix(in srgb, currentColor 6%, var(--lwt-accent-color, transparent)));
-	--nept-urlbar-hover-background: light-dark(color-mix(in srgb, currentColor 12%, var(--lwt-accent-color, transparent)), color-mix(in srgb, currentColor 10%, var(--lwt-accent-color, transparent)));
-	--nept-urlbar-focused-background: light-dark(color-mix(in srgb, currentColor 10%, var(--lwt-accent-color, transparent)), color-mix(in srgb, currentColor 8%, var(--lwt-accent-color, transparent)));
+	--nept-urlbar-background: light-dark(#0000000c, #ffffff0c);
+	--nept-urlbar-hover-background: light-dark(#00000019, #ffffff19);
+	--nept-urlbar-focused-background: light-dark(#00000011, #ffffff11);
 	--nept-urlbarView-hover-background: light-dark(color-mix(in srgb, accentcolor 85%, #262626), color-mix(in srgb, accentcolor 85%, #121212));
 	--nept-urlbarView-button-background: light-dark(color-mix(in srgb, accentcolor 70%, #939597), color-mix(in srgb, accentcolor 70%, #646464));
 	--nept-focused-urlbar-highlight-color: light-dark(color-mix(in srgb, accentcolor 85%, #383838), color-mix(in srgb, accentcolor 85%, #323232));
-	--nept-urlbar-inner-shadow-A: var(--shadow-inner-glow) light-dark(color-mix(in oklab, var(--lwt-accent-color), #ffffff0c), color-mix(in oklab, var(--lwt-accent-color), #ffffff80)), var(--shadow-inner-depth) light-dark(color-mix(in oklab, var(--lwt-accent-color), #ffffff0c), color-mix(in oklab, var(--lwt-accent-color), #ffffff80));
+	--nept-urlbar-inner-shadow-A: var(--shadow-inner-glow) light-dark(color-mix(in oklab, var(--lwt-accent-color), #00000019), color-mix(in oklab, var(--lwt-accent-color), #ffffff80)), var(--shadow-inner-depth) light-dark(color-mix(in oklab, var(--lwt-accent-color), #00000019), color-mix(in oklab, var(--lwt-accent-color), #ffffff80));
 	--nept-urlbar-inner-shadow-B: var(--shadow-inner-glow) light-dark(#ffffff99, #ffffff66), var(--shadow-inner-depth) light-dark(#ffffff99, #ffffff66);
 	/* Tabs */
 	--nept-tabs-default-background: light-dark(#00000011, #ffffff19);
 	--nept-tab-background: transparent;
 	--nept-tab-hover-background: light-dark(color-mix(in srgb, currentColor 8%, transparent), color-mix(in srgb, currentColor 10%, transparent));
-	--nept-tab-selected-background: color-mix(in srgb, currentColor 2%, var(--lwt-accent-color, transparent));
+	--nept-tab-selected-background: color-mix(in srgb, currentColor 1%, var(--lwt-accent-color, transparent));
 	--nept-tab-multiselected-background: light-dark(color-mix(in srgb, accentcolor 20%, transparent), color-mix(in srgb, currentColor 25%, transparent));
 	--nept-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);
 	--nept-verticaltab-pinned-background: light-dark(color-mix(in srgb, currentColor 6%, transparent), color-mix(in srgb, currentColor 8%, transparent));
@@ -65,7 +65,7 @@
 	--arrowpanel-padding: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
 	--tabpanel-background-color: transparent !important;
 	--in-content-clip-path: inset(0 round 0.01px 0 0);
-	--toolbarbutton-inner-padding: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
+	--toolbarbutton-inner-padding: calc((var(--size-item-large) - var(--size-item-small)) / 2) !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
 	--background-color-canvas: var(--nept-secondary-background) !important;
 	--button-background-color-primary: var(--color-accent-primary) !important;

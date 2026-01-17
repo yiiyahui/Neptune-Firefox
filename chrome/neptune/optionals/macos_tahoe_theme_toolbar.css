@@ -1,0 +1,126 @@
+/* https://github.com/yiiyahui/Neptune-Firefox
+ * When the downloads or extensions buttons are visible, they group together with the main menu button, including any buttons between them. */
+@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
+	:root {
+		--nept-browser-toolbox-padding: 8px;
+		--browser-area-z-index-toolbox: 3 !important;
+		--toolbar-start-end-padding: 8px !important;
+		--urlbar-min-height: var(--size-item-xlarge) !important;
+		--urlbar-margin-inline: var(--toolbar-start-end-padding) !important;
+		--opt-tahoe-theme-urlbar-background: light-dark(#00000003, #ffffff0c);
+		--opt-tahoe-theme-urlbar-hover-background: light-dark(#00000001, #ffffff05);
+		--opt-tahoe-theme-urlbar-focused-background: light-dark(#00000005, #ffffff02);
+		--opt-tahoe-theme-urlbar-inactive-background: light-dark(#0000000c, #ffffff19);
+		--opt-tahoe-theme-urlbar-shadow: 0 3px 24px #00000010;
+		--opt-tahoe-theme-toolbar-item-shadow: 0 3px 24px #00000016;
+		--opt-tahoe-theme-toolbarbutton-background-A: light-dark(#00000005, #ffffff05);
+		--opt-tahoe-theme-toolbarbutton-background-B: light-dark(#ffffff80, #ffffff33);
+		--opt-tahoe-theme-toolbarbutton-shadow-color-A: light-dark(color-mix(in oklab, var(--lwt-accent-color), #ffffff80), color-mix(in oklab, var(--lwt-accent-color), #ffffff72));
+		--opt-tahoe-theme-toolbarbutton-shadow-color-B: light-dark(#ffffff80, #ffffff3f);
+		--opt-tahoe-theme-toolbarbutton-clip-left: polygon(-30px 0, 0 0, 0 100%, -30px 100%, -30px calc(100% + 30px), calc(100% + 30px) calc(100% + 30px), calc(100% + 30px) -12px, -30px -12px);
+		--opt-tahoe-theme-toolbarbutton-clip-right: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px));
+		--opt-tahoe-theme-toolbarbutton-clip-both: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px), -30px 100%, 0 100%, 0 0, -30px 0);
+		--opt-shadow-inner-left: inset 1.5px 1.25px 0 -0.25px;
+		--opt-shadow-inner-top: inset 0 1.25px 0 -0.25px;
+		--opt-shadow-inner-bottom: inset 0 -1.25px 0 -0.25px;
+		--opt-shadow-inner-right: inset -1.5px -1.25px 0 -0.25px;
+	}
+
+	.urlbar > .urlbar-background {
+		:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
+			background-color: var(--opt-tahoe-theme-urlbar-background) !important;
+			box-shadow: var(--opt-tahoe-theme-urlbar-shadow), var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A) !important;
+
+			.urlbar:hover > & {
+				background-color: var(--opt-tahoe-theme-urlbar-hover-background) !important;
+			}
+
+			.urlbar:is([focused], [open]) > & {
+				background-color: var(--opt-tahoe-theme-urlbar-focused-background) !important;
+			}
+		}
+
+		:root:not([customizing]) &:-moz-window-inactive {
+			background-color: var(--opt-tahoe-theme-urlbar-inactive-background) !important;
+			box-shadow: none !important;
+		}
+	}
+
+	toolbar .toolbarbutton-1 {
+		padding: var(--toolbarbutton-outer-padding) !important;
+		border-radius: var(--border-radius-circle);
+		transition: background-color var(--inactive-window-transition);
+
+		:root:not([customizing]) & {
+			margin: 0 var(--toolbar-start-end-padding) !important;
+
+			&[disabled] {
+				fill-opacity: var(--toolbarbutton-disabled-opacity);
+			}
+		}
+
+		:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
+			background-color: var(--opt-tahoe-theme-toolbarbutton-background-A);
+			box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
+			opacity: unset !important;
+		}
+	}
+
+	:root:not([customizing]) #nav-bar {
+		&[downloadsbuttonshown]:not([unifiedextensionsbuttonshown]) #downloads-button,
+		#unified-extensions-button:not([hidden]) {
+			border-radius: var(--border-radius-circle) 0 0 var(--border-radius-circle) !important;
+			margin-inline-end: 0 !important;
+
+			&:not(:-moz-window-inactive) {
+				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
+				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-right);
+			}
+
+			~ .toolbarbutton-1,
+			~ .toolbaritem-combined-buttons .toolbarbutton-1 {
+				margin-inline: 0 !important;
+				border-radius: 0 !important;
+
+				&:not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
+					clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-both);
+				}
+			}
+		}
+
+		toolbaritem > :is(#copy-button, #zoom-reset-button),
+		#nav-bar-overflow-button {
+			margin-inline: 0 !important;
+			border-radius: 0 !important;
+
+			&:not(:-moz-window-inactive) {
+				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
+				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-both);
+			}
+		}
+
+		#back-button:has(+ #forward-button),
+		toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1) {
+			margin-inline-end: 0 !important;
+			border-radius: var(--border-radius-circle) 0 0 var(--border-radius-circle) !important;
+
+			&:not(:-moz-window-inactive) {
+				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
+				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-right);
+			}
+		}
+
+		#back-button + #forward-button,
+		toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1),
+		&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button {
+			margin-inline-start: 0 !important;
+			border-radius: 0 var(--border-radius-circle) var(--border-radius-circle) 0 !important;
+
+			&:not(:-moz-window-inactive) {
+				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-right) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
+				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-left);
+			}
+		}
+	}
+}

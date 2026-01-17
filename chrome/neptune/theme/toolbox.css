@@ -337,9 +337,9 @@ findbar {
 	}
 
 	> .findbar-closebutton {
-		width: 42px !important;
-		padding: 0 var(--toolbarbutton-outer-padding) !important;
-		margin-block: auto !important;
+		width: auto !important;
+		padding: 0 calc(2 * var(--toolbarbutton-outer-padding)) !important;
+		margin: auto var(--toolbar-start-end-padding) auto auto !important;
 		list-style-image: url("../assets/icons/done.svg") !important;
 		border: var(--border-width) solid var(--border-color-deemphasized);
 		border-radius: var(--border-radius-large) !important;

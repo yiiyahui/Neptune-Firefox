@@ -10,7 +10,7 @@
 
 @-moz-document url("about:home"), url("about:newtab") {
 	body {
-		background: url("neptune/assets/background_image/Topography_Greenblue.png") center/cover fixed !important;
+		background: url("neptune/assets/background_image/Landscape_Blue.png") center/cover fixed !important;
 
 		@media (prefers-color-scheme: dark) {
 			background: url("neptune/assets/background_image/Topography_Pupple.png") center/cover fixed !important;

@@ -10,3 +10,6 @@
 /* This style will make the homepage toolbox completely transparent and display the background image.
 It must work together with “Startpage_for_transparent_toolbox.css” in "userContent.css". */
 @import "neptune/optionals/Toolbox_transparent_startpage.css";
+
+/* macOS Tahoe floating toolbar */
+@import "neptune/optionals/macos_tahoe_theme_toolbar.css";

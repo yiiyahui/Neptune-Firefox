@@ -64,13 +64,13 @@
 		--button-border-radius: var(--border-radius-circle) !important;
 
 		@media not -moz-pref("sidebar.verticalTabs") {
-			--button-size-icon: var(--urlbar-min-height) !important;
+			--button-size-icon: var(--size-item-large) !important;
 
 			/* Keeping the sidebar width consistent between horizontal and vertical layouts ensures smooth layout switching. So its width will be affected by the size of the vertical tabs. */
 			> moz-button:not(.tools-overflow) {
 				--button-outer-padding-block: var(--space-xsmall) !important;
 				--button-outer-padding-block-start: var(--space-xsmall) !important;
-				--button-outer-padding-inline: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--urlbar-min-height)) / 2) !important;
+				--button-outer-padding-inline: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--size-item-large)) / 2) !important;
 
 				&:last-of-type {
 					--button-outer-padding-block-end: calc(var(--toolbarbutton-inner-padding) / 2) !important;

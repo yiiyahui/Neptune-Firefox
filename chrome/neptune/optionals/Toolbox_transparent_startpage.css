@@ -3,7 +3,7 @@
 	--opt-theme-toolbox-height: calc(var(--urlbar-min-height) + 2 * var(--nept-browser-toolbox-padding));
 	--opt-theme-tabsToolbar-height: calc(var(--tab-min-height) + 2 * var(--tab-overflow-clip-margin) + var(--nept-browser-toolbox-padding) / 2);
 	--opt-theme-bookmarksbar-height: calc(var(--size-item-small) + 2 * var(--bookmark-block-padding));
-	--opt-theme-button-outer-padding: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--urlbar-min-height)) / 2);
+	--opt-theme-button-outer-padding: calc(((var(--tab-min-height) + 2 * var(--space-medium)) - var(--size-item-large)) / 2);
 	--opt-theme-sidebar-collapsed-width: calc(var(--size-item-large) + 2 * var(--opt-theme-button-outer-padding));
 	--opt-theme-sidebar-width: 20em;
 	--opt-theme-sidebar-box-width: 24em;
@@ -36,9 +36,14 @@
 			> .urlbar > .urlbar-background {
 				background-color: light-dark(#ffffff80, #ffffff33) !important;
 				backdrop-filter: saturate(1.2) blur(6px);
+				box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
 
-				&:not(.urlbar[open] > &) {
-					box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
+				@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
+					box-shadow: var(--opt-tahoe-theme-urlbar-shadow), var(--nept-urlbar-inner-shadow-B) !important;
+
+					&:-moz-window-inactive {
+						box-shadow: none !important;
+					}
 				}
 
 				.urlbar:hover > & {
@@ -47,6 +52,48 @@
 
 				.urlbar:is([focused], [open]) > & {
 					background-color: light-dark(#ffffff8c, #ffffff26) !important;
+				}
+			}
+
+			.urlbar-input-box {
+				margin-inline-end: calc(var(--size-item-xsmall) + 2 * var(--urlbar-icon-padding)) !important;
+			}
+		}
+
+		@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
+			toolbar .toolbarbutton-1 {
+				:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
+					background-color: var(--opt-tahoe-theme-toolbarbutton-background-B);
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--nept-urlbar-inner-shadow-B);
+					backdrop-filter: saturate(1.2) blur(12px);
+				}
+			}
+
+			:root:not([customizing]) & #nav-bar {
+				&[downloadsbuttonshown]:not([unifiedextensionsbuttonshown]) #downloads-button:not(:-moz-window-inactive),
+				#unified-extensions-button:not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+
+					~ .toolbarbutton-1,
+					~ .toolbaritem-combined-buttons .toolbarbutton-1 {
+						box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+					}
+				}
+
+				toolbaritem > :is(#copy-button, #zoom-reset-button):not(:-moz-window-inactive),
+				#nav-bar-overflow-button:not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+				}
+
+				#back-button:has(+ #forward-button):not(:-moz-window-inactive),
+				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+				}
+
+				#back-button + #forward-button:not(:-moz-window-inactive),
+				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
+				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-right) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B) !important;
 				}
 			}
 		}
@@ -219,9 +266,14 @@
 			> .urlbar > .urlbar-background {
 				background-color: light-dark(#ffffff80, #ffffff33) !important;
 				backdrop-filter: saturate(1.2) blur(6px);
+				box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
 
-				&:not(.urlbar[open] > &) {
-					box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
+				@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
+					box-shadow: var(--opt-tahoe-theme-urlbar-shadow), var(--nept-urlbar-inner-shadow-B) !important;
+
+					&:-moz-window-inactive {
+						box-shadow: none !important;
+					}
 				}
 
 				.urlbar:hover > & {
@@ -230,6 +282,48 @@
 
 				.urlbar:is([focused], [open]) > & {
 					background-color: light-dark(#ffffff8c, #ffffff26) !important;
+				}
+			}
+
+			.urlbar-input-box {
+				margin-inline-end: calc(var(--size-item-xsmall) + 2 * var(--urlbar-icon-padding)) !important;
+			}
+		}
+
+		@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
+			toolbar .toolbarbutton-1 {
+				:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
+					background-color: var(--opt-tahoe-theme-toolbarbutton-background-B);
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--nept-urlbar-inner-shadow-B);
+					backdrop-filter: saturate(1.2) blur(12px);
+				}
+			}
+
+			:root:not([customizing]) & #nav-bar {
+				&[downloadsbuttonshown]:not([unifiedextensionsbuttonshown]) #downloads-button:not(:-moz-window-inactive),
+				#unified-extensions-button:not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+
+					~ .toolbarbutton-1,
+					~ .toolbaritem-combined-buttons .toolbarbutton-1 {
+						box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+					}
+				}
+
+				toolbaritem > :is(#copy-button, #zoom-reset-button):not(:-moz-window-inactive),
+				#nav-bar-overflow-button:not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+				}
+
+				#back-button:has(+ #forward-button):not(:-moz-window-inactive),
+				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B);
+				}
+
+				#back-button + #forward-button:not(:-moz-window-inactive),
+				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
+				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive) {
+					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B), var(--opt-shadow-inner-right) var(--opt-tahoe-theme-toolbarbutton-shadow-color-B) !important;
 				}
 			}
 		}
