@@ -26,7 +26,6 @@
 	--nept-item-selection-hover-background: light-dark(color-mix(in srgb, accentcolor 15%, transparent), color-mix(in srgb, accentcolor 25%, transparent));
 	/* Popups */
 	--nept-menu-background: light-dark(#fafafa, Field);
-	--nept-glass-background: light-dark(#ffffff3f, #00000038);
 	--nept-secondary-background: light-dark(#fafafabf, #1e1e1ebf);
 	--nept-separator-color: light-dark(color-mix(in srgb, currentColor 12%, transparent), color-mix(in srgb, currentColor 15%, transparent));
 	--nept-small-shadow: 0 0 1px light-dark(color-mix(in srgb, currentColor 40%, transparent), color-mix(in srgb, currentColor 50%, transparent));
@@ -34,10 +33,7 @@
 	--nept-menu-shadow-color: light-dark(#00000026, #00000033);
 	--nept-panel-shadow: 0 1px 8px light-dark(#00000019, #00000016), 0 5px 15px light-dark(#00000016, #00000011), 0 8px 24px light-dark(#00000009, #00000011);
 	--nept-panel-shadow-color: light-dark(#00000016, #00000019);
-	--nept-glass-shadow: inset 1px 1px 1px #ffffff80, inset -1px -1px 1px 0.5px #ffffff80;
-	@media (prefers-color-scheme: dark) {
-		--nept-glass-shadow: inset 1px 0.5px 1px #acacac80, inset -0.5px -1px 0.5px 0.5px #acacac80;
-	}
+	--nept-glass-shadow: inset 2px 2px 1px -0.5px #ffffff80, inset -2px -2px 1px -0.25px #ffffff80;
 
 	/* FF Variable */
 	--size-item-medium: 28px !important;

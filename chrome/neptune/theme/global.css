@@ -1,8 +1,12 @@
 :root {
 	/* Nept Variable */
 	--nept-browser-toolbox-padding: 10px;	/*This value will affect the height of the toolbar.*/
-	--shadow-inner-glow: inset 1.25px 1.25px 0.25px -0.5px;
+	--shadow-inner-glow: inset 1.25px 1.25px 0.25px -0.25px;
 	--shadow-inner-depth: inset -1.25px -1.25px 0.25px -0.25px;
+	--shadow-inner-left: inset 1.5px 1.25px 0 -0.25px;
+	--shadow-inner-top: inset 0 1.25px 0 -0.25px;
+	--shadow-inner-bottom: inset 0 -1.25px 0 -0.25px;
+	--shadow-inner-right: inset -1.5px -1.25px 0 -0.25px;
 	/* Urlbar */
 	--nept-urlbar-background: light-dark(#0000000c, #ffffff0c);
 	--nept-urlbar-hover-background: light-dark(#00000019, #ffffff19);
@@ -13,10 +17,10 @@
 	--nept-urlbar-inner-shadow-A: var(--shadow-inner-glow) light-dark(color-mix(in oklab, var(--lwt-accent-color), #00000019), color-mix(in oklab, var(--lwt-accent-color), #ffffff80)), var(--shadow-inner-depth) light-dark(color-mix(in oklab, var(--lwt-accent-color), #00000019), color-mix(in oklab, var(--lwt-accent-color), #ffffff80));
 	--nept-urlbar-inner-shadow-B: var(--shadow-inner-glow) light-dark(#ffffff99, #ffffff66), var(--shadow-inner-depth) light-dark(#ffffff99, #ffffff66);
 	/* Tabs */
-	--nept-tabs-default-background: light-dark(#00000011, #ffffff19);
+	--nept-tabs-box-background: light-dark(#00000011, #ffffff14);
 	--nept-tab-background: transparent;
 	--nept-tab-hover-background: light-dark(color-mix(in srgb, currentColor 8%, transparent), color-mix(in srgb, currentColor 10%, transparent));
-	--nept-tab-selected-background: color-mix(in srgb, currentColor 1%, var(--lwt-accent-color, transparent));
+	--nept-tab-selected-background: light-dark(color-mix(in oklab, currentColor 1%, var(--lwt-accent-color, transparent)), color-mix(in oklab, currentColor 24%, var(--lwt-accent-color, transparent)));
 	--nept-tab-multiselected-background: light-dark(color-mix(in srgb, accentcolor 20%, transparent), color-mix(in srgb, currentColor 25%, transparent));
 	--nept-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);
 	--nept-verticaltab-pinned-background: light-dark(color-mix(in srgb, currentColor 6%, transparent), color-mix(in srgb, currentColor 8%, transparent));
@@ -24,8 +28,8 @@
 	--nept-pinned-tab-background: light-dark(color-mix(in srgb, currentColor 9%, transparent), color-mix(in srgb, currentColor 11%, transparent));
 	--nept-pinned-tab-hover-background: light-dark(color-mix(in srgb, currentColor 14%, transparent), color-mix(in srgb, currentColor 16%, transparent));
 	--nept-pinned-tab-selected-background: light-dark(color-mix(in srgb, currentColor 18%, transparent), color-mix(in srgb, currentColor 20%, transparent));
-	--nept-tab-shadow-color: light-dark(color-mix(in srgb, var(--lwt-accent-color, currentColor) 20%, #00000019), color-mix(in srgb, var(--lwt-accent-color, currentColor) 20%, #ffffff26));
-	--nept-tab-hover-shadow-color: light-dark(color-mix(in srgb, var(--lwt-accent-color, currentColor) 20%, #0000000c), color-mix(in srgb, var(--lwt-accent-color, currentColor) 20%, #ffffff19));
+	--nept-tab-shadow-color: light-dark(#00000010, #00000015);
+	--nept-tab-hover-shadow-color: light-dark(#00000005, #0000000c);
 	--nept-tab-multiselected-shadow-color: light-dark(color-mix(in oklab, currentColor 25%, var(--lwt-accent-color, transparent)), color-mix(in oklab, currentColor 35%, var(--lwt-accent-color, transparent)));
 	--nept-tab-soundplaying-background: light-dark(color-mix(in srgb, accentcolor 35%, var(--lwt-accent-color, transparent)), color-mix(in srgb, accentcolor 40%, transparent));
 	/* buttons */
@@ -48,7 +52,7 @@
 	--tab-group-label-highlight-thickness: var(--tab-group-line-thickness) !important;
 	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
 	--tab-label-line-height: 1.6 !important;
-	--tab-selected-shadow: var(--shadow-inner-glow) var(--lwt-accent-color), var(--shadow-inner-depth) var(--lwt-accent-color), 0 0 0 2px var(--nept-tab-shadow-color) !important;
+	--tab-selected-shadow: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.38) calc(c * 1.05) calc(h - 10)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.38) c calc(h - 5)), 0 0 0 2px var(--nept-tab-shadow-color) !important;
 	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-inner-padding)) !important;
 	--button-padding: 0 var(--space-large) !important;
 	--menu-panel-width-wide: 28em !important;

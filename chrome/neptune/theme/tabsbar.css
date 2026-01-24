@@ -20,7 +20,7 @@
 		}
 
 		> #tabbrowser-arrowscrollbox {
-			background-color: var(--nept-tabs-default-background);
+			background-color: var(--nept-tabs-box-background);
 			border-radius: var(--tab-border-radius);
 
 			#pinned-tabs-container:not(:empty) ~ & {
@@ -262,7 +262,6 @@
 			}
 
 			> .tab-group-label {
-				background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 70%, transparent) !important;
 				line-height: var(--tab-group-label-height) !important;
 				border-radius: var(--tab-border-radius) !important;
 				outline: none !important;
@@ -276,22 +275,12 @@
 					padding-inline: var(--tab-inline-padding) !important;
 
 					tab-group[collapsed] > .tab-group-label-container & {
-						box-shadow:
-							var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 5%, transparent),
-							var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 5%, transparent),
-							0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 2%, transparent);
-
-						&:not([dragover-groupTarget]) {
-							background-color: color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 20%, transparent) !important;
-						}
+						background-color: color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 15%, transparent) !important;
+						box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 45%, transparent) calc(l + (1 - l) * 0.4) calc(c * 1.05) h), var(--shadow-inner-depth) oklch(from color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 45%, transparent) calc(l + (1 - l) * 0.4) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color);
 
 						&[dragover-groupTarget] {
-							background-color: color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 40%, transparent) !important;
-							box-shadow:
-								var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 10%, transparent),
-								var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 10%, transparent),
-								0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 4%, transparent)
-							!important;
+							background-color: color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 25%, transparent) !important;
+							box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 50%, transparent) calc(l + (1 - l) * 0.45) calc(c * 1.05) h), var(--shadow-inner-depth) oklch(from color-mix(in oklab, light-dark(var(--tab-group-color-pale), var(--tab-group-color)) 50%, transparent) calc(l + (1 - l) * 0.45) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
 						}
 					}
 
@@ -487,10 +476,12 @@
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper > .tabbrowser-tab:first-of-type > .tab-stack > & {
+			--tab-selected-shadow: var(--shadow-inner-left) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.38) calc(c * 1.05) calc(h - 10)), var(--shadow-inner-bottom) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.38) c calc(h - 5)), 0 0 0 2px var(--nept-tab-shadow-color) !important;
 			clip-path: inset(var(--split-view-tab-clip) 0 var(--split-view-tab-clip) var(--split-view-tab-clip));
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper > .tabbrowser-tab:last-of-type > .tab-stack > & {
+			--tab-selected-shadow: var(--shadow-inner-top) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.38) calc(c * 1.05) calc(h - 10)), var(--shadow-inner-right) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.38) c calc(h - 5)), 0 0 0 2px var(--nept-tab-shadow-color) !important;
 			clip-path: inset(var(--split-view-tab-clip) var(--split-view-tab-clip) var(--split-view-tab-clip) 0);
 		}
 
@@ -538,36 +529,40 @@
 			/* Group tabs instantly revert to the default background color when dragged out of their group. */
 			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) tab-group:is(:not([collapsed]), [collapsed][hasactivetab]) .tabbrowser-tab > .tab-stack > & {
 				background-color: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) !important;
-				box-shadow:
-					var(--shadow-inner-glow) light-dark(color-mix(in oklab, var(--tab-group-color) 15%, var(--lwt-accent-color, transparent)), color-mix(in oklab, var(--tab-group-color-pale) 5%, var(--lwt-accent-color, transparent))),
-					var(--shadow-inner-depth) light-dark(color-mix(in oklab, var(--tab-group-color) 15%, var(--lwt-accent-color, transparent)), color-mix(in oklab, var(--tab-group-color-pale) 5%, var(--lwt-accent-color, transparent))),
-					0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 8%, transparent)
-				!important;
+				box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-depth) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) tab-group:not([collapsed]) > tab-split-view-wrapper > .tabbrowser-tab:first-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-left) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-bottom) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) tab-group:not([collapsed]) > tab-split-view-wrapper > .tabbrowser-tab:last-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-top) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-right) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
 			}
 
 			#tabbrowser-tabs:not([movingtab][movingtab-group]) .tabbrowser-tab[usercontextid]:not(#tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox .tabbrowser-tab, tab-group[collapsed] > .tabbrowser-tab[visuallyselected]) > .tab-stack > & {
 				background-color: color-mix(in oklab, var(--identity-tab-color) 16%, transparent) !important;
 			}
 
-			#tabbrowser-tabs[orient="horizontal"]:not([movingtab][movingtab-group]) .tabbrowser-tab[usercontextid]:not(tab-group[collapsed] > .tabbrowser-tab[visuallyselected]) > .tab-stack > & {
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab][movingtab-group]) .tabbrowser-tab[usercontextid]:not(tab-group[collapsed] > .tabbrowser-tab[visuallyselected], tab-split-view-wrapper > tab) > .tab-stack > & {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) !important;
 
 				&:not(#pinned-tabs-container > .tabbrowser-tab &) {
-					box-shadow:
-						var(--shadow-inner-glow) color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)),
-						var(--shadow-inner-depth) color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)),
-						0 0 0 var(--tab-overflow-clip-margin) color-mix(in oklab, var(--identity-tab-color) 8%, transparent)
-					!important;
+					box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in oklab, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-depth) oklch(from color-mix(in oklab, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-overflow-clip-margin) var(--nept-tab-shadow-color) !important;
 				}
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox tab-split-view-wrapper > .tabbrowser-tab[usercontextid]:first-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-left) oklch(from color-mix(in oklab, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-bottom) oklch(from color-mix(in oklab, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-overflow-clip-margin) var(--nept-tab-shadow-color) !important;
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox tab-split-view-wrapper > .tabbrowser-tab[usercontextid]:last-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-top) oklch(from color-mix(in oklab, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-right) oklch(from color-mix(in oklab, var(--identity-tab-color) 10%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-overflow-clip-margin) var(--nept-tab-shadow-color) !important;
 			}
 
 			#tabbrowser-tabs[orient="horizontal"][movingtab][movingtab-group] .tabbrowser-tab > .tab-stack > & {
 				background-color: color-mix(in srgb, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) !important;
-				box-shadow:
-					var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 20%, var(--lwt-accent-color, transparent)),
-					var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 20%, var(--lwt-accent-color, transparent)),
-					0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 8%, transparent)
-				!important;
+				box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-depth) oklch(from color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
 			}
 
 			#tabbrowser-tabs[orient="vertical"][movingtab][movingtab-group] .tabbrowser-tab > .tab-stack > & {
@@ -651,11 +646,7 @@
 
 			#tabbrowser-tabs[orient="horizontal"][movingtab][movingtab-group] .tabbrowser-tab > .tab-stack > &[dragover-groupTarget] {
 				background-color: color-mix(in srgb, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 20%, var(--lwt-accent-color, transparent)) !important;
-				box-shadow:
-					var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 25%, var(--lwt-accent-color, transparent)),
-					var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 25%, var(--lwt-accent-color, transparent)),
-					0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 4%, transparent)
-				!important;
+				box-shadow: 0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 2%, transparent) !important;
 			}
 
 			#tabbrowser-tabs[orient="vertical"][movingtab][movingtab-group] .tabbrowser-tab > .tab-stack > &[dragover-groupTarget] {
@@ -668,17 +659,32 @@
 
 			#tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox .tabbrowser-tab:not([usercontextid]) & {
 				background-color: var(--nept-tab-selected-background) !important;
-				box-shadow: 0 0 0 var(--tab-overflow-clip-margin) var(--nept-tab-multiselected-shadow-color) !important;
 			}
 
 			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox tab-group .tabbrowser-tab:not([usercontextid]) > .tab-stack > & {
 				background-color: color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) !important;
-				box-shadow: 0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 30%, transparent) !important;
+				box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-depth) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox tab-group > tab-split-view-wrapper > .tabbrowser-tab:first-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-left) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-bottom) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox tab-group > tab-split-view-wrapper > .tabbrowser-tab:last-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-top) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-right) oklch(from color-mix(in srgb, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
 			}
 
 			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group]) > #tabbrowser-arrowscrollbox .tabbrowser-tab[usercontextid] > .tab-stack > & {
 				background-color: color-mix(in srgb, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) !important;
-				box-shadow: 0 0 0 var(--tab-overflow-clip-margin) color-mix(in oklab, var(--identity-tab-color) 30%, transparent) !important;
+				box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-depth) oklch(from color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-overflow-clip-margin) var(--nept-tab-shadow-color) !important;
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group]) > #tabbrowser-arrowscrollbox > tab-split-view-wrapper > .tabbrowser-tab[usercontextid]:first-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-left) oklch(from color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-bottom) oklch(from color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-overflow-clip-margin) var(--nept-tab-shadow-color) !important;
+			}
+
+			#tabbrowser-tabs[orient="horizontal"]:not([movingtab-group]) > #tabbrowser-arrowscrollbox tab-split-view-wrapper > .tabbrowser-tab[usercontextid]:last-of-type > .tab-stack > & {
+				box-shadow: var(--shadow-inner-top) oklch(from color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-right) oklch(from color-mix(in oklab, var(--identity-tab-color) 15%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-overflow-clip-margin) var(--nept-tab-shadow-color) !important;
 			}
 
 			#tabbrowser-tabs:not([movingtab-group], [movingtab-ungroup]) > :is(#pinned-tabs-container, #tabbrowser-arrowscrollbox[orient="vertical"]) .tabbrowser-tab[usercontextid]:not([dragtarget]) > .tab-stack > & {
@@ -691,11 +697,7 @@
 
 			#tabbrowser-tabs[orient="horizontal"][movingtab][movingtab-group]:not([movingtab-addToGroup], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox .tabbrowser-tab[dragtarget] > .tab-stack > & {
 				background-color: color-mix(in srgb, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) !important;
-				box-shadow:
-					var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 20%, var(--lwt-accent-color, transparent)),
-					var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 20%, var(--lwt-accent-color, transparent)),
-					0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 4%, transparent)
-				!important;
+				box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 20%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.35) calc(c * 1.04) h), var(--shadow-inner-depth) oklch(from color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 20%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.32) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color) !important;
 			}
 
 			#tabbrowser-tabs[orient="vertical"][movingtab][movingtab-group]:not([movingtab-addToGroup], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox .tabbrowser-tab[dragtarget] > .tab-stack > & {
@@ -759,10 +761,7 @@
 
 			#tabbrowser-tabs[orient="horizontal"][movingtab][movingtab-addToGroup]:not([movingtab-group], [movingtab-ungroup]) > #tabbrowser-arrowscrollbox .tabbrowser-tab:not(tab-group .tabbrowser-tab):is(:active, [multiselected]) > .tab-stack > .tab-background > & {
 				background-color: color-mix(in srgb, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-invert)) 15%, var(--lwt-accent-color, transparent)) !important;
-				box-shadow:
-					var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 20%, var(--lwt-accent-color, transparent)),
-					var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 20%, var(--lwt-accent-color, transparent)),
-					0 0 0 var(--tab-group-label-highlight-thickness) color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 8%, transparent);
+				box-shadow: var(--shadow-inner-glow) oklch(from color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 20%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.4) calc(c * 1.04) h), var(--shadow-inner-depth) oklch(from color-mix(in oklab, light-dark(var(--dragover-tab-group-color), var(--dragover-tab-group-color-pale)) 20%, var(--lwt-accent-color, transparent)) calc(l + (1 - l) * 0.4) c h), 0 0 0 var(--tab-group-label-highlight-thickness) var(--nept-tab-shadow-color);
 				backdrop-filter: blur(12px);
 			}
 		}
@@ -1016,7 +1015,7 @@
 
 					tab:not([dragtarget]):hover & {
 						display: revert;
-						animation: tab-hover-preview-fadein 300ms ease-out both;
+						animation: tab-hover-preview-fadein 500ms ease-out both;
 					}
 				}
 			}

@@ -247,8 +247,8 @@
 }
 
 .pointerlockfswarning {
-	background-color: var(--nept-glass-background) !important;
-	backdrop-filter: saturate(1.2) blur(1em);
+	background-color: #ffffff26 !important;
+	backdrop-filter: saturate(1.2) blur(6px);
 	padding: var(--space-medium) !important;
 	border: none !important;
 	border-radius: var(--border-radius-circle) !important;
@@ -256,7 +256,7 @@
 
 	> #fullscreen-exit-button {
 		appearance: none !important;
-		background-color: var(--color-accent-primary);
+		background-color: #64646480;
 		padding-inline: var(--space-small);
 		border: none;
 		border-radius: var(--border-radius-medium);

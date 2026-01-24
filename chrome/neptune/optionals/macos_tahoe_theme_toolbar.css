@@ -7,41 +7,36 @@
 		--toolbar-start-end-padding: 8px !important;
 		--urlbar-min-height: var(--size-item-xlarge) !important;
 		--urlbar-margin-inline: var(--toolbar-start-end-padding) !important;
-		--opt-tahoe-theme-urlbar-background: light-dark(#00000003, #ffffff0c);
-		--opt-tahoe-theme-urlbar-hover-background: light-dark(#00000001, #ffffff05);
-		--opt-tahoe-theme-urlbar-focused-background: light-dark(#00000005, #ffffff02);
-		--opt-tahoe-theme-urlbar-inactive-background: light-dark(#0000000c, #ffffff19);
+		--opt-tahoe-theme-toolbar-item-background: light-dark(#00000003, #ffffff11);
+		--opt-tahoe-theme-toolbar-item-hover-background: light-dark(#00000005, #ffffff15);
+		--opt-tahoe-theme-toolbar-item-focused-background: light-dark(#00000002, #ffffff10);
+		--opt-tahoe-theme-toolbar-item-inactive-background: light-dark(#0000000c, #ffffff0c);
+		--opt-tahoe-theme-toolbar-item-background-B: light-dark(#ffffff80, #ffffff33);
 		--opt-tahoe-theme-urlbar-shadow: 0 3px 24px #00000010;
 		--opt-tahoe-theme-toolbar-item-shadow: 0 3px 24px #00000016;
-		--opt-tahoe-theme-toolbarbutton-background-A: light-dark(#00000005, #ffffff05);
-		--opt-tahoe-theme-toolbarbutton-background-B: light-dark(#ffffff80, #ffffff33);
-		--opt-tahoe-theme-toolbarbutton-shadow-color-A: light-dark(color-mix(in oklab, var(--lwt-accent-color), #ffffff80), color-mix(in oklab, var(--lwt-accent-color), #ffffff72));
-		--opt-tahoe-theme-toolbarbutton-shadow-color-B: light-dark(#ffffff80, #ffffff3f);
-		--opt-tahoe-theme-toolbarbutton-clip-left: polygon(-30px 0, 0 0, 0 100%, -30px 100%, -30px calc(100% + 30px), calc(100% + 30px) calc(100% + 30px), calc(100% + 30px) -12px, -30px -12px);
-		--opt-tahoe-theme-toolbarbutton-clip-right: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px));
-		--opt-tahoe-theme-toolbarbutton-clip-both: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px), -30px 100%, 0 100%, 0 0, -30px 0);
-		--opt-shadow-inner-left: inset 1.5px 1.25px 0 -0.25px;
-		--opt-shadow-inner-top: inset 0 1.25px 0 -0.25px;
-		--opt-shadow-inner-bottom: inset 0 -1.25px 0 -0.25px;
-		--opt-shadow-inner-right: inset -1.5px -1.25px 0 -0.25px;
+		--opt-tahoe-theme-toolbar-item-shadow-color-A: oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.28) calc(c * 1.04) calc(h - 5));
+		--opt-tahoe-theme-toolbar-item-shadow-color-B: light-dark(#ffffff80, #ffffff3f);
+		--opt-tahoe-theme-toolbar-item-clip-left: polygon(-30px 0, 0 0, 0 100%, -30px 100%, -30px calc(100% + 30px), calc(100% + 30px) calc(100% + 30px), calc(100% + 30px) -12px, -30px -12px);
+		--opt-tahoe-theme-toolbar-item-clip-right: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px));
+		--opt-tahoe-theme-toolbar-item-clip-both: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px), -30px 100%, 0 100%, 0 0, -30px 0);
 	}
 
 	.urlbar > .urlbar-background {
 		:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
-			background-color: var(--opt-tahoe-theme-urlbar-background) !important;
-			box-shadow: var(--opt-tahoe-theme-urlbar-shadow), var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A) !important;
+			background-color: var(--opt-tahoe-theme-toolbar-item-background) !important;
+			box-shadow: var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-urlbar-shadow) !important;
 
 			.urlbar:hover > & {
-				background-color: var(--opt-tahoe-theme-urlbar-hover-background) !important;
+				background-color: var(--opt-tahoe-theme-toolbar-item-hover-background) !important;
 			}
 
 			.urlbar:is([focused], [open]) > & {
-				background-color: var(--opt-tahoe-theme-urlbar-focused-background) !important;
+				background-color: var(--opt-tahoe-theme-toolbar-item-focused-background) !important;
 			}
 		}
 
 		:root:not([customizing]) &:-moz-window-inactive {
-			background-color: var(--opt-tahoe-theme-urlbar-inactive-background) !important;
+			background-color: var(--opt-tahoe-theme-toolbar-item-inactive-background) !important;
 			box-shadow: none !important;
 		}
 	}
@@ -60,8 +55,8 @@
 		}
 
 		:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
-			background-color: var(--opt-tahoe-theme-toolbarbutton-background-A);
-			box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
+			background-color: var(--opt-tahoe-theme-toolbar-item-background);
+			box-shadow: var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-toolbar-item-shadow);
 			opacity: unset !important;
 		}
 	}
@@ -73,8 +68,8 @@
 			margin-inline-end: 0 !important;
 
 			&:not(:-moz-window-inactive) {
-				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
-				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-right);
+				box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-toolbar-item-shadow);
+				clip-path: var(--opt-tahoe-theme-toolbar-item-clip-right);
 			}
 
 			~ .toolbarbutton-1,
@@ -83,8 +78,8 @@
 				border-radius: 0 !important;
 
 				&:not(:-moz-window-inactive) {
-					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
-					clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-both);
+					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-toolbar-item-shadow);
+					clip-path: var(--opt-tahoe-theme-toolbar-item-clip-both);
 				}
 			}
 		}
@@ -95,8 +90,8 @@
 			border-radius: 0 !important;
 
 			&:not(:-moz-window-inactive) {
-				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
-				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-both);
+				box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-toolbar-item-shadow);
+				clip-path: var(--opt-tahoe-theme-toolbar-item-clip-both);
 			}
 		}
 
@@ -106,8 +101,8 @@
 			border-radius: var(--border-radius-circle) 0 0 var(--border-radius-circle) !important;
 
 			&:not(:-moz-window-inactive) {
-				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-left) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-bottom) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
-				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-right);
+				box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-toolbar-item-shadow);
+				clip-path: var(--opt-tahoe-theme-toolbar-item-clip-right);
 			}
 		}
 
@@ -118,8 +113,8 @@
 			border-radius: 0 var(--border-radius-circle) var(--border-radius-circle) 0 !important;
 
 			&:not(:-moz-window-inactive) {
-				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--opt-shadow-inner-top) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A), var(--opt-shadow-inner-right) var(--opt-tahoe-theme-toolbarbutton-shadow-color-A);
-				clip-path: var(--opt-tahoe-theme-toolbarbutton-clip-left);
+				box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-right) var(--opt-tahoe-theme-toolbar-item-shadow-color-A);
+				clip-path: var(--opt-tahoe-theme-toolbar-item-clip-left);
 			}
 		}
 	}

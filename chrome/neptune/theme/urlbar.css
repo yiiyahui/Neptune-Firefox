@@ -288,6 +288,7 @@
 					background-color: var(--color-accent-primary) !important;
 					color: var(--button-text-color-primary) !important;
 					padding-block: var(--space-xsmall) !important;
+					margin-block-end: 0 !important;
 					outline: none !important;
 					border-radius: var(--border-radius-small) !important;
 				}
