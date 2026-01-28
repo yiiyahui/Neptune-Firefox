@@ -11,7 +11,6 @@
 		--opt-tahoe-theme-toolbar-item-hover-background: light-dark(#00000005, #ffffff15);
 		--opt-tahoe-theme-toolbar-item-focused-background: light-dark(#00000002, #ffffff10);
 		--opt-tahoe-theme-toolbar-item-inactive-background: light-dark(#0000000c, #ffffff0c);
-		--opt-tahoe-theme-toolbar-item-background-B: light-dark(#ffffff80, #ffffff33);
 		--opt-tahoe-theme-urlbar-shadow: 0 3px 24px #00000010;
 		--opt-tahoe-theme-toolbar-item-shadow: 0 3px 24px #00000016;
 		--opt-tahoe-theme-toolbar-item-shadow-color-A: oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.28) calc(c * 1.04) calc(h - 5));
@@ -24,7 +23,7 @@
 	.urlbar > .urlbar-background {
 		:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
 			background-color: var(--opt-tahoe-theme-toolbar-item-background) !important;
-			box-shadow: var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-urlbar-shadow) !important;
+			box-shadow: var(--nept-toolbar-item-inner-shadow), var(--opt-tahoe-theme-urlbar-shadow) !important;
 
 			.urlbar:hover > & {
 				background-color: var(--opt-tahoe-theme-toolbar-item-hover-background) !important;
@@ -56,7 +55,7 @@
 
 		:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
 			background-color: var(--opt-tahoe-theme-toolbar-item-background);
-			box-shadow: var(--shadow-inner-glow) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--shadow-inner-depth) var(--opt-tahoe-theme-toolbar-item-shadow-color-A), var(--opt-tahoe-theme-toolbar-item-shadow);
+			box-shadow: var(--nept-toolbar-item-inner-shadow), var(--opt-tahoe-theme-toolbar-item-shadow);
 			opacity: unset !important;
 		}
 	}

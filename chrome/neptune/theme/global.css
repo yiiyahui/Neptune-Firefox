@@ -14,8 +14,6 @@
 	--nept-urlbarView-hover-background: light-dark(color-mix(in srgb, accentcolor 85%, #262626), color-mix(in srgb, accentcolor 85%, #121212));
 	--nept-urlbarView-button-background: light-dark(color-mix(in srgb, accentcolor 70%, #939597), color-mix(in srgb, accentcolor 70%, #646464));
 	--nept-focused-urlbar-highlight-color: light-dark(color-mix(in srgb, accentcolor 85%, #383838), color-mix(in srgb, accentcolor 85%, #323232));
-	--nept-urlbar-inner-shadow-A: var(--shadow-inner-glow) light-dark(color-mix(in oklab, var(--lwt-accent-color), #00000019), color-mix(in oklab, var(--lwt-accent-color), #ffffff80)), var(--shadow-inner-depth) light-dark(color-mix(in oklab, var(--lwt-accent-color), #00000019), color-mix(in oklab, var(--lwt-accent-color), #ffffff80));
-	--nept-urlbar-inner-shadow-B: var(--shadow-inner-glow) light-dark(#ffffff99, #ffffff66), var(--shadow-inner-depth) light-dark(#ffffff99, #ffffff66);
 	/* Tabs */
 	--nept-tabs-box-background: light-dark(#00000011, #ffffff14);
 	--nept-tab-background: transparent;
@@ -32,7 +30,8 @@
 	--nept-tab-hover-shadow-color: light-dark(#00000005, #0000000c);
 	--nept-tab-multiselected-shadow-color: light-dark(color-mix(in oklab, currentColor 25%, var(--lwt-accent-color, transparent)), color-mix(in oklab, currentColor 35%, var(--lwt-accent-color, transparent)));
 	--nept-tab-soundplaying-background: light-dark(color-mix(in srgb, accentcolor 35%, var(--lwt-accent-color, transparent)), color-mix(in srgb, accentcolor 40%, transparent));
-	/* buttons */
+	/* toolbar */
+	--nept-toolbar-item-inner-shadow: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.28) calc(c * 1.04) calc(h - 5)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.28) c calc(h - 5));
 	--nept-button-field-color: light-dark(color-mix(in srgb, currentColor 60%, transparent), color-mix(in srgb, currentColor 70%, transparent));
 	--nept-button-field-hover-color: light-dark(color-mix(in srgb, currentColor 80%, transparent), color-mix(in srgb, currentColor 85%, transparent));
 

@@ -8,6 +8,8 @@
 	--opt-theme-sidebar-width: 20em;
 	--opt-theme-sidebar-box-width: 24em;
 	--opt-theme-sidebar-chat-box-width: 32em;
+	--opt-theme-toolbar-item-background: light-dark(#ffffff80, #ffffff33);
+	--opt-theme-toolbar-item-inner-shadow: var(--shadow-inner-glow) light-dark(#ffffff99, #ffffff66), var(--shadow-inner-depth) light-dark(#ffffff99, #ffffff66);
 }
 
 @media not -moz-pref("sidebar.verticalTabs") {
@@ -34,12 +36,12 @@
 			}
 
 			> .urlbar > .urlbar-background {
-				background-color: var(--opt-tahoe-theme-toolbar-item-background-B) !important;
+				background-color: var(--opt-theme-toolbar-item-background) !important;
 				backdrop-filter: saturate(1.2) blur(6px);
-				box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
+				box-shadow: var(--opt-theme-toolbar-item-inner-shadow) !important;
 
 				@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
-					box-shadow: var(--opt-tahoe-theme-urlbar-shadow), var(--nept-urlbar-inner-shadow-B) !important;
+					box-shadow: var(--opt-theme-toolbar-item-inner-shadow),  var(--opt-tahoe-theme-urlbar-shadow) !important;
 
 					&:-moz-window-inactive {
 						box-shadow: none !important;
@@ -63,8 +65,8 @@
 		@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
 			toolbar .toolbarbutton-1 {
 				:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
-					background-color: var(--opt-tahoe-theme-toolbar-item-background-B);
-					box-shadow: var(--nept-urlbar-inner-shadow-B), var(--opt-tahoe-theme-toolbar-item-shadow);
+					background-color: var(--opt-theme-toolbar-item-background);
+					box-shadow: var(--opt-theme-toolbar-item-inner-shadow), var(--opt-tahoe-theme-toolbar-item-shadow);
 					backdrop-filter: saturate(1.2) blur(12px);
 				}
 			}
@@ -253,12 +255,12 @@
 			}
 
 			> .urlbar > .urlbar-background {
-				background-color: var(--opt-tahoe-theme-toolbar-item-background-B) !important;
+				background-color: var(--opt-theme-toolbar-item-background) !important;
 				backdrop-filter: saturate(1.2) blur(6px);
-				box-shadow: var(--nept-urlbar-inner-shadow-B) !important;
+				box-shadow: var(--opt-theme-toolbar-item-inner-shadow) !important;
 
 				@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
-					box-shadow: var(--opt-tahoe-theme-urlbar-shadow), var(--nept-urlbar-inner-shadow-B) !important;
+					box-shadow: var(--opt-theme-toolbar-item-inner-shadow), var(--opt-tahoe-theme-urlbar-shadow) !important;
 
 					&:-moz-window-inactive {
 						box-shadow: none !important;
@@ -282,8 +284,8 @@
 		@media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
 			toolbar .toolbarbutton-1 {
 				:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
-					background-color: var(--opt-tahoe-theme-toolbar-item-background-B);
-					box-shadow: var(--opt-tahoe-theme-toolbar-item-shadow), var(--nept-urlbar-inner-shadow-B);
+					background-color: var(--opt-theme-toolbar-item-background);
+					box-shadow: var(--opt-theme-toolbar-item-inner-shadow), var(--opt-tahoe-theme-toolbar-item-shadow);
 					backdrop-filter: saturate(1.2) blur(12px);
 				}
 			}

@@ -42,7 +42,7 @@
 		animation: none !important;
 
 		&:not(:-moz-window-inactive, .urlbar[open] > &) {
-			box-shadow: var(--nept-urlbar-inner-shadow-A) !important;
+			box-shadow: var(--nept-toolbar-item-inner-shadow) !important;
 			transition: var(--ext-theme-background-transition), box-shadow 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 		}
 
