@@ -60,6 +60,18 @@
 		border: none !important;
 		border-radius: var(--border-radius-circle) !important;
 
+		/*Unfinished*/
+		/*> .urlbar-input-box > .urlbar-input {
+			mask-image: linear-gradient(to right, black 50%, black calc(100% - 112px), transparent calc(100% - 56px), transparent 100%) !important;
+			mask-size: 200% 100%;
+			mask-position: 0% 0%;
+			transition: mask-position 200ms ease-out;
+
+			.urlbar:is(:hover, [focused]) > .urlbar-input-container > .urlbar-input-box > & {
+				mask-position: 100% 0%;
+			}
+		}*/
+
 		.urlbar:not([focused]) > & > .urlbar-input-box > .urlbar-input {
 			text-align: center !important;
 		}

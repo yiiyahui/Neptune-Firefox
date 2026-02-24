@@ -21,7 +21,7 @@ textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
 
 select:where(:not([size], [multiple])),
 input:where(:not([type=radio i], [type=checkbox i], [type=range i], .urlbar-input, .findbar-textbox, #login-line-input)),
-textarea:not(#select-translations-panel-text-area) {
+textarea:not(#select-translations-panel-text-area, #tab-note-text) {
 	min-height: var(--button-min-height) !important;
 	border: none !important;
 	border-radius: var(--border-radius-small) !important;

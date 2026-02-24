@@ -261,7 +261,6 @@
 		border: none !important;
 
 		button {
-			--newtab-button-secondary-color: var(--button-background-color) !important;
 			padding: var(--space-xsmall) var(--space-medium) !important;
 			border: none !important;
 			border-radius: var(--border-radius-small) !important;
@@ -385,12 +384,10 @@
 
 	.wallpaper-list.category {
 		backdrop-filter: saturate(1.5) blur(2em);
-		inset: 0 !important;
+		inset-inline: 0 !important;
 		margin: 0 !important;
-		height: auto !important;
-		overflow-y: auto;
+		padding: 0 !important;
 		width: auto !important;
-		transition: none !important;
 
 		fieldset {
 			gap: var(--space-small) var(--space-medium) !important;

@@ -166,7 +166,6 @@
 
 	.dialogOverlay[topmost="true"], dialog::backdrop {
 		background-color: transparent !important;
-		backdrop-filter: blur(8px);
 	}
 
 	.dialogTitleBar, separator.groove:not([orient="vertical"]) {
@@ -336,6 +335,10 @@
 	.stp_button_wide .stp_button {
 		padding-block: 4px !important;
 		border-radius: var(--border-radius-small) !important;
+	}
+
+	setting-group moz-card {
+		box-shadow: none !important;
 	}
 
 	/* about memory */

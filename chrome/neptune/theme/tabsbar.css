@@ -427,6 +427,12 @@
 			tab-group > &:not([dragtarget]) {
 				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin) + var(--tab-inner-inline-margin)) !important;
 			}
+
+			tab-group > &[dragtarget] {
+				width: calc(100% - 2 * var(--tab-inner-inline-margin)) !important;
+				max-width: calc(100% - 2 * var(--tab-inner-inline-margin)) !important;
+				transition: width 150ms ease-out, max-width 150ms ease-out;
+			}
 		}
 
 		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
@@ -831,8 +837,6 @@
 		> .tab-note-icon {
 			list-style-image: url("../assets/icons/tab-notes-12.svg") !important;
 			align-self: flex-start;
-			width: calc(var(--icon-size) + 4px) !important;
-			height: calc(var(--icon-size) + 4px) !important;
 			padding: 0 var(--tab-overflow-clip-margin) var(--tab-overflow-clip-margin) !important;
 			margin-inline-end: 0 !important;
 			fill: accentcolor !important;
@@ -896,6 +900,10 @@
 			&:is([tab-note], [muted], [soundplaying], [activemedia-blocked]) {
 				animation: tab-hover-preview-fadein 200ms ease-out both;
 			}
+
+			&:not([muted], [activemedia-blocked])[soundplaying-scheduledremoval] {
+				animation: widget-animate-out 200ms ease-out both var(--soundplaying-removal-delay);
+			}
 		}
 
 		> .tab-icon-stack {
@@ -907,6 +915,7 @@
 				&:not(#tabbrowser-tabs[overflow] &:not([selected])) {
 					margin-inline-start: auto;
 
+					/* Increase left padding when a tab has both 'note' and 'media playing' states to prevent label jittering while keeping it centered. but in edge cases, it still cannot be avoided.*/
 					.tabbrowser-tab[tab-note]:is([muted], [soundplaying], [activemedia-blocked]) &:not(:has(~ .tab-label-container[textoverflow])) {
 						padding-inline-start: calc(var(--icon-size-xsmall) + (var(--tab-icon-end-margin) - var(--tab-overflow-clip-margin)));
 					}
@@ -1160,6 +1169,10 @@
 
 	> .panel-body {
 		padding-block: 0 var(--space-medium) !important;
+
+		> #tab-note-text {
+			border: none !important;
+		}
 	}
 }
 
@@ -1167,10 +1180,45 @@
 	> .tab-preview-text-container {
 		padding: var(--space-large) !important;
 		order: 1;
+
+		&:has(~ :is(.tab-preview-note-container:not(:empty), .tab-preview-add-note:not([hidden]))) {
+			padding-top: var(--space-small) !important;
+		}
 	}
 
 	> .tab-preview-thumbnail-container {
-		border: none !important;
+		width: auto !important;
+		margin: auto !important;
+
+		> canvas {
+			border: none !important;
+			border-radius: 0 !important;
+		}
+	}
+
+	> .tab-note-text-container:not(:empty) {
+		margin: var(--space-large) var(--space-large) auto !important;
+	}
+
+	> .tab-preview-add-note {
+		--box-icon-size: var(--size-item-xsmall) !important;
+		--box-padding: var(--toolbarbutton-outer-padding) var(--space-small) !important;
+		--box-border-radius: var(--border-radius-small) !important;
+		--button-width: fit-content;
+		--nav-icon-display: none;
+		margin: var(--space-xsmall) var(--space-small) 0 !important;
+
+		.tab-preview-thumbnail-container.hide-thumbnail ~ & {
+			margin-top: var(--space-small) !important;
+		}
+	}
+}
+
+button.button {
+	width: var(--button-width, 100%) !important;
+
+	.icon.nav-icon {
+		display: var(--nav-icon-display, inherit);
 	}
 }
 
