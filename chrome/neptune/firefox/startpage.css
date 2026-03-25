@@ -224,14 +224,13 @@
 	}
 
 	.modalOverlayOuter, .modal-overlay {
-		background: none !important;
+		background-color: var(--newtab-background-card) !important;
+		border-radius: var(--border-radius-large) !important;
+		box-shadow: var(--nept-menu-shadow) !important;
 	}
 
 	.modal {
 		backdrop-filter: saturate(1.5) blur(2em);
-		border-radius: var(--border-radius-large) !important;
-		box-shadow: var(--nept-menu-shadow) !important;
-		font-size: var(--font-size-root) !important;
 
 		.edit-topsites-wrapper & {
 			width: 40em !important;
@@ -257,7 +256,6 @@
 	}
 
 	.actions {
-		padding-block: 0 !important;
 		border: none !important;
 
 		button {

@@ -3,7 +3,7 @@
 .urlbar-background,
 .findbar-textbox,
 sidebar-panel-header .search-container,
-input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search),
+input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search, .urlbar-input),
 textarea:not(#select-translations-panel-text-area) {
 	outline: 18px solid transparent !important;
 }
@@ -12,7 +12,7 @@ textarea:not(#select-translations-panel-text-area) {
 .urlbar[open] > .urlbar-background,
 .findbar-textbox:focus,
 sidebar-panel-header .search-container:focus-within,
-input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search):focus-visible,
+input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search, .urlbar-input):focus-visible,
 textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
 	outline: 3px solid var(--nept-input-outline-color) !important;
 	box-shadow: var(--nept-input-inner-shadow) !important;

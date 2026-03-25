@@ -362,7 +362,7 @@
 		border-radius: var(--border-radius-xsmall);
 		box-shadow: var(--nept-checkbox-shadow);
 
-		&:is(:checked, [checked="true"]) {
+		&:is(:checked, [checked]) {
 			background-color: var(--color-accent-primary) !important;
 			background-image: url("../assets/icons/check.svg") !important;
 			border: none;

@@ -102,7 +102,7 @@
 					transition: margin-inline 150ms ease-out !important;
 				}
 
-				#tabbrowser-tabs[movingtab][movingtab-addToGroup]:not(:is([movingtab-group], [movingtab-ungroup])) &[dragtarget] {
+				#tabbrowser-tabs[movingtab][movingtab-addToGroup]:not(:is([movingtab-group], [movingtab-ungroup])) &:is(:active, [multiselected]) {
 					margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
 					width: calc(100% - (var(--size-item-small) + var(--tab-icon-end-margin))) !important;
 					transition: margin-inline 100ms ease-out, width 100ms ease-out !important;
@@ -177,6 +177,10 @@
 			height: var(--tabstrip-min-height) !important;
 			margin-inline: 0 var(--tab-inline-padding) !important;
 			padding-inline: calc((var(--tabstrip-min-height) - var(--icon-size-xsmall)) / 2) !important;
+
+			&[visible] #pinned-drop-indicator-icon {
+				align-self: center;
+			}
 		}
 
 		#tabbrowser-tabs[orient="vertical"] > & {
@@ -437,6 +441,10 @@
 
 		#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
 			margin-inline: auto !important;
+
+			&:first-child {
+				margin-block-start: 0 !important;
+			}
 		}
 	}
 }
@@ -470,7 +478,7 @@
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper > .tabbrowser-tab > .tab-stack > & {
-			--tab-min-height: var(--size-item-medium) !important;
+			min-height: var(--tab-min-height) !important;
 		}
 
 		#tabbrowser-tabs:not([orient="vertical"]:not([expanded])) tab-split-view-wrapper > .tabbrowser-tab > .tab-stack > & {
@@ -842,6 +850,11 @@
 			fill: accentcolor !important;
 			transition: filter 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 
+			&:hover {
+				height: var(--dimension-24) !important;
+				transition: height 200ms ease-out;
+			}
+
 			#tabbrowser-arrowscrollbox .tabbrowser-tab:not([selected], [pending]) & {
 				fill: var(--icon-color) !important;
 				filter: invert(50%); 
@@ -935,6 +948,10 @@
 				padding: 0 !important;
 				fill: accentcolor !important;
 				transition: filter 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+
+				&:hover {
+					filter: brightness(120%);
+				}
 
 				#tabbrowser-tabs[orient="vertical"] & {
 					top: calc((var(--tab-min-height) - var(--icon-size)) / -2) !important;
@@ -1159,16 +1176,9 @@
 .tab-note-editor-panel {
 	--panel-padding: var(--space-medium) !important;
 
-	> .panel-header {
-		min-height: auto !important;
-
-		> h1 {
-			margin: var(--space-xsmall) !important;
-		}
-	}
-
-	> .panel-body {
-		padding-block: 0 var(--space-medium) !important;
+	> .panel-subview-body {
+		padding-top: var(--space-xsmall) !important;
+		padding-bottom: var(--space-xsmall) !important;
 
 		> #tab-note-text {
 			border: none !important;
@@ -1177,49 +1187,59 @@
 }
 
 #tab-preview-panel {
-	> .tab-preview-text-container {
-		padding: var(--space-large) !important;
-		order: 1;
+	> .tab-preview-content-main {
+		padding: 0 !important;
 
-		&:has(~ :is(.tab-preview-note-container:not(:empty), .tab-preview-add-note:not([hidden]))) {
-			padding-top: var(--space-small) !important;
+		@media not -moz-pref("browser.tabs.notes.enabled") {
+			> * {
+				order: unset !important;
+			}
+		}
+
+		> .tab-preview-thumbnail-container {
+			width: auto !important;
+
+			> canvas {
+				border: none !important;
+				border-radius: 0 !important;
+			}
+		}
+
+		> .tab-preview-text-container {
+			margin: var(--space-large) !important;
+
+			.tab-preview-content-interactive:not(:empty) + .tab-preview-content-main > &,
+			&:not(.tab-preview-thumbnail-container.hide-thumbnail + &) {
+				margin-top: var(--space-small) !important;
+			}
 		}
 	}
 
-	> .tab-preview-thumbnail-container {
-		width: auto !important;
-		margin: auto !important;
+	/* "Add note" button shown only on the current tab. */
+	> .tab-preview-content-interactive:not(:empty) {
+		padding: var(--space-large) var(--space-small) 0 !important;
 
-		> canvas {
-			border: none !important;
-			border-radius: 0 !important;
+		.tab-preview-add-note {
+			width: fit-content;
+			min-height: var(--dimension-20) !important;
+
+			> moz-badge {
+				display: none !important;
+			}
+
+			&::after {
+				content: none !important;
+			}
 		}
-	}
 
-	> .tab-note-text-container:not(:empty) {
-		margin: var(--space-large) var(--space-large) auto !important;
-	}
-
-	> .tab-preview-add-note {
-		--box-icon-size: var(--size-item-xsmall) !important;
-		--box-padding: var(--toolbarbutton-outer-padding) var(--space-small) !important;
-		--box-border-radius: var(--border-radius-small) !important;
-		--button-width: fit-content;
-		--nav-icon-display: none;
-		margin: var(--space-xsmall) var(--space-small) 0 !important;
-
-		.tab-preview-thumbnail-container.hide-thumbnail ~ & {
-			margin-top: var(--space-small) !important;
+		&:has(+ .tab-preview-content-main > .tab-preview-thumbnail-container:not(.tab-preview-thumbnail-container.hide-thumbnail)) {
+			display: none !important;
 		}
 	}
 }
 
-button.button {
-	width: var(--button-width, 100%) !important;
-
-	.icon.nav-icon {
-		display: var(--nav-icon-display, inherit);
-	}
+#tab-note-preview-panel {
+	--tab-note-text-background: transparent !important;
 }
 
 #scrollbutton-up[tooltiptext="Scroll backwards"],

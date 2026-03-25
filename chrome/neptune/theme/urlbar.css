@@ -84,6 +84,16 @@
 			> #trust-icon-container {
 				height: auto !important;
 				border-radius: var(--border-radius-xlarge) 0 0 var(--border-radius-xlarge) !important;
+				background-color: transparent !important;
+				fill-opacity: 0.7 !important;
+
+				&:hover:not([open="true"]) {
+					fill-opacity: var(--urlbar-icon-fill-opacity) !important;
+				}
+
+				&:is(:hover:active, [open="true"]) {
+					fill-opacity: 1 !important;
+				}
 
 				&:where(.insecure) {
 					list-style-image: url("../assets/icons/trust-icon-insecure.svg") !important;
@@ -348,7 +358,15 @@
 			border: none !important;
 			border-radius: var(--border-radius-small) !important;
 			background-image: none !important;
-			background-color: var(--button-background-color) !important;
+
+			&:not(.urlbarView-tabGroup) {
+				background-color: var(--button-background-color) !important;
+			}
+
+			&.urlbarView-tabGroup {
+				background-color: light-dark(var(--tab-group-color-pale), var(--tab-group-color-invert)) !important;
+				color: light-dark(var(--tab-group-color), var(--tab-group-label-text-dark)) !important;
+			}
 
 			&.urlbarView-userContext {
 				background-color: color-mix(in oklab, var(--identity-icon-color) 20%, transparent) !important;
@@ -469,13 +487,13 @@
 #identity-box {
 	margin-inline: 0 !important;
 	margin-block: var(--urlbar-icon-padding);
-	fill-opacity: 0.6 !important;
+	fill-opacity: 0.7 !important;
 
 	&[pageproxystate="valid"] > .identity-box-button {
 		background: none !important;
 
 		&:hover:not([open]) {
-			fill-opacity: 0.8;
+			fill-opacity: var(--urlbar-icon-fill-opacity) !important;
 		}
 
 		&:is(:hover:active, [open]) {
@@ -486,14 +504,14 @@
 	> #notification-popup-box {
 		background: none !important;
 		height: auto !important;
-		fill-opacity: 0.6 !important;
+		fill-opacity: 0.7 !important;
 
 		> .notification-anchor-icon {
 			height: calc(var(--urlbar-min-height) - 2 * var(--urlbar-icon-padding));
 		}
 
 		&:hover {
-			fill-opacity: 0.8 !important;
+			fill-opacity: var(--urlbar-icon-fill-opacity) !important;
 		}
 
 		&:is(:hover:active, [open]) {
@@ -511,6 +529,14 @@
 			margin-inline-start: 0;
 			visibility: visible;
 			opacity: 1;
+		}
+
+		@media -moz-pref("browser.urlbar.trustPanel.featureGate") {
+			&:is(.urlbar:is(:hover, [open]) &, [open]) {
+				margin-inline-start: 0;
+				visibility: visible;
+				opacity: 1;
+			}
 		}
 	}
 
