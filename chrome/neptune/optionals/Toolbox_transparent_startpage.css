@@ -13,7 +13,8 @@
 }
 
 @media not -moz-pref("sidebar.verticalTabs") {
-	#navigator-toolbox:has(tab:not(tab-split-view-wrapper > tab)[image^="chrome://"][selected]:is([label="New Tab"], [label="New Private Tab"])) {
+	:root[hide-ai-sidebar]:not(:has(#browser #tabbrowser-tabpanels[splitview])) #navigator-toolbox,
+	:root[privatebrowsingmode] #navigator-toolbox:has(tab:not(tab-split-view-wrapper > tab)[image^="chrome://browser/skin/privatebrowsing"][selected]) {
 		--browser-area-z-index-toolbox: 3;
 		position: fixed !important;
 		background-color: transparent !important;
@@ -67,7 +68,7 @@
 				:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
 					background-color: var(--opt-theme-toolbar-item-background);
 					box-shadow: var(--opt-theme-toolbar-item-inner-shadow), var(--opt-tahoe-theme-toolbar-item-shadow);
-					backdrop-filter: saturate(1.2) blur(12px);
+					backdrop-filter: saturate(1.2) blur(3px);
 				}
 			}
 
@@ -233,7 +234,8 @@
 }
 
 @media -moz-pref("sidebar.verticalTabs") {
-	#navigator-toolbox:has(+ #browser #vertical-tabs tab:not(tab-split-view-wrapper > tab)[image^="chrome://"][selected]:is([label="New Tab"], [label="New Private Tab"])) {
+	:root[hide-ai-sidebar]:not(:has(#browser #tabbrowser-tabpanels[splitview])) #navigator-toolbox,
+	:root[privatebrowsingmode] #navigator-toolbox:has(+ #browser #vertical-tabs tab:not(tab-split-view-wrapper > tab)[image^="chrome://browser/skin/privatebrowsing"][selected]) {
 		--browser-area-z-index-toolbox: 3;
 		position: fixed !important;
 		background-color: transparent !important;
@@ -286,7 +288,7 @@
 				:root:not([customizing]) #nav-bar &:not(:-moz-window-inactive) {
 					background-color: var(--opt-theme-toolbar-item-background);
 					box-shadow: var(--opt-theme-toolbar-item-inner-shadow), var(--opt-tahoe-theme-toolbar-item-shadow);
-					backdrop-filter: saturate(1.2) blur(12px);
+					backdrop-filter: saturate(1.2) blur(3px);
 				}
 			}
 

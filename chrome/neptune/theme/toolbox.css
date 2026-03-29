@@ -233,7 +233,7 @@
 							color: var(--color-accent-primary-hover) !important;
 						}
 
-						&:where(:hover:active, [checked="true"], [open="true"]) {
+						&:where(:hover:active, [checked], [open]) {
 							color: var(--color-accent-primary-active) !important;
 						}
 					}
@@ -298,7 +298,7 @@ findbar {
 					background-color: var(--button-background-color-hover);
 				}
 
-				checkbox[checked="true"] & {
+				checkbox[checked] & {
 					background-color: var(--button-background-color-primary-active);
 					color: var(--button-text-color-primary);
 				}

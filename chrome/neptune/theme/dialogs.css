@@ -62,7 +62,7 @@
 	}
 
 	#downloadsListBox > richlistitem {
-		&[selected="true"] {
+		&[selected] {
 			background-image: none !important;
 			background-color: var(--color-accent-primary-active) !important;
 			color: var(--button-text-color-primary) !important;
@@ -109,7 +109,7 @@
 			background-color: var(--color-accent-primary-active) !important;
 		}
 
-		&:where([disabled="true"]) {
+		&:where([disabled]) {
 			background-color: var(--button-background-color-disabled) !important;
 		}
 	}

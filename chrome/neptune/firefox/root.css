@@ -48,13 +48,20 @@
 	--theme-arrowpanel-border-radius: 8px !important;
 	--tab-line-selected-color: transparent !important;
 	--tab-line-hover-color: transparent !important;
+	--icon-size: var(--icon-size-xsmall) !important;
 	--font-size-root: var(--default-font-size) !important;
 	--font-size-small: 0.96rem !important;
 	--font-size-large: 1.2rem !important;
 	--font-size-xlarge: 1.44rem !important;
 	--font-size-xxlarge: 1.76rem !important;
 	--font-size-xxxlarge: 2rem !important;
+	--space-xxsmall: calc(0.5 * var(--space-xsmall)) !important;
 	--space-xsmall: 0.32rem !important;
+	--space-small: calc(2 * var(--space-xsmall)) !important;
+	--space-medium: calc(3 * var(--space-xsmall)) !important;
+	--space-large: calc(4 * var(--space-xsmall)) !important;
+	--space-xlarge: calc(6 * var(--space-xsmall)) !important;
+	--space-xxlarge: calc(8 * var(--space-xsmall)) !important;
 }
 
 ::selection {

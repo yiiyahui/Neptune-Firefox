@@ -13,7 +13,7 @@ toolbar .toolbarbutton-1 {
 		transition: var(--ext-theme-background-transition);
 	}
 
-	#nav-bar &:not(:where([disabled="true"])):-moz-window-inactive {
+	#nav-bar &:not(:where([disabled])):-moz-window-inactive {
 		opacity: var(--inactive-titlebar-opacity) !important;
 	}
 

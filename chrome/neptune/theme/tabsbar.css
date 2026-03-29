@@ -22,6 +22,7 @@
 		> #tabbrowser-arrowscrollbox {
 			background-color: var(--nept-tabs-box-background);
 			border-radius: var(--tab-border-radius);
+			transition: margin-inline 100ms ease-out;
 
 			#pinned-tabs-container:not(:empty) ~ & {
 				margin-inline-start: var(--tab-block-margin);

@@ -121,7 +121,7 @@ panel {
 			background-color: transparent !important;
 
 			> .autocomplete-richlistitem {
-				&:not([disabled="true"]):not([selected]):hover {
+				&:not([disabled]):not([selected]):hover {
 					background-color: var(--color-accent-primary-hover) !important;
 					color: var(--button-text-color-primary) !important;
 				}
@@ -186,12 +186,12 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 				padding-block: calc((var(--button-min-height) - 16px) / 2) !important;
 			}
 
-			&:where([_moz-menuactive]:not([disabled="true"])) {
+			&:where([_moz-menuactive]:not([disabled])) {
 				background-color: var(--color-accent-primary-hover) !important;
 				color: var(--button-text-color-primary) !important;
 			}
 
-			&:where([_moz-menuactive="true"][disabled="true"]) {
+			&:where([_moz-menuactive][disabled]) {
 				background: none !important;
 			}
 		}
@@ -209,12 +209,12 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 		}
 
 		> #context-navigation {
-			> menuitem:where([_moz-menuactive]:not([disabled="true"])) {
+			> menuitem:where([_moz-menuactive]:not([disabled])) {
 				background: none !important;
 				color: var(--color-accent-primary-hover) !important;
 			}
 
-			> menuitem:where([_moz-menuactive][disabled="true"]) {
+			> menuitem:where([_moz-menuactive][disabled]) {
 				background: none !important;
 			}
 
@@ -236,7 +236,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 		}
 
 		#ContentSelectDropdown > & {
-			> .ContentSelectDropdown-item-0:not([_moz-menuactive="true"]) {
+			> .ContentSelectDropdown-item-0:not([_moz-menuactive]) {
 				background-color: transparent !important;
 				color: menutext !important;
 			}

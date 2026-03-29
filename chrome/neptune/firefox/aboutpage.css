@@ -379,7 +379,7 @@
 		border-radius: 50%;
 		box-shadow: var(--nept-checkbox-shadow);
 
-		&:is(:checked, [selected="true"]) {
+		&:is(:checked, [selected]) {
 			background-color: var(--color-accent-primary) !important;
 			background-image: url("../assets/icons/radio.svg");
 			border: none;
