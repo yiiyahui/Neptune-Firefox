@@ -456,7 +456,7 @@
 #page-action-buttons {
 	--urlbar-icon-padding: calc((var(--size-item-large) - 2px - 2px - 16px ) / 2) !important;
 
-	> .urlbar-page-action:not(#reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
+	> .urlbar-page-action:not(#star-button-box, #reader-mode-button[readeractive], #picture-in-picture-button[pipactive], #translations-button[translationsactive]) {
 		margin-inline-end: calc(-1 * var(--size-item-small) - 2 * var(--urlbar-icon-padding));
 		visibility: collapse;
 		opacity: 0;

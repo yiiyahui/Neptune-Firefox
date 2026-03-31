@@ -13,6 +13,12 @@ toolbar .toolbarbutton-1 {
 		transition: var(--ext-theme-background-transition);
 	}
 
+	&[widget-id="ipprotection-button"] > .toolbarbutton-icon {
+		clip-path: unset;
+		padding-block: var(--toolbarbutton-inner-padding) !important;
+		border-radius: var(--border-radius-circle) !important;
+	}
+
 	#nav-bar &:not(:where([disabled])):-moz-window-inactive {
 		opacity: var(--inactive-titlebar-opacity) !important;
 	}
@@ -47,11 +53,13 @@ toolbar .toolbaritem-combined-buttons {
 	}
 
 	.toolbarbutton-badge {
-		background-color: var(--color-accent-primary) !important;
+		background-color: var(--color-violet-50) !important;
 		border-radius: var(--border-radius-large) !important;
-		min-width: var(--size-item-small) !important;
-		padding: 0 !important;
-		line-height: var(--size-item-small) !important;
+		min-width: var(--size-item-xsmall) !important;
+		padding: 0 var(--space-xsmall) !important;
+		line-height: var(--size-item-xsmall) !important;
+		box-shadow: none !important;
+		font-size: 9px !important;
 		font-weight: normal !important;
 
 		toolbarbutton:is(:active, [open]) & {

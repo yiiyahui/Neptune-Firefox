@@ -1,5 +1,5 @@
 /* https://github.com/yiiyahui/Neptune-Firefox
- * When the downloads or extensions buttons are visible, they group together with the main menu button, including any buttons between them. */
+ * When the downloads or extensions buttons are visible, they group together with the main menu button, including any buttons between them, Adjacent extensions buttons are also joined together. */
 @media (-moz-mac-tahoe-theme) or (-moz-pref("tahoe.theme.toolbar")) {
 	:root {
 		--nept-browser-toolbox-padding: 8px;
@@ -15,7 +15,7 @@
 		--opt-tahoe-theme-toolbar-item-shadow: 0 3px 24px #00000016;
 		--opt-tahoe-theme-toolbar-item-shadow-color-A: oklch(from var(--lwt-accent-color) calc(l + (1 - l) * 0.28) calc(c * 1.04) calc(h - 5));
 		--opt-tahoe-theme-toolbar-item-shadow-color-B: light-dark(#ffffff80, #ffffff3f);
-		--opt-tahoe-theme-toolbar-item-clip-left: polygon(-30px 0, 0 0, 0 100%, -30px 100%, -30px calc(100% + 30px), calc(100% + 30px) calc(100% + 30px), calc(100% + 30px) -12px, -30px -12px);
+		--opt-tahoe-theme-toolbar-item-clip-left: polygon(calc(100% + 30px) -12px, -30px -12px, -30px 0, 0 0, 0 100%, -30px 100%, -30px calc(100% + 30px), calc(100% + 30px) calc(100% + 30px));
 		--opt-tahoe-theme-toolbar-item-clip-right: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px));
 		--opt-tahoe-theme-toolbar-item-clip-both: polygon(-30px -12px, calc(100% + 30px) -12px, calc(100% + 30px) 0, 100% 0, 100% 100%, calc(100% + 30px) 100%, calc(100% + 30px) calc(100% + 30px), -30px calc(100% + 30px), -30px 100%, 0 100%, 0 0, -30px 0);
 	}
@@ -84,6 +84,7 @@
 		}
 
 		toolbaritem > :is(#copy-button, #zoom-reset-button),
+		#urlbar-container ~ toolbaritem  ~ toolbaritem:has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1,
 		#nav-bar-overflow-button {
 			margin-inline: 0 !important;
 			border-radius: 0 !important;
@@ -95,6 +96,9 @@
 		}
 
 		#back-button:has(+ #forward-button),
+		#home-button:has(+ #stop-reload-button),
+		#stop-reload-button:has(+ #home-button) > *,
+		#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1),
 		toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1) {
 			margin-inline-end: 0 !important;
 			border-radius: var(--border-radius-circle) 0 0 var(--border-radius-circle) !important;
@@ -106,6 +110,9 @@
 		}
 
 		#back-button + #forward-button,
+		#stop-reload-button + #home-button,
+		#home-button + #stop-reload-button > *,
+		#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1),
 		toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1),
 		&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button {
 			margin-inline-start: 0 !important;

@@ -194,6 +194,22 @@
 	list-style-image: url("../assets/icons/import.svg") !important;
 }
 
+#ipprotection-button {
+	list-style-image: url("../assets/icons/ipprotection-off.svg") !important;
+
+	&.ipprotection-on {
+		list-style-image: url("../assets/icons/ipprotection-on.svg") !important;
+	}
+
+	&.ipprotection-error {
+		list-style-image: url("../assets/icons/ipprotection-error.svg") !important;
+	}
+
+	&.ipprotection-excluded {
+		list-style-image: url("../assets/icons/ipprotection-excluded.svg") !important;
+	}
+}
+
 treechildren::-moz-tree-image(title, container),
 treechildren::-moz-tree-image(title, open),
 .bookmark-item[container], .folder-icon {

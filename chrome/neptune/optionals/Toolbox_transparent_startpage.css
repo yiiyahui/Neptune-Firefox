@@ -84,16 +84,23 @@
 				}
 
 				toolbaritem > :is(#copy-button, #zoom-reset-button):not(:-moz-window-inactive),
+				#urlbar-container ~ toolbaritem  ~ toolbaritem:has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:-moz-window-inactive),
 				#nav-bar-overflow-button:not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
 				#back-button:has(+ #forward-button):not(:-moz-window-inactive),
+				#home-button:has(+ #stop-reload-button):not(:-moz-window-inactive),
+				#stop-reload-button:has(+ #home-button) > *:not(:-moz-window-inactive),
+				#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
 				#back-button + #forward-button:not(:-moz-window-inactive),
+				#stop-reload-button + #home-button:not(:-moz-window-inactive),
+				#home-button + #stop-reload-button > *:not(:-moz-window-inactive),
+				#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-right) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow) !important;
@@ -304,16 +311,23 @@
 				}
 
 				toolbaritem > :is(#copy-button, #zoom-reset-button):not(:-moz-window-inactive),
+				#urlbar-container ~ toolbaritem  ~ toolbaritem:has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:-moz-window-inactive),
 				#nav-bar-overflow-button:not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
 				#back-button:has(+ #forward-button):not(:-moz-window-inactive),
+				#home-button:has(+ #stop-reload-button):not(:-moz-window-inactive),
+				#stop-reload-button:has(+ #home-button) > *:not(:-moz-window-inactive),
+				#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
 				#back-button + #forward-button:not(:-moz-window-inactive),
+				#stop-reload-button + #home-button:not(:-moz-window-inactive),
+				#home-button + #stop-reload-button > *:not(:-moz-window-inactive),
+				#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-right) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow) !important;
