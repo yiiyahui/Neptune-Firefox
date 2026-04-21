@@ -4,7 +4,7 @@
 	}
 
 	body {
-		clip-path: var(--in-content-clip-path);
+		clip-path: var(--browser-clip-region);
 	}
 
 	#controls .control-item {

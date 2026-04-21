@@ -95,9 +95,8 @@
 			}
 		}
 
-		#back-button:has(+ #forward-button),
-		#home-button:has(+ #stop-reload-button),
-		#stop-reload-button:has(+ #home-button) > *,
+		#nav-bar-customization-target :is(#back-button:has(+ #forward-button), #home-button:has(+ #stop-reload-button), #stop-reload-button:has(+ #home-button) > *),
+		#urlbar-container + toolbaritem:has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1,
 		#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1),
 		toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1) {
 			margin-inline-end: 0 !important;
@@ -109,9 +108,7 @@
 			}
 		}
 
-		#back-button + #forward-button,
-		#stop-reload-button + #home-button,
-		#home-button + #stop-reload-button > *,
+		#nav-bar-customization-target :is(#back-button + #forward-button, #stop-reload-button + #home-button, #home-button + #stop-reload-button > *),
 		#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1),
 		toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1),
 		&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button {

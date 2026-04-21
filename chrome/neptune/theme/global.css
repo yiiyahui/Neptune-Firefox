@@ -66,7 +66,7 @@
 	--arrowpanel-menuitem-padding-block: 0 !important;
 	--arrowpanel-padding: calc(var(--arrowpanel-menuitem-margin-inline) + var(--arrowpanel-menuitem-padding-inline)) !important;
 	--tabpanel-background-color: transparent !important;
-	--in-content-clip-path: inset(0 round 0.01px 0 0);
+	--browser-clip-region: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 	--toolbarbutton-inner-padding: calc((var(--size-item-large) - var(--size-item-small)) / 2) !important;
 	--toolbarbutton-icon-fill: color-mix(in srgb, currentColor 70%, transparent) !important;
 	--background-color-canvas: var(--nept-secondary-background) !important;
@@ -84,8 +84,8 @@
 	--toolbarbutton-icon-fill-attention: var(--color-accent-primary) !important;
 	--toolbar-field-focus-background-color: var(--nept-item-active-background) !important;
 	--sidebar-background-color: transparent !important;
-	--sidebar-border-color: var(--border-color-card) !important;
-	--sidebar-box-border-color: var(--border-color-card) !important;
+	--sidebar-border-color: var(--card-border-color) !important;
+	--sidebar-box-border-color: var(--card-border-color) !important;
 	--urlbar-box-bgcolor: transparent !important;
 	--urlbar-box-focus-bgcolor: transparent !important;
 	--urlbarView-action-button-background-color: var(--button-background-color) !important;
@@ -104,7 +104,7 @@
 	--organizer-pane-background: var(--nept-background-canvas) !important;
 	--organizer-content-background: var(--nept-content-background) !important;
 	--organizer-hover-background: var(--nept-item-hover-background) !important;
-	--organizer-border-color: var(--border-color-card) !important;
+	--organizer-border-color: var(--card-border-color) !important;
 	--organizer-outline-color: transparent !important;
 	@media not -moz-pref("sidebar.verticalTabs") {
 		--window-min-width: 600px !important;

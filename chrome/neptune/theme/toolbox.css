@@ -150,13 +150,13 @@
 
 	#customization-panelWrapper {
 		> .panel-arrowcontent {
-			border-color: var(--in-content-box-border-color) !important;
+			border-color: var(--card-border-color) !important;
 			border-radius: var(--arrowpanel-border-radius) !important;
 			box-shadow: var(--nept-menu-shadow) !important;
 		}
 
 		> .panel-arrowbox > .panel-arrow[side="top"] {
-			stroke: var(--in-content-box-border-color) !important;
+			stroke: var(--card-border-color) !important;
 		}
 	}
 }
@@ -167,7 +167,7 @@
  	}
 
 	> #tabbrowser-tabbox {
-		clip-path: var(--in-content-clip-path);
+		clip-path: var(--browser-clip-region);
 
 		.browserContainer {
 			@media -moz-pref("sidebar.revamp") {

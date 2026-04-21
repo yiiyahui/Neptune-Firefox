@@ -94,6 +94,12 @@
 		}
 	}
 
+	.asrouter-newtab-message-wrapper {
+		border: none !important;
+		border-radius: var(--border-radius-xlarge) !important;
+		max-width: calc(8 * (2 * var(--size-item-large) + var(--space-xlarge)) - var(--space-xlarge)) !important;
+	}
+
 	.top-site-outer {
 		background: none !important;
 		width: calc(2 * var(--size-item-large) + var(--space-xlarge)) !important;
@@ -463,6 +469,7 @@
 	.weatherInfoLink {
 		background-color: var(--newtab-weather-background-color) !important;
 		backdrop-filter: saturate(1.5) blur(1em);
+		padding: var(--space-medium) var(--space-large) !important;
 		border-radius: var(--border-radius-circle) !important;
 	}
 

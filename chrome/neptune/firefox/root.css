@@ -1,11 +1,11 @@
 :root {
 	--background-color-canvas: var(--nept-background-canvas) !important;
-	--in-content-table-background: var(--nept-content-background) !important;
-	--in-content-box-info-background: var(--nept-content-background) !important;
+	--background-color-box: var(--nept-menu-background) !important;
 	--background-color-box-info: var(--nept-background-canvas) !important;
+	--table-background-color: var(--nept-content-background) !important;
+	--table-border-color: var(--card-border-color) !important;
 	--table-row-background-color: var(--nept-background-canvas) !important;
 	--table-row-background-color-alternate: var(--nept-content-background) !important;
-	--background-color-box: var(--nept-menu-background) !important;
 	--newtab-primary-element-text-color: #fff !important;
 	--newtab-background-color: var(--nept-background-canvas) !important;
 	--newtab-background-color-secondary: var(--nept-secondary-background) !important;

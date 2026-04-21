@@ -1,6 +1,7 @@
 @-moz-document regexp(".*\\.pdf") {
 	:root {
 		--toolbar-horizontal-padding: 12px !important;
+		--icon-size: 16px !important;
 		--button-hover-color: var(--nept-item-hover-background) !important;
 		--dropdown-btn-bg-color: var(--nept-item-background) !important;
 		--doorhanger-bg-color: Menu !important;
@@ -28,7 +29,6 @@
 		--button-secondary-active-bg-color: var(--button-background-color-active) !important;
 		--text-primary-color: GrayText !important;
 		--text-secondary-color: GrayText !important;
-		--dialog-shadow: var(--nept-panel-shadow) !important;
 
 		.mainContainer button:not(:is(.toggle-button, .closeButton, .clearInputButton)) {
 			border-radius: var(--border-radius-small) !important;
@@ -42,6 +42,21 @@
 		--editor-toolbar-border-color: var(--doorhanger-border-color) !important;
 		--editor-toolbar-hover-bg-color: transparent !important;
 		--editor-toolbar-hover-fg-color: accentcolor !important;
+	}
+
+	.sidebar {
+		--sidebar-border-radius: var(--border-radius-large) !important;
+
+		> .sidebarResizer {
+			height: 48px;
+			margin-block: auto;
+
+			.sidebar:hover & {
+				background-color: var(--separator-color) !important;
+				border: none !important;
+				border-radius: 4px;
+			}
+		}
 	}
 
 	.toolbarButton:not(.labeled),
@@ -84,22 +99,48 @@
 		}
 	}
 
-	#sidebarContainer,
-	#toolbarContainer,
-	#toolbarSidebar {
-		box-shadow: none !important;
-		border: none !important;
+	#viewsManager {
+		--sidebar-bg-color: var(--nept-secondary-background) !important;
+		--header-bg: transparent !important;
+		--manage-button-icon: url(images/pages_viewArrow.svg) !important;
+		height: calc(var(--viewer-container-height) - var(--sidebar-block-padding)) !important;
+		padding-bottom: 0 !important;
+		border-radius: var(--border-radius-large);
+
+		> #viewsManagerHeader {
+			box-shadow: none !important;
+
+			> #viewsManagerTitle {
+				padding: 6px 16px 6px 8px !important;
+			}
+
+			#viewsManagerStatus > div {
+				min-height: 36px !important;
+
+				#actionSelector {
+					height: var(--button-min-height) !important;
+
+					> #viewsManagerStatusActionButton {
+						padding: 4px 8px !important;
+					}
+				}
+			}
+		}
 	}
 
-	#sidebarContent {
-		background-color: var(--sidebar-toolbar-bg-color);
-	}
+	#viewerContainer {
+		inset-block-start: calc(var(--toolbar-height) + 8px) !important;
+		
+		.pdfViewer .page {
+			margin-bottom: 36px !important;
+			border-radius: var(--border-radius-large);
+			border: none !important;
+			box-shadow: var(--dialog-shadow) !important;
 
-	.thumbnail {
-		border-width: 3px !important;
-		border-radius: var(--border-radius-small) !important;
-		margin: 0 1em 2em !important;
-		box-shadow: 0 3px 12px var(--box-shadow-color-lighter-layer-2);
+			.canvasWrapper canvas {
+				border-radius: var(--border-radius-large);
+			}
+		}
 	}
 
 	.toolbarField {
@@ -114,19 +155,13 @@
 	#secondaryToolbar,
 	.editorParamsToolbar {
 		border-radius: var(--border-radius-small) !important;
-		box-shadow: var(--nept-menu-shadow) !important;
+		box-shadow: var(--dialog-shadow) !important;
 	}
 
 	.editorParamsToolbarContainer .editorParamsColor {
 		width: 16px !important;
 		height: 16px !important;
 		border: none;
-	}
-
-	.pdfViewer .page {
-		margin-bottom: 30px !important;
-		border: none !important;
-		box-shadow: var(--nept-panel-shadow) !important;
 	}
 
 	.toolbarButtonSpacer,

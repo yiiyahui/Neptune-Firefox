@@ -182,7 +182,7 @@
 	border-inline: none !important;
 	border-radius: var(--border-radius-xlarge);
 	background-color: var(--nept-secondary-background);
-	backdrop-filter: saturate(1.5) blur(3em);
+	backdrop-filter: saturate(1.5) blur(var(--dimension-32));
 	color: MenuText;
 	box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 
@@ -396,7 +396,7 @@
 			width: calc(100% - 2 * var(--urlbarView-icon-margin-start));
 			margin-inline: var(--urlbarView-icon-margin-start) !important;
 			padding-block-start: var(--urlbarView-item-block-padding);
-			border-top: var(--border-width) solid var(--in-content-box-border-color);
+			border-top: var(--border-width) solid var(--card-border-color);
 		}
 	}
 

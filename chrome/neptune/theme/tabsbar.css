@@ -68,7 +68,7 @@
 				}
 
 				#tabbrowser-tabs[orient="horizontal"]:not([overflow]) & {
-					transition-duration: 300ms !important;
+					--tab-width-transition: min-width 300ms ease-out, max-width 300ms ease-out;
 				}
 			}
 
@@ -103,7 +103,7 @@
 					transition: margin-inline 150ms ease-out !important;
 				}
 
-				#tabbrowser-tabs[movingtab][movingtab-addToGroup]:not(:is([movingtab-group], [movingtab-ungroup])) &:is(:active, [multiselected]) {
+				#tabbrowser-tabs[movingtab][movingtab-addToGroup]:not(:is([movingtab-group], [movingtab-ungroup])) &:not(tab-split-view-wrapper > &):is(:active, [multiselected]) {
 					margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin)) !important;
 					width: calc(100% - (var(--size-item-small) + var(--tab-icon-end-margin))) !important;
 					transition: margin-inline 100ms ease-out, width 100ms ease-out !important;
@@ -368,7 +368,7 @@
 				padding: 0 var(--tab-group-label-padding) !important;
 				margin: 0 auto auto !important;
 				border-radius: 0 0 var(--border-radius-small) var(--border-radius-small);
-				box-shadow: var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)), var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)), var(--box-shadow-card);
+				box-shadow: var(--shadow-inner-glow) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)), var(--shadow-inner-depth) color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-pale)) 15%, var(--lwt-accent-color)), var(--card-box-shadow);
 			}
 		}
 
@@ -379,7 +379,7 @@
 				position: absolute;
 				background-color: color-mix(in oklab, light-dark(var(--tab-group-color), var(--tab-group-color-invert)) 8%, transparent);
 				padding: 0 var(--tab-group-label-padding) !important;
-				inset: auto var(--tab-inner-inline-margin) calc(var(--tab-min-height) + var(--space-medium) + 7px) auto;
+				inset: auto var(--tab-inner-inline-margin) calc(var(--tab-min-height) + var(--space-medium) + var(--tab-min-height) / 2 / 2) auto;
 				border-radius: var(--border-radius-large);
 			}
 		}
@@ -394,7 +394,7 @@
 				width: fit-content;
 				padding: 0 !important;
 				margin-inline: auto !important;
-				inset: auto 0 calc(var(--tab-min-height) + var(--space-medium) + 7px);
+				inset: auto 0 calc(var(--tab-min-height) + var(--space-medium) + var(--tab-min-height) / 2 / 2);
 			}
 		}
 
@@ -429,14 +429,15 @@
 			grid-template-columns: repeat(2, 1fr) !important;
 			margin-inline: var(--tab-inner-inline-margin) !important;
 
-			tab-group > &:not([dragtarget]) {
+			#tabbrowser-tabs[movingtab][movingtab-addToGroup]:not(:is([movingtab-group], [movingtab-ungroup])) &[dragtarget] {
 				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin) + var(--tab-inner-inline-margin)) !important;
+				width: calc(100% - (var(--size-item-small) + var(--tab-icon-end-margin)) - 2 * var(--tab-inner-inline-margin)) !important;
+				max-width: calc(100% - (var(--size-item-small) + var(--tab-icon-end-margin)) - 2 * var(--tab-inner-inline-margin)) !important;
+				transition: margin-inline 100ms ease-out, var(--tab-width-transition);
 			}
 
-			tab-group > &[dragtarget] {
-				width: calc(100% - 2 * var(--tab-inner-inline-margin)) !important;
-				max-width: calc(100% - 2 * var(--tab-inner-inline-margin)) !important;
-				transition: width 150ms ease-out, max-width 150ms ease-out;
+			tab-group > &:not([dragtarget]) {
+				margin-inline-start: calc(var(--size-item-small) + var(--tab-icon-end-margin) + var(--tab-inner-inline-margin)) !important;
 			}
 		}
 
@@ -1081,7 +1082,7 @@
 			#tabbrowser-tabs[orient="vertical"]:not([expanded]) & {
 				list-style-image: url("../assets/icons/minus.svg") !important;
 				background-image: none !important;
-				background-color: light-dark(#ff6f61, #f0c05a) !important;
+				background-color: light-dark(var(--color-orange-30), var(--color-orange-20)) !important;
 				padding: var(--toolbarbutton-outer-padding) !important;
 				inset: calc(-1 * var(--space-xsmall)) var(--space-xsmall) !important;
 				box-shadow: none !important;
@@ -1105,7 +1106,7 @@
 				}
 
 				&:hover {
-					filter: brightness(120%);
+					filter: brightness(110%);
 
 					&:active {
 						filter: brightness(90%);
@@ -1223,6 +1224,10 @@
 		.tab-preview-add-note {
 			width: fit-content;
 			min-height: var(--dimension-20) !important;
+
+			> stack > .toolbarbutton-icon {
+				width: var(--icon-size-xsmall);
+			}
 
 			> moz-badge {
 				display: none !important;

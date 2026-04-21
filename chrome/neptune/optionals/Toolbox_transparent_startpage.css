@@ -13,7 +13,7 @@
 }
 
 @media not -moz-pref("sidebar.verticalTabs") {
-	:root[hide-ai-sidebar]:not(:has(#browser #tabbrowser-tabpanels[splitview])) #navigator-toolbox,
+	:root[hide-ai-sidebar] #navigator-toolbox:not(:has(tab-split-view-wrapper[hasactivetab])),
 	:root[privatebrowsingmode] #navigator-toolbox:has(tab:not(tab-split-view-wrapper > tab)[image^="chrome://browser/skin/privatebrowsing"][selected]) {
 		--browser-area-z-index-toolbox: 3;
 		position: fixed !important;
@@ -89,17 +89,13 @@
 					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
-				#back-button:has(+ #forward-button):not(:-moz-window-inactive),
-				#home-button:has(+ #stop-reload-button):not(:-moz-window-inactive),
-				#stop-reload-button:has(+ #home-button) > *:not(:-moz-window-inactive),
+				#nav-bar-customization-target :is(#back-button:has(+ #forward-button), #home-button:has(+ #stop-reload-button), #stop-reload-button:has(+ #home-button) > *):not(:-moz-window-inactive),
 				#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
-				#back-button + #forward-button:not(:-moz-window-inactive),
-				#stop-reload-button + #home-button:not(:-moz-window-inactive),
-				#home-button + #stop-reload-button > *:not(:-moz-window-inactive),
+				#nav-bar-customization-target :is(#back-button + #forward-button, #stop-reload-button + #home-button, #home-button + #stop-reload-button > *):not(:-moz-window-inactive),
 				#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive) {
@@ -191,7 +187,7 @@
 		}
 
 		+ #browser > #sidebar-box {
-			z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
+			--browser-area-z-index-sidebar: 3;
 			inset-inline-start: var(--opt-theme-sidebar-collapsed-width);
 
 			&:not([sidebarcommand="viewGenaiChatSidebar"]) {
@@ -241,7 +237,7 @@
 }
 
 @media -moz-pref("sidebar.verticalTabs") {
-	:root[hide-ai-sidebar]:not(:has(#browser #tabbrowser-tabpanels[splitview])) #navigator-toolbox,
+	:root[hide-ai-sidebar] #navigator-toolbox:not(:has(tab-split-view-wrapper[hasactivetab])),
 	:root[privatebrowsingmode] #navigator-toolbox:has(+ #browser #vertical-tabs tab:not(tab-split-view-wrapper > tab)[image^="chrome://browser/skin/privatebrowsing"][selected]) {
 		--browser-area-z-index-toolbox: 3;
 		position: fixed !important;
@@ -316,17 +312,13 @@
 					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
-				#back-button:has(+ #forward-button):not(:-moz-window-inactive),
-				#home-button:has(+ #stop-reload-button):not(:-moz-window-inactive),
-				#stop-reload-button:has(+ #home-button) > *:not(:-moz-window-inactive),
+				#nav-bar-customization-target :is(#back-button:has(+ #forward-button), #home-button:has(+ #stop-reload-button), #stop-reload-button:has(+ #home-button) > *):not(:-moz-window-inactive),
 				#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive) {
 					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
 				}
 
-				#back-button + #forward-button:not(:-moz-window-inactive),
-				#stop-reload-button + #home-button:not(:-moz-window-inactive),
-				#home-button + #stop-reload-button > *:not(:-moz-window-inactive),
+				#nav-bar-customization-target :is(#back-button + #forward-button, #stop-reload-button + #home-button, #home-button + #stop-reload-button > *):not(:-moz-window-inactive),
 				#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
 				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive) {
@@ -421,7 +413,7 @@
 			}
 
 			&:not([sidebar-launcher-expanded]) ~ #sidebar-box {
-				z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
+				--browser-area-z-index-sidebar: 3;
 				inset-inline-start: var(--opt-theme-sidebar-collapsed-width);
 
 				&[sidebar-positionend]:not([sidebarcommand="viewGenaiChatSidebar"]) {
@@ -452,7 +444,7 @@
 				max-width: var(--opt-theme-sidebar-width) !important;
 
 				~ #sidebar-box {
-					z-index: var(--browser-area-z-index-toolbox-while-animating) !important;
+					--browser-area-z-index-sidebar: 3;
 					inset-inline-start: var(--opt-theme-sidebar-width);
 					
 					&[sidebar-positionend]:not([sidebarcommand="viewGenaiChatSidebar"]) {

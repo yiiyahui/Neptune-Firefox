@@ -30,6 +30,10 @@
 @media -moz-pref("sidebar.revamp") {
 	#sidebar-box {
 		padding-block-end: var(--space-xsmall) !important;
+
+		&[sidebarcommand="viewGenaiChatSidebar"] {
+			clip-path: var(--browser-clip-region);
+		}
 	}
 
 	#sidebar-launcher-splitter {
@@ -161,7 +165,7 @@
 
 	.sidebar-panel {
 		--icon-size: var(--input-icon-size) !important;
-		--panel-separator-color: var(--border-color-card) !important;
+		--panel-separator-color: var(--card-border-color) !important;
 		--button-border-radius: var(--border-radius-small) !important;
 		padding: 0 var(--space-small) !important;
 
@@ -201,11 +205,11 @@
 			> .first-row panel-list {
 				background-color: menu !important;
 				backdrop-filter: blur(1em);
-				border-color: var(--border-color-card) !important;
+				border-color: var(--border-color) !important;
 				border-radius: var(--border-radius-medium) !important;
 
 				> hr:not([hidden]) {
-					background-color: var(--panel-separator-color) !important;
+					background-color: var(--chrome-content-separator-color) !important;
 					margin: var(--panel-separator-padding) !important;
 				}
 			}
@@ -397,17 +401,13 @@
 
 	/* Chat */
 	@-moz-document url("chrome://browser/content/genai/chat.html") {
-		body {
-			clip-path: var(--in-content-clip-path);
+		#browser-container > browser {
+			border-radius: calc(2 * var(--border-radius-xlarge));
+			margin: 0 var(--space-small) var(--space-small);
+			transition: box-shadow 300ms ease-in-out;
 
-			> #browser-container > browser {
-				border-radius: calc(2 * var(--border-radius-xlarge));
-				margin: 0 var(--space-small) var(--space-small);
-				transition: box-shadow 300ms ease-in-out;
-
-				&:focus-within {
-					box-shadow: var(--box-shadow-popup);
-				}
+			&:focus-within {
+				box-shadow: var(--box-shadow-popup);
 			}
 		}
 

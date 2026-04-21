@@ -148,9 +148,12 @@ panel {
 	}
 
 	.toolbarbutton-badge {
-		background-color: var(--icon-color-critical) !important;
-		line-height: calc(var(--size-item-medium) / 2) !important;
+		background-color: var(--color-violet-50) !important;
+		min-width: var(--size-item-xsmall) !important;
+		padding: 0 var(--space-xsmall) !important;
+		line-height: var(--size-item-xsmall) !important;
 		border-radius: var(--border-radius-large) !important;
+		box-shadow: none !important;
 	}
 }
 

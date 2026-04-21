@@ -197,16 +197,32 @@
 #ipprotection-button {
 	list-style-image: url("../assets/icons/ipprotection-off.svg") !important;
 
+	&:is([overflowedItem="true"], [cui-areatype="panel"]) {
+		list-style-image: url("../assets/icons/ipprotection-state-off.svg") !important;
+	}
+
 	&.ipprotection-on {
 		list-style-image: url("../assets/icons/ipprotection-on.svg") !important;
+
+		&:is([overflowedItem="true"], [cui-areatype="panel"]) {
+			list-style-image: url("../assets/icons/ipprotection-state-on.svg") !important;
+		}
 	}
 
 	&.ipprotection-error {
 		list-style-image: url("../assets/icons/ipprotection-error.svg") !important;
+
+		&:is([overflowedItem="true"], [cui-areatype="panel"]) {
+			list-style-image: url("../assets/icons/ipprotection-state-error.svg") !important;
+		}
 	}
 
 	&.ipprotection-excluded {
 		list-style-image: url("../assets/icons/ipprotection-excluded.svg") !important;
+
+		&:is([overflowedItem="true"], [cui-areatype="panel"]) {
+			list-style-image: url("../assets/icons/ipprotection-state-excluded.svg") !important;
+		}
 	}
 }
 
