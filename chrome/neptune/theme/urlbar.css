@@ -186,6 +186,11 @@
 	color: MenuText;
 	box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 
+	.urlbar[open] > & {
+		animation: popupShow 200ms cubic-bezier(0, 0, 0.2, 1) backwards;
+		transform-origin: top center;
+	}
+
 	> .urlbarView-body-outer > .urlbarView-body-inner {
 		width: inherit !important;
 		margin-inline: 0 !important;

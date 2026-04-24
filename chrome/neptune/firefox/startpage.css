@@ -103,7 +103,7 @@
 	.top-site-outer {
 		background: none !important;
 		width: calc(2 * var(--size-item-large) + var(--space-xlarge)) !important;
-		margin-block-end: var(--space-medium) !important;
+		margin-block-end: var(--space-small) !important;
 
 		.top-site-inner > a {
 			padding: 0 !important;
@@ -317,6 +317,10 @@
 		transform-origin: bottom right;
 		transition: none !important;
 
+		@media (height <= 450px), ((-moz-pref("browser.newtabpage.activity-stream.system.showWeather") or -moz-pref("browser.newtabpage.activity-stream.feeds.system.topstories")) and (height <= 500px)), (-moz-pref("browser.newtabpage.activity-stream.system.showWeather") and -moz-pref("browser.newtabpage.activity-stream.feeds.system.topstories") and (height <= 550px)) {
+			height: calc(100vh - var(--icon-size-medium) - 2 * var(--space-large) - 88px) !important;
+		}
+
 		@media (-moz-platform: macos) {
 			width: calc(3 * 92px + 5 * var(--space-medium)) !important;
 		}
@@ -444,9 +448,9 @@
 		inset-inline-end: var(--space-large) !important;
 
 		.weatherCard, .weatherButtonContextMenuWrapper {
-			background: none !important;
-			box-shadow: none !important;
+			background-color: transparent !important;
 			flex-direction: row-reverse;
+			box-shadow: none !important;
 		}
 
 		> .location-input-wrapper {

@@ -253,7 +253,7 @@
 	}
 
 	treecol:not([hideheader="true"]), .tree-columnpicker-button, .item-box, *:not(#downloadsListBox) > richlistitem:not(dialog richlistitem),
-	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .button, .reset-button, #main-button),
+	select, menulist, textarea, button:not(:has(.page-nav-icon), [is="named-deck-button"], .wallpaper-input, .toggle-button, .button, .reset-button, .context-menu-item button, #main-button),
 	input:where([type="email"], [type="tel"], [type="text"], [type="password"], [type="url"], [type="number"]) {
 		padding-block: var(--space-xxsmall) !important;
 	}

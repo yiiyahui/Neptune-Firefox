@@ -1,8 +1,6 @@
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
-	@media not -moz-pref("browser.newtabpage.activity-stream.feeds.system.topstories") {
-		:root {
-			overflow: hidden;
-		} 
+	:root {
+		 scrollbar-width: none;
 	}
 
 	.outer-wrapper.ds-outer-wrapper-breakpoint-override {
