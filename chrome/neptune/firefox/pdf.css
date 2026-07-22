@@ -155,7 +155,6 @@
 	#secondaryToolbar,
 	.editorParamsToolbar {
 		border-radius: var(--border-radius-small) !important;
-		box-shadow: var(--dialog-shadow) !important;
 	}
 
 	.editorParamsToolbarContainer .editorParamsColor {

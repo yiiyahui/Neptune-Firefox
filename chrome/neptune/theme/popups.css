@@ -18,6 +18,7 @@ panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 panel {
 	--panel-header-back-icon-full-width: calc(var(--size-item-xsmall) + 2 * var(--panel-header-back-icon-padding)) !important;
 	--panel-header-min-height: calc(var(--panel-header-back-icon-full-width) + 2 * var(--panel-separator-padding-vertical)) !important;
+	--panel-separator-padding: var(--panel-separator-padding-vertical) calc(var(--panel-separator-padding-horizontal) + var(--panel-menuitem-margin-inline)) !important;
 
 	@media (-moz-platform: macos) and (-moz-mac-tahoe-theme) {
 		--panel-border-radius: var(--border-radius-xlarge) !important;
@@ -29,6 +30,8 @@ panel {
 
 	&:where([type="arrow"]) {
 		--popup-width: var(--menu-panel-width-wide) !important;
+		--card-border: none !important;
+		--card-box-shadow: none !important;
 
 		&#link-preview-panel {
 			--panel-border-radius: 0 !important;
@@ -97,14 +100,6 @@ panel {
 		#trustpanel-insecure-section .trustpanel-header {
 			background-image: url("../assets/icons/security-broken.svg") !important;
 		}
-
-		#trustpanel-privacy-link {
-			margin-inline-start: auto !important;
-		}
-	}
-
-	toolbarseparator:not(.tab-group-editor-panel toolbarseparator) {
-		--panel-separator-padding: var(--panel-separator-padding-vertical) calc(var(--panel-separator-padding-horizontal) + var(--panel-menuitem-margin-inline)) !important;
 	}
 
 	&[type="autocomplete-richlistbox"] {
@@ -340,7 +335,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 		border: none !important;
 
 		.data {
-			background: var(--input-bgcolor) !important;
+			background: var(--input-text-background-color) !important;
 			padding: var(--panel-separator-padding) !important;
 			border-radius: var(--border-radius-small);
 		}
@@ -378,26 +373,20 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	}
 }
 
-#permission-popup-mainView {
-	--panel-separator-padding: var(--space-xxsmall) !important;
+#permission-popup-mainView > .permission-popup-section {
+	padding-bottom: 0 !important;
 
-	> .permission-popup-section {
-		padding-bottom: var(--panel-subview-body-padding-block) !important;
+	.permission-popup-permission-item {
+		min-height: var(--size-item-small) !important;
+		margin-block: 0 var(--panel-separator-padding-vertical) !important;
 
-		.permission-popup-permission-item {
-			min-height: var(--size-item-small) !important;
-			margin-block: var(--space-xxsmall) !important;
-
-			> :is(#permission-popup-menulist, .permission-popup-permission-remove-button) {
-				padding-block: var(--space-xxsmall) !important;
-			}
-
-			> .permission-popup-permission-remove-button > .button-box > .button-icon {
-				list-style-image: url("resource://content-accessible/close-12.svg") !important;
-			}
-
-			.permission-popup-permission-state-label {
+		> .permission-popup-permission-remove-button {
+			> .permission-popup-permission-state-label {
 				margin-block: 0 !important;
+			}
+
+			> .button-box > .button-icon {
+				list-style-image: url("resource://content-accessible/close-12.svg") !important;
 			}
 		}
 	}
@@ -436,7 +425,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 	padding-block: var(--panel-subview-body-padding-block) !important;
 
 	#editBMPanel_folderTree {
-		background-color: var(--input-bgcolor) !important;
+		background-color: var(--input-text-background-color) !important;
 		border: none !important;
 	}
 

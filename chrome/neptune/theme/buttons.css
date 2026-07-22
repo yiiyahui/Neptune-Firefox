@@ -18,6 +18,14 @@ toolbar .toolbarbutton-1 {
 		border-radius: var(--border-radius-circle) !important;
 	}
 
+	&[id="ai-window-toggle"] {
+		list-style-image: url("chrome://browser/skin/smart-window-nova.svg") !important;
+
+		:root:not([ai-window]) & {
+			filter: grayscale(100%);
+		}
+	}
+
 	#nav-bar & {
 		margin: 0 calc(var(--toolbar-start-end-padding) / 2) !important;
 
@@ -30,6 +38,10 @@ toolbar .toolbarbutton-1 {
 		:root:not([customizing]) & {
 			margin: auto calc(var(--toolbar-start-end-padding) / 2) calc(var(--nept-browser-toolbox-padding) / 2) !important;
 
+			&[id="PanelUI-menu-button"] {
+				margin-inline-end: var(--toolbar-start-end-padding) !important;
+			}
+
 			#TabsToolbar-customization-target & {
 				display: none;
 			}
@@ -38,16 +50,17 @@ toolbar .toolbarbutton-1 {
 		&[removable="false"]:not([hidden]) {
 			border-radius: var(--border-radius-xlarge) !important;
 
-			&:not(.toolbarbutton-1:is(:hover, :hover:active, [open], [checked]) > &) {
-				background-color: var(--button-background-color);
+			:root:not([aiwindow-first-run]) & {
+				margin-inline: 0 !important;
 			}
 
-			&:last-of-type {
-				margin-inline: 0 var(--dimension-8) !important;
+			& + toolbaritem > .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack),
+			& > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
+				background-color: var(--background-color-box-info);
 			}
 
-			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox :is(tab-group, tab:not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #pinned-tabs-container > tab:only-of-type) > &,
-			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] :is(#pinned-tabs-container:not(:empty), #tabbrowser-arrowscrollbox > tab-group), #tabbrowser-arrowscrollbox > tab:nth-child(2 of :not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox > :is(tab:only-of-type, tab[hidden])) > & {
+			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox :is(tab-group, tab:not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #pinned-tabs-container > tab:only-of-type) > :is(&, & ~ toolbaritem),
+			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] :is(#pinned-tabs-container:not(:empty), #tabbrowser-arrowscrollbox > tab-group), #tabbrowser-arrowscrollbox > tab:nth-child(2 of :not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox > :is(tab:only-of-type, tab[hidden])) > :is(&, & ~ toolbaritem) {
 				display: none;
 			}
 		}

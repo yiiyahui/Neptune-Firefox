@@ -49,7 +49,7 @@
 		}
 
 		#sidebar-box:hover + &,
-		#sidebar-main:hover + & {
+		#sidebar-container:hover + & {
 			background-color: var(--sidebar-border-color) !important;
 		}
 
@@ -101,7 +101,13 @@
 		--button-background-color-ghost-active: var(--button-background-color-primary-active) !important;
 		--button-text-color-ghost-hover: var(--button-text-color-primary) !important;
 		--button-text-color-ghost-active: var(--button-text-color-primary) !important;
+		--button-background-color-hover: var(--button-background-color-primary-hover) !important;
+		--button-background-color-active: var(--button-background-color-primary-active) !important;
+		--button-text-color-hover: var(--button-text-color-primary) !important;
+		--button-text-color-active: var(--button-text-color-primary) !important;
 		--button-border-radius: var(--panel-menuitem-border-radius) !important;
+		--button-padding: 0 var(--panel-menuitem-padding-inline) !important;
+		padding: var(--panel-subview-body-padding-block) !important;
 	}
 
 	#sidebar-tools-and-extensions-splitter {
@@ -159,7 +165,7 @@
 
 			/* password */
 			> .first-row .search-container {
-				background-color: var(--input-bgcolor) !important;
+				background-color: var(--input-text-background-color) !important;
 				border: none !important;
 
 				 > input[type="search"] {

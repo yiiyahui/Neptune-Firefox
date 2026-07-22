@@ -151,12 +151,12 @@
 	#customization-panelWrapper {
 		> .panel-arrowcontent {
 			border-color: var(--card-border-color) !important;
-			border-radius: var(--panel-border-radius) !important;
+			border-radius: var(--card-border-radius) !important;
 			box-shadow: var(--nept-menu-shadow) !important;
 		}
 
 		> .panel-arrowbox > .panel-arrow[side="top"] {
-			stroke: var(--card-border-color) !important;
+			stroke: var(--panel-background-color) !important;
 		}
 	}
 }
@@ -265,7 +265,7 @@
 findbar {
 	background-color: transparent !important;
 	border: none !important;
-	padding-block: 0 var(--space-xsmall) !important;
+	padding-block: 0 var(--dimension-4) !important;
 	order: -1;
 
 	@media (-moz-platform: macos) {
@@ -273,76 +273,97 @@ findbar {
 	}
 
 	&:where([hidden]) {
-		margin-bottom: calc(-1 * (var(--size-item-small) + 2 * var(--border-width) + var(--space-xsmall) + 6px)) !important;
+		margin-bottom: calc((var(--size-item-large) + var(--dimension-4)) / -1) !important;
 	}
 
 	> .findbar-container {
-		height: calc(var(--size-item-small) + 2 * var(--border-width) + 6px) !important;
+		height: var(--size-item-large) !important;
 		margin-inline: 0 !important;
 		flex-direction: row-reverse;
 
 		> checkbox {
-			margin-inline: 0 var(--space-medium) !important;
+			&:nth-of-type(n+2):nth-last-of-type(n+2) {
+				margin: 0 !important;
+			}
+
+			&:first-of-type {
+				margin-left: 0 !important;
+
+				> .checkbox-label-box {
+					border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0;
+				}
+			}
+
+			&:last-of-type {
+				margin-right: 0 !important;
+
+				> .checkbox-label-box {
+					border-radius: var(--border-radius-large) 0 0 var(--border-radius-large);
+				}
+			}
 
 			> .checkbox-check,
 			&:has(~ .found-matches[hidden] ~ .findbar-find-status:not([status="notfound"])) {
 				display: none;
 			}
 
-			> .checkbox-label-box > .checkbox-label {
-				padding-inline: var(--space-medium);
+			> .checkbox-label-box {
 				background-color: var(--button-background-color);
-				border-radius: var(--border-radius-large);
+				padding: var(--toolbarbutton-padding-outer) var(--space-medium);
 
 				&:hover {
 					background-color: var(--button-background-color-hover);
+
+					&:active {
+						background-color: var(--button-background-color-active);
+					}
 				}
 
-				checkbox[checked] & {
-					background-color: var(--button-background-color-primary-active);
-					color: var(--button-text-color-primary);
+				checkbox[checked] > & {
+					background-color: light-dark(var(--button-background-color-active), var(--button-background-color-primary-active));
+					color: light-dark(var(--color-accent-primary), var(--button-text-color-primary));
 				}
 			}
 		}
 
 		.findbar-textbox {
-			width: 14em !important;
-			padding: 0 var(--space-small) !important;
+			-moz-context-properties: fill;
+			background: url("chrome://global/skin/icons/search-glass.svg") no-repeat var(--space-small) center / var(--icon-size-xsmall) transparent !important;
+			width: var(--size-layout-small) !important;
+			padding: var(--toolbarbutton-padding-outer) var(--space-small) var(--toolbarbutton-padding-outer)  calc(var(--icon-size-xsmall) + var(--space-large))  !important;
 			background-color: transparent !important;
-			border-color: var(--border-color-deemphasized) !important;
+			border-color: light-dark(var(--card-border-color), var(--border-color-deemphasized)) !important;
 			border-radius: var(--border-radius-large) !important;
+			fill: var(--toolbarbutton-icon-fill);
 		}
 
 		.findbar-find-next,
 		.findbar-find-previous {
-			padding: 0 var(--toolbarbutton-padding-outer) !important;
-			border-color: var(--border-color-deemphasized);
-			border-style: solid;
+			background-color: var(--button-background-color);
+			padding: 0 var(--space-xsmall) !important;
 		}
 
 		.findbar-find-next {
 			list-style-image: url("../assets/icons/arrow-right.svg") !important;
-			border-width: var(--border-width) var(--border-width) var(--border-width) calc(var(--border-width) / 2);
 			border-radius: 0 var(--border-radius-large) var(--border-radius-large) 0 !important;
 		}
 
 		.findbar-find-previous {
 			list-style-image: url("../assets/icons/arrow-left.svg") !important;
-			border-width: var(--border-width) calc(var(--border-width) / 2) var(--border-width) var(--border-width);
 			border-radius: var(--border-radius-large) 0 0 var(--border-radius-large) !important;
 		}
 
 		> :is(.findbar-find-status, .found-matches) {
-			margin-inline: 0 var(--space-large) !important;
+			margin: 0 !important;
 		}
 	}
 
 	> .findbar-closebutton {
+		background-color: var(--button-background-color);
 		width: auto !important;
-		padding: 0 calc(2 * var(--toolbarbutton-padding-outer)) !important;
+		padding: var(--space-xsmall) var(--space-medium) !important;
 		margin: auto var(--toolbar-start-end-padding) auto auto !important;
 		list-style-image: url("../assets/icons/done.svg") !important;
-		border: var(--border-width) solid var(--border-color-deemphasized);
 		border-radius: var(--border-radius-large) !important;
 	}
 }

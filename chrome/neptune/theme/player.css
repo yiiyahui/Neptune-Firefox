@@ -1,6 +1,7 @@
 @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
 	:root {
 		--player-bg-color: transparent !important;
+		--scrubber-vertical-margin: 11px !important;
 	}
 
 	body {
@@ -16,33 +17,33 @@
 	}
 
 	#controls-bottom-gradient {
-		background: #202020a5 !important;
-		backdrop-filter: saturate(1.5) blur(2em);
+		background: #202020bf !important;
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 		height: calc(var(--player-control-item-height) + var(--controls-bottom-upper-height) + var(--scrubber-vertical-margin) + var(--resize-margin)) !important;
 		width: min((50% + var(--player-control-item-half-width)), 30em) !important;
-		border-radius: var(--border-radius-large);
+		border-radius: var(--border-radius-xlarge);
 		inset: auto calc((100% + 2 * var(--resize-margin) - min((50% + var(--player-control-item-half-width)), 30em)) / 2) calc(15vmin + var(--scrubber-vertical-margin) / 2) !important;
 
 		#controls:is([keying], [showing], body:not(:fullscreen) #controls:hover) & {
 			opacity: unset !important;
 		}
 
-		@media (height <= 200px), (width <= 300px) {
+		@media (height <= 200px) or (width <= 300px) {
 			display: none;
 		}
 	}
 
 	#controls-bottom {
 		width: min((50% + var(--player-control-item-half-width)), 30em) !important;
-		inset: auto calc((100% - min((50% + var(--player-control-item-half-width)), 30em)) / 2) clamp((10vmin - var(--resize-margin)), (15vmin + 2 * var(--resize-margin)), (20vmin - var(--resize-margin))) !important;
+		inset: auto calc((100% - min((50% + var(--player-control-item-half-width)), 30em)) / 2) clamp((10vmin - var(--scrubber-vertical-margin)), (15vmin + var(--scrubber-vertical-margin)), (25vmin - var(--scrubber-vertical-margin))) !important;
 
 		> .controls-bottom-upper {
-			width: calc(100% - 24px) !important;
-			margin-inline: 12px !important;
+			width: calc(100% - 32px) !important;
+			margin: 0 16px !important;
 		}
 
 		> .controls-bottom-lower {
-			margin-inline: 12px 6px !important;
+			margin: 0 8px 0 16px !important;
 
 			> .start-controls {
 				align-self: center;
@@ -75,7 +76,6 @@
 	#unpip,
 	#close {
 		background-color: #ffffffa5 !important;
-		backdrop-filter: blur(6px);
 		height: 16px !important;
 		width: 16px !important;
 		left: 10px !important;
@@ -117,6 +117,7 @@
 
 	.scrubber-no-drag {
 		height: 19px !important;
+		margin: auto auto var(--scrubber-vertical-margin) !important;
 
 		> #scrubber {
 			&,
@@ -136,11 +137,11 @@
 	}
 
 	.panel {
-		bottom: calc(var(--controls-bottom-upper-height) + var(--controls-bottom-distance) + var(--resize-margin)) !important;
+		bottom: calc(var(--controls-bottom-upper-height) + var(--controls-bottom-distance) + var(--scrubber-vertical-margin)) !important;
 
 		> .box {
-			background-color: #202020a5 !important;
-			backdrop-filter: saturate(1.5) blur(2em);
+			background-color: #202020bf !important;
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 			padding: 0 !important;
 			font-size: 0.875em !important;
 
@@ -165,7 +166,7 @@
 		}
 
 		> .arrow {
-			border-top-color: #202020a5 !important;
+			border-top-color: #202020bf !important;
 		}
 	}
 

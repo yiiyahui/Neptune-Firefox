@@ -1,23 +1,34 @@
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome"), url("about:privatebrowsing") {
 	:root {
+		--info-pages-body-space-padding: calc(var(--size-item-xlarge) + 88px) var(--dimension-48) var(--dimension-40) !important;
 		scrollbar-width: none;
+
+		@media -moz-pref("sidebar.verticalTabs") {
+			--info-pages-body-space-padding: var(--dimension-56) var(--dimension-48) var(--dimension-40) !important;
+		}
 	}
 
 	.outer-wrapper.ds-outer-wrapper-breakpoint-override {
-		padding-top: calc(var(--space-xxlarge) + 81px) !important;
+		padding-top: calc(var(--space-xxlarge) + 88px) !important;
+
+		@media -moz-pref("sidebar.verticalTabs") {
+			padding-top: calc(var(--space-xxlarge) + 52px) !important;
+		}
 	}
 
 	.nova-outer-wrapper {
-		padding-block-start: calc(var(--space-xlarge) + 81px) !important;
+		padding-block-start: calc(var(--space-xlarge) + 88px) !important;
+
+		@media -moz-pref("sidebar.verticalTabs") {
+			padding-block-start: calc(var(--space-xlarge) + 52px) !important;
+		}
 	}
 
 	.weather {
-		inset-block-start: calc(var(--space-xxlarge) + 81px) !important;
-	}
-}
+		inset-block-start: calc(var(--space-xxlarge) + 88px) !important;
 
-@-moz-document url("about:privatebrowsing") {
-	body {
-		padding-top: 10em !important;
+		@media -moz-pref("sidebar.verticalTabs") {
+			inset-block-start: calc(var(--space-xxlarge) + 52px) !important;
+		}
 	}
 }

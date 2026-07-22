@@ -26,7 +26,7 @@
 	}
 
 	.screen[pos="split"] .section-main .main-content {
-		backdrop-filter: blur(var(--dimension-24));
+		backdrop-filter: blur(var(--dimension-12));
 		border-radius: 0 var(--border-radius-xlarge) var(--border-radius-xlarge) 0 !important;
 	}
 
@@ -39,7 +39,7 @@
 .dialogBox:not(.spotlightBox) {
 	border-radius: var(--border-radius-xlarge) !important;
 	box-shadow: var(--nept-menu-shadow) !important;
-	backdrop-filter: saturate(1.5) blur(1in);
+	backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 }
 
 .dialog-button-box button,

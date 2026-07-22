@@ -32,13 +32,13 @@
 
 	.contentSearchSuggestionTable {
 		background-color: var(--newtab-background-color-secondary) !important;
-		backdrop-filter: saturate(1.5) blur(2em);
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 		border-radius: var(--border-radius-large) !important;
 		box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 
 		.contentSearchHeader, .contentSearchSettingsButton {
 			background-color: var(--newtab-background-color-secondary) !important;
-			backdrop-filter: saturate(1.5) blur(2em);
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 			border-color: transparent !important;
 		}
 
@@ -147,6 +147,13 @@
 		background: none !important;
 		width: calc(2 * var(--size-item-xlarge)) !important;
 
+		.nova-enabled & > .add-button {
+			--button-size-icon: calc(2 * var(--size-item-xlarge)) !important;
+			--icon-size: var(--size-item-medium) !important;
+			--button-border-radius: var(--border-radius-xlarge) !important;
+			inset-block-start: calc(var(--col-width) - var(--size-item-xlarge)) !important;
+		}
+
 		&:not(.nova-enabled &) {
 			margin-block-end: var(--space-small) !important;
 		}
@@ -173,7 +180,7 @@
 			background-color: var(--newtab-background-color-secondary) !important;
 			height: calc(2 * var(--size-item-xlarge)) !important;
 			width: calc(2 * var(--size-item-xlarge)) !important;
-			backdrop-filter: saturate(1.5) blur(2em);
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 			outline: none !important;
 			border: none !important;
 			border-radius: var(--border-radius-xlarge) !important;
@@ -225,7 +232,7 @@
 	}
 
 	.context-menu {
-		backdrop-filter: saturate(1.5) blur(2em);
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 		border-radius: var(--border-radius-medium) !important;
 		box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
 		font: menu !important;
@@ -319,7 +326,7 @@
 	}
 
 	.modal {
-		backdrop-filter: saturate(1.5) blur(2em);
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 
 		.edit-topsites-wrapper & {
 			width: 40em !important;
@@ -338,8 +345,8 @@
 				box-shadow: var(--box-shadow-level-3);
 			}
 
-			> .topsite-form .top-site-outer .top-site-inner > a {
-				padding-block: var(--space-xsmall) !important;
+			> .topsite-form .top-site-outer {
+				margin-top: var(--space-large) !important;
 			}
 		}
 	}
@@ -396,7 +403,7 @@
 			--button-text-color-active: var(--button-text-color-primary) !important;
 			--button-text-color-selected: var(--button-text-color-primary) !important;
 			background-color: light-dark(#00000066, #ffffff3f);
-			backdrop-filter: blur(2em);
+			backdrop-filter: blur(var(--dimension-24));
 			border-radius: var(--border-radius-circle);
 			visibility: visible !important;
 			transition: none !important;
@@ -412,7 +419,7 @@
 		min-height: fit-content !important;
 		padding: 0 !important;
 		border-radius: var(--border-radius-large) !important;
-		backdrop-filter: saturate(1.5) blur(3em);
+		backdrop-filter: blur(var(--dimension-24));
 		overflow-x: hidden !important;
 		inset-block: auto calc(var(--space-large) + var(--size-item-medium)) !important;
 		inset-inline-end: var(--space-large) !important;
@@ -581,7 +588,7 @@
 		--button-background-color-ghost-active: transparent !important;
 		--button-text-color-ghost-hover: var(--color-accent-primary-hover) !important;
 		--button-text-color-ghost-active: var(--color-accent-primary-active) !important;
-		backdrop-filter: saturate(1.5) blur(2em);
+		backdrop-filter: blur(var(--dimension-24));
 		inset-inline: 0 !important;
 		padding: 0 var(--space-medium) var(--space-medium) !important;
 		width: auto !important;
@@ -633,11 +640,11 @@
 
 	.feature-highlight .feature-highlight-modal {
 		border-radius: var(--border-radius-large) !important;
-		backdrop-filter: saturate(1.5) blur(2em) !important;
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12)) !important;
 		box-shadow: var(--box-shadow-level-4) !important;
 
 		&::after {;
-			backdrop-filter: saturate(1.5) blur(2em) !important;
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12)) !important;
 			box-shadow: var(--box-shadow-level-4) !important;
 		}
 	}
@@ -760,8 +767,12 @@
 					box-shadow: none !important;
 				}
 
-				.lists .lists-add-button {
-					border-radius: var(--border-radius-xlarge) !important;
+				.lists {
+					--lists-button-background: var(--color-accent-primary) !important;
+
+					.lists-add-button {
+						border-radius: var(--border-radius-xlarge) !important;
+					}		
 				}
 			}
 
@@ -787,20 +798,20 @@
 			--button-min-height-small: var(--size-item-small) !important;
 			--button-border-radius: var(--border-radius-large) !important;
 			background-color: var(--newtab-background-color-secondary) !important;
-			backdrop-filter: saturate(1.5) blur(1em);
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 			border-radius: var(--border-radius-circle) !important;
 		}
 
 		> .weatherNotAvailable {
 			background-color: var(--newtab-background-card) !important;
-			backdrop-filter: saturate(1.5) blur(1em);
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 			border-radius: var(--border-radius-circle) !important;
 		}
 	}
 
 	.weatherInfoLink {
 		background-color: var(--newtab-weather-background-color) !important;
-		backdrop-filter: saturate(1.5) blur(1em);
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 		padding: var(--space-medium) var(--space-large) !important;
 		border-radius: var(--border-radius-circle) !important;
 	}
@@ -827,22 +838,22 @@
 
 	.weather-placeholder {
 		background: var(--newtab-background-card) !important;
-		backdrop-filter: saturate(1.5) blur(1em);
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 		border-radius: var(--border-radius-xlarge) !important;
 
 		.placeholder-fill {
-			backdrop-filter: saturate(1.5) blur(1em);
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 			border-radius: var(--border-radius-xlarge) !important;
 		}
 	}
 
 	.feature-highlight .feature-highlight-modal {
 		border-radius: var(--border-radius-large) !important;
-		backdrop-filter: saturate(1.5) blur(2em) !important;
+		backdrop-filter: saturate(1.5) blur(var(--dimension-12)) !important;
 		box-shadow: var(--box-shadow-level-4) !important;
 
 		&::after {;
-			backdrop-filter: saturate(1.5) blur(2em) !important;
+			backdrop-filter: saturate(1.5) blur(var(--dimension-12)) !important;
 			box-shadow: var(--box-shadow-level-4) !important;
 		}
 	}

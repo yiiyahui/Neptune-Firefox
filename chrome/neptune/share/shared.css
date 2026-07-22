@@ -40,8 +40,9 @@
 	--size-item-xlarge: 36px !important;
 	--border-radius-xsmall: 4px !important;
 	--border-radius-small: 6px !important;
+	--border-radius-medium: 8px !important;
 	--border-radius-large: 12px !important;
-	--border-radius-xlarge: 16px;
+	--border-radius-xlarge: 16px !important;
 	--border-radius-circle: 99px !important;
 	--button-border-radius: var(--border-radius-small) !important;
 	--input-icon-size: calc(var(--size-item-medium) / 2);
@@ -76,7 +77,6 @@
 		--input-width: var(--input-icon-size) !important;
 		--input-height: var(--input-icon-size) !important;
 		--input-margin-block-adjust: calc((1lh - var(--input-height)) / 2) !important;
-		--input-text-background-color: var(--input-bgcolor) !important;
 
 		&.with-icon {
 			padding-inline-start: calc(var(--input-text-icon-size) + var(--space-large)) !important;

@@ -71,39 +71,6 @@
 					backdrop-filter: saturate(1.2) blur(3px);
 				}
 			}
-
-			:root:not([customizing]) & #nav-bar {
-				&[downloadsbuttonshown]:not([unifiedextensionsbuttonshown]) #downloads-button:not(:-moz-window-inactive),
-				#unified-extensions-button:not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-
-					~ .toolbarbutton-1,
-					~ .toolbaritem-combined-buttons .toolbarbutton-1 {
-						box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-					}
-				}
-
-				toolbaritem > :is(#copy-button, #zoom-reset-button):not(:-moz-window-inactive),
-				#urlbar-container ~ toolbaritem  ~ toolbaritem:has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:-moz-window-inactive),
-				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) > :is(#ai-window-toggle, #nav-bar-overflow-button):not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-				}
-
-				#nav-bar-customization-target :is(#back-button:has(+ #forward-button), #home-button:has(+ #stop-reload-button), #stop-reload-button:has(+ #home-button) > *):not(:-moz-window-inactive),
-				#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				&:not(:is([unifiedextensionsbuttonshown], [downloadsbuttonshown])) > #ai-window-toggle:not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-				}
-
-				#nav-bar-customization-target :is(#back-button + #forward-button, #stop-reload-button + #home-button, #home-button + #stop-reload-button > *):not(:-moz-window-inactive),
-				#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive),
-				&:not(:is([unifiedextensionsbuttonshown], [downloadsbuttonshown])) #ai-window-toggle + #PanelUI-button > #PanelUI-menu-button:not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-right) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow) !important;
-				}
-			}
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] {
@@ -127,7 +94,8 @@
 
 		+ #browser > #tabbrowser-tabbox findbar {
 			position: absolute;
-			background-image: none !important;
+			background: none !important;
+			backdrop-filter: blur(6px);
 			inset-block-start: calc(var(--opt-theme-tabsToolbar-height) + var(--opt-theme-toolbox-height));
 			width: 100%;
 		}
@@ -145,7 +113,7 @@
 			inset-block-start: calc(var(--opt-theme-toolbox-height) + var(--opt-theme-tabsToolbar-height) + var(--opt-theme-bookmarksbar-height));
 		}
 
-		+ #browser > #sidebar-main:not([hidden]) ~ #tabbrowser-tabbox findbar {
+		+ #browser > #sidebar-container:not([hidden]) ~ #tabbrowser-tabbox findbar {
 			width: calc(100% - var(--opt-theme-sidebar-collapsed-width));
 			inset-inline-start: var(--opt-theme-sidebar-collapsed-width);
 		}
@@ -160,7 +128,7 @@
 			inset-inline-start: calc(var(--opt-theme-sidebar-chat-box-width) + var(--opt-theme-sidebar-collapsed-width));
 		}
 
-		+ #browser > :is(#sidebar-main, #sidebar-box) {
+		+ #browser > :is(#sidebar-container, #sidebar-box) {
 			position: absolute !important;
 			inset-block-start: calc(var(--opt-theme-tabsToolbar-height) + var(--opt-theme-toolbox-height));
 			height: calc(100% - (var(--opt-theme-tabsToolbar-height) + var(--opt-theme-toolbox-height)));
@@ -172,7 +140,7 @@
 			}
 		}
 
-		+ #browser > #sidebar-main {
+		+ #browser > #sidebar-container {
 			z-index: var(--browser-stack-z-index-rdm-toolbar);
 
 			&[sidebar-positionend] {
@@ -206,7 +174,7 @@
 			}
 		}
 
-		&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-main, #sidebar-box) {
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-container, #sidebar-box) {
 			inset-block-start: calc(var(--opt-theme-toolbox-height) + var(--opt-theme-tabsToolbar-height) + var(--opt-theme-bookmarksbar-height));
 			height: calc(100% - (var(--opt-theme-toolbox-height) + var(--opt-theme-tabsToolbar-height) + var(--opt-theme-bookmarksbar-height)));
 		}
@@ -221,12 +189,12 @@
 				inset-block-start: calc(var(--opt-theme-toolbox-height) + var(--opt-theme-bookmarksbar-height));
 			}
 
-			+ #browser > :is(#sidebar-main, #sidebar-box) {
+			+ #browser > :is(#sidebar-container, #sidebar-box) {
 				inset-block-start: var(--opt-theme-toolbox-height);
 				height: calc(100% - var(--opt-theme-toolbox-height));
 			}
 
-			&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-main, #sidebar-box) {
+			&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-container, #sidebar-box) {
 				inset-block-start: calc(var(--opt-theme-toolbox-height) + var(--opt-theme-bookmarksbar-height));
 				height: calc(100% - (var(--opt-theme-toolbox-height) + var(--opt-theme-bookmarksbar-height)));
 			}
@@ -296,39 +264,6 @@
 					backdrop-filter: saturate(1.2) blur(3px);
 				}
 			}
-
-			:root:not([customizing]) & #nav-bar {
-				&[downloadsbuttonshown]:not([unifiedextensionsbuttonshown]) #downloads-button:not(:-moz-window-inactive),
-				#unified-extensions-button:not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-
-					~ .toolbarbutton-1,
-					~ .toolbaritem-combined-buttons .toolbarbutton-1 {
-						box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-					}
-				}
-
-				toolbaritem > :is(#copy-button, #zoom-reset-button):not(:-moz-window-inactive),
-				#urlbar-container ~ toolbaritem  ~ toolbaritem:has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:-moz-window-inactive),
-				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) > :is(#ai-window-toggle, #nav-bar-overflow-button):not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-				}
-
-				#nav-bar-customization-target :is(#back-button:has(+ #forward-button), #home-button:has(+ #stop-reload-button), #stop-reload-button:has(+ #home-button) > *):not(:-moz-window-inactive),
-				#urlbar-container ~ toolbaritem:not(toolbaritem + toolbaritem):has(+ toolbaritem) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				toolbaritem > :is(#cut-button, #zoom-out-button, #profiler-button-button):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				&:not(:is([unifiedextensionsbuttonshown], [downloadsbuttonshown])) > #ai-window-toggle:not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-left) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-bottom) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow);
-				}
-
-				#nav-bar-customization-target :is(#back-button + #forward-button, #stop-reload-button + #home-button, #home-button + #stop-reload-button > *):not(:-moz-window-inactive),
-				#urlbar-container ~ toolbaritem ~ toolbaritem:not(:has(+ toolbaritem)) > .unified-extensions-item-row-wrapper .toolbarbutton-1:not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button[hidden], toolbaritem + #downloads-button:not([hidden]), #downloads-button[hidden], #urlbar-container ~ toolbaritem ~ toolbarspring) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				toolbaritem > :is(#paste-button, #zoom-in-button, #profiler-button-dropmarker):not(:is(#unified-extensions-button:not([hidden]), #unified-extensions-button[hidden] + #downloads-button:not([hidden])) ~ toolbaritem .toolbarbutton-1):not(:-moz-window-inactive),
-				&:is([unifiedextensionsbuttonshown], [downloadsbuttonshown]:not([unifiedextensionsbuttonshown])) #PanelUI-menu-button:not(:-moz-window-inactive),
-				&:not(:is([unifiedextensionsbuttonshown], [downloadsbuttonshown])) #ai-window-toggle + #PanelUI-button > #PanelUI-menu-button:not(:-moz-window-inactive) {
-					box-shadow: var(--shadow-inner-top) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--shadow-inner-right) var(--opt-tahoe-theme-toolbar-item-shadow-color-B), var(--opt-tahoe-theme-toolbar-item-shadow) !important;
-				}
-			}
 		}
 
 		+ #browser > #tabbrowser-tabbox .dialogBox[sizeto="available"] {
@@ -339,7 +274,8 @@
 
 		+ #browser > #tabbrowser-tabbox findbar {
 			position: absolute;
-			background-image: none !important;
+			background: none !important;
+			backdrop-filter: blur(6px);
 			inset-block-start: var(--opt-theme-toolbox-height);
 			width: 100%;
 		}
@@ -357,12 +293,12 @@
 			inset-block-start: calc(var(--opt-theme-toolbox-height) + var(--opt-theme-bookmarksbar-height));
 		}
 
-		+ #browser > #sidebar-main:not([hidden]) ~ #tabbrowser-tabbox findbar {
+		+ #browser > #sidebar-container:not([hidden]) ~ #tabbrowser-tabbox findbar {
 			width: calc(100% - var(--opt-theme-sidebar-collapsed-width));
 			inset-inline-start: var(--opt-theme-sidebar-collapsed-width);
 		}
 
-		+ #browser > #sidebar-main[sidebar-launcher-expanded]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+		+ #browser > #sidebar-container[sidebar-launcher-expanded]:not([hidden]) ~ #tabbrowser-tabbox findbar {
 			width: calc(100% - var(--opt-theme-sidebar-width));
 			inset-inline-start: var(--opt-theme-sidebar-width);
 		}
@@ -372,7 +308,7 @@
 			inset-inline-start: calc(var(--opt-theme-sidebar-box-width) + var(--opt-theme-sidebar-collapsed-width));
 		}
 
-		+ #browser > #sidebar-main[sidebar-launcher-expanded]:not([hidden]) ~ #sidebar-box:not([sidebarcommand="viewGenaiChatSidebar"]):not([hidden]) ~ #tabbrowser-tabbox findbar {
+		+ #browser > #sidebar-container[sidebar-launcher-expanded]:not([hidden]) ~ #sidebar-box:not([sidebarcommand="viewGenaiChatSidebar"]):not([hidden]) ~ #tabbrowser-tabbox findbar {
 			width: calc(100% - (var(--opt-theme-sidebar-width) + var(--opt-theme-sidebar-box-width)));
 			inset-inline-start: calc(var(--opt-theme-sidebar-width) + var(--opt-theme-sidebar-box-width));
 		}
@@ -382,16 +318,16 @@
 			inset-inline-start: calc(var(--opt-theme-sidebar-chat-box-width) + var(--opt-theme-sidebar-collapsed-width));
 		}
 
-		+ #browser > #sidebar-main[sidebar-launcher-expanded]:not([hidden]) ~ #sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+		+ #browser > #sidebar-container[sidebar-launcher-expanded]:not([hidden]) ~ #sidebar-box[sidebarcommand="viewGenaiChatSidebar"]:not([hidden]) ~ #tabbrowser-tabbox findbar {
 			width: calc(100% - (var(--opt-theme-sidebar-chat-box-width) + var(--opt-theme-sidebar-width)));
 			inset-inline-start: calc(var(--opt-theme-sidebar-chat-box-width) + var(--opt-theme-sidebar-width));
 		}
 
-		+ #browser > #sidebar-main[sidebar-launcher-expanded][sidebar-positionend]:not([hidden]) ~ #sidebar-box[sidebar-positionend]:not([hidden]) ~ #tabbrowser-tabbox findbar {
+		+ #browser > #sidebar-container[sidebar-launcher-expanded][sidebar-positionend]:not([hidden]) ~ #sidebar-box[sidebar-positionend]:not([hidden]) ~ #tabbrowser-tabbox findbar {
 			inset-inline-start: 0;
 		}
 
-		+ #browser > :is(#sidebar-main, #sidebar-box) {
+		+ #browser > :is(#sidebar-container, #sidebar-box) {
 			position: absolute !important;
 			inset-block-start: var(--opt-theme-toolbox-height) !important;
 			height: calc(100% - var(--opt-theme-toolbox-height));
@@ -403,12 +339,12 @@
 			}
 		}
 
-		&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-main, #sidebar-box) {
+		&:has(#PersonalToolbar:not([collapsed])) + #browser > :is(#sidebar-container, #sidebar-box) {
 			inset-block-start: calc(var(--opt-theme-toolbox-height) + var(--opt-theme-bookmarksbar-height)) !important;
 			height: calc(100% - (var(--opt-theme-toolbox-height) + var(--opt-theme-bookmarksbar-height)));
 		}
 
-		+ #browser > #sidebar-main {
+		+ #browser > #sidebar-container {
 			z-index: var(--browser-stack-z-index-rdm-toolbar);
 
 			:root[sidebar-expand-on-hover] & {
