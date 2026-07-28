@@ -37,12 +37,9 @@
 	}
 
 	> .urlbar-background {
+		inset: 0 !important;
+		outline: none !important;
 		animation: none !important;
-
-		&:not(:-moz-window-inactive, .urlbar[open] > &) {
-			box-shadow: var(--nept-toolbar-item-inner-shadow) !important;
-			transition: var(--ext-theme-background-transition), box-shadow 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
-		}
 
 		.urlbar:hover > & {
 			background-color: var(--nept-urlbar-hover-background) !important;
@@ -182,7 +179,7 @@
 }
 
 .urlbarView {
-	color-scheme: light dark;
+	color-scheme: env(-moz-content-preferred-color-scheme);
 	width: max(calc(100% + var(--space-xlarge)), var(--size-layout-xlarge)) !important;
 	margin-inline: min(calc(var(--space-xlarge) / -2), calc((var(--size-layout-xlarge) - var(--urlbar-width)) / -2)) !important;
 	margin-block-start: var(--dimension-8);
@@ -190,8 +187,11 @@
 	border-radius: var(--border-radius-xlarge);
 	background-color: var(--nept-secondary-background);
 	backdrop-filter: saturate(1.5) blur(var(--dimension-12));
-	color: MenuText;
 	box-shadow: var(--nept-small-shadow), var(--nept-menu-shadow) !important;
+
+	@media -moz-pref("browser.nova.enabled") {
+		margin: var(--dimension-8) min(calc(var(--space-xlarge) / -2), calc((var(--size-layout-xlarge) - var(--urlbar-width)) / -2)) auto !important;
+	}
 
 	.urlbar[open] > & {
 		animation: popupShow 200ms cubic-bezier(0, 0, 0.2, 1) backwards;
@@ -212,7 +212,34 @@
 }
 
 .urlbarView-results {
-	padding: var(--urlbarView-results-padding) !important;
+	padding: var(--urlbarView-results-padding, var(--urlbarView-padding)) !important;
+
+	@media -moz-pref("browser.nova.enabled") {
+		&[wrap] > .urlbarView-row[has-url] > .urlbarView-row-inner > .urlbarView-row-body > .urlbarView-row-body-top {
+			flex-wrap: nowrap !important;
+
+			> .urlbarView-row-body-top-no-wrap {
+				flex-basis: auto !important;
+				max-width: calc(70% - 2 * (var(--urlbarView-icon-size) + (6px + 2px))) !important;
+			}
+		}
+
+		> .urlbarView-row > .urlbarView-row-inner {
+			> .urlbarView-type-icon {
+				display: none;
+			}
+
+			> .urlbarView-row-body .urlbarView-action {
+				border-block: none !important;
+				border-inline: none !important;
+				
+				&.urlbarView-switchToTab {
+					background-size: var(--icon-size-xsmall) !important;
+					background-position-x: var(--space-small) !important;
+				}
+			}
+		}
+	}
 
 	> .urlbarView-row {
 		border: var(--button-border) !important;
@@ -301,7 +328,7 @@
 		}
 
 		&[row-selectable]:not([selected]):hover {
-			color: var(--urlbarView-highlight-color);
+			color: var(--urlbarview-text-color-selected);
 
 			.urlbarView-url {
 				color: inherit !important;
@@ -356,7 +383,7 @@
 				min-width: var(--size-item-small) !important;
 
 				.urlbarView-row:hover & {
-					color: var(--urlbarView-highlight-color) !important;
+					color: var(--urlbarview-text-color-selected) !important;
 				}
 			}
 		}
@@ -380,6 +407,11 @@
 				background-color: color-mix(in oklab, var(--identity-icon-color) 20%, transparent) !important;
 			}
 
+			&.urlbarView-switchToTab {
+				background-size: var(--icon-size-xsmall) !important;
+				background-position-x: var(--space-small) !important;
+			}
+
 			.urlbarView-row:is(:hover, [selected]) & {
 				background-color: transparent !important;
 				color: var(--button-text-color-primary) !important;
@@ -400,7 +432,6 @@
 		}
 
 		&[label]::before {
-			color: MenuText !important;
 			width: calc(100% - 2 * var(--urlbarView-icon-margin-start));
 			margin-inline: var(--urlbarView-icon-margin-start) !important;
 			padding-block-start: var(--urlbarView-row-padding-block);
@@ -410,6 +441,7 @@
 
 	.urlbarView-title-separator::before {
 		content: "\2013" !important;
+		margin: 0 var(--space-small) !important;
 	}
 
 	.urlbarView[noresults] > .urlbarView-body-outer > .urlbarView-body-inner > & {

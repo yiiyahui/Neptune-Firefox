@@ -70,6 +70,11 @@
 		--panel-box-shadow: var(--nept-panel-shadow), 0 3px var(--panel-box-shadow-margin) var(--nept-panel-shadow-color) !important;
 		--panel-border-color: var(--nept-toolbar-border-color) !important;
 	}
+	@media -moz-pref("browser.nova.enabled") {
+		--button-border-color: transparent !important;
+		--button-background-color-ghost: transparent !important;
+		--panel-menuitem-border-radius: var(--border-radius-small) !important;
+	}
 }
 
 @layer input-common {

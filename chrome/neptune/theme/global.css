@@ -7,6 +7,13 @@
 		--shadow-inner-glow: inset 0 1.5px 0.25px -0.75px;
 		--shadow-inner-depth: inset 0 -1.5px 0.25px -0.75px;
 	}
+	--oklch-l-dyn: calc(l + (1 - l) * (1 - l * l * l) * 0.4);
+	--oklch-l-soft: calc(l + (1 - l) * (1 - l * l / 2) * 0.3);
+	/* 1.05 + l - x = 1.25 (upper limit at l = 0.9). */
+	--oklch-c-dyn: calc(c * max(1.05, 1.05 + l - 0.7));
+	/* h = -10deg (threshold at c >= 0.2), 0deg at c = 0 */
+	--oklch-h-dyn: calc(h - 10 * min(1, c * 5));
+	--oklch-h-soft: calc(h - 5 * min(1, c * 5));
 	/* Urlbar */
 	--nept-urlbar-background: light-dark(#0000000c, #ffffff0c);
 	--nept-urlbar-hover-background: light-dark(#00000019, #ffffff19);
@@ -22,17 +29,17 @@
 	--nept-tab-multiselected-background: light-dark(color-mix(in srgb, accentcolor 20%, transparent), color-mix(in srgb, currentColor 25%, transparent));
 	--nept-verticaltab-background: color-mix(in srgb, currentColor 2%, transparent);
 	--nept-verticaltab-pinned-background: light-dark(color-mix(in srgb, currentColor 6%, transparent), color-mix(in srgb, currentColor 8%, transparent));
-	--nept-verticaltab-selected-background: light-dark(color-mix(in srgb, currentColor 10%, transparent),  color-mix(in srgb, currentColor 12%, transparent));
-	--nept-pinned-tab-background: light-dark(color-mix(in srgb, currentColor 9%, transparent), color-mix(in srgb, currentColor 11%, transparent));
+	--nept-verticaltab-selected-background: light-dark(color-mix(in srgb, currentColor 10%, transparent),  color-mix(in srgb, currentColor 20%, transparent));
+	--nept-pinned-tab-background: light-dark(color-mix(in srgb, currentColor 10%, transparent), color-mix(in srgb, currentColor 14%, transparent));
 	--nept-pinned-tab-hover-background: light-dark(color-mix(in srgb, currentColor 14%, transparent), color-mix(in srgb, currentColor 16%, transparent));
 	--nept-pinned-tab-selected-background: light-dark(color-mix(in srgb, currentColor 18%, transparent), color-mix(in srgb, currentColor 20%, transparent));
-	--nept-tab-shadow-color: light-dark(#00000010, #00000015);
+	--nept-tab-shadow-color: light-dark(#0000000c, #00000019);
 	--nept-tab-hover-shadow-color: light-dark(#00000005, #0000000c);
-	--nept-tab-soundplaying-background: light-dark(oklch(from accentcolor calc(L + 0.25) calc(C - 0.15) calc(H - 5)), oklch(from accentcolor calc(L - 0.25) calc(C - 0.08) calc(H - 5)));
+	--nept-tab-soundplaying-background: light-dark(color-mix(in oklch, accentcolor 25%, var(--lwt-accent-color, transparent)), color-mix(in oklch, currentColor 40%, var(--lwt-accent-color, transparent)));
 	/* toolbar */
-	--nept-toolbar-item-inner-shadow: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * (1 - l * l / 2) * 0.3) calc(c * 1.04) calc(h - 5)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * (1 - l * l / 2) * 0.3) c calc(h - 5));
-	--nept-button-field-color: light-dark(color-mix(in srgb, currentColor 60%, transparent), color-mix(in srgb, currentColor 70%, transparent));
-	--nept-button-field-hover-color: light-dark(color-mix(in srgb, currentColor 80%, transparent), color-mix(in srgb, currentColor 85%, transparent));
+	--nept-toolbar-item-inner-shadow: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) var(--oklch-l-soft) var(--oklch-c-dyn) var(--oklch-h-soft)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) var(--oklch-l-soft) var(--oklch-c-dyn) var(--oklch-h-soft));
+	--nept-button-field-color: light-dark(color-mix(in srgb, currentColor 45%, transparent), color-mix(in srgb, currentColor 60%, transparent));
+	--nept-button-field-hover-color: light-dark(color-mix(in srgb, currentColor 60%, transparent), color-mix(in srgb, currentColor 75%, transparent));
 
 	/* FF Variable */
 	--toolbar-start-end-padding: 10px !important;
@@ -51,7 +58,7 @@
 	--tab-group-label-highlight-thickness: var(--tab-group-line-thickness) !important;
 	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
 	--tab-label-line-height: 1.6 !important;
-	--tab-selected-shadow: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * (1 - l * l * l) * 0.4) calc(c * 1.05) calc(h - 10)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) calc(l + (1 - l) * (1 - l * l * l) * 0.4) c calc(h - 5)), 0 0 0 2px var(--nept-tab-shadow-color) !important;
+	--tab-selected-shadow: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) var(--oklch-l-dyn) var(--oklch-c-dyn) var(--oklch-h-dyn)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) var(--oklch-l-dyn) var(--oklch-c-dyn) var(--oklch-h-soft)), 0 0 0 2px var(--nept-tab-shadow-color) !important;
 	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-padding-inner)) !important;
 	--button-padding: 0 var(--space-large) !important;
 	--menu-panel-width-wide: 28em !important;
@@ -68,6 +75,7 @@
 	--panel-padding: calc(var(--panel-menuitem-margin-inline) + var(--panel-menuitem-padding-inline)) !important;
 	--panel-text-color: FieldText !important;
 	--panel-border-color: transparent !important;
+	--toolbar-background-color: transparent !important;
 	--tabpanel-background-color: transparent !important;
 	--browser-clip-region: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 	--toolbarbutton-padding-inner: calc((var(--size-item-large) - var(--size-item-small)) / 2) !important;
@@ -92,7 +100,6 @@
 	--urlbarView-action-button-background-color: var(--button-background-color) !important;
 	--urlbarview-background-color-hover: var(--nept-urlbarView-hover-background) !important;
 	--urlbarview-background-color-selected: var(--nept-focused-urlbar-highlight-color) !important;
-	--urlbarView-highlight-color: #fff !important;
 	--urlbarview-text-color-selected: #fff !important;
 	--urlbarView-action-button-background-color: var(--button-background-color) !important;
 	--urlbarView-action-button-hover-background-color: var(--button-background-color-hover) !important;
@@ -109,6 +116,21 @@
 	--organizer-outline-color: transparent !important;
 	--window-min-width: 620px !important;
 	--window-min-width-increase-for-vertical-tabs: calc(var(--window-controls-size) - 34px) !important;
+	@media -moz-pref("browser.nova.enabled") {
+		--chrome-window-gap: unset !important;
+		--chrome-block-radius: unset !important;
+		--urlbarView-padding: 7px !important;
+		@media not -moz-pref("sidebar.verticalTabs") {
+			--tab-block-margin: var(--dimension-4) !important;
+		}
+	}
+}
+
+/*---------- Misc ----------*/
+@media -moz-pref("browser.nova.enabled") {
+	.chrome-block {
+		border: none !important;
+	}
 }
 
 .text-link,
@@ -117,7 +139,6 @@ a {
 	cursor: default !important;
 }
 
-/*---------- Hidden ----------*/
 tooltip,
 menuitem[id^="context"]:is([id="context-openlink"], [id*="bookmark"], [id*="duplicate"], [id*="Duplicate"], [id*="undo"]):not(.menuitem-iconic),
 #toolbar-context-menu > *:not(.viewCustomizeToolbar, .customize-context-pinToToolbar, [id*="vertical-tabs"], [id*="remove"]:not([disabled="true"]), [id*="extensions"], [id*="download"]),

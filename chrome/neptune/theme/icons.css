@@ -361,6 +361,7 @@ treechildren::-moz-tree-image(query, OrganizerQuery_tags_______v) {
 
 .private-browsing-indicator-with-label {
 	--toolbarbutton-padding-inner: calc((var(--urlbar-min-height) - var(--size-item-small)) / 2) !important;
+	display: none;
 
 	#TabsToolbar > & {
 		position: fixed;

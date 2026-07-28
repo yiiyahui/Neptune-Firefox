@@ -11,16 +11,16 @@
 		--toolbar-button-background-active: var(--nept-item-active-background) !important;
 		--toolbar-button-foreground-active: var(--color-accent-primary) !important;
 		--primary-color: var(--color-accent-primary) !important;
-		--link-color: light-dark(color-mix(in srgb, accentcolor 80%, #323232), color-mix(in srgb, accentcolor 80%, #cacaca)) !important;
-		--link-color-hover: light-dark(color-mix(in srgb, accentcolor 85%, #646464), color-mix(in srgb, accentcolor 85%, #ececec)) !important;
+		--link-color: oklch(from accentcolor calc(L - 0.02) C calc(H + 2)) !important;
+		--link-color-hover: oklch(from accentcolor calc(L + 0.15) calc(C - 0.05) calc(H - 2)) !important;
 		--link-color-active: accentcolor !important;
 		--link-color-visited: mediumpurple !important;
 		--fxview-background-color: var(--nept-background-canvas) !important;
-		--button-background-color-primary: color-mix(in srgb, accentcolor 80%, #181818) !important;
-		--button-background-color-primary-hover: color-mix(in srgb, accentcolor 85%, #262626) !important;
-		--button-background-color-primary-active: color-mix(in srgb, accentcolor 85%, #646464) !important;
+		/*--button-background-color-primary: oklch(from accentcolor calc(L - 0.02) C calc(H + 3)) !important;
+		--button-background-color-primary-hover: oklch(from accentcolor calc(L - 0.08) calc(C - 0.01) calc(H + 3)) !important;
+		--button-background-color-primary-active: oklch(from accentcolor calc(L - 0.12) calc(C - 0.01) calc(H + 3)) !important;
 		--button-text-color-primary: white !important;
-		--button-text-color-primary-hover: var(--button-text-color-primary) !important;
+		--button-text-color-primary-hover: var(--button-text-color-primary) !important;*/
 		--focus-outline-color: accentcolor !important;
 		--border-color: var(--card-border-color) !important;
 		--input-text-border-color: var(--card-border-color) !important;

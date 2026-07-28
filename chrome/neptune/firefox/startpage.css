@@ -148,6 +148,12 @@
 		width: calc(2 * var(--size-item-xlarge)) !important;
 
 		.nova-enabled & > .add-button {
+			--button-background-color-primary: var(--newtab-background-card) !important;
+			--button-background-color-primary-hover: var(--newtab-background-card) !important;
+			--button-background-color-primary-active: var(--newtab-background-card) !important;
+			--button-text-color-primary: var(--button-text-color) !important;
+			--button-text-color-primary-hover: var(--button-text-color) !important;
+			--button-text-color-primary-active: var(--button-text-color) !important;
 			--button-size-icon: calc(2 * var(--size-item-xlarge)) !important;
 			--icon-size: var(--size-item-medium) !important;
 			--button-border-radius: var(--border-radius-xlarge) !important;

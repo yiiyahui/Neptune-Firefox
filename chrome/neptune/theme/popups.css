@@ -6,6 +6,8 @@ panel:not(.autoscroller, #feature-callout, #confirmation-hint) {
 	--menuitem-border-radius: var(--panel-menuitem-border-radius) !important;
 	--menu-arrow-size: var(--size-item-xsmall) !important;
 
+	color-scheme: env(-moz-content-preferred-color-scheme) !important;
+
 	@media (-moz-platform: macos) or (-moz-platform: windows) {
 		appearance: menupopup !important;
 	}
@@ -32,6 +34,16 @@ panel {
 		--popup-width: var(--menu-panel-width-wide) !important;
 		--card-border: none !important;
 		--card-box-shadow: none !important;
+
+		&[id="unified-extensions-panel"] .unified-extensions-item {
+			&:first-child {
+				margin-block-start: 0 !important;
+			}
+
+			&:last-child {
+				margin-block-end: 0 !important;
+			}
+		}
 
 		&#link-preview-panel {
 			--panel-border-radius: 0 !important;
@@ -325,6 +337,21 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 }
 
 .report-broken-site-view {
+	--icon-size-small: var(--dimension-12) !important;
+
+	&.main-view > .panel-subview-body > moz-box-group {
+		--box-border: none !important;
+
+		.reason-button.progression {
+			--icon-size: var(--icon-size-xsmall) !important;
+			--box-padding: var(--space-small) !important;
+			--box-border-radius-start: var(--menuitem-border-radius) !important;
+			--box-border-radius-end: var(--menuitem-border-radius) !important;
+			--box-border-block-end: var(--menuitem-border-radius) !important;
+			--box-border: none !important;
+		}
+	}
+
 	&.main-view a {
 		margin-block: var(--panel-menuitem-margin-inline) !important;
 	}

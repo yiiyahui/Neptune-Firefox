@@ -12,7 +12,7 @@ toolbar .toolbarbutton-1 {
 		transition: var(--ext-theme-background-transition);
 	}
 
-	&[widget-id="ipprotection-button"] > .toolbarbutton-icon {
+	&[widget-id="ipprotection-button"] > :is(.toolbarbutton-icon, .toolbarbutton-badge-stack) {
 		clip-path: unset;
 		padding-block: var(--toolbarbutton-padding-inner) !important;
 		border-radius: var(--border-radius-circle) !important;
@@ -21,8 +21,8 @@ toolbar .toolbarbutton-1 {
 	&[id="ai-window-toggle"] {
 		list-style-image: url("chrome://browser/skin/smart-window-nova.svg") !important;
 
-		:root:not([ai-window]) & {
-			filter: grayscale(100%);
+		:root:not([ai-window]) & > .toolbarbutton-icon {
+			filter: hue-rotate(45deg);
 		}
 	}
 
@@ -59,8 +59,8 @@ toolbar .toolbarbutton-1 {
 				background-color: var(--background-color-box-info);
 			}
 
-			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox :is(tab-group, tab:not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #pinned-tabs-container > tab:only-of-type) > :is(&, & ~ toolbaritem),
-			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] :is(#pinned-tabs-container:not(:empty), #tabbrowser-arrowscrollbox > tab-group), #tabbrowser-arrowscrollbox > tab:nth-child(2 of :not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox > :is(tab:only-of-type, tab[hidden])) > :is(&, & ~ toolbaritem) {
+			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox > :is(tab-group, tab-split-view-wrapper, tab:not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #pinned-tabs-container > tab:only-of-type) > :is(&, & ~ toolbaritem),
+			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] :is(#tabbrowser-arrowscrollbox > :is(tab-group, tab-split-view-wrapper, tab:nth-child(2 of :not([hidden]))), #pinned-tabs-container:not(:empty)))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox > :is(tab:only-of-type, tab[hidden])) > :is(&, & ~ toolbaritem) {
 				display: none;
 			}
 		}

@@ -2,6 +2,20 @@
 #navigator-toolbox {
 	border: none !important;
 
+	:root[theme-image-in-toolbox] & {
+		background: none !important;
+	}
+
+	@media -moz-pref("browser.nova.enabled") {
+		& {
+			overflow: unset !important;
+		}
+
+		:root[lwtheme]:not([theme-image-in-toolbox]) & {
+			background-color: transparent !important;
+		}
+	}
+
 	&.fullscreen-with-menubar {
 		box-shadow: none !important;
 	}
@@ -19,11 +33,11 @@
 			display: none;
 		}
 
-		@media not -moz-pref("sidebar.verticalTabs") {
+		/*@media not -moz-pref("sidebar.verticalTabs") {
 			:root[privatebrowsingmode="temporary"] & {
 				padding-inline-start: calc(var(--window-controls-size) + var(--size-item-large) + 2 * var(--toolbar-start-end-padding) + var(--toolbarbutton-padding-outer)) !important;
 			}
-		}
+		}*/
 
 		> #nav-bar-customization-target:not(#widget-overflow-fixed-list) {
 			:root[customizing] & {
@@ -175,6 +189,10 @@
 				box-shadow: none !important;
 			}
 
+			@media -moz-pref("browser.nova.enabled") {
+				border: none !important;
+			}
+
 			#statuspanel #statuspanel-label {
 				background-color: var(--background-color-canvas) !important;
 				border: none !important;
@@ -264,16 +282,21 @@
 
 findbar {
 	background-color: transparent !important;
+	min-width: unset !important;
 	border: none !important;
-	padding-block: 0 var(--dimension-4) !important;
 	order: -1;
 
 	@media (-moz-platform: macos) {
 		flex-direction: row-reverse;
 	}
 
+	&:where(:not([hidden])) {
+		padding-block: 0 var(--dimension-2) !important;
+	}
+
 	&:where([hidden]) {
-		margin-bottom: calc((var(--size-item-large) + var(--dimension-4)) / -1) !important;
+		padding-block: 0 !important;
+		margin-bottom: calc((var(--size-item-large) + var(--dimension-2)) / -1) !important;
 	}
 
 	> .findbar-container {
@@ -353,8 +376,9 @@ findbar {
 			border-radius: var(--border-radius-large) 0 0 var(--border-radius-large) !important;
 		}
 
-		> :is(.findbar-find-status, .found-matches) {
+		&:not(.split-view-panel &) > :is(.findbar-find-status, .found-matches) {
 			margin: 0 !important;
+			margin-inline: unset !important;
 		}
 	}
 

@@ -1,7 +1,7 @@
 /*---------- Search box ----------*/
 #searchbar,
-.urlbar-background,
 .findbar-textbox,
+.urlbar-input-container,
 sidebar-panel-header .search-container,
 input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search, .urlbar-input),
 textarea:not(#select-translations-panel-text-area) {
@@ -9,8 +9,8 @@ textarea:not(#select-translations-panel-text-area) {
 }
 
 #searchbar:focus-within,
-.urlbar[open] > .urlbar-background,
 .findbar-textbox:focus,
+.urlbar[open] > .urlbar-input-container,
 sidebar-panel-header .search-container:focus-within,
 input:where([type="search"], [type="text"], [type="url"], [type="password"]):not(:read-only, .searchbar-textbox, sidebar-panel-header .search-container .search, .urlbar-input):focus-visible,
 textarea:not(#select-translations-panel-text-area):where(:focus-visible) {
