@@ -4,11 +4,14 @@
 	border-inline-start: none !important;
 
 	&[orient="horizontal"] {
+		/* The horizontal tab’s min width must not be less than 48px. */
 		--scrollbutton-display: none;
-		--scrollbutton-padding: var(--tab-overflow-clip-margin);
-		--scrollbutton-icon-padding: calc((var(--tab-min-height) - var(--size-item-small)) / 2);
-		--tab-min-width: calc(var(--dimension-64) + var(--tab-block-margin)) !important;
+		--tab-min-width: calc(var(--dimension-48) + var(--tab-block-margin)) !important;
 		--tab-max-width: 100% !important;
+
+		&:not([overflow]) {
+			--tab-width-transition: min-width 300ms ease-out, max-width 300ms ease-out;
+		}
 
 		:root:not([customizing]) & {
 			padding-bottom: calc(var(--nept-browser-toolbox-padding) / 2) !important;
@@ -25,17 +28,27 @@
 		}
 
 		> #tabbrowser-arrowscrollbox {
+			--scrollbutton-padding: var(--tab-overflow-clip-margin);
+			--scrollbutton-icon-padding: calc((var(--tab-min-height) - var(--size-item-small)) / 2);
 			background-color: var(--nept-tabs-box-background);
 			border-radius: var(--tab-border-radius);
-			transition: margin-inline 100ms ease-out;
+		}
 
-			#pinned-tabs-container:not(:empty) ~ & {
-				margin-inline-start: var(--tab-block-margin);
+		> #pinned-tabs-container {
+			--scrollbutton-icon-padding: calc((var(--tabstrip-min-height) - var(--size-item-small)) / 2 / 2);
+
+			&:not(:empty) {
+				max-width: max(calc(2 * var(--tabstrip-min-height) + var(--tab-block-margin)), calc(38vw - var(--tab-block-margin))) !important;
+				margin-inline-end: var(--tab-block-margin);
 			}
 		}
 
 		.tabbrowser-tab {
 			--tab-min-width-pref: var(--tab-min-width);
+
+			&:nth-child(1 of :not([pinned], [selected], tab-group > &)) {
+				--tab-loading-fill: transparent;
+			}
 
 			&:not([pinned], tab-group[collapsed] > &:not([visuallyselected])) {
 				padding: var(--tab-overflow-clip-margin) !important;
@@ -46,19 +59,15 @@
 
 				&[fadein] {
 					&[selected]:not(tab-split-view-wrapper > &) {
-						min-width: calc(2 * var(--tab-min-width)) !important;
+						min-width: max(calc(2 * var(--tab-min-width) + var(--dimension-96)), var(--size-layout-small)) !important;
 					}
 
-					&:is([muted], [soundplaying], [activemedia-blocked]):not([tab-note]) {
-						--tab-min-width-extra-icons: calc(var(--size-item-xsmall) - var(--tab-overflow-clip-margin)) !important;
-					}
-
-					&[tab-note]:not([muted], [soundplaying], [activemedia-blocked]) {
-						--tab-min-width-extra-icons: calc(var(--size-item-xsmall) + var(--tab-inline-padding)) !important;
+					&:is([tab-note], [muted], [soundplaying], [activemedia-blocked]):not([tab-note]:is([muted], [soundplaying], [activemedia-blocked])) {
+						--tab-min-width-extra-icons: calc(var(--icon-size-xsmall) + var(--tab-inline-padding)) !important;
 					}
 
 					&[tab-note]:is([muted], [soundplaying], [activemedia-blocked]) {
-						--tab-min-width-extra-icons: var(--size-item-medium) !important;
+						--tab-min-width-extra-icons: calc(2 * var(--icon-size-xsmall) + var(--tab-inline-padding) + (var(--tab-icon-end-margin) - var(--tab-overflow-clip-margin))) !important;
 					}
 				}
 
@@ -71,19 +80,11 @@
 						padding-inline-start: 0 !important;
 					}
 				}
-
-				#tabbrowser-tabs[orient="horizontal"]:not([overflow]) & {
-					--tab-width-transition: min-width 300ms ease-out, max-width 300ms ease-out;
-				}
 			}
 
 			&[pinned] {
 				padding: 0 !important;
 				margin-inline-end: var(--tab-block-margin) !important;
-			}
-
-			&:nth-child(1 of :not([pinned], [selected], tab-group > &)) {
-				--tab-loading-fill: transparent;
 			}
 		}
 	}
@@ -162,31 +163,34 @@
 	}
 
 	> #pinned-drop-indicator {
+		color: inherit !important;
 		outline: none !important;
 		border-radius: var(--tab-border-radius) !important;
 
-		&[visible] #pinned-drop-indicator-icon {
+		&[visible] > #pinned-drop-indicator-icon {
 			width: var(--size-item-xsmall) !important;
 			height: var(--size-item-xsmall) !important;
 			transform: rotate(45deg);
 		}
 
 		&[interactive] {
-			background-color: var(--nept-pinned-tab-selected-background) !important;
+			color: var(--toolbarbutton-icon-fill-attention) !important;
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] > & {
 			height: var(--tabstrip-min-height) !important;
 			margin-inline: 0 var(--tab-inline-padding) !important;
 			padding-inline: calc((var(--tabstrip-min-height) - var(--icon-size-xsmall)) / 2) !important;
+			transition-property: background, color, min-width !important;
 
-			&[visible] #pinned-drop-indicator-icon {
+			&[visible] > #pinned-drop-indicator-icon {
 				align-self: center;
 			}
 		}
 
 		#tabbrowser-tabs[orient="vertical"] > & {
 			flex-direction: row !important;
+			transition-property: background, color, height !important;
 
 			&[visible] {
 				height: var(--tab-min-height) !important;
@@ -444,7 +448,7 @@
 		outline: none !important;
 
 		#tabbrowser-tabs[orient="horizontal"] & {
-			--tab-min-width-pref: calc(var(--tab-min-width) * 2);
+			--tab-min-width-pref: calc(var(--tab-min-width) * 2 + var(--dimension-32));
 			flex: 200 200 !important;
 			margin-block: 0 !important;
 
@@ -1010,8 +1014,21 @@
 				}
 			}
 
-			#tabbrowser-tabs[orient="horizontal"][overflow] > #tabbrowser-arrowscrollbox .tabbrowser-tab:not([selected], [muted], [soundplaying], [activemedia-blocked], tab-split-view-wrapper > .tabbrowser-tab) .tab-content > & > * {
-				margin-inline: calc((var(--tab-min-width-pref) - var(--size-item-small) - var(--tab-block-margin)) / 2 - var(--tab-inline-padding)) !important;
+			/* When the tab overflows and displays icons only, they should be centered. */
+			#tabbrowser-tabs[orient="horizontal"][overflow] > #tabbrowser-arrowscrollbox .tabbrowser-tab:not([selected], [tab-note], [muted], [soundplaying], [activemedia-blocked], tab-split-view-wrapper > .tabbrowser-tab) .tab-content > & > * {
+				margin-inline-start: calc((var(--tab-min-width-pref) - var(--size-item-small) - var(--tab-block-margin)) / 2 - var(--tab-inline-padding));
+			}
+
+			#tabbrowser-tabs[orient="horizontal"][overflow] > #tabbrowser-arrowscrollbox .tabbrowser-tab:not([selected], [tab-note], tab-split-view-wrapper > .tabbrowser-tab):is([muted], [soundplaying], [activemedia-blocked]) .tab-content > & > * {
+				margin-inline-start: calc((var(--tab-min-width-pref) - var(--size-item-small) - var(--tab-block-margin) - var(--tab-icon-end-margin) - var(--tab-inline-padding) - var(--icon-size-xsmall) + var(--tab-min-width-extra-icons)) / 2 - var(--tab-inline-padding));
+			}
+
+			#tabbrowser-tabs[orient="horizontal"][overflow] > #tabbrowser-arrowscrollbox .tabbrowser-tab:not([selected], [muted], [soundplaying], [activemedia-blocked], tab-split-view-wrapper > .tabbrowser-tab)[tab-note] .tab-content > & > * {
+				margin-inline-start: calc((var(--tab-min-width-pref) - var(--size-item-small) - var(--tab-block-margin) - var(--tab-icon-end-margin) - var(--tab-inline-padding) - var(--icon-size-xsmall) + var(--tab-min-width-extra-icons)) / 2 + var(--tab-overflow-clip-margin) - var(--tab-inline-padding));
+			}
+
+			#tabbrowser-tabs[orient="horizontal"][overflow] > #tabbrowser-arrowscrollbox .tabbrowser-tab:not([selected], tab-split-view-wrapper > .tabbrowser-tab)[tab-note]:is([muted], [soundplaying], [activemedia-blocked]) .tab-content > & > * {
+				margin-inline-start: calc((var(--tab-min-width-pref) - var(--size-item-small) - var(--tab-block-margin) - var(--tab-icon-end-margin) - var(--tab-inline-padding) - (var(--tab-icon-end-margin) - var(--tab-overflow-clip-margin)) + var(--tab-min-width-extra-icons)) / 2 - var(--icon-size-xsmall) - var(--tab-inline-padding));
 			}
 
 			#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox .tabbrowser-tab:hover .tab-content:not(:is(#tabbrowser-tabs[orient="vertical"]:not([expanded]), #tabbrowser-tabs[orient="horizontal"]) .tab-content) > &,
