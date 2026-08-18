@@ -157,42 +157,26 @@
 @keyframes menuBounce {
 	0% {
 		opacity: 0;
-		transform: scale(0);
+		transform: scale3d(0.001, 0.001, 1);
 	}
 
 	75% {
-		transform: scale(1.025);
+		transform: scale3d(1.025, 1.025, 1);
 	}
 
 	100% {
 		opacity: 1;
-		transform: scale(1);
+		transform: scale3d(1, 1, 1);
 	}
 }
 
-@keyframes Bounce {
-	from,
-	20%,
-	55%,
-	80%,
-	to {
-		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-		transform: translateY(0);
+@keyframes Breath {
+	0%, 100% {
+		transform: scale3d(0.5, 0.5, 0.5);
 	}
 
-	40%,
-	45% {
-		animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-		transform: translateY(calc(var(--space-medium) / -1));
-	}
-
-	70% {
-		animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-		transform: translateY(calc(var(--space-small) / -1));
-	}
-
-	90% {
-		transform: translateY(calc(var(--space-xsmall) / -1));
+	50% {
+		transform: scale3d(1.25, 1.25, 1.25);
 	}
 }
 

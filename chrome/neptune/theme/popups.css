@@ -168,6 +168,7 @@ panelview .toolbarbutton-1:not(#downloadsHistory),
 toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back, .unified-extensions-item-menu-button.subviewbutton, .tab-preview-add-note, #appMenu-zoom-controls > *),
 .widget-overflow-list .toolbarbutton-1,
 .toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem=true]) > toolbarbutton:not(#appMenu-zoom-controls > *) {
+	min-height: var(--button-min-height) !important;
 
 	&:not([disabled]):hover {
 		background-color: var(--color-accent-primary-hover) !important;

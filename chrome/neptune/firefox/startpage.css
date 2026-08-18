@@ -154,7 +154,7 @@
 			--button-text-color-primary: var(--button-text-color) !important;
 			--button-text-color-primary-hover: var(--button-text-color) !important;
 			--button-text-color-primary-active: var(--button-text-color) !important;
-			--button-size-icon: calc(2 * var(--size-item-xlarge)) !important;
+			--button-size-icon-large: calc(2 * var(--size-item-xlarge)) !important;
 			--icon-size: var(--size-item-medium) !important;
 			--button-border-radius: var(--border-radius-xlarge) !important;
 			inset-block-start: calc(var(--col-width) - var(--size-item-xlarge)) !important;
@@ -667,7 +667,7 @@
 			}
 
 			.wordmark {
-				background-size: 72px !important;
+				background-size: var(--dimension-80) !important;
 				background-position-x: left !important;
 				margin-inline-start: var(--space-xsmall) !important;
 			}
