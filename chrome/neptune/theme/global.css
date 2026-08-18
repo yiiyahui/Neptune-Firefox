@@ -49,16 +49,16 @@
 	--urlbar-input-gap: 0 !important;
 	--urlbar-icon-padding: calc((var(--size-item-medium) - 2px - 2px - 16px ) / 2) !important;
 	--urlbar-searchmodeswitcher-inline-padding: var(--urlbar-icon-padding) !important;
-	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarView-row-padding-block) - var(--urlbarView-row-gutter)) !important;
+	--urlbarView-labeled-row-margin-top: calc(var(--button-min-height) + var(--urlbarview-row-padding-block) - var(--urlbarView-row-gutter)) !important;
 	--urlbarView-labeled-row-label-top: calc(-1 * (var(--urlbarView-labeled-row-margin-top) - var(--urlbarView-row-gutter))) !important;
 	--tab-min-height: var(--size-item-medium) !important;
-	--tabstrip-min-height: calc(var(--tab-min-height) + var(--tab-block-margin)) !important;
+	--tabstrip-min-height: calc(var(--tab-min-height) + var(--tab-margin-block)) !important;
 	--tab-border-radius: var(--border-radius-xlarge) !important;
 	--tab-group-label-height: var(--tab-min-height) !important;
 	--tab-group-label-highlight-thickness: var(--tab-group-line-thickness) !important;
-	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-block-margin)) !important;
+	--tab-height-with-margin-padding: calc(var(--tab-min-height) + 3 * var(--tab-margin-block)) !important;
 	--tab-label-line-height: 1.6 !important;
-	--tab-selected-shadow: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) var(--oklch-l-dyn) var(--oklch-c-dyn) var(--oklch-h-dyn)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) var(--oklch-l-dyn) var(--oklch-c-dyn) var(--oklch-h-soft)), 0 0 0 2px var(--nept-tab-shadow-color) !important;
+	--tab-box-shadow-selected: var(--shadow-inner-glow) oklch(from var(--lwt-accent-color) var(--oklch-l-dyn) var(--oklch-c-dyn) var(--oklch-h-dyn)), var(--shadow-inner-depth) oklch(from var(--lwt-accent-color) var(--oklch-l-dyn) var(--oklch-c-dyn) var(--oklch-h-soft)), 0 0 0 2px var(--nept-tab-shadow-color) !important;
 	--button-min-height: calc(var(--size-item-small) + var(--toolbarbutton-padding-inner)) !important;
 	--button-padding: 0 var(--space-large) !important;
 	--menu-panel-width-wide: 28em !important;
@@ -97,12 +97,11 @@
 	--sidebar-box-border-color: var(--card-border-color) !important;
 	--urlbar-box-background-color: transparent !important;
 	--urlbar-box-background-color-focus: transparent !important;
-	--urlbarView-action-button-background-color: var(--button-background-color) !important;
 	--urlbarview-background-color-hover: var(--nept-urlbarView-hover-background) !important;
 	--urlbarview-background-color-selected: var(--nept-focused-urlbar-highlight-color) !important;
 	--urlbarview-text-color-selected: #fff !important;
-	--urlbarView-action-button-background-color: var(--button-background-color) !important;
-	--urlbarView-action-button-hover-background-color: var(--button-background-color-hover) !important;
+	--urlbarview-action-button-background-color: var(--button-background-color) !important;
+	--urlbarview-action-button-background-color-hover: var(--button-background-color-hover) !important;
 	--input-text-background-color: var(--nept-input-bgcolor) !important;
 	--background-color-box: var(--input-text-background-color) !important;
 	--focus-outline-color: var(--color-accent-primary) !important;
@@ -116,12 +115,40 @@
 	--organizer-outline-color: transparent !important;
 	--window-min-width: 620px !important;
 	--window-min-width-increase-for-vertical-tabs: calc(var(--window-controls-size) - 34px) !important;
+	/* tab group colors */
+	--tab-group-blue: var(--color-blue-60) !important;
+	--tab-group-blue-invert: var(--color-blue-20) !important;
+	--tab-group-blue-pale: var(--color-blue-0) !important;
+	--tab-group-purple: var(--color-purple-60) !important;
+	--tab-group-purple-invert: var(--color-purple-20) !important
+	--tab-group-purple-pale: var(--color-purple-0) !important;
+	--tab-group-cyan: var(--color-cyan-60) !important;
+	--tab-group-cyan-invert: var(--color-cyan-20) !important;
+	--tab-group-cyan-pale: var(--color-cyan-0) !important;
+	--tab-group-orange: var(--color-orange-60) !important;
+	--tab-group-orange-invert: var(--color-orange-20) !important;
+	--tab-group-orange-pale: var(--color-orange-0) !important;
+	--tab-group-yellow: var(--color-yellow-60) !important;
+	--tab-group-yellow-invert: var(--color-yellow-20) !important;
+	--tab-group-yellow-pale: var(--color-yellow-0) !important;
+	--tab-group-pink: var(--color-pink-60) !important;
+	--tab-group-pink-invert: var(--color-pink-20) !important;
+	--tab-group-pink-pale: var(--color-pink-0) !important;
+	--tab-group-green: var(--color-green-60) !important;
+	--tab-group-green-invert: var(--color-green-20) !important;
+	--tab-group-green-pale: var(--color-green-0) !important;
+	--tab-group-red: var(--color-red-60) !important;
+	--tab-group-red-invert: var(--color-red-20) !important;
+	--tab-group-red-pale: var(--color-red-0) !important;
+	--tab-group-gray: var(--color-gray-60) !important;
+	--tab-group-gray-invert: var(--color-gray-20) !important;
+	--tab-group-gray-pale: var(--color-gray-0) !important;
 	@media -moz-pref("browser.nova.enabled") {
 		--chrome-window-gap: unset !important;
 		--chrome-block-radius: unset !important;
 		--urlbarView-padding: 7px !important;
 		@media not -moz-pref("sidebar.verticalTabs") {
-			--tab-block-margin: var(--dimension-4) !important;
+			--tab-margin-block: var(--dimension-4) !important;
 		}
 	}
 }

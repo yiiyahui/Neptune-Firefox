@@ -147,17 +147,29 @@
 		background: none !important;
 		width: calc(2 * var(--size-item-xlarge)) !important;
 
-		.nova-enabled & > .add-button {
-			--button-background-color-primary: var(--newtab-background-card) !important;
-			--button-background-color-primary-hover: var(--newtab-background-card) !important;
-			--button-background-color-primary-active: var(--newtab-background-card) !important;
-			--button-text-color-primary: var(--button-text-color) !important;
-			--button-text-color-primary-hover: var(--button-text-color) !important;
-			--button-text-color-primary-active: var(--button-text-color) !important;
-			--button-size-icon: calc(2 * var(--size-item-xlarge)) !important;
-			--icon-size: var(--size-item-medium) !important;
-			--button-border-radius: var(--border-radius-xlarge) !important;
-			inset-block-start: calc(var(--col-width) - var(--size-item-xlarge)) !important;
+		.nova-enabled & {
+			> .add-button {
+				--button-background-color-primary: var(--newtab-background-card) !important;
+				--button-background-color-primary-hover: var(--newtab-background-card) !important;
+				--button-background-color-primary-active: var(--newtab-background-card) !important;
+				--button-text-color-primary: var(--button-text-color) !important;
+				--button-text-color-primary-hover: var(--button-text-color) !important;
+				--button-text-color-primary-active: var(--button-text-color) !important;
+				--button-size-icon-large: calc(2 * var(--size-item-xlarge)) !important;
+				--icon-size: var(--size-item-medium) !important;
+				--button-border-radius: var(--border-radius-xlarge) !important;
+				inset-block-start: calc(var(--col-width) - var(--size-item-xlarge)) !important;
+			}
+
+			panel-list {
+				background-color: var(--newtab-background-color-secondary) !important;
+				backdrop-filter: saturate(1.5) blur(var(--dimension-12));
+
+				> panel-item {
+					--panel-item-button-margin: 0 var(--space-xsmall) !important;
+					--panel-item-button-border-radius: var(--border-radius-small) !important;
+				}
+			}
 		}
 
 		&:not(.nova-enabled &) {
@@ -667,7 +679,7 @@
 			}
 
 			.wordmark {
-				background-size: 72px !important;
+				background-size: var(--dimension-80) !important;
 				background-position-x: left !important;
 				margin-inline-start: var(--space-xsmall) !important;
 			}

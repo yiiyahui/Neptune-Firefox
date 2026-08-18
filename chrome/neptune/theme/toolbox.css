@@ -357,6 +357,7 @@ findbar {
 			background-color: transparent !important;
 			border-color: light-dark(var(--card-border-color), var(--border-color-deemphasized)) !important;
 			border-radius: var(--border-radius-large) !important;
+			outline-offset: var(--toolbarbutton-outline-offset) !important;
 			fill: var(--toolbarbutton-icon-fill);
 		}
 
@@ -388,6 +389,7 @@ findbar {
 		padding: var(--space-xsmall) var(--space-medium) !important;
 		margin: auto var(--toolbar-start-end-padding) auto auto !important;
 		list-style-image: url("../assets/icons/done.svg") !important;
+		border: none !important;
 		border-radius: var(--border-radius-large) !important;
 	}
 }

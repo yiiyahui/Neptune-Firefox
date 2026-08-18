@@ -116,36 +116,19 @@ panel {
 
 	&[type="autocomplete-richlistbox"] {
 		--panel-background-color: Menu !important;
+		--button-background-color-hover: var(--button-background-color-primary-hover) !important;
+		--button-background-color-active: var(--button-background-color-primary-active) !important;
+		--button-text-color-hover: var(--button-text-color-primary) !important;
+		--button-text-color-active: var(--button-text-color-primary) !important;
+		--border-radius-large: var(--dimension-8) !important;
 
 		> richlistbox {
 			background-color: transparent !important;
 			padding: var(--panel-padding-block) !important;
 
-			> richlistitem {
-				min-height: var(--dimension-24) !important;
-
-				&[originaltype="loginsFooter"]:not(:first-child) {
-					border-radius: var(--border-radius-small) !important;
-				}
-
-				&:not([disabled]):not([selected]):hover {
-					background-color: var(--color-accent-primary-hover) !important;
-					color: var(--button-text-color-primary) !important;
-				}
-
-				&[selected] {
-					background-color: var(--color-accent-primary-active) !important;
-					color: var(--button-text-color-primary) !important;
-				}
-
-				> .ac-type-icon {
-					min-height: var(--size-item-xsmall) !important;
-					min-width: var(--size-item-xsmall) !important;
-				}
-
-				> .ac-title {
-					margin-inline: auto !important;
-				}
+			> richlistitem.autocomplete-row-item > autocomplete-row-item {
+				background-color: transparent !important;
+				border: none !important;
 			}
 		}
 
@@ -168,6 +151,7 @@ panelview .toolbarbutton-1:not(#downloadsHistory),
 toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back, .unified-extensions-item-menu-button.subviewbutton, .tab-preview-add-note, #appMenu-zoom-controls > *),
 .widget-overflow-list .toolbarbutton-1,
 .toolbaritem-combined-buttons:is(:not([cui-areatype="toolbar"]), [overflowedItem=true]) > toolbarbutton:not(#appMenu-zoom-controls > *) {
+	min-height: var(--button-min-height) !important;
 
 	&:not([disabled]):hover {
 		background-color: var(--color-accent-primary-hover) !important;
@@ -251,7 +235,7 @@ toolbarbutton.subviewbutton:not(.all-tabs-secondary-button, .subviewbutton-back,
 			}
 
 			> :is(menucaption, menuitem) {
-				padding-block: var(--toolbarbutton-outer-padding) !important;
+				padding-block: var(--toolbarbutton-padding-outer) !important;
 
 				> .menu-text {
 					padding-block: var(--space-xsmall) !important;

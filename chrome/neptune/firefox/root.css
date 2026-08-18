@@ -43,6 +43,10 @@
 	--theme-toolbar-selected-color: var(--color-accent-primary) !important;
 	--theme-toolbar-alternate-hover: var(--nept-item-active-background) !important;
 	--theme-focus-textinput-outline-color: var(--nept-input-outline-color) !important;
+	--button-background-color-menu-hover: var(--color-accent-primary-hover) !important;
+	--button-background-color-menu-active: var(--color-accent-primary-active) !important;
+	--button-text-color-menu-hover: var(--button-text-color-primary) !important;
+	--button-text-color-menu-active: var(--button-text-color-primary) !important;
 	--button-min-height: 24px !important;
 	--button-padding: 0 var(--space-large) !important;
 	--button-border: none !important;
@@ -65,10 +69,6 @@
 	--space-large: calc(4 * var(--space-xsmall)) !important;
 	--space-xlarge: calc(6 * var(--space-xsmall)) !important;
 	--space-xxlarge: calc(8 * var(--space-xsmall)) !important;
-}
-
-::selection {
-	background-color: var(--nept-item-selection-background) !important;
 }
 
 .videocontrols {
