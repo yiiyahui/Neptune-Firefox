@@ -1,35 +1,21 @@
-<h1 align="center"><strong>Neptune Firefox</strong></h1>
+<p align="center">
+  <img src="info/preview.png" alt="Preview" width="600">
+</p>
 
-**Instructions:** 
-- This theme is compatible with the latest release of Firefox and works on both Windows and macOS.
-- To enable adaptive colors, you need to install the **[Adaptive Tab Bar Color](https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour)** extension. If not, the tabs will appear transparent.
+### *Instructions*
+- Compatible with the latest Firefox on **Windows** & **macOS**.
+- Requires the [Adaptive Tab Bar Color](https://addons.mozilla.org/firefox/addon/adaptive-tab-bar-colour) for dynamic colors. without it, tabs will render transparently.
 
-<img src="info/preview.png" alt="Preview Image" width="800px">
+### *Installation*
+- Download the repository and place the unzipped chrome folder into your Firefox profile directory.
+- Customize wallpapers by editing file names inside `userContent.css`.
 
-## Installation
+### *Configuration*
+- `toolkit.legacyUserProfileCustomizations.stylesheets` → `true`
+- `svg.context-properties.content.enabled` → `true`
+- `widget.non-native-theme.use-theme-accent` → `true`
+- `widget.windows.uwp-system-colors.highlight-accent` → `true` *(Ignored on macOS)*
+- Move all buttons to the Navigation Toolbar so no buttons remain on the Tabs Toolbar.
+- Set all color values in **Adaptive Tab Bar Color** options (Theme Builder) to `0%`.
 
-- Download the theme file and unzip the `chrome` folder into your `profile` folder.
-- You can modify the wallpaper in the `userContent.css`, and edit the file names for the light and dark modes
-
-```css
-body {
-	background: url("neptune/image/RainbowLight.png") center/cover no-repeat fixed;
-
-	@media (prefers-color-scheme: dark) {
-		background: url("neptune/image/RainbowDark.png") center/cover no-repeat fixed;
-	}
-}
-```
-
-## Configuration
-
-- **about:config**
-    - Set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
-    - Set `svg.context-properties.content.enabled` to `true`.
-    - Set `widget.non-native-theme.use-theme-accent` to `true`.
-
-- **Required settings**
-    - Move all toolbar buttons to the top, and the tab bar does not display any buttons.
-    - If extension (Adaptive Tab Bar Color) is enabled, set all colors in the Options (theme builder) to `0%`.
-
-ENJOY!
+***ENJOY!***
