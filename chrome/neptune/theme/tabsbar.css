@@ -51,6 +51,7 @@
 
 		.tabbrowser-tab {
 			--tab-min-width-pref: var(--tab-min-width);
+			--tab-split-view-clip: calc(var(--space-xsmall) / -1);
 
 			&:nth-child(1 of :not([pinned], [selected], tab-group > &)) {
 				--tab-loading-fill: transparent;
@@ -520,7 +521,6 @@
 	}
 
 	.tab-background {
-		--split-view-tab-clip: calc(var(--space-xsmall) / -1);
 		background-color: transparent !important;
 		margin-block: 0 !important;
 		outline: none !important;
@@ -548,11 +548,11 @@
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper > .tabbrowser-tab:first-of-type > .tab-stack > & {
-			clip-path: inset(var(--split-view-tab-clip) 0 var(--split-view-tab-clip) var(--split-view-tab-clip));
+			clip-path: inset(var(--tab-split-view-clip) 0 var(--tab-split-view-clip) var(--tab-split-view-clip));
 		}
 
 		#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper > .tabbrowser-tab:last-of-type > .tab-stack > & {
-			clip-path: inset(var(--split-view-tab-clip) var(--split-view-tab-clip) var(--split-view-tab-clip) 0);
+			clip-path: inset(var(--tab-split-view-clip) var(--tab-split-view-clip) var(--tab-split-view-clip) 0);
 		}
 
 		#tabbrowser-tabs:not([orient="vertical"]:not([expanded])) tab-split-view-wrapper > .tabbrowser-tab:first-of-type > .tab-stack > & {
@@ -863,7 +863,7 @@
 				}
 
 				&:not(tab:is([tab-note], [muted], [soundplaying], [activemedia-blocked]) &)[textoverflow] > .tab-label {
-					width: calc(100% + var(--size-item-xsmall));
+					width: calc(100% + var(--tab-inline-padding));
 				}
 			}
 
@@ -871,10 +871,6 @@
 				width: 100%;
 				overflow: hidden;
 				text-overflow: ellipsis;
-			}
-
-			#tabbrowser-tabs[orient="horizontal"][overflow] tab:not([selected], tab-split-view-wrapper > tab) & {
-				display: none;
 			}
 
 			@container tab-stack (inline-size <= calc(var(--tab-label-collapse-width) + var(--tab-min-width-extra-icons))) {
