@@ -130,7 +130,7 @@
 		}
 
 		+ #browser > #sidebar-container {
-			z-index: var(--browser-stack-z-index-rdm-toolbar);
+			z-index: 4;
 
 			&[sidebar-positionend] {
 				inset-inline-end: 0;
@@ -324,7 +324,7 @@
 		}
 
 		+ #browser > #sidebar-container {
-			z-index: var(--browser-stack-z-index-rdm-toolbar);
+			z-index: 4;
 
 			:root[sidebar-expand-on-hover] & {
 				background: none !important;
