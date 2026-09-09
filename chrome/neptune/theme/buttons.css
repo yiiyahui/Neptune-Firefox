@@ -19,10 +19,10 @@ toolbar .toolbarbutton-1 {
 	}
 
 	&[id="ai-window-toggle"] {
-		list-style-image: url("chrome://browser/skin/smart-window-nova.svg") !important;
+		list-style-image: url("chrome://browser/skin/smart-window-simplified.svg") !important;
 
 		:root:not([ai-window]) & > .toolbarbutton-icon {
-			filter: hue-rotate(45deg);
+			filter: grayscale(100%);
 		}
 	}
 
@@ -38,29 +38,7 @@ toolbar .toolbarbutton-1 {
 		:root:not([customizing]) & {
 			margin: auto calc(var(--toolbar-start-end-padding) / 2) calc(var(--nept-browser-toolbox-padding) / 2) !important;
 
-			&[id="PanelUI-menu-button"] {
-				margin-inline-end: var(--toolbar-start-end-padding) !important;
-			}
-
 			#TabsToolbar-customization-target & {
-				display: none;
-			}
-		}
-
-		&[removable="false"]:not([hidden]) {
-			border-radius: var(--border-radius-xlarge) !important;
-
-			:root:not([aiwindow-first-run]) & {
-				margin-inline: 0 !important;
-			}
-
-			& + toolbaritem > .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack),
-			& > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
-				background-color: var(--background-color-box-info);
-			}
-
-			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox > :is(tab-group, tab-split-view-wrapper, tab:not([hidden])))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #pinned-tabs-container > tab:only-of-type) > :is(&, & ~ toolbaritem),
-			#TabsToolbar:not(:has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] :is(#tabbrowser-arrowscrollbox > :is(tab-group, tab-split-view-wrapper, tab:nth-child(2 of :not([hidden]))), #pinned-tabs-container:not(:empty)))):has(> .toolbar-items > #TabsToolbar-customization-target > #tabbrowser-tabs[orient="horizontal"] > #tabbrowser-arrowscrollbox > :is(tab:only-of-type, tab[hidden])) > :is(&, & ~ toolbaritem) {
 				display: none;
 			}
 		}

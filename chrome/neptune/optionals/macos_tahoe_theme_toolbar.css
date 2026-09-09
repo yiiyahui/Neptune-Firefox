@@ -5,7 +5,7 @@
 		--nept-browser-toolbox-padding: 8px;
 		--browser-area-z-index-toolbox: 3 !important;
 		--toolbar-start-end-padding: 8px !important;
-		--urlbar-min-height: var(--size-item-xlarge) !important;
+		--urlbar-height: var(--size-item-xlarge) !important;
 		--urlbar-margin-inline: var(--toolbar-start-end-padding) !important;
 		--opt-tahoe-theme-toolbar-item-background: light-dark(#00000003, #ffffff11);
 		--opt-tahoe-theme-toolbar-item-hover-background: light-dark(#00000005, #ffffff15);

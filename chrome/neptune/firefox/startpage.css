@@ -96,10 +96,6 @@
 }
 
 @-moz-document url("about:home"), url("about:newtab"), url("about:welcome") {
-	* {
-		cursor: auto !important;
-	}
-
 	.logo-and-wordmark-wrapper:not(.nova-enabled .logo-and-wordmark-wrapper) {
 		display: none;
 	}
@@ -115,6 +111,10 @@
 	.nova-enabled .top-sites-list {
 		column-gap: var(--space-xlarge) !important;
 		row-gap: var(--space-small) !important;
+
+		* {
+			cursor: default !important;
+		}
 	}
 
 	@container content-grid (inline-size >= calc(6 * (72px + var(--space-xlarge)))) {
@@ -347,9 +347,6 @@
 		backdrop-filter: saturate(1.5) blur(var(--dimension-12));
 
 		.edit-topsites-wrapper & {
-			width: 40em !important;
-			top: 25vh !important;
-
 			> .topsite-form .form-wrapper input[type=text] {
 				height: var(--button-min-height) !important;
 				border-radius: var(--border-radius-small) !important;
@@ -363,8 +360,10 @@
 				box-shadow: var(--box-shadow-level-3);
 			}
 
-			> .topsite-form .top-site-outer {
-				margin-top: var(--space-large) !important;
+			> .topsite-form .form-wrapper .field .icon-clear-input {
+				--button-size-icon-small: var(--size-item-small);
+				--button-min-height: var(--size-item-small);
+				--button-border-radius: var(--border-radius-medium);
 			}
 		}
 	}

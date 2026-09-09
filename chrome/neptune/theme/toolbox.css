@@ -85,7 +85,7 @@
 	@media (-moz-platform: macos) {
 		.titlebar-buttonbox-container {
 			position: absolute;
-			inset-block-start: calc(var(--nept-browser-toolbox-padding) + (var(--urlbar-min-height) - 16px) / 2);
+			inset-block-start: calc(var(--nept-browser-toolbox-padding) + (var(--urlbar-height) - 16px) / 2);
 			inset-inline-start: var(--space-small);
 		}
 	}
@@ -100,8 +100,12 @@
 			order: 1;
 
 			> .titlebar-spacer {
-				width: calc(var(--size-item-small) / 2) !important;
+				width: var(--dimension-8) !important;
 				display: inherit !important;
+			}
+
+			> .toolbar-items {
+				margin-inline-end: var(--dimension-8);
 			}
 		}
 
@@ -184,6 +188,15 @@
 		clip-path: var(--browser-clip-region);
 
 		.browserContainer {
+			grid-template-areas:
+				"devtools-side-start      devtools-side-start-splitter notificationbox          devtools-side-end-splitter devtools-side-end"
+				"devtools-side-start      devtools-side-start-splitter findbar                  devtools-side-end-splitter devtools-side-end"
+				"devtools-side-start      devtools-side-start-splitter rdm-toolbar              devtools-side-end-splitter devtools-side-end"
+				"devtools-side-start      devtools-side-start-splitter browserstack             devtools-side-end-splitter devtools-side-end"
+				"devtools-bottom-splitter devtools-bottom-splitter     devtools-bottom-splitter devtools-bottom-splitter   devtools-bottom-splitter"
+				"devtools-bottom          devtools-bottom              devtools-bottom          devtools-bottom            devtools-bottom" !important;
+			grid-template-rows: auto auto var(--rdm-toolbar-height, 0) minmax(var(--content-area-min-size), 1fr) auto auto !important;
+
 			@media -moz-pref("sidebar.revamp") {
 				outline: none !important;
 				box-shadow: none !important;
@@ -283,6 +296,7 @@
 findbar {
 	background-color: transparent !important;
 	min-width: unset !important;
+	min-height: unset !important;
 	border: none !important;
 	order: -1;
 
