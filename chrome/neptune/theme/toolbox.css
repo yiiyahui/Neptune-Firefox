@@ -298,7 +298,6 @@ findbar {
 	min-width: unset !important;
 	min-height: unset !important;
 	border: none !important;
-	order: -1;
 
 	@media (-moz-platform: macos) {
 		flex-direction: row-reverse;

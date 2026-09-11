@@ -66,18 +66,6 @@
 	}
 }
 
-#stop-reload-button[animate] .toolbarbutton-animatable-box > .toolbarbutton-animatable-image {
-	/*animation-duration: 0s !important;*/	/* Enable or disable the reload/stop button animation. */
-
-	#reload-button & {
-		background-image: url("../assets/icons/stop-to-reload.svg") !important;
-	}
-
-	#reload-button[displaystop] + #stop-button & {
-		background-image: url("../assets/icons/reload-to-stop.svg") !important;
-	}
-}
-
 #back-button, .unified-nav-back[_moz-menuactive] {
 	list-style-image: url("../assets/icons/back.svg") !important;
 }
